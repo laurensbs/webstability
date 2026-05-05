@@ -8,18 +8,21 @@ export async function Services() {
   const adminBullets = tRaw.raw("home.services.items.admin.bullets") as string[];
 
   return (
-    <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
-      <div className="mx-auto max-w-6xl">
-        <RevealOnScroll className="max-w-2xl space-y-4">
-          <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
+    <section id="diensten" className="px-6 py-[100px]">
+      <div className="mx-auto max-w-[1200px]">
+        <RevealOnScroll className="mb-14 max-w-[720px]">
+          <p className="mb-[18px] font-mono text-[12px] tracking-[0.1em] text-(--color-accent) uppercase">
+            {"// "}
             {t("eyebrow")}
           </p>
-          <h2 className="text-3xl md:text-5xl">{t("title")}</h2>
-          <p className="text-(--color-muted)">{t("lede")}</p>
+          <h2 className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">
+            {t.rich("title", { em: (c) => <em>{c}</em> })}
+          </h2>
+          <p className="max-w-[56ch] text-[18px] text-(--color-muted)">{t("lede")}</p>
         </RevealOnScroll>
 
-        {/* Asymmetric: large card spans 2 rows on md+, small cards stack. */}
-        <div className="mt-14 grid gap-6 md:grid-cols-2 md:grid-rows-2">
+        {/* Asymmetric: large card spans 2 rows on md+, small cards stack */}
+        <div className="grid gap-5 md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
           <ServiceCard
             index={0}
             iconKey="admin"

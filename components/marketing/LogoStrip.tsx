@@ -1,32 +1,46 @@
 import { getTranslations } from "next-intl/server";
 
+/**
+ * "Trusted by" strip — alternating Fraunces serif and Inter sans logo
+ * placeholders to create a varied, hand-set feel rather than a logo grid
+ * (which would require real client logos we don't have yet).
+ */
 export async function LogoStrip() {
   const t = await getTranslations("home.logoStrip");
-  const items = (await getTranslations()).raw("home.logoStrip.items") as string[];
-  // Duplicate so the marquee can loop seamlessly.
-  const loop = [...items, ...items];
+
+  // Mix of serif (Fraunces) and sans (Inter) "logo-style" wordmarks.
+  // Italic toggle adds variety. Replace with real client logos later.
+  const items: Array<{ name: string; sans?: boolean; italic?: boolean }> = [
+    { name: "Costa Caravans" },
+    { name: "Repair&Roll", sans: true },
+    { name: "Marbella Stays", italic: true },
+    { name: "VOLT/AUTO", sans: true },
+    { name: "Bakker & Zn." },
+    { name: "Mediterrana", sans: true },
+  ];
 
   return (
-    <section className="border-y border-(--color-border) bg-(--color-bg-warm)/40 py-10">
-      <div className="mx-auto max-w-6xl px-6">
-        <p className="text-center font-mono text-xs tracking-widest text-(--color-muted) uppercase">
+    <section className="border-y border-(--color-border) bg-(--color-bg-warm) py-[60px]">
+      <div className="mx-auto max-w-[1200px] px-6">
+        <p className="mb-7 text-center font-mono text-[11px] tracking-[0.1em] text-(--color-muted) uppercase">
           {t("title")}
         </p>
-      </div>
-      <div className="relative mt-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-        <ul
-          className="flex w-max items-center gap-x-12 motion-safe:animate-[wb-marquee_28s_linear_infinite]"
-          aria-hidden={false}
-        >
-          {loop.map((item, i) => (
-            <li
-              key={`${item}-${i}`}
-              className="font-mono text-sm tracking-wide whitespace-nowrap text-(--color-muted)"
+        <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-4 opacity-70">
+          {items.map((item) => (
+            <span
+              key={item.name}
+              className={
+                item.sans
+                  ? "text-[18px] font-bold tracking-[-0.03em] text-(--color-muted)"
+                  : `font-serif text-[22px] font-medium tracking-[-0.02em] text-(--color-muted) ${
+                      item.italic ? "italic" : ""
+                    }`
+              }
             >
-              {item}
-            </li>
+              {item.name}
+            </span>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

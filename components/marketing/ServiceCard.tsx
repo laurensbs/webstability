@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { Database, Globe, BarChart3, Check, type LucideIcon } from "lucide-react";
+import { Database, Globe, BarChart3, type LucideIcon } from "lucide-react";
 
 const ICONS: Record<string, LucideIcon> = {
   admin: Database,
@@ -37,47 +37,45 @@ export function ServiceCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={reduce ? undefined : { y: -6 }}
-      className={`group relative flex h-full flex-col overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-8 transition-shadow duration-300 hover:shadow-[0_12px_32px_-16px_rgba(31,27,22,0.16)] ${
-        large ? "md:row-span-2" : ""
+      whileHover={reduce ? undefined : { y: -4 }}
+      className={`group relative flex h-full flex-col rounded-[20px] border border-(--color-border) bg-(--color-surface) transition-all duration-300 hover:border-(--color-border-strong,#D8CDB6) hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)] ${
+        large ? "p-11 md:row-span-2" : "p-9"
       }`}
     >
-      {/* Soft accent halo behind the icon, only visible on hover. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-(--color-accent-soft) opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
-      />
-      <div className="relative flex flex-1 flex-col">
-        <div className="inline-flex h-12 w-12 items-center justify-center rounded-md border border-(--color-border) bg-(--color-bg-warm) text-(--color-accent) transition-colors duration-300 group-hover:border-(--color-accent) group-hover:bg-(--color-accent-soft)">
-          <Icon className="h-5 w-5" />
-        </div>
-        <h3 className={large ? "mt-6 text-3xl" : "mt-6 text-2xl"}>{title}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-(--color-muted)">{body}</p>
+      {/* Icon — rotates and fills on hover, per mockup */}
+      <div className="mb-6 grid h-12 w-12 place-items-center rounded-[14px] bg-(--color-accent-soft) text-(--color-accent) transition-all duration-300 group-hover:scale-105 group-hover:rotate-[-6deg] group-hover:bg-(--color-accent) group-hover:text-white">
+        <Icon className="h-[22px] w-[22px]" strokeWidth={2} />
+      </div>
 
-        {bullets ? (
-          <ul className="mt-5 space-y-2.5">
-            {bullets.map((b) => (
-              <li key={b} className="flex items-start gap-2.5 text-sm">
-                <Check
-                  className="mt-0.5 h-4 w-4 shrink-0 text-(--color-accent)"
-                  strokeWidth={2.5}
-                />
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
-        ) : null}
+      <h3 className={large ? "mb-3 text-[32px] leading-[1.1]" : "mb-3 text-[24px] leading-[1.1]"}>
+        {title}
+      </h3>
+      <p className="text-[15px] leading-[1.6] text-(--color-muted)">{body}</p>
 
-        {ctaHref && ctaLabel ? (
+      {bullets ? (
+        <ul className="mt-[22px] space-y-0 border-t border-(--color-border) pt-[22px]">
+          {bullets.map((b) => (
+            <li
+              key={b}
+              className="flex items-center gap-2.5 py-[5px] text-[14px] text-(--color-muted)"
+            >
+              <span className="h-1 w-1 shrink-0 rounded-full bg-(--color-accent)" aria-hidden />
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      {ctaHref && ctaLabel ? (
+        <div className="mt-auto pt-6">
           <a
             href={ctaHref}
-            className="mt-auto inline-flex items-center gap-1.5 pt-6 font-mono text-xs tracking-wide text-(--color-accent) hover:underline"
+            className="inline-flex items-center gap-1 text-[14px] font-medium text-(--color-accent) hover:underline"
           >
-            {ctaLabel}
-            <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+            {ctaLabel} <span className="transition-transform group-hover:translate-x-0.5">→</span>
           </a>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </motion.article>
   );
 }

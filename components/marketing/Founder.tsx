@@ -1,44 +1,69 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { FounderTimeline } from "@/components/marketing/FounderTimeline";
 
 export async function Founder() {
   const t = await getTranslations("home.founder");
   return (
-    <section className="px-6 py-24">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1fr_1.4fr]">
+    <section className="bg-(--color-bg-warm) px-6 py-[120px]">
+      <div className="mx-auto grid max-w-[1200px] items-center gap-20 md:grid-cols-[1fr_1.2fr]">
+        {/* Photo block — gradient bg with giant "L" + dark badge */}
         <RevealOnScroll>
-          <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-lg border border-(--color-border) bg-(--color-bg-warm)">
-            {/* Founder portrait placeholder — vervang met /public/laurens.jpg in Phase 5 */}
-            <div className="flex h-full items-center justify-center font-mono text-xs tracking-widest text-(--color-muted) uppercase">
-              laurens · begur
-            </div>
-            {/* Subtle grain/edge accent */}
+          <div
+            className="relative aspect-[4/5] overflow-hidden rounded-[28px] shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]"
+            style={{
+              background:
+                "linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-teal-soft, #DCE8E7) 100%)",
+            }}
+          >
             <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 ring-1 ring-(--color-text)/5 ring-inset"
-            />
+              className="absolute inset-0 grid place-items-center font-serif text-[200px] leading-none font-light"
+              style={{ color: "rgba(31,27,22,0.08)" }}
+            >
+              L
+            </div>
+            <div
+              className="absolute right-6 bottom-6 left-6 flex items-center gap-2.5 rounded-[14px] px-4 py-3.5 text-[13px] text-(--color-bg) backdrop-blur-md"
+              style={{ background: "rgba(31, 27, 22, 0.85)" }}
+            >
+              <span
+                className="h-2 w-2 shrink-0 rounded-full bg-(--color-success)"
+                style={{ boxShadow: "0 0 0 3px rgba(90, 122, 74, 0.25)" }}
+              />
+              {t("liveBadge")}
+            </div>
           </div>
         </RevealOnScroll>
 
-        <RevealOnScroll delay={0.1} className="space-y-6">
-          <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
+        <RevealOnScroll delay={0.1}>
+          <p className="mb-[18px] font-mono text-[12px] tracking-[0.1em] text-(--color-accent) uppercase">
+            {"// "}
             {t("eyebrow")}
           </p>
-          <h2 className="text-3xl leading-tight md:text-5xl">
+          <h2 className="mb-6 text-[clamp(32px,4vw,48px)]">
             {t.rich("title", { em: (c) => <em>{c}</em> })}
           </h2>
-          <p className="text-lg text-(--color-muted)">{t("body")}</p>
+          <p className="mb-[18px] font-serif text-[19px] leading-[1.5] text-(--color-text)">
+            {t("body")}
+          </p>
+          <p className="mb-4 text-[16px] leading-[1.65] text-(--color-muted)">{t("body2")}</p>
+          <p className="text-[16px] leading-[1.65] text-(--color-muted)">{t("body3")}</p>
 
-          <FounderTimeline label={t("timelineLabel")} />
+          <div className="mt-7 flex items-center gap-4 border-t border-(--color-border) pt-7">
+            <div>
+              <div className="font-serif text-[22px] italic">{t("name")}</div>
+              <div className="text-[13px] text-(--color-muted)">{t("role")}</div>
+            </div>
+          </div>
 
-          <Link
-            href="/over"
-            className="inline-block font-mono text-sm text-(--color-accent) hover:underline"
-          >
-            {t("cta")} →
-          </Link>
+          <div className="mt-6">
+            <Link
+              href="/over"
+              className="inline-flex items-center gap-1 text-[14px] font-medium text-(--color-accent) hover:underline"
+            >
+              {t("cta")} →
+            </Link>
+          </div>
         </RevealOnScroll>
       </div>
     </section>

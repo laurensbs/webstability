@@ -32,10 +32,10 @@
   },
   "home": {
     "eyebrow": "begur · costa brava",
-    "headline": "Software que <em>sigue funcionando</em>.",
-    "tagline": "Sistemas a medida, webs y tiendas online para pymes en Países Bajos y España. Un solo desarrollador, comunicación directa, sin gestores de cuenta.",
-    "ctaPrimary": "Reserva una llamada",
-    "ctaSecondary": "Ver precios",
+    "headline": "No la enésima web. <em>El sistema</em> bajo tu empresa.",
+    "tagline": "Construimos plataformas de alquiler, portales de reparación y dashboards operativos que sustituyen tu caos diario por un solo lugar tranquilo. Desde Costa Brava, para empresarios en Países Bajos y España.",
+    "ctaPrimary": "Reservar primera llamada",
+    "ctaSecondary": "Especial para alquiler",
 
     "hero": {
       "years": "años construyendo",
@@ -49,7 +49,7 @@
     },
 
     "logoStrip": {
-      "title": "Stack que se demuestra solo",
+      "title": "Empresarios que confían en mí — Países Bajos y España",
       "items": ["Next.js", "TypeScript", "Postgres", "Stripe", "Vercel", "Tailwind"]
     },
 
@@ -82,9 +82,14 @@
     },
 
     "founder": {
-      "eyebrow": "el desarrollador",
-      "title": "Una persona. <em>Toda la stack.</em>",
-      "body": "Soy Laurens. Holandés afincado en Begur, Costa Brava. Llevo diez años construyendo software para pymes — sistemas que la gente usa cada día, webs que convierten, tiendas online con el IVA correcto en dos países. Sin gestores de cuenta entre tú y el código. Me llamas a mí.",
+      "eyebrow": "sobre",
+      "title": "Hola, soy <em>Laurens</em>.",
+      "body": "Llevo 12 años construyendo sistemas para pymes. Primero desde Países Bajos, desde hace tres años desde Costa Brava — donde traigo el mismo enfoque al mercado español.",
+      "body2": "No trabajo como agencia. Sin gestores de cuenta, sin subcontratas en una zona horaria que nunca ves. Hablas directamente con el desarrollador que construye tu sistema, y que sigue respondiendo dos años después si algo se rompe.",
+      "body3": "Lo mío son los sistemas aburridos que nadie quiere construir — administración de alquileres, partes de reparación, integraciones de inventario. Trabajo invisible que mantiene despiertos a los empresarios. Ahí es donde marco la diferencia.",
+      "name": "Laurens Bos",
+      "role": "Founder & lead developer · Webstability",
+      "liveBadge": "En vivo desde Begur, Costa Brava",
       "timelineLabel": "construyendo cada año",
       "cta": "Lee la historia completa"
     },
@@ -175,9 +180,10 @@
     },
 
     "cta": {
-      "title": "¿<em>Te encaja</em>?",
-      "body": "La primera llamada es gratis. Treinta minutos, sin presentación comercial.",
-      "button": "Reserva una llamada"
+      "eyebrow": "hablemos",
+      "title": "¿Listo para un sistema que <em>crece contigo</em>?",
+      "body": "Una llamada de 30 minutos sin compromiso. Sin presentación comercial — un consejo honesto sobre si, y cómo, podemos ayudarnos.",
+      "button": "Planificar en agenda"
     }
   },
   "contact": {

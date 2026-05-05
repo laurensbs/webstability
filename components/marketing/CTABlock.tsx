@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
@@ -6,26 +7,38 @@ import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 export async function CTABlock() {
   const t = await getTranslations("home.cta");
   return (
-    <section className="relative overflow-hidden px-6 py-32">
-      {/* Ambient terracotta blob, fixed-decorative. */}
+    <section id="contact" className="relative overflow-hidden px-6 py-[120px]">
+      {/* Ambient terracotta blob */}
       <div
         aria-hidden
-        className="pointer-events-none absolute top-1/2 left-1/2 h-[420px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-(--color-accent-soft) opacity-50 blur-3xl"
+        className="pointer-events-none absolute top-1/2 left-1/2 h-[420px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-[80px]"
+        style={{
+          background: "radial-gradient(circle, var(--color-accent-soft) 0%, transparent 65%)",
+        }}
       />
-      <RevealOnScroll className="relative mx-auto max-w-3xl space-y-6 text-center">
-        <h2 className="text-3xl md:text-5xl">{t.rich("title", { em: (c) => <em>{c}</em> })}</h2>
-        <p className="text-(--color-muted) md:text-lg">{t("body")}</p>
-        <div className="pt-2">
-          <Button asChild size="lg" variant="accent" className="group">
-            <Link href="/contact">
-              <span>{t("button")}</span>
-              <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">
-                →
-              </span>
-            </Link>
-          </Button>
-        </div>
-      </RevealOnScroll>
+      <div className="relative mx-auto max-w-[1200px]">
+        <RevealOnScroll className="mx-auto max-w-3xl space-y-6 text-center">
+          <p className="font-mono text-[12px] tracking-[0.1em] text-(--color-accent) uppercase">
+            {"// "}
+            {t("eyebrow")}
+          </p>
+          <h2 className="text-[clamp(36px,5vw,60px)]">
+            {t.rich("title", { em: (c) => <em>{c}</em> })}
+          </h2>
+          <p className="mx-auto max-w-[56ch] text-[18px] text-(--color-muted)">{t("body")}</p>
+          <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
+            <Button asChild size="lg" variant="primary" className="group">
+              <a href="mailto:hello@webstability.eu">
+                hello@webstability.eu
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href="/contact">{t("button")} →</Link>
+            </Button>
+          </div>
+        </RevealOnScroll>
+      </div>
     </section>
   );
 }

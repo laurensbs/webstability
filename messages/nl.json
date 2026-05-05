@@ -32,10 +32,10 @@
   },
   "home": {
     "eyebrow": "begur · costa brava",
-    "headline": "Software die <em>blijft werken</em>.",
-    "tagline": "Maatwerk admin-systemen, websites en webshops voor MKB-ondernemers in Nederland en Spanje. Eén ontwikkelaar, directe communicatie, geen accountmanagers.",
-    "ctaPrimary": "Plan een gesprek",
-    "ctaSecondary": "Bekijk prijzen",
+    "headline": "Niet de zoveelste website. <em>Het systeem</em> onder je bedrijf.",
+    "tagline": "Wij bouwen verhuurplatformen, reparatieportalen en operationele dashboards die jouw dagelijkse chaos vervangen door één rustige plek. Vanuit Costa Brava, voor ondernemers in Nederland en Spanje.",
+    "ctaPrimary": "Plan een kennismaking",
+    "ctaSecondary": "Speciaal voor verhuur",
 
     "hero": {
       "years": "jaar bouwen",
@@ -49,7 +49,7 @@
     },
 
     "logoStrip": {
-      "title": "Stack die zichzelf bewijst",
+      "title": "Vertrouwd door ondernemers in Nederland & Spanje",
       "items": ["Next.js", "TypeScript", "Postgres", "Stripe", "Vercel", "Tailwind"]
     },
 
@@ -82,9 +82,14 @@
     },
 
     "founder": {
-      "eyebrow": "de ontwikkelaar",
-      "title": "Eén persoon. <em>Hele stack.</em>",
-      "body": "Ik ben Laurens. Nederlander in Begur, Costa Brava. Tien jaar bouw ik software voor MKB — admin-systemen die mensen elke dag gebruiken, websites die converteren, webshops die de BTW kloppend krijgen in twee landen. Geen accountmanagers tussen jou en de code. Je belt mij.",
+      "eyebrow": "over",
+      "title": "Hi, ik ben <em>Laurens</em>.",
+      "body": "12 jaar bouw ik systemen voor MKB-ondernemers. Eerst vanuit Nederland, sinds drie jaar vanuit Costa Brava — waar ik dezelfde aanpak nu naar de Spaanse markt breng.",
+      "body2": "Ik werk niet als bureau. Geen accountmanagers, geen onderaannemers in een tijdzone die je nooit ziet. Je hebt direct contact met de developer die jouw systeem ook bouwt, en die er over twee jaar nog op reageert als er iets stuk is.",
+      "body3": "Mijn ding zijn de saaie systemen die niemand wil bouwen — verhuuradministraties, reparatiebonnen, voorraadkoppelingen. Onzichtbaar werk dat ondernemers wakker houdt. Dat is precies waar ik het verschil maak.",
+      "name": "Laurens Bos",
+      "role": "Founder & lead developer · Webstability",
+      "liveBadge": "Live vanuit Begur, Costa Brava",
       "timelineLabel": "elk jaar bouwend",
       "cta": "Lees het hele verhaal"
     },
@@ -175,9 +180,10 @@
     },
 
     "cta": {
-      "title": "Klinkt het <em>als een match</em>?",
-      "body": "Een eerste gesprek is gratis. Dertig minuten, geen pitch-deck.",
-      "button": "Plan een gesprek"
+      "eyebrow": "laten we praten",
+      "title": "Klaar voor een systeem dat <em>met je meegroeit</em>?",
+      "body": "Een vrijblijvend gesprek van 30 minuten. Geen verkooppraat — wel een eerlijk advies of, en hoe, we elkaar kunnen helpen.",
+      "button": "Plan in agenda"
     }
   },
   "contact": {

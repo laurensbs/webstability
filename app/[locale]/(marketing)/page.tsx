@@ -9,7 +9,6 @@ import { Founder } from "@/components/marketing/Founder";
 import { Testimonials } from "@/components/marketing/Testimonials";
 import { Approach } from "@/components/marketing/Approach";
 import { PricingTeaser } from "@/components/marketing/PricingTeaser";
-import { Audience } from "@/components/marketing/Audience";
 import { FAQ } from "@/components/marketing/FAQ";
 import { CTABlock } from "@/components/marketing/CTABlock";
 
@@ -19,7 +18,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   setRequestLocale(locale);
 
   return (
-    <main className="dotted-bg flex flex-1 flex-col">
+    <main className="flex flex-1 flex-col">
       <Hero />
       <LogoStrip />
       <Services />
@@ -28,7 +27,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <Testimonials />
       <Approach />
       <PricingTeaser />
-      <Audience />
       <FAQ />
       <CTABlock />
     </main>

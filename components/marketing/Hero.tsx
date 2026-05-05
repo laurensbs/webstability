@@ -55,7 +55,7 @@ export async function Hero() {
             </Link>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <Link href="/prijzen">{t("ctaSecondary")}</Link>
+            <Link href="/verhuur">{t("ctaSecondary")} →</Link>
           </Button>
         </div>
 
