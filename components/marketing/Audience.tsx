@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { AudienceVisual } from "@/components/marketing/AudienceVisual";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 export async function Audience() {
   const t = await getTranslations("home.audience");
@@ -12,7 +13,7 @@ export async function Audience() {
             {t("eyebrow")}
           </p>
           <h2 className="text-3xl leading-tight md:text-5xl">
-            {t.rich("title", { em: (c) => <em>{c}</em> })}
+            {<MarkupText>{t("title")}</MarkupText>}
           </h2>
           <p className="text-lg text-(--color-muted)">{t("body")}</p>
         </RevealOnScroll>

@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 import { Button } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
 import { startCareCheckout } from "@/app/actions/billing";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 type BuildItem = { name: string; price: string; body: string };
 type CareItem = { id: "basic" | "pro" | "partner"; name: string; price: string; body: string };
@@ -34,7 +35,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     <main className="dotted-bg flex flex-1 flex-col">
       <PageHeader
         eyebrow={t("eyebrow")}
-        title={t.rich("title", { em: (c) => <em>{c}</em> })}
+        title={<MarkupText>{t("title")}</MarkupText>}
         lede={t("lede")}
       />
 

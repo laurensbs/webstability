@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 export default async function LoginPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -40,7 +41,7 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
 
         <div className="relative z-10 max-w-md space-y-8">
           <h2 className="text-3xl leading-[1.15] md:text-4xl">
-            {t.rich("panelTitle", { em: (c) => <em>{c}</em> })}
+            {<MarkupText>{t("panelTitle")}</MarkupText>}
           </h2>
           <p className="text-(--color-bg)/70">{t("panelLede")}</p>
           <ul className="space-y-3">
@@ -78,9 +79,7 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
             {"// "}
             {t("eyebrow")}
           </p>
-          <h1 className="mt-4 text-4xl md:text-5xl">
-            {t.rich("title", { em: (c) => <em>{c}</em> })}
-          </h1>
+          <h1 className="mt-4 text-4xl md:text-5xl">{<MarkupText>{t("title")}</MarkupText>}</h1>
           <p className="mt-3 text-(--color-muted)">{t("subtitle")}</p>
           <div className="mt-8">
             <LoginForm />

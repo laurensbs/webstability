@@ -32,7 +32,7 @@
   },
   "home": {
     "eyebrow": "begur · costa brava",
-    "headline": "No la enésima web. <em>El sistema</em> bajo tu empresa.",
+    "headline": "No la enésima web. *El sistema* bajo tu empresa.",
     "tagline": "Construimos plataformas de alquiler, portales de reparación y dashboards operativos que sustituyen tu caos diario por un solo lugar tranquilo. Desde Costa Brava, para empresarios en Países Bajos y España.",
     "ctaPrimary": "Reservar primera llamada",
     "ctaSecondary": "Especial para alquiler",
@@ -83,7 +83,7 @@
 
     "founder": {
       "eyebrow": "sobre",
-      "title": "Hola, soy <em>Laurens</em>.",
+      "title": "Hola, soy *Laurens*.",
       "body": "Llevo 12 años construyendo sistemas para pymes. Primero desde Países Bajos, desde hace tres años desde Costa Brava — donde traigo el mismo enfoque al mercado español.",
       "body2": "No trabajo como agencia. Sin gestores de cuenta, sin subcontratas en una zona horaria que nunca ves. Hablas directamente con el desarrollador que construye tu sistema, y que sigue respondiendo dos años después si algo se rompe.",
       "body3": "Lo mío son los sistemas aburridos que nadie quiere construir — administración de alquileres, partes de reparación, integraciones de inventario. Trabajo invisible que mantiene despiertos a los empresarios. Ahí es donde marco la diferencia.",
@@ -124,7 +124,7 @@
 
     "audience": {
       "eyebrow": "para quién",
-      "title": "Para pymes que no quieren <em>subcontratar</em>, sino <em>colaborar</em>.",
+      "title": "Para pymes que no quieren *subcontratar*, sino *colaborar*.",
       "body": "Empresarios en Países Bajos y España que quieren dar un paso digital serio sin entregarse a una agencia. Comunicación directa, propiedad del código, y un desarrollador que recuerda tu nombre.",
       "nlLabel": "Países Bajos",
       "esLabel": "España",
@@ -160,14 +160,14 @@
 
     "testimonials": {
       "eyebrow": "clientes",
-      "title": "Lo que dicen <em>tras un año</em>.",
+      "title": "Lo que dicen *tras un año*.",
       "lede": "No las frases pulidas tras el lanzamiento. Lo que la gente dice cuando su sistema ya lleva tiempo funcionando.",
       "items": []
     },
 
     "pricing": {
       "eyebrow": "suscripciones",
-      "title": "Precios claros, <em>sin</em> sorpresas.",
+      "title": "Precios claros, *sin* sorpresas.",
       "lede": "Un precio fijo al mes. Cancelable mensualmente. Primer mes siempre gratis — si no encaja, no pagas nada.",
       "featured": "Más elegido",
       "viewAll": "Ver comparativa completa y precios de Build",
@@ -181,14 +181,14 @@
 
     "cta": {
       "eyebrow": "hablemos",
-      "title": "¿Listo para un sistema que <em>crece contigo</em>?",
+      "title": "¿Listo para un sistema que *crece contigo*?",
       "body": "Una llamada de 30 minutos sin compromiso. Sin presentación comercial — un consejo honesto sobre si, y cómo, podemos ayudarnos.",
       "button": "Planificar en agenda"
     }
   },
   "contact": {
     "eyebrow": "contacto",
-    "title": "Reserva una llamada. <em>O escribe un email.</em>",
+    "title": "Reserva una llamada. *O escribe un email.*",
     "lede": "Primera llamada gratis, treinta minutos, sin presentación comercial. ¿Prefieres escribir? hello@webstability.eu — respondo en un día laborable.",
     "calLoading": "Cargando calendario…",
     "calFallback": "¿No se carga el calendario? Ábrelo directamente en cal.com/webstability.",
@@ -219,9 +219,9 @@
   },
   "status": {
     "eyebrow": "estado en vivo",
-    "title": "Todo funciona <em>como debe</em>.",
-    "titleDegraded": "Uno o más servicios están <em>degradados</em>.",
-    "titleDown": "Hay una <em>incidencia</em>.",
+    "title": "Todo funciona *como debe*.",
+    "titleDegraded": "Uno o más servicios están *degradados*.",
+    "titleDown": "Hay una *incidencia*.",
     "summary": "Datos en vivo de Better Stack. Se actualiza cada minuto.",
     "labelOperational": "operativo",
     "labelDegraded": "degradado",
@@ -238,7 +238,7 @@
   },
   "blog": {
     "eyebrow": "blog",
-    "title": "Escribir sobre preguntas <em>reales</em>.",
+    "title": "Escribir sobre preguntas *reales*.",
     "lede": "Sin listas de tips SEO. Preguntas que me encuentro en conversaciones con empresarios, desarrolladas como las respondo.",
     "readingTime": "{minutes} min de lectura",
     "back": "Todos los artículos",
@@ -250,7 +250,7 @@
   },
   "guarantees": {
     "eyebrow": "garantías",
-    "title": "Lo que <em>nunca</em> hago.",
+    "title": "Lo que *nunca* hago.",
     "lede": "La mayoría de agencias mete su NDA en un anexo y espera que no lo leas. Yo lo pongo aquí en una página pública.",
     "ndaTitle": "Cláusula de confidencialidad",
     "ndaBody": "El desarrollador declara que todos los datos empresariales accesibles durante el desarrollo, hosting o mantenimiento se utilizarán únicamente para la ejecución del encargo. Ningún dato empresarial, dato de cliente, cifra de facturación o información operativa se compartirá, revenderá o usará para otros fines — tampoco anonimizado para portfolio o marketing — sin consentimiento expreso por escrito del cliente.",
@@ -276,7 +276,7 @@
   },
   "about": {
     "eyebrow": "sobre webstability",
-    "title": "Un solo desarrollador, <em>diez años</em> de experiencia.",
+    "title": "Un solo desarrollador, *diez años* de experiencia.",
     "intro": "Soy Laurens Bos. Construyo software para pymes desde 2015 — primero desde Países Bajos, desde 2022 desde Begur en la Costa Brava. Lo que empezó como encargos freelance para empresas de alquiler se convirtió en Webstability: un estudio especializado en software que no deja de funcionar después de la entrega.",
     "principlesTitle": "Cuatro principios",
     "principles": [
@@ -330,7 +330,7 @@
   },
   "verhuur": {
     "eyebrow": "para empresas de alquiler",
-    "title": "Software de alquiler que <em>sigue tu forma de trabajar</em>.",
+    "title": "Software de alquiler que *sigue tu forma de trabajar*.",
     "lede": "Especialización desde 2015: sistemas de reserva y planificación para alquiler — desde casas de playa hasta vehículos comerciales, desde bicis hasta material para eventos.",
     "problemTitle": "Los problemas que encuentro",
     "problems": [
@@ -388,7 +388,7 @@
     "stackLede": "Sin SaaS de caja negra. Open source debajo, tus datos exportables, tu repo en la entrega.",
     "v2": {
       "eyebrow": "Especial para empresas de alquiler",
-      "title": "Acaba con las <em>reservas duplicadas</em> entre Airbnb, Booking y tu Excel.",
+      "title": "Acaba con las *reservas duplicadas* entre Airbnb, Booking y tu Excel.",
       "lede": "Un solo dashboard donde se reúnen todos tus canales — caravanas, barcos, casas, vehículos. Agenda en vivo, facturas automáticas, contratos en un clic. Sin reservas duplicadas, sin reescribir nada.",
       "ctaPrimary": "Ver demo en vivo",
       "ctaSecondary": "Pide presupuesto",
@@ -399,7 +399,7 @@
         { "num": "15+", "label": "Empresas de alquiler activas" }
       ],
       "problemEyebrow": "el problema",
-      "problemTitle": "La mayoría usa <em>cinco</em> herramientas que no se hablan.",
+      "problemTitle": "La mayoría usa *cinco* herramientas que no se hablan.",
       "problemLede": "Excel para la planificación, WhatsApp para clientes, un plugin de reservas hackeado, una herramienta de facturas aparte, y una carpeta 'Contratos 2026' en Google Drive. Funciona — hasta que no.",
       "problems": [
         {
@@ -416,7 +416,7 @@
         }
       ],
       "solutionEyebrow": "la solución",
-      "solutionTitle": "Un dashboard. <em>Todo</em> dentro.",
+      "solutionTitle": "Un dashboard. *Todo* dentro.",
       "solutionLede": "Construimos una plataforma de alquiler que encaja exactamente con tu proceso — no al revés. Incluye conexiones con los canales donde ya recibes reservas hoy.",
       "solutions": [
         {
@@ -495,7 +495,7 @@
   },
   "pricing": {
     "eyebrow": "precios",
-    "title": "Dos modelos. <em>Sin sorpresas.</em>",
+    "title": "Dos modelos. *Sin sorpresas.*",
     "lede": "Build para proyectos nuevos, Care para software existente que tiene que seguir funcionando. Sin add-ons que no pediste.",
     "tabBuild": "Build",
     "tabCare": "Care",
@@ -767,14 +767,14 @@
   "errors": {
     "notFound": {
       "eyebrow": "404",
-      "title": "Esta página <em>no existe</em>.",
+      "title": "Esta página *no existe*.",
       "lede": "Enlace incorrecto, marcador antiguo o errata. Sin drama — elige a dónde quieres ir.",
       "homeCta": "Volver al inicio",
       "contactCta": "Escribir a Laurens"
     },
     "boundary": {
       "eyebrow": "algo falló",
-      "title": "Algo <em>salió mal</em>.",
+      "title": "Algo *salió mal*.",
       "lede": "Sentry ya avisó a Laurens. Prueba de nuevo — si sigue fallando, mándale un correo.",
       "retry": "Reintentar",
       "homeCta": "Volver al inicio"
@@ -782,14 +782,14 @@
   },
   "auth": {
     "login": {
-      "title": "Bienvenido <em>de nuevo</em>.",
+      "title": "Bienvenido *de nuevo*.",
       "eyebrow": "portal cliente",
       "subtitle": "Accede para ver tus proyectos, facturas y estado de tu site.",
       "emailLabel": "Email",
       "submit": "Enviar enlace",
       "noAccount": "¿Aún no tienes cuenta?",
       "contactCta": "Contacta",
-      "panelTitle": "Un solo lugar para <em>todo tu sistema</em>.",
+      "panelTitle": "Un solo lugar para *todo tu sistema*.",
       "panelLede": "Proyectos, facturas, tickets y estado del site — accesible cuando quieras.",
       "panelBullets": [
         "Estado en vivo de tu site y servicios",

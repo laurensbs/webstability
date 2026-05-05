@@ -2,6 +2,9 @@ import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
+import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
+import { FlashCounter } from "@/components/animate/FlashCounter";
+import { MagneticButton } from "@/components/animate/MagneticButton";
 
 export async function Hero() {
   const t = await getTranslations("home");
@@ -9,12 +12,15 @@ export async function Hero() {
   const startYear = 2016;
   const yearsExp = new Date().getFullYear() - startYear;
 
-  // Inline meta items — simple "stat + label" row separated from the
-  // hero copy by a top border, per the mockup.
-  const metaItems = [
-    { num: `${yearsExp}+`, label: tHero("metaYearsLabel") },
-    { num: "99.98%", label: tHero("metaUptimeLabel") },
-    { num: tHero("metaRegionValue"), label: tHero("metaRegionLabel") },
+  // Stats with raw numerical values so FlashCounter can tween properly.
+  // Region label (NL · ES) is a plain string, not animatable as a number.
+  const stats: Array<
+    | { value: number; suffix?: string; decimals?: number; label: string }
+    | { plain: string; label: string }
+  > = [
+    { value: yearsExp, suffix: "+", label: tHero("metaYearsLabel") },
+    { value: 99.98, suffix: "%", decimals: 2, label: tHero("metaUptimeLabel") },
+    { plain: tHero("metaRegionValue"), label: tHero("metaRegionLabel") },
   ];
 
   return (
@@ -40,31 +46,45 @@ export async function Hero() {
           {tHero("availability")}
         </Link>
 
-        <h1 className="mt-7 max-w-[14ch] text-[clamp(44px,7vw,84px)] leading-[1.05]">
-          {t.rich("headline", { em: (c) => <em>{c}</em> })}
-        </h1>
+        <AnimatedHeading
+          as="h1"
+          className="mt-7 max-w-[14ch] text-[clamp(44px,7vw,84px)] leading-[1.05]"
+        >
+          {t("headline")}
+        </AnimatedHeading>
+
         <p className="mt-6 max-w-[52ch] text-[19px] leading-[1.55] text-(--color-muted)">
           {t("tagline")}
         </p>
 
         <div className="mt-9 flex flex-wrap items-center gap-3.5">
-          <Button asChild size="lg" variant="primary">
-            <Link href="/contact">
-              {t("ctaPrimary")}
-              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link href="/verhuur">{t("ctaSecondary")} →</Link>
-          </Button>
+          <MagneticButton>
+            <Button asChild size="lg" variant="primary" className="group">
+              <Link href="/contact">
+                {t("ctaPrimary")}
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </Button>
+          </MagneticButton>
+          <MagneticButton>
+            <Button asChild size="lg" variant="outline">
+              <Link href="/verhuur">{t("ctaSecondary")} →</Link>
+            </Button>
+          </MagneticButton>
         </div>
 
         {/* Meta row — flat, border-top, no cards */}
         <div className="mt-[72px] flex flex-wrap gap-x-10 gap-y-6 border-t border-(--color-border) pt-9">
-          {metaItems.map((m) => (
-            <div key={m.label}>
-              <div className="font-serif text-[34px] leading-none">{m.num}</div>
-              <div className="mt-1.5 text-[13px] text-(--color-muted)">{m.label}</div>
+          {stats.map((s, i) => (
+            <div key={i}>
+              <div className="font-serif text-[34px] leading-none">
+                {"plain" in s ? (
+                  s.plain
+                ) : (
+                  <FlashCounter to={s.value} suffix={s.suffix ?? ""} decimals={s.decimals ?? 0} />
+                )}
+              </div>
+              <div className="mt-1.5 text-[13px] text-(--color-muted)">{s.label}</div>
             </div>
           ))}
           {/* Live status item — at the end, distinct */}

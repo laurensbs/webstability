@@ -5,6 +5,7 @@ import { EyeOff, Database, UserCheck, Unlock, Shield, type LucideIcon } from "lu
 import { routing } from "@/i18n/routing";
 import { PageHeader } from "@/components/marketing/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 const ICONS: LucideIcon[] = [EyeOff, Database, UserCheck, Unlock];
 
@@ -21,7 +22,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     <main className="dotted-bg flex flex-1 flex-col">
       <PageHeader
         eyebrow={t("eyebrow")}
-        title={t.rich("title", { em: (c) => <em>{c}</em> })}
+        title={<MarkupText>{t("title")}</MarkupText>}
         lede={t("lede")}
       />
 

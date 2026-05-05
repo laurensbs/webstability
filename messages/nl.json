@@ -32,7 +32,7 @@
   },
   "home": {
     "eyebrow": "begur · costa brava",
-    "headline": "Niet de zoveelste website. <em>Het systeem</em> onder je bedrijf.",
+    "headline": "Niet de zoveelste website. *Het systeem* onder je bedrijf.",
     "tagline": "Wij bouwen verhuurplatformen, reparatieportalen en operationele dashboards die jouw dagelijkse chaos vervangen door één rustige plek. Vanuit Costa Brava, voor ondernemers in Nederland en Spanje.",
     "ctaPrimary": "Plan een kennismaking",
     "ctaSecondary": "Speciaal voor verhuur",
@@ -83,7 +83,7 @@
 
     "founder": {
       "eyebrow": "over",
-      "title": "Hi, ik ben <em>Laurens</em>.",
+      "title": "Hi, ik ben *Laurens*.",
       "body": "12 jaar bouw ik systemen voor MKB-ondernemers. Eerst vanuit Nederland, sinds drie jaar vanuit Costa Brava — waar ik dezelfde aanpak nu naar de Spaanse markt breng.",
       "body2": "Ik werk niet als bureau. Geen accountmanagers, geen onderaannemers in een tijdzone die je nooit ziet. Je hebt direct contact met de developer die jouw systeem ook bouwt, en die er over twee jaar nog op reageert als er iets stuk is.",
       "body3": "Mijn ding zijn de saaie systemen die niemand wil bouwen — verhuuradministraties, reparatiebonnen, voorraadkoppelingen. Onzichtbaar werk dat ondernemers wakker houdt. Dat is precies waar ik het verschil maak.",
@@ -124,7 +124,7 @@
 
     "audience": {
       "eyebrow": "voor wie",
-      "title": "Voor MKB die niet wil <em>uitbesteden</em>, maar <em>samenwerken</em>.",
+      "title": "Voor MKB die niet wil *uitbesteden*, maar *samenwerken*.",
       "body": "Ondernemers in Nederland en Spanje die een serieuze digitale stap willen zetten zonder zich aan een bureau over te leveren. Korte lijnen, eigenaarschap van de code, en een ontwikkelaar die je naam onthoudt.",
       "nlLabel": "Nederland",
       "esLabel": "España",
@@ -160,14 +160,14 @@
 
     "testimonials": {
       "eyebrow": "klanten",
-      "title": "Wat klanten <em>na een jaar</em> zeggen.",
+      "title": "Wat klanten *na een jaar* zeggen.",
       "lede": "Niet de gladde quotes van net na livegang. Wat mensen zeggen als hun systeem inmiddels gewoon draait.",
       "items": []
     },
 
     "pricing": {
       "eyebrow": "abonnementen",
-      "title": "Heldere prijzen, <em>geen</em> verrassingen.",
+      "title": "Heldere prijzen, *geen* verrassingen.",
       "lede": "Eén vaste prijs per maand. Maandelijks opzegbaar. Eerste maand altijd gratis — als het niet klikt, betaal je niets.",
       "featured": "Meest gekozen",
       "viewAll": "Bekijk volledige vergelijking & Build-pricing",
@@ -181,14 +181,14 @@
 
     "cta": {
       "eyebrow": "laten we praten",
-      "title": "Klaar voor een systeem dat <em>met je meegroeit</em>?",
+      "title": "Klaar voor een systeem dat *met je meegroeit*?",
       "body": "Een vrijblijvend gesprek van 30 minuten. Geen verkooppraat — wel een eerlijk advies of, en hoe, we elkaar kunnen helpen.",
       "button": "Plan in agenda"
     }
   },
   "contact": {
     "eyebrow": "contact",
-    "title": "Plan een gesprek. <em>Of stuur een mail.</em>",
+    "title": "Plan een gesprek. *Of stuur een mail.*",
     "lede": "Eerste gesprek is gratis, dertig minuten, geen pitch-deck. Liever schrijven? hello@webstability.eu — ik antwoord binnen één werkdag.",
     "calLoading": "Kalender laden…",
     "calFallback": "Kalender niet zichtbaar? Open direct op cal.com/webstability.",
@@ -219,9 +219,9 @@
   },
   "status": {
     "eyebrow": "live status",
-    "title": "Alles draait <em>zoals het moet</em>.",
-    "titleDegraded": "Eén of meer diensten zijn <em>verstoord</em>.",
-    "titleDown": "Er is een <em>storing</em>.",
+    "title": "Alles draait *zoals het moet*.",
+    "titleDegraded": "Eén of meer diensten zijn *verstoord*.",
+    "titleDown": "Er is een *storing*.",
     "summary": "Live data uit Better Stack. Ververst elke minuut.",
     "labelOperational": "operationeel",
     "labelDegraded": "verstoord",
@@ -238,7 +238,7 @@
   },
   "blog": {
     "eyebrow": "blog",
-    "title": "Schrijven over <em>echte</em> vragen.",
+    "title": "Schrijven over *echte* vragen.",
     "lede": "Geen lijstjes met SEO-tips. Vragen die ik in gesprekken met ondernemers tegenkom, uitgewerkt zoals ik ze beantwoord.",
     "readingTime": "{minutes} min lezen",
     "back": "Alle artikelen",
@@ -250,7 +250,7 @@
   },
   "guarantees": {
     "eyebrow": "garanties",
-    "title": "Wat ik <em>nooit</em> doe.",
+    "title": "Wat ik *nooit* doe.",
     "lede": "De meeste bureaus zetten een NDA in een bijlage en hopen dat je hem niet leest. Ik zet 'm hier op een publieke pagina.",
     "ndaTitle": "Vertrouwelijkheidsclausule",
     "ndaBody": "De ontwikkelaar verklaart dat alle bedrijfsgegevens die toegankelijk worden tijdens de ontwikkeling, hosting of het onderhoud, uitsluitend gebruikt worden voor de uitvoering van de opdracht. Geen bedrijfsgegevens, klantendata, omzetcijfers of operationele informatie wordt gedeeld, doorverkocht, of voor andere doeleinden gebruikt — ook niet geanonimiseerd voor portfolio of marketing — zonder uitdrukkelijke schriftelijke toestemming van de opdrachtgever.",
@@ -276,7 +276,7 @@
   },
   "about": {
     "eyebrow": "over webstability",
-    "title": "Eén ontwikkelaar, <em>tien jaar</em> ervaring.",
+    "title": "Eén ontwikkelaar, *tien jaar* ervaring.",
     "intro": "Ik ben Laurens Bos. Ik bouw software voor MKB-ondernemers sinds 2015 — eerst vanuit Nederland, sinds 2022 vanuit Begur aan de Costa Brava. Wat begon als freelance opdrachten voor verhuurbedrijven werd Webstability: een studio die zich specialiseert in software die niet ophoudt met werken na de oplevering.",
     "principlesTitle": "Vier principes",
     "principles": [
@@ -330,7 +330,7 @@
   },
   "verhuur": {
     "eyebrow": "voor verhuurbedrijven",
-    "title": "Verhuursoftware die <em>jouw werkwijze</em> volgt.",
+    "title": "Verhuursoftware die *jouw werkwijze* volgt.",
     "lede": "Specialisatie sinds 2015: reserverings- en planningssystemen voor verhuur — van strandhuizen tot bedrijfswagens, van fietsen tot evenementen-materialen.",
     "problemTitle": "De problemen die ik tegenkom",
     "problems": [
@@ -388,7 +388,7 @@
     "stackLede": "Geen black-box SaaS. Open source onder de motorkap, jouw data exporteerbaar, jouw repo bij oplevering.",
     "v2": {
       "eyebrow": "Speciaal voor verhuurbedrijven",
-      "title": "Stop met <em>dubbele boekingen</em> tussen Airbnb, Booking en je Excel.",
+      "title": "Stop met *dubbele boekingen* tussen Airbnb, Booking en je Excel.",
       "lede": "Eén dashboard waar al je verhuurkanalen samenkomen — caravans, boten, vakantiehuizen, voertuigen. Live agenda, automatische facturen, contracten in één klik. Geen dubbele reserveringen meer, geen handmatig overtypen.",
       "ctaPrimary": "Bekijk live demo",
       "ctaSecondary": "Vraag offerte aan",
@@ -399,7 +399,7 @@
         { "num": "15+", "label": "Verhuurders aan boord" }
       ],
       "problemEyebrow": "het probleem",
-      "problemTitle": "De meeste verhuurders draaien op <em>vijf</em> tools die niet met elkaar praten.",
+      "problemTitle": "De meeste verhuurders draaien op *vijf* tools die niet met elkaar praten.",
       "problemLede": "Excel voor de planning, WhatsApp voor klantcontact, een gehackte boekingsplugin op de site, een aparte facturentool, en een mapje 'Contracten 2026' op Google Drive. Werkt — tot het misgaat.",
       "problems": [
         {
@@ -416,7 +416,7 @@
         }
       ],
       "solutionEyebrow": "de oplossing",
-      "solutionTitle": "Eén dashboard. <em>Alles</em> erin.",
+      "solutionTitle": "Eén dashboard. *Alles* erin.",
       "solutionLede": "Wij bouwen een verhuurplatform dat exact past op jouw proces — niet andersom. Inclusief koppelingen met de plekken waar je nu al je boekingen vandaan haalt.",
       "solutions": [
         {
@@ -500,7 +500,7 @@
   },
   "pricing": {
     "eyebrow": "prijzen",
-    "title": "Twee modellen. <em>Geen verrassingen.</em>",
+    "title": "Twee modellen. *Geen verrassingen.*",
     "lede": "Build voor nieuwe projecten, Care voor bestaande software die in de lucht moet blijven. Niet uit te breiden met add-ons die je niet vroeg.",
     "tabBuild": "Build",
     "tabCare": "Care",
@@ -772,14 +772,14 @@
   "errors": {
     "notFound": {
       "eyebrow": "404",
-      "title": "Deze pagina <em>bestaat niet</em>.",
+      "title": "Deze pagina *bestaat niet*.",
       "lede": "Verkeerde link, oude bookmark, of typfout. Geen drama — kies hieronder waar je heen wilt.",
       "homeCta": "Terug naar home",
       "contactCta": "Stuur Laurens een bericht"
     },
     "boundary": {
       "eyebrow": "iets brak",
-      "title": "Er ging <em>iets mis</em>.",
+      "title": "Er ging *iets mis*.",
       "lede": "Sentry heeft Laurens al een melding gestuurd. Probeer het opnieuw — werkt het nog niet, mail dan gerust.",
       "retry": "Opnieuw proberen",
       "homeCta": "Terug naar home"
@@ -787,7 +787,7 @@
   },
   "auth": {
     "login": {
-      "title": "Welkom <em>terug</em>.",
+      "title": "Welkom *terug*.",
       "eyebrow": "klantportaal",
       "subtitle": "Log in om je projecten, facturen en site-status te bekijken.",
       "emailLabel": "E-mailadres",
@@ -795,7 +795,7 @@
       "error": "Er ging iets mis. Probeer het opnieuw.",
       "noAccount": "Nog geen account?",
       "contactCta": "Neem contact op",
-      "panelTitle": "Eén plek voor je <em>hele systeem</em>.",
+      "panelTitle": "Eén plek voor je *hele systeem*.",
       "panelLede": "Projecten, facturen, tickets en site-status — direct in te zien wanneer jij dat wil.",
       "panelBullets": [
         "Live status van je site en services",

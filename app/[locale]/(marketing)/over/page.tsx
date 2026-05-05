@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { Button } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -52,7 +53,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               {t("eyebrow")}
             </p>
             <h1 className="text-4xl leading-[1.05] md:text-6xl">
-              {t.rich("title", { em: (c) => <em>{c}</em> })}
+              {<MarkupText>{t("title")}</MarkupText>}
             </h1>
             <p className="text-lg leading-relaxed text-(--color-muted) md:text-xl">{t("intro")}</p>
           </RevealOnScroll>

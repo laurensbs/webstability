@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { PageHeader } from "@/components/marketing/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { listMonitors, aggregateStatus, type Monitor } from "@/lib/better-stack";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 export const revalidate = 60;
 
@@ -65,7 +66,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     <main className="dotted-bg flex flex-1 flex-col">
       <PageHeader
         eyebrow={t("eyebrow")}
-        title={fetchError ? t("errorTitle") : t.rich(titleKey, { em: (c) => <em>{c}</em> })}
+        title={fetchError ? t("errorTitle") : <MarkupText>{t(titleKey)}</MarkupText>}
         lede={fetchError ? t("errorBody") : t("summary")}
       />
 

@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 export async function Founder() {
   const t = await getTranslations("home.founder");
@@ -41,7 +42,7 @@ export async function Founder() {
             {t("eyebrow")}
           </p>
           <h2 className="mb-6 text-[clamp(32px,4vw,48px)]">
-            {t.rich("title", { em: (c) => <em>{c}</em> })}
+            {<MarkupText>{t("title")}</MarkupText>}
           </h2>
           <p className="mb-[18px] font-serif text-[19px] leading-[1.5] text-(--color-text)">
             {t("body")}

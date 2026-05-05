@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 /**
  * Testimonials — disabled by default. Drop into the homepage with
@@ -24,7 +25,7 @@ export async function Testimonials() {
           <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
             {t("eyebrow")}
           </p>
-          <h2 className="text-3xl md:text-5xl">{t.rich("title", { em: (c) => <em>{c}</em> })}</h2>
+          <h2 className="text-3xl md:text-5xl">{<MarkupText>{t("title")}</MarkupText>}</h2>
           <p className="text-(--color-muted)">{t("lede")}</p>
         </RevealOnScroll>
 

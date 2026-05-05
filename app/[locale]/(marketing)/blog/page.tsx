@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import { PageHeader } from "@/components/marketing/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { listPosts, type BlogPost } from "@/lib/blog";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 function postHref(locale: string, slug: string) {
   return locale === "nl" ? `/blog/${slug}` : `/${locale}/blog/${slug}`;
@@ -31,7 +32,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     <main className="dotted-bg flex flex-1 flex-col">
       <PageHeader
         eyebrow={t("eyebrow")}
-        title={t.rich("title", { em: (c) => <em>{c}</em> })}
+        title={<MarkupText>{t("title")}</MarkupText>}
         lede={t("lede")}
       />
 

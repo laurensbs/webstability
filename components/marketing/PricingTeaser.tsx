@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { Button } from "@/components/ui/Button";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 type CareItem = { id: "basic" | "pro" | "partner"; name: string; price: string; body: string };
 
@@ -22,7 +23,7 @@ export async function PricingTeaser() {
             {t("eyebrow")}
           </p>
           <h2 className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">
-            {t.rich("title", { em: (c) => <em>{c}</em> })}
+            {<MarkupText>{t("title")}</MarkupText>}
           </h2>
           <p className="mx-auto max-w-[56ch] text-[18px] text-(--color-muted)">{t("lede")}</p>
         </RevealOnScroll>

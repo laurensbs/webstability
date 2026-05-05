@@ -5,6 +5,7 @@ import { MapPin } from "lucide-react";
 import { routing } from "@/i18n/routing";
 import { CalEmbed } from "@/components/marketing/CalEmbed";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 type AfterStep = { kicker: string; title: string; body: string };
 
@@ -31,7 +32,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             {t("regionBadge")}
           </span>
           <h1 className="max-w-3xl text-4xl leading-[1.05] md:text-6xl">
-            {t.rich("title", { em: (c) => <em>{c}</em> })}
+            {<MarkupText>{t("title")}</MarkupText>}
           </h1>
           <p className="max-w-2xl text-lg text-(--color-muted)">{t("lede")}</p>
         </div>

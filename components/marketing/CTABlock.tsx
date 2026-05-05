@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 export async function CTABlock() {
   const t = await getTranslations("home.cta");
@@ -22,9 +23,7 @@ export async function CTABlock() {
             {"// "}
             {t("eyebrow")}
           </p>
-          <h2 className="text-[clamp(36px,5vw,60px)]">
-            {t.rich("title", { em: (c) => <em>{c}</em> })}
-          </h2>
+          <h2 className="text-[clamp(36px,5vw,60px)]">{<MarkupText>{t("title")}</MarkupText>}</h2>
           <p className="mx-auto max-w-[56ch] text-[18px] text-(--color-muted)">{t("body")}</p>
           <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
             <Button asChild size="lg" variant="primary" className="group">

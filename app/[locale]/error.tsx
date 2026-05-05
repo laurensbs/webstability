@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { NotFoundIllustration } from "@/components/marketing/NotFoundIllustration";
+import { MarkupText } from "@/components/animate/MarkupText";
 
 export default function ErrorBoundary({
   error,
@@ -30,7 +31,7 @@ export default function ErrorBoundary({
             {t("eyebrow")}
           </p>
           <h1 className="text-4xl leading-[1.05] md:text-6xl">
-            {t.rich("title", { em: (c) => <em>{c}</em> })}
+            {<MarkupText>{t("title")}</MarkupText>}
           </h1>
           <p className="max-w-xl text-lg text-(--color-muted)">{t("lede")}</p>
           {error.digest ? (

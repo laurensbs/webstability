@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { ServiceCard } from "@/components/marketing/ServiceCard";
+import { Eyebrow } from "@/components/animate/Eyebrow";
+import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 
 export async function Services() {
   const t = await getTranslations("home.services");
@@ -10,16 +12,15 @@ export async function Services() {
   return (
     <section id="diensten" className="px-6 py-[100px]">
       <div className="mx-auto max-w-[1200px]">
-        <RevealOnScroll className="mb-14 max-w-[720px]">
-          <p className="mb-[18px] font-mono text-[12px] tracking-[0.1em] text-(--color-accent) uppercase">
-            {"// "}
-            {t("eyebrow")}
-          </p>
-          <h2 className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">
-            {t.rich("title", { em: (c) => <em>{c}</em> })}
-          </h2>
-          <p className="max-w-[56ch] text-[18px] text-(--color-muted)">{t("lede")}</p>
-        </RevealOnScroll>
+        <div className="mb-14 max-w-[720px]">
+          <Eyebrow className="mb-[18px]">{t("eyebrow")}</Eyebrow>
+          <AnimatedHeading as="h2" className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">
+            {t("title")}
+          </AnimatedHeading>
+          <RevealOnScroll>
+            <p className="max-w-[56ch] text-[18px] text-(--color-muted)">{t("lede")}</p>
+          </RevealOnScroll>
+        </div>
 
         {/* Asymmetric: large card spans 2 rows on md+, small cards stack */}
         <div className="grid gap-5 md:grid-cols-[1.4fr_1fr] md:grid-rows-2">

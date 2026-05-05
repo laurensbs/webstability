@@ -6,6 +6,11 @@ import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
+import { Eyebrow } from "@/components/animate/Eyebrow";
+import { FlashCounter } from "@/components/animate/FlashCounter";
+import { MagneticButton } from "@/components/animate/MagneticButton";
+import { QuoteMarkDraw } from "@/components/animate/QuoteMarkDraw";
 
 type MetaItem = { num: string; label: string };
 type ProblemItem = { title: string; body: string };
@@ -57,33 +62,50 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             {t("eyebrow")}
           </Link>
 
-          <h1 className="mt-7 max-w-[14ch] text-[clamp(44px,7vw,84px)] leading-[1.05]">
-            {t.rich("title", { em: (c) => <em>{c}</em> })}
-          </h1>
+          <AnimatedHeading
+            as="h1"
+            className="mt-7 max-w-[14ch] text-[clamp(44px,7vw,84px)] leading-[1.05]"
+          >
+            {t("title")}
+          </AnimatedHeading>
           <p className="mt-6 max-w-[52ch] text-[19px] leading-[1.55] text-(--color-muted)">
             {t("lede")}
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3.5">
-            <Button asChild size="lg" variant="primary" className="group">
-              <a href="#solution">
-                {t("ctaPrimary")}
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <a href="#contact">{t("ctaSecondary")} →</a>
-            </Button>
+            <MagneticButton>
+              <Button asChild size="lg" variant="primary" className="group">
+                <a href="#solution">
+                  {t("ctaPrimary")}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </a>
+              </Button>
+            </MagneticButton>
+            <MagneticButton>
+              <Button asChild size="lg" variant="outline">
+                <a href="#contact">{t("ctaSecondary")} →</a>
+              </Button>
+            </MagneticButton>
           </div>
 
           {/* Meta-row */}
           <div className="mt-[72px] flex flex-wrap gap-x-10 gap-y-6 border-t border-(--color-border) pt-9">
-            {metaItems.map((m) => (
-              <div key={m.label}>
-                <div className="font-serif text-[34px] leading-none">{m.num}</div>
-                <div className="mt-1.5 text-[13px] text-(--color-muted)">{m.label}</div>
-              </div>
-            ))}
+            {metaItems.map((m) => {
+              // Try to extract a leading integer for animation; fall back to plain text.
+              const numMatch = m.num.match(/^(\d+)(.*)$/);
+              return (
+                <div key={m.label}>
+                  <div className="font-serif text-[34px] leading-none">
+                    {numMatch ? (
+                      <FlashCounter to={parseInt(numMatch[1]!, 10)} suffix={numMatch[2] ?? ""} />
+                    ) : (
+                      m.num
+                    )}
+                  </div>
+                  <div className="mt-1.5 text-[13px] text-(--color-muted)">{m.label}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </header>
@@ -92,13 +114,10 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <section className="bg-(--color-bg-warm) px-6 py-[100px]">
         <div className="mx-auto max-w-[1200px]">
           <RevealOnScroll className="mb-14 max-w-[720px]">
-            <p className="mb-[18px] font-mono text-[12px] tracking-[0.1em] text-(--color-accent) uppercase">
-              {"// "}
-              {t("problemEyebrow")}
-            </p>
-            <h2 className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">
-              {t.rich("problemTitle", { em: (c) => <em>{c}</em> })}
-            </h2>
+            <Eyebrow className="mb-[18px]">{t("problemEyebrow")}</Eyebrow>
+            <AnimatedHeading as="h2" className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">
+              {t("problemTitle")}
+            </AnimatedHeading>
             <p className="max-w-[56ch] text-[18px] text-(--color-muted)">{t("problemLede")}</p>
           </RevealOnScroll>
 
@@ -125,13 +144,10 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <section id="solution" className="px-6 py-[100px]">
         <div className="mx-auto max-w-[1200px]">
           <RevealOnScroll className="mb-14 max-w-[720px]">
-            <p className="mb-[18px] font-mono text-[12px] tracking-[0.1em] text-(--color-accent) uppercase">
-              {"// "}
-              {t("solutionEyebrow")}
-            </p>
-            <h2 className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">
-              {t.rich("solutionTitle", { em: (c) => <em>{c}</em> })}
-            </h2>
+            <Eyebrow className="mb-[18px]">{t("solutionEyebrow")}</Eyebrow>
+            <AnimatedHeading as="h2" className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">
+              {t("solutionTitle")}
+            </AnimatedHeading>
             <p className="max-w-[56ch] text-[18px] text-(--color-muted)">{t("solutionLede")}</p>
           </RevealOnScroll>
 
@@ -184,9 +200,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       {/* FEATURED TESTIMONIAL */}
       <section className="bg-(--color-text) px-6 py-[80px] text-(--color-bg)">
         <RevealOnScroll className="mx-auto max-w-[760px] text-center">
-          <div className="mb-6 font-serif text-[80px] leading-[0.5] text-(--color-accent) opacity-60">
-            “
-          </div>
+          <QuoteMarkDraw size={64} className="mx-auto mb-6" />
           <blockquote className="mb-8 font-serif text-[clamp(24px,3vw,32px)] leading-[1.3] font-light text-(--color-bg)">
             {t("quoteText")}
           </blockquote>
@@ -206,10 +220,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <section className="px-6 py-[100px]">
         <div className="mx-auto max-w-[1200px]">
           <RevealOnScroll className="mb-14 max-w-[720px]">
-            <p className="mb-[18px] font-mono text-[12px] tracking-[0.1em] text-(--color-accent) uppercase">
-              {"// "}
-              {t("pricingEyebrow")}
-            </p>
+            <Eyebrow className="mb-[18px]">{t("pricingEyebrow")}</Eyebrow>
             <h2 className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">{t("pricingTitle")}</h2>
             <p className="max-w-[56ch] text-[18px] text-(--color-muted)">{t("pricingLede")}</p>
           </RevealOnScroll>
@@ -306,10 +317,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         />
         <div className="relative mx-auto max-w-[1200px]">
           <RevealOnScroll className="mx-auto max-w-3xl space-y-6 text-center">
-            <p className="font-mono text-[12px] tracking-[0.1em] text-(--color-accent) uppercase">
-              {"// "}
-              {t("ctaEyebrow")}
-            </p>
+            <Eyebrow>{t("ctaEyebrow")}</Eyebrow>
             <h2 className="text-[clamp(36px,5vw,60px)]">{t("ctaTitle")}</h2>
             <p className="mx-auto max-w-[56ch] text-[18px] text-(--color-muted)">{t("ctaBody")}</p>
             <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
