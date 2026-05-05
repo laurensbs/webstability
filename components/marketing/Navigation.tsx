@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { NavScroll } from "@/components/marketing/NavScroll";
+import { NavLink } from "@/components/marketing/NavLink";
 
 export async function Navigation() {
   const t = await getTranslations("nav");
@@ -26,15 +27,11 @@ export async function Navigation() {
         </Link>
 
         {/* Center nav links */}
-        <div className="hidden items-center gap-7 text-[14px] font-medium md:flex">
+        <div className="hidden items-center gap-8 text-[14.5px] font-medium md:flex">
           {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-(--color-muted) transition-colors hover:text-(--color-text)"
-            >
+            <NavLink key={l.href} href={l.href}>
               {l.label}
-            </Link>
+            </NavLink>
           ))}
         </div>
 

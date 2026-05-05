@@ -15,7 +15,7 @@
 
   /* Typography */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
@@ -25,6 +25,8 @@
     background-color: var(--color-bg);
     color: var(--color-text);
     font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -37,17 +39,19 @@
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  h5 {
     font-family: var(--font-serif);
     font-weight: 400;
-    letter-spacing: -0.005em;
-    line-height: 1.05;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--color-text);
   }
 
   em {
     font-family: var(--font-serif);
     font-style: italic;
-    font-weight: 400;
+    font-weight: 300;
     color: var(--color-accent);
   }
 

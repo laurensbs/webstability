@@ -4,19 +4,22 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-all focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 border border-transparent",
   {
     variants: {
       variant: {
-        primary: "bg-(--color-text) text-(--color-bg) hover:opacity-90",
-        accent: "bg-(--color-accent) text-(--color-bg) hover:opacity-90",
-        outline: "border border-(--color-border) bg-transparent hover:bg-(--color-bg-warm)",
-        ghost: "hover:bg-(--color-bg-warm)",
+        primary:
+          "bg-(--color-text) text-(--color-bg) hover:bg-(--color-accent) hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(31,27,22,0.06),0_2px_4px_rgba(31,27,22,0.04)]",
+        accent:
+          "bg-(--color-accent) text-white hover:bg-(--color-accent)/90 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)]",
+        outline:
+          "border-(--color-border-strong,#D8CDB6) bg-transparent text-(--color-text) hover:bg-(--color-surface) hover:border-(--color-text)",
+        ghost: "text-(--color-text) hover:bg-(--color-bg-warm)",
       },
       size: {
-        sm: "h-9 px-3",
-        md: "h-11 px-5",
-        lg: "h-12 px-6 text-base",
+        sm: "px-4 py-2 text-[13px]",
+        md: "px-5 py-2.5 text-[14px]",
+        lg: "px-6 py-3.5 text-[15px]",
       },
     },
     defaultVariants: { variant: "primary", size: "md" },
