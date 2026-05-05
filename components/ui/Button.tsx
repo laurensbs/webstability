@@ -39,23 +39,31 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     { className, variant, size, asChild = false, loading = false, disabled, children, ...props },
     ref,
   ) => {
-    const Comp = asChild ? Slot : "button";
+    if (asChild) {
+      // Slot requires exactly one child element — pass children through
+      // unwrapped, no spinner injection.
+      return (
+        <Slot ref={ref} className={cn(buttonVariants({ variant, size, className }))} {...props}>
+          {children}
+        </Slot>
+      );
+    }
     return (
-      <Comp
+      <button
         ref={ref}
         className={cn(buttonVariants({ variant, size, className }))}
-        disabled={asChild ? undefined : disabled || loading}
+        disabled={disabled || loading}
         aria-busy={loading || undefined}
         {...props}
       >
-        {loading && !asChild ? (
+        {loading ? (
           <span
             className="inline-block h-3.5 w-3.5 animate-spin rounded-full border-2 border-current border-t-transparent"
             aria-hidden
           />
         ) : null}
         {children}
-      </Comp>
+      </button>
     );
   },
 );
