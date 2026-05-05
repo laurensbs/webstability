@@ -235,7 +235,11 @@
     "lede": "Sin listas de tips SEO. Preguntas que me encuentro en conversaciones con empresarios, desarrolladas como las respondo.",
     "readingTime": "{minutes} min de lectura",
     "back": "Todos los artículos",
-    "by": "Por"
+    "by": "Por",
+    "featured": "Destacado",
+    "empty": "Aún no hay artículos.",
+    "previous": "Anterior",
+    "next": "Siguiente"
   },
   "guarantees": {
     "eyebrow": "garantías",

@@ -78,6 +78,31 @@
   }
 }
 
+/* Editorial prose for blog articles. Apply to a wrapper with .prose-wb. */
+.prose-wb > p:first-of-type::first-letter {
+  font-family: var(--font-serif);
+  float: left;
+  font-size: 4.5rem;
+  line-height: 0.95;
+  padding: 0.4rem 0.6rem 0 0;
+  color: var(--color-accent);
+  font-style: italic;
+}
+.prose-wb blockquote {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: var(--color-text);
+  font-style: italic;
+}
+.prose-wb blockquote p {
+  margin: 0 !important;
+  color: inherit !important;
+}
+
 @utility dotted-bg {
   /* Subtle dotted-grid texture, fixed background, papier feel. */
   background-image: radial-gradient(circle, rgba(31, 27, 22, 0.018) 1px, transparent 1px);

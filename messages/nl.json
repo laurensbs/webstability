@@ -235,7 +235,11 @@
     "lede": "Geen lijstjes met SEO-tips. Vragen die ik in gesprekken met ondernemers tegenkom, uitgewerkt zoals ik ze beantwoord.",
     "readingTime": "{minutes} min lezen",
     "back": "Alle artikelen",
-    "by": "Door"
+    "by": "Door",
+    "featured": "Uitgelicht",
+    "empty": "Nog geen artikelen.",
+    "previous": "Vorige",
+    "next": "Volgende"
   },
   "guarantees": {
     "eyebrow": "garanties",
