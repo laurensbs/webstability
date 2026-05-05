@@ -1,9 +1,18 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
+import { Receipt } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
 import { getUserWithOrg, listOrgInvoices } from "@/lib/db/queries/portal";
+
+const STATUS_PILL: Record<string, { pill: string; dot: string }> = {
+  draft: { pill: "bg-(--color-bg-warm) text-(--color-muted)", dot: "bg-(--color-muted)" },
+  sent: { pill: "bg-(--color-accent-soft) text-(--color-accent)", dot: "bg-(--color-accent)" },
+  paid: { pill: "bg-(--color-success)/15 text-(--color-success)", dot: "bg-(--color-success)" },
+  overdue: { pill: "bg-red-100 text-red-900", dot: "bg-red-500" },
+  void: { pill: "bg-(--color-bg-warm) text-(--color-muted)", dot: "bg-(--color-muted)" },
+};
 
 export default async function InvoicesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -22,41 +31,48 @@ export default async function InvoicesPage({ params }: { params: Promise<{ local
 
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl md:text-4xl">{t("title")}</h1>
+      <header>
+        <h1 className="text-3xl md:text-4xl">{t("title")}</h1>
+      </header>
 
       {list.length === 0 ? (
-        <p className="text-(--color-muted)">{t("empty")}</p>
-      ) : (
-        <div className="overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)">
-          <table className="w-full text-sm">
-            <thead className="bg-(--color-bg-warm)/60 text-left font-mono text-xs tracking-widest text-(--color-muted) uppercase">
-              <tr>
-                <th className="px-6 py-3">{t("number")}</th>
-                <th className="px-6 py-3">{t("amount")}</th>
-                <th className="px-6 py-3">{t("due")}</th>
-                <th className="px-6 py-3">Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-(--color-border)">
-              {list.map((inv) => (
-                <tr key={inv.id}>
-                  <td className="px-6 py-3 font-mono text-xs">{inv.number}</td>
-                  <td className="px-6 py-3">
-                    {moneyFmt.format((inv.amount + inv.vatAmount) / 100)}
-                  </td>
-                  <td className="px-6 py-3 text-(--color-muted)">
-                    {inv.dueAt ? dateFmt.format(inv.dueAt) : "—"}
-                  </td>
-                  <td className="px-6 py-3">
-                    <span className="rounded-md border border-(--color-border) px-2 py-0.5 font-mono text-xs tracking-widest uppercase">
-                      {t(`status.${inv.status}`)}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="rounded-lg border border-dashed border-(--color-border) bg-(--color-surface)/50 px-6 py-12 text-center">
+          <p className="text-(--color-muted)">{t("empty")}</p>
         </div>
+      ) : (
+        <ul className="divide-y divide-(--color-border) overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)">
+          {list.map((inv) => {
+            const meta = STATUS_PILL[inv.status] ?? STATUS_PILL.draft;
+            const total = (inv.amount + inv.vatAmount) / 100;
+            return (
+              <li
+                key={inv.id}
+                className="flex items-center gap-4 px-5 py-4 transition-colors hover:bg-(--color-bg-warm)/40"
+              >
+                <span className="inline-grid h-10 w-10 shrink-0 place-items-center rounded-md border border-(--color-border) bg-(--color-bg-warm) text-(--color-muted)">
+                  <Receipt className="h-4 w-4" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate font-mono text-sm font-medium">{inv.number}</p>
+                  <p className="mt-0.5 truncate font-mono text-[11px] text-(--color-muted)">
+                    {inv.dueAt ? dateFmt.format(inv.dueAt) : "—"}
+                  </p>
+                </div>
+                <div className="flex shrink-0 flex-col items-end gap-1">
+                  <p className="font-serif text-lg leading-none tabular-nums">
+                    {moneyFmt.format(total)}
+                  </p>
+                  <span
+                    className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 font-mono text-[10px] tracking-wide uppercase ${meta.pill}`}
+                  >
+                    <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} aria-hidden />
+                    {t(`status.${inv.status}`)}
+                  </span>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       )}
     </div>
   );

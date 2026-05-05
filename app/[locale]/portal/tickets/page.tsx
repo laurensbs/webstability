@@ -1,11 +1,25 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
+import NextLink from "next/link";
+import { Plus } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
 import { getUserWithOrg, listOrgTickets } from "@/lib/db/queries/portal";
-import NextLink from "next/link";
 import { Button } from "@/components/ui/Button";
+
+const PRIORITY_BAR: Record<string, string> = {
+  high: "bg-(--color-accent)",
+  normal: "bg-(--color-muted)",
+  low: "bg-(--color-border)",
+};
+
+const STATUS_PILL: Record<string, string> = {
+  open: "bg-(--color-accent-soft) text-(--color-accent)",
+  in_progress: "bg-amber-100 text-amber-900",
+  waiting: "bg-(--color-teal)/15 text-(--color-teal)",
+  closed: "bg-(--color-bg-warm) text-(--color-muted)",
+};
 
 export default async function TicketsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -19,50 +33,57 @@ export default async function TicketsPage({ params }: { params: Promise<{ locale
 
   const t = await getTranslations("portal.tickets");
   const list = await listOrgTickets(user.organizationId);
-  const dateFmt = new Intl.DateTimeFormat(locale, {
-    dateStyle: "medium",
-  });
+  const dateFmt = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
+
+  const newHref = locale === "nl" ? "/portal/tickets/new" : `/${locale}/portal/tickets/new`;
 
   return (
     <div className="space-y-8">
-      <header className="flex items-center justify-between">
+      <header className="flex items-center justify-between gap-4">
         <h1 className="text-3xl md:text-4xl">{t("title")}</h1>
         <Button asChild variant="accent">
-          <NextLink
-            href={locale === "nl" ? "/portal/tickets/new" : `/${locale}/portal/tickets/new`}
-          >
+          <NextLink href={newHref} className="inline-flex items-center gap-2">
+            <Plus className="h-4 w-4" />
             {t("new")}
           </NextLink>
         </Button>
       </header>
 
       {list.length === 0 ? (
-        <p className="text-(--color-muted)">{t("empty")}</p>
+        <div className="rounded-lg border border-dashed border-(--color-border) bg-(--color-surface)/50 px-6 py-12 text-center">
+          <p className="text-(--color-muted)">{t("empty")}</p>
+        </div>
       ) : (
         <ul className="divide-y divide-(--color-border) overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)">
-          {list.map((tk) => (
-            <li key={tk.id}>
-              <a
-                href={`/${locale === "nl" ? "" : `${locale}/`}portal/tickets/${tk.id}`}
-                className="flex items-center justify-between gap-6 px-6 py-4 transition-colors hover:bg-(--color-bg-warm)"
-              >
-                <div className="min-w-0 flex-1">
-                  <p className="truncate font-medium">{tk.subject}</p>
-                  <p className="mt-1 font-mono text-xs text-(--color-muted)">
-                    {dateFmt.format(tk.createdAt)} · {tk.user?.name ?? tk.user?.email}
-                  </p>
-                </div>
-                <div className="flex shrink-0 items-center gap-3">
-                  <span className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
-                    {t(`priority.${tk.priority}`)}
-                  </span>
-                  <span className="rounded-md border border-(--color-border) px-2 py-0.5 font-mono text-xs tracking-widest uppercase">
-                    {t(`status.${tk.status}`)}
-                  </span>
-                </div>
-              </a>
-            </li>
-          ))}
+          {list.map((tk) => {
+            const bar = PRIORITY_BAR[tk.priority] ?? PRIORITY_BAR.normal;
+            const pill = STATUS_PILL[tk.status] ?? "bg-(--color-bg-warm) text-(--color-muted)";
+            const href =
+              locale === "nl" ? `/portal/tickets/${tk.id}` : `/${locale}/portal/tickets/${tk.id}`;
+            return (
+              <li key={tk.id}>
+                <NextLink
+                  href={href}
+                  className="flex items-start gap-4 px-5 py-4 transition-colors hover:bg-(--color-bg-warm)/40"
+                >
+                  <span className={`mt-1 h-10 w-[3px] shrink-0 rounded-full ${bar}`} aria-hidden />
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium">{tk.subject}</p>
+                    <p className="mt-1 truncate font-mono text-[11px] text-(--color-muted)">
+                      {dateFmt.format(tk.createdAt)} · {tk.user?.name ?? tk.user?.email}
+                    </p>
+                  </div>
+                  <div className="flex shrink-0 items-center gap-2">
+                    <span
+                      className={`rounded-full px-2.5 py-0.5 font-mono text-[10px] tracking-wide uppercase ${pill}`}
+                    >
+                      {t(`status.${tk.status}`)}
+                    </span>
+                  </div>
+                </NextLink>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>
