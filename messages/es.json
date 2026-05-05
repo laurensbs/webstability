@@ -20,7 +20,14 @@
     "legal": "Aviso legal",
     "privacy": "Privacidad",
     "status": "Estado",
-    "guarantees": "Garantías"
+    "guarantees": "Garantías",
+    "cols": {
+      "services": "Servicios",
+      "company": "Empresa",
+      "contact": "Contacto"
+    },
+    "contactRegion": "Begur · Costa Brava",
+    "liveBadge": "todo en línea"
   },
   "home": {
     "eyebrow": "begur · costa brava",
@@ -182,7 +189,26 @@
     "openCalendarHint": "Cargamos Cal.com solo al hacer clic — sin tracking previo.",
     "openCalendarButton": "Abrir calendario",
     "calFallbackTitle": "Mándame un email",
-    "calFallbackHint": "La agenda online llega pronto. De momento, escribir va perfecto."
+    "calFallbackHint": "La agenda online llega pronto. De momento, escribir va perfecto.",
+    "regionBadge": "Desde Begur",
+    "afterTitle": "Qué pasa después",
+    "after": [
+      {
+        "kicker": "01",
+        "title": "La llamada",
+        "body": "Treinta minutos. Sin presentación comercial — solo tu proceso, tus dolores, y qué necesita cambiar."
+      },
+      {
+        "kicker": "02",
+        "title": "Propuesta en una semana",
+        "body": "Una página: alcance, fechas, precio. Sin letra pequeña, sin sorpresas."
+      },
+      {
+        "kicker": "03",
+        "title": "Empezamos o no — sin presión",
+        "body": "Si encaja, empezamos. Si no, termina aquí. Sin costes, sin bucle de emails."
+      }
+    ]
   },
   "status": {
     "eyebrow": "estado en vivo",
@@ -217,6 +243,7 @@
     "lede": "La mayoría de agencias mete su NDA en un anexo y espera que no lo leas. Yo lo pongo aquí en una página pública.",
     "ndaTitle": "Cláusula de confidencialidad",
     "ndaBody": "El desarrollador declara que todos los datos empresariales accesibles durante el desarrollo, hosting o mantenimiento se utilizarán únicamente para la ejecución del encargo. Ningún dato empresarial, dato de cliente, cifra de facturación o información operativa se compartirá, revenderá o usará para otros fines — tampoco anonimizado para portfolio o marketing — sin consentimiento expreso por escrito del cliente.",
+    "promisesTitle": "Cuatro cosas que no hago",
     "promises": [
       {
         "title": "Sin portfolio sin permiso",

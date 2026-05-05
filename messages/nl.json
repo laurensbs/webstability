@@ -20,7 +20,14 @@
     "legal": "Aviso legal",
     "privacy": "Privacy",
     "status": "Status",
-    "guarantees": "Garanties"
+    "guarantees": "Garanties",
+    "cols": {
+      "services": "Diensten",
+      "company": "Bedrijf",
+      "contact": "Contact"
+    },
+    "contactRegion": "Begur · Costa Brava",
+    "liveBadge": "alle systemen draaien"
   },
   "home": {
     "eyebrow": "begur · costa brava",
@@ -182,7 +189,26 @@
     "openCalendarHint": "We laden Cal.com pas als je hierop klikt — geen tracking vooraf.",
     "openCalendarButton": "Open kalender",
     "calFallbackTitle": "Stuur me een mail",
-    "calFallbackHint": "De online agenda komt zo. Tot die tijd: gewoon mailen werkt prima."
+    "calFallbackHint": "De online agenda komt zo. Tot die tijd: gewoon mailen werkt prima.",
+    "regionBadge": "Vanuit Begur",
+    "afterTitle": "Wat er daarna gebeurt",
+    "after": [
+      {
+        "kicker": "01",
+        "title": "Het gesprek zelf",
+        "body": "Dertig minuten. Geen pitch-deck, geen verkooppraatjes — gewoon je proces, je knelpunten, en wat er anders moet."
+      },
+      {
+        "kicker": "02",
+        "title": "Voorstel binnen een week",
+        "body": "Eén pagina: scope, tijdlijn, prijs. Geen kleine letters, geen verrassingen achteraf."
+      },
+      {
+        "kicker": "03",
+        "title": "Start of niet — geen druk",
+        "body": "Past het, dan starten we. Past het niet, dan eindigt het hier. Geen kosten, geen vervolgmail-loop."
+      }
+    ]
   },
   "status": {
     "eyebrow": "live status",
@@ -217,6 +243,7 @@
     "lede": "De meeste bureaus zetten een NDA in een bijlage en hopen dat je hem niet leest. Ik zet 'm hier op een publieke pagina.",
     "ndaTitle": "Vertrouwelijkheidsclausule",
     "ndaBody": "De ontwikkelaar verklaart dat alle bedrijfsgegevens die toegankelijk worden tijdens de ontwikkeling, hosting of het onderhoud, uitsluitend gebruikt worden voor de uitvoering van de opdracht. Geen bedrijfsgegevens, klantendata, omzetcijfers of operationele informatie wordt gedeeld, doorverkocht, of voor andere doeleinden gebruikt — ook niet geanonimiseerd voor portfolio of marketing — zonder uitdrukkelijke schriftelijke toestemming van de opdrachtgever.",
+    "promisesTitle": "Vier dingen die ik niet doe",
     "promises": [
       {
         "title": "Geen portfolio zonder toestemming",
