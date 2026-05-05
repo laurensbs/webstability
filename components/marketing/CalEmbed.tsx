@@ -19,6 +19,10 @@ const Cal = dynamic(() => import("@calcom/embed-react"), {
 });
 
 const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK?.trim();
+// Override host for self-hosted / EU instances. Defaults to https://cal.com.
+// Example: NEXT_PUBLIC_CAL_ORIGIN="https://cal.eu"
+const CAL_ORIGIN = process.env.NEXT_PUBLIC_CAL_ORIGIN?.trim();
+const CAL_EMBED_JS = CAL_ORIGIN ? `${CAL_ORIGIN}/embed/embed.js` : undefined;
 
 export function CalEmbed({ locale }: { locale: string }) {
   const [opened, setOpened] = useState(false);
@@ -63,6 +67,8 @@ export function CalEmbed({ locale }: { locale: string }) {
   return (
     <Cal
       calLink={CAL_LINK}
+      calOrigin={CAL_ORIGIN}
+      embedJsUrl={CAL_EMBED_JS}
       style={{ width: "100%", height: "100%", minHeight: 640 }}
       config={{
         layout: "month_view",
