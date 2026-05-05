@@ -52,15 +52,23 @@
       "items": {
         "admin": {
           "title": "Sistemas a medida",
-          "body": "Portales que siguen tu proceso real — no al revés. Drizzle, Postgres, tipado de la base de datos a la UI."
+          "body": "Nuestra especialidad. Alquiler, planificación, reparaciones, inventario, comunicación con clientes — construimos el admin que hace funcionar tu empresa sin puzzles de Excel ni seis herramientas sueltas.",
+          "bullets": [
+            "Plataformas de alquiler y reservas",
+            "Portales de reparación y servicio",
+            "Dashboards de inventario y operaciones",
+            "Integraciones con Stripe, Mollie, e-Boekhouden, Holded",
+            "Multi-usuario, multi-ubicación, multi-idioma"
+          ],
+          "cta": "Ver enfoque para alquiler"
         },
         "websites": {
-          "title": "Webs",
-          "body": "Rápidas, accesibles, multilingües. Lighthouse por encima de 95, sin teatro de cookies — webs que convierten."
+          "title": "Webs y tiendas online",
+          "body": "Rápidas, multilingües, manejables en un día. Sin plantillas, sí tu marca."
         },
         "webshops": {
-          "title": "Tiendas online",
-          "body": "Stripe o Mollie, IVA correcto para NL y ES, propiedad total del código. Sin alquilar Shopify."
+          "title": "SEO y care",
+          "body": "SEO local en dos países, más mantenimiento mensual, seguridad y monitorización."
         }
       }
     },
@@ -75,22 +83,28 @@
 
     "approach": {
       "eyebrow": "método",
-      "title": "Cómo trabajo.",
+      "title": "De la primera llamada al sistema en vivo.",
+      "lede": "Un proceso tranquilo, paso a paso. Sin sorpresas — solo progreso que ves cada semana en tu propio portal.",
       "items": {
         "one": {
           "kicker": "01",
-          "title": "Una sola línea",
-          "body": "Hablas con el desarrollador. No con un gestor que luego lo traduce."
+          "title": "Llamada inicial",
+          "body": "Media hora. Hablamos de tu proceso, dolores reales y qué te merece la pena resolver. Sin presentación comercial."
         },
         "two": {
           "kicker": "02",
-          "title": "Precio fijo, alcance fijo",
-          "body": "Antes de empezar sabes lo que cuesta. Sin facturas sorpresa por horas extra."
+          "title": "Propuesta & alcance",
+          "body": "Plan concreto con fechas, precio y qué incluye — claro y sin letra pequeña. Una página."
         },
         "three": {
           "kicker": "03",
-          "title": "Mantenimiento tras el lanzamiento",
-          "body": "El software no termina al lanzarlo. Suscripciones opcionales lo mantienen seguro y operativo."
+          "title": "Construir en sprints",
+          "body": "Entregas semanales visibles en tu portal. El feedback se procesa al momento."
+        },
+        "four": {
+          "kicker": "04",
+          "title": "Live & mantenimiento",
+          "body": "Tras el lanzamiento, tu sistema corre bajo un care-plan. Tú sigues construyendo tu empresa."
         }
       }
     },
@@ -128,6 +142,27 @@
           "q": "¿Y si te pones enfermo o lo dejas?",
           "a": "Pregunta justa. El código está documentado, los despliegues automatizados, la infraestructura corre en proveedores estándar (Vercel, Neon, Stripe). Cualquier otro desarrollador puede continuar. Sin salsas secretas."
         }
+      ]
+    },
+
+    "testimonials": {
+      "eyebrow": "clientes",
+      "title": "Lo que dicen <em>tras un año</em>.",
+      "lede": "No las frases pulidas tras el lanzamiento. Lo que la gente dice cuando su sistema ya lleva tiempo funcionando.",
+      "items": []
+    },
+
+    "pricing": {
+      "eyebrow": "suscripciones",
+      "title": "Precios claros, <em>sin</em> sorpresas.",
+      "lede": "Un precio fijo al mes. Cancelable mensualmente. Primer mes siempre gratis — si no encaja, no pagas nada.",
+      "featured": "Más elegido",
+      "viewAll": "Ver comparativa completa y precios de Build",
+      "reassurance": [
+        "Primer mes gratis",
+        "Cancelable mensualmente",
+        "15% de descuento con pago anual",
+        "Build desde 499 € setup"
       ]
     },
 

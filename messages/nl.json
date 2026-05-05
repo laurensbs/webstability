@@ -51,16 +51,24 @@
       "lede": "Geen bureau-aanbod van twintig services. Drie kerngebieden waarin ik mijn werk durf te garanderen.",
       "items": {
         "admin": {
-          "title": "Admin-systemen",
-          "body": "Op maat gebouwde portalen die jouw werkelijke proces volgen — niet andersom. Drizzle, Postgres, typed van database tot UI."
+          "title": "Maatwerk systemen",
+          "body": "Onze hoofdspecialiteit. Verhuur, planning, reparaties, voorraad, klantcommunicatie — wij bouwen de admin die jouw bedrijf laat draaien zonder Excel-puzzels of zes losse tools.",
+          "bullets": [
+            "Verhuur- & boekingsplatformen",
+            "Reparatie- & service-portalen",
+            "Voorraad & operations dashboards",
+            "Koppelingen met Stripe, Mollie, e-Boekhouden, Holded",
+            "Multi-user, multi-locatie, multi-taal"
+          ],
+          "cta": "Bekijk verhuur-aanpak"
         },
         "websites": {
-          "title": "Websites",
-          "body": "Snel, toegankelijk, meertalig. Lighthouse boven de 95, geen cookies-popup-theater, gewoon een site die converteert."
+          "title": "Websites & webshops",
+          "body": "Snel, meertalig, in een dag te beheren. Geen sjablonen, wel jouw merk."
         },
         "webshops": {
-          "title": "Webshops",
-          "body": "Stripe of Mollie, BTW correct voor NL én ES, volledige eigenaarschap van je code. Geen Shopify-huur."
+          "title": "SEO & care",
+          "body": "Lokale SEO in twee landen, plus maandelijks onderhoud, security en monitoring."
         }
       }
     },
@@ -74,23 +82,29 @@
     },
 
     "approach": {
-      "eyebrow": "aanpak",
-      "title": "Hoe ik werk.",
+      "eyebrow": "werkwijze",
+      "title": "Van eerste gesprek tot live systeem.",
+      "lede": "Een rustig, stapsgewijs proces. Geen verrassingen achteraf — wel voortgang die je elke week kunt zien in je eigen klantportaal.",
       "items": {
         "one": {
           "kicker": "01",
-          "title": "Eén lijn",
-          "body": "Je praat met de ontwikkelaar. Niet met een accountmanager die het doorgeeft."
+          "title": "Kennismaking",
+          "body": "Een half uur. We praten over je proces, knelpunten en wat het je waard is om opgelost te krijgen. Geen verkooppraat."
         },
         "two": {
           "kicker": "02",
-          "title": "Vaste prijs, vaste scope",
-          "body": "Voor het project begint weet je wat het kost. Geen meeruren-facturen achteraf."
+          "title": "Voorstel & scope",
+          "body": "Concreet plan met tijdlijn, prijs en wat erin zit — duidelijk en zonder kleine letters. Eén pagina."
         },
         "three": {
           "kicker": "03",
-          "title": "Onderhoud na oplevering",
-          "body": "Software is niet af bij launch. Optionele onderhoudsabonnementen houden alles veilig en draaiend."
+          "title": "Bouwen in sprints",
+          "body": "Wekelijkse opleveringen die je live ziet in je portaal. Feedback wordt direct verwerkt."
+        },
+        "four": {
+          "kicker": "04",
+          "title": "Live & onderhoud",
+          "body": "Na livegang draait je systeem onder een care-plan. Jij blijft bouwen aan je bedrijf."
         }
       }
     },
@@ -128,6 +142,27 @@
           "q": "En als jij ziek wordt of stopt?",
           "a": "Dat is een terechte vraag. Code is gedocumenteerd, deploys zijn geautomatiseerd, infrastructuur draait op standaard providers (Vercel, Neon, Stripe). Elke andere ontwikkelaar kan het overnemen. Geen geheime sausjes."
         }
+      ]
+    },
+
+    "testimonials": {
+      "eyebrow": "klanten",
+      "title": "Wat klanten <em>na een jaar</em> zeggen.",
+      "lede": "Niet de gladde quotes van net na livegang. Wat mensen zeggen als hun systeem inmiddels gewoon draait.",
+      "items": []
+    },
+
+    "pricing": {
+      "eyebrow": "abonnementen",
+      "title": "Heldere prijzen, <em>geen</em> verrassingen.",
+      "lede": "Eén vaste prijs per maand. Maandelijks opzegbaar. Eerste maand altijd gratis — als het niet klikt, betaal je niets.",
+      "featured": "Meest gekozen",
+      "viewAll": "Bekijk volledige vergelijking & Build-pricing",
+      "reassurance": [
+        "Eerste maand gratis",
+        "Maandelijks opzegbaar",
+        "15% korting bij jaarbetaling",
+        "Build vanaf €499 setup"
       ]
     },
 

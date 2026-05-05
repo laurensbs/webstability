@@ -4,7 +4,8 @@ import { ServiceCard } from "@/components/marketing/ServiceCard";
 
 export async function Services() {
   const t = await getTranslations("home.services");
-  const keys = ["admin", "websites", "webshops"] as const;
+  const tRaw = await getTranslations();
+  const adminBullets = tRaw.raw("home.services.items.admin.bullets") as string[];
 
   return (
     <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
@@ -17,16 +18,30 @@ export async function Services() {
           <p className="text-(--color-muted)">{t("lede")}</p>
         </RevealOnScroll>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {keys.map((key, i) => (
-            <ServiceCard
-              key={key}
-              index={i}
-              iconKey={key}
-              title={t(`items.${key}.title`)}
-              body={t(`items.${key}.body`)}
-            />
-          ))}
+        {/* Asymmetric: large card spans 2 rows on md+, small cards stack. */}
+        <div className="mt-14 grid gap-6 md:grid-cols-2 md:grid-rows-2">
+          <ServiceCard
+            index={0}
+            iconKey="admin"
+            title={t("items.admin.title")}
+            body={t("items.admin.body")}
+            bullets={adminBullets}
+            ctaHref="/verhuur"
+            ctaLabel={t("items.admin.cta")}
+            large
+          />
+          <ServiceCard
+            index={1}
+            iconKey="websites"
+            title={t("items.websites.title")}
+            body={t("items.websites.body")}
+          />
+          <ServiceCard
+            index={2}
+            iconKey="webshops"
+            title={t("items.webshops.title")}
+            body={t("items.webshops.body")}
+          />
         </div>
       </div>
     </section>
