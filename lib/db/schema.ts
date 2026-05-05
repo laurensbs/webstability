@@ -9,6 +9,7 @@ import {
   primaryKey,
   pgEnum,
   index,
+  boolean,
 } from "drizzle-orm/pg-core";
 import { relations, sql } from "drizzle-orm";
 import type { AdapterAccountType } from "next-auth/adapters";
@@ -99,6 +100,9 @@ export const users = pgTable("users", {
     onDelete: "set null",
   }),
   twoFactorSecret: text("two_factor_secret"),
+  // Studio-side staff flag — orthogonal to org `role`. Studio staff can see
+  // the cross-org /admin views; clients cannot, regardless of their own role.
+  isStaff: boolean("is_staff").notNull().default(false),
   lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()

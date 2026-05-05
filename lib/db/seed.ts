@@ -51,6 +51,7 @@ async function main() {
         emailVerified: new Date(),
         locale: "nl",
         role: "owner",
+        isStaff: true,
         organizationId: orgId,
       })
       .returning({ id: users.id });

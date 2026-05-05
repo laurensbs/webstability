@@ -107,3 +107,52 @@
 .animate-accordion-up {
   animation: accordion-up 220ms ease-out;
 }
+
+/* Radix dialog drawer animations (mobile portal nav, etc.) */
+@keyframes wb-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes wb-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes wb-slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes wb-slide-out-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+[data-state="open"].data-\[state\=open\]\:animate-in[data-state="open"] {
+  /* helper for explicit selectors */
+}
+.data-\[state\=open\]\:fade-in[data-state="open"] {
+  animation: wb-fade-in 220ms ease-out;
+}
+.data-\[state\=closed\]\:fade-out[data-state="closed"] {
+  animation: wb-fade-out 180ms ease-out forwards;
+}
+.data-\[state\=open\]\:slide-in-from-left[data-state="open"] {
+  animation: wb-slide-in-left 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.data-\[state\=closed\]\:slide-out-to-left[data-state="closed"] {
+  animation: wb-slide-out-left 220ms cubic-bezier(0.7, 0, 0.84, 0) forwards;
+}

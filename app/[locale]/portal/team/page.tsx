@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { getUserWithOrg, listOrgMembers } from "@/lib/db/queries/portal";
 import { inviteMember } from "@/app/actions/team";
 import { Button } from "@/components/ui/Button";
+import { ToastForm } from "@/components/portal/ToastForm";
 
 export default async function TeamPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -28,8 +29,9 @@ export default async function TeamPage({ params }: { params: Promise<{ locale: s
       <h1 className="text-3xl md:text-4xl">{t("title")}</h1>
 
       {isOwner ? (
-        <form
+        <ToastForm
           action={inviteMember}
+          resetOnSuccess
           className="space-y-4 rounded-lg border border-(--color-border) bg-(--color-surface) p-6"
         >
           <h2 className="text-lg font-medium">{t("invite")}</h2>
@@ -69,7 +71,7 @@ export default async function TeamPage({ params }: { params: Promise<{ locale: s
               {t("inviteSubmit")}
             </Button>
           </div>
-        </form>
+        </ToastForm>
       ) : (
         <p className="rounded-lg border border-dashed border-(--color-border) bg-(--color-bg-warm)/50 px-6 py-4 text-sm text-(--color-muted)">
           {t("ownerOnly")}

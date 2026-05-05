@@ -126,7 +126,10 @@
     "title": "Reserva una llamada. <em>O escribe un email.</em>",
     "lede": "Primera llamada gratis, treinta minutos, sin presentación comercial. ¿Prefieres escribir? hello@webstability.eu — respondo en un día laborable.",
     "calLoading": "Cargando calendario…",
-    "calFallback": "¿No se carga el calendario? Ábrelo directamente en cal.com/webstability."
+    "calFallback": "¿No se carga el calendario? Ábrelo directamente en cal.com/webstability.",
+    "openCalendar": "Reserva directo en mi calendario",
+    "openCalendarHint": "Cargamos Cal.com solo al hacer clic — sin tracking previo.",
+    "openCalendarButton": "Abrir calendario"
   },
   "status": {
     "eyebrow": "estado en vivo",
@@ -351,6 +354,24 @@
       "openTickets": "{count, plural, =0 {Sin tickets abiertos.} one {Un ticket abierto.} other {# tickets abiertos.}}",
       "highPriority": "Un ticket tiene prioridad alta."
     },
+    "toasts": {
+      "saved": "Perfil guardado.",
+      "reply_sent": "Respuesta enviada.",
+      "invited": "Invitación enviada.",
+      "uploaded": "Archivo subido.",
+      "deleted": "Archivo eliminado.",
+      "unauthorized": "No has iniciado sesión.",
+      "forbidden": "Sin permisos para esta acción.",
+      "no_org": "Sin organización vinculada.",
+      "not_found": "No encontrado.",
+      "missing_body": "Falta el mensaje.",
+      "missing_fields": "Rellena todos los campos.",
+      "missing_file": "Ningún archivo seleccionado.",
+      "blob_not_configured": "Almacenamiento no configurado.",
+      "invalid_email": "Introduce un email válido.",
+      "already_in_org": "Esta cuenta ya pertenece a otra organización.",
+      "generic_error": "Algo salió mal."
+    },
     "loading": {
       "title": "Estamos cargando tu portal",
       "messages": [
@@ -509,5 +530,42 @@
       "subtitle": "Te hemos enviado un enlace de acceso. Haz clic para continuar.",
       "hint": "¿No te llega? Mira en spam o solicita un nuevo enlace."
     }
+  },
+  "admin": {
+    "title": "Studio admin",
+    "subtitle": "Vista cross-org para staff de Webstability.",
+    "stats": {
+      "orgs": "Organizaciones",
+      "openTickets": "Tickets abiertos",
+      "activeProjects": "Proyectos activos",
+      "openInvoices": "Facturas pendientes"
+    },
+    "nav": { "overview": "Resumen", "orgs": "Organizaciones", "tickets": "Tickets" },
+    "orgs": {
+      "title": "Organizaciones",
+      "empty": "Aún no hay clientes.",
+      "members": "{count, plural, one {# miembro} other {# miembros}}",
+      "projects": "{count, plural, one {# proyecto} other {# proyectos}}",
+      "openTickets": "{count, plural, =0 {} one {# ticket abierto} other {# tickets abiertos}}"
+    },
+    "org": {
+      "back": "Todas las organizaciones",
+      "members": "Miembros",
+      "projects": "Proyectos",
+      "noProjects": "Sin proyectos.",
+      "saveProject": "Guardar",
+      "progress": "Progreso"
+    },
+    "tickets": {
+      "title": "Tickets abiertos — todos los clientes",
+      "empty": "Sin tickets abiertos.",
+      "subject": "Asunto",
+      "from": "De",
+      "org": "Organización",
+      "priority": "Prioridad",
+      "status": "Estado",
+      "save": "Cambiar estado"
+    },
+    "forbidden": "Sin acceso. Solo staff de Webstability."
   }
 }

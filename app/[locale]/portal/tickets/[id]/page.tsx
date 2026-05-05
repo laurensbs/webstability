@@ -7,6 +7,7 @@ import { getUserWithOrg, getTicketWithReplies } from "@/lib/db/queries/portal";
 import { replyToTicket } from "@/app/actions/tickets";
 import NextLink from "next/link";
 import { Button } from "@/components/ui/Button";
+import { ToastForm } from "@/components/portal/ToastForm";
 
 export default async function TicketDetail({
   params,
@@ -80,7 +81,7 @@ export default async function TicketDetail({
         )}
       </section>
 
-      <form action={replyAction} className="space-y-3">
+      <ToastForm action={replyAction} resetOnSuccess className="space-y-3">
         <textarea
           name="body"
           rows={4}
@@ -88,7 +89,7 @@ export default async function TicketDetail({
           className="w-full rounded-md border border-(--color-border) bg-(--color-surface) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
         />
         <Button type="submit">{t("reply")}</Button>
-      </form>
+      </ToastForm>
     </div>
   );
 }

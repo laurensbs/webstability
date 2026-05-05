@@ -5,10 +5,14 @@ import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
+import type { ActionResult } from "@/lib/action-result";
 
-export async function updateProfile(formData: FormData) {
+export async function updateProfile(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
   const session = await auth();
-  if (!session?.user?.id) throw new Error("unauthorized");
+  if (!session?.user?.id) return { ok: false, messageKey: "unauthorized" };
 
   const name = String(formData.get("name") ?? "").trim();
   const localeInput = String(formData.get("locale") ?? "");
@@ -24,4 +28,5 @@ export async function updateProfile(formData: FormData) {
 
   revalidatePath("/portal/settings");
   revalidatePath("/portal/dashboard");
+  return { ok: true, messageKey: "saved" };
 }

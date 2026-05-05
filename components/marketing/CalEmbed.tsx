@@ -1,8 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { Calendar } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
-// Lazy-load: ~80kb embed runtime stays out of the initial bundle.
+// Lazy: only fetched when the visitor explicitly opts in via the button.
+// That keeps cal.com's ~80kb runtime out of the initial bundle and avoids
+// loading any third-party tracking before consent.
 const Cal = dynamic(() => import("@calcom/embed-react"), {
   ssr: false,
   loading: () => (
@@ -15,6 +21,28 @@ const Cal = dynamic(() => import("@calcom/embed-react"), {
 });
 
 export function CalEmbed({ locale }: { locale: string }) {
+  const [opened, setOpened] = useState(false);
+  const t = useTranslations("contact");
+
+  if (!opened) {
+    return (
+      <button
+        type="button"
+        onClick={() => setOpened(true)}
+        className="group flex min-h-[480px] w-full flex-col items-center justify-center gap-6 rounded-lg border-2 border-dashed border-(--color-border) bg-(--color-bg-warm)/40 p-12 transition-colors hover:border-(--color-accent) hover:bg-(--color-bg-warm)/70"
+      >
+        <Calendar className="h-12 w-12 text-(--color-muted) transition-colors group-hover:text-(--color-accent)" />
+        <div className="space-y-2 text-center">
+          <p className="text-lg font-medium">{t("openCalendar")}</p>
+          <p className="text-sm text-(--color-muted)">{t("openCalendarHint")}</p>
+        </div>
+        <Button variant="accent" size="md" asChild>
+          <span>{t("openCalendarButton")}</span>
+        </Button>
+      </button>
+    );
+  }
+
   return (
     <Cal
       calLink="webstability"
@@ -22,7 +50,6 @@ export function CalEmbed({ locale }: { locale: string }) {
       config={{
         layout: "month_view",
         theme: "light",
-        // Cal accepts ISO locale; "nl" / "es" both work.
         ...(locale ? { locale } : {}),
       }}
     />

@@ -5,6 +5,7 @@ import { eq, and } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
+import type { ActionResult } from "@/lib/action-result";
 
 async function requireOwner() {
   const session = await auth();
@@ -18,8 +19,17 @@ async function requireOwner() {
   return { userId: user.id, orgId: user.organizationId };
 }
 
-export async function inviteMember(formData: FormData) {
-  const { orgId } = await requireOwner();
+export async function inviteMember(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let orgId: string;
+  try {
+    orgId = (await requireOwner()).orgId;
+  } catch (err) {
+    const m = err instanceof Error ? err.message : "forbidden";
+    return { ok: false, messageKey: m };
+  }
 
   const email = String(formData.get("email") ?? "")
     .trim()
@@ -31,13 +41,12 @@ export async function inviteMember(formData: FormData) {
     ? (roleInput as "owner" | "member" | "read_only")
     : "member";
 
-  if (!email || !email.includes("@")) throw new Error("invalid_email");
+  if (!email || !email.includes("@")) return { ok: false, messageKey: "invalid_email" };
 
   const existing = await db.query.users.findFirst({ where: eq(users.email, email) });
   if (existing) {
-    // If they already exist on a different org, don't steal them.
     if (existing.organizationId && existing.organizationId !== orgId) {
-      throw new Error("already_in_org");
+      return { ok: false, messageKey: "already_in_org" };
     }
     await db.update(users).set({ organizationId: orgId, role }).where(eq(users.id, existing.id));
   } else {
@@ -50,6 +59,7 @@ export async function inviteMember(formData: FormData) {
   }
 
   revalidatePath("/portal/team");
+  return { ok: true, messageKey: "invited" };
 }
 
 export async function removeMember(userIdToRemove: string) {

@@ -126,7 +126,10 @@
     "title": "Plan een gesprek. <em>Of stuur een mail.</em>",
     "lede": "Eerste gesprek is gratis, dertig minuten, geen pitch-deck. Liever schrijven? hello@webstability.eu — ik antwoord binnen één werkdag.",
     "calLoading": "Kalender laden…",
-    "calFallback": "Kalender niet zichtbaar? Open direct op cal.com/webstability."
+    "calFallback": "Kalender niet zichtbaar? Open direct op cal.com/webstability.",
+    "openCalendar": "Plan direct in mijn kalender",
+    "openCalendarHint": "We laden Cal.com pas als je hierop klikt — geen tracking vooraf.",
+    "openCalendarButton": "Open kalender"
   },
   "status": {
     "eyebrow": "live status",
@@ -351,6 +354,24 @@
       "openTickets": "{count, plural, =0 {Geen openstaande tickets.} one {Eén openstaand ticket.} other {# openstaande tickets.}}",
       "highPriority": "Eén ticket heeft hoge prioriteit."
     },
+    "toasts": {
+      "saved": "Profiel opgeslagen.",
+      "reply_sent": "Antwoord verstuurd.",
+      "invited": "Uitnodiging verstuurd.",
+      "uploaded": "Bestand geüpload.",
+      "deleted": "Bestand verwijderd.",
+      "unauthorized": "Niet ingelogd.",
+      "forbidden": "Geen rechten voor deze actie.",
+      "no_org": "Geen organisatie gekoppeld.",
+      "not_found": "Niet gevonden.",
+      "missing_body": "Bericht ontbreekt.",
+      "missing_fields": "Vul alle velden in.",
+      "missing_file": "Geen bestand gekozen.",
+      "blob_not_configured": "Bestandsopslag niet geconfigureerd.",
+      "invalid_email": "Vul een geldig e-mailadres in.",
+      "already_in_org": "Dit account hoort al bij een andere organisatie.",
+      "generic_error": "Er ging iets mis."
+    },
     "loading": {
       "title": "We zijn je portaal aan het laden",
       "messages": [
@@ -509,5 +530,42 @@
       "subtitle": "We hebben een inloglink gestuurd. Klik erop om verder te gaan.",
       "hint": "Geen mail? Kijk in je spam-folder of vraag een nieuwe link aan."
     }
+  },
+  "admin": {
+    "title": "Studio admin",
+    "subtitle": "Cross-org overzicht voor Webstability staff.",
+    "stats": {
+      "orgs": "Organisaties",
+      "openTickets": "Open tickets",
+      "activeProjects": "Actieve projecten",
+      "openInvoices": "Openstaande facturen"
+    },
+    "nav": { "overview": "Overzicht", "orgs": "Organisaties", "tickets": "Tickets" },
+    "orgs": {
+      "title": "Organisaties",
+      "empty": "Nog geen klanten.",
+      "members": "{count, plural, one {# lid} other {# leden}}",
+      "projects": "{count, plural, one {# project} other {# projecten}}",
+      "openTickets": "{count, plural, =0 {} one {# open ticket} other {# open tickets}}"
+    },
+    "org": {
+      "back": "Alle organisaties",
+      "members": "Leden",
+      "projects": "Projecten",
+      "noProjects": "Geen projecten.",
+      "saveProject": "Opslaan",
+      "progress": "Voortgang"
+    },
+    "tickets": {
+      "title": "Open tickets — alle klanten",
+      "empty": "Geen open tickets.",
+      "subject": "Onderwerp",
+      "from": "Van",
+      "org": "Organisatie",
+      "priority": "Prioriteit",
+      "status": "Status",
+      "save": "Wijzig status"
+    },
+    "forbidden": "Geen toegang. Alleen Webstability staff."
   }
 }

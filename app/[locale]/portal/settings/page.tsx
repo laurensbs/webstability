@@ -7,6 +7,7 @@ import { getUserWithOrg } from "@/lib/db/queries/portal";
 import { updateProfile } from "@/app/actions/settings";
 import { openBillingPortal } from "@/app/actions/billing";
 import { Button } from "@/components/ui/Button";
+import { ToastForm } from "@/components/portal/ToastForm";
 
 export default async function SettingsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -27,7 +28,7 @@ export default async function SettingsPage({ params }: { params: Promise<{ local
     <div className="mx-auto max-w-xl space-y-8">
       <h1 className="text-3xl md:text-4xl">{t("title")}</h1>
 
-      <form action={updateProfile} className="space-y-5">
+      <ToastForm action={updateProfile} className="space-y-5">
         <div className="space-y-2">
           <label htmlFor="name" className="block text-sm font-medium">
             {t("name")}
@@ -73,7 +74,7 @@ export default async function SettingsPage({ params }: { params: Promise<{ local
         <Button type="submit" variant="accent">
           {t("save")}
         </Button>
-      </form>
+      </ToastForm>
 
       {isOwner && hasStripeCustomer ? (
         <form action={openBillingPortal} className="border-t border-(--color-border) pt-8">

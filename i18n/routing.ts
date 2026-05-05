@@ -51,6 +51,9 @@ export const routing = defineRouting({
     "/portal/seo": "/portal/seo",
     "/portal/files": "/portal/files",
     "/portal/team": "/portal/team",
+    "/admin": "/admin",
+    "/admin/orgs": "/admin/orgs",
+    "/admin/tickets": "/admin/tickets",
   },
 });
 

@@ -6,6 +6,7 @@ import { eq, and } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { tickets, ticketReplies, users } from "@/lib/db/schema";
+import type { ActionResult } from "@/lib/action-result";
 
 async function requireUserOrg() {
   const session = await auth();
@@ -43,18 +44,31 @@ export async function createTicket(formData: FormData) {
   redirect(`/portal/tickets/${created.id}`);
 }
 
-export async function replyToTicket(ticketId: string, formData: FormData) {
-  const { userId, orgId } = await requireUserOrg();
+export async function replyToTicket(
+  ticketId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  let orgId: string;
+  try {
+    const u = await requireUserOrg();
+    userId = u.userId;
+    orgId = u.orgId;
+  } catch {
+    return { ok: false, messageKey: "unauthorized" };
+  }
 
   const ticket = await db.query.tickets.findFirst({
     where: and(eq(tickets.id, ticketId), eq(tickets.organizationId, orgId)),
     columns: { id: true },
   });
-  if (!ticket) throw new Error("not_found");
+  if (!ticket) return { ok: false, messageKey: "not_found" };
 
   const body = String(formData.get("body") ?? "").trim();
-  if (!body) throw new Error("missing_body");
+  if (!body) return { ok: false, messageKey: "missing_body" };
 
   await db.insert(ticketReplies).values({ ticketId, userId, body });
   revalidatePath(`/portal/tickets/${ticketId}`);
+  return { ok: true, messageKey: "reply_sent" };
 }
