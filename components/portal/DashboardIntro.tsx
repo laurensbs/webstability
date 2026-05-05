@@ -6,10 +6,13 @@ export function DashboardIntro({
   greeting,
   firstName,
   status,
+  subStatus,
 }: {
   greeting: string;
   firstName: string;
   status: string;
+  /** Optional context line (mono, dim) — e.g. "laatst ingelogd: 2 dagen geleden". */
+  subStatus?: string;
 }) {
   return (
     <motion.header
@@ -38,6 +41,17 @@ export function DashboardIntro({
       >
         {status}
       </motion.p>
+      {subStatus ? (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="font-mono text-xs tracking-wide text-(--color-muted)/80"
+        >
+          {"// "}
+          {subStatus}
+        </motion.p>
+      ) : null}
     </motion.header>
   );
 }

@@ -2,7 +2,10 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
 import { Activity, Inbox, FolderKanban, Receipt } from "lucide-react";
+import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { users } from "@/lib/db/schema";
 import { routing } from "@/i18n/routing";
 import {
   getUserWithOrg,
@@ -21,6 +24,22 @@ function pickGreeting(t: (k: string) => string) {
   if (h < 12) return t("greeting.morning");
   if (h < 18) return t("greeting.afternoon");
   return t("greeting.evening");
+}
+
+function lastSeenLine(
+  t: (k: string, vars?: Record<string, number>) => string,
+  lastLoginAt: Date | null,
+): string {
+  if (!lastLoginAt) return t("greeting.firstVisit");
+  const ms = Date.now() - lastLoginAt.getTime();
+  const minutes = Math.round(ms / 60_000);
+  if (minutes < 60) return t("greeting.lastSeenMinutes", { n: Math.max(1, minutes) });
+  const hours = Math.round(minutes / 60);
+  if (hours < 24) return t("greeting.lastSeenHours", { n: hours });
+  const days = Math.round(hours / 24);
+  if (days < 14) return t("greeting.lastSeenDays", { n: days });
+  const weeks = Math.round(days / 7);
+  return t("greeting.lastSeenWeeks", { n: weeks });
 }
 
 export default async function Dashboard({ params }: { params: Promise<{ locale: string }> }) {
@@ -50,11 +69,21 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
       ? t("greeting.openTickets", { count: Number(stats.openTickets) })
       : t("greeting.allGood");
 
+  // Compute "last seen" from the previous login, then bump it. The user
+  // sees how long it's been since they last looked at the portal.
+  const subStatus = lastSeenLine(t, user.lastLoginAt ?? null);
+  await db.update(users).set({ lastLoginAt: new Date() }).where(eq(users.id, user.id));
+
   const healthy = !stats.hasHighPriority && stats.openTickets === 0;
 
   return (
     <div className="space-y-10">
-      <DashboardIntro greeting={greeting} firstName={firstName} status={status} />
+      <DashboardIntro
+        greeting={greeting}
+        firstName={firstName}
+        status={status}
+        subStatus={subStatus}
+      />
 
       <StatusBanner
         healthy={healthy}

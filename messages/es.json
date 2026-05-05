@@ -469,7 +469,12 @@
       "evening": "Buenas tardes",
       "allGood": "Todo funciona como debe.",
       "openTickets": "{count, plural, =0 {Sin tickets abiertos.} one {Un ticket abierto.} other {# tickets abiertos.}}",
-      "highPriority": "Un ticket tiene prioridad alta."
+      "highPriority": "Un ticket tiene prioridad alta.",
+      "firstVisit": "primera sesión — bienvenido",
+      "lastSeenMinutes": "última vez: hace {n, plural, one {# minuto} other {# minutos}}",
+      "lastSeenHours": "última vez: hace {n, plural, one {# hora} other {# horas}}",
+      "lastSeenDays": "última vez: hace {n, plural, one {# día} other {# días}}",
+      "lastSeenWeeks": "última vez: hace {n, plural, one {# semana} other {# semanas}}"
     },
     "toasts": {
       "saved": "Perfil guardado.",
@@ -645,6 +650,22 @@
   "stub": {
     "soon": "Esta página llega en la fase 2.",
     "back": "Volver al inicio"
+  },
+  "errors": {
+    "notFound": {
+      "eyebrow": "404",
+      "title": "Esta página <em>no existe</em>.",
+      "lede": "Enlace incorrecto, marcador antiguo o errata. Sin drama — elige a dónde quieres ir.",
+      "homeCta": "Volver al inicio",
+      "contactCta": "Escribir a Laurens"
+    },
+    "boundary": {
+      "eyebrow": "algo falló",
+      "title": "Algo <em>salió mal</em>.",
+      "lede": "Sentry ya avisó a Laurens. Prueba de nuevo — si sigue fallando, mándale un correo.",
+      "retry": "Reintentar",
+      "homeCta": "Volver al inicio"
+    }
   },
   "auth": {
     "login": {

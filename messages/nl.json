@@ -469,7 +469,12 @@
       "evening": "Goedenavond",
       "allGood": "Alles draait zoals het moet.",
       "openTickets": "{count, plural, =0 {Geen openstaande tickets.} one {Eén openstaand ticket.} other {# openstaande tickets.}}",
-      "highPriority": "Eén ticket heeft hoge prioriteit."
+      "highPriority": "Eén ticket heeft hoge prioriteit.",
+      "firstVisit": "eerste login — welkom",
+      "lastSeenMinutes": "laatst gezien: {n, plural, one {# minuut} other {# minuten}} geleden",
+      "lastSeenHours": "laatst gezien: {n, plural, one {# uur} other {# uur}} geleden",
+      "lastSeenDays": "laatst gezien: {n, plural, one {# dag} other {# dagen}} geleden",
+      "lastSeenWeeks": "laatst gezien: {n, plural, one {# week} other {# weken}} geleden"
     },
     "toasts": {
       "saved": "Profiel opgeslagen.",
@@ -645,6 +650,22 @@
   "stub": {
     "soon": "Deze pagina komt in fase 2.",
     "back": "Terug naar home"
+  },
+  "errors": {
+    "notFound": {
+      "eyebrow": "404",
+      "title": "Deze pagina <em>bestaat niet</em>.",
+      "lede": "Verkeerde link, oude bookmark, of typfout. Geen drama — kies hieronder waar je heen wilt.",
+      "homeCta": "Terug naar home",
+      "contactCta": "Stuur Laurens een bericht"
+    },
+    "boundary": {
+      "eyebrow": "iets brak",
+      "title": "Er ging <em>iets mis</em>.",
+      "lede": "Sentry heeft Laurens al een melding gestuurd. Probeer het opnieuw — werkt het nog niet, mail dan gerust.",
+      "retry": "Opnieuw proberen",
+      "homeCta": "Terug naar home"
+    }
   },
   "auth": {
     "login": {
