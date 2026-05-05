@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { ApproachCard } from "@/components/marketing/ApproachCard";
 
 export async function Approach() {
   const t = await getTranslations("home.approach");
@@ -15,17 +16,15 @@ export async function Approach() {
           <h2 className="text-3xl md:text-5xl">{t("title")}</h2>
         </RevealOnScroll>
 
-        <div className="mt-14 grid gap-10 md:grid-cols-3">
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
           {keys.map((key, i) => (
-            <RevealOnScroll key={key} delay={i * 0.08} className="space-y-3">
-              <p className="font-mono text-xs tracking-widest text-(--color-accent)">
-                {t(`items.${key}.kicker`)}
-              </p>
-              <h3 className="text-xl">{t(`items.${key}.title`)}</h3>
-              <p className="text-sm leading-relaxed text-(--color-muted)">
-                {t(`items.${key}.body`)}
-              </p>
-            </RevealOnScroll>
+            <ApproachCard
+              key={key}
+              index={i}
+              kicker={t(`items.${key}.kicker`)}
+              title={t(`items.${key}.title`)}
+              body={t(`items.${key}.body`)}
+            />
           ))}
         </div>
       </div>

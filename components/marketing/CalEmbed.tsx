@@ -3,26 +3,43 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Calendar } from "lucide-react";
+import { Calendar, Mail } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 // Lazy: only fetched when the visitor explicitly opts in via the button.
-// That keeps cal.com's ~80kb runtime out of the initial bundle and avoids
+// Keeps cal.com's ~80kb runtime out of the initial bundle and avoids
 // loading any third-party tracking before consent.
 const Cal = dynamic(() => import("@calcom/embed-react"), {
   ssr: false,
   loading: () => (
     <div className="flex h-[640px] items-center justify-center rounded-lg border border-(--color-border) bg-(--color-surface)">
-      <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
-        cal.com/webstability
-      </p>
+      <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">loading…</p>
     </div>
   ),
 });
 
+const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK?.trim();
+
 export function CalEmbed({ locale }: { locale: string }) {
   const [opened, setOpened] = useState(false);
   const t = useTranslations("contact");
+
+  // No Cal.com link configured yet — fall back to a polished mailto card so
+  // visitors aren't dumped on a 404. Set NEXT_PUBLIC_CAL_LINK="<slug>" to enable.
+  if (!CAL_LINK) {
+    return (
+      <div className="flex min-h-[480px] w-full flex-col items-center justify-center gap-6 rounded-lg border border-(--color-border) bg-(--color-bg-warm)/40 p-12">
+        <Mail className="h-12 w-12 text-(--color-muted)" />
+        <div className="space-y-2 text-center">
+          <p className="text-lg font-medium">{t("calFallbackTitle")}</p>
+          <p className="text-sm text-(--color-muted)">{t("calFallbackHint")}</p>
+        </div>
+        <Button variant="accent" size="md" asChild>
+          <a href="mailto:hello@webstability.eu">hello@webstability.eu</a>
+        </Button>
+      </div>
+    );
+  }
 
   if (!opened) {
     return (
@@ -45,7 +62,7 @@ export function CalEmbed({ locale }: { locale: string }) {
 
   return (
     <Cal
-      calLink="webstability"
+      calLink={CAL_LINK}
       style={{ width: "100%", height: "100%", minHeight: 640 }}
       config={{
         layout: "month_view",

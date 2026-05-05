@@ -28,6 +28,12 @@
     "ctaPrimary": "Plan een gesprek",
     "ctaSecondary": "Bekijk prijzen",
 
+    "hero": {
+      "years": "jaar bouwen",
+      "since": "sinds",
+      "live": "live nu"
+    },
+
     "logoStrip": {
       "title": "Stack die zichzelf bewijst",
       "items": ["Next.js", "TypeScript", "Postgres", "Stripe", "Vercel", "Tailwind"]
@@ -129,7 +135,9 @@
     "calFallback": "Kalender niet zichtbaar? Open direct op cal.com/webstability.",
     "openCalendar": "Plan direct in mijn kalender",
     "openCalendarHint": "We laden Cal.com pas als je hierop klikt — geen tracking vooraf.",
-    "openCalendarButton": "Open kalender"
+    "openCalendarButton": "Open kalender",
+    "calFallbackTitle": "Stuur me een mail",
+    "calFallbackHint": "De online agenda komt zo. Tot die tijd: gewoon mailen werkt prima."
   },
   "status": {
     "eyebrow": "live status",

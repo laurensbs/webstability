@@ -28,6 +28,12 @@
     "ctaPrimary": "Reserva una llamada",
     "ctaSecondary": "Ver precios",
 
+    "hero": {
+      "years": "años construyendo",
+      "since": "desde",
+      "live": "en línea"
+    },
+
     "logoStrip": {
       "title": "Stack que se demuestra solo",
       "items": ["Next.js", "TypeScript", "Postgres", "Stripe", "Vercel", "Tailwind"]
@@ -129,7 +135,9 @@
     "calFallback": "¿No se carga el calendario? Ábrelo directamente en cal.com/webstability.",
     "openCalendar": "Reserva directo en mi calendario",
     "openCalendarHint": "Cargamos Cal.com solo al hacer clic — sin tracking previo.",
-    "openCalendarButton": "Abrir calendario"
+    "openCalendarButton": "Abrir calendario",
+    "calFallbackTitle": "Mándame un email",
+    "calFallbackHint": "La agenda online llega pronto. De momento, escribir va perfecto."
   },
   "status": {
     "eyebrow": "estado en vivo",
