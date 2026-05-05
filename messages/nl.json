@@ -478,6 +478,18 @@
       "openInvoices": "Openstaande facturen",
       "uptime": "Uptime laatste 30d"
     },
+    "banner": {
+      "healthy": "Alle systemen draaien zoals het hoort.",
+      "issue": "Er is een verstoring. Laurens werkt eraan.",
+      "viewStatus": "Status pagina"
+    },
+    "dashboard": {
+      "recentProjects": "Recente projecten",
+      "recentTickets": "Recente tickets",
+      "viewAll": "Bekijk alles",
+      "noProjects": "Nog geen projecten gekoppeld.",
+      "noTickets": "Geen tickets — alles loopt."
+    },
     "projects": {
       "title": "Projecten",
       "empty": "Nog geen projecten gekoppeld.",

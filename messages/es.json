@@ -478,6 +478,18 @@
       "openInvoices": "Facturas pendientes",
       "uptime": "Uptime últimos 30d"
     },
+    "banner": {
+      "healthy": "Todos los sistemas funcionando con normalidad.",
+      "issue": "Hay una incidencia. Laurens está en ello.",
+      "viewStatus": "Página de estado"
+    },
+    "dashboard": {
+      "recentProjects": "Proyectos recientes",
+      "recentTickets": "Tickets recientes",
+      "viewAll": "Ver todo",
+      "noProjects": "Aún sin proyectos.",
+      "noTickets": "Sin tickets — todo va bien."
+    },
     "projects": {
       "title": "Proyectos",
       "empty": "Aún no hay proyectos.",
