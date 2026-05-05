@@ -5,8 +5,8 @@ import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
 import { getUserWithOrg, listOrgMembers } from "@/lib/db/queries/portal";
 import { inviteMember } from "@/app/actions/team";
-import { Button } from "@/components/ui/Button";
 import { ToastForm } from "@/components/portal/ToastForm";
+import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
 
 export default async function TeamPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -67,9 +67,7 @@ export default async function TeamPage({ params }: { params: Promise<{ locale: s
 
           <div className="flex items-center justify-between gap-4">
             <p className="text-xs text-(--color-muted)">{t("inviteHint")}</p>
-            <Button type="submit" variant="accent">
-              {t("inviteSubmit")}
-            </Button>
+            <ToastSubmitButton variant="accent">{t("inviteSubmit")}</ToastSubmitButton>
           </div>
         </ToastForm>
       ) : (

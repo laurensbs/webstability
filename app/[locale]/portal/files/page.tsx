@@ -14,7 +14,8 @@ import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
 import { getUserWithOrg, listOrgFiles, isBlobConfigured } from "@/lib/db/queries/portal";
 import { uploadFile } from "@/app/actions/files";
-import { Button } from "@/components/ui/Button";
+import { ToastForm } from "@/components/portal/ToastForm";
+import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
 import { UploadZone } from "@/components/portal/UploadZone";
 
 function iconForName(name: string): LucideIcon {
@@ -48,7 +49,7 @@ export default async function FilesPage({ params }: { params: Promise<{ locale: 
       </header>
 
       {blobReady ? (
-        <form action={uploadFile} encType="multipart/form-data" className="space-y-4">
+        <ToastForm action={uploadFile} resetOnSuccess className="space-y-4">
           <UploadZone inputId="file" inputName="file" label={t("upload")} hint={t("uploadHint")} />
 
           <div className="flex flex-col gap-4 rounded-lg border border-(--color-border) bg-(--color-surface) p-5 sm:flex-row sm:items-end sm:justify-between">
@@ -68,11 +69,9 @@ export default async function FilesPage({ params }: { params: Promise<{ locale: 
                 <option value="report">{t("category.report")}</option>
               </select>
             </div>
-            <Button type="submit" variant="accent">
-              {t("upload")}
-            </Button>
+            <ToastSubmitButton variant="accent">{t("upload")}</ToastSubmitButton>
           </div>
-        </form>
+        </ToastForm>
       ) : (
         <div className="rounded-lg border border-dashed border-(--color-border) bg-(--color-bg-warm)/50 p-6">
           <p className="font-mono text-xs text-(--color-muted)">{t("notConfigured")}</p>

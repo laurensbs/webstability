@@ -6,8 +6,9 @@ import { routing } from "@/i18n/routing";
 import { getUserWithOrg } from "@/lib/db/queries/portal";
 import { updateProfile } from "@/app/actions/settings";
 import { openBillingPortal } from "@/app/actions/billing";
-import { Button } from "@/components/ui/Button";
+import { SubmitButton } from "@/components/ui/SubmitButton";
 import { ToastForm } from "@/components/portal/ToastForm";
+import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
 
 export default async function SettingsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -71,16 +72,12 @@ export default async function SettingsPage({ params }: { params: Promise<{ local
           </p>
         </div>
 
-        <Button type="submit" variant="accent">
-          {t("save")}
-        </Button>
+        <ToastSubmitButton variant="accent">{t("save")}</ToastSubmitButton>
       </ToastForm>
 
       {isOwner && hasStripeCustomer ? (
         <form action={openBillingPortal} className="border-t border-(--color-border) pt-8">
-          <Button type="submit" variant="outline">
-            {tCare("manageBilling")}
-          </Button>
+          <SubmitButton variant="outline">{tCare("manageBilling")}</SubmitButton>
         </form>
       ) : null}
     </div>

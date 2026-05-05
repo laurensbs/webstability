@@ -8,6 +8,17 @@ import type { ActionResult } from "@/lib/action-result";
 
 type Action = (prev: ActionResult | null, formData: FormData) => Promise<ActionResult>;
 
+const ToastFormContext = React.createContext<{ pending: boolean }>({ pending: false });
+
+/**
+ * Use inside a `<ToastForm>` to read the pending state so a submit button
+ * can render a spinner. Returns `{ pending: false }` when used outside,
+ * which means it's safe to call unconditionally.
+ */
+export function useToastFormStatus() {
+  return React.useContext(ToastFormContext);
+}
+
 export function ToastForm({
   action,
   resetOnSuccess = false,
@@ -44,14 +55,18 @@ export function ToastForm({
     }
   }, [state, t, resetOnSuccess]);
 
+  const ctx = React.useMemo(() => ({ pending }), [pending]);
+
   return (
-    <form
-      ref={formRef}
-      action={formAction}
-      className={className}
-      data-pending={pending ? "true" : undefined}
-    >
-      {children}
-    </form>
+    <ToastFormContext.Provider value={ctx}>
+      <form
+        ref={formRef}
+        action={formAction}
+        className={className}
+        data-pending={pending ? "true" : undefined}
+      >
+        {children}
+      </form>
+    </ToastFormContext.Provider>
   );
 }

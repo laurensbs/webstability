@@ -6,7 +6,7 @@ import { routing } from "@/i18n/routing";
 import { listAllOpenTickets } from "@/lib/db/queries/admin";
 import { updateTicketStatus } from "@/app/actions/admin";
 import { ToastForm } from "@/components/portal/ToastForm";
-import { Button } from "@/components/ui/Button";
+import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
 
 export default async function AdminTicketsPage({
   params,
@@ -71,9 +71,9 @@ export default async function AdminTicketsPage({
                       <option value="closed">{tPortal("status.closed")}</option>
                     </select>
                   </label>
-                  <Button type="submit" variant="outline" size="md">
+                  <ToastSubmitButton variant="outline" size="md">
                     {t("save")}
-                  </Button>
+                  </ToastSubmitButton>
                 </ToastForm>
               </li>
             );

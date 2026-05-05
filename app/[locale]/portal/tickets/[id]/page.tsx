@@ -6,8 +6,8 @@ import { routing } from "@/i18n/routing";
 import { getUserWithOrg, getTicketWithReplies } from "@/lib/db/queries/portal";
 import { replyToTicket } from "@/app/actions/tickets";
 import NextLink from "next/link";
-import { Button } from "@/components/ui/Button";
 import { ToastForm } from "@/components/portal/ToastForm";
+import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
 
 export default async function TicketDetail({
   params,
@@ -88,7 +88,7 @@ export default async function TicketDetail({
           required
           className="w-full rounded-md border border-(--color-border) bg-(--color-surface) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
         />
-        <Button type="submit">{t("reply")}</Button>
+        <ToastSubmitButton>{t("reply")}</ToastSubmitButton>
       </ToastForm>
     </div>
   );

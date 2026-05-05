@@ -6,7 +6,7 @@ import { routing } from "@/i18n/routing";
 import { getOrgWithDetails } from "@/lib/db/queries/admin";
 import { updateProject } from "@/app/actions/admin";
 import { ToastForm } from "@/components/portal/ToastForm";
-import { Button } from "@/components/ui/Button";
+import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
 
 export default async function OrgDetail({
   params,
@@ -113,9 +113,9 @@ export default async function OrgDetail({
                         className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
                       />
                     </label>
-                    <Button type="submit" variant="accent" size="md">
+                    <ToastSubmitButton variant="accent" size="md">
                       {t("saveProject")}
-                    </Button>
+                    </ToastSubmitButton>
                   </ToastForm>
                 </li>
               );

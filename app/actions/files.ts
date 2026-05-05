@@ -6,6 +6,7 @@ import { put, del } from "@vercel/blob";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { files, users } from "@/lib/db/schema";
+import type { ActionResult } from "@/lib/action-result";
 
 async function requireUserOrg() {
   const session = await auth();
@@ -18,9 +19,24 @@ async function requireUserOrg() {
   return { userId: user.id, orgId: user.organizationId, role: user.role };
 }
 
-export async function uploadFile(formData: FormData) {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) throw new Error("blob_not_configured");
-  const { userId, orgId } = await requireUserOrg();
+export async function uploadFile(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return { ok: false, messageKey: "blob_not_configured" };
+  }
+
+  let userId: string;
+  let orgId: string;
+  try {
+    const u = await requireUserOrg();
+    userId = u.userId;
+    orgId = u.orgId;
+  } catch (err) {
+    const m = err instanceof Error ? err.message : "unauthorized";
+    return { ok: false, messageKey: m };
+  }
 
   const file = formData.get("file") as File | null;
   const category = String(formData.get("category") ?? "deliverable") as
@@ -28,7 +44,7 @@ export async function uploadFile(formData: FormData) {
     | "asset"
     | "deliverable"
     | "report";
-  if (!file || file.size === 0) throw new Error("missing_file");
+  if (!file || file.size === 0) return { ok: false, messageKey: "missing_file" };
 
   const blobPath = `org/${orgId}/${Date.now()}-${file.name}`;
   const blob = await put(blobPath, file, { access: "public" });
@@ -43,6 +59,7 @@ export async function uploadFile(formData: FormData) {
   });
 
   revalidatePath("/portal/files");
+  return { ok: true, messageKey: "uploaded" };
 }
 
 export async function deleteFile(fileId: string) {
