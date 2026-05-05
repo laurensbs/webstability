@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { LogoMark } from "@/components/shared/LogoMark";
 
 export async function Footer() {
   const t = await getTranslations("footer");
@@ -32,9 +31,8 @@ export async function Footer() {
           <div className="space-y-3 lg:col-span-1">
             <Link
               href="/"
-              className="flex items-center gap-2 text-lg font-extrabold tracking-tight"
+              className="text-[18px] font-extrabold tracking-[-0.045em] text-(--color-text)"
             >
-              <LogoMark size={20} className="text-(--color-text)" />
               webstability<span className="text-(--color-accent)">.</span>
             </Link>
             <p className="text-sm leading-relaxed text-(--color-muted)">{t("tagline")}</p>

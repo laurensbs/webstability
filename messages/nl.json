@@ -12,7 +12,8 @@
     "blog": "Blog",
     "contact": "Contact",
     "login": "Inloggen",
-    "liveBadge": "alle systemen draaien"
+    "liveBadge": "Alle systemen draaien",
+    "planCall": "Plan gesprek"
   },
   "footer": {
     "tagline": "Eén ontwikkelaar. Software die blijft werken.",

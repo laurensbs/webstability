@@ -31,7 +31,10 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
           className="pointer-events-none absolute -right-32 -bottom-40 h-[420px] w-[420px] rounded-full bg-(--color-teal) opacity-50 blur-3xl"
         />
 
-        <Link href="/" className="relative z-10 inline-block text-xl font-extrabold tracking-tight">
+        <Link
+          href="/"
+          className="relative z-10 inline-block text-[20px] font-extrabold tracking-[-0.045em] text-(--color-bg)"
+        >
           webstability<span className="text-(--color-accent)">.</span>
         </Link>
 

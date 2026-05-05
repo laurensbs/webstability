@@ -12,7 +12,8 @@
     "blog": "Blog",
     "contact": "Contacto",
     "login": "Acceder",
-    "liveBadge": "todo en línea"
+    "liveBadge": "Todo en línea",
+    "planCall": "Reserva llamada"
   },
   "footer": {
     "tagline": "Un solo desarrollador. Software que sigue funcionando.",
