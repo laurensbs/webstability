@@ -727,6 +727,10 @@
       "status": "Estado",
       "save": "Cambiar estado"
     },
-    "forbidden": "Sin acceso. Solo staff de Webstability."
+    "forbidden": "Sin acceso. Solo staff de Webstability.",
+    "activity": {
+      "title": "Actividad reciente",
+      "empty": "Aún sin movimientos."
+    }
   }
 }

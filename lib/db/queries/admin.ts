@@ -45,6 +45,64 @@ export async function listAllOpenTickets() {
   });
 }
 
+/**
+ * Cross-org activity feed for the admin overview. Pulls the most recent
+ * tickets, projects, and invoices and merges them into a single sorted list
+ * so staff see "what changed across all clients" at a glance.
+ */
+export async function getRecentAdminActivity(limit = 8) {
+  const recentTickets = await db.query.tickets.findMany({
+    orderBy: [desc(tickets.createdAt)],
+    limit,
+    with: { organization: { columns: { name: true } } },
+  });
+  const recentProjects = await db.query.projects.findMany({
+    orderBy: [desc(projects.createdAt)],
+    limit,
+    with: { organization: { columns: { name: true } } },
+  });
+  // Invoices doesn't have a relational `organization` mapping defined, so
+  // we manually join the org name in via a select.
+  const recentInvoices = await db
+    .select({
+      id: invoices.id,
+      number: invoices.number,
+      createdAt: invoices.createdAt,
+      orgName: organizations.name,
+    })
+    .from(invoices)
+    .leftJoin(organizations, eq(invoices.organizationId, organizations.id))
+    .orderBy(desc(invoices.createdAt))
+    .limit(limit);
+
+  const events = [
+    ...recentTickets.map((t) => ({
+      kind: "ticket" as const,
+      id: t.id,
+      label: t.subject,
+      orgName: t.organization?.name ?? "—",
+      at: t.createdAt,
+    })),
+    ...recentProjects.map((p) => ({
+      kind: "project" as const,
+      id: p.id,
+      label: p.name,
+      orgName: p.organization?.name ?? "—",
+      at: p.createdAt,
+    })),
+    ...recentInvoices.map((i) => ({
+      kind: "invoice" as const,
+      id: i.id,
+      label: i.number,
+      orgName: i.orgName ?? "—",
+      at: i.createdAt,
+    })),
+  ];
+
+  events.sort((a, b) => b.at.getTime() - a.at.getTime());
+  return events.slice(0, limit);
+}
+
 export async function getStudioStats() {
   const [orgs] = await db.select({ n: count() }).from(organizations);
   const [openTickets] = await db

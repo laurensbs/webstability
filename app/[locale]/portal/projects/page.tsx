@@ -1,9 +1,11 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
+import { FolderKanban } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
 import { getUserWithOrg, listOrgProjects } from "@/lib/db/queries/portal";
+import { EmptyState } from "@/components/portal/EmptyState";
 
 const STATUS_PILL: Record<string, string> = {
   planning: "bg-(--color-bg-warm) text-(--color-muted)",
@@ -33,9 +35,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
       </header>
 
       {list.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-(--color-border) bg-(--color-surface)/50 px-6 py-12 text-center">
-          <p className="text-(--color-muted)">{t("empty")}</p>
-        </div>
+        <EmptyState icon={FolderKanban} title={t("empty")} />
       ) : (
         <ul className="grid gap-4 md:grid-cols-2">
           {list.map((p) => {

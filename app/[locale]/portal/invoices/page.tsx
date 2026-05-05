@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
 import { Receipt } from "lucide-react";
+import { EmptyState } from "@/components/portal/EmptyState";
 import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
 import { getUserWithOrg, listOrgInvoices } from "@/lib/db/queries/portal";
@@ -36,9 +37,7 @@ export default async function InvoicesPage({ params }: { params: Promise<{ local
       </header>
 
       {list.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-(--color-border) bg-(--color-surface)/50 px-6 py-12 text-center">
-          <p className="text-(--color-muted)">{t("empty")}</p>
-        </div>
+        <EmptyState icon={Receipt} title={t("empty")} />
       ) : (
         <ul className="divide-y divide-(--color-border) overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)">
           {list.map((inv) => {

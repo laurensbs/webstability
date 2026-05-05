@@ -17,6 +17,7 @@ import { uploadFile } from "@/app/actions/files";
 import { ToastForm } from "@/components/portal/ToastForm";
 import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
 import { UploadZone } from "@/components/portal/UploadZone";
+import { EmptyState } from "@/components/portal/EmptyState";
 
 function iconForName(name: string): LucideIcon {
   const ext = name.split(".").pop()?.toLowerCase() ?? "";
@@ -79,9 +80,7 @@ export default async function FilesPage({ params }: { params: Promise<{ locale: 
       )}
 
       {list.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-(--color-border) bg-(--color-surface)/50 px-6 py-12 text-center">
-          <p className="text-(--color-muted)">{t("empty")}</p>
-        </div>
+        <EmptyState title={t("empty")} />
       ) : (
         <ul className="divide-y divide-(--color-border) overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)">
           {list.map((f) => {

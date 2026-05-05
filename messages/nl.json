@@ -727,6 +727,10 @@
       "status": "Status",
       "save": "Wijzig status"
     },
-    "forbidden": "Geen toegang. Alleen Webstability staff."
+    "forbidden": "Geen toegang. Alleen Webstability staff.",
+    "activity": {
+      "title": "Recente activiteit",
+      "empty": "Nog niets gebeurd."
+    }
   }
 }

@@ -2,7 +2,8 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
 import NextLink from "next/link";
-import { Plus } from "lucide-react";
+import { Plus, MessageSquare } from "lucide-react";
+import { EmptyState } from "@/components/portal/EmptyState";
 import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
 import { getUserWithOrg, listOrgTickets } from "@/lib/db/queries/portal";
@@ -50,9 +51,7 @@ export default async function TicketsPage({ params }: { params: Promise<{ locale
       </header>
 
       {list.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-(--color-border) bg-(--color-surface)/50 px-6 py-12 text-center">
-          <p className="text-(--color-muted)">{t("empty")}</p>
-        </div>
+        <EmptyState icon={MessageSquare} title={t("empty")} />
       ) : (
         <ul className="divide-y divide-(--color-border) overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)">
           {list.map((tk) => {
