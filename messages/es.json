@@ -63,6 +63,7 @@
       "eyebrow": "el desarrollador",
       "title": "Una persona. <em>Toda la stack.</em>",
       "body": "Soy Laurens. Holandés afincado en Begur, Costa Brava. Llevo diez años construyendo software para pymes — sistemas que la gente usa cada día, webs que convierten, tiendas online con el IVA correcto en dos países. Sin gestores de cuenta entre tú y el código. Me llamas a mí.",
+      "timelineLabel": "construyendo cada año",
       "cta": "Lee la historia completa"
     },
 
@@ -91,7 +92,10 @@
     "audience": {
       "eyebrow": "para quién",
       "title": "Para pymes que no quieren <em>subcontratar</em>, sino <em>colaborar</em>.",
-      "body": "Empresarios en Países Bajos y España que quieren dar un paso digital serio sin entregarse a una agencia. Comunicación directa, propiedad del código, y un desarrollador que recuerda tu nombre."
+      "body": "Empresarios en Países Bajos y España que quieren dar un paso digital serio sin entregarse a una agencia. Comunicación directa, propiedad del código, y un desarrollador que recuerda tu nombre.",
+      "nlLabel": "Países Bajos",
+      "esLabel": "España",
+      "tzLabel": "ahora en Begur"
     },
 
     "faq": {
@@ -122,7 +126,7 @@
     },
 
     "cta": {
-      "title": "¿Te encaja?",
+      "title": "¿<em>Te encaja</em>?",
       "body": "La primera llamada es gratis. Treinta minutos, sin presentación comercial.",
       "button": "Reserva una llamada"
     }

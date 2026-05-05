@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { ServiceCard } from "@/components/marketing/ServiceCard";
 
 export async function Services() {
   const t = await getTranslations("home.services");
@@ -18,14 +19,13 @@ export async function Services() {
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {keys.map((key, i) => (
-            <RevealOnScroll key={key} delay={i * 0.08}>
-              <article className="h-full rounded-lg border border-(--color-border) bg-(--color-surface) p-8">
-                <h3 className="text-2xl">{t(`items.${key}.title`)}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-(--color-muted)">
-                  {t(`items.${key}.body`)}
-                </p>
-              </article>
-            </RevealOnScroll>
+            <ServiceCard
+              key={key}
+              index={i}
+              iconKey={key}
+              title={t(`items.${key}.title`)}
+              body={t(`items.${key}.body`)}
+            />
           ))}
         </div>
       </div>

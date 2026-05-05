@@ -63,6 +63,7 @@
       "eyebrow": "de ontwikkelaar",
       "title": "Eén persoon. <em>Hele stack.</em>",
       "body": "Ik ben Laurens. Nederlander in Begur, Costa Brava. Tien jaar bouw ik software voor MKB — admin-systemen die mensen elke dag gebruiken, websites die converteren, webshops die de BTW kloppend krijgen in twee landen. Geen accountmanagers tussen jou en de code. Je belt mij.",
+      "timelineLabel": "elk jaar bouwend",
       "cta": "Lees het hele verhaal"
     },
 
@@ -91,7 +92,10 @@
     "audience": {
       "eyebrow": "voor wie",
       "title": "Voor MKB die niet wil <em>uitbesteden</em>, maar <em>samenwerken</em>.",
-      "body": "Ondernemers in Nederland en Spanje die een serieuze digitale stap willen zetten zonder zich aan een bureau over te leveren. Korte lijnen, eigenaarschap van de code, en een ontwikkelaar die je naam onthoudt."
+      "body": "Ondernemers in Nederland en Spanje die een serieuze digitale stap willen zetten zonder zich aan een bureau over te leveren. Korte lijnen, eigenaarschap van de code, en een ontwikkelaar die je naam onthoudt.",
+      "nlLabel": "Nederland",
+      "esLabel": "España",
+      "tzLabel": "nu in Begur"
     },
 
     "faq": {
@@ -122,7 +126,7 @@
     },
 
     "cta": {
-      "title": "Klinkt het als een match?",
+      "title": "Klinkt het <em>als een match</em>?",
       "body": "Een eerste gesprek is gratis. Dertig minuten, geen pitch-deck.",
       "button": "Plan een gesprek"
     }

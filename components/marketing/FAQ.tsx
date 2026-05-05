@@ -22,11 +22,22 @@ export async function FAQ() {
           <h2 className="text-3xl md:text-5xl">{t("title")}</h2>
         </RevealOnScroll>
 
-        <Accordion type="single" collapsible className="mt-12">
+        <Accordion
+          type="single"
+          collapsible
+          className="mt-12 overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)"
+        >
           {items.map((item, i) => (
             <AccordionItem key={i} value={`item-${i}`}>
-              <AccordionTrigger>{item.q}</AccordionTrigger>
-              <AccordionContent>{item.a}</AccordionContent>
+              <AccordionTrigger className="px-5">
+                <span className="flex items-baseline gap-4">
+                  <span className="font-mono text-xs tracking-widest text-(--color-muted)">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span>{item.q}</span>
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="px-5 pl-[3.25rem]">{item.a}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

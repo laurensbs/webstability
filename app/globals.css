@@ -109,6 +109,16 @@
   animation: accordion-up 220ms ease-out;
 }
 
+@keyframes wb-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Move by half — the list is duplicated so this loops seamlessly. */
+    transform: translateX(-50%);
+  }
+}
+
 /* Radix dialog drawer animations (mobile portal nav, etc.) */
 @keyframes wb-fade-in {
   from {

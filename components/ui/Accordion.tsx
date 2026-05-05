@@ -13,7 +13,12 @@ export const AccordionItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn("border-b border-(--color-border)", className)}
+    className={cn(
+      "group relative border-b border-(--color-border) data-[state=open]:bg-(--color-bg-warm)/40",
+      // Accent rule that appears on open.
+      "before:absolute before:top-0 before:bottom-0 before:left-0 before:w-[2px] before:origin-top before:scale-y-0 before:bg-(--color-accent) before:transition-transform before:duration-300 before:ease-out data-[state=open]:before:scale-y-100",
+      className,
+    )}
     {...props}
   />
 ));
