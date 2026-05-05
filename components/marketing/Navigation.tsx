@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
+import { LogoMark } from "@/components/shared/LogoMark";
 
 export async function Navigation() {
   const t = await getTranslations("nav");
@@ -16,7 +17,11 @@ export async function Navigation() {
   return (
     <header className="sticky top-0 z-30 border-b border-(--color-border) bg-(--color-bg)/80 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5">
-        <Link href="/" className="text-xl font-extrabold tracking-tight">
+        <Link
+          href="/"
+          className="group flex items-center gap-2 text-xl font-extrabold tracking-tight"
+        >
+          <LogoMark size={22} className="text-(--color-text)" />
           webstability<span className="text-(--color-accent)">.</span>
         </Link>
 
