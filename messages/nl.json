@@ -1,0 +1,40 @@
+{
+  "common": {
+    "lang": "Nederlands",
+    "switchToOther": "Cambiar a español",
+    "skipToContent": "Direct naar inhoud"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Diensten",
+    "pricing": "Prijzen",
+    "blog": "Blog",
+    "contact": "Contact",
+    "login": "Inloggen"
+  },
+  "footer": {
+    "tagline": "Eén ontwikkelaar. Software die blijft werken.",
+    "rights": "Alle rechten voorbehouden.",
+    "legal": "Aviso legal",
+    "privacy": "Privacy"
+  },
+  "home": {
+    "eyebrow": "fase 1 · fundament",
+    "headline": "Software die <em>blijft werken</em>.",
+    "tagline": "Maatwerk admin-systemen, websites en webshops voor MKB-ondernemers in Nederland en Spanje. Eén ontwikkelaar, directe communicatie, geen accountmanagers."
+  },
+  "auth": {
+    "login": {
+      "title": "Inloggen",
+      "subtitle": "Voer je e-mailadres in. We sturen je een inloglink.",
+      "emailLabel": "E-mailadres",
+      "submit": "Stuur inloglink",
+      "error": "Er ging iets mis. Probeer het opnieuw."
+    },
+    "verify": {
+      "title": "Check je inbox",
+      "subtitle": "We hebben een inloglink gestuurd. Klik erop om verder te gaan.",
+      "hint": "Geen mail? Kijk in je spam-folder of vraag een nieuwe link aan."
+    }
+  }
+}

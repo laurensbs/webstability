@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm format:check
+
+      - run: pnpm lint
+
+      - run: pnpm typecheck
+
+      - name: Build
+        env:
+          # Build doesn't hit the DB or send mail; placeholder values keep
+          # process.env reads happy in `lib/db/index.ts` and `lib/auth.ts`.
+          DATABASE_URL: postgres://placeholder@localhost/db
+          AUTH_SECRET: ci-placeholder-secret-do-not-use-in-prod-0000000000
+          AUTH_URL: http://localhost:3000
+          EMAIL_SERVER_HOST: localhost
+          EMAIL_SERVER_PORT: "25"
+          EMAIL_SERVER_USER: ci@example.com
+          EMAIL_SERVER_PASSWORD: ci
+          EMAIL_FROM: ci@example.com
+        run: pnpm build

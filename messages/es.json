@@ -1,0 +1,40 @@
+{
+  "common": {
+    "lang": "Español",
+    "switchToOther": "Wissel naar Nederlands",
+    "skipToContent": "Ir al contenido"
+  },
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "pricing": "Precios",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "login": "Acceder"
+  },
+  "footer": {
+    "tagline": "Un solo desarrollador. Software que sigue funcionando.",
+    "rights": "Todos los derechos reservados.",
+    "legal": "Aviso legal",
+    "privacy": "Privacidad"
+  },
+  "home": {
+    "eyebrow": "fase 1 · fundamento",
+    "headline": "Software que <em>sigue funcionando</em>.",
+    "tagline": "Sistemas a medida, webs y tiendas online para pymes en Países Bajos y España. Un solo desarrollador, comunicación directa, sin gestores de cuenta."
+  },
+  "auth": {
+    "login": {
+      "title": "Acceder",
+      "subtitle": "Introduce tu email. Te enviamos un enlace de acceso.",
+      "emailLabel": "Email",
+      "submit": "Enviar enlace",
+      "error": "Algo salió mal. Inténtalo de nuevo."
+    },
+    "verify": {
+      "title": "Revisa tu bandeja",
+      "subtitle": "Te hemos enviado un enlace de acceso. Haz clic para continuar.",
+      "hint": "¿No te llega? Mira en spam o solicita un nuevo enlace."
+    }
+  }
+}
