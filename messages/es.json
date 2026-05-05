@@ -385,7 +385,113 @@
       }
     ],
     "stackTitle": "Stack honesto",
-    "stackLede": "Sin SaaS de caja negra. Open source debajo, tus datos exportables, tu repo en la entrega."
+    "stackLede": "Sin SaaS de caja negra. Open source debajo, tus datos exportables, tu repo en la entrega.",
+    "v2": {
+      "eyebrow": "Especial para empresas de alquiler",
+      "title": "Acaba con las <em>reservas duplicadas</em> entre Airbnb, Booking y tu Excel.",
+      "lede": "Un solo dashboard donde se reúnen todos tus canales — caravanas, barcos, casas, vehículos. Agenda en vivo, facturas automáticas, contratos en un clic. Sin reservas duplicadas, sin reescribir nada.",
+      "ctaPrimary": "Ver demo en vivo",
+      "ctaSecondary": "Pide presupuesto",
+      "metaItems": [
+        { "num": "8h", "label": "Ahorradas por semana (media)" },
+        { "num": "0", "label": "Reservas duplicadas tras lanzamiento" },
+        { "num": "3-6sem", "label": "Plazo del sistema base" },
+        { "num": "15+", "label": "Empresas de alquiler activas" }
+      ],
+      "problemEyebrow": "el problema",
+      "problemTitle": "La mayoría usa <em>cinco</em> herramientas que no se hablan.",
+      "problemLede": "Excel para la planificación, WhatsApp para clientes, un plugin de reservas hackeado, una herramienta de facturas aparte, y una carpeta 'Contratos 2026' en Google Drive. Funciona — hasta que no.",
+      "problems": [
+        {
+          "title": "Reservas duplicadas",
+          "body": "Un huésped reserva en Booking, tu hija reserva a otro directamente. Crisis."
+        },
+        {
+          "title": "Reescribir a mano",
+          "body": "Reserva → factura → contrato → calendario → contabilidad. Cuatro veces los mismos datos."
+        },
+        {
+          "title": "Sin visión de conjunto",
+          "body": "¿Quién pagó? ¿Qué fianza devolver? ¿Qué queda libre el finde? Ni idea."
+        }
+      ],
+      "solutionEyebrow": "la solución",
+      "solutionTitle": "Un dashboard. <em>Todo</em> dentro.",
+      "solutionLede": "Construimos una plataforma de alquiler que encaja exactamente con tu proceso — no al revés. Incluye conexiones con los canales donde ya recibes reservas hoy.",
+      "solutions": [
+        {
+          "title": "Agenda central",
+          "body": "Todas las reservas, vengan de Airbnb, Booking, tu web o el teléfono, visibles en un calendario. Las conexiones del channel manager bloquean automáticamente solapamientos — las dobles reservas se vuelven técnicamente imposibles.",
+          "bullets": [
+            "Sync con Airbnb, Booking, Vrbo",
+            "Multi-ubicación (varias casas, vehículos, barcos)",
+            "Replanificar drag & drop",
+            "Códigos de color por estado (reservado, pagado, check-in)",
+            "Exportación iCal para tu agenda"
+          ]
+        },
+        {
+          "title": "Facturas y contratos automáticos",
+          "body": "Reserva → factura y contrato generados, enviados y registrados en tu contabilidad. IVA correcto incluido."
+        },
+        {
+          "title": "Fianza y pagos",
+          "body": "Conexión con Mollie o Stripe para anticipo, pago final y devolución automática de fianza tras inspección."
+        }
+      ],
+      "quoteText": "Antes de trabajar con Webstability teníamos tres reservas duplicadas al mes. Desde el lanzamiento en 2024 — literalmente cero. Y ahorro al menos medio día a la semana en admin.",
+      "quoteName": "Marco Jansen",
+      "quoteRole": "Propietario · Costa Caravans Verhuur (12 caravanas · 4 mobile-homes)",
+      "quoteInitials": "MJ",
+      "pricingEyebrow": "tiempo y precio",
+      "pricingTitle": "Estimación por tipo de alquiler.",
+      "pricingLede": "Sin lista de precios fija — cada empresa de alquiler es distinta. Sí una indicación honesta para que sepas si encaja en tu presupuesto.",
+      "plans": [
+        {
+          "id": "starter",
+          "name": "Starter",
+          "desc": "1-5 objetos · canales estándar · facturación simple",
+          "price": "€499",
+          "period": "setup + €349/m desde el mes 2 · sin IVA",
+          "items": ["Agenda central", "Sync Booking & Airbnb", "Facturación", "Plazo: 3-4 semanas"],
+          "cta": "Conversemos"
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "desc": "5-25 objetos · multi-canal · contratos y fianza",
+          "price": "€999",
+          "period": "setup + €749/m desde el mes 2 · sin IVA",
+          "items": [
+            "Todo de Starter",
+            "Generación de contrato y firma electrónica",
+            "Fianza vía Mollie/Stripe",
+            "Acceso multi-usuario",
+            "Plazo: 6-8 semanas"
+          ],
+          "cta": "Pedir presupuesto"
+        },
+        {
+          "id": "scale",
+          "name": "Scale",
+          "desc": "25+ objetos · varias ubicaciones · integraciones a medida",
+          "price": "€1.999",
+          "period": "setup + €1.299/m desde el mes 2 · sin IVA",
+          "items": [
+            "Todo de Pro",
+            "Multi-ubicación y multi-divisa",
+            "Portal cliente propio",
+            "Integración contable a medida",
+            "Plazo: desde 10 semanas"
+          ],
+          "cta": "Reunión estratégica"
+        }
+      ],
+      "ctaEyebrow": "hablemos",
+      "ctaTitle": "¿Primero ver si encaja?",
+      "ctaBody": "Una llamada de 30 minutos sin compromiso. Reviso honestamente si tiene sentido y, si lo tiene, cuál es la ruta más corta a software funcional.",
+      "ctaButton": "Planificar en agenda"
+    }
   },
   "pricing": {
     "eyebrow": "precios",

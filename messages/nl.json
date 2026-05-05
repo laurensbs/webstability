@@ -385,7 +385,118 @@
       }
     ],
     "stackTitle": "Eerlijke stack",
-    "stackLede": "Geen black-box SaaS. Open source onder de motorkap, jouw data exporteerbaar, jouw repo bij oplevering."
+    "stackLede": "Geen black-box SaaS. Open source onder de motorkap, jouw data exporteerbaar, jouw repo bij oplevering.",
+    "v2": {
+      "eyebrow": "Speciaal voor verhuurbedrijven",
+      "title": "Stop met <em>dubbele boekingen</em> tussen Airbnb, Booking en je Excel.",
+      "lede": "Eén dashboard waar al je verhuurkanalen samenkomen — caravans, boten, vakantiehuizen, voertuigen. Live agenda, automatische facturen, contracten in één klik. Geen dubbele reserveringen meer, geen handmatig overtypen.",
+      "ctaPrimary": "Bekijk live demo",
+      "ctaSecondary": "Vraag offerte aan",
+      "metaItems": [
+        { "num": "8u", "label": "Bespaard per week (gemiddeld)" },
+        { "num": "0", "label": "Dubbele boekingen na livegang" },
+        { "num": "3-6w", "label": "Doorlooptijd basis-systeem" },
+        { "num": "15+", "label": "Verhuurders aan boord" }
+      ],
+      "problemEyebrow": "het probleem",
+      "problemTitle": "De meeste verhuurders draaien op <em>vijf</em> tools die niet met elkaar praten.",
+      "problemLede": "Excel voor de planning, WhatsApp voor klantcontact, een gehackte boekingsplugin op de site, een aparte facturentool, en een mapje 'Contracten 2026' op Google Drive. Werkt — tot het misgaat.",
+      "problems": [
+        {
+          "title": "Dubbele boekingen",
+          "body": "Een gast boekt op Booking, je dochter boekt iemand anders rechtstreeks. Crisis."
+        },
+        {
+          "title": "Handmatig overtypen",
+          "body": "Boeking → factuur → contract → kalender → boekhouding. Vier keer dezelfde data."
+        },
+        {
+          "title": "Geen overzicht",
+          "body": "Wie heeft betaald? Welke borg moet terug? Wat staat er volgend weekend leeg? Geen idee."
+        }
+      ],
+      "solutionEyebrow": "de oplossing",
+      "solutionTitle": "Eén dashboard. <em>Alles</em> erin.",
+      "solutionLede": "Wij bouwen een verhuurplatform dat exact past op jouw proces — niet andersom. Inclusief koppelingen met de plekken waar je nu al je boekingen vandaan haalt.",
+      "solutions": [
+        {
+          "title": "Centrale agenda",
+          "body": "Alle boekingen, ongeacht of ze van Airbnb, Booking, je website of telefoon komen, zichtbaar in één kalender. Channel manager-koppelingen blokkeren automatisch overlap — dubbele reserveringen worden technisch onmogelijk.",
+          "bullets": [
+            "Sync met Airbnb, Booking, Vrbo",
+            "Multi-locatie (meerdere panden, voertuigen, boten)",
+            "Drag & drop herplanning",
+            "Kleurcodering per status (geboekt, betaald, ingecheckt)",
+            "iCal export voor je telefoon-agenda"
+          ]
+        },
+        {
+          "title": "Automatische facturen & contracten",
+          "body": "Gast boekt → factuur en contract worden gegenereerd, gemaild en in je boekhouding gezet. Inclusief BTW/IVA correct."
+        },
+        {
+          "title": "Borg & betalingen",
+          "body": "Mollie- of Stripe-koppeling voor aanbetaling, eindbetaling en automatische borg-retour na inspectie."
+        }
+      ],
+      "quoteText": "Voor we met Webstability werkten, hadden we drie dubbele boekingen per maand. Sinds de livegang in 2024 — letterlijk nul. En ik bespaar minstens een halve dag per week aan administratie.",
+      "quoteName": "Marco Jansen",
+      "quoteRole": "Eigenaar · Costa Caravans Verhuur (12 caravans · 4 stacaravans)",
+      "quoteInitials": "MJ",
+      "pricingEyebrow": "hoe lang & wat kost het",
+      "pricingTitle": "Indicatie per type verhuur.",
+      "pricingLede": "Geen vast prijslijstje — elke verhuurder is anders. Wel een eerlijke indicatie zodat je weet of het bij je budget past.",
+      "plans": [
+        {
+          "id": "starter",
+          "name": "Starter",
+          "desc": "1-5 objecten · standaard kanalen · simpele facturatie",
+          "price": "€499",
+          "period": "setup + €349/m vanaf maand 2 · excl. btw",
+          "items": [
+            "Centrale agenda",
+            "Booking & Airbnb sync",
+            "Facturatie",
+            "Doorlooptijd: 3-4 weken"
+          ],
+          "cta": "Bespreek mogelijkheden"
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "desc": "5-25 objecten · multi-channel · contracten & borg",
+          "price": "€999",
+          "period": "setup + €749/m vanaf maand 2 · excl. btw",
+          "items": [
+            "Alles van Starter",
+            "Contractgeneratie & e-handtekening",
+            "Borg via Mollie/Stripe",
+            "Multi-user toegang",
+            "Doorlooptijd: 6-8 weken"
+          ],
+          "cta": "Vraag offerte aan"
+        },
+        {
+          "id": "scale",
+          "name": "Scale",
+          "desc": "25+ objecten · meerdere locaties · maatwerk-koppelingen",
+          "price": "€1.999",
+          "period": "setup + €1.299/m vanaf maand 2 · excl. btw",
+          "items": [
+            "Alles van Pro",
+            "Multi-locatie & multi-currency",
+            "Eigen klantportaal",
+            "Boekhoudkoppeling op maat",
+            "Doorlooptijd: vanaf 10 weken"
+          ],
+          "cta": "Plan strategiegesprek"
+        }
+      ],
+      "ctaEyebrow": "laten we praten",
+      "ctaTitle": "Eerst kijken of het bij je past?",
+      "ctaBody": "Een vrijblijvend gesprek van 30 minuten. Ik kijk eerlijk mee of het zin heeft, en zo ja, wat de kortste route naar werkende software is.",
+      "ctaButton": "Plan in agenda"
+    }
   },
   "pricing": {
     "eyebrow": "prijzen",
