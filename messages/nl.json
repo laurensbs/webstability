@@ -11,7 +11,8 @@
     "about": "Over",
     "blog": "Blog",
     "contact": "Contact",
-    "login": "Inloggen"
+    "login": "Inloggen",
+    "liveBadge": "alle systemen draaien"
   },
   "footer": {
     "tagline": "Eén ontwikkelaar. Software die blijft werken.",
@@ -31,7 +32,12 @@
     "hero": {
       "years": "jaar bouwen",
       "since": "sinds",
-      "live": "live nu"
+      "live": "live nu",
+      "availability": "Beschikbaar voor 2 nieuwe projecten — mei 2026",
+      "metaYearsLabel": "jaar ervaring",
+      "metaUptimeLabel": "uptime · 30d",
+      "metaRegionLabel": "werkgebied",
+      "metaRegionValue": "NL · ES"
     },
 
     "logoStrip": {
@@ -531,11 +537,22 @@
   },
   "auth": {
     "login": {
-      "title": "Inloggen",
-      "subtitle": "Voer je e-mailadres in. We sturen je een inloglink.",
+      "title": "Welkom <em>terug</em>.",
+      "eyebrow": "klantportaal",
+      "subtitle": "Log in om je projecten, facturen en site-status te bekijken.",
       "emailLabel": "E-mailadres",
       "submit": "Stuur inloglink",
-      "error": "Er ging iets mis. Probeer het opnieuw."
+      "error": "Er ging iets mis. Probeer het opnieuw.",
+      "noAccount": "Nog geen account?",
+      "contactCta": "Neem contact op",
+      "panelTitle": "Eén plek voor je <em>hele systeem</em>.",
+      "panelLede": "Projecten, facturen, tickets en site-status — direct in te zien wanneer jij dat wil.",
+      "panelBullets": [
+        "Live status van je site en services",
+        "Projectvoortgang in real-time",
+        "Tickets en bestanden delen met Laurens",
+        "Facturen en abonnementsbeheer"
+      ]
     },
     "verify": {
       "title": "Check je inbox",

@@ -11,7 +11,8 @@
     "about": "Sobre",
     "blog": "Blog",
     "contact": "Contacto",
-    "login": "Acceder"
+    "login": "Acceder",
+    "liveBadge": "todo en línea"
   },
   "footer": {
     "tagline": "Un solo desarrollador. Software que sigue funcionando.",
@@ -31,7 +32,12 @@
     "hero": {
       "years": "años construyendo",
       "since": "desde",
-      "live": "en línea"
+      "live": "en línea",
+      "availability": "Disponible para 2 nuevos proyectos — mayo 2026",
+      "metaYearsLabel": "años de experiencia",
+      "metaUptimeLabel": "uptime · 30d",
+      "metaRegionLabel": "zona de trabajo",
+      "metaRegionValue": "NL · ES"
     },
 
     "logoStrip": {
@@ -531,10 +537,21 @@
   },
   "auth": {
     "login": {
-      "title": "Acceder",
-      "subtitle": "Introduce tu email. Te enviamos un enlace de acceso.",
+      "title": "Bienvenido <em>de nuevo</em>.",
+      "eyebrow": "portal cliente",
+      "subtitle": "Accede para ver tus proyectos, facturas y estado de tu site.",
       "emailLabel": "Email",
       "submit": "Enviar enlace",
+      "noAccount": "¿Aún no tienes cuenta?",
+      "contactCta": "Contacta",
+      "panelTitle": "Un solo lugar para <em>todo tu sistema</em>.",
+      "panelLede": "Proyectos, facturas, tickets y estado del site — accesible cuando quieras.",
+      "panelBullets": [
+        "Estado en vivo de tu site y servicios",
+        "Progreso de proyectos en tiempo real",
+        "Tickets y archivos compartidos con Laurens",
+        "Facturas y gestión de la suscripción"
+      ],
       "error": "Algo salió mal. Inténtalo de nuevo."
     },
     "verify": {
