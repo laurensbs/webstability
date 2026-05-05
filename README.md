@@ -39,6 +39,7 @@ Open `http://localhost:3000` (NL) or `http://localhost:3000/es`.
 | `pnpm db:push`     | Sync schema directly (dev only — skips migrations)  |
 | `pnpm db:studio`   | Open Drizzle Studio                                 |
 | `pnpm db:seed`     | Seed demo data                                      |
+| `pnpm test:e2e`    | Run Playwright e2e tests                            |
 
 ## Project layout
 
@@ -76,10 +77,10 @@ The build follows the phased plan in
 `~/.claude/plans/webstability-complete-rippling-sloth.md`.
 
 - [x] Phase 1 — foundation (Next, i18n, Drizzle, Auth, marketing shell)
-- [ ] Phase 2 — marketing pages (home sections, verhuur, over, prijzen, status, contact, blog)
-- [ ] Phase 3 — portal MVP (dashboard, projects, tickets, invoices, settings)
-- [ ] Phase 4 — portal advanced (monitoring, SEO, files, team)
-- [ ] Phase 5 — performance, accessibility, SEO audit
+- [x] Phase 2 — marketing pages (home sections, verhuur, over, prijzen, status, contact, blog, garanties, aviso-legal, privacy, OG images, sitemap, robots)
+- [x] Phase 3 — portal MVP (dashboard, projects, tickets, invoices, settings, auth-gate)
+- [x] Phase 4 — portal advanced (monitoring live, SEO placeholder, files via Vercel Blob, team invites)
+- [~] Phase 5 — polish (a11y skip-link + focus styles, Playwright e2e, build clean) — Lighthouse + native ES copy review pending
 - [ ] Phase 6 — launch (domains, payments live, analytics)
 
 ## Integration status
@@ -92,11 +93,11 @@ The build follows the phased plan in
 | Mollie            | 3     | stubbed  | `MOLLIE_*`                             |
 | Plausible         | 5     | stubbed  | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN`         |
 | Sentry            | 5     | stubbed  | `SENTRY_*`                             |
-| Better Stack      | 4     | stubbed  | Status page + monitoring               |
-| Cal.com           | 2     | stubbed  | Embed for /contact                     |
+| Better Stack      | 2     | live     | `BETTER_STACK_API_KEY` — /status + /portal/monitoring |
+| Cal.com           | 2     | live     | Embed for /contact (cal.com/webstability) |
 | DocuSeal          | 3     | stubbed  | E-signatures                           |
-| Vercel Blob       | 4     | stubbed  | Files in portal                        |
-| Search Console    | 4     | stubbed  | Per-org OAuth                          |
+| Vercel Blob       | 4     | optional | Files in portal — graceful fallback when `BLOB_READ_WRITE_TOKEN` absent |
+| Search Console    | 4     | stubbed  | Per-org OAuth — needs `GSC_OAUTH_*`    |
 
 ## Notes for future maintainers
 

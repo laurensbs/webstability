@@ -8,6 +8,7 @@
     "home": "Inicio",
     "services": "Servicios",
     "pricing": "Precios",
+    "about": "Sobre",
     "blog": "Blog",
     "contact": "Contacto",
     "login": "Acceder"
@@ -16,12 +17,470 @@
     "tagline": "Un solo desarrollador. Software que sigue funcionando.",
     "rights": "Todos los derechos reservados.",
     "legal": "Aviso legal",
-    "privacy": "Privacidad"
+    "privacy": "Privacidad",
+    "status": "Estado",
+    "guarantees": "Garantías"
   },
   "home": {
-    "eyebrow": "fase 1 · fundamento",
+    "eyebrow": "begur · costa brava",
     "headline": "Software que <em>sigue funcionando</em>.",
-    "tagline": "Sistemas a medida, webs y tiendas online para pymes en Países Bajos y España. Un solo desarrollador, comunicación directa, sin gestores de cuenta."
+    "tagline": "Sistemas a medida, webs y tiendas online para pymes en Países Bajos y España. Un solo desarrollador, comunicación directa, sin gestores de cuenta.",
+    "ctaPrimary": "Reserva una llamada",
+    "ctaSecondary": "Ver precios",
+
+    "logoStrip": {
+      "title": "Stack que se demuestra solo",
+      "items": ["Next.js", "TypeScript", "Postgres", "Stripe", "Vercel", "Tailwind"]
+    },
+
+    "services": {
+      "eyebrow": "servicios",
+      "title": "Tres cosas, bien hechas.",
+      "lede": "Sin catálogo de agencia con veinte servicios. Tres áreas en las que me atrevo a garantizar mi trabajo.",
+      "items": {
+        "admin": {
+          "title": "Sistemas a medida",
+          "body": "Portales que siguen tu proceso real — no al revés. Drizzle, Postgres, tipado de la base de datos a la UI."
+        },
+        "websites": {
+          "title": "Webs",
+          "body": "Rápidas, accesibles, multilingües. Lighthouse por encima de 95, sin teatro de cookies — webs que convierten."
+        },
+        "webshops": {
+          "title": "Tiendas online",
+          "body": "Stripe o Mollie, IVA correcto para NL y ES, propiedad total del código. Sin alquilar Shopify."
+        }
+      }
+    },
+
+    "founder": {
+      "eyebrow": "el desarrollador",
+      "title": "Una persona. <em>Toda la stack.</em>",
+      "body": "Soy Laurens. Holandés afincado en Begur, Costa Brava. Llevo diez años construyendo software para pymes — sistemas que la gente usa cada día, webs que convierten, tiendas online con el IVA correcto en dos países. Sin gestores de cuenta entre tú y el código. Me llamas a mí.",
+      "cta": "Lee la historia completa"
+    },
+
+    "approach": {
+      "eyebrow": "método",
+      "title": "Cómo trabajo.",
+      "items": {
+        "one": {
+          "kicker": "01",
+          "title": "Una sola línea",
+          "body": "Hablas con el desarrollador. No con un gestor que luego lo traduce."
+        },
+        "two": {
+          "kicker": "02",
+          "title": "Precio fijo, alcance fijo",
+          "body": "Antes de empezar sabes lo que cuesta. Sin facturas sorpresa por horas extra."
+        },
+        "three": {
+          "kicker": "03",
+          "title": "Mantenimiento tras el lanzamiento",
+          "body": "El software no termina al lanzarlo. Suscripciones opcionales lo mantienen seguro y operativo."
+        }
+      }
+    },
+
+    "audience": {
+      "eyebrow": "para quién",
+      "title": "Para pymes que no quieren <em>subcontratar</em>, sino <em>colaborar</em>.",
+      "body": "Empresarios en Países Bajos y España que quieren dar un paso digital serio sin entregarse a una agencia. Comunicación directa, propiedad del código, y un desarrollador que recuerda tu nombre."
+    },
+
+    "faq": {
+      "eyebrow": "preguntas frecuentes",
+      "title": "Respuestas por adelantado.",
+      "items": [
+        {
+          "q": "¿Trabajas solo o con un equipo?",
+          "a": "Trabajo solo. Para partes específicas (copy nativo, revisión de diseño, DevOps complejo) colaboro con freelancers de confianza. Pero la gestión, la arquitectura y el código se quedan conmigo."
+        },
+        {
+          "q": "¿Cuánto cuesta un proyecto típico?",
+          "a": "Una web sencilla parte de 4.500 €. Un sistema a medida o tienda online va de 8.000 € a 25.000 € según alcance. Precio fijo por adelantado, sin facturas sorpresa. Mira la página de precios para más detalles."
+        },
+        {
+          "q": "¿El código es mío?",
+          "a": "Sí, siempre. Se entrega en tu organización de GitHub, hosting en tu cuenta de Vercel. Si terminamos la colaboración, todo sigue siendo tuyo. Sin lock-in."
+        },
+        {
+          "q": "¿Cómo va el tema del IVA para España?",
+          "a": "Las tiendas se configuran tanto para BTW neerlandés como para IVA español. Stripe para NL, Mollie para ES — ambos con tipos correctos por categoría y facturación automática."
+        },
+        {
+          "q": "¿Y si te pones enfermo o lo dejas?",
+          "a": "Pregunta justa. El código está documentado, los despliegues automatizados, la infraestructura corre en proveedores estándar (Vercel, Neon, Stripe). Cualquier otro desarrollador puede continuar. Sin salsas secretas."
+        }
+      ]
+    },
+
+    "cta": {
+      "title": "¿Te encaja?",
+      "body": "La primera llamada es gratis. Treinta minutos, sin presentación comercial.",
+      "button": "Reserva una llamada"
+    }
+  },
+  "contact": {
+    "eyebrow": "contacto",
+    "title": "Reserva una llamada. <em>O escribe un email.</em>",
+    "lede": "Primera llamada gratis, treinta minutos, sin presentación comercial. ¿Prefieres escribir? hello@webstability.eu — respondo en un día laborable.",
+    "calLoading": "Cargando calendario…",
+    "calFallback": "¿No se carga el calendario? Ábrelo directamente en cal.com/webstability."
+  },
+  "status": {
+    "eyebrow": "estado en vivo",
+    "title": "Todo funciona <em>como debe</em>.",
+    "titleDegraded": "Uno o más servicios están <em>degradados</em>.",
+    "titleDown": "Hay una <em>incidencia</em>.",
+    "summary": "Datos en vivo de Better Stack. Se actualiza cada minuto.",
+    "labelOperational": "operativo",
+    "labelDegraded": "degradado",
+    "labelDown": "caído",
+    "labelPaused": "pausado",
+    "labelUnknown": "desconocido",
+    "lastChecked": "Última comprobación: {when}",
+    "noMonitors": "Sin monitores configurados.",
+    "errorTitle": "Estado no disponible",
+    "errorBody": "Better Stack no está accesible ahora mismo. Inténtalo más tarde."
+  },
+  "blog": {
+    "eyebrow": "blog",
+    "title": "Escribir sobre preguntas <em>reales</em>.",
+    "lede": "Sin listas de tips SEO. Preguntas que me encuentro en conversaciones con empresarios, desarrolladas como las respondo.",
+    "readingTime": "{minutes} min de lectura",
+    "back": "Todos los artículos",
+    "by": "Por"
+  },
+  "guarantees": {
+    "eyebrow": "garantías",
+    "title": "Lo que <em>nunca</em> hago.",
+    "lede": "La mayoría de agencias mete su NDA en un anexo y espera que no lo leas. Yo lo pongo aquí en una página pública.",
+    "ndaTitle": "Cláusula de confidencialidad",
+    "ndaBody": "El desarrollador declara que todos los datos empresariales accesibles durante el desarrollo, hosting o mantenimiento se utilizarán únicamente para la ejecución del encargo. Ningún dato empresarial, dato de cliente, cifra de facturación o información operativa se compartirá, revenderá o usará para otros fines — tampoco anonimizado para portfolio o marketing — sin consentimiento expreso por escrito del cliente.",
+    "promises": [
+      {
+        "title": "Sin portfolio sin permiso",
+        "body": "Tu trabajo no aparece en un caso de estudio salvo que tú lo quieras."
+      },
+      {
+        "title": "Sin retención de datos al terminar",
+        "body": "Al finalizar, todas las copias y backups se eliminan en 30 días."
+      },
+      {
+        "title": "Sin sub-procesadores sin aviso",
+        "body": "Si necesito incorporar un nuevo proveedor para tu proyecto, te lo digo antes."
+      },
+      {
+        "title": "Sin lock-in",
+        "body": "Código, datos e infraestructura están en tus cuentas. Al terminar, todo sigue siendo tuyo."
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "sobre webstability",
+    "title": "Un solo desarrollador, <em>diez años</em> de experiencia.",
+    "intro": "Soy Laurens Bos. Construyo software para pymes desde 2015 — primero desde Países Bajos, desde 2022 desde Begur en la Costa Brava. Lo que empezó como encargos freelance para empresas de alquiler se convirtió en Webstability: un estudio especializado en software que no deja de funcionar después de la entrega.",
+    "principlesTitle": "Cuatro principios",
+    "principles": [
+      {
+        "kicker": "01",
+        "title": "Propiedad, no alquiler",
+        "body": "Código en tu GitHub, hosting en tu cuenta, base de datos a tu nombre. Yo construyo, tú eres dueño."
+      },
+      {
+        "kicker": "02",
+        "title": "Precio fijo, alcance fijo",
+        "body": "Antes de empezar sabes lo que cuesta y lo que recibes. Sin discusiones de horas extra."
+      },
+      {
+        "kicker": "03",
+        "title": "Relaciones largas, no proyectos",
+        "body": "Mi cliente más antiguo es de 2017. El software es un compromiso, no una entrega."
+      },
+      {
+        "kicker": "04",
+        "title": "Dos idiomas, dos países",
+        "body": "BTW e IVA. .nl y .es. Entiendo el contexto fiscal y cultural de ambos mercados."
+      }
+    ],
+    "timelineTitle": "Trayectoria",
+    "timeline": [
+      {
+        "year": "2015",
+        "body": "Primer encargo freelance — una plataforma de alquiler de casas de playa en Zelanda."
+      },
+      {
+        "year": "2018",
+        "body": "Especialización en sistemas a medida para pymes. Clientes fijos en retail y logística."
+      },
+      {
+        "year": "2022",
+        "body": "Mudanza a Begur, Costa Brava. Primeros clientes españoles vía emprendedores locales."
+      },
+      {
+        "year": "2024",
+        "body": "Webstability fundado como marca de estudio. Propuesta bilingüe para NL y ES."
+      },
+      {
+        "year": "2026",
+        "body": "Esta web online. Roadmap pública, portal de cliente, y todo lo que entrego también visible aquí."
+      }
+    ],
+    "ctaTitle": "Habla directamente con el desarrollador.",
+    "ctaBody": "Sin gestor de cuenta. Sin presentación comercial. Treinta minutos, gratis.",
+    "ctaButton": "Reserva una llamada"
+  },
+  "verhuur": {
+    "eyebrow": "para empresas de alquiler",
+    "title": "Software de alquiler que <em>sigue tu forma de trabajar</em>.",
+    "lede": "Especialización desde 2015: sistemas de reserva y planificación para alquiler — desde casas de playa hasta vehículos comerciales, desde bicis hasta material para eventos.",
+    "problemTitle": "Los problemas que encuentro",
+    "problems": [
+      {
+        "title": "Excel como herramienta de planificación",
+        "body": "Funciona hasta tres empleados. Después, cada doble reserva es una hora de investigación."
+      },
+      {
+        "title": "Paquetes estándar que no encajan",
+        "body": "Usar software hotelero para alquiler da 80% bien y 20% workarounds."
+      },
+      {
+        "title": "Sin conexión con la contabilidad",
+        "body": "Reservas tecleadas a mano en Holded o e-Boekhouden. Propenso a errores y pérdida de tiempo."
+      },
+      {
+        "title": "Clientes que llaman por disponibilidad",
+        "body": "Sin self-service, cada consulta cuesta tiempo — también por la noche y los fines de semana."
+      }
+    ],
+    "solutionTitle": "Lo que construyo",
+    "solutionBody": "Un sistema que encaja con tu proceso de alquiler — no al revés. Calendario en tiempo real, self-service para clientes, facturación automática a Stripe o Mollie, conexión con tu contabilidad, app móvil para el día a día. Tu dominio, tu marca, tus datos.",
+    "priceTitle": "Indicación",
+    "priceBody": "Una solución completa de alquiler a medida está entre 12.000 € y 25.000 € según conexiones y complejidad. Precio fijo por adelantado. Mantenimiento opcional desde 295 €/mes.",
+    "ctaButton": "Cuéntame tu proceso"
+  },
+  "pricing": {
+    "eyebrow": "precios",
+    "title": "Dos modelos. <em>Sin sorpresas.</em>",
+    "lede": "Build para proyectos nuevos, Care para software existente que tiene que seguir funcionando. Sin add-ons que no pediste.",
+    "tabBuild": "Build",
+    "tabCare": "Care",
+    "build": {
+      "intro": "Proyecto único, precio fijo, alcance fijo. Código de tu propiedad al entregar.",
+      "items": [
+        {
+          "name": "Web",
+          "price": "desde 4.500 €",
+          "body": "Web de marketing, multilingüe, CMS a elegir, Lighthouse 95+."
+        },
+        {
+          "name": "Tienda online",
+          "price": "desde 8.500 €",
+          "body": "Stripe o Mollie, IVA/BTW correcto, conexión con stock opcional."
+        },
+        {
+          "name": "Sistema a medida",
+          "price": "desde 12.000 €",
+          "body": "Dashboard a medida, multi-usuario, conexiones con contabilidad/CRM."
+        },
+        {
+          "name": "Plataforma de alquiler",
+          "price": "desde 15.000 €",
+          "body": "Reserva, self-service de cliente, planificación, facturación."
+        }
+      ]
+    },
+    "care": {
+      "intro": "Mantenimiento sobre software existente. Cancelable mensual. Primer mes gratis.",
+      "items": [
+        {
+          "id": "basic",
+          "name": "Care Basic",
+          "price": "195 €/mes",
+          "body": "Actualizaciones de seguridad, monitorización, revisión de backups, 2h/mes de cambios."
+        },
+        {
+          "id": "pro",
+          "name": "Care Pro",
+          "price": "395 €/mes",
+          "body": "Todo Basic + 8h/mes de cambios, soporte prioritario en 4h."
+        },
+        {
+          "id": "partner",
+          "name": "Care Partner",
+          "price": "795 €/mes",
+          "body": "Todo Pro + 20h/mes, llamada estratégica trimestral, SLA de uptime."
+        }
+      ],
+      "subscribe": "Suscribirse",
+      "talk": "Reserva una llamada",
+      "manageBilling": "Gestionar suscripción",
+      "currentPlan": "Plan actual"
+    },
+    "addonsTitle": "Add-ons",
+    "addons": [
+      "Informe Search Console — 95 €/mes",
+      "Añadir segundo idioma — 1.500 € único",
+      "Integración DocuSeal e-sign — 450 € único",
+      "Setup Cal.com self-hosted — 600 € único"
+    ],
+    "philosophyTitle": "Filosofía",
+    "philosophyBody": "Sin facturación por horas sueltas. Sin horas extra ocultas. Sin suscripciones que olvidas que tienes. El precio que ves es el que pagas — y si cambia el alcance, lo hablamos antes."
+  },
+  "legal": {
+    "avisoTitle": "Aviso legal",
+    "avisoBody": "Responsable: Laurens Bos. Dirección: Carrer Major, 17255 Begur, Girona, España. KvK: 91186307. IVA intracomunitario: NL004875371B72. NIF: en trámite. Contacto: hello@webstability.eu. Hosting: Vercel Inc., 340 S Lemon Ave #4133, Walnut CA 91789, EEUU.",
+    "privacyTitle": "Privacidad",
+    "privacyBody": "Webstability trata datos personales conforme al RGPD. Datos recogidos: nombre y email (login y facturación), Plausible-analytics (anonimizado, hospedado en UE), datos de facturación (Stripe/Mollie). Plazo de conservación: datos de cuenta hasta 30 días tras baja, datos fiscales 7 años según ley. Sub-procesadores: Vercel, Neon, Stripe, Mollie, Plausible, Resend, Better Stack, Sentry. Derecho de acceso, rectificación y supresión: escribe a hello@webstability.eu."
+  },
+  "portal": {
+    "nav": {
+      "dashboard": "Panel",
+      "projects": "Proyectos",
+      "tickets": "Tickets",
+      "invoices": "Facturas",
+      "settings": "Ajustes",
+      "logout": "Salir"
+    },
+    "greeting": {
+      "morning": "Buenos días",
+      "afternoon": "Bienvenido de nuevo",
+      "evening": "Buenas tardes",
+      "allGood": "Todo funciona como debe.",
+      "openTickets": "{count, plural, =0 {Sin tickets abiertos.} one {Un ticket abierto.} other {# tickets abiertos.}}",
+      "highPriority": "Un ticket tiene prioridad alta."
+    },
+    "stats": {
+      "openTickets": "Tickets abiertos",
+      "activeProjects": "Proyectos activos",
+      "openInvoices": "Facturas pendientes",
+      "uptime": "Uptime últimos 30d"
+    },
+    "projects": {
+      "title": "Proyectos",
+      "empty": "Aún no hay proyectos.",
+      "status": {
+        "planning": "en planificación",
+        "in_progress": "en desarrollo",
+        "review": "en revisión",
+        "live": "en vivo",
+        "done": "finalizado"
+      },
+      "type": {
+        "care": "Care",
+        "build": "Build",
+        "website": "Web",
+        "webshop": "Tienda",
+        "system": "Sistema",
+        "seo": "SEO"
+      },
+      "progress": "Progreso"
+    },
+    "tickets": {
+      "title": "Tickets",
+      "new": "Nuevo ticket",
+      "empty": "Aún no hay tickets.",
+      "subjectLabel": "Asunto",
+      "bodyLabel": "Mensaje",
+      "priorityLabel": "Prioridad",
+      "submit": "Enviar",
+      "priority": { "low": "baja", "normal": "normal", "high": "alta" },
+      "status": {
+        "open": "abierto",
+        "in_progress": "en curso",
+        "waiting": "en espera",
+        "closed": "cerrado"
+      },
+      "createdAt": "Creado {when}",
+      "back": "Todos los tickets",
+      "reply": "Responder",
+      "noReplies": "Sin respuestas aún."
+    },
+    "invoices": {
+      "title": "Facturas",
+      "empty": "Aún no hay facturas.",
+      "number": "Número",
+      "amount": "Importe",
+      "due": "Vencimiento",
+      "status": {
+        "draft": "borrador",
+        "sent": "enviada",
+        "paid": "pagada",
+        "overdue": "vencida",
+        "cancelled": "cancelada"
+      }
+    },
+    "settings": {
+      "title": "Ajustes",
+      "name": "Nombre",
+      "email": "Email",
+      "locale": "Idioma",
+      "role": "Rol",
+      "save": "Guardar",
+      "saved": "Guardado.",
+      "roles": { "owner": "Propietario", "member": "Miembro", "read_only": "Solo lectura" }
+    },
+    "nav2": {
+      "monitoring": "Monitorización",
+      "seo": "SEO",
+      "files": "Archivos",
+      "team": "Equipo"
+    },
+    "monitoring": {
+      "title": "Monitorización",
+      "summary": "Datos en vivo de Better Stack. Se actualiza cada minuto.",
+      "noMonitors": "Sin monitores configurados.",
+      "errorTitle": "No disponible",
+      "errorBody": "Better Stack no está accesible ahora mismo.",
+      "lastChecked": "Última comprobación: {when}",
+      "label": {
+        "up": "operativo",
+        "down": "caído",
+        "paused": "pausado",
+        "pending": "pendiente",
+        "maintenance": "mantenimiento",
+        "validating": "validando"
+      }
+    },
+    "seo": {
+      "title": "SEO",
+      "comingSoon": "La integración con Search Console está en camino.",
+      "body": "En cuanto configure las credenciales OAuth de Google, aquí verás clics, impresiones, CTR y las consultas más relevantes de tu sitio — directamente desde Search Console.",
+      "configure": "Faltan credenciales OAuth de Google para activarlo."
+    },
+    "files": {
+      "title": "Archivos",
+      "empty": "Aún no hay archivos.",
+      "upload": "Subir archivo",
+      "uploadHint": "Máximo 10MB por archivo.",
+      "category": {
+        "contract": "Contrato",
+        "asset": "Recurso de marca",
+        "deliverable": "Entregable",
+        "report": "Informe"
+      },
+      "categoryLabel": "Categoría",
+      "uploadedAt": "Subido {when}",
+      "download": "Descargar",
+      "notConfigured": "El almacenamiento no está configurado. Define BLOB_READ_WRITE_TOKEN para activar las subidas."
+    },
+    "team": {
+      "title": "Equipo",
+      "empty": "Sin miembros.",
+      "invite": "Invitar",
+      "inviteEmailLabel": "Email",
+      "inviteRoleLabel": "Rol",
+      "inviteSubmit": "Enviar invitación",
+      "inviteHint": "El receptor recibe un enlace mágico para activarse.",
+      "memberSince": "Miembro desde {when}",
+      "you": "tú",
+      "ownerOnly": "Solo los propietarios pueden invitar."
+    }
+  },
+  "stub": {
+    "soon": "Esta página llega en la fase 2.",
+    "back": "Volver al inicio"
   },
   "auth": {
     "login": {

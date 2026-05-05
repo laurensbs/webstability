@@ -42,6 +42,15 @@ export const routing = defineRouting({
     "/blog": "/blog",
     "/login": "/login",
     "/verify": "/verify",
+    "/portal/dashboard": "/portal/dashboard",
+    "/portal/projects": "/portal/projects",
+    "/portal/tickets": "/portal/tickets",
+    "/portal/invoices": "/portal/invoices",
+    "/portal/settings": "/portal/settings",
+    "/portal/monitoring": "/portal/monitoring",
+    "/portal/seo": "/portal/seo",
+    "/portal/files": "/portal/files",
+    "/portal/team": "/portal/team",
   },
 });
 

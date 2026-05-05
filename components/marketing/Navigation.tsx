@@ -5,6 +5,14 @@ import { LangSwitcher } from "@/components/shared/LangSwitcher";
 export async function Navigation() {
   const t = await getTranslations("nav");
 
+  const links = [
+    { href: "/verhuur", label: t("services") },
+    { href: "/prijzen", label: t("pricing") },
+    { href: "/over", label: t("about") },
+    { href: "/blog", label: t("blog") },
+    { href: "/contact", label: t("contact") },
+  ] as const;
+
   return (
     <header className="border-b border-(--color-border) bg-(--color-bg)/80 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
@@ -13,11 +21,15 @@ export async function Navigation() {
         </Link>
 
         <div className="hidden items-center gap-8 text-sm md:flex">
-          {/* Phase 2 will populate these as real routes get built. */}
-          <span className="text-(--color-muted)">{t("services")}</span>
-          <span className="text-(--color-muted)">{t("pricing")}</span>
-          <span className="text-(--color-muted)">{t("blog")}</span>
-          <span className="text-(--color-muted)">{t("contact")}</span>
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="text-(--color-muted) transition-colors hover:text-(--color-text)"
+            >
+              {l.label}
+            </Link>
+          ))}
         </div>
 
         <div className="flex items-center gap-6">

@@ -8,6 +8,7 @@
     "home": "Home",
     "services": "Diensten",
     "pricing": "Prijzen",
+    "about": "Over",
     "blog": "Blog",
     "contact": "Contact",
     "login": "Inloggen"
@@ -16,12 +17,470 @@
     "tagline": "Eén ontwikkelaar. Software die blijft werken.",
     "rights": "Alle rechten voorbehouden.",
     "legal": "Aviso legal",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "status": "Status",
+    "guarantees": "Garanties"
   },
   "home": {
-    "eyebrow": "fase 1 · fundament",
+    "eyebrow": "begur · costa brava",
     "headline": "Software die <em>blijft werken</em>.",
-    "tagline": "Maatwerk admin-systemen, websites en webshops voor MKB-ondernemers in Nederland en Spanje. Eén ontwikkelaar, directe communicatie, geen accountmanagers."
+    "tagline": "Maatwerk admin-systemen, websites en webshops voor MKB-ondernemers in Nederland en Spanje. Eén ontwikkelaar, directe communicatie, geen accountmanagers.",
+    "ctaPrimary": "Plan een gesprek",
+    "ctaSecondary": "Bekijk prijzen",
+
+    "logoStrip": {
+      "title": "Stack die zichzelf bewijst",
+      "items": ["Next.js", "TypeScript", "Postgres", "Stripe", "Vercel", "Tailwind"]
+    },
+
+    "services": {
+      "eyebrow": "diensten",
+      "title": "Drie dingen, goed gedaan.",
+      "lede": "Geen bureau-aanbod van twintig services. Drie kerngebieden waarin ik mijn werk durf te garanderen.",
+      "items": {
+        "admin": {
+          "title": "Admin-systemen",
+          "body": "Op maat gebouwde portalen die jouw werkelijke proces volgen — niet andersom. Drizzle, Postgres, typed van database tot UI."
+        },
+        "websites": {
+          "title": "Websites",
+          "body": "Snel, toegankelijk, meertalig. Lighthouse boven de 95, geen cookies-popup-theater, gewoon een site die converteert."
+        },
+        "webshops": {
+          "title": "Webshops",
+          "body": "Stripe of Mollie, BTW correct voor NL én ES, volledige eigenaarschap van je code. Geen Shopify-huur."
+        }
+      }
+    },
+
+    "founder": {
+      "eyebrow": "de ontwikkelaar",
+      "title": "Eén persoon. <em>Hele stack.</em>",
+      "body": "Ik ben Laurens. Nederlander in Begur, Costa Brava. Tien jaar bouw ik software voor MKB — admin-systemen die mensen elke dag gebruiken, websites die converteren, webshops die de BTW kloppend krijgen in twee landen. Geen accountmanagers tussen jou en de code. Je belt mij.",
+      "cta": "Lees het hele verhaal"
+    },
+
+    "approach": {
+      "eyebrow": "aanpak",
+      "title": "Hoe ik werk.",
+      "items": {
+        "one": {
+          "kicker": "01",
+          "title": "Eén lijn",
+          "body": "Je praat met de ontwikkelaar. Niet met een accountmanager die het doorgeeft."
+        },
+        "two": {
+          "kicker": "02",
+          "title": "Vaste prijs, vaste scope",
+          "body": "Voor het project begint weet je wat het kost. Geen meeruren-facturen achteraf."
+        },
+        "three": {
+          "kicker": "03",
+          "title": "Onderhoud na oplevering",
+          "body": "Software is niet af bij launch. Optionele onderhoudsabonnementen houden alles veilig en draaiend."
+        }
+      }
+    },
+
+    "audience": {
+      "eyebrow": "voor wie",
+      "title": "Voor MKB die niet wil <em>uitbesteden</em>, maar <em>samenwerken</em>.",
+      "body": "Ondernemers in Nederland en Spanje die een serieuze digitale stap willen zetten zonder zich aan een bureau over te leveren. Korte lijnen, eigenaarschap van de code, en een ontwikkelaar die je naam onthoudt."
+    },
+
+    "faq": {
+      "eyebrow": "veelgestelde vragen",
+      "title": "Antwoorden vooraf.",
+      "items": [
+        {
+          "q": "Werk je alleen, of heb je een team?",
+          "a": "Ik werk alleen. Voor specifieke onderdelen (native Spaanse copy, designreview, complexe DevOps) werk ik samen met vaste freelancers. Maar het projectmanagement, de architectuur en de code blijven bij mij."
+        },
+        {
+          "q": "Wat kost een typisch project?",
+          "a": "Een eenvoudige website begint rond €4.500. Een admin-systeem of webshop ligt tussen €8.000 en €25.000 afhankelijk van scope. Vaste prijs vooraf, geen meeruren achteraf. Bekijk de prijzen-pagina voor details."
+        },
+        {
+          "q": "Krijg ik de code in eigendom?",
+          "a": "Ja, altijd. Code wordt opgeleverd in jouw GitHub-organisatie, hosting staat op jouw Vercel-account. Bij beëindiging van de samenwerking blijft alles van jou. Geen vendor lock-in."
+        },
+        {
+          "q": "Hoe zit het met BTW/IVA voor Spanje?",
+          "a": "Webshops worden ingericht voor zowel Nederlandse BTW als Spaanse IVA. Stripe voor NL, Mollie voor ES — beide met correcte tarieven per productcategorie en automatische facturatie."
+        },
+        {
+          "q": "En als jij ziek wordt of stopt?",
+          "a": "Dat is een terechte vraag. Code is gedocumenteerd, deploys zijn geautomatiseerd, infrastructuur draait op standaard providers (Vercel, Neon, Stripe). Elke andere ontwikkelaar kan het overnemen. Geen geheime sausjes."
+        }
+      ]
+    },
+
+    "cta": {
+      "title": "Klinkt het als een match?",
+      "body": "Een eerste gesprek is gratis. Dertig minuten, geen pitch-deck.",
+      "button": "Plan een gesprek"
+    }
+  },
+  "contact": {
+    "eyebrow": "contact",
+    "title": "Plan een gesprek. <em>Of stuur een mail.</em>",
+    "lede": "Eerste gesprek is gratis, dertig minuten, geen pitch-deck. Liever schrijven? hello@webstability.eu — ik antwoord binnen één werkdag.",
+    "calLoading": "Kalender laden…",
+    "calFallback": "Kalender niet zichtbaar? Open direct op cal.com/webstability."
+  },
+  "status": {
+    "eyebrow": "live status",
+    "title": "Alles draait <em>zoals het moet</em>.",
+    "titleDegraded": "Eén of meer diensten zijn <em>verstoord</em>.",
+    "titleDown": "Er is een <em>storing</em>.",
+    "summary": "Live data uit Better Stack. Ververst elke minuut.",
+    "labelOperational": "operationeel",
+    "labelDegraded": "verstoord",
+    "labelDown": "down",
+    "labelPaused": "gepauzeerd",
+    "labelUnknown": "onbekend",
+    "lastChecked": "Laatst gecontroleerd: {when}",
+    "noMonitors": "Geen monitors geconfigureerd.",
+    "errorTitle": "Status niet beschikbaar",
+    "errorBody": "Better Stack is tijdelijk niet bereikbaar. Probeer het later opnieuw."
+  },
+  "blog": {
+    "eyebrow": "blog",
+    "title": "Schrijven over <em>echte</em> vragen.",
+    "lede": "Geen lijstjes met SEO-tips. Vragen die ik in gesprekken met ondernemers tegenkom, uitgewerkt zoals ik ze beantwoord.",
+    "readingTime": "{minutes} min lezen",
+    "back": "Alle artikelen",
+    "by": "Door"
+  },
+  "guarantees": {
+    "eyebrow": "garanties",
+    "title": "Wat ik <em>nooit</em> doe.",
+    "lede": "De meeste bureaus zetten een NDA in een bijlage en hopen dat je hem niet leest. Ik zet 'm hier op een publieke pagina.",
+    "ndaTitle": "Vertrouwelijkheidsclausule",
+    "ndaBody": "De ontwikkelaar verklaart dat alle bedrijfsgegevens die toegankelijk worden tijdens de ontwikkeling, hosting of het onderhoud, uitsluitend gebruikt worden voor de uitvoering van de opdracht. Geen bedrijfsgegevens, klantendata, omzetcijfers of operationele informatie wordt gedeeld, doorverkocht, of voor andere doeleinden gebruikt — ook niet geanonimiseerd voor portfolio of marketing — zonder uitdrukkelijke schriftelijke toestemming van de opdrachtgever.",
+    "promises": [
+      {
+        "title": "Geen portfolio zonder toestemming",
+        "body": "Je werk staat niet in een case study tenzij jij dat wil."
+      },
+      {
+        "title": "Geen data-retentie na afloop",
+        "body": "Bij beëindiging worden alle backups en kopieën binnen 30 dagen verwijderd."
+      },
+      {
+        "title": "Geen sub-processors zonder melding",
+        "body": "Als ik een nieuwe leverancier moet inschakelen voor jouw project, hoor je dat eerst."
+      },
+      {
+        "title": "Geen vendor lock-in",
+        "body": "Code, data en infrastructuur staan op jouw accounts. Bij beëindiging blijft alles van jou."
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "over webstability",
+    "title": "Eén ontwikkelaar, <em>tien jaar</em> ervaring.",
+    "intro": "Ik ben Laurens Bos. Ik bouw software voor MKB-ondernemers sinds 2015 — eerst vanuit Nederland, sinds 2022 vanuit Begur aan de Costa Brava. Wat begon als freelance opdrachten voor verhuurbedrijven werd Webstability: een studio die zich specialiseert in software die niet ophoudt met werken na de oplevering.",
+    "principlesTitle": "Vier principes",
+    "principles": [
+      {
+        "kicker": "01",
+        "title": "Eigenaarschap, niet huur",
+        "body": "Code in jouw GitHub, hosting op jouw account, database in jouw naam. Ik bouw, jij bezit."
+      },
+      {
+        "kicker": "02",
+        "title": "Vaste prijs, vaste scope",
+        "body": "Voor het werk start weet je wat het kost en wat je krijgt. Geen meeruren-discussies."
+      },
+      {
+        "kicker": "03",
+        "title": "Lange relaties, niet projecten",
+        "body": "Mijn oudste klant werk ik sinds 2017 mee. Software is een verbintenis, geen oplevering."
+      },
+      {
+        "kicker": "04",
+        "title": "Twee talen, twee landen",
+        "body": "BTW én IVA. .nl én .es. Ik snap de fiscale en culturele context van beide markten."
+      }
+    ],
+    "timelineTitle": "Tijdlijn",
+    "timeline": [
+      {
+        "year": "2015",
+        "body": "Eerste freelance opdracht — een verhuurplatform voor strandhuizen in Zeeland."
+      },
+      {
+        "year": "2018",
+        "body": "Specialisatie in admin-systemen voor MKB. Vaste klanten in retail en logistiek."
+      },
+      {
+        "year": "2022",
+        "body": "Verhuisd naar Begur, Costa Brava. Eerste Spaanse klanten via lokale ondernemers."
+      },
+      {
+        "year": "2024",
+        "body": "Webstability opgericht als studio-merk. Tweetalige propositie voor NL én ES."
+      },
+      {
+        "year": "2026",
+        "body": "Deze site live. Public roadmap, klantportaal, en alles wat ik aan klanten lever ook hier laten zien."
+      }
+    ],
+    "ctaTitle": "Praat direct met de ontwikkelaar.",
+    "ctaBody": "Geen accountmanager. Geen verkoopgesprek. Dertig minuten, gratis.",
+    "ctaButton": "Plan een gesprek"
+  },
+  "verhuur": {
+    "eyebrow": "voor verhuurbedrijven",
+    "title": "Verhuursoftware die <em>jouw werkwijze</em> volgt.",
+    "lede": "Specialisatie sinds 2015: reserverings- en planningssystemen voor verhuur — van strandhuizen tot bedrijfswagens, van fietsen tot evenementen-materialen.",
+    "problemTitle": "De problemen die ik tegenkom",
+    "problems": [
+      {
+        "title": "Excel als planning-tool",
+        "body": "Werkt tot drie medewerkers. Daarna is elke dubbele boeking een uur uitzoeken."
+      },
+      {
+        "title": "Standaardpakketten die net niet passen",
+        "body": "Booking-software voor hotels gebruiken voor verhuur leidt tot 80% goed en 20% workarounds."
+      },
+      {
+        "title": "Geen koppeling met boekhouding",
+        "body": "Reserveringen handmatig overtikken in Holded of e-Boekhouden. Foutgevoelig en zonde van de tijd."
+      },
+      {
+        "title": "Klanten bellen voor beschikbaarheid",
+        "body": "Geen self-service, dus elke aanvraag kost telefoontijd — ook 's avonds en in het weekend."
+      }
+    ],
+    "solutionTitle": "Wat ik bouw",
+    "solutionBody": "Een systeem dat past bij jouw verhuurproces — niet andersom. Realtime kalender, klant-self-service, automatische facturatie naar Stripe of Mollie, koppeling met je boekhouding, mobiele app voor onderweg. Eigen domein, eigen branding, eigen data.",
+    "priceTitle": "Indicatie",
+    "priceBody": "Een complete maatwerk verhuuroplossing ligt tussen €12.000 en €25.000 afhankelijk van koppelingen en complexiteit. Vaste prijs vooraf. Optioneel onderhoud vanaf €295/maand.",
+    "ctaButton": "Bespreek je verhuurproces"
+  },
+  "pricing": {
+    "eyebrow": "prijzen",
+    "title": "Twee modellen. <em>Geen verrassingen.</em>",
+    "lede": "Build voor nieuwe projecten, Care voor bestaande software die in de lucht moet blijven. Niet uit te breiden met add-ons die je niet vroeg.",
+    "tabBuild": "Build",
+    "tabCare": "Care",
+    "build": {
+      "intro": "Eenmalig project, vaste prijs, vaste scope. Code in jouw eigendom bij oplevering.",
+      "items": [
+        {
+          "name": "Website",
+          "price": "vanaf €4.500",
+          "body": "Marketing-site, meertalig, CMS naar keuze, Lighthouse 95+."
+        },
+        {
+          "name": "Webshop",
+          "price": "vanaf €8.500",
+          "body": "Stripe of Mollie, BTW/IVA correct, voorraad-koppeling optioneel."
+        },
+        {
+          "name": "Admin-systeem",
+          "price": "vanaf €12.000",
+          "body": "Maatwerk dashboard, multi-user, koppelingen met boekhouding/CRM."
+        },
+        {
+          "name": "Verhuurplatform",
+          "price": "vanaf €15.000",
+          "body": "Reservering, klant-self-service, planning, facturatie."
+        }
+      ]
+    },
+    "care": {
+      "intro": "Onderhoud op bestaande software. Maandelijks opzegbaar. Eerste maand gratis.",
+      "items": [
+        {
+          "id": "basic",
+          "name": "Care Basic",
+          "price": "€195/maand",
+          "body": "Security updates, monitoring, backup-checks, 2u/maand wijzigingen."
+        },
+        {
+          "id": "pro",
+          "name": "Care Pro",
+          "price": "€395/maand",
+          "body": "Alles in Basic + 8u/maand wijzigingen, prioriteit-support binnen 4u."
+        },
+        {
+          "id": "partner",
+          "name": "Care Partner",
+          "price": "€795/maand",
+          "body": "Alles in Pro + 20u/maand, kwartaal-strategiegesprek, SLA op uptime."
+        }
+      ],
+      "subscribe": "Abonneer",
+      "talk": "Plan een gesprek",
+      "manageBilling": "Beheer abonnement",
+      "currentPlan": "Huidig plan"
+    },
+    "addonsTitle": "Add-ons",
+    "addons": [
+      "Search Console rapportage — €95/maand",
+      "Tweede taal toevoegen — €1.500 eenmalig",
+      "DocuSeal e-sign integratie — €450 eenmalig",
+      "Cal.com self-hosted setup — €600 eenmalig"
+    ],
+    "philosophyTitle": "Filosofie",
+    "philosophyBody": "Geen uurtje-factuurtje. Geen verborgen meeruren. Geen abonnementen waarvan je vergeet dat je ze hebt. De prijs die je ziet is de prijs die je betaalt — en als de scope verandert praten we daar eerst over."
+  },
+  "legal": {
+    "avisoTitle": "Aviso legal",
+    "avisoBody": "Verantwoordelijke: Laurens Bos. Adres: Carrer Major, 17255 Begur, Girona, Spanje. KvK: 91186307. BTW: NL004875371B72. NIF: in aanvraag. Contact: hello@webstability.eu. Hosting: Vercel Inc., 340 S Lemon Ave #4133, Walnut CA 91789, USA.",
+    "privacyTitle": "Privacy",
+    "privacyBody": "Webstability verwerkt persoonsgegevens conform AVG/RGPD. Verzamelde data: naam en e-mail (login en facturatie), Plausible-analytics (geanonimiseerd, EU-hosted), facturatiedata (Stripe/Mollie). Bewaartermijn: account-data tot 30 dagen na opzegging, fiscale data 7 jaar conform wetgeving. Sub-processors: Vercel, Neon, Stripe, Mollie, Plausible, Resend, Better Stack, Sentry. Recht op inzage, correctie en verwijdering: mail naar hello@webstability.eu."
+  },
+  "portal": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "projects": "Projecten",
+      "tickets": "Tickets",
+      "invoices": "Facturen",
+      "settings": "Instellingen",
+      "logout": "Uitloggen"
+    },
+    "greeting": {
+      "morning": "Goedemorgen",
+      "afternoon": "Welkom terug",
+      "evening": "Goedenavond",
+      "allGood": "Alles draait zoals het moet.",
+      "openTickets": "{count, plural, =0 {Geen openstaande tickets.} one {Eén openstaand ticket.} other {# openstaande tickets.}}",
+      "highPriority": "Eén ticket heeft hoge prioriteit."
+    },
+    "stats": {
+      "openTickets": "Openstaande tickets",
+      "activeProjects": "Actieve projecten",
+      "openInvoices": "Openstaande facturen",
+      "uptime": "Uptime laatste 30d"
+    },
+    "projects": {
+      "title": "Projecten",
+      "empty": "Nog geen projecten gekoppeld.",
+      "status": {
+        "planning": "in planning",
+        "in_progress": "in ontwikkeling",
+        "review": "in review",
+        "live": "live",
+        "done": "afgerond"
+      },
+      "type": {
+        "care": "Care",
+        "build": "Build",
+        "website": "Website",
+        "webshop": "Webshop",
+        "system": "Admin-systeem",
+        "seo": "SEO"
+      },
+      "progress": "Voortgang"
+    },
+    "tickets": {
+      "title": "Tickets",
+      "new": "Nieuw ticket",
+      "empty": "Nog geen tickets.",
+      "subjectLabel": "Onderwerp",
+      "bodyLabel": "Bericht",
+      "priorityLabel": "Prioriteit",
+      "submit": "Verstuur",
+      "priority": { "low": "laag", "normal": "normaal", "high": "hoog" },
+      "status": {
+        "open": "open",
+        "in_progress": "in behandeling",
+        "waiting": "wachtend",
+        "closed": "gesloten"
+      },
+      "createdAt": "Aangemaakt {when}",
+      "back": "Alle tickets",
+      "reply": "Antwoorden",
+      "noReplies": "Nog geen antwoorden."
+    },
+    "invoices": {
+      "title": "Facturen",
+      "empty": "Nog geen facturen.",
+      "number": "Nummer",
+      "amount": "Bedrag",
+      "due": "Vervaldatum",
+      "status": {
+        "draft": "concept",
+        "sent": "verzonden",
+        "paid": "betaald",
+        "overdue": "te laat",
+        "cancelled": "geannuleerd"
+      }
+    },
+    "settings": {
+      "title": "Instellingen",
+      "name": "Naam",
+      "email": "E-mailadres",
+      "locale": "Taal",
+      "role": "Rol",
+      "save": "Opslaan",
+      "saved": "Opgeslagen.",
+      "roles": { "owner": "Eigenaar", "member": "Lid", "read_only": "Alleen lezen" }
+    },
+    "nav2": {
+      "monitoring": "Monitoring",
+      "seo": "SEO",
+      "files": "Bestanden",
+      "team": "Team"
+    },
+    "monitoring": {
+      "title": "Monitoring",
+      "summary": "Live data uit Better Stack. Ververst elke minuut.",
+      "noMonitors": "Geen monitors geconfigureerd.",
+      "errorTitle": "Niet beschikbaar",
+      "errorBody": "Better Stack is tijdelijk niet bereikbaar.",
+      "lastChecked": "Laatst gecontroleerd: {when}",
+      "label": {
+        "up": "operationeel",
+        "down": "down",
+        "paused": "gepauzeerd",
+        "pending": "in afwachting",
+        "maintenance": "onderhoud",
+        "validating": "controleren"
+      }
+    },
+    "seo": {
+      "title": "SEO",
+      "comingSoon": "Search Console-koppeling komt eraan.",
+      "body": "Zodra ik de Google OAuth-credentials heb ingesteld, vind je hier kliks, vertoningen, CTR en de top-zoekopdrachten van je site — direct uit Search Console.",
+      "configure": "Google OAuth-credentials nodig om te activeren."
+    },
+    "files": {
+      "title": "Bestanden",
+      "empty": "Nog geen bestanden geüpload.",
+      "upload": "Bestand uploaden",
+      "uploadHint": "Max 10MB per bestand.",
+      "category": {
+        "contract": "Contract",
+        "asset": "Brand asset",
+        "deliverable": "Oplevering",
+        "report": "Rapport"
+      },
+      "categoryLabel": "Categorie",
+      "uploadedAt": "Geüpload {when}",
+      "download": "Download",
+      "notConfigured": "Bestandsopslag is niet geconfigureerd. Stel BLOB_READ_WRITE_TOKEN in om uploads te activeren."
+    },
+    "team": {
+      "title": "Team",
+      "empty": "Geen teamleden.",
+      "invite": "Uitnodigen",
+      "inviteEmailLabel": "E-mailadres",
+      "inviteRoleLabel": "Rol",
+      "inviteSubmit": "Stuur uitnodiging",
+      "inviteHint": "De ontvanger krijgt een magic-link om te activeren.",
+      "memberSince": "Lid sinds {when}",
+      "you": "jij",
+      "ownerOnly": "Alleen eigenaren kunnen uitnodigen."
+    }
+  },
+  "stub": {
+    "soon": "Deze pagina komt in fase 2.",
+    "back": "Terug naar home"
   },
   "auth": {
     "login": {

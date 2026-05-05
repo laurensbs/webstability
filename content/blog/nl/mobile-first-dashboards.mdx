@@ -1,0 +1,27 @@
+---
+title: Mobile-first dashboards — waarom 90% van de admin-portalen dit verkeerd doet
+description: Een admin-systeem wordt vaak op desktop ontworpen en daarna "responsive gemaakt". Dat is de verkeerde volgorde, en het kost eigenaren elke dag tijd.
+date: 2026-04-02
+author: Laurens Bos
+---
+
+De ondernemer die om 22:00 op de bank zijn dag-omzet checkt, doet dat op zijn telefoon. De medewerker in het magazijn die een voorraad bijwerkt, doet dat op zijn telefoon. De freelance fotograaf die zijn factuur status checkt — telefoon.
+
+Toch worden 90% van de admin-portalen ontworpen alsof ze in een kantoor draaien op een 27-inch scherm. Het resultaat: knoppen te klein, tabellen die horizontaal scrollen, formulieren die elk numeriek veld de verkeerde toetsenbord-modus tonen.
+
+## Wat mobile-first concreet betekent
+
+Niet "ook op mobiel kunnen". Niet "de bovenste 80% schaalt naar beneden". Mobile-first betekent: de primaire flow is op mobiel ontworpen, en de desktop-versie is een uitbreiding daarop.
+
+Praktisch:
+
+- Stat tiles in een 2x2 grid op mobiel, vier-op-een-rij op desktop
+- Tabellen worden cards op mobiel, niet horizontaal scrollende grids
+- Form inputs met `inputmode="numeric"` voor bedragen, `inputmode="email"` voor mail
+- Sticky action button onderaan (waar je duim is), niet rechtsboven
+
+## Waarom bureaus dit fout doen
+
+Designers werken op desktop. Stakeholders reviewen op desktop. Het mobiel-prototype wordt vaak pas in week zeven getoond. Tegen die tijd is de informatie-architectuur al gestold rond een desktop-mental-model.
+
+Bij maatwerk projecten begin ik altijd met de mobiele wireframe. Niet als concessie aan "ook op mobiel" — als startpunt.
