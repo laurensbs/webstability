@@ -198,7 +198,10 @@
     "lastChecked": "Laatst gecontroleerd: {when}",
     "noMonitors": "Geen monitors geconfigureerd.",
     "errorTitle": "Status niet beschikbaar",
-    "errorBody": "Better Stack is tijdelijk niet bereikbaar. Probeer het later opnieuw."
+    "errorBody": "Better Stack is tijdelijk niet bereikbaar. Probeer het later opnieuw.",
+    "statsServices": "Diensten gemonitord",
+    "statsOperational": "Operationeel",
+    "statsIssue": "Met issue"
   },
   "blog": {
     "eyebrow": "blog",
@@ -314,7 +317,37 @@
     "solutionBody": "Een systeem dat past bij jouw verhuurproces — niet andersom. Realtime kalender, klant-self-service, automatische facturatie naar Stripe of Mollie, koppeling met je boekhouding, mobiele app voor onderweg. Eigen domein, eigen branding, eigen data.",
     "priceTitle": "Indicatie",
     "priceBody": "Een complete maatwerk verhuuroplossing ligt tussen €12.000 en €25.000 afhankelijk van koppelingen en complexiteit. Vaste prijs vooraf. Optioneel onderhoud vanaf €295/maand.",
-    "ctaButton": "Bespreek je verhuurproces"
+    "ctaButton": "Bespreek je verhuurproces",
+    "featuresTitle": "Wat erin zit",
+    "featuresLede": "Geen feature-fest. Wel de dingen die je daadwerkelijk dagelijks gebruikt.",
+    "features": [
+      {
+        "title": "Realtime kalender",
+        "body": "Drag-and-drop boekingen, conflict-detectie, multi-locatie."
+      },
+      {
+        "title": "Klant self-service",
+        "body": "Beschikbaarheid checken en boeken zonder telefoontje."
+      },
+      {
+        "title": "Automatische facturatie",
+        "body": "Stripe of Mollie checkout, BTW correct voor NL én ES."
+      },
+      {
+        "title": "Boekhoud-koppeling",
+        "body": "Holded, e-Boekhouden, Moneybird — facturen pushen, geen overtikken."
+      },
+      {
+        "title": "Mobiel-first crew app",
+        "body": "Statussen, schade-foto's en handtekeningen op locatie."
+      },
+      {
+        "title": "Eigen domein & branding",
+        "body": "Geen platform-look. Jouw merk, jouw data, jouw code."
+      }
+    ],
+    "stackTitle": "Eerlijke stack",
+    "stackLede": "Geen black-box SaaS. Open source onder de motorkap, jouw data exporteerbaar, jouw repo bij oplevering."
   },
   "pricing": {
     "eyebrow": "prijzen",

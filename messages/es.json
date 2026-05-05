@@ -198,7 +198,10 @@
     "lastChecked": "Última comprobación: {when}",
     "noMonitors": "Sin monitores configurados.",
     "errorTitle": "Estado no disponible",
-    "errorBody": "Better Stack no está accesible ahora mismo. Inténtalo más tarde."
+    "errorBody": "Better Stack no está accesible ahora mismo. Inténtalo más tarde.",
+    "statsServices": "Servicios monitorizados",
+    "statsOperational": "Operativo",
+    "statsIssue": "Con incidencia"
   },
   "blog": {
     "eyebrow": "blog",
@@ -314,7 +317,37 @@
     "solutionBody": "Un sistema que encaja con tu proceso de alquiler — no al revés. Calendario en tiempo real, self-service para clientes, facturación automática a Stripe o Mollie, conexión con tu contabilidad, app móvil para el día a día. Tu dominio, tu marca, tus datos.",
     "priceTitle": "Indicación",
     "priceBody": "Una solución completa de alquiler a medida está entre 12.000 € y 25.000 € según conexiones y complejidad. Precio fijo por adelantado. Mantenimiento opcional desde 295 €/mes.",
-    "ctaButton": "Cuéntame tu proceso"
+    "ctaButton": "Cuéntame tu proceso",
+    "featuresTitle": "Qué incluye",
+    "featuresLede": "Sin fiesta de funciones. Las cosas que realmente usas a diario.",
+    "features": [
+      {
+        "title": "Calendario en tiempo real",
+        "body": "Reservas drag-and-drop, detección de conflictos, multi-ubicación."
+      },
+      {
+        "title": "Self-service para clientes",
+        "body": "Consultar disponibilidad y reservar sin llamadas."
+      },
+      {
+        "title": "Facturación automática",
+        "body": "Checkout con Stripe o Mollie, IVA correcto para NL y ES."
+      },
+      {
+        "title": "Conexión con tu gestor",
+        "body": "Holded, e-Boekhouden, Moneybird — facturas en directo, sin reescribir."
+      },
+      {
+        "title": "App mobile-first para crew",
+        "body": "Estados, fotos de daños y firmas en el lugar."
+      },
+      {
+        "title": "Dominio y marca propios",
+        "body": "Sin estética de plataforma. Tu marca, tus datos, tu código."
+      }
+    ],
+    "stackTitle": "Stack honesto",
+    "stackLede": "Sin SaaS de caja negra. Open source debajo, tus datos exportables, tu repo en la entrega."
   },
   "pricing": {
     "eyebrow": "precios",
