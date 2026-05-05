@@ -1,26 +1,28 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 
+/**
+ * Compact language toggle. Shows the *other* locale as a single pill
+ * button — clicking jumps to the same path in that locale. The current
+ * locale is implicit (you're on it), so we don't repeat it in the UI.
+ */
 export function LangSwitcher() {
   const locale = useLocale() as Locale;
   const pathname = usePathname();
-  const t = useTranslations("common");
-
   const otherLocale: Locale = locale === "nl" ? "es" : "nl";
 
-  // `pathname` is the unlocalized internal path (e.g. "/over").
-  // <Link locale="es"> emits the translated slug for the target locale.
   return (
     <Link
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       href={pathname as any}
       locale={otherLocale}
-      className="font-mono text-xs tracking-widest text-(--color-muted) uppercase underline-offset-4 hover:text-(--color-accent) hover:underline"
+      aria-label={`Switch to ${otherLocale.toUpperCase()}`}
+      className="inline-flex h-8 min-w-[44px] items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) px-3 text-[12px] font-medium tracking-wide text-(--color-muted) uppercase transition-colors hover:border-(--color-text) hover:text-(--color-text)"
     >
-      {t("switchToOther")}
+      {otherLocale}
     </Link>
   );
 }
