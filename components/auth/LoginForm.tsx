@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
+import { motion } from "motion/react";
 import { signInAction } from "@/app/actions/auth";
 
 export function LoginForm() {
@@ -38,12 +39,30 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-md bg-(--color-text) px-4 py-2.5 font-medium text-(--color-bg) transition-opacity hover:opacity-90 disabled:opacity-60"
+        className="flex w-full items-center justify-center gap-2 rounded-md bg-(--color-text) px-4 py-2.5 font-medium text-(--color-bg) transition-opacity hover:opacity-90 disabled:opacity-60"
       >
-        {pending ? "…" : t("submit")}
+        {pending ? (
+          <>
+            <span
+              className="inline-block h-3.5 w-3.5 animate-spin rounded-full border-2 border-current border-t-transparent"
+              aria-hidden
+            />
+            <span>{t("submit")}</span>
+          </>
+        ) : (
+          t("submit")
+        )}
       </button>
 
-      {error && <p className="text-sm text-(--color-accent)">{error}</p>}
+      {error && (
+        <motion.p
+          initial={{ opacity: 0, y: -4 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-sm text-(--color-accent)"
+        >
+          {error}
+        </motion.p>
+      )}
     </form>
   );
 }

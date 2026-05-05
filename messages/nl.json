@@ -351,6 +351,20 @@
       "openTickets": "{count, plural, =0 {Geen openstaande tickets.} one {Eén openstaand ticket.} other {# openstaande tickets.}}",
       "highPriority": "Eén ticket heeft hoge prioriteit."
     },
+    "loading": {
+      "title": "We zijn je portaal aan het laden",
+      "messages": [
+        "Excel-formuliertjes weghalen…",
+        "Reserveringen tellen…",
+        "Facturen ophalen uit de cloud…",
+        "Spinnenwebben uit het CMS vegen…",
+        "Server-koffie aan het zetten…",
+        "Tickets sorteren op urgentie…",
+        "Backups checken (gewoon, voor de zekerheid)…",
+        "BTW-tarieven opzoeken…",
+        "De juiste pixels bij elkaar rapen…"
+      ]
+    },
     "stats": {
       "openTickets": "Openstaande tickets",
       "activeProjects": "Actieve projecten",

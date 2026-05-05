@@ -5,6 +5,7 @@ import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
 import { getUserWithOrg, getDashboardStats } from "@/lib/db/queries/portal";
 import { StatCard } from "@/components/portal/StatCard";
+import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/DashboardIntro";
 
 function pickGreeting(t: (k: string) => string) {
   const h = new Date().getHours();
@@ -36,20 +37,23 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
       : t("greeting.allGood");
 
   return (
-    <div className="space-y-10">
-      <header className="space-y-3">
-        <h1 className="text-3xl md:text-5xl">
-          {greeting}, <em>{firstName}</em>.
-        </h1>
-        <p className="text-(--color-muted)">{status}</p>
-      </header>
+    <div className="space-y-12">
+      <DashboardIntro greeting={greeting} firstName={firstName} status={status} />
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label={t("stats.openTickets")} value={String(stats.openTickets)} />
-        <StatCard label={t("stats.activeProjects")} value={String(stats.activeProjects)} />
-        <StatCard label={t("stats.openInvoices")} value={String(stats.openInvoices)} />
-        <StatCard label={t("stats.uptime")} value="—" hint="Phase 4" />
-      </section>
+      <StatsGrid>
+        <StatItem>
+          <StatCard label={t("stats.openTickets")} value={String(stats.openTickets)} />
+        </StatItem>
+        <StatItem>
+          <StatCard label={t("stats.activeProjects")} value={String(stats.activeProjects)} />
+        </StatItem>
+        <StatItem>
+          <StatCard label={t("stats.openInvoices")} value={String(stats.openInvoices)} />
+        </StatItem>
+        <StatItem>
+          <StatCard label={t("stats.uptime")} value="—" hint="Phase 4" />
+        </StatItem>
+      </StatsGrid>
     </div>
   );
 }

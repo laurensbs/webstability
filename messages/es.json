@@ -351,6 +351,20 @@
       "openTickets": "{count, plural, =0 {Sin tickets abiertos.} one {Un ticket abierto.} other {# tickets abiertos.}}",
       "highPriority": "Un ticket tiene prioridad alta."
     },
+    "loading": {
+      "title": "Estamos cargando tu portal",
+      "messages": [
+        "Quitando hojas de Excel…",
+        "Contando reservas…",
+        "Bajando facturas de la nube…",
+        "Sacudiendo telarañas del CMS…",
+        "Poniendo café en el servidor…",
+        "Ordenando tickets por urgencia…",
+        "Comprobando backups (por si acaso)…",
+        "Buscando los tipos de IVA…",
+        "Juntando los píxeles correctos…"
+      ]
+    },
     "stats": {
       "openTickets": "Tickets abiertos",
       "activeProjects": "Proyectos activos",

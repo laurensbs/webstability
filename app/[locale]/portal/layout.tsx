@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { getUserWithOrg } from "@/lib/db/queries/portal";
 import { Sidebar } from "@/components/portal/Sidebar";
 import { Topbar } from "@/components/portal/Topbar";
+import { RouteTransition } from "@/components/portal/RouteTransition";
 
 export default async function PortalLayout({
   children,
@@ -47,7 +48,9 @@ export default async function PortalLayout({
           orgName={userWithOrg.organization?.name ?? null}
           logoutLabel={t("nav.logout")}
         />
-        <main className="flex-1 px-6 py-8 md:px-10 md:py-12">{children}</main>
+        <main className="flex-1 px-6 py-8 md:px-10 md:py-12">
+          <RouteTransition>{children}</RouteTransition>
+        </main>
       </div>
     </div>
   );
