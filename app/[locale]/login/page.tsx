@@ -10,10 +10,18 @@ import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { MarkupText } from "@/components/animate/MarkupText";
 import { LoginAmbientMount } from "@/components/r3f/LoginAmbientMount";
 
-export default async function LoginPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function LoginPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ email?: string; from?: string }>;
+}) {
   const { locale } = await params;
+  const { email: emailParam, from } = await searchParams;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  const fromCheckout = from === "checkout";
 
   // The same /login route serves both the customer portal and the
   // staff admin (mounted at admin.webstability.eu via the proxy).
@@ -122,8 +130,13 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
           <p className={`mt-3 ${isAdminHost ? "text-(--color-bg)/70" : "text-(--color-muted)"}`}>
             {t("subtitle")}
           </p>
+          {fromCheckout ? (
+            <div className="mt-5 rounded-lg border border-(--color-success)/40 bg-(--color-success)/10 px-4 py-3 text-[14px] text-(--color-text)">
+              {tCustomer("checkoutWelcome")}
+            </div>
+          ) : null}
           <div className="mt-8">
-            <LoginForm variant={isAdminHost ? "dark" : "light"} />
+            <LoginForm variant={isAdminHost ? "dark" : "light"} defaultEmail={emailParam ?? ""} />
           </div>
         </div>
 

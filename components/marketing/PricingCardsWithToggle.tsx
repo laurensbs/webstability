@@ -35,20 +35,26 @@ type Strings = {
 };
 
 /**
- * Auth-aware CTA mode for /prijzen. When provided, logged-in owners
- * see "Abonneer" submitting `subscribeAction` (a Next.js server action
- * — server-action refs are serialisable across the boundary) or a
- * "Huidig plan" pill if their org already runs that plan. Anonymous
- * users still see the default contact link.
+ * Auth-aware CTA mode for /prijzen. Logged-in owners see "Abonneer"
+ * submitting `subscribeAction`, of een "Huidig plan" pill als hun org
+ * al die tier runt. Anonieme bezoekers zien ook "Abonneer" maar dan
+ * via `anonSubscribeAction` — een Stripe Checkout in de modus waar
+ * Stripe zelf de email + naam verzamelt. Pas na betaling wordt de
+ * user + org aangemaakt door /checkout/done.
  */
 export type AuthMode = {
   isOwner: boolean;
   currentPlan: "care" | "studio" | "atelier" | null;
   /**
-   * Server action that takes a FormData with `plan` and starts a
-   * Stripe Checkout flow. Passed straight to <form action={...}>.
+   * Server action voor ingelogde owners. Krijgt FormData met `plan`,
+   * start Stripe Checkout met de bestaande customer.
    */
   subscribeAction: (formData: FormData) => Promise<void>;
+  /**
+   * Server action voor anonieme bezoekers. Krijgt FormData met `plan`,
+   * start Stripe Checkout in customer_creation: 'always' modus.
+   */
+  anonSubscribeAction: (formData: FormData) => Promise<void>;
   subscribeLabel: string;
   currentPlanLabel: string;
 };
@@ -207,17 +213,20 @@ export function PricingCardsWithToggle({
                     </form>
                   )
                 ) : (
-                  <Button
-                    asChild
-                    variant={featured ? "ghost" : "outline"}
-                    className={`w-full justify-center ${
-                      featured
-                        ? "bg-(--color-bg) text-(--color-text) hover:bg-(--color-accent-soft) hover:text-(--color-text)"
-                        : ""
-                    }`}
-                  >
-                    <Link href="/contact">{strings.ctaLabel}</Link>
-                  </Button>
+                  <form action={authMode.anonSubscribeAction} className="w-full">
+                    <input type="hidden" name="plan" value={item.id} />
+                    <Button
+                      type="submit"
+                      variant={featured ? "ghost" : "accent"}
+                      className={`w-full justify-center ${
+                        featured
+                          ? "bg-(--color-bg) text-(--color-text) hover:bg-(--color-accent-soft) hover:text-(--color-text)"
+                          : ""
+                      }`}
+                    >
+                      {authMode.subscribeLabel}
+                    </Button>
+                  </form>
                 )
               ) : (
                 <Button

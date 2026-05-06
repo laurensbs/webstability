@@ -7,7 +7,11 @@ import { auth } from "@/lib/auth";
 import { getUserWithOrg } from "@/lib/db/queries/portal";
 import { PageHeader } from "@/components/marketing/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { startCareCheckout, startCareCheckoutWithBuild } from "@/app/actions/billing";
+import {
+  startCareCheckout,
+  startCareCheckoutWithBuild,
+  startAnonCheckout,
+} from "@/app/actions/billing";
 import { MarkupText } from "@/components/animate/MarkupText";
 import {
   PricingCardsWithToggle,
@@ -83,6 +87,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               isOwner,
               currentPlan: currentPlan as "care" | "studio" | "atelier" | null,
               subscribeAction: startCareCheckout,
+              anonSubscribeAction: startAnonCheckout,
               subscribeLabel: tCare("subscribe"),
               currentPlanLabel: tCare("currentPlan"),
             }}

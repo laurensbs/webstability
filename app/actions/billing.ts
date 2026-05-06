@@ -43,6 +43,44 @@ async function ensureStripeCustomer(orgId: string, name: string, email: string) 
   return customer.id;
 }
 
+/**
+ * Anonieme checkout — bezoeker is niet ingelogd. Stripe verzamelt
+ * email + naam + kaart in de Checkout UI; na success komt de bezoeker
+ * terug op /portal/dashboard?checkout=success&session_id=… waar we
+ * via een dedicated handler de user + org aanmaken (op basis van de
+ * Stripe-customer in die session) en een magic-link mailen.
+ *
+ * Werkt alleen voor de drie base tiers (care/studio/atelier). Build
+ * extensions vragen om een actieve klant en zitten dus achter login.
+ */
+export async function startAnonCheckout(formData: FormData) {
+  const planInput = String(formData.get("plan") ?? "");
+  const plan = (["care", "studio", "atelier"] as const).includes(planInput as CarePlanId)
+    ? (planInput as CarePlanId)
+    : null;
+  if (!plan) throw new Error("invalid_plan");
+
+  const priceId = priceIdFor(plan);
+  if (!priceId) throw new Error("price_not_configured");
+
+  const session = await stripe().checkout.sessions.create({
+    mode: "subscription",
+    line_items: [{ price: priceId, quantity: 1 }],
+    // Stripe vraagt zelf om email + naam + kaart. customer_creation
+    // zorgt dat er altijd een Stripe Customer wordt aangemaakt zodat
+    // we 'm in de webhook kunnen koppelen aan een nieuwe org.
+    customer_creation: "always",
+    billing_address_collection: "auto",
+    success_url: `${APP_URL}/checkout/done?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${APP_URL}/prijzen?checkout=cancelled`,
+    metadata: { plan, anon: "true" },
+    subscription_data: { metadata: { plan, anon: "true" } },
+  });
+
+  if (!session.url) throw new Error("no_checkout_url");
+  redirect(session.url);
+}
+
 export async function startCareCheckout(formData: FormData) {
   const planInput = String(formData.get("plan") ?? "");
   const plan = (["care", "studio", "atelier"] as const).includes(planInput as CarePlanId)

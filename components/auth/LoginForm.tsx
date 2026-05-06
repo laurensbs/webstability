@@ -5,9 +5,17 @@ import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { signInAction } from "@/app/actions/auth";
 
-export function LoginForm({ variant = "light" }: { variant?: "light" | "dark" }) {
+export function LoginForm({
+  variant = "light",
+  defaultEmail = "",
+}: {
+  variant?: "light" | "dark";
+  /** Pre-fill van de email-veld, bijv. ?email=…&from=checkout. */
+  defaultEmail?: string;
+}) {
   const t = useTranslations("auth.login");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(defaultEmail);
+  const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
   const dark = variant === "dark";
@@ -27,12 +35,33 @@ export function LoginForm({ variant = "light" }: { variant?: "light" | "dark" })
           // generic line.
         }
         startTransition(async () => {
-          const res = await signInAction(email);
+          const res = await signInAction(email, name);
           if (res?.error) setError(t("error"));
         });
       }}
       className="space-y-4"
     >
+      <label className="block">
+        <span
+          className={`text-sm font-medium ${dark ? "text-(--color-bg)" : "text-(--color-text)"}`}
+        >
+          {t("nameLabel")}
+        </span>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          autoComplete="name"
+          placeholder={t("namePlaceholder")}
+          className="mt-2 block w-full rounded-md border border-(--color-border) bg-(--color-surface) px-3 py-2 text-(--color-text) outline-none focus:border-(--color-accent) focus:ring-2 focus:ring-(--color-accent-soft)"
+        />
+        <span
+          className={`mt-1 block text-[11px] ${dark ? "text-(--color-bg)/55" : "text-(--color-muted)"}`}
+        >
+          {t("nameHint")}
+        </span>
+      </label>
+
       <label className="block">
         <span
           className={`text-sm font-medium ${dark ? "text-(--color-bg)" : "text-(--color-text)"}`}
@@ -45,7 +74,7 @@ export function LoginForm({ variant = "light" }: { variant?: "light" | "dark" })
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           autoComplete="email"
-          autoFocus
+          autoFocus={!defaultEmail}
           className="mt-2 block w-full rounded-md border border-(--color-border) bg-(--color-surface) px-3 py-2 text-(--color-text) outline-none focus:border-(--color-accent) focus:ring-2 focus:ring-(--color-accent-soft)"
         />
       </label>
