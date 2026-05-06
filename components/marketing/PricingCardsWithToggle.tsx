@@ -27,12 +27,33 @@ type Strings = {
   ctaLabel: string;
 };
 
+/**
+ * Auth-aware CTA mode for /prijzen. When provided, logged-in owners
+ * see "Abonneer" submitting `subscribeAction` (a Next.js server action
+ * — server-action refs are serialisable across the boundary) or a
+ * "Huidig plan" pill if their org already runs that plan. Anonymous
+ * users still see the default contact link.
+ */
+export type AuthMode = {
+  isOwner: boolean;
+  currentPlan: "basic" | "pro" | "partner" | null;
+  /**
+   * Server action that takes a FormData with `plan` and starts a
+   * Stripe Checkout flow. Passed straight to <form action={...}>.
+   */
+  subscribeAction: (formData: FormData) => Promise<void>;
+  subscribeLabel: string;
+  currentPlanLabel: string;
+};
+
 export function PricingCardsWithToggle({
   items,
   strings,
+  authMode,
 }: {
   items: PricingItem[];
   strings: Strings;
+  authMode?: AuthMode;
 }) {
   const [cycle, setCycle] = React.useState<Cycle>("monthly");
 
@@ -125,17 +146,60 @@ export function PricingCardsWithToggle({
                   {item.body}
                 </li>
               </ul>
-              <Button
-                asChild
-                variant={featured ? "ghost" : "outline"}
-                className={`w-full justify-center ${
-                  featured
-                    ? "bg-(--color-bg) text-(--color-text) hover:bg-(--color-accent-soft) hover:text-(--color-text)"
-                    : ""
-                }`}
-              >
-                <Link href="/contact">{strings.ctaLabel}</Link>
-              </Button>
+              {authMode ? (
+                authMode.isOwner ? (
+                  authMode.currentPlan === item.id ? (
+                    <span
+                      className={`inline-flex w-full items-center justify-center rounded-full border px-4 py-2.5 font-mono text-[11px] tracking-widest uppercase ${
+                        featured
+                          ? "border-(--color-bg)/30 text-(--color-bg)/80"
+                          : "border-(--color-border) text-(--color-muted)"
+                      }`}
+                    >
+                      {authMode.currentPlanLabel}
+                    </span>
+                  ) : (
+                    <form action={authMode.subscribeAction} className="w-full">
+                      <input type="hidden" name="plan" value={item.id} />
+                      <Button
+                        type="submit"
+                        variant={featured ? "ghost" : "accent"}
+                        className={`w-full justify-center ${
+                          featured
+                            ? "bg-(--color-bg) text-(--color-text) hover:bg-(--color-accent-soft) hover:text-(--color-text)"
+                            : ""
+                        }`}
+                      >
+                        {authMode.subscribeLabel}
+                      </Button>
+                    </form>
+                  )
+                ) : (
+                  <Button
+                    asChild
+                    variant={featured ? "ghost" : "outline"}
+                    className={`w-full justify-center ${
+                      featured
+                        ? "bg-(--color-bg) text-(--color-text) hover:bg-(--color-accent-soft) hover:text-(--color-text)"
+                        : ""
+                    }`}
+                  >
+                    <Link href="/contact">{strings.ctaLabel}</Link>
+                  </Button>
+                )
+              ) : (
+                <Button
+                  asChild
+                  variant={featured ? "ghost" : "outline"}
+                  className={`w-full justify-center ${
+                    featured
+                      ? "bg-(--color-bg) text-(--color-text) hover:bg-(--color-accent-soft) hover:text-(--color-text)"
+                      : ""
+                  }`}
+                >
+                  <Link href="/contact">{strings.ctaLabel}</Link>
+                </Button>
+              )}
             </article>
           );
         })}
