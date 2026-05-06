@@ -579,21 +579,32 @@
           "id": "basic",
           "name": "Care Basic",
           "price": "€195/maand",
+          "monthly": 195,
+          "annual": 166,
           "body": "Security updates, monitoring, backup-checks, 2u/maand wijzigingen."
         },
         {
           "id": "pro",
           "name": "Care Pro",
           "price": "€395/maand",
+          "monthly": 395,
+          "annual": 336,
           "body": "Alles in Basic + 8u/maand wijzigingen, prioriteit-support binnen 4u."
         },
         {
           "id": "partner",
           "name": "Care Partner",
           "price": "€795/maand",
+          "monthly": 795,
+          "annual": 676,
           "body": "Alles in Pro + 20u/maand, kwartaal-strategiegesprek, SLA op uptime."
         }
       ],
+      "billingMonthly": "Maandelijks",
+      "billingAnnual": "Jaarlijks",
+      "billingAnnualHint": "15% korting",
+      "perMonth": "/m",
+      "perMonthBilledAnnually": "/m, jaarlijks gefactureerd",
       "subscribe": "Abonneer",
       "talk": "Plan een gesprek",
       "manageBilling": "Beheer abonnement",

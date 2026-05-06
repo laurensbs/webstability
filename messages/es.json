@@ -574,21 +574,32 @@
           "id": "basic",
           "name": "Care Basic",
           "price": "195 €/mes",
+          "monthly": 195,
+          "annual": 166,
           "body": "Actualizaciones de seguridad, monitorización, revisión de backups, 2h/mes de cambios."
         },
         {
           "id": "pro",
           "name": "Care Pro",
           "price": "395 €/mes",
+          "monthly": 395,
+          "annual": 336,
           "body": "Todo Basic + 8h/mes de cambios, soporte prioritario en 4h."
         },
         {
           "id": "partner",
           "name": "Care Partner",
           "price": "795 €/mes",
+          "monthly": 795,
+          "annual": 676,
           "body": "Todo Pro + 20h/mes, llamada estratégica trimestral, SLA de uptime."
         }
       ],
+      "billingMonthly": "Mensual",
+      "billingAnnual": "Anual",
+      "billingAnnualHint": "15% descuento",
+      "perMonth": "/m",
+      "perMonthBilledAnnually": "/m, facturado anualmente",
       "subscribe": "Suscribirse",
       "talk": "Reserva una llamada",
       "manageBilling": "Gestionar suscripción",
