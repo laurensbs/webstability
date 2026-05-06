@@ -128,6 +128,86 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
   },
 };
 
+const SITE_BASE_URL = process.env.AUTH_URL ?? "https://webstability.eu";
+
+/**
+ * Schema.org Organization payload — emit once on the homepage so
+ * Google knows the brand entity (name, URL, logo, contact). Reused
+ * across locales (lang fragment per page).
+ */
+export function organizationLd(locale: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Webstability",
+    url: SITE_BASE_URL,
+    logo: `${SITE_BASE_URL}/og`,
+    sameAs: [],
+    founder: {
+      "@type": "Person",
+      name: "Laurens Bos",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Begur",
+      addressRegion: "Costa Brava",
+      addressCountry: "ES",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "hello@webstability.eu",
+      contactType: "customer support",
+      availableLanguage: ["nl", "es", "en"],
+    },
+    inLanguage: locale === "es" ? "es-ES" : "nl-NL",
+  };
+}
+
+/**
+ * Schema.org BlogPosting payload — emit on every blog detail page so
+ * the post can light up rich results (date, author, headline).
+ */
+export function blogPostingLd({
+  locale,
+  slug,
+  title,
+  description,
+  date,
+  author,
+}: {
+  locale: string;
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  author: string;
+}) {
+  const url =
+    locale === "nl" ? `${SITE_BASE_URL}/blog/${slug}` : `${SITE_BASE_URL}/${locale}/blog/${slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    datePublished: date,
+    dateModified: date,
+    author: {
+      "@type": "Person",
+      name: author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Webstability",
+      logo: { "@type": "ImageObject", url: `${SITE_BASE_URL}/og` },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    inLanguage: locale === "es" ? "es-ES" : "nl-NL",
+  };
+}
+
 export function pageMetadata(locale: string, key: RouteKey): Metadata {
   const lang: Locale = locale === "es" ? "es" : "nl";
   const copy = COPY[lang][key];

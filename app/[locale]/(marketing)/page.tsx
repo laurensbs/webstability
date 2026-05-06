@@ -3,7 +3,8 @@ import { setRequestLocale } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, organizationLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Hero } from "@/components/marketing/Hero";
 
 export async function generateMetadata({
@@ -31,6 +32,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd data={organizationLd(locale)} />
       <Hero />
       <LogoStrip />
       <HowItWorksWrapper />

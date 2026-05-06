@@ -9,6 +9,8 @@ import { Link } from "@/i18n/navigation";
 import { listPosts, getPost, type BlogPost } from "@/lib/blog";
 import { Callout } from "@/components/marketing/blog/Callout";
 import { PullQuote } from "@/components/marketing/blog/PullQuote";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { blogPostingLd } from "@/lib/seo";
 
 /**
  * MDX components made available inside any blog post. Use them like:
@@ -68,6 +70,16 @@ export default async function Page({
 
   return (
     <main className="dotted-bg flex flex-1 flex-col">
+      <JsonLd
+        data={blogPostingLd({
+          locale,
+          slug: post.slug,
+          title: post.title,
+          description: post.description,
+          date: post.date,
+          author: post.author,
+        })}
+      />
       <article className="px-6 pt-24 pb-24 md:pt-32">
         <div className="mx-auto max-w-2xl">
           <Link
