@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
@@ -20,9 +21,12 @@ import { RecentProjects } from "@/components/portal/RecentProjects";
 import { RecentTickets } from "@/components/portal/RecentTickets";
 import { RecentInvoices } from "@/components/portal/RecentInvoices";
 import { SeoSparkline } from "@/components/portal/SeoSparkline";
-import { MonitoringCard } from "@/components/portal/MonitoringCard";
+import {
+  MonitoringCardAsync,
+  MonitoringCardSkeleton,
+} from "@/components/portal/MonitoringCardAsync";
 import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/DashboardIntro";
-import { listMonitors, type Monitor } from "@/lib/better-stack";
+import type { Monitor } from "@/lib/better-stack";
 
 function pickGreeting(t: (k: string) => string) {
   const h = new Date().getHours();
@@ -69,13 +73,6 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
     listOrgInvoices(user.organizationId),
   ]);
 
-  // Better Stack call can fail without breaking the dashboard.
-  let monitors: Monitor[] = [];
-  try {
-    monitors = await listMonitors();
-  } catch {
-    monitors = [];
-  }
   const monitorStatusLabels: Record<Monitor["status"], string> = {
     up: tStatus("labelOperational"),
     down: tStatus("labelDown"),
@@ -186,13 +183,14 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
           delta={t("dashboard.seoDelta")}
           viewLabel={t("dashboard.viewAll")}
         />
-        <MonitoringCard
-          monitors={monitors}
-          title={t("dashboard.monitoringTitle")}
-          empty={t("dashboard.monitoringEmpty")}
-          viewLabel={t("dashboard.viewAll")}
-          statusLabels={monitorStatusLabels}
-        />
+        <Suspense fallback={<MonitoringCardSkeleton title={t("dashboard.monitoringTitle")} />}>
+          <MonitoringCardAsync
+            title={t("dashboard.monitoringTitle")}
+            empty={t("dashboard.monitoringEmpty")}
+            viewLabel={t("dashboard.viewAll")}
+            statusLabels={monitorStatusLabels}
+          />
+        </Suspense>
       </div>
 
       <RecentInvoices
