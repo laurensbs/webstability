@@ -1210,7 +1210,17 @@
       "projects": "Proyectos",
       "noProjects": "Sin proyectos.",
       "saveProject": "Guardar",
-      "progress": "Progreso"
+      "progress": "Progreso",
+      "hoursLog": "Registrar horas",
+      "hoursMinutes": "Minutos",
+      "hoursDescription": "Qué se ha hecho",
+      "hoursDescPlaceholder": "Ej. 'Actualización seguridad Q2', 'Meta-titles SEO ajustados'",
+      "hoursWorkedOn": "Fecha",
+      "hoursProject": "Proyecto (opcional)",
+      "hoursNoProject": "— sin proyecto —",
+      "hoursSubmit": "Registrar",
+      "hoursRecent": "Registrados recientemente",
+      "hoursNone": "Aún no hay horas este mes."
     },
     "tickets": {
       "title": "Tickets abiertos — todos los clientes",

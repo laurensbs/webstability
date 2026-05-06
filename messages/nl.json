@@ -1215,7 +1215,17 @@
       "projects": "Projecten",
       "noProjects": "Geen projecten.",
       "saveProject": "Opslaan",
-      "progress": "Voortgang"
+      "progress": "Voortgang",
+      "hoursLog": "Uren loggen",
+      "hoursMinutes": "Minuten",
+      "hoursDescription": "Wat is er gedaan",
+      "hoursDescPlaceholder": "Bijv. 'Security update Q2', 'SEO meta-titles aangepast'",
+      "hoursWorkedOn": "Datum",
+      "hoursProject": "Project (optioneel)",
+      "hoursNoProject": "— geen project —",
+      "hoursSubmit": "Log uren",
+      "hoursRecent": "Recent gelogd",
+      "hoursNone": "Nog geen uren deze maand."
     },
     "tickets": {
       "title": "Open tickets — alle klanten",

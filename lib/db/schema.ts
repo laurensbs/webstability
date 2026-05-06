@@ -337,6 +337,41 @@ export const seoReports = pgTable("seo_reports", {
     .default(sql`now()`),
 });
 
+// --- hours_logged --------------------------------------------------------
+//
+// Per-org log van werk-uren dat staff heeft besteed in een specifieke
+// kalendermaand. Een Care-klant heeft 1u/m budget, Studio 3u, Atelier
+// 8u. We schrijven elke werk-sessie weg als een rij; het portal-widget
+// somt op naar "X van Y uur gebruikt deze maand". Geen extra tabel
+// voor budgets nodig — die volgt uit de organisations.plan kolom +
+// een hardcoded mapping in lib.
+export const hoursLogged = pgTable(
+  "hours_logged",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    /** ISO-datum (YYYY-MM-DD) waarop het werk is gedaan. */
+    workedOn: timestamp("worked_on", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+    /** Tijdsinvestering in minuten — schaalt netter dan kwartieren. */
+    minutes: integer("minutes").notNull(),
+    /** Korte omschrijving die de klant ook ziet ('Security update Q2',
+     * 'SEO meta-titles aangepast', 'Boekingsformulier gefixt'). */
+    description: text("description").notNull(),
+    /** Welk project (optioneel) — kan leeg blijven voor algemeen werk. */
+    projectId: uuid("project_id").references(() => projects.id, { onDelete: "set null" }),
+    /** Wie het uur logde — de staff member. */
+    loggedBy: text("logged_by").references(() => users.id, { onDelete: "set null" }),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [index("hours_org_worked_idx").on(t.organizationId, t.workedOn)],
+);
+
 // --- audit_log -----------------------------------------------------------
 
 export const auditLog = pgTable(
@@ -401,4 +436,13 @@ export const ticketsRelations = relations(tickets, ({ one, many }) => ({
 export const ticketRepliesRelations = relations(ticketReplies, ({ one }) => ({
   ticket: one(tickets, { fields: [ticketReplies.ticketId], references: [tickets.id] }),
   user: one(users, { fields: [ticketReplies.userId], references: [users.id] }),
+}));
+
+export const hoursLoggedRelations = relations(hoursLogged, ({ one }) => ({
+  organization: one(organizations, {
+    fields: [hoursLogged.organizationId],
+    references: [organizations.id],
+  }),
+  project: one(projects, { fields: [hoursLogged.projectId], references: [projects.id] }),
+  loggedByUser: one(users, { fields: [hoursLogged.loggedBy], references: [users.id] }),
 }));

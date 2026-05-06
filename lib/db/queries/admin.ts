@@ -1,6 +1,6 @@
-import { eq, desc, count, sql } from "drizzle-orm";
+import { eq, and, desc, count, sql, gte, lt } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { organizations, projects, tickets, invoices, users } from "@/lib/db/schema";
+import { organizations, projects, tickets, invoices, users, hoursLogged } from "@/lib/db/schema";
 
 export async function listAllOrgs() {
   // Aggregate counts per org so the index page is one query.
@@ -101,6 +101,47 @@ export async function getRecentAdminActivity(limit = 8) {
 
   events.sort((a, b) => b.at.getTime() - a.at.getTime());
   return events.slice(0, limit);
+}
+
+/**
+ * Hours-this-month voor één organisatie + de laatste 10 entries. De
+ * admin org-detail pagina gebruikt dit om staff te laten zien hoeveel
+ * uren er al gelogd zijn voordat ze nieuwe loggen.
+ */
+export async function getOrgHoursThisMonth(orgId: string) {
+  const now = new Date();
+  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const startOfNextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+
+  const [totalRow] = await db
+    .select({ minutes: sql<number>`coalesce(sum(${hoursLogged.minutes}), 0)` })
+    .from(hoursLogged)
+    .where(
+      and(
+        eq(hoursLogged.organizationId, orgId),
+        gte(hoursLogged.workedOn, startOfMonth),
+        lt(hoursLogged.workedOn, startOfNextMonth),
+      ),
+    );
+
+  const recent = await db.query.hoursLogged.findMany({
+    where: and(
+      eq(hoursLogged.organizationId, orgId),
+      gte(hoursLogged.workedOn, startOfMonth),
+      lt(hoursLogged.workedOn, startOfNextMonth),
+    ),
+    orderBy: [desc(hoursLogged.workedOn)],
+    limit: 10,
+    with: {
+      project: { columns: { id: true, name: true } },
+      loggedByUser: { columns: { id: true, name: true, email: true } },
+    },
+  });
+
+  return {
+    minutesUsed: Number(totalRow?.minutes ?? 0),
+    recent,
+  };
 }
 
 export async function getStudioStats() {

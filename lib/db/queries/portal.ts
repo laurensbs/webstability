@@ -1,6 +1,6 @@
-import { eq, and, asc, desc, count } from "drizzle-orm";
+import { eq, and, asc, desc, count, gte, lt, sum } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { users, projects, tickets, invoices, files } from "@/lib/db/schema";
+import { users, projects, tickets, invoices, files, hoursLogged } from "@/lib/db/schema";
 
 export async function listOrgMembers(orgId: string) {
   return db.query.users.findMany({
@@ -100,4 +100,41 @@ export async function listOrgInvoices(orgId: string) {
     where: eq(invoices.organizationId, orgId),
     orderBy: [desc(invoices.createdAt)],
   });
+}
+
+/**
+ * Sommatie + recent log van uren-werk in de huidige kalendermaand.
+ * Gebruikt door de hours-widget op het portal-dashboard.
+ */
+export async function getOrgHoursThisMonth(orgId: string) {
+  const now = new Date();
+  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const startOfNextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+
+  const [totalRow] = await db
+    .select({ minutes: sum(hoursLogged.minutes) })
+    .from(hoursLogged)
+    .where(
+      and(
+        eq(hoursLogged.organizationId, orgId),
+        gte(hoursLogged.workedOn, startOfMonth),
+        lt(hoursLogged.workedOn, startOfNextMonth),
+      ),
+    );
+
+  const recent = await db.query.hoursLogged.findMany({
+    where: and(
+      eq(hoursLogged.organizationId, orgId),
+      gte(hoursLogged.workedOn, startOfMonth),
+      lt(hoursLogged.workedOn, startOfNextMonth),
+    ),
+    orderBy: [desc(hoursLogged.workedOn)],
+    limit: 5,
+  });
+
+  return {
+    minutesUsed: Number(totalRow?.minutes ?? 0),
+    recent,
+    monthStart: startOfMonth,
+  };
 }

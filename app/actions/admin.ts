@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { users, projects, tickets } from "@/lib/db/schema";
+import { users, projects, tickets, hoursLogged } from "@/lib/db/schema";
 import type { ActionResult } from "@/lib/action-result";
 
 async function requireStaff() {
@@ -77,5 +77,46 @@ export async function updateTicketStatus(
 
   revalidatePath(`/admin/tickets`);
   revalidatePath(`/portal/tickets/${ticketId}`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/**
+ * Log uren voor een organisatie. Aangeroepen door staff vanuit de
+ * admin org-detail pagina. minutes is het aantal minuten besteed,
+ * description komt mee als changelog-regel die de klant ook ziet.
+ */
+export async function logHours(
+  organizationId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch {
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  const minutes = Number(formData.get("minutes") ?? 0);
+  const description = String(formData.get("description") ?? "").trim();
+  const projectIdRaw = String(formData.get("projectId") ?? "").trim();
+  const workedOnRaw = String(formData.get("workedOn") ?? "").trim();
+
+  if (!Number.isFinite(minutes) || minutes <= 0 || minutes > 8 * 60) {
+    return { ok: false, messageKey: "missing_fields" };
+  }
+  if (!description) return { ok: false, messageKey: "missing_fields" };
+
+  await db.insert(hoursLogged).values({
+    organizationId,
+    minutes: Math.round(minutes),
+    description,
+    projectId: projectIdRaw || null,
+    loggedBy: userId,
+    workedOn: workedOnRaw ? new Date(workedOnRaw) : new Date(),
+  });
+
+  revalidatePath(`/admin/orgs/${organizationId}`);
+  revalidatePath(`/portal/dashboard`);
   return { ok: true, messageKey: "saved" };
 }
