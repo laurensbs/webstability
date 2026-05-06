@@ -921,6 +921,19 @@
       "resend": "Reenviar",
       "panelTitle": "Un solo lugar para *todo tu sistema*.",
       "panelLede": "Proyectos, facturas, tickets y estado del site — accesible cuando quieras."
+    },
+    "adminLogin": {
+      "title": "Studio *admin*.",
+      "eyebrow": "staff only",
+      "subtitle": "Inicia sesión para gestionar el back-end del estudio.",
+      "panelTitle": "Un solo lugar para *todo el estudio*.",
+      "panelLede": "Clientes, proyectos, facturas y tickets — todo en una interfaz tranquila.",
+      "panelBullets": [
+        "Todas las organizaciones de un vistazo",
+        "Encaminar y resolver tickets",
+        "Generar y enviar facturas",
+        "Monitorización de status en un sitio"
+      ]
     }
   },
   "admin": {

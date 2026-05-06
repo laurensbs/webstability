@@ -926,6 +926,19 @@
       "resend": "Stuur opnieuw",
       "panelTitle": "Eén plek voor je *hele systeem*.",
       "panelLede": "Projecten, facturen, tickets en site-status — direct in te zien wanneer jij dat wil."
+    },
+    "adminLogin": {
+      "title": "Studio *admin*.",
+      "eyebrow": "staff only",
+      "subtitle": "Log in om de studio-back-end te beheren.",
+      "panelTitle": "Eén plek voor je *hele studio*.",
+      "panelLede": "Klanten, projecten, facturen en tickets — alles in één rustige interface.",
+      "panelBullets": [
+        "Alle organisaties op één rij",
+        "Tickets routeren en afhandelen",
+        "Facturen genereren en versturen",
+        "Site-status overal monitoren"
+      ]
     }
   },
   "admin": {

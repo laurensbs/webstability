@@ -37,20 +37,25 @@ export default async function AdminLayout({
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-(--color-border) bg-(--color-bg)/80 backdrop-blur-sm">
+      <header className="border-b border-(--color-text)/15 bg-(--color-text) text-(--color-bg)">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
-          <Link href="/" className="text-lg font-extrabold tracking-tight">
-            webstability<span className="text-(--color-accent)">.</span>{" "}
-            <span className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
-              admin
+          <Link
+            href="/"
+            className="flex items-baseline gap-3 text-lg font-extrabold tracking-tight text-(--color-bg)"
+          >
+            <span>
+              webstability<span className="text-(--color-accent)">.</span>
+            </span>
+            <span className="font-mono text-[10px] tracking-widest text-(--color-bg)/55 uppercase">
+              Eén plek voor je
             </span>
           </Link>
           <div className="flex items-center gap-4">
-            <p className="hidden font-mono text-xs text-(--color-muted) md:block">{me.email}</p>
+            <p className="hidden font-mono text-xs text-(--color-bg)/55 md:block">{me.email}</p>
             <LangSwitcher />
             <Link
               href="/portal/dashboard"
-              className="font-mono text-xs tracking-widest text-(--color-muted) uppercase hover:text-(--color-accent)"
+              className="font-mono text-xs tracking-widest text-(--color-bg)/65 uppercase hover:text-(--color-accent)"
             >
               ↗ portal
             </Link>
