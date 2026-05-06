@@ -51,9 +51,14 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
 
         <Link
           href="/"
-          className="relative z-10 inline-block text-[20px] font-extrabold tracking-[-0.045em] text-(--color-bg)"
+          className="relative z-10 inline-flex items-baseline gap-3 text-[20px] font-extrabold tracking-[-0.045em] text-(--color-bg)"
         >
-          webstability<span className="text-(--color-accent)">.</span>
+          <span>
+            webstability<span className="text-(--color-accent)">.</span>
+          </span>
+          <span className="font-mono text-[10px] font-normal tracking-widest text-(--color-bg)/55 uppercase">
+            Eén plek voor je
+          </span>
         </Link>
 
         <div className="relative z-10 max-w-md space-y-8">
@@ -79,11 +84,18 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
         </p>
       </section>
 
-      {/* RIGHT — login form */}
-      <section className="dotted-bg relative flex flex-col justify-between bg-(--color-bg) p-8 md:p-12">
+      {/* RIGHT — login form. On admin host the panel goes dark too so
+          'webstability.' + tagline read white-on-text everywhere. */}
+      <section
+        className={`relative flex flex-col justify-between p-8 md:p-12 ${
+          isAdminHost
+            ? "bg-(--color-text) text-(--color-bg)"
+            : "dotted-bg bg-(--color-bg) text-(--color-text)"
+        }`}
+      >
         <header className="flex items-center justify-between">
           {isAdminHost ? (
-            <p className="font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+            <p className="font-mono text-[11px] tracking-widest text-(--color-bg)/55 uppercase">
               admin.webstability.eu
             </p>
           ) : (
@@ -98,18 +110,28 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
         </header>
 
         <div className="mx-auto w-full max-w-sm py-12">
-          <p className="font-mono text-xs tracking-widest text-(--color-accent) uppercase">
+          <p
+            className={`font-mono text-xs tracking-widest uppercase ${
+              isAdminHost ? "text-(--color-accent)" : "text-(--color-accent)"
+            }`}
+          >
             {"// "}
             {t("eyebrow")}
           </p>
           <h1 className="mt-4 text-4xl md:text-5xl">{<MarkupText>{t("title")}</MarkupText>}</h1>
-          <p className="mt-3 text-(--color-muted)">{t("subtitle")}</p>
+          <p className={`mt-3 ${isAdminHost ? "text-(--color-bg)/70" : "text-(--color-muted)"}`}>
+            {t("subtitle")}
+          </p>
           <div className="mt-8">
-            <LoginForm />
+            <LoginForm variant={isAdminHost ? "dark" : "light"} />
           </div>
         </div>
 
-        <footer className="flex items-center justify-between font-mono text-xs tracking-widest text-(--color-muted) uppercase">
+        <footer
+          className={`flex items-center justify-between font-mono text-xs tracking-widest uppercase ${
+            isAdminHost ? "text-(--color-bg)/55" : "text-(--color-muted)"
+          }`}
+        >
           <span>© {year} Webstability</span>
           <span className="inline-flex items-center gap-2">
             <span className="relative flex h-1.5 w-1.5">

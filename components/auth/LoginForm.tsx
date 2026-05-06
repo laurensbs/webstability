@@ -5,11 +5,12 @@ import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { signInAction } from "@/app/actions/auth";
 
-export function LoginForm() {
+export function LoginForm({ variant = "light" }: { variant?: "light" | "dark" }) {
   const t = useTranslations("auth.login");
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
+  const dark = variant === "dark";
 
   return (
     <form
@@ -33,7 +34,11 @@ export function LoginForm() {
       className="space-y-4"
     >
       <label className="block">
-        <span className="text-sm font-medium text-(--color-text)">{t("emailLabel")}</span>
+        <span
+          className={`text-sm font-medium ${dark ? "text-(--color-bg)" : "text-(--color-text)"}`}
+        >
+          {t("emailLabel")}
+        </span>
         <input
           type="email"
           required
@@ -48,7 +53,9 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={pending}
-        className="flex w-full items-center justify-center gap-2 rounded-md bg-(--color-text) px-4 py-2.5 font-medium text-(--color-bg) transition-opacity hover:opacity-90 disabled:opacity-60"
+        className={`flex w-full items-center justify-center gap-2 rounded-md px-4 py-2.5 font-medium transition-opacity hover:opacity-90 disabled:opacity-60 ${
+          dark ? "bg-(--color-accent) text-white" : "bg-(--color-text) text-(--color-bg)"
+        }`}
       >
         {pending ? (
           <>
