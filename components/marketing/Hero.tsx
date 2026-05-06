@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
-import { AvailabilityPill } from "@/components/animate/AvailabilityPill";
+import { RotatingPill } from "@/components/animate/RotatingPill";
 import { FlashCounter } from "@/components/animate/FlashCounter";
 import { MagneticButton } from "@/components/animate/MagneticButton";
 import { RotatingWords } from "@/components/animate/RotatingWords";
@@ -13,6 +13,7 @@ export async function Hero() {
   const tHero = await getTranslations("home.hero");
   const tRaw = await getTranslations();
   const rotatingWords = tRaw.raw("home.hero.rotatingWords") as string[];
+  const eyebrowMessages = tRaw.raw("home.hero.eyebrowMessages") as string[];
   const startYear = 2016;
   const yearsExp = new Date().getFullYear() - startYear;
 
@@ -23,6 +24,7 @@ export async function Hero() {
     | { plain: string; label: string }
   > = [
     { value: yearsExp, suffix: "+", label: tHero("metaYearsLabel") },
+    { value: 47, label: tHero("metaSubsLabel") },
     { value: 99.98, suffix: "%", decimals: 2, label: tHero("metaUptimeLabel") },
     { plain: tHero("metaRegionValue"), label: tHero("metaRegionLabel") },
   ];
@@ -39,7 +41,7 @@ export async function Hero() {
       />
       <div className="relative mx-auto max-w-6xl">
         {/* Availability pill — spring-scale entry, green dot ring */}
-        <AvailabilityPill href="/contact">{tHero("availability")}</AvailabilityPill>
+        <RotatingPill href="/contact" messages={eyebrowMessages} />
 
         <AnimatedHeading
           as="h1"

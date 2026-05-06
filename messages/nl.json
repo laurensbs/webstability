@@ -43,8 +43,14 @@
       "since": "sinds",
       "live": "live nu",
       "availability": "Beschikbaar voor 2 nieuwe projecten — mei 2026",
+      "eyebrowMessages": [
+        "Beschikbaar voor 2 nieuwe projecten — mei 2026",
+        "Vanaf €69/m · eerste maand gratis",
+        "Een dev-partner zonder offerte-gedoe"
+      ],
       "metaYearsLabel": "jaar ervaring",
       "metaUptimeLabel": "uptime · 30d",
+      "metaSubsLabel": "live abonnementen",
       "metaRegionLabel": "werkgebied",
       "metaRegionValue": "NL · ES",
       "taglinePrefix": "Eén stack voor",
@@ -55,7 +61,7 @@
         "boekingsplatformen",
         "webshops"
       ],
-      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem. Vanuit Costa Brava, voor ondernemers in Nederland en Spanje."
+      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem. Doorlopend abonnement vanaf €69 per maand. Vanuit Costa Brava, voor ondernemers in Nederland en Spanje."
     },
 
     "logoStrip": {
@@ -98,28 +104,28 @@
 
     "services": {
       "eyebrow": "diensten",
-      "title": "Drie dingen, goed gedaan.",
-      "lede": "Geen bureau-aanbod van twintig services. Drie kerngebieden waarin ik mijn werk durf te garanderen.",
+      "title": "Eén abonnement. *Drie* niveaus van betrokkenheid.",
+      "lede": "Geen losse projecten — we worden je vaste dev-partner. Hoeveel betrokkenheid je wil, kies je per maand. Tussendoor opzeggen of upgraden mag altijd.",
       "items": {
         "admin": {
-          "title": "Maatwerk systemen",
-          "body": "Onze hoofdspecialiteit. Verhuur, planning, reparaties, voorraad, klantcommunicatie — wij bouwen de admin die jouw bedrijf laat draaien zonder Excel-puzzels of zes losse tools.",
+          "title": "Maatwerk bedrijfssoftware",
+          "body": "Onze hoofdspecialiteit. Verhuurplatformen, reparatieportalen, boekingssystemen, voorraadbeheer, klantportalen. We bouwen ze als doorlopend project dat je via je abonnement betaalt — geen schok vooraf. Doorlooptijd: 4-8 maanden via Build Custom add-on.",
           "bullets": [
             "Verhuur- & boekingsplatformen",
             "Reparatie- & service-portalen",
             "Voorraad & operations dashboards",
-            "Koppelingen met Stripe, Mollie, e-Boekhouden, Holded",
+            "Koppelingen met Mollie, Stripe, e-Boekhouden, Holded",
             "Multi-user, multi-locatie, multi-taal"
           ],
-          "cta": "Bekijk verhuur-aanpak"
+          "cta": "Voor verhuurbedrijven →"
         },
         "websites": {
           "title": "Websites & webshops",
-          "body": "Snel, meertalig, in een dag te beheren. Geen sjablonen, wel jouw merk."
+          "body": "Snelle, meertalige sites met of zonder geïntegreerd admin paneel. Bouwen via Build Light of Standard, daarna onderhoud via Care of Studio. Doorlooptijd: 2-5 maanden."
         },
         "webshops": {
           "title": "SEO & care",
-          "body": "Lokale SEO in twee landen, plus maandelijks onderhoud, security en monitoring."
+          "body": "Bestaande site stabiel houden + lokaal vindbaar maken in NL en ES. Direct in te stappen vanaf Care (€69/m), klaar binnen een week."
         }
       }
     },

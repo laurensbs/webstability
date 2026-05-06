@@ -43,8 +43,14 @@
       "since": "desde",
       "live": "en línea",
       "availability": "Disponible para 2 nuevos proyectos — mayo 2026",
+      "eyebrowMessages": [
+        "Disponible para 2 nuevos proyectos — mayo 2026",
+        "Desde 69 €/m · primer mes gratis",
+        "Un dev-partner sin presupuestos"
+      ],
       "metaYearsLabel": "años de experiencia",
       "metaUptimeLabel": "uptime · 30d",
+      "metaSubsLabel": "suscripciones activas",
       "metaRegionLabel": "zona de trabajo",
       "metaRegionValue": "NL · ES",
       "taglinePrefix": "Una stack para",
@@ -55,7 +61,7 @@
         "plataformas de reservas",
         "tiendas online"
       ],
-      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado. Desde Costa Brava, para empresarios en Países Bajos y España."
+      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado. Suscripción continua desde 69 € al mes. Desde Costa Brava, para empresarios en Países Bajos y España."
     },
 
     "logoStrip": {
@@ -98,28 +104,28 @@
 
     "services": {
       "eyebrow": "servicios",
-      "title": "Tres cosas, bien hechas.",
-      "lede": "Sin catálogo de agencia con veinte servicios. Tres áreas en las que me atrevo a garantizar mi trabajo.",
+      "title": "Una suscripción. *Tres* niveles de implicación.",
+      "lede": "Sin proyectos sueltos — nos convertimos en tu dev-partner fijo. Cuánta implicación quieres, lo eliges cada mes. Cancelar o subir entre medias siempre se puede.",
       "items": {
         "admin": {
-          "title": "Sistemas a medida",
-          "body": "Nuestra especialidad. Alquiler, planificación, reparaciones, inventario, comunicación con clientes — construimos el admin que hace funcionar tu empresa sin puzzles de Excel ni seis herramientas sueltas.",
+          "title": "Software empresarial a medida",
+          "body": "Nuestra especialidad. Plataformas de alquiler, portales de reparación, sistemas de reserva, gestión de inventario, portales de cliente. Los construimos como proyecto continuo que pagas vía tu suscripción — sin sorpresa al inicio. Duración: 4-8 meses con add-on Build Custom.",
           "bullets": [
             "Plataformas de alquiler y reservas",
             "Portales de reparación y servicio",
             "Dashboards de inventario y operaciones",
-            "Integraciones con Stripe, Mollie, e-Boekhouden, Holded",
+            "Integraciones con Mollie, Stripe, e-Boekhouden, Holded",
             "Multi-usuario, multi-ubicación, multi-idioma"
           ],
-          "cta": "Ver enfoque para alquiler"
+          "cta": "Para empresas de alquiler →"
         },
         "websites": {
           "title": "Webs y tiendas online",
-          "body": "Rápidas, multilingües, manejables en un día. Sin plantillas, sí tu marca."
+          "body": "Webs rápidas, multilingües, con o sin panel de admin integrado. Construir vía Build Light o Standard, después mantenimiento vía Care o Studio. Duración: 2-5 meses."
         },
         "webshops": {
           "title": "SEO y care",
-          "body": "SEO local en dos países, más mantenimiento mensual, seguridad y monitorización."
+          "body": "Mantén estable tu web existente + hazla visible localmente en NL y ES. Empezar directamente desde Care (69 €/m), listo en una semana."
         }
       }
     },
