@@ -16,6 +16,7 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:seed": "tsx --env-file=.env.local lib/db/seed.ts",
+    "db:promote-staff": "tsx --env-file=.env.local scripts/promote-staff.ts",
     "prepare": "husky"
   },
   "dependencies": {
