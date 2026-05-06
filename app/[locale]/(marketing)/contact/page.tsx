@@ -36,7 +36,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <section className="relative overflow-hidden px-6 pt-20 pb-12 md:pt-28">
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-40 -right-40 h-[420px] w-[420px] rounded-full bg-(--color-accent-soft) opacity-50 blur-3xl"
+          className="wb-soft-halo pointer-events-none absolute -top-40 -right-40 h-[420px] w-[420px] rounded-full bg-(--color-accent-soft) opacity-50 blur-3xl"
         />
         <div className="relative mx-auto max-w-6xl space-y-6">
           <span className="inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3 py-1 font-mono text-xs tracking-wide text-(--color-muted)">

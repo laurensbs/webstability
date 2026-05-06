@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <article className="relative overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-8 md:p-12">
             <div
               aria-hidden
-              className="pointer-events-none absolute -top-20 -right-20 h-60 w-60 rounded-full bg-(--color-accent-soft) opacity-50 blur-3xl"
+              className="wb-soft-halo pointer-events-none absolute -top-20 -right-20 h-60 w-60 rounded-full bg-(--color-accent-soft) opacity-50 blur-3xl"
             />
             <div className="relative flex items-start gap-5">
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-md border border-(--color-border) bg-(--color-bg-warm) text-(--color-accent)">
@@ -78,7 +78,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   <article className="group relative h-full overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-7 transition-shadow duration-300 hover:shadow-[0_12px_32px_-16px_rgba(31,27,22,0.16)]">
                     <div
                       aria-hidden
-                      className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-(--color-accent-soft) opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
+                      className="wb-soft-halo pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-(--color-accent-soft) opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
                     />
                     <div className="relative">
                       <span className="inline-flex h-12 w-12 items-center justify-center rounded-md border border-(--color-border) bg-(--color-bg-warm) text-(--color-accent) transition-colors duration-300 group-hover:border-(--color-accent) group-hover:bg-(--color-accent-soft)">

@@ -42,7 +42,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <section className="relative overflow-hidden px-6 pt-20 pb-24 md:pt-28 md:pb-32">
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-40 -right-40 h-[520px] w-[520px] rounded-full bg-(--color-accent-soft) opacity-50 blur-3xl"
+          className="wb-soft-halo pointer-events-none absolute -top-40 -right-40 h-[520px] w-[520px] rounded-full bg-(--color-accent-soft) opacity-50 blur-3xl"
         />
         <div className="relative mx-auto grid max-w-5xl gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <RevealOnScroll>

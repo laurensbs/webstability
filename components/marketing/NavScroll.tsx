@@ -8,11 +8,26 @@ import * as React from "react";
  * state without re-implementing the full nav inside a client component.
  */
 export function NavScroll({ children }: { children: React.ReactNode }) {
-  const [scrolled, setScrolled] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.scrollY > 12;
+  });
 
   React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
+    let ticking = false;
+    let lastValue = window.scrollY > 12;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const next = window.scrollY > 12;
+        if (next !== lastValue) {
+          lastValue = next;
+          setScrolled(next);
+        }
+        ticking = false;
+      });
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);

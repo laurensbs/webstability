@@ -32,7 +32,7 @@ export async function Hero() {
       {/* Soft accent blob — top right, decorative */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-[10%] -right-[10%] h-[500px] w-[500px] rounded-full opacity-70 blur-[40px]"
+        className="wb-soft-halo pointer-events-none absolute -top-[10%] -right-[10%] h-[500px] w-[500px] rounded-full opacity-70 blur-[40px]"
         style={{
           background: "radial-gradient(circle, var(--color-accent-soft) 0%, transparent 65%)",
         }}

@@ -14,7 +14,7 @@ export async function CTABlock() {
       {/* Ambient terracotta blob */}
       <div
         aria-hidden
-        className="pointer-events-none absolute top-1/2 left-1/2 h-[420px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-[80px]"
+        className="wb-soft-halo pointer-events-none absolute top-1/2 left-1/2 h-[420px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-[80px]"
         style={{
           background: "radial-gradient(circle, var(--color-accent-soft) 0%, transparent 65%)",
         }}

@@ -106,7 +106,7 @@ function FeaturedCard({
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-32 -right-32 h-80 w-80 rounded-full bg-(--color-accent-soft) opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-70"
+        className="wb-soft-halo pointer-events-none absolute -top-32 -right-32 h-80 w-80 rounded-full bg-(--color-accent-soft) opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-70"
       />
       <div className="relative grid gap-8 md:grid-cols-[auto_1fr] md:items-end">
         <div className="space-y-4">

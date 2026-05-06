@@ -26,11 +26,11 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
         {/* Ambient blobs */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-40 -left-32 h-[420px] w-[420px] rounded-full bg-(--color-accent) opacity-40 blur-3xl"
+          className="wb-soft-halo pointer-events-none absolute -top-40 -left-32 h-[420px] w-[420px] rounded-full bg-(--color-accent) opacity-40 blur-3xl"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-32 -bottom-40 h-[420px] w-[420px] rounded-full bg-(--color-teal) opacity-50 blur-3xl"
+          className="wb-soft-halo pointer-events-none absolute -right-32 -bottom-40 h-[420px] w-[420px] rounded-full bg-(--color-teal) opacity-50 blur-3xl"
         />
 
         {/* 3D distorted blob — sits over the static blobs at low opacity

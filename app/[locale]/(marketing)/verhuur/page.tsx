@@ -59,7 +59,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <header className="relative overflow-hidden px-6 pt-20 pb-[100px]">
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-[10%] -right-[10%] h-[500px] w-[500px] rounded-full opacity-70 blur-[40px]"
+          className="wb-soft-halo pointer-events-none absolute -top-[10%] -right-[10%] h-[500px] w-[500px] rounded-full opacity-70 blur-[40px]"
           style={{
             background: "radial-gradient(circle, var(--color-accent-soft) 0%, transparent 65%)",
           }}
@@ -318,7 +318,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       >
         <div
           aria-hidden
-          className="pointer-events-none absolute top-1/2 left-1/2 h-[420px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-[80px]"
+          className="wb-soft-halo pointer-events-none absolute top-1/2 left-1/2 h-[420px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-[80px]"
           style={{
             background: "radial-gradient(circle, var(--color-accent-soft) 0%, transparent 65%)",
           }}
