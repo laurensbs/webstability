@@ -24,7 +24,7 @@ export async function Footer() {
   ] as const;
 
   return (
-    <footer className="mt-auto border-t border-(--color-border) bg-(--color-bg-warm)">
+    <footer className="relative z-[1] mt-auto border-t border-(--color-border) bg-(--color-bg-warm)">
       <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}

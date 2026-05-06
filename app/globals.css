@@ -82,6 +82,24 @@
   }
 }
 
+/* On marketing routes, drop the body's solid cream so the WebGL shader
+   behind <main> is visible. Without `.is-marketing`, body keeps its
+   cream bg (portal / admin) so nothing depends on the shader running. */
+body.is-marketing {
+  background-color: transparent;
+}
+body.is-marketing.dotted-bg {
+  /* The dotted-bg utility paints onto the body. When the body is
+     transparent we lose the texture, so re-apply it to #main. */
+  background-image: none;
+}
+body.is-marketing #main {
+  background-image: radial-gradient(circle, rgba(31, 27, 22, 0.018) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
+  background-position: 0 0;
+}
+
 /* Lenis smooth scroll — required defaults for the wheel-driven scroller. */
 html.lenis,
 html.lenis body {
