@@ -79,7 +79,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             <p className="text-(--color-muted)">{t("productLines.lede")}</p>
           </RevealOnScroll>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {productLines.map((item, i) => (
               <RevealOnScroll
                 key={item.anchor}

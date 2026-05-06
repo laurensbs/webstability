@@ -692,7 +692,7 @@
     "productLines": {
       "eyebrow": "platforms die we zelf draaien",
       "title": "Productlijnen",
-      "lede": "Twee platforms die we zelf in de lucht houden voor de Spaanse markt. Andere bedrijven krijgen dezelfde basis als startpunt en passen we in 4-6 maanden aan op hun bedrijf.",
+      "lede": "Drie platforms die we zelf in de lucht houden voor de Spaanse markt. Andere bedrijven krijgen dezelfde basis als startpunt en passen we in 4-6 maanden aan op hun bedrijf.",
       "items": [
         {
           "anchor": "caravanverhuurspanje",
@@ -714,6 +714,17 @@
           "what": "Klanten melden hun reparatie online. De order belandt direct op iPads in de werkplaats — geen losse papiertjes meer, monteurs zien wat er aan welk voertuig moet gebeuren en updaten de status terwijl ze werken.",
           "for": "Garages, werkplaatsen en onderhoudsbedrijven met een team op de vloer.",
           "stack": "Next.js · iPad-flow · Status-tracking · Notificaties",
+          "cta": "Bekijk live →"
+        },
+        {
+          "anchor": "caravanstallingspanje",
+          "name": "Caravanstallingspanje",
+          "url": "https://caravanstallingspanje.com",
+          "logoUrl": "https://u.cubeupload.com/laurensbs/IMG7081.png",
+          "tagline": "Stallingsplatform · live in Spanje",
+          "what": "Stallingsbeheer met klantlogin, plekken-overzicht, contracten en facturatie. Klanten zien live welke plek ze hebben en hun documenten; de eigenaar beheert capaciteit, betalingen en mutaties vanuit één paneel.",
+          "for": "Stallingen voor caravans, boten of opslag — overal waar plekken, contracten en jaarlijkse facturatie samenkomen.",
+          "stack": "Next.js · Postgres · Stripe/Mollie · Document-sign",
           "cta": "Bekijk live →"
         }
       ],

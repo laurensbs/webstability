@@ -687,7 +687,7 @@
     "productLines": {
       "eyebrow": "plataformas que operamos",
       "title": "Líneas de producto",
-      "lede": "Dos plataformas que mantenemos en marcha para el mercado español. Otras empresas reciben la misma base como punto de partida y la adaptamos a su negocio en 4-6 meses.",
+      "lede": "Tres plataformas que mantenemos en marcha para el mercado español. Otras empresas reciben la misma base como punto de partida y la adaptamos a su negocio en 4-6 meses.",
       "items": [
         {
           "anchor": "caravanverhuurspanje",
@@ -709,6 +709,17 @@
           "what": "Los clientes reportan su reparación online. La orden llega directa a iPads en el taller — sin papeles sueltos, los mecánicos ven qué hay que hacer en cada vehículo y actualizan el estado mientras trabajan.",
           "for": "Talleres y empresas de mantenimiento con equipo en planta.",
           "stack": "Next.js · Flujo iPad · Tracking de estado · Notificaciones",
+          "cta": "Ver en vivo →"
+        },
+        {
+          "anchor": "caravanstallingspanje",
+          "name": "Caravanstallingspanje",
+          "url": "https://caravanstallingspanje.com",
+          "logoUrl": "https://u.cubeupload.com/laurensbs/IMG7081.png",
+          "tagline": "Plataforma de almacenaje · activa en España",
+          "what": "Gestión de almacenaje con login de cliente, vista de plazas, contratos y facturación. Los clientes ven en vivo qué plaza tienen y sus documentos; el propietario gestiona capacidad, pagos y movimientos desde un solo panel.",
+          "for": "Almacenajes para caravanas, barcos o trasteros — donde plazas, contratos y facturación anual se juntan.",
+          "stack": "Next.js · Postgres · Stripe/Mollie · Firma digital",
           "cta": "Ver en vivo →"
         }
       ],
