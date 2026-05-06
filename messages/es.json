@@ -124,13 +124,13 @@
           "cta": "Saber más →"
         },
         "care": {
-          "title": "Mantenimiento de web existente",
-          "body": "Hosting, actualizaciones de seguridad, backups y monitorización — más 1 hora de cambios al mes. Para sitios que simplemente deben seguir estables.",
+          "title": "Mantener live tras lanzamiento",
+          "body": "Desde el día uno tras lanzamiento: hosting, seguridad, backups y monitorización — más 1 hora al mes para pequeños ajustes. Para tu site y tu panel.",
           "cta": "Ver Care →"
         },
         "growth": {
-          "title": "Crecimiento + visibilidad local",
-          "body": "Care más 3 horas de trabajo al mes para SEO en NL y ES, performance y desarrollo continuo. Para empresas que quieren crecer activamente online.",
+          "title": "Crecer y ser visible localmente",
+          "body": "Care más 3 horas al mes: SEO en NL y ES, ajustes de performance, y desarrollo continuo del panel. Para quien quiere ver crecer su nuevo site activamente.",
           "cta": "Ver Studio →"
         }
       }
@@ -620,13 +620,13 @@
       "care": {
         "anchor": "care",
         "eyebrow": "suscripción 01",
-        "title": "Mantenimiento de web existente",
-        "what": "Tu web está. Solo tiene que funcionar, mantenerse segura, y si hay que cambiar algo, estoy aquí. Sin proyectos, sin presupuestos — una cuota fija al mes.",
+        "title": "Mantener live tras lanzamiento",
+        "what": "Desde el día uno tras lanzamiento tu site y panel admin funcionan en Care. Hosting, seguridad, backups, monitorización — más 1 hora al mes para pequeños cambios. Sin presupuestos por proyecto — una cuota fija al mes.",
         "solvesTitle": "Qué resuelve",
         "solves": [
           "Sin perder el sueño preguntándote si tu web está actualizada",
           "Revisiones de seguridad semanales sin que tú lo monitorices",
-          "Un solo punto de contacto para cambios en lugar de perder al constructor",
+          "Un solo punto de contacto para cambios — nadie 'desaparece' tras lanzamiento",
           "Backups que realmente funcionan cuando hacen falta"
         ],
         "includesTitle": "Qué incluye",
@@ -641,7 +641,7 @@
         "packageTitle": "Cómo funciona en cuanto a paquete",
         "packageBody": "**Care · 69 €/m** continuo. Cancelable mensualmente, primer mes gratis, 15% de descuento con pago anual.",
         "exampleTitle": "Ejemplo",
-        "exampleBody": "Tomar una web WordPress o de marketing existente: 69 €/m. Sin sorpresas, sin facturas por horas extra.",
+        "exampleBody": "Un site + panel nuevo que construimos para ti, después live en Care: 69 €/m. Tomar una web existente también funciona — mismo nivel.",
         "ctaPrimary": "Empezar primer mes gratis",
         "ctaSecondary": "Ver detalle de Care →",
         "ctaSecondaryHref": "/precios"
@@ -649,8 +649,8 @@
       "growth": {
         "anchor": "growth",
         "eyebrow": "suscripción 02",
-        "title": "Crecimiento + visibilidad local",
-        "what": "Para empresas que quieren crecer activamente online. Care más 3 horas de trabajo al mes para SEO en dos países, trabajo de performance y desarrollo continuo. Más informe mensual para que veas qué aporta.",
+        "title": "Crecer y ser visible localmente",
+        "what": "Care más 3 horas al mes para trabajar activamente en tu site: SEO en NL y ES, ajustes de performance, y desarrollo continuo del panel. Más informe mensual para que veas qué aporta.",
         "solvesTitle": "Qué resuelve",
         "solves": [
           "Visibilidad local tanto en Países Bajos como en España",
@@ -761,16 +761,16 @@
     "title": "Un precio al mes. *Sin* presupuestos, sin sorpresas.",
     "lede": "Trabajamos solo por suscripción. Entrada baja, cancelable cuando quieras. Una cuota fija para mantenimiento, crecimiento y todo lo intermedio.",
     "care": {
-      "intro": "Tres niveles. Subir, bajar o parar entre medias está siempre permitido.",
+      "intro": "Tres niveles — para cada fase tras el lanzamiento. Subir, bajar o parar entre medias siempre se puede.",
       "items": [
         {
           "id": "care",
           "name": "Care",
-          "humanLabel": "para mantener estable",
+          "humanLabel": "live tras lanzamiento",
           "price": "69 €/mes",
           "monthly": 69,
           "annual": 59,
-          "body": "Para sitios existentes que simplemente deben seguir estables.",
+          "body": "La base desde el día uno tras lanzamiento — site y panel admin activos, seguros, con margen para pequeños ajustes.",
           "features": [
             "Hosting premium (NL/EU edge)",
             "SSL & backups diarios",
@@ -784,11 +784,11 @@
         {
           "id": "studio",
           "name": "Studio",
-          "humanLabel": "para crecer",
+          "humanLabel": "seguir creciendo",
           "price": "179 €/mes",
           "monthly": 179,
           "annual": 152,
-          "body": "Para empresas que quieren crecer activamente online.",
+          "body": "Trabajar activamente sobre tu nuevo site y panel — horas extra, SEO local, e informes mensuales que muestran qué aporta.",
           "features": [
             "Todo Care",
             "3 horas de cambios al mes",
@@ -802,11 +802,11 @@
         {
           "id": "atelier",
           "name": "Atelier",
-          "humanLabel": "dev-partner",
+          "humanLabel": "seguir construyendo",
           "price": "399 €/mes",
           "monthly": 399,
           "annual": 339,
-          "body": "Para quien opera software a medida y busca un dev-partner.",
+          "body": "Un dev-partner fijo que sigue construyendo tu site y panel admin mes a mes — features, integraciones, A/B tests.",
           "features": [
             "Todo Studio",
             "8 horas de cambios al mes",

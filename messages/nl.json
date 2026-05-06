@@ -124,13 +124,13 @@
           "cta": "Lees meer →"
         },
         "care": {
-          "title": "Bestaande site beheren",
-          "body": "Hosting, security updates, backups en monitoring — plus 1 uur wijzigingen per maand. Voor sites die gewoon stabiel moeten blijven.",
+          "title": "Live houden na livegang",
+          "body": "Vanaf dag één na livegang: hosting, security, backups en monitoring — plus 1 uur per maand om kleine dingen aan te passen. Voor je site én je paneel.",
           "cta": "Bekijk Care →"
         },
         "growth": {
-          "title": "Groei + lokaal vindbaar",
-          "body": "Care plus 3 uur werk per maand voor SEO in NL en ES, performance, en doorontwikkeling. Voor bedrijven die actief willen groeien online.",
+          "title": "Doorgroeien & vindbaar maken",
+          "body": "Care plus 3 uur werk per maand: SEO in NL en ES, performance-tuning, en kleine doorontwikkeling. Voor wie zijn nieuwe site actief wil zien groeien.",
           "cta": "Bekijk Studio →"
         }
       }
@@ -625,13 +625,13 @@
       "care": {
         "anchor": "care",
         "eyebrow": "abonnement 01",
-        "title": "Bestaande site beheren",
-        "what": "Je site staat er. Hij moet gewoon draaien, veilig blijven, en als er iets aangepast moet worden ben ik er. Geen project, geen offerte — een vast bedrag per maand.",
+        "title": "Live houden na livegang",
+        "what": "Vanaf dag één na livegang draait je nieuwe site én admin paneel op Care. Hosting, security, backups, monitoring — plus 1 uur per maand voor kleine aanpassingen. Geen project-prijs, geen offerte — één vast bedrag per maand.",
         "solvesTitle": "Wat het oplost",
         "solves": [
           "Geen wakker liggen of je site nog up-to-date is",
           "Wekelijkse security-checks zonder dat jij het hoeft te bewaken",
-          "Eén aanspreekpunt voor wijzigingen i.p.v. de bouwer kwijt",
+          "Eén aanspreekpunt voor wijzigingen — niemand kwijt na livegang",
           "Backups die ook echt werken als ze nodig zijn"
         ],
         "includesTitle": "Wat erbij zit",
@@ -646,7 +646,7 @@
         "packageTitle": "Hoe het werkt qua pakket",
         "packageBody": "**Care · €69/m** doorlopend. Maandelijks opzegbaar, eerste maand gratis, 15% korting bij jaarbetaling.",
         "exampleTitle": "Voorbeeld",
-        "exampleBody": "Een bestaande WordPress-site of marketing-website overnemen: €69/m. Geen verrassingen, geen meeruren-facturen.",
+        "exampleBody": "Een nieuwe site + paneel die we voor je bouwen, daarna live houden: €69/m. Of een bestaande site overnemen kan ook — zelfde tier.",
         "ctaPrimary": "Start eerste maand gratis",
         "ctaSecondary": "Bekijk Care-details →",
         "ctaSecondaryHref": "/prijzen"
@@ -654,8 +654,8 @@
       "growth": {
         "anchor": "growth",
         "eyebrow": "abonnement 02",
-        "title": "Groei + lokaal vindbaar",
-        "what": "Voor bedrijven die actief willen groeien online. Care plus 3 uur werk per maand voor SEO in twee landen, performance-werk en doorontwikkeling. Plus maandelijks rapport zodat je ziet wat het oplevert.",
+        "title": "Doorgroeien & vindbaar maken",
+        "what": "Care plus 3 uur per maand om actief aan je site te werken: SEO in NL en ES, performance-tuning, en doorontwikkeling van je paneel. Plus een maandrapport waarin je ziet wat het oplevert.",
         "solvesTitle": "Wat het oplost",
         "solves": [
           "Lokaal vindbaar in zowel Nederland als Spanje",
@@ -766,16 +766,16 @@
     "title": "Eén prijs per maand. *Geen* offertes, geen verrassingen.",
     "lede": "We werken alleen op abonnement. Lage instap, opzegbaar wanneer je wil. Een vaste maandprijs voor onderhoud, groei, en alles ertussen.",
     "care": {
-      "intro": "Drie tiers. Tussendoor upgraden of stoppen mag altijd.",
+      "intro": "Drie tiers — voor elke fase na livegang. Tussendoor upgraden of stoppen mag altijd.",
       "items": [
         {
           "id": "care",
           "name": "Care",
-          "humanLabel": "voor stabiel houden",
+          "humanLabel": "live houden",
           "price": "€69/maand",
           "monthly": 69,
           "annual": 59,
-          "body": "Voor bestaande sites die gewoon stabiel moeten blijven.",
+          "body": "De basis vanaf dag één na livegang — site én admin paneel actief, veilig, en met ruimte voor kleine aanpassingen.",
           "features": [
             "Premium hosting (NL/EU edge)",
             "SSL & dagelijkse backups",
@@ -789,11 +789,11 @@
         {
           "id": "studio",
           "name": "Studio",
-          "humanLabel": "voor groeien",
+          "humanLabel": "doorgroeien",
           "price": "€179/maand",
           "monthly": 179,
           "annual": 152,
-          "body": "Voor bedrijven die actief willen groeien online.",
+          "body": "Actief werken aan je nieuwe site én paneel — extra uren, lokale SEO, en maandelijks zien wat het oplevert.",
           "features": [
             "Alles van Care",
             "3 uur wijzigingen per maand",
@@ -807,11 +807,11 @@
         {
           "id": "atelier",
           "name": "Atelier",
-          "humanLabel": "dev-partner",
+          "humanLabel": "doorbouwen",
           "price": "€399/maand",
           "monthly": 399,
           "annual": 339,
-          "body": "Voor wie maatwerk software runt en een dev-partner zoekt.",
+          "body": "Een vaste dev-partner die je site én admin paneel maand na maand verder bouwt — features, integraties, A/B-tests.",
           "features": [
             "Alles van Studio",
             "8 uur wijzigingen per maand",
