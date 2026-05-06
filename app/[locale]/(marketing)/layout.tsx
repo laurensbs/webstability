@@ -5,7 +5,6 @@ import { routing } from "@/i18n/routing";
 import { Navigation } from "@/components/marketing/Navigation";
 import { Footer } from "@/components/marketing/Footer";
 import { MobileStickyCta } from "@/components/marketing/MobileStickyCta";
-import { SmoothScroll } from "@/components/animate/SmoothScroll";
 import { AmbientCanvas } from "@/components/r3f/AmbientCanvas";
 import { BodyBackgroundToggle } from "@/components/r3f/BodyBackgroundToggle";
 
@@ -32,7 +31,6 @@ export default async function MarketingLayout({
       */}
       <BodyBackgroundToggle />
       <AmbientCanvas />
-      <SmoothScroll />
       <a href="#main" className="skip-link">
         {t("skipToContent")}
       </a>

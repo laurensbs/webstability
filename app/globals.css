@@ -100,24 +100,6 @@ body.is-marketing #main {
   background-position: 0 0;
 }
 
-/* Lenis smooth scroll — required defaults for the wheel-driven scroller. */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-  overflow: clip;
-}
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
-}
-
 /* Editorial prose for blog articles. Apply to a wrapper with .prose-wb. */
 .prose-wb > p:first-of-type::first-letter {
   font-family: var(--font-serif);
