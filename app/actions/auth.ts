@@ -6,6 +6,28 @@ import { signIn } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 
+/**
+ * Lichte lookup voor de 3-state login-copy. Returnt of een email al een
+ * user-row heeft, zodat we kunnen kiezen tussen "Welkom terug" en "We
+ * maken je account aan". Geen sessie-mutaties, geen rate-limit-impact —
+ * alleen een SELECT met index-hit op email. Geen onderscheid tussen
+ * "exists, error fetching" en "doesn't exist": bij twijfel false zodat
+ * de UI altijd graceful blijft.
+ */
+export async function checkUserExists(email: string): Promise<{ exists: boolean }> {
+  const trimmed = email.trim().toLowerCase();
+  if (!trimmed || !trimmed.includes("@")) return { exists: false };
+  try {
+    const row = await db.query.users.findFirst({
+      where: eq(users.email, trimmed),
+      columns: { id: true },
+    });
+    return { exists: Boolean(row) };
+  } catch {
+    return { exists: false };
+  }
+}
+
 export async function signInAction(email: string, name?: string) {
   // Admin host routes the post-login redirect to /admin instead of
   // the customer portal. The proxy then rewrites it transparently.

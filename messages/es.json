@@ -1224,6 +1224,8 @@
       "noAccount": "¿Aún no tienes cuenta?",
       "contactCta": "Contacta",
       "checkoutWelcome": "¡Gracias por suscribirte! Tu email está listo — añade tu nombre si quieres y envíate el enlace de acceso para entrar en tu portal.",
+      "stateReturning": "Bienvenido de nuevo — tu enlace mágico llegará en cuanto hagas clic abajo.",
+      "stateNew": "¿Primera vez? Crearemos tu cuenta enseguida. Añade tu nombre para un saludo personal.",
       "panelTitle": "Un solo lugar para *todo tu sistema*.",
       "panelLede": "Proyectos, facturas, tickets y estado del site — accesible cuando quieras.",
       "panelBullets": [
@@ -1240,6 +1242,9 @@
       "subtitle": "Te hemos enviado un enlace de acceso a {email}. Haz clic en el botón del correo para continuar.",
       "hint": "¿No te llega? Mira en spam. El enlace funciona una vez y es válido durante 24 horas.",
       "resend": "Reenviar",
+      "resendIn": "Reenviar en {seconds}s",
+      "resendNow": "Reenviar",
+      "tabSwitched": "Has iniciado sesión en otra pestaña — te llevamos…",
       "panelTitle": "Un solo lugar para *todo tu sistema*.",
       "panelLede": "Proyectos, facturas, tickets y estado del site — accesible cuando quieras."
     },

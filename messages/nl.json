@@ -1225,6 +1225,8 @@
       "noAccount": "Nog geen account?",
       "contactCta": "Neem contact op",
       "checkoutWelcome": "Bedankt voor je abonnement! We hebben je email klaarstaan — vul eventueel je naam in en stuur de magic-link naar jezelf om in je portaal te komen.",
+      "stateReturning": "Welkom terug — je magic-link komt eraan zodra je hieronder klikt.",
+      "stateNew": "Nieuw hier? We maken zo je account aan. Vul je naam in voor een persoonlijke begroeting.",
       "panelTitle": "Eén plek voor je *hele systeem*.",
       "panelLede": "Projecten, facturen, tickets en site-status — direct in te zien wanneer jij dat wil.",
       "panelBullets": [
@@ -1240,6 +1242,9 @@
       "subtitle": "We hebben een inloglink gestuurd naar {email}. Klik op de knop in de mail om verder te gaan.",
       "hint": "Geen mail? Kijk in je spam-folder. De link werkt één keer en is 24 uur geldig.",
       "resend": "Stuur opnieuw",
+      "resendIn": "Opnieuw versturen in {seconds}s",
+      "resendNow": "Stuur opnieuw",
+      "tabSwitched": "Je bent ingelogd in een andere tab — we leiden je door…",
       "panelTitle": "Eén plek voor je *hele systeem*.",
       "panelLede": "Projecten, facturen, tickets en site-status — direct in te zien wanneer jij dat wil."
     },

@@ -28,6 +28,7 @@ import {
   MonitoringCardSkeleton,
 } from "@/components/portal/MonitoringCardAsync";
 import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/DashboardIntro";
+import { AuthVerifiedBeacon } from "@/components/auth/AuthVerifiedBeacon";
 import { HoursWidget } from "@/components/portal/HoursWidget";
 import { SecurityCard } from "@/components/portal/SecurityCard";
 import { RoadmapCard } from "@/components/portal/RoadmapCard";
@@ -150,6 +151,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
 
   return (
     <div className="space-y-10">
+      <AuthVerifiedBeacon />
       <DashboardIntro
         greeting={greeting}
         firstName={firstName}

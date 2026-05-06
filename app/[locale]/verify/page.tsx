@@ -65,6 +65,9 @@ export default async function VerifyPage({ params }: { params: Promise<{ locale:
             subtitle={t("subtitle")}
             hint={t("hint")}
             resend={t("resend")}
+            resendIn={t("resendIn")}
+            resendNow={t("resendNow")}
+            tabSwitched={t("tabSwitched")}
           />
         </div>
 

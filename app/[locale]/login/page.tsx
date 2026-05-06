@@ -139,7 +139,18 @@ export default async function LoginPage({
             </div>
           ) : null}
           <div className="mt-8">
-            <LoginForm variant={isAdminHost ? "dark" : "light"} defaultEmail={emailParam ?? ""} />
+            <LoginForm
+              variant={isAdminHost ? "dark" : "light"}
+              defaultEmail={emailParam ?? ""}
+              stateCopy={
+                isAdminHost
+                  ? undefined
+                  : {
+                      returning: tCustomer("stateReturning"),
+                      fresh: tCustomer("stateNew"),
+                    }
+              }
+            />
           </div>
         </div>
 

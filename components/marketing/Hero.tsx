@@ -65,19 +65,20 @@ export async function Hero() {
           </MagneticButton>
           <MagneticButton>
             <Button asChild size="lg" variant="outline">
-              <Link href="/cases">{t("ctaSecondary")} →</Link>
+              <Link href="/login">
+                {tHero("alreadyClient")} {tHero("loginCta")} →
+              </Link>
             </Button>
           </MagneticButton>
         </div>
 
-        {/* Inloggen-hint voor bestaande klanten — subtiel, niet prominent */}
+        {/* Cases-link tertiair onder de buttons */}
         <p className="mt-5 text-[14px] text-(--color-muted)">
-          {tHero("alreadyClient")}{" "}
           <Link
-            href="/login"
-            className="font-medium text-(--color-text) transition-colors hover:text-(--color-accent)"
+            href="/cases"
+            className="underline decoration-(--color-border) underline-offset-4 transition-colors hover:text-(--color-text) hover:decoration-(--color-accent)"
           >
-            {tHero("loginCta")} →
+            {t("ctaSecondary")} →
           </Link>
         </p>
 

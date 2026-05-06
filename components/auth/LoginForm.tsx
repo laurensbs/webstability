@@ -1,24 +1,55 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { signInAction } from "@/app/actions/auth";
+import { checkUserExists } from "@/app/actions/auth";
+
+type StateCopy = {
+  /** Toon wanneer de user de email-field heeft verlaten en het adres
+   * een bestaand account blijkt. */
+  returning: string;
+  /** Toon wanneer de user een nieuw email-adres invult. */
+  fresh: string;
+};
 
 export function LoginForm({
   variant = "light",
   defaultEmail = "",
+  stateCopy,
 }: {
   variant?: "light" | "dark";
   /** Pre-fill van de email-veld, bijv. ?email=…&from=checkout. */
   defaultEmail?: string;
+  /** Optioneel: 3-state copy (returning / fresh) voor de klant-flow.
+   * Op admin-host laat je dit weg en blijft het formulier neutraal. */
+  stateCopy?: StateCopy;
 }) {
   const t = useTranslations("auth.login");
   const [email, setEmail] = useState(defaultEmail);
   const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
+  const [userState, setUserState] = useState<"unknown" | "returning" | "fresh">("unknown");
+  const lastChecked = useRef<string>("");
   const dark = variant === "dark";
+
+  async function probeEmail(value: string) {
+    const trimmed = value.trim().toLowerCase();
+    if (!trimmed || !trimmed.includes("@") || !trimmed.includes(".")) {
+      setUserState("unknown");
+      return;
+    }
+    if (lastChecked.current === trimmed) return;
+    lastChecked.current = trimmed;
+    try {
+      const res = await checkUserExists(trimmed);
+      setUserState(res.exists ? "returning" : "fresh");
+    } catch {
+      setUserState("unknown");
+    }
+  }
 
   return (
     <form
@@ -41,6 +72,31 @@ export function LoginForm({
       }}
       className="space-y-4"
     >
+      {stateCopy ? (
+        <AnimatePresence mode="wait">
+          {userState !== "unknown" ? (
+            <motion.div
+              key={userState}
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.25 }}
+              className={`rounded-lg border px-4 py-3 text-[13px] leading-snug ${
+                userState === "returning"
+                  ? dark
+                    ? "border-(--color-success)/40 bg-(--color-success)/15 text-(--color-bg)"
+                    : "border-(--color-success)/40 bg-(--color-success)/10 text-(--color-text)"
+                  : dark
+                    ? "border-(--color-accent)/40 bg-(--color-accent)/15 text-(--color-bg)"
+                    : "border-(--color-accent)/40 bg-(--color-accent-soft) text-(--color-text)"
+              }`}
+            >
+              {userState === "returning" ? stateCopy.returning : stateCopy.fresh}
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      ) : null}
+
       <label className="block">
         <span
           className={`text-sm font-medium ${dark ? "text-(--color-bg)" : "text-(--color-text)"}`}
@@ -73,6 +129,9 @@ export function LoginForm({
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          onBlur={(e) => {
+            if (stateCopy) void probeEmail(e.target.value);
+          }}
           autoComplete="email"
           autoFocus={!defaultEmail}
           className="mt-2 block w-full rounded-md border border-(--color-border) bg-(--color-surface) px-3 py-2 text-(--color-text) outline-none focus:border-(--color-accent) focus:ring-2 focus:ring-(--color-accent-soft)"
