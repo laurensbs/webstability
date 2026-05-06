@@ -80,7 +80,7 @@ export function BuildCalculator({
           <select
             value={tier}
             onChange={(e) => setTier(e.target.value as TierId)}
-            className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-[15px]"
+            className="block min-h-11 w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-[15px]"
           >
             {strings.tierOptions.map((o) => (
               <option key={o.id} value={o.id}>
@@ -94,7 +94,7 @@ export function BuildCalculator({
           <select
             value={build}
             onChange={(e) => setBuild(e.target.value as BuildId)}
-            className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-[15px]"
+            className="block min-h-11 w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-[15px]"
           >
             {strings.buildOptions.map((o) => (
               <option key={o.id} value={o.id}>
@@ -113,7 +113,7 @@ export function BuildCalculator({
             step={1}
             value={months}
             onChange={(e) => setMonths(Number(e.target.value))}
-            className="w-full accent-(--color-accent)"
+            className="h-3 w-full accent-(--color-accent) [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6"
             disabled={build === "none"}
           />
         </Field>

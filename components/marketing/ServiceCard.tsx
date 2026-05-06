@@ -61,7 +61,7 @@ export function ServiceCard({
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       whileHover={reduce ? undefined : { y: -4 }}
       className={`group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-(--color-border) bg-(--color-surface) transition-all duration-300 hover:border-(--color-accent)/40 hover:shadow-[0_24px_48px_-12px_rgba(201,97,79,0.18),0_8px_16px_-4px_rgba(31,27,22,0.06)] ${
-        large ? "p-11 md:row-span-2" : "p-9"
+        large ? "p-7 sm:p-11 md:row-span-2" : "p-7 sm:p-9"
       }`}
     >
       {/* Soft accent halo — verschijnt op hover, rechtsboven */}

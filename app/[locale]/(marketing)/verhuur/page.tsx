@@ -134,7 +134,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               const Icon = PROBLEM_ICONS[i] ?? X;
               return (
                 <RevealOnScroll key={p.title} delay={i * 0.08}>
-                  <article className="h-full rounded-[20px] border border-(--color-border) bg-(--color-surface) p-9 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]">
+                  <article className="h-full rounded-[20px] border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)] sm:p-9">
                     <div className="mb-6 grid h-12 w-12 place-items-center rounded-[14px] bg-red-100 text-red-600">
                       <Icon className="h-[22px] w-[22px]" strokeWidth={2} />
                     </div>

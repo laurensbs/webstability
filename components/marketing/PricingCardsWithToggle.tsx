@@ -111,7 +111,7 @@ export function PricingCardsWithToggle({
           return (
             <article
               key={item.id}
-              className={`group relative flex h-full flex-col overflow-hidden rounded-[28px] p-10 transition-all duration-300 ${sizeClass} ${
+              className={`group relative flex h-full flex-col overflow-hidden rounded-[28px] p-7 transition-all duration-300 sm:p-10 ${sizeClass} ${
                 featured
                   ? "scale-[1.02] border border-(--color-text) bg-(--color-text) text-(--color-bg) hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.3)]"
                   : "border border-(--color-border) bg-(--color-surface) hover:-translate-y-1.5 hover:border-(--color-accent)/40 hover:shadow-[0_24px_48px_-12px_rgba(201,97,79,0.18),0_8px_16px_-4px_rgba(31,27,22,0.06)]"
@@ -174,7 +174,7 @@ export function PricingCardsWithToggle({
               </p>
               <div className="flex items-baseline gap-1">
                 <span
-                  className={`font-serif text-[48px] leading-none ${
+                  className={`font-serif text-[36px] leading-none sm:text-[48px] ${
                     featured ? "text-(--color-bg)" : ""
                   }`}
                 >
@@ -292,7 +292,7 @@ function ToggleButton({
     <button
       type="button"
       onClick={onClick}
-      className={`relative inline-flex items-center rounded-full px-4 py-2 text-[13px] font-medium transition-colors ${
+      className={`relative inline-flex min-h-11 items-center rounded-full px-4 py-2.5 text-[13px] font-medium transition-colors ${
         active ? "text-(--color-bg)" : "text-(--color-muted) hover:text-(--color-text)"
       }`}
     >

@@ -54,9 +54,9 @@ export async function Hero() {
           {tHero("taglinePrefix")} <RotatingWords words={rotatingWords} /> {tHero("taglineSuffix")}
         </p>
 
-        <div className="mt-9 flex flex-wrap items-center gap-3.5">
+        <div className="mt-9 flex flex-col items-stretch gap-3.5 sm:flex-row sm:flex-wrap sm:items-center">
           <MagneticButton>
-            <Button asChild size="lg" variant="primary" className="group">
+            <Button asChild size="lg" variant="primary" className="group w-full sm:w-auto">
               <Link href="/contact">
                 {t("ctaPrimary")}
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -64,7 +64,7 @@ export async function Hero() {
             </Button>
           </MagneticButton>
           <MagneticButton>
-            <Button asChild size="lg" variant="outline">
+            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
               <Link href="/login">
                 {tHero("alreadyClient")} {tHero("loginCta")} →
               </Link>
