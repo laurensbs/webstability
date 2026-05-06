@@ -60,16 +60,24 @@ export function ServiceCard({
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       whileHover={reduce ? undefined : { y: -4 }}
-      className={`group relative flex h-full flex-col rounded-[20px] border border-(--color-border) bg-(--color-surface) transition-all duration-300 hover:border-(--color-border-strong,#D8CDB6) hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)] ${
+      className={`group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-(--color-border) bg-(--color-surface) transition-all duration-300 hover:border-(--color-accent)/40 hover:shadow-[0_24px_48px_-12px_rgba(201,97,79,0.18),0_8px_16px_-4px_rgba(31,27,22,0.06)] ${
         large ? "p-11 md:row-span-2" : "p-9"
       }`}
     >
+      {/* Soft accent halo — verschijnt op hover, rechtsboven */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -top-20 -right-16 h-44 w-44 rounded-full bg-(--color-accent-soft) opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-70"
+      />
+
       {/* Icon — rotates and fills on hover, per mockup */}
-      <div className="mb-6 grid h-12 w-12 place-items-center rounded-[14px] bg-(--color-accent-soft) text-(--color-accent) transition-all duration-300 group-hover:scale-105 group-hover:rotate-[-6deg] group-hover:bg-(--color-accent) group-hover:text-white">
+      <div className="relative mb-6 grid h-12 w-12 place-items-center rounded-[14px] bg-(--color-accent-soft) text-(--color-accent) transition-all duration-300 group-hover:scale-105 group-hover:rotate-[-6deg] group-hover:bg-(--color-accent) group-hover:text-white group-hover:shadow-[0_8px_20px_-4px_rgba(201,97,79,0.5)]">
         <Icon className="h-[22px] w-[22px]" strokeWidth={2} />
       </div>
 
-      <h3 className={large ? "mb-2 text-[32px] leading-[1.1]" : "mb-2 text-[24px] leading-[1.1]"}>
+      <h3
+        className={`relative ${large ? "mb-2 text-[32px] leading-[1.1]" : "mb-2 text-[24px] leading-[1.1]"}`}
+      >
         {title}
       </h3>
       {pricePill ? (

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import NumberFlow from "@number-flow/react";
+import { Sparkles } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 
@@ -116,7 +117,12 @@ export function BuildCalculator({
       <div className="mt-10 grid gap-6 border-t border-(--color-border) pt-8 md:grid-cols-3">
         <Output label={strings.duringBuildLabel} value={duringBuild} suffix={strings.perMonth} />
         <Output label={strings.afterBuildLabel} value={afterBuild} suffix={strings.perMonth} />
-        <Output label={strings.totalBuildLabel} value={totalBuild} muted={build === "none"} />
+        <Output
+          label={strings.totalBuildLabel}
+          value={totalBuild}
+          muted={build === "none"}
+          accent={build !== "none"}
+        />
       </div>
 
       {/* Interpretatie-zin onder de outputs — vertaalt het getal naar
@@ -170,16 +176,23 @@ function Output({
   value,
   suffix,
   muted,
+  accent,
 }: {
   label: string;
   value: number;
   suffix?: string;
   muted?: boolean;
+  /** Accent-output (zoals 'totaal voor build') krijgt een sparkle-icon
+   * naast het label zodat het belangrijkste getal eruit springt. */
+  accent?: boolean;
 }) {
   return (
     <div className={muted ? "opacity-50" : ""}>
-      <span className="block font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+      <span className="flex items-center gap-1.5 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
         {label}
+        {accent ? (
+          <Sparkles className="h-3 w-3 text-(--color-accent)" aria-hidden strokeWidth={2} />
+        ) : null}
       </span>
       <span className="mt-2 block font-serif text-[36px] leading-none">
         €<NumberFlow value={value} />

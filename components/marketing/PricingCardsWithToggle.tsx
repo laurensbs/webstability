@@ -93,14 +93,25 @@ export function PricingCardsWithToggle({
           return (
             <article
               key={item.id}
-              className={`relative flex h-full flex-col rounded-[28px] p-10 transition-all duration-300 ${
+              className={`group relative flex h-full flex-col overflow-hidden rounded-[28px] p-10 transition-all duration-300 ${
                 featured
                   ? "scale-[1.02] border border-(--color-text) bg-(--color-text) text-(--color-bg) hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.3)]"
-                  : "border border-(--color-border) bg-(--color-surface) hover:-translate-y-1.5 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]"
+                  : "border border-(--color-border) bg-(--color-surface) hover:-translate-y-1.5 hover:border-(--color-accent)/40 hover:shadow-[0_24px_48px_-12px_rgba(201,97,79,0.18),0_8px_16px_-4px_rgba(31,27,22,0.06)]"
               }`}
             >
+              {/* Soft accent halo — verschijnt op hover, top-right */}
+              <span
+                aria-hidden
+                className={`pointer-events-none absolute -top-24 -right-20 h-56 w-56 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-60 ${
+                  featured ? "bg-(--color-accent)" : "bg-(--color-accent-soft)"
+                }`}
+              />
               {featured ? (
-                <span className="absolute -top-2.5 right-6 rounded-full bg-(--color-accent) px-3 py-1 text-[11px] font-medium text-white">
+                <span className="absolute -top-2.5 right-6 inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-3 py-1 text-[11px] font-medium text-white">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
+                  </span>
                   {strings.featuredLabel}
                 </span>
               ) : null}
