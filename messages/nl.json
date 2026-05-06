@@ -698,7 +698,12 @@
       "viewAll": "Bekijk alles",
       "noProjects": "Nog geen projecten gekoppeld.",
       "noTickets": "Geen tickets — alles loopt.",
-      "noInvoices": "Nog geen facturen."
+      "noInvoices": "Nog geen facturen.",
+      "seoTitle": "SEO trend",
+      "seoSubtitle": "Klikken · 12 maanden",
+      "seoDelta": "groei sinds vorig kwartaal",
+      "monitoringTitle": "Live monitoring",
+      "monitoringEmpty": "Geen monitors geconfigureerd."
     },
     "projects": {
       "title": "Projecten",

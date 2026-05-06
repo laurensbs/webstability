@@ -19,7 +19,10 @@ import { StatusBanner } from "@/components/portal/StatusBanner";
 import { RecentProjects } from "@/components/portal/RecentProjects";
 import { RecentTickets } from "@/components/portal/RecentTickets";
 import { RecentInvoices } from "@/components/portal/RecentInvoices";
+import { SeoSparkline } from "@/components/portal/SeoSparkline";
+import { MonitoringCard } from "@/components/portal/MonitoringCard";
 import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/DashboardIntro";
+import { listMonitors, type Monitor } from "@/lib/better-stack";
 
 function pickGreeting(t: (k: string) => string) {
   const h = new Date().getHours();
@@ -58,12 +61,29 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   const t = await getTranslations("portal");
   const tProjects = await getTranslations("portal.projects");
   const tInvoices = await getTranslations("portal.invoices");
+  const tStatus = await getTranslations("status");
   const [stats, projects, tickets, invoices] = await Promise.all([
     getDashboardStats(user.organizationId),
     listOrgProjects(user.organizationId),
     listOrgTickets(user.organizationId),
     listOrgInvoices(user.organizationId),
   ]);
+
+  // Better Stack call can fail without breaking the dashboard.
+  let monitors: Monitor[] = [];
+  try {
+    monitors = await listMonitors();
+  } catch {
+    monitors = [];
+  }
+  const monitorStatusLabels: Record<Monitor["status"], string> = {
+    up: tStatus("labelOperational"),
+    down: tStatus("labelDown"),
+    paused: tStatus("labelPaused"),
+    pending: tStatus("labelUnknown"),
+    maintenance: tStatus("labelDegraded"),
+    validating: tStatus("labelUnknown"),
+  };
   const firstName = (user.name ?? user.email).split(" ")[0]!.split("@")[0]!;
   const greeting = pickGreeting(t);
 
@@ -156,6 +176,22 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
           empty={t("dashboard.noTickets")}
           viewAll={t("dashboard.viewAll")}
           locale={locale}
+        />
+      </div>
+
+      <div className="grid gap-5 lg:grid-cols-2">
+        <SeoSparkline
+          title={t("dashboard.seoTitle")}
+          subtitle={t("dashboard.seoSubtitle")}
+          delta={t("dashboard.seoDelta")}
+          viewLabel={t("dashboard.viewAll")}
+        />
+        <MonitoringCard
+          monitors={monitors}
+          title={t("dashboard.monitoringTitle")}
+          empty={t("dashboard.monitoringEmpty")}
+          viewLabel={t("dashboard.viewAll")}
+          statusLabels={monitorStatusLabels}
         />
       </div>
 

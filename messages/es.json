@@ -693,7 +693,12 @@
       "viewAll": "Ver todo",
       "noProjects": "Aún sin proyectos.",
       "noTickets": "Sin tickets — todo va bien.",
-      "noInvoices": "Aún sin facturas."
+      "noInvoices": "Aún sin facturas.",
+      "seoTitle": "Tendencia SEO",
+      "seoSubtitle": "Clics · 12 meses",
+      "seoDelta": "crecimiento desde el último trimestre",
+      "monitoringTitle": "Monitorización en vivo",
+      "monitoringEmpty": "Sin monitors configurados."
     },
     "projects": {
       "title": "Proyectos",
