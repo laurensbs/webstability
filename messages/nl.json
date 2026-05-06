@@ -576,7 +576,7 @@
       "intro": "Onderhoud op bestaande software. Maandelijks opzegbaar. Eerste maand gratis.",
       "items": [
         {
-          "id": "basic",
+          "id": "care",
           "name": "Care Basic",
           "price": "€195/maand",
           "monthly": 195,
@@ -584,7 +584,7 @@
           "body": "Security updates, monitoring, backup-checks, 2u/maand wijzigingen."
         },
         {
-          "id": "pro",
+          "id": "studio",
           "name": "Care Pro",
           "price": "€395/maand",
           "monthly": 395,
@@ -592,7 +592,7 @@
           "body": "Alles in Basic + 8u/maand wijzigingen, prioriteit-support binnen 4u."
         },
         {
-          "id": "partner",
+          "id": "atelier",
           "name": "Care Partner",
           "price": "€795/maand",
           "monthly": 795,

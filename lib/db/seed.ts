@@ -25,7 +25,7 @@ async function main() {
         slug: orgSlug,
         country: "NL",
         vatNumber: "NL000000000B01",
-        plan: "pro",
+        plan: "studio",
       })
       .returning({ id: organizations.id });
     orgId = org.id;
@@ -100,7 +100,7 @@ async function main() {
   // subscription
   await db.insert(subscriptions).values({
     organizationId: orgId,
-    plan: "pro",
+    plan: "studio",
     status: "active",
     currentPeriodEnd: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
   });

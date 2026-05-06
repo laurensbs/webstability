@@ -17,9 +17,9 @@ export function isStripeConfigured() {
 // Care plans — Price IDs are created in Stripe Dashboard → Products,
 // then dropped into env. Code stays the same regardless of test/live mode.
 export const CARE_PLANS = {
-  basic: { id: "basic", priceEnv: "STRIPE_PRICE_CARE_BASIC", monthly: 195 },
-  pro: { id: "pro", priceEnv: "STRIPE_PRICE_CARE_PRO", monthly: 395 },
-  partner: { id: "partner", priceEnv: "STRIPE_PRICE_CARE_PARTNER", monthly: 795 },
+  care: { id: "care", priceEnv: "STRIPE_PRICE_CARE", monthly: 69 },
+  studio: { id: "studio", priceEnv: "STRIPE_PRICE_STUDIO", monthly: 179 },
+  atelier: { id: "atelier", priceEnv: "STRIPE_PRICE_ATELIER", monthly: 399 },
 } as const;
 
 export type CarePlanId = keyof typeof CARE_PLANS;

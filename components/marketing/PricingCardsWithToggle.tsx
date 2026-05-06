@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/Button";
 type Cycle = "monthly" | "annual";
 
 export type PricingItem = {
-  id: "basic" | "pro" | "partner";
+  id: "care" | "studio" | "atelier";
   name: string;
   body: string;
   monthly: number;
@@ -36,7 +36,7 @@ type Strings = {
  */
 export type AuthMode = {
   isOwner: boolean;
-  currentPlan: "basic" | "pro" | "partner" | null;
+  currentPlan: "care" | "studio" | "atelier" | null;
   /**
    * Server action that takes a FormData with `plan` and starts a
    * Stripe Checkout flow. Passed straight to <form action={...}>.
@@ -80,7 +80,7 @@ export function PricingCardsWithToggle({
       {/* Cards */}
       <div className="grid gap-5 md:grid-cols-3">
         {items.map((item) => {
-          const featured = item.id === "pro";
+          const featured = item.id === "studio";
           const value = cycle === "annual" ? item.annual : item.monthly;
           const period = cycle === "annual" ? strings.perMonthBilledAnnually : strings.perMonth;
           return (

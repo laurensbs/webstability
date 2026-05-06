@@ -107,7 +107,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 }}
                 authMode={{
                   isOwner,
-                  currentPlan: currentPlan as "basic" | "pro" | "partner" | null,
+                  currentPlan: currentPlan as "care" | "studio" | "atelier" | null,
                   subscribeAction: startCareCheckout,
                   subscribeLabel: tCare("subscribe"),
                   currentPlanLabel: tCare("currentPlan"),

@@ -15,6 +15,13 @@
       "when": 1777987326327,
       "tag": "0001_spooky_namora",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1778060442116,
+      "tag": "0002_wet_deathbird",
+      "breakpoints": true
     }
   ]
 }

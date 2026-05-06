@@ -39,7 +39,7 @@ async function upsertSubscription(stripeSub: Stripe.Subscription) {
   const org = await findOrgByCustomer(customerId);
   if (!org) return;
 
-  const planMeta = (stripeSub.metadata?.plan ?? "pro") as "basic" | "pro" | "partner";
+  const planMeta = (stripeSub.metadata?.plan ?? "studio") as "care" | "studio" | "atelier";
   const periodEnd = stripeSub.items.data[0]?.current_period_end ?? null;
 
   const existing = await db.query.subscriptions.findFirst({

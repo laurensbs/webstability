@@ -571,7 +571,7 @@
       "intro": "Mantenimiento sobre software existente. Cancelable mensual. Primer mes gratis.",
       "items": [
         {
-          "id": "basic",
+          "id": "care",
           "name": "Care Basic",
           "price": "195 €/mes",
           "monthly": 195,
@@ -579,7 +579,7 @@
           "body": "Actualizaciones de seguridad, monitorización, revisión de backups, 2h/mes de cambios."
         },
         {
-          "id": "pro",
+          "id": "studio",
           "name": "Care Pro",
           "price": "395 €/mes",
           "monthly": 395,
@@ -587,7 +587,7 @@
           "body": "Todo Basic + 8h/mes de cambios, soporte prioritario en 4h."
         },
         {
-          "id": "partner",
+          "id": "atelier",
           "name": "Care Partner",
           "price": "795 €/mes",
           "monthly": 795,

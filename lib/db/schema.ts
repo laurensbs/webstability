@@ -19,7 +19,7 @@ import type { AdapterAccountType } from "next-auth/adapters";
 export const localeEnum = pgEnum("locale", ["nl", "es"]);
 export const userRoleEnum = pgEnum("user_role", ["owner", "member", "read_only"]);
 export const orgCountryEnum = pgEnum("org_country", ["NL", "ES"]);
-export const planEnum = pgEnum("plan", ["basic", "pro", "partner"]);
+export const planEnum = pgEnum("plan", ["care", "studio", "atelier"]);
 export const projectStatusEnum = pgEnum("project_status", [
   "planning",
   "in_progress",

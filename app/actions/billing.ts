@@ -39,7 +39,7 @@ async function ensureStripeCustomer(orgId: string, name: string, email: string) 
 
 export async function startCareCheckout(formData: FormData) {
   const planInput = String(formData.get("plan") ?? "");
-  const plan = (["basic", "pro", "partner"] as const).includes(planInput as CarePlanId)
+  const plan = (["care", "studio", "atelier"] as const).includes(planInput as CarePlanId)
     ? (planInput as CarePlanId)
     : null;
   if (!plan) throw new Error("invalid_plan");
