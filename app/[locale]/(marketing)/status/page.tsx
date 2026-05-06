@@ -3,10 +3,10 @@ import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { CheckCircle2, AlertTriangle } from "lucide-react";
 import { routing } from "@/i18n/routing";
-import { PageHeader } from "@/components/marketing/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { listMonitors, aggregateStatus, type Monitor } from "@/lib/better-stack";
 import { MarkupText } from "@/components/animate/MarkupText";
+import { SystemsGlobeMount } from "@/components/r3f/SystemsGlobeMount";
 
 export const revalidate = 60;
 
@@ -64,11 +64,20 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   return (
     <main className="dotted-bg flex flex-1 flex-col">
-      <PageHeader
-        eyebrow={t("eyebrow")}
-        title={fetchError ? t("errorTitle") : <MarkupText>{t(titleKey)}</MarkupText>}
-        lede={fetchError ? t("errorBody") : t("summary")}
-      />
+      <section className="relative overflow-hidden px-6 pt-24 pb-12 md:pt-32">
+        <SystemsGlobeMount className="pointer-events-none absolute -top-10 -right-20 hidden aspect-square w-[420px] opacity-90 lg:block" />
+        <div className="relative mx-auto max-w-4xl space-y-6">
+          <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
+            {t("eyebrow")}
+          </p>
+          <h1 className="text-4xl leading-[1.1] md:text-6xl">
+            {fetchError ? t("errorTitle") : <MarkupText>{t(titleKey)}</MarkupText>}
+          </h1>
+          <p className="max-w-2xl text-lg text-(--color-muted)">
+            {fetchError ? t("errorBody") : t("summary")}
+          </p>
+        </div>
+      </section>
 
       {!fetchError && (
         <section className="px-6 pb-24">
