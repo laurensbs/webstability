@@ -14,6 +14,7 @@ import {
   listOrgProjects,
   listOrgTickets,
   listOrgInvoices,
+  getOrgHoursThisMonth,
 } from "@/lib/db/queries/portal";
 import { StatCard } from "@/components/portal/StatCard";
 import { StatusBanner } from "@/components/portal/StatusBanner";
@@ -26,6 +27,10 @@ import {
   MonitoringCardSkeleton,
 } from "@/components/portal/MonitoringCardAsync";
 import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/DashboardIntro";
+import { HoursWidget } from "@/components/portal/HoursWidget";
+import { SecurityCard } from "@/components/portal/SecurityCard";
+import { RoadmapCard } from "@/components/portal/RoadmapCard";
+import { budgetMinutesFor, type TierId } from "@/lib/plan-budget";
 import type { Monitor } from "@/lib/better-stack";
 
 function pickGreeting(t: (k: string) => string) {
@@ -66,12 +71,36 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   const tProjects = await getTranslations("portal.projects");
   const tInvoices = await getTranslations("portal.invoices");
   const tStatus = await getTranslations("status");
-  const [stats, projects, tickets, invoices] = await Promise.all([
+  const [stats, projects, tickets, invoices, hours] = await Promise.all([
     getDashboardStats(user.organizationId),
     listOrgProjects(user.organizationId),
     listOrgTickets(user.organizationId),
     listOrgInvoices(user.organizationId),
+    getOrgHoursThisMonth(user.organizationId),
   ]);
+
+  // Tier-aware widget visibility — Care krijgt alleen Hours + Security,
+  // Studio voegt SEO + Performance toe (al aanwezig), Atelier krijgt
+  // ook nog een mini-roadmap met active projecten.
+  const plan = (user.organization?.plan ?? null) as TierId | null;
+  const budgetMinutes = budgetMinutesFor(plan);
+  const showSeoSparkline = plan === "studio" || plan === "atelier";
+  const showRoadmap = plan === "atelier";
+
+  // Build de roadmap-items uit recent projects: laatste 'live' wordt
+  // 'shipped', huidige 'in_progress' wordt 'active', 'planning' wordt
+  // 'next'. Max 4 items.
+  const roadmapItems = projects
+    .map((p) => {
+      const status =
+        p.status === "live" || p.status === "done"
+          ? ("shipped" as const)
+          : p.status === "in_progress" || p.status === "review"
+            ? ("active" as const)
+            : ("next" as const);
+      return { id: p.id, label: p.name, status };
+    })
+    .slice(0, 4);
 
   const monitorStatusLabels: Record<Monitor["status"], string> = {
     up: tStatus("labelOperational"),
@@ -146,6 +175,56 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         </StatItem>
       </StatsGrid>
 
+      {/* Tier-aware widget rij — altijd Hours + Security, Atelier voegt
+          Roadmap toe. Care/Studio krijgen 2 cards in lg:grid-cols-2,
+          Atelier 3 in lg:grid-cols-3. */}
+      <div className={`grid gap-5 ${showRoadmap ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
+        <HoursWidget
+          used={hours.minutesUsed}
+          budget={budgetMinutes}
+          recent={hours.recent.map((r) => ({
+            id: r.id,
+            description: r.description,
+            minutes: r.minutes,
+            workedOn: r.workedOn,
+          }))}
+          strings={{
+            title: t("dashboard.hoursTitle"),
+            monthLabel: t("dashboard.hoursMonth"),
+            usedLabel: t("dashboard.hoursUsed"),
+            budgetLabel: t("dashboard.hoursBudget"),
+            recentTitle: t("dashboard.hoursRecentTitle"),
+            empty: t("dashboard.hoursEmpty"),
+            viewAll: t("dashboard.viewAll"),
+          }}
+        />
+        <SecurityCard
+          strings={{
+            title: t("dashboard.securityTitle"),
+            statusLabel: t("dashboard.securityStatus"),
+            statusValue: t("dashboard.securityStatusValue"),
+            backupLabel: t("dashboard.securityBackup"),
+            backupValue: t("dashboard.securityBackupValue"),
+            sslLabel: t("dashboard.securitySsl"),
+            sslValue: t("dashboard.securitySslValue"),
+            soonNote: t("dashboard.securitySoonNote"),
+          }}
+        />
+        {showRoadmap ? (
+          <RoadmapCard
+            items={roadmapItems}
+            strings={{
+              title: t("dashboard.roadmapTitle"),
+              shipped: t("dashboard.roadmapShipped"),
+              active: t("dashboard.roadmapActive"),
+              next: t("dashboard.roadmapNext"),
+              empty: t("dashboard.roadmapEmpty"),
+              viewAll: t("dashboard.roadmapViewAll"),
+            }}
+          />
+        ) : null}
+      </div>
+
       <div className="grid gap-5 lg:grid-cols-[1.5fr_1fr]">
         <RecentProjects
           projects={projects.map((p) => ({
@@ -176,13 +255,15 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         />
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-2">
-        <SeoSparkline
-          title={t("dashboard.seoTitle")}
-          subtitle={t("dashboard.seoSubtitle")}
-          delta={t("dashboard.seoDelta")}
-          viewLabel={t("dashboard.viewAll")}
-        />
+      <div className={`grid gap-5 ${showSeoSparkline ? "lg:grid-cols-2" : ""}`}>
+        {showSeoSparkline ? (
+          <SeoSparkline
+            title={t("dashboard.seoTitle")}
+            subtitle={t("dashboard.seoSubtitle")}
+            delta={t("dashboard.seoDelta")}
+            viewLabel={t("dashboard.viewAll")}
+          />
+        ) : null}
         <Suspense fallback={<MonitoringCardSkeleton title={t("dashboard.monitoringTitle")} />}>
           <MonitoringCardAsync
             title={t("dashboard.monitoringTitle")}
