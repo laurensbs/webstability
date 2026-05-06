@@ -623,6 +623,32 @@
       "voorOnsBody": "Ingresos predecibles. Sin presupuestos urgentes. Foco en mantener clientes, no en perseguir al siguiente.",
       "voorWerkTitle": "Para el trabajo",
       "voorWerkBody": "Software que sigue creciendo mes a mes. Nada de \"entregado, suerte\" — sí un sistema que dentro de dos años está mejor."
+    },
+    "build": {
+      "title": "¿Quieres construir algo nuevo?",
+      "lede": "Añade una Build extension temporalmente sobre tu tier. Durante la construcción pagas más, después vuelves a tu suscripción regular.",
+      "options": {
+        "none": "Sin build",
+        "light": "Build Light · 4h extra · 2-3 meses · landing o web pequeña",
+        "standard": "Build Standard · 10h extra · 3-5 meses · tienda o web multi-page",
+        "custom": "Build Custom · 20h extra · 4-8 meses · admin a medida o plataforma"
+      },
+      "calculator": {
+        "title": "Calcula tu cuota mensual",
+        "tier": "Tier",
+        "build": "Build extension",
+        "months": "Duración en meses",
+        "duringBuild": "Durante el build",
+        "afterBuild": "Después del build",
+        "totalBuild": "Total del build",
+        "ctaAuthenticated": "Empezar suscripción →",
+        "ctaAnonymous": "Reservar primera llamada →"
+      },
+      "tierNames": {
+        "care": "Care",
+        "studio": "Studio",
+        "atelier": "Atelier"
+      }
     }
   },
   "legal": {

@@ -6,12 +6,13 @@ import { auth } from "@/lib/auth";
 import { getUserWithOrg } from "@/lib/db/queries/portal";
 import { PageHeader } from "@/components/marketing/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { startCareCheckout } from "@/app/actions/billing";
+import { startCareCheckout, startCareCheckoutWithBuild } from "@/app/actions/billing";
 import { MarkupText } from "@/components/animate/MarkupText";
 import {
   PricingCardsWithToggle,
   type PricingItem,
 } from "@/components/marketing/PricingCardsWithToggle";
+import { BuildCalculator } from "@/components/marketing/BuildCalculator";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 
@@ -32,6 +33,10 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const t = await getTranslations("pricing");
   const tCare = await getTranslations("pricing.care");
   const tPhilo = await getTranslations("pricing.philosophy");
+  const tBuild = await getTranslations("pricing.build");
+  const tCalc = await getTranslations("pricing.build.calculator");
+  const tBuildOpts = await getTranslations("pricing.build.options");
+  const tTierNames = await getTranslations("pricing.build.tierNames");
   const tRaw = await getTranslations();
   const careItems = tRaw.raw("pricing.care.items") as PricingItem[];
   const addons = tRaw.raw("pricing.addons") as string[];
@@ -72,6 +77,43 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               subscribeLabel: tCare("subscribe"),
               currentPlanLabel: tCare("currentPlan"),
             }}
+          />
+        </div>
+      </section>
+
+      {/* Build extensions + calculator */}
+      <section className="border-t border-(--color-border) px-6 py-24">
+        <div className="mx-auto max-w-5xl">
+          <RevealOnScroll className="mb-10 max-w-3xl space-y-3">
+            <h2 className="text-2xl md:text-3xl">{tBuild("title")}</h2>
+            <p className="leading-relaxed text-(--color-muted)">{tBuild("lede")}</p>
+          </RevealOnScroll>
+          <BuildCalculator
+            strings={{
+              tierLabel: tCalc("tier"),
+              buildLabel: tCalc("build"),
+              monthsLabel: tCalc("months"),
+              duringBuildLabel: tCalc("duringBuild"),
+              afterBuildLabel: tCalc("afterBuild"),
+              totalBuildLabel: tCalc("totalBuild"),
+              ctaAuthenticated: tCalc("ctaAuthenticated"),
+              ctaAnonymous: tCalc("ctaAnonymous"),
+              perMonth: tCare("perMonth"),
+              tierOptions: [
+                { id: "care", name: tTierNames("care") },
+                { id: "studio", name: tTierNames("studio") },
+                { id: "atelier", name: tTierNames("atelier") },
+              ],
+              buildOptions: [
+                { id: "none", name: tBuildOpts("none") },
+                { id: "light", name: tBuildOpts("light") },
+                { id: "standard", name: tBuildOpts("standard") },
+                { id: "custom", name: tBuildOpts("custom") },
+              ],
+            }}
+            authMode={
+              isOwner ? { isOwner, subscribeAction: startCareCheckoutWithBuild } : undefined
+            }
           />
         </div>
       </section>

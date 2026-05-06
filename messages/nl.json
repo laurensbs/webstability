@@ -628,6 +628,32 @@
       "voorOnsBody": "Voorspelbare maandinkomsten. Geen offerte-haastwerk. Focus op bestaande klanten houden, niet op de volgende najagen.",
       "voorWerkTitle": "Voor het werk",
       "voorWerkBody": "Software die maand na maand mee blijft groeien. Geen \"opgeleverd, succes ermee\" — wel een systeem dat over twee jaar nog beter is."
+    },
+    "build": {
+      "title": "Wil je iets nieuws bouwen?",
+      "lede": "Voeg tijdelijk een Build extension toe aan je tier. Tijdens de bouwperiode betaal je extra, daarna val je terug op je reguliere abonnement.",
+      "options": {
+        "none": "Geen build",
+        "light": "Build Light · 4u extra · 2-3 mnd · landing page of kleine site",
+        "standard": "Build Standard · 10u extra · 3-5 mnd · webshop of multi-page site",
+        "custom": "Build Custom · 20u extra · 4-8 mnd · maatwerk admin of platform"
+      },
+      "calculator": {
+        "title": "Bereken jouw maandbedrag",
+        "tier": "Tier",
+        "build": "Build extension",
+        "months": "Looptijd in maanden",
+        "duringBuild": "Tijdens build",
+        "afterBuild": "Na build",
+        "totalBuild": "Totaal voor build",
+        "ctaAuthenticated": "Start abonnement →",
+        "ctaAnonymous": "Plan een kennismaking →"
+      },
+      "tierNames": {
+        "care": "Care",
+        "studio": "Studio",
+        "atelier": "Atelier"
+      }
     }
   },
   "legal": {
