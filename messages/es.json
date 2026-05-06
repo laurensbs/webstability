@@ -1216,6 +1216,15 @@
       "activeProjects": "Proyectos activos",
       "openInvoices": "Facturas pendientes"
     },
+    "revenue": {
+      "title": "Ingresos & clientes",
+      "mrr": "MRR",
+      "arr": "ARR",
+      "activeOrgs": "activos",
+      "hoursTitle": "Horas registradas",
+      "thisMonth": "Este mes",
+      "hoursLede": "Cross-org · todos los clientes"
+    },
     "nav": { "overview": "Resumen", "orgs": "Organizaciones", "tickets": "Tickets" },
     "orgs": {
       "title": "Organizaciones",

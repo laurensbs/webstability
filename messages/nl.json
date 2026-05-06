@@ -1221,6 +1221,15 @@
       "activeProjects": "Actieve projecten",
       "openInvoices": "Openstaande facturen"
     },
+    "revenue": {
+      "title": "Inkomsten & klanten",
+      "mrr": "MRR",
+      "arr": "ARR",
+      "activeOrgs": "actief",
+      "hoursTitle": "Verzette uren",
+      "thisMonth": "Deze maand",
+      "hoursLede": "Cross-org · alle klanten samen"
+    },
     "nav": { "overview": "Overzicht", "orgs": "Organisaties", "tickets": "Tickets" },
     "orgs": {
       "title": "Organisaties",

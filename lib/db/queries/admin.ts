@@ -166,3 +166,58 @@ export async function getStudioStats() {
     openInvoices: openInvoices.n,
   };
 }
+
+/**
+ * Plan-distribution + MRR voor de admin overview. Gebruikt de
+ * organizations.plan kolom als bron — als er geen plan staat
+ * tellen we de org als 'unassigned'. MRR wordt berekend door de
+ * pricing.ts CARE_PLANS map (zelfde getallen als de pricing page).
+ */
+export async function getRevenueStats() {
+  const rows = await db
+    .select({
+      plan: organizations.plan,
+      n: count(),
+    })
+    .from(organizations)
+    .groupBy(organizations.plan);
+
+  // Pricing per plan in EUR/m, parallel aan lib/stripe.ts CARE_PLANS.
+  const PRICE: Record<string, number> = { care: 69, studio: 179, atelier: 399 };
+
+  const distribution = { care: 0, studio: 0, atelier: 0, unassigned: 0 };
+  let mrr = 0;
+  for (const row of rows) {
+    const plan = row.plan ?? "unassigned";
+    const n = Number(row.n);
+    if (plan in distribution) distribution[plan as keyof typeof distribution] = n;
+    if (plan in PRICE) mrr += PRICE[plan]! * n;
+  }
+
+  return {
+    distribution,
+    mrr,
+    arr: mrr * 12,
+  };
+}
+
+/**
+ * Totaal werk-uren deze maand cross-org — voor admin overview.
+ * Helpt staff bij te houden hoe vol de planning op studio-niveau
+ * staat ("X uur al verzet, Y uur openstaand budget over alle
+ * klanten heen").
+ */
+export async function getCrossOrgHoursThisMonth() {
+  const now = new Date();
+  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const startOfNextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+
+  const [totalRow] = await db
+    .select({ minutes: sql<number>`coalesce(sum(${hoursLogged.minutes}), 0)` })
+    .from(hoursLogged)
+    .where(
+      and(gte(hoursLogged.workedOn, startOfMonth), lt(hoursLogged.workedOn, startOfNextMonth)),
+    );
+
+  return Number(totalRow?.minutes ?? 0);
+}

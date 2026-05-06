@@ -1,9 +1,14 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { Building2, MessageSquare, FolderKanban, Receipt } from "lucide-react";
+import { Building2, MessageSquare, FolderKanban, Receipt, Coins, Clock } from "lucide-react";
 import { routing } from "@/i18n/routing";
-import { getStudioStats, getRecentAdminActivity } from "@/lib/db/queries/admin";
+import {
+  getStudioStats,
+  getRecentAdminActivity,
+  getRevenueStats,
+  getCrossOrgHoursThisMonth,
+} from "@/lib/db/queries/admin";
 import { StatCard } from "@/components/portal/StatCard";
 import { AdminActivityFeed } from "@/components/admin/AdminActivityFeed";
 
@@ -13,7 +18,21 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
   setRequestLocale(locale);
 
   const t = await getTranslations("admin");
-  const [stats, events] = await Promise.all([getStudioStats(), getRecentAdminActivity(8)]);
+  const [stats, events, revenue, crossOrgMinutes] = await Promise.all([
+    getStudioStats(),
+    getRecentAdminActivity(8),
+    getRevenueStats(),
+    getCrossOrgHoursThisMonth(),
+  ]);
+
+  const totalActiveOrgs =
+    revenue.distribution.care + revenue.distribution.studio + revenue.distribution.atelier;
+  const hoursDisplay = `${(crossOrgMinutes / 60).toFixed(1)}u`;
+  const eurFmt = new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+  });
 
   return (
     <div className="space-y-10">
@@ -22,6 +41,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
         <p className="text-(--color-muted)">{t("subtitle")}</p>
       </header>
 
+      {/* Operationele stats */}
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label={t("stats.orgs")} value={Number(stats.orgs)} icon={Building2} />
         <StatCard
@@ -41,6 +61,76 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
           icon={Receipt}
           accent={Number(stats.openInvoices) > 0}
         />
+      </section>
+
+      {/* Revenue + uren — studio-level overzicht */}
+      <section className="grid gap-5 lg:grid-cols-[1.5fr_1fr]">
+        <article className="rounded-lg border border-(--color-border) bg-(--color-surface) p-6">
+          <header className="flex items-center justify-between border-b border-(--color-border) pb-3">
+            <div className="flex items-center gap-2">
+              <Coins className="h-4 w-4 text-(--color-accent)" strokeWidth={2} />
+              <h2 className="text-base font-medium">{t("revenue.title")}</h2>
+            </div>
+            <span className="font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+              {totalActiveOrgs} {t("revenue.activeOrgs")}
+            </span>
+          </header>
+          <div className="grid grid-cols-2 gap-6 pt-5 sm:grid-cols-4">
+            <div>
+              <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                {t("revenue.mrr")}
+              </p>
+              <p className="mt-1 font-serif text-[28px] leading-none">
+                {eurFmt.format(revenue.mrr)}
+              </p>
+              <p className="mt-1 font-mono text-[10px] text-(--color-muted)">/m</p>
+            </div>
+            <div>
+              <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                {t("revenue.arr")}
+              </p>
+              <p className="mt-1 font-serif text-[28px] leading-none">
+                {eurFmt.format(revenue.arr)}
+              </p>
+              <p className="mt-1 font-mono text-[10px] text-(--color-muted)">/y</p>
+            </div>
+            <div>
+              <p className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+                Care
+              </p>
+              <p className="mt-1 font-serif text-[28px] leading-none">
+                {revenue.distribution.care}
+              </p>
+              <p className="mt-1 font-mono text-[10px] text-(--color-muted)">€69/m</p>
+            </div>
+            <div>
+              <p className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+                Studio · Atelier
+              </p>
+              <p className="mt-1 font-serif text-[28px] leading-none">
+                {revenue.distribution.studio + revenue.distribution.atelier}
+              </p>
+              <p className="mt-1 font-mono text-[10px] text-(--color-muted)">
+                €179 + €399 ·{" "}
+                {revenue.distribution.atelier > 0 ? `${revenue.distribution.atelier} A` : "0 A"}
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article className="rounded-lg border border-(--color-border) bg-(--color-surface) p-6">
+          <header className="flex items-center justify-between border-b border-(--color-border) pb-3">
+            <div className="flex items-center gap-2">
+              <Clock className="h-4 w-4 text-(--color-success)" strokeWidth={2} />
+              <h2 className="text-base font-medium">{t("revenue.hoursTitle")}</h2>
+            </div>
+            <span className="font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+              {t("revenue.thisMonth")}
+            </span>
+          </header>
+          <p className="mt-5 font-serif text-[40px] leading-none">{hoursDisplay}</p>
+          <p className="mt-2 text-[13px] text-(--color-muted)">{t("revenue.hoursLede")}</p>
+        </article>
       </section>
 
       <AdminActivityFeed
