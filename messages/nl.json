@@ -36,10 +36,10 @@
   },
   "home": {
     "eyebrow": "begur · costa brava",
-    "headline": "Jouw klanten zien een website. *Jij* ziet de hele zaak.",
-    "tagline": "Wij bouwen het complete systeem onder je bedrijf — publieke site, online boekingen, jouw admin paneel, alles geïntegreerd.",
+    "headline": "Geen Excel-puzzels meer. *Geen* dubbele boekingen. Geen vijf losse tools.",
+    "tagline": "Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt. Doorlopend abonnement vanaf €69 per maand — bouwen + onderhouden in één.",
     "ctaPrimary": "Plan een kennismaking",
-    "ctaSecondary": "Speciaal voor verhuur",
+    "ctaSecondary": "Bekijk klantverhalen",
 
     "hero": {
       "years": "jaar bouwen",
@@ -49,11 +49,11 @@
       "eyebrowMessages": [
         "Beschikbaar voor 2 nieuwe projecten — mei 2026",
         "Vanaf €69/m · eerste maand gratis",
-        "Een dev-partner zonder offerte-gedoe"
+        "Eén systeem ipv vijf losse tools"
       ],
       "metaYearsLabel": "jaar ervaring",
       "metaUptimeLabel": "uptime · 30d",
-      "metaSubsLabel": "live abonnementen",
+      "metaPlatformsLabel": "platforms productioneel",
       "metaRegionLabel": "werkgebied",
       "metaRegionValue": "NL · ES",
       "taglinePrefix": "Eén stack voor",
@@ -188,6 +188,10 @@
       "eyebrow": "veelgestelde vragen",
       "title": "Antwoorden vooraf.",
       "items": [
+        {
+          "q": "Wat kost een typisch project?",
+          "a": "Hangt af van wat je wil bouwen. Een marketing-site of landingpage: ~€600 build over 3 maanden, daarna €69/m onderhoud. Een webshop met BTW/IVA: ~€2.000 build over 3 maanden, daarna €179/m. Een verhuurplatform of bedrijfssoftware op maat: ~€7.800 build over 6 maanden, daarna €399/m onderhoud + doorontwikkeling. Concreet uitrekenen kun je op de pricing-pagina."
+        },
         {
           "q": "Waarom alleen abonnement, geen project-prijs?",
           "a": "Project-prijzen creëren een prikkel om snel te leveren en weg te zijn. Abonnementen verplichten ons elke maand opnieuw te leveren. Voor jou betekent het lagere instap en de mogelijkheid om altijd te stoppen. Voor ons voorspelbare inkomsten, dus we hoeven niet de volgende klant na te jagen."

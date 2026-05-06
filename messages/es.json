@@ -36,10 +36,10 @@
   },
   "home": {
     "eyebrow": "begur · costa brava",
-    "headline": "Tus clientes ven una web. *Tú* ves toda la empresa.",
-    "tagline": "Construimos el sistema completo bajo tu empresa — web pública, reservas online, tu panel de admin, todo integrado.",
+    "headline": "Sin puzzles de Excel. *Sin* reservas duplicadas. Sin cinco herramientas sueltas.",
+    "tagline": "Un sistema que funciona, un Laurens que lo construye y mantiene. Suscripción continua desde 69 € al mes — construir + mantener en una sola cuota.",
     "ctaPrimary": "Reservar primera llamada",
-    "ctaSecondary": "Especial para alquiler",
+    "ctaSecondary": "Ver casos",
 
     "hero": {
       "years": "años construyendo",
@@ -49,11 +49,11 @@
       "eyebrowMessages": [
         "Disponible para 2 nuevos proyectos — mayo 2026",
         "Desde 69 €/m · primer mes gratis",
-        "Un dev-partner sin presupuestos"
+        "Un sistema en lugar de cinco herramientas"
       ],
       "metaYearsLabel": "años de experiencia",
       "metaUptimeLabel": "uptime · 30d",
-      "metaSubsLabel": "suscripciones activas",
+      "metaPlatformsLabel": "plataformas en producción",
       "metaRegionLabel": "zona de trabajo",
       "metaRegionValue": "NL · ES",
       "taglinePrefix": "Una stack para",
@@ -188,6 +188,10 @@
       "eyebrow": "preguntas frecuentes",
       "title": "Respuestas por adelantado.",
       "items": [
+        {
+          "q": "¿Cuánto cuesta un proyecto típico?",
+          "a": "Depende de qué quieras construir. Una web de marketing o landing page: ~600 € de build en 3 meses, después 69 €/m de mantenimiento. Una tienda online con IVA/BTW: ~2.000 € de build en 3 meses, después 179 €/m. Una plataforma de alquiler o software empresarial a medida: ~7.800 € de build en 6 meses, después 399 €/m de mantenimiento + desarrollo continuo. Cálculo concreto en la página de precios."
+        },
         {
           "q": "¿Por qué solo suscripción, sin precio por proyecto?",
           "a": "Los precios por proyecto incentivan entregar rápido y desaparecer. Las suscripciones nos obligan a entregar cada mes. Para ti significa entrada baja y la posibilidad de parar siempre. Para nosotros, ingresos predecibles — no tenemos que perseguir al siguiente cliente."

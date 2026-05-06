@@ -24,7 +24,7 @@ export async function Hero() {
     | { plain: string; label: string }
   > = [
     { value: yearsExp, suffix: "+", label: tHero("metaYearsLabel") },
-    { value: 47, label: tHero("metaSubsLabel") },
+    { value: 2, label: tHero("metaPlatformsLabel") },
     { value: 99.98, suffix: "%", decimals: 2, label: tHero("metaUptimeLabel") },
     { plain: tHero("metaRegionValue"), label: tHero("metaRegionLabel") },
   ];
@@ -65,7 +65,7 @@ export async function Hero() {
           </MagneticButton>
           <MagneticButton>
             <Button asChild size="lg" variant="outline">
-              <Link href="/verhuur">{t("ctaSecondary")} →</Link>
+              <Link href="/cases">{t("ctaSecondary")} →</Link>
             </Button>
           </MagneticButton>
         </div>
