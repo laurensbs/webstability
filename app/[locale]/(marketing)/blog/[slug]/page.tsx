@@ -7,6 +7,15 @@ import NextLink from "next/link";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { listPosts, getPost, type BlogPost } from "@/lib/blog";
+import { Callout } from "@/components/marketing/blog/Callout";
+import { PullQuote } from "@/components/marketing/blog/PullQuote";
+
+/**
+ * MDX components made available inside any blog post. Use them like:
+ *   <Callout variant="warning">…</Callout>
+ *   <PullQuote attribution="…">…</PullQuote>
+ */
+const mdxComponents = { Callout, PullQuote };
 
 export const dynamicParams = true;
 
@@ -79,7 +88,7 @@ export default async function Page({
           </header>
 
           <div className="prose-wb mt-12 [&_a]:text-(--color-accent) [&_a]:underline [&_h2]:mt-12 [&_h2]:font-serif [&_h2]:text-3xl [&_h3]:mt-8 [&_h3]:font-serif [&_h3]:text-2xl [&_hr]:my-12 [&_hr]:border-(--color-border) [&_li]:my-2 [&_p]:mt-5 [&_p]:leading-relaxed [&_p]:text-(--color-muted) [&_ul]:mt-5 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:text-(--color-muted)">
-            <MDXRemote source={post.content} />
+            <MDXRemote source={post.content} components={mdxComponents} />
           </div>
 
           {/* Author block */}

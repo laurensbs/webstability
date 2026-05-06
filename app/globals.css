@@ -101,15 +101,68 @@ body.is-marketing #main {
 }
 
 /* Editorial prose for blog articles. Apply to a wrapper with .prose-wb. */
-.prose-wb > p:first-of-type::first-letter {
+
+/* Drop-cap on the very first paragraph only — guarded with :first-child
+   so it doesn't trigger inside Callout/PullQuote which both render <p>. */
+.prose-wb > p:first-child::first-letter {
   font-family: var(--font-serif);
   float: left;
   font-size: 4.5rem;
-  line-height: 0.95;
-  padding: 0.4rem 0.6rem 0 0;
+  line-height: 0.9;
+  padding: 0.35rem 0.6rem 0 0;
   color: var(--color-accent);
   font-style: italic;
+  font-weight: 400;
 }
+
+/* Inline code — JetBrains Mono in a soft cream pill. */
+.prose-wb code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--color-bg-warm);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  color: var(--color-text);
+}
+
+/* Pre / code-blocks — full-width, dark text on cream-warm. */
+.prose-wb pre {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--color-bg-warm);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+  line-height: 1.55;
+}
+.prose-wb pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Horizontal rule — narrow centered terracotta dot trio. */
+.prose-wb hr {
+  border: 0;
+  margin: 3rem auto;
+  width: 60px;
+  height: 6px;
+  background-image: radial-gradient(circle, var(--color-accent) 2px, transparent 2px);
+  background-size: 20px 6px;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+/* Strong text in prose — accent-tinted instead of pure black */
+.prose-wb strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
 .prose-wb blockquote {
   border-left: 2px solid var(--color-accent);
   padding-left: 1.5rem;
