@@ -43,7 +43,7 @@ export async function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+            <h4 className="text-[11px] font-medium tracking-[0.08em] text-(--color-muted)">
               {t("cols.services")}
             </h4>
             <ul className="mt-4 space-y-2 text-sm">
@@ -62,7 +62,7 @@ export async function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+            <h4 className="text-[11px] font-medium tracking-[0.08em] text-(--color-muted)">
               {t("cols.company")}
             </h4>
             <ul className="mt-4 space-y-2 text-sm">
@@ -81,7 +81,7 @@ export async function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+            <h4 className="text-[11px] font-medium tracking-[0.08em] text-(--color-muted)">
               {t("cols.contact")}
             </h4>
             <ul className="mt-4 space-y-2 text-sm">
@@ -108,7 +108,7 @@ export async function Footer() {
 
         {/* Bottom row */}
         <div className="mt-12 flex flex-col gap-4 border-t border-(--color-border) pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
+          <p className="text-[12px] font-medium tracking-[0.06em] text-(--color-muted)">
             © {year} Webstability · {t("rights")}
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -116,14 +116,14 @@ export async function Footer() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="font-mono text-xs tracking-widest text-(--color-muted) uppercase transition-colors hover:text-(--color-text)"
+                className="text-[12px] font-medium tracking-[0.06em] text-(--color-muted) transition-colors hover:text-(--color-text)"
               >
                 {l.label}
               </Link>
             ))}
             <Link
               href="/status"
-              className="inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3 py-1 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase transition-colors hover:border-(--color-accent)/40 hover:text-(--color-text)"
+              className="inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3 py-1 text-[11px] font-medium tracking-[0.08em] text-(--color-muted) transition-colors hover:border-(--color-accent)/40 hover:text-(--color-text)"
             >
               <LivePulse />
               {t("liveBadge")}

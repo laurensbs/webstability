@@ -17,8 +17,8 @@ export async function TopBar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-2">
         <Link
           href="/status"
-          className="group inline-flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase transition-colors"
-          style={{ color: "rgba(245, 240, 232, 0.75)" }}
+          className="group inline-flex min-h-11 items-center gap-2 text-[11px] font-medium tracking-[0.08em] transition-colors"
+          style={{ color: "rgba(245, 240, 232, 0.85)" }}
         >
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-(--color-success) opacity-60" />
@@ -31,8 +31,8 @@ export async function TopBar() {
         </Link>
 
         <p
-          className="hidden font-mono text-[11px] tracking-widest uppercase md:block"
-          style={{ color: "rgba(245, 240, 232, 0.55)" }}
+          className="hidden text-[11px] font-medium tracking-[0.08em] md:block"
+          style={{ color: "rgba(245, 240, 232, 0.65)" }}
         >
           {tFooter("tagline")}
         </p>
