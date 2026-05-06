@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
+import { LivePulse } from "@/components/animate/LivePulse";
 import { FounderFormMount } from "@/components/r3f/FounderFormMount";
 
 export async function Founder() {
@@ -32,10 +33,7 @@ export async function Founder() {
               className="absolute right-6 bottom-6 left-6 flex items-center gap-2.5 rounded-[14px] px-4 py-3.5 text-[13px] text-(--color-bg) backdrop-blur-md"
               style={{ background: "rgba(31, 27, 22, 0.85)" }}
             >
-              <span
-                className="h-2 w-2 shrink-0 rounded-full bg-(--color-success)"
-                style={{ boxShadow: "0 0 0 3px rgba(90, 122, 74, 0.25)" }}
-              />
+              <LivePulse size={2} />
               {t("liveBadge")}
             </div>
           </div>

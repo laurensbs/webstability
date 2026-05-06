@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { LivePulse } from "@/components/animate/LivePulse";
 
 export async function Footer() {
   const t = await getTranslations("footer");
@@ -124,10 +125,7 @@ export async function Footer() {
               href="/status"
               className="inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3 py-1 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase transition-colors hover:border-(--color-accent)/40 hover:text-(--color-text)"
             >
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-(--color-success) opacity-60" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-(--color-success)" />
-              </span>
+              <LivePulse />
               {t("liveBadge")}
             </Link>
           </div>

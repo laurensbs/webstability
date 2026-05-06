@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { CountUp } from "@/components/shared/CountUp";
+import { LivePulse } from "@/components/animate/LivePulse";
 
 const START_YEAR = 2016;
 
@@ -66,10 +67,7 @@ export function HeroMeta({
       ))}
       {/* Fourth: live status — feels alive, not a fake stat. */}
       <div className="flex items-center gap-3 rounded-lg border border-(--color-border) bg-(--color-bg-warm)/60 px-5 py-4">
-        <span className="relative flex h-2.5 w-2.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-(--color-success) opacity-60" />
-          <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-(--color-success)" />
-        </span>
+        <LivePulse size={2.5} />
         <div className="min-w-0">
           <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
             {liveLabel}

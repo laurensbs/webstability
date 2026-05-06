@@ -68,7 +68,7 @@
         "plataformas de reservas",
         "tiendas online"
       ],
-      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado. Suscripción continua desde 95 € al mes. Desde Costa Brava, para empresarios en Países Bajos y España."
+      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado. Suscripción continua desde 95 € al mes, para empresarios en Países Bajos y España."
     },
 
     "logoStrip": {
@@ -112,7 +112,7 @@
     "services": {
       "eyebrow": "servicios",
       "title": "Sin puzzles de Excel. Sin *reservas duplicadas*. Sin cinco herramientas sueltas.",
-      "lede": "Un sistema que funciona. Un Laurens que lo construye y mantiene. Desde Costa Brava para pymes en Países Bajos y España.",
+      "lede": "Un sistema que funciona. Un Laurens que lo construye y mantiene — para pymes en Países Bajos y España.",
       "bridgeNote": "Construir + mantener está en una sola suscripción continua. *Durante* una construcción pagas más al mes, después vuelves a tu cuota fija. Pagas a lo largo del tiempo, no por adelantado.",
       "items": {
         "platform": {
@@ -696,7 +696,7 @@
           "anchor": "caravanverhuurspanje",
           "name": "Caravanverhuurspanje",
           "url": "https://caravanverhuurspanje.com",
-          "logoUrl": "https://u.cubeupload.com/laurensbs/Caravanverhuur3.png",
+          "logoUrl": "/logos/caravanverhuurspanje.png",
           "tagline": "Plataforma de alquiler · activa en España",
           "what": "Plataforma de reservas pública con login de cliente y un admin donde llegan reservas, pagos y syncs de canales en vivo. Funciona a diario en producción: los clientes reservan solos, el equipo lo ve todo en un solo panel.",
           "for": "Otras empresas de alquiler (caravanas, barcos, casas de vacaciones, equipos) reciben la misma base, ajustada a su negocio.",
@@ -707,7 +707,7 @@
           "anchor": "caravanreparatiespanje",
           "name": "Caravanreparatiespanje",
           "url": "https://caravanreparatiespanje.vercel.app",
-          "logoUrl": "https://u.cubeupload.com/laurensbs/Ontwerpzondertitel1.png",
+          "logoUrl": "/logos/caravanreparatiespanje.png",
           "tagline": "Plataforma de reparación · activa en España",
           "what": "Los clientes reportan su reparación online. La orden llega directa a iPads en el taller — sin papeles sueltos, los mecánicos ven qué hay que hacer en cada vehículo y actualizan el estado mientras trabajan.",
           "for": "Talleres y empresas de mantenimiento con equipo en planta.",
@@ -718,7 +718,7 @@
           "anchor": "caravanstallingspanje",
           "name": "Caravanstallingspanje",
           "url": "https://caravanstallingspanje.com",
-          "logoUrl": "https://u.cubeupload.com/laurensbs/IMG7081.png",
+          "logoUrl": "/logos/caravanstallingspanje.png",
           "tagline": "Plataforma de almacenaje · activa en España",
           "what": "Gestión de almacenaje con login de cliente, vista de plazas, contratos y facturación. Los clientes ven en vivo qué plaza tienen y sus documentos; el propietario gestiona capacidad, pagos y movimientos desde un solo panel.",
           "for": "Almacenajes para caravanas, barcos o trasteros — donde plazas, contratos y facturación anual se juntan.",
@@ -754,7 +754,7 @@
         {
           "name": "Hoogduinonderhoud.nl",
           "url": "https://hoogduinonderhoud.nl",
-          "logoUrl": "https://u.cubeupload.com/laurensbs/logohoogduinonderhou.png",
+          "logoUrl": "/logos/hoogduinonderhoud.png",
           "kind": "Empresa de mantenimiento"
         },
         {

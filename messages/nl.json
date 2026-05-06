@@ -68,7 +68,7 @@
         "boekingsplatformen",
         "webshops"
       ],
-      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem. Doorlopend abonnement vanaf €95 per maand. Vanuit Costa Brava, voor ondernemers in Nederland en Spanje."
+      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem. Doorlopend abonnement vanaf €95 per maand, voor ondernemers in Nederland en Spanje."
     },
 
     "logoStrip": {
@@ -112,7 +112,7 @@
     "services": {
       "eyebrow": "diensten",
       "title": "Geen Excel-puzzels. Geen *dubbele boekingen*. Geen vijf losse tools.",
-      "lede": "Eén systeem dat draait. Eén Laurens die het bouwt en in de lucht houdt. Vanuit Costa Brava voor MKB in Nederland en Spanje.",
+      "lede": "Eén systeem dat draait. Eén Laurens die het bouwt en in de lucht houdt — voor MKB in Nederland en Spanje.",
       "bridgeNote": "Bouwen + onderhouden zit in één doorlopend abonnement. *Tijdens* een build betaal je tijdelijk meer per maand, daarna val je terug op je vaste maandprijs. Zo betaal je over de tijd, niet vooraf.",
       "items": {
         "platform": {
@@ -701,7 +701,7 @@
           "anchor": "caravanverhuurspanje",
           "name": "Caravanverhuurspanje",
           "url": "https://caravanverhuurspanje.com",
-          "logoUrl": "https://u.cubeupload.com/laurensbs/Caravanverhuur3.png",
+          "logoUrl": "/logos/caravanverhuurspanje.png",
           "tagline": "Verhuurplatform · live in Spanje",
           "what": "Publiek boekingsplatform met klantlogin en een admin waar live boekingen, betalingen en kanaal-syncs binnenkomen. Draait dagelijks productioneel: klanten boeken zelf, het team ziet alles in één paneel.",
           "for": "Andere verhuurders (caravans, boten, vakantiehuizen, materieel) krijgen dezelfde basis, op het bedrijf afgestemd.",
@@ -712,7 +712,7 @@
           "anchor": "caravanreparatiespanje",
           "name": "Caravanreparatiespanje",
           "url": "https://caravanreparatiespanje.vercel.app",
-          "logoUrl": "https://u.cubeupload.com/laurensbs/Ontwerpzondertitel1.png",
+          "logoUrl": "/logos/caravanreparatiespanje.png",
           "tagline": "Reparatieplatform · live in Spanje",
           "what": "Klanten melden hun reparatie online. De order belandt direct op iPads in de werkplaats — geen losse papiertjes meer, monteurs zien wat er aan welk voertuig moet gebeuren en updaten de status terwijl ze werken.",
           "for": "Garages, werkplaatsen en onderhoudsbedrijven met een team op de vloer.",
@@ -723,7 +723,7 @@
           "anchor": "caravanstallingspanje",
           "name": "Caravanstallingspanje",
           "url": "https://caravanstallingspanje.com",
-          "logoUrl": "https://u.cubeupload.com/laurensbs/IMG7081.png",
+          "logoUrl": "/logos/caravanstallingspanje.png",
           "tagline": "Stallingsplatform · live in Spanje",
           "what": "Stallingsbeheer met klantlogin, plekken-overzicht, contracten en facturatie. Klanten zien live welke plek ze hebben en hun documenten; de eigenaar beheert capaciteit, betalingen en mutaties vanuit één paneel.",
           "for": "Stallingen voor caravans, boten of opslag — overal waar plekken, contracten en jaarlijkse facturatie samenkomen.",
@@ -759,7 +759,7 @@
         {
           "name": "Hoogduinonderhoud.nl",
           "url": "https://hoogduinonderhoud.nl",
-          "logoUrl": "https://u.cubeupload.com/laurensbs/logohoogduinonderhou.png",
+          "logoUrl": "/logos/hoogduinonderhoud.png",
           "kind": "Onderhoudsbedrijf"
         },
         {
