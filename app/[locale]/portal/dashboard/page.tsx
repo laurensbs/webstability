@@ -15,6 +15,7 @@ import {
   listOrgTickets,
   listOrgInvoices,
   getOrgHoursThisMonth,
+  getActiveBuildPhase,
 } from "@/lib/db/queries/portal";
 import { StatCard } from "@/components/portal/StatCard";
 import { StatusBanner } from "@/components/portal/StatusBanner";
@@ -30,6 +31,7 @@ import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/Dashboa
 import { HoursWidget } from "@/components/portal/HoursWidget";
 import { SecurityCard } from "@/components/portal/SecurityCard";
 import { RoadmapCard } from "@/components/portal/RoadmapCard";
+import { DeliveryCard } from "@/components/portal/DeliveryCard";
 import { budgetMinutesFor, type TierId } from "@/lib/plan-budget";
 import type { Monitor } from "@/lib/better-stack";
 
@@ -38,6 +40,23 @@ function pickGreeting(t: (k: string) => string) {
   if (h < 12) return t("greeting.morning");
   if (h < 18) return t("greeting.afternoon");
   return t("greeting.evening");
+}
+
+/**
+ * Bereken voortgang en resterende dagen van een build-fase. Geïsoleerd
+ * van het component-render zodat de purity-rule (`Date.now` ≠ pure)
+ * niet aanslaat.
+ */
+function computeBuildPhaseProps(
+  phase: { startedAt: Date; endsAt: Date } | null | undefined,
+): { pct: number; daysRemaining: number } | null {
+  if (!phase) return null;
+  const nowMs = Date.now();
+  const total = phase.endsAt.getTime() - phase.startedAt.getTime();
+  const elapsed = Math.max(0, nowMs - phase.startedAt.getTime());
+  const pct = total > 0 ? Math.min(100, Math.round((elapsed / total) * 100)) : 0;
+  const daysRemaining = Math.round((phase.endsAt.getTime() - nowMs) / (1000 * 60 * 60 * 24));
+  return { pct, daysRemaining };
 }
 
 function lastSeenLine(
@@ -71,12 +90,13 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   const tProjects = await getTranslations("portal.projects");
   const tInvoices = await getTranslations("portal.invoices");
   const tStatus = await getTranslations("status");
-  const [stats, projects, tickets, invoices, hours] = await Promise.all([
+  const [stats, projects, tickets, invoices, hours, buildPhase] = await Promise.all([
     getDashboardStats(user.organizationId),
     listOrgProjects(user.organizationId),
     listOrgTickets(user.organizationId),
     listOrgInvoices(user.organizationId),
     getOrgHoursThisMonth(user.organizationId),
+    getActiveBuildPhase(user.organizationId),
   ]);
 
   // Tier-aware widget visibility — Care krijgt alleen Hours + Security,
@@ -86,6 +106,8 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   const budgetMinutes = budgetMinutesFor(plan);
   const showSeoSparkline = plan === "studio" || plan === "atelier";
   const showRoadmap = plan === "atelier";
+
+  const buildPhaseProps = computeBuildPhaseProps(buildPhase);
 
   // Build de roadmap-items uit recent projects: laatste 'live' wordt
   // 'shipped', huidige 'in_progress' wordt 'active', 'planning' wordt
@@ -140,6 +162,39 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         message={healthy ? t("banner.healthy") : t("banner.issue")}
         cta={t("banner.viewStatus")}
       />
+
+      {/* Delivery timeline — alleen wanneer er een actieve Build-fase is.
+          Staat hoog op de pagina omdat het de meest concrete vraag van
+          een klant beantwoordt: 'wanneer is mijn project klaar?'. */}
+      {buildPhase && buildPhaseProps ? (
+        <DeliveryCard
+          phase={{
+            extension: buildPhase.extension,
+            startedAt: buildPhase.startedAt,
+            endsAt: buildPhase.endsAt,
+            durationMonths: buildPhase.durationMonths,
+            label: buildPhase.label,
+            project: buildPhase.project,
+            pct: buildPhaseProps.pct,
+            daysRemaining: buildPhaseProps.daysRemaining,
+          }}
+          strings={{
+            title: t("dashboard.deliveryTitle"),
+            extensionLabel: {
+              light: t("dashboard.deliveryExtensionLight"),
+              standard: t("dashboard.deliveryExtensionStandard"),
+              custom: t("dashboard.deliveryExtensionCustom"),
+            },
+            monthsRemaining: t("dashboard.deliveryMonthsRemaining"),
+            daysRemaining: t("dashboard.deliveryDaysRemaining"),
+            overdueLabel: t("dashboard.deliveryOverdue"),
+            started: t("dashboard.deliveryStarted"),
+            ends: t("dashboard.deliveryEnds"),
+            after: t("dashboard.deliveryAfter"),
+            pctLabel: t("dashboard.deliveryPctLabel"),
+          }}
+        />
+      ) : null}
 
       <StatsGrid>
         <StatItem>

@@ -57,6 +57,7 @@ export const subscriptionStatusEnum = pgEnum("subscription_status", [
   "incomplete",
 ]);
 export const monitoringStatusEnum = pgEnum("monitoring_status", ["up", "degraded", "down"]);
+export const buildExtensionEnum = pgEnum("build_extension", ["light", "standard", "custom"]);
 export const incidentTypeEnum = pgEnum("incident_type", ["incident", "maintenance"]);
 export const fileCategoryEnum = pgEnum("file_category", [
   "contract",
@@ -337,6 +338,40 @@ export const seoReports = pgTable("seo_reports", {
     .default(sql`now()`),
 });
 
+// --- build_phases --------------------------------------------------------
+//
+// Een actieve Build-extension (Light/Standard/Custom) per organisatie.
+// Een org heeft typisch 0 of 1 actieve build-fase tegelijk; multipele
+// rijen betekenen historische builds. start/end zijn de afgesproken
+// looptijd; project-id linkt optioneel naar het hoofdproject dat in
+// die periode wordt opgeleverd. We slaan dit los van de Stripe-
+// subscription op zodat staff ook handmatig kan toevoegen voor klanten
+// die nog niet via Stripe lopen.
+export const buildPhases = pgTable(
+  "build_phases",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    extension: buildExtensionEnum("extension").notNull(),
+    startedAt: timestamp("started_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+    /** Geplande einddatum — wordt op create gezet o.b.v. duration_months. */
+    endsAt: timestamp("ends_at", { withTimezone: true }).notNull(),
+    /** Bouwperiode in maanden, zoals afgesproken (2-8). */
+    durationMonths: integer("duration_months").notNull(),
+    projectId: uuid("project_id").references(() => projects.id, { onDelete: "set null" }),
+    /** Korte naam van wat we bouwen ('verhuurplatform', 'webshop'). */
+    label: text("label").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [index("build_phase_org_active_idx").on(t.organizationId, t.endsAt)],
+);
+
 // --- hours_logged --------------------------------------------------------
 //
 // Per-org log van werk-uren dat staff heeft besteed in een specifieke
@@ -445,4 +480,12 @@ export const hoursLoggedRelations = relations(hoursLogged, ({ one }) => ({
   }),
   project: one(projects, { fields: [hoursLogged.projectId], references: [projects.id] }),
   loggedByUser: one(users, { fields: [hoursLogged.loggedBy], references: [users.id] }),
+}));
+
+export const buildPhasesRelations = relations(buildPhases, ({ one }) => ({
+  organization: one(organizations, {
+    fields: [buildPhases.organizationId],
+    references: [organizations.id],
+  }),
+  project: one(projects, { fields: [buildPhases.projectId], references: [projects.id] }),
 }));

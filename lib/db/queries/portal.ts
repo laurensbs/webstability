@@ -1,6 +1,14 @@
-import { eq, and, asc, desc, count, gte, lt, sum } from "drizzle-orm";
+import { eq, and, asc, desc, count, gte, lt, sum, gt } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { users, projects, tickets, invoices, files, hoursLogged } from "@/lib/db/schema";
+import {
+  users,
+  projects,
+  tickets,
+  invoices,
+  files,
+  hoursLogged,
+  buildPhases,
+} from "@/lib/db/schema";
 
 export async function listOrgMembers(orgId: string) {
   return db.query.users.findMany({
@@ -99,6 +107,20 @@ export async function listOrgInvoices(orgId: string) {
   return db.query.invoices.findMany({
     where: eq(invoices.organizationId, orgId),
     orderBy: [desc(invoices.createdAt)],
+  });
+}
+
+/**
+ * Eerstvolgende lopende build-fase voor een organisatie. Een org heeft
+ * typisch 0 of 1 actieve build tegelijk; we zoeken de fase waarvan
+ * endsAt nog in de toekomst ligt en pakken degene die het laatst is
+ * gestart als er meerdere zouden zijn.
+ */
+export async function getActiveBuildPhase(orgId: string) {
+  return db.query.buildPhases.findFirst({
+    where: and(eq(buildPhases.organizationId, orgId), gt(buildPhases.endsAt, new Date())),
+    orderBy: [desc(buildPhases.startedAt)],
+    with: { project: { columns: { id: true, name: true, status: true, progress: true } } },
   });
 }
 

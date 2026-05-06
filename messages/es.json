@@ -1022,7 +1022,18 @@
       "roadmapActive": "en desarrollo",
       "roadmapNext": "siguiente",
       "roadmapEmpty": "Sin proyectos activos.",
-      "roadmapViewAll": "Ver todos los proyectos"
+      "roadmapViewAll": "Ver todos los proyectos",
+      "deliveryTitle": "Build en marcha",
+      "deliveryExtensionLight": "Build Light",
+      "deliveryExtensionStandard": "Build Standard",
+      "deliveryExtensionCustom": "Build Custom",
+      "deliveryMonthsRemaining": "meses restantes",
+      "deliveryDaysRemaining": "días",
+      "deliveryOverdue": "Listo",
+      "deliveryStarted": "Iniciado",
+      "deliveryEnds": "Finaliza",
+      "deliveryPctLabel": "transcurrido",
+      "deliveryAfter": "Tras esta build vuelves automáticamente a tu suscripción regular. La Build extension termina sola en la fecha de fin — no hay que cancelar nada."
     },
     "projects": {
       "title": "Proyectos",

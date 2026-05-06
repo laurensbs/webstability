@@ -1027,7 +1027,18 @@
       "roadmapActive": "in ontwikkeling",
       "roadmapNext": "volgend",
       "roadmapEmpty": "Geen actieve projecten.",
-      "roadmapViewAll": "Bekijk alle projecten"
+      "roadmapViewAll": "Bekijk alle projecten",
+      "deliveryTitle": "Lopende build",
+      "deliveryExtensionLight": "Build Light",
+      "deliveryExtensionStandard": "Build Standard",
+      "deliveryExtensionCustom": "Build Custom",
+      "deliveryMonthsRemaining": "maanden over",
+      "deliveryDaysRemaining": "dagen",
+      "deliveryOverdue": "Klaar",
+      "deliveryStarted": "Gestart",
+      "deliveryEnds": "Eindigt",
+      "deliveryPctLabel": "voorbij",
+      "deliveryAfter": "Na deze build val je vanzelf terug op je reguliere abonnement. De Build-extension stopt automatisch op de einddatum — geen handmatige opzegging nodig."
     },
     "projects": {
       "title": "Projecten",
