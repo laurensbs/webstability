@@ -866,9 +866,13 @@
       ]
     },
     "verify": {
-      "title": "Check je inbox",
-      "subtitle": "We hebben een inloglink gestuurd. Klik erop om verder te gaan.",
-      "hint": "Geen mail? Kijk in je spam-folder of vraag een nieuwe link aan."
+      "eyebrow": "check je inbox",
+      "title": "Bijna binnen.",
+      "subtitle": "We hebben een inloglink gestuurd naar {email}. Klik op de knop in de mail om verder te gaan.",
+      "hint": "Geen mail? Kijk in je spam-folder. De link werkt één keer en is 24 uur geldig.",
+      "resend": "Stuur opnieuw",
+      "panelTitle": "Eén plek voor je *hele systeem*.",
+      "panelLede": "Projecten, facturen, tickets en site-status — direct in te zien wanneer jij dat wil."
     }
   },
   "admin": {

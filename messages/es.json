@@ -861,9 +861,13 @@
       "error": "Algo salió mal. Inténtalo de nuevo."
     },
     "verify": {
-      "title": "Revisa tu bandeja",
-      "subtitle": "Te hemos enviado un enlace de acceso. Haz clic para continuar.",
-      "hint": "¿No te llega? Mira en spam o solicita un nuevo enlace."
+      "eyebrow": "revisa tu bandeja",
+      "title": "Casi dentro.",
+      "subtitle": "Te hemos enviado un enlace de acceso a {email}. Haz clic en el botón del correo para continuar.",
+      "hint": "¿No te llega? Mira en spam. El enlace funciona una vez y es válido durante 24 horas.",
+      "resend": "Reenviar",
+      "panelTitle": "Un solo lugar para *todo tu sistema*.",
+      "panelLede": "Proyectos, facturas, tickets y estado del site — accesible cuando quieras."
     }
   },
   "admin": {

@@ -16,6 +16,15 @@ export function LoginForm() {
       onSubmit={(e) => {
         e.preventDefault();
         setError(null);
+        // Stash the email so /verify can show "we sent a link to <email>"
+        // without an extra round-trip. Same-tab only, cleared in /verify
+        // once read. Never persisted across sessions.
+        try {
+          sessionStorage.setItem("wb:pending-email", email);
+        } catch {
+          // private mode or disabled storage — /verify falls back to a
+          // generic line.
+        }
         startTransition(async () => {
           const res = await signInAction(email);
           if (res?.error) setError(t("error"));
