@@ -701,6 +701,7 @@
           "what": "Plataforma de reservas pública con login de cliente y un admin donde llegan reservas, pagos y syncs de canales en vivo. Funciona a diario en producción: los clientes reservan solos, el equipo lo ve todo en un solo panel.",
           "for": "Otras empresas de alquiler (caravanas, barcos, casas de vacaciones, equipos) reciben la misma base, ajustada a su negocio.",
           "stack": "Next.js · Postgres · Stripe/Mollie · Admin multi-usuario",
+          "stats": ["Activo desde 2024", "~1.200 reservas procesadas", "0 reservas duplicadas"],
           "cta": "Ver en vivo →"
         },
         {
@@ -712,6 +713,7 @@
           "what": "Los clientes reportan su reparación online. La orden llega directa a iPads en el taller — sin papeles sueltos, los mecánicos ven qué hay que hacer en cada vehículo y actualizan el estado mientras trabajan.",
           "for": "Talleres y empresas de mantenimiento con equipo en planta.",
           "stack": "Next.js · Flujo iPad · Tracking de estado · Notificaciones",
+          "stats": ["Activo desde 2024", "~80 reparaciones por mes", "Taller sin papel"],
           "cta": "Ver en vivo →"
         },
         {
@@ -723,6 +725,11 @@
           "what": "Gestión de almacenaje con login de cliente, vista de plazas, contratos y facturación. Los clientes ven en vivo qué plaza tienen y sus documentos; el propietario gestiona capacidad, pagos y movimientos desde un solo panel.",
           "for": "Almacenajes para caravanas, barcos o trasteros — donde plazas, contratos y facturación anual se juntan.",
           "stack": "Next.js · Postgres · Stripe/Mollie · Firma digital",
+          "stats": [
+            "Activo desde 2025",
+            "~150 plazas gestionadas",
+            "Contratos anuales automatizados"
+          ],
           "cta": "Ver en vivo →"
         }
       ],
@@ -742,6 +749,7 @@
           "tagline": "Sitio + admin + portal de cliente",
           "what": "Sitio público, un admin desde donde la empresa trabaja, y un portal de cliente para el usuario final — tres lados del mismo sistema para que los datos nunca se mantengan por duplicado.",
           "result": "Un sistema integrado en lugar de cinco herramientas sueltas para business y comunicación con clientes.",
+          "stats": ["Activo desde 2024", "Sitio + admin + portal", "5 herramientas reemplazadas"],
           "cta": "Ver →"
         }
       ]

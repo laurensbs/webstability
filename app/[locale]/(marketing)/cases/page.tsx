@@ -9,6 +9,7 @@ import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { MarkupText } from "@/components/animate/MarkupText";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 import { Button } from "@/components/ui/Button";
+import { CaseScreenshot } from "@/components/marketing/CaseScreenshot";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 
@@ -31,6 +32,7 @@ type ProductLineItem = {
   for: string;
   stack: string;
   cta: string;
+  stats?: string[];
 };
 
 type ClientCase = {
@@ -42,6 +44,7 @@ type ClientCase = {
   what: string;
   result: string;
   cta: string;
+  stats?: string[];
 };
 
 type ProductionItem = {
@@ -84,46 +87,65 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <RevealOnScroll
                 key={item.anchor}
                 delay={i * 0.06}
-                className="group flex h-full flex-col rounded-[24px] border border-(--color-border) bg-(--color-surface) p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12)]"
+                className="group flex h-full flex-col overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface) transition-all duration-300 [border-top:2px_solid_#6B1E2C] hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12)]"
               >
                 <article id={item.anchor} className="flex h-full scroll-mt-24 flex-col">
-                  {item.logoUrl ? (
-                    <div className="mb-5 flex h-14 items-center">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={item.logoUrl}
-                        alt={`${item.name} logo`}
-                        loading="lazy"
-                        className="max-h-14 w-auto max-w-[200px] object-contain"
-                      />
-                    </div>
-                  ) : null}
-                  <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
-                    {item.tagline}
-                  </p>
-                  <h3 className="mt-3 text-2xl md:text-3xl">{item.name}</h3>
-                  <p className="mt-4 text-[15px] leading-[1.65] text-(--color-muted)">
-                    {item.what}
-                  </p>
-                  <div className="mt-5 space-y-3 border-t border-(--color-border) pt-5 text-[14px] leading-[1.6]">
-                    <p className="text-(--color-muted)">
-                      <span className="font-mono text-[10px] tracking-widest text-(--color-text) uppercase">
-                        Voor:
-                      </span>{" "}
-                      {item.for}
-                    </p>
-                    <p className="font-mono text-[12px] tracking-wide text-(--color-muted)">
-                      {item.stack}
-                    </p>
+                  <div className="relative">
+                    <CaseScreenshot url={item.url} alt={`${item.name} screenshot`} />
+                    {item.logoUrl ? (
+                      <div className="absolute top-3 right-3 flex h-11 w-11 items-center justify-center rounded-[10px] bg-white/95 p-1.5 shadow-[0_4px_12px_rgba(31,27,22,0.12)] backdrop-blur">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={item.logoUrl}
+                          alt={`${item.name} logo`}
+                          loading="lazy"
+                          className="max-h-full max-w-full object-contain"
+                        />
+                      </div>
+                    ) : null}
                   </div>
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[14px] font-medium text-(--color-accent) hover:underline"
-                  >
-                    {item.cta} <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
+                  <div className="flex h-full flex-col p-8">
+                    <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
+                      {item.tagline}
+                    </p>
+                    <h3 className="mt-3 text-2xl md:text-3xl">{item.name}</h3>
+                    <p className="mt-4 text-[15px] leading-[1.65] text-(--color-muted)">
+                      {item.what}
+                    </p>
+                    {item.stats && item.stats.length > 0 ? (
+                      <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[11px] tracking-wider text-(--color-muted) uppercase">
+                        {item.stats.map((s, idx) => (
+                          <li key={idx} className="flex items-center gap-3">
+                            {idx > 0 ? (
+                              <span aria-hidden className="text-(--color-border)">
+                                ·
+                              </span>
+                            ) : null}
+                            <span>{s}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                    <div className="mt-5 space-y-3 border-t border-(--color-border) pt-5 text-[14px] leading-[1.6]">
+                      <p className="text-(--color-muted)">
+                        <span className="font-mono text-[10px] tracking-widest text-(--color-text) uppercase">
+                          Voor:
+                        </span>{" "}
+                        {item.for}
+                      </p>
+                      <p className="font-mono text-[12px] tracking-wide text-(--color-muted)">
+                        {item.stack}
+                      </p>
+                    </div>
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[14px] font-medium text-(--color-accent) hover:underline"
+                    >
+                      {item.cta} <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
                 </article>
               </RevealOnScroll>
             ))}
@@ -131,7 +153,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
           {/* Inline CTA voor productlijnen — "wil je dit ook?" */}
           <RevealOnScroll className="mt-10 rounded-[24px] border border-(--color-text) bg-(--color-text) p-8 text-(--color-bg) md:p-10">
-            <div className="grid gap-6 md:grid-cols-[1.4fr_auto] md:items-center">
+            <div className="flex flex-col gap-4 md:grid md:grid-cols-[1.4fr_auto] md:items-center md:gap-6">
               <div className="space-y-3">
                 <h3 className="text-2xl md:text-3xl">{t("productLines.ctaTitle")}</h3>
                 <p className="text-[15px] leading-[1.6] text-(--color-bg)/75">
@@ -165,38 +187,57 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <RevealOnScroll
                 key={item.anchor}
                 delay={i * 0.06}
-                className="rounded-[24px] border border-(--color-border) bg-(--color-surface) p-8"
+                className="overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface)"
               >
-                <article id={item.anchor} className="scroll-mt-24">
-                  {item.logoUrl ? (
-                    <div className="mb-5 flex h-14 items-center">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={item.logoUrl}
-                        alt={`${item.name} logo`}
-                        loading="lazy"
-                        className="max-h-14 w-auto max-w-[200px] object-contain"
-                      />
-                    </div>
-                  ) : null}
-                  <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
-                    {item.tagline}
-                  </p>
-                  <h3 className="mt-3 text-2xl md:text-3xl">{item.name}</h3>
-                  <p className="mt-4 text-[15px] leading-[1.65] text-(--color-muted)">
-                    {item.what}
-                  </p>
-                  <p className="mt-4 border-l-2 border-(--color-accent) pl-4 font-serif text-[17px] italic">
-                    {item.result}
-                  </p>
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-medium text-(--color-accent) hover:underline"
-                  >
-                    {item.cta} <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
+                <article id={item.anchor} className="flex h-full scroll-mt-24 flex-col">
+                  <div className="relative">
+                    <CaseScreenshot url={item.url} alt={`${item.name} screenshot`} />
+                    {item.logoUrl ? (
+                      <div className="absolute top-3 left-3 flex h-11 items-center rounded-[10px] bg-white/95 px-2.5 py-1.5 shadow-[0_4px_12px_rgba(31,27,22,0.12)] backdrop-blur">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={item.logoUrl}
+                          alt={`${item.name} logo`}
+                          loading="lazy"
+                          className="max-h-7 w-auto object-contain"
+                        />
+                      </div>
+                    ) : null}
+                  </div>
+                  <div className="flex h-full flex-col p-8">
+                    <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
+                      {item.tagline}
+                    </p>
+                    <h3 className="mt-3 text-2xl md:text-3xl">{item.name}</h3>
+                    <p className="mt-4 text-[15px] leading-[1.65] text-(--color-muted)">
+                      {item.what}
+                    </p>
+                    {item.stats && item.stats.length > 0 ? (
+                      <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[11px] tracking-wider text-(--color-muted) uppercase">
+                        {item.stats.map((s, idx) => (
+                          <li key={idx} className="flex items-center gap-3">
+                            {idx > 0 ? (
+                              <span aria-hidden className="text-(--color-border)">
+                                ·
+                              </span>
+                            ) : null}
+                            <span>{s}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                    <p className="mt-4 border-l-2 border-(--color-accent) pl-4 font-serif text-[17px] italic">
+                      {item.result}
+                    </p>
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[14px] font-medium text-(--color-accent) hover:underline"
+                    >
+                      {item.cta} <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
                 </article>
               </RevealOnScroll>
             ))}
@@ -213,34 +254,37 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             <p className="text-(--color-muted)">{t("production.lede")}</p>
           </RevealOnScroll>
 
-          <div className="grid gap-3 md:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
             {production.map((p, i) => (
               <RevealOnScroll key={p.url} delay={i * 0.04}>
                 <a
                   href={p.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-4 rounded-[14px] border border-(--color-border) bg-(--color-surface) px-5 py-4 transition-colors hover:border-(--color-accent)/50"
+                  className="group flex h-full flex-col items-center justify-center gap-3 rounded-[14px] border border-(--color-border) bg-(--color-surface) px-4 py-6 text-center transition-colors hover:border-(--color-accent)/50"
                 >
-                  <div className="flex min-w-0 items-center gap-3">
-                    {p.logoUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={p.logoUrl}
-                        alt={`${p.name} logo`}
-                        loading="lazy"
-                        className="h-8 w-8 shrink-0 rounded-md object-contain"
-                      />
-                    ) : null}
-                    <div className="min-w-0">
-                      <p className="truncate text-[15px] font-medium text-(--color-text)">
-                        {p.name}
-                      </p>
-                      <p className="text-[12px] text-(--color-muted)">{p.kind}</p>
+                  {p.logoUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={p.logoUrl}
+                      alt={`${p.name} logo`}
+                      loading="lazy"
+                      className="h-10 w-10 shrink-0 rounded-md object-contain md:h-8 md:w-8"
+                    />
+                  ) : (
+                    <div
+                      aria-hidden
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-(--color-bg-warm) font-mono text-[14px] font-medium text-(--color-muted) md:h-8 md:w-8"
+                    >
+                      {p.name.charAt(0)}
                     </div>
+                  )}
+                  <div className="min-w-0">
+                    <p className="truncate text-[14px] font-medium text-(--color-text)">{p.name}</p>
+                    <p className="text-[11px] text-(--color-muted)">{p.kind}</p>
                   </div>
                   <ExternalLink
-                    className="h-4 w-4 shrink-0 text-(--color-muted) transition-colors group-hover:text-(--color-accent)"
+                    className="h-3.5 w-3.5 shrink-0 text-(--color-muted) transition-colors group-hover:text-(--color-accent)"
                     aria-hidden
                   />
                 </a>

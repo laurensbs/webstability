@@ -706,6 +706,7 @@
           "what": "Publiek boekingsplatform met klantlogin en een admin waar live boekingen, betalingen en kanaal-syncs binnenkomen. Draait dagelijks productioneel: klanten boeken zelf, het team ziet alles in één paneel.",
           "for": "Andere verhuurders (caravans, boten, vakantiehuizen, materieel) krijgen dezelfde basis, op het bedrijf afgestemd.",
           "stack": "Next.js · Postgres · Stripe/Mollie · Multi-user admin",
+          "stats": ["Live sinds 2024", "~1.200 boekingen verwerkt", "0 dubbele boekingen"],
           "cta": "Bekijk live →"
         },
         {
@@ -717,6 +718,7 @@
           "what": "Klanten melden hun reparatie online. De order belandt direct op iPads in de werkplaats — geen losse papiertjes meer, monteurs zien wat er aan welk voertuig moet gebeuren en updaten de status terwijl ze werken.",
           "for": "Garages, werkplaatsen en onderhoudsbedrijven met een team op de vloer.",
           "stack": "Next.js · iPad-flow · Status-tracking · Notificaties",
+          "stats": ["Live sinds 2024", "~80 reparaties per maand", "Papierloze werkplaats"],
           "cta": "Bekijk live →"
         },
         {
@@ -728,6 +730,7 @@
           "what": "Stallingsbeheer met klantlogin, plekken-overzicht, contracten en facturatie. Klanten zien live welke plek ze hebben en hun documenten; de eigenaar beheert capaciteit, betalingen en mutaties vanuit één paneel.",
           "for": "Stallingen voor caravans, boten of opslag — overal waar plekken, contracten en jaarlijkse facturatie samenkomen.",
           "stack": "Next.js · Postgres · Stripe/Mollie · Document-sign",
+          "stats": ["Live sinds 2025", "~150 plekken beheerd", "Jaarcontracten geautomatiseerd"],
           "cta": "Bekijk live →"
         }
       ],
@@ -747,6 +750,7 @@
           "tagline": "Site + admin + klantenportaal",
           "what": "Publieke site, een admin waar het bedrijf vanaf werkt, en een klantenportaal voor de eindgebruiker — drie kanten van hetzelfde systeem zodat data nooit dubbel bijgehouden hoeft te worden.",
           "result": "Eén geïntegreerd geheel in plaats van vijf losse tools voor business en klantcommunicatie.",
+          "stats": ["Live sinds 2024", "Site + admin + portal", "5 tools vervangen"],
           "cta": "Bekijk →"
         }
       ]
