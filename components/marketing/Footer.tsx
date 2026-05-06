@@ -7,13 +7,15 @@ export async function Footer() {
   const year = new Date().getFullYear();
 
   const services = [
-    { href: "/verhuur", label: tNav("services") },
+    { href: "/diensten", label: tNav("services") },
+    { href: "/verhuur", label: t("forRentals") },
     { href: "/prijzen", label: tNav("pricing") },
     { href: "/garanties", label: t("guarantees") },
   ] as const;
 
   const company = [
     { href: "/over", label: tNav("about") },
+    { href: "/cases", label: t("cases") },
     { href: "/blog", label: tNav("blog") },
     { href: "/status", label: t("status") },
   ] as const;

@@ -1,12 +1,26 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { Database, Globe, BarChart3, type LucideIcon } from "lucide-react";
+import {
+  Database,
+  Globe,
+  BarChart3,
+  Layers,
+  ShieldCheck,
+  TrendingUp,
+  type LucideIcon,
+} from "lucide-react";
 
 const ICONS: Record<string, LucideIcon> = {
+  // legacy keys retained so the old asymmetric layout still compiles
   admin: Database,
   websites: Globe,
   webshops: BarChart3,
+  // new keys for the 4-solution grid
+  platform: Layers,
+  webshop: BarChart3,
+  care: ShieldCheck,
+  growth: TrendingUp,
 };
 
 export function ServiceCard({
@@ -17,6 +31,7 @@ export function ServiceCard({
   bullets,
   ctaHref,
   ctaLabel,
+  pricePill,
   large = false,
 }: {
   index: number;
@@ -26,6 +41,13 @@ export function ServiceCard({
   bullets?: string[];
   ctaHref?: string;
   ctaLabel?: string;
+  /**
+   * Short price + duration line shown right below the title, e.g.
+   * "vanaf €6k · 6 mnd build" or "€69/m · doorlopend". Set when the
+   * card represents a concrete pakket so visitors get the cost in the
+   * same scan as the title.
+   */
+  pricePill?: string;
   large?: boolean;
 }) {
   const reduce = useReducedMotion();
@@ -47,9 +69,14 @@ export function ServiceCard({
         <Icon className="h-[22px] w-[22px]" strokeWidth={2} />
       </div>
 
-      <h3 className={large ? "mb-3 text-[32px] leading-[1.1]" : "mb-3 text-[24px] leading-[1.1]"}>
+      <h3 className={large ? "mb-2 text-[32px] leading-[1.1]" : "mb-2 text-[24px] leading-[1.1]"}>
         {title}
       </h3>
+      {pricePill ? (
+        <p className="mb-3 inline-flex w-fit items-center rounded-full border border-(--color-border) bg-(--color-bg-warm) px-2.5 py-1 font-mono text-[11px] tracking-wide text-(--color-accent)">
+          {pricePill}
+        </p>
+      ) : null}
       <p className="text-[15px] leading-[1.6] text-(--color-muted)">{body}</p>
 
       {bullets ? (

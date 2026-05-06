@@ -5,6 +5,8 @@ type Locale = "nl" | "es";
 type RouteKey =
   | "home"
   | "verhuur"
+  | "diensten"
+  | "cases"
   | "over"
   | "prijzen"
   | "contact"
@@ -35,6 +37,16 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
       title: "Software voor verhuurbedrijven",
       description:
         "Stop met dubbele boekingen tussen Airbnb, Booking en je Excel. Eén dashboard, automatische facturen, contracten in één klik. Maatwerk verhuursoftware voor caravans, boten, vakantiehuizen.",
+    },
+    diensten: {
+      title: "Diensten — wat we voor je bouwen",
+      description:
+        "Verhuur- of reparatieplatform vanaf €7.800. Webshop op maat vanaf €3.000. Care en groei-abonnementen vanaf €69/m. Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt.",
+    },
+    cases: {
+      title: "Cases & klantverhalen",
+      description:
+        "Eigen platforms en klantcases die laten zien wat het verschil is van één geïntegreerd systeem t.o.v. vijf losse tools — minder Excel-puzzels, meer uren terug per week.",
     },
     over: {
       title: "Over Laurens",
@@ -85,6 +97,16 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
       title: "Software para empresas de alquiler",
       description:
         "Acaba con las reservas duplicadas entre Airbnb, Booking y tu Excel. Un dashboard, facturas automáticas, contratos en un clic. Software a medida para alquiler de caravanas, barcos, casas.",
+    },
+    diensten: {
+      title: "Servicios — qué construimos para ti",
+      description:
+        "Plataforma de alquiler o reparación desde 7.800 €. Tienda online a medida desde 3.000 €. Suscripciones Care y crecimiento desde 69 €/m. Un sistema que funciona, un Laurens que lo mantiene.",
+    },
+    cases: {
+      title: "Casos y proyectos",
+      description:
+        "Plataformas propias y casos de cliente que muestran la diferencia entre un sistema integrado y cinco herramientas sueltas — menos puzzles de Excel, más horas de vuelta cada semana.",
     },
     over: {
       title: "Sobre Laurens",

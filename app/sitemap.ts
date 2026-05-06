@@ -9,6 +9,8 @@ const BASE_URL = process.env.AUTH_URL ?? "https://webstability.eu";
 const STATIC_PATHS: Record<string, { nl: string; es: string }> = {
   "/": { nl: "/", es: "/es" },
   "/verhuur": { nl: "/verhuur", es: "/es/alquiler" },
+  "/diensten": { nl: "/diensten", es: "/es/servicios" },
+  "/cases": { nl: "/cases", es: "/es/cases" },
   "/over": { nl: "/over", es: "/es/sobre" },
   "/prijzen": { nl: "/prijzen", es: "/es/precios" },
   "/contact": { nl: "/contact", es: "/es/contacto" },

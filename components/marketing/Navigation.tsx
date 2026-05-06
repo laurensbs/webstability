@@ -8,10 +8,10 @@ export async function Navigation() {
   const t = await getTranslations("nav");
 
   const links = [
-    { href: "/verhuur", label: t("services") },
+    { href: "/diensten", label: t("services") },
+    { href: "/cases", label: t("cases") },
     { href: "/prijzen", label: t("pricing") },
     { href: "/over", label: t("about") },
-    { href: "/blog", label: t("blog") },
     { href: "/contact", label: t("contact") },
   ] as const;
 
