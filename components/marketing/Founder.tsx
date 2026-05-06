@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
+import { FounderFormMount } from "@/components/r3f/FounderFormMount";
 
 export async function Founder() {
   const t = await getTranslations("home.founder");
@@ -18,8 +19,11 @@ export async function Founder() {
                 "linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-teal-soft, #DCE8E7) 100%)",
             }}
           >
+            {/* Subtle 3D form behind the giant "L" — adds depth without
+                fighting the typography for attention. */}
+            <FounderFormMount className="pointer-events-none absolute inset-0 opacity-70 mix-blend-multiply" />
             <div
-              className="absolute inset-0 grid place-items-center font-serif text-[200px] leading-none font-light"
+              className="relative grid h-full place-items-center font-serif text-[200px] leading-none font-light"
               style={{ color: "rgba(31,27,22,0.08)" }}
             >
               L
