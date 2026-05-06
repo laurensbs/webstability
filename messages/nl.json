@@ -683,9 +683,11 @@
     "dashboard": {
       "recentProjects": "Recente projecten",
       "recentTickets": "Recente tickets",
+      "recentInvoices": "Recente facturen",
       "viewAll": "Bekijk alles",
       "noProjects": "Nog geen projecten gekoppeld.",
-      "noTickets": "Geen tickets — alles loopt."
+      "noTickets": "Geen tickets — alles loopt.",
+      "noInvoices": "Nog geen facturen."
     },
     "projects": {
       "title": "Projecten",

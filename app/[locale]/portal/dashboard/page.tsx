@@ -12,11 +12,13 @@ import {
   getDashboardStats,
   listOrgProjects,
   listOrgTickets,
+  listOrgInvoices,
 } from "@/lib/db/queries/portal";
 import { StatCard } from "@/components/portal/StatCard";
 import { StatusBanner } from "@/components/portal/StatusBanner";
 import { RecentProjects } from "@/components/portal/RecentProjects";
 import { RecentTickets } from "@/components/portal/RecentTickets";
+import { RecentInvoices } from "@/components/portal/RecentInvoices";
 import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/DashboardIntro";
 
 function pickGreeting(t: (k: string) => string) {
@@ -55,10 +57,12 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
 
   const t = await getTranslations("portal");
   const tProjects = await getTranslations("portal.projects");
-  const [stats, projects, tickets] = await Promise.all([
+  const tInvoices = await getTranslations("portal.invoices");
+  const [stats, projects, tickets, invoices] = await Promise.all([
     getDashboardStats(user.organizationId),
     listOrgProjects(user.organizationId),
     listOrgTickets(user.organizationId),
+    listOrgInvoices(user.organizationId),
   ]);
   const firstName = (user.name ?? user.email).split(" ")[0]!.split("@")[0]!;
   const greeting = pickGreeting(t);
@@ -154,6 +158,23 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
           locale={locale}
         />
       </div>
+
+      <RecentInvoices
+        invoices={invoices.map((inv) => ({
+          id: inv.id,
+          number: inv.number,
+          amount: inv.amount,
+          vatAmount: inv.vatAmount,
+          currency: inv.currency,
+          status: inv.status,
+          createdAt: inv.createdAt,
+        }))}
+        title={t("dashboard.recentInvoices")}
+        empty={t("dashboard.noInvoices")}
+        viewAll={t("dashboard.viewAll")}
+        locale={locale}
+        statusLabel={(s: string) => tInvoices(`status.${s}`)}
+      />
     </div>
   );
 }

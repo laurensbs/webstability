@@ -678,9 +678,11 @@
     "dashboard": {
       "recentProjects": "Proyectos recientes",
       "recentTickets": "Tickets recientes",
+      "recentInvoices": "Facturas recientes",
       "viewAll": "Ver todo",
       "noProjects": "Aún sin proyectos.",
-      "noTickets": "Sin tickets — todo va bien."
+      "noTickets": "Sin tickets — todo va bien.",
+      "noInvoices": "Aún sin facturas."
     },
     "projects": {
       "title": "Proyectos",
