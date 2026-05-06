@@ -32,6 +32,11 @@ export type BuildCalculatorStrings = {
   /** Template for "no build chosen" state — explains the months
    * slider only kicks in when a build is selected. */
   interpretationNone: string;
+  /** Label voor het tijdens-build segment van de timeline-bar. Gebruik
+   * {months} als placeholder voor het aantal maanden. */
+  timelineDuring: string;
+  /** Label voor het na-build segment van de timeline-bar. */
+  timelineAfter: string;
   buildOptions: { id: BuildId; name: string }[];
   tierOptions: { id: TierId; name: string }[];
 };
@@ -114,7 +119,26 @@ export function BuildCalculator({
         </Field>
       </div>
 
-      <div className="mt-10 grid gap-6 border-t border-(--color-border) pt-8 md:grid-cols-3">
+      {/* Timeline-bar boven de outputs — visualiseert waarom er twee
+          maandbedragen zijn. Tijdens-build segment vult een deel van de
+          balk evenredig met de gekozen looptijd; daarna komt het reguliere
+          maandbedrag. Bij build === "none" tonen we niets. */}
+      {build !== "none" ? (
+        <div className="mt-10 border-t border-(--color-border) pt-8">
+          <Timeline
+            months={months}
+            duringMonthly={duringBuild}
+            afterMonthly={afterBuild}
+            duringLabel={strings.timelineDuring.replace("{months}", String(months))}
+            afterLabel={strings.timelineAfter}
+            perMonth={strings.perMonth}
+          />
+        </div>
+      ) : null}
+
+      <div
+        className={`grid gap-6 ${build !== "none" ? "mt-8" : "mt-10 border-t border-(--color-border) pt-8"} md:grid-cols-3`}
+      >
         <Output label={strings.duringBuildLabel} value={duringBuild} suffix={strings.perMonth} />
         <Output label={strings.afterBuildLabel} value={afterBuild} suffix={strings.perMonth} />
         <Output
@@ -155,6 +179,52 @@ export function BuildCalculator({
             <Link href="/contact">{strings.ctaAnonymous}</Link>
           </Button>
         )}
+      </div>
+    </div>
+  );
+}
+
+function Timeline({
+  months,
+  duringMonthly,
+  afterMonthly,
+  duringLabel,
+  afterLabel,
+  perMonth,
+}: {
+  months: number;
+  duringMonthly: number;
+  afterMonthly: number;
+  duringLabel: string;
+  afterLabel: string;
+  perMonth: string;
+}) {
+  // Schaal: maximum visuele looptijd is 12 maanden zodat 8-mnd builds
+  // niet de hele balk vullen — zo blijft het na-build segment zichtbaar.
+  const VISUAL_MAX = 12;
+  const duringPct = Math.min(95, Math.max(20, (months / VISUAL_MAX) * 100));
+  return (
+    <div role="img" aria-label={`${duringLabel} → ${afterLabel}`} className="space-y-2">
+      <div className="flex h-9 w-full overflow-hidden rounded-full border border-(--color-border) bg-(--color-bg)">
+        <div
+          className="flex h-full items-center justify-center bg-(--color-accent) text-[12px] font-medium text-white transition-[width] duration-300"
+          style={{ width: `${duringPct}%` }}
+        >
+          <span className="truncate px-3">{duringLabel}</span>
+        </div>
+        <div className="relative flex h-full flex-1 items-center justify-center bg-[repeating-linear-gradient(45deg,var(--color-bg-warm)_0_8px,var(--color-bg)_8px_16px)] text-[12px] font-medium text-(--color-text)">
+          <span className="truncate px-3">{afterLabel}</span>
+        </div>
+      </div>
+      <div className="flex justify-between font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+        <span>
+          €{duringMonthly}
+          {perMonth} × {months}
+        </span>
+        <span>
+          €{afterMonthly}
+          {perMonth}
+        </span>
       </div>
     </div>
   );

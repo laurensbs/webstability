@@ -793,6 +793,8 @@
           "id": "care",
           "name": "Care",
           "humanLabel": "portaal live houden",
+          "subEyebrow": "Mijn portaal is live, ik wil dat het draait.",
+          "orderIndicator": "1 van 3",
           "price": "€95/maand",
           "monthly": 95,
           "annual": 81,
@@ -811,6 +813,8 @@
           "id": "studio",
           "name": "Studio",
           "humanLabel": "doorgroeien",
+          "subEyebrow": "Ik wil actief groeien en bijschaven.",
+          "orderIndicator": "2 van 3 · populairst",
           "price": "€179/maand",
           "monthly": 179,
           "annual": 152,
@@ -829,6 +833,8 @@
           "id": "atelier",
           "name": "Atelier",
           "humanLabel": "doorbouwen",
+          "subEyebrow": "Ik wil door blijven bouwen, dev-partner stijl.",
+          "orderIndicator": "3 van 3 · voor schaal",
           "price": "€399/maand",
           "monthly": 399,
           "annual": 339,
@@ -855,6 +861,7 @@
       "manageBilling": "Beheer abonnement",
       "currentPlan": "Huidig plan"
     },
+    "reassuranceTitle": "Wat altijd geldt",
     "reassurance": [
       "Eerste maand altijd gratis · ervaar het zonder commitment",
       "Opzegbaar per maand · zonder reden, zonder vragen",
@@ -901,6 +908,8 @@
         "ctaAnonymous": "Plan een kennismaking →",
         "interpretationTemplate": "Voor dit budget bouwen we typisch een {project}.",
         "interpretationNone": "Kies een Build extension hierboven om de bouwperiode + totaalbedrag te zien.",
+        "timelineDuring": "tijdens build ({months} mnd)",
+        "timelineAfter": "daarna doorlopend",
         "interpretationLabels": {
           "none": "—",
           "light": "marketing-site of landingpage",

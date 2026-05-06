@@ -16,6 +16,12 @@ export type PricingItem = {
    * direct onder de tier-naam in een mono-pill zodat een leek meteen
    * snapt waar de tier voor is voordat hij de volle body leest. */
   humanLabel?: string;
+  /** One-liner in eerste persoon — staat boven de tier-naam in serif
+   * cursief, helpt een leek zich te identificeren met de tier. */
+  subEyebrow?: string;
+  /** "1 van 3", "2 van 3 · populairst", etc. — alleen zichtbaar op
+   * mobile waar cards verticaal stapelen. */
+  orderIndicator?: string;
   /** Short audience tagline, shown under the tier name. */
   body: string;
   monthly: number;
@@ -91,20 +97,44 @@ export function PricingCardsWithToggle({
       </div>
 
       {/* Cards */}
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid items-stretch gap-5 md:grid-cols-3">
         {items.map((item) => {
           const featured = item.id === "studio";
           const value = cycle === "annual" ? item.annual : item.monthly;
           const period = cycle === "annual" ? strings.perMonthBilledAnnually : strings.perMonth;
+          const sizeClass =
+            item.id === "care"
+              ? "lg:scale-[0.97]"
+              : item.id === "atelier"
+                ? "lg:ring-1 lg:ring-(--color-text)/10"
+                : "";
           return (
             <article
               key={item.id}
-              className={`group relative flex h-full flex-col overflow-hidden rounded-[28px] p-10 transition-all duration-300 ${
+              className={`group relative flex h-full flex-col overflow-hidden rounded-[28px] p-10 transition-all duration-300 ${sizeClass} ${
                 featured
                   ? "scale-[1.02] border border-(--color-text) bg-(--color-text) text-(--color-bg) hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.3)]"
                   : "border border-(--color-border) bg-(--color-surface) hover:-translate-y-1.5 hover:border-(--color-accent)/40 hover:shadow-[0_24px_48px_-12px_rgba(201,97,79,0.18),0_8px_16px_-4px_rgba(31,27,22,0.06)]"
               }`}
             >
+              {item.orderIndicator ? (
+                <p
+                  className={`mb-3 font-mono text-[11px] tracking-widest uppercase md:hidden ${
+                    featured ? "text-(--color-bg)/60" : "text-(--color-muted)"
+                  }`}
+                >
+                  {item.orderIndicator}
+                </p>
+              ) : null}
+              {item.subEyebrow ? (
+                <p
+                  className={`mb-3 font-serif text-[15px] leading-snug italic ${
+                    featured ? "text-(--color-bg)/85" : "text-(--color-text)"
+                  }`}
+                >
+                  {item.subEyebrow}
+                </p>
+              ) : null}
               {/* Soft accent halo — verschijnt op hover, top-right */}
               <span
                 aria-hidden

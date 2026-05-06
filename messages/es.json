@@ -792,6 +792,8 @@
           "id": "care",
           "name": "Care",
           "humanLabel": "portal live",
+          "subEyebrow": "Mi portal está en marcha, quiero que siga funcionando.",
+          "orderIndicator": "1 de 3",
           "price": "95 €/mes",
           "monthly": 95,
           "annual": 81,
@@ -810,6 +812,8 @@
           "id": "studio",
           "name": "Studio",
           "humanLabel": "seguir creciendo",
+          "subEyebrow": "Quiero crecer y pulir activamente.",
+          "orderIndicator": "2 de 3 · más popular",
           "price": "179 €/mes",
           "monthly": 179,
           "annual": 152,
@@ -828,6 +832,8 @@
           "id": "atelier",
           "name": "Atelier",
           "humanLabel": "seguir construyendo",
+          "subEyebrow": "Quiero seguir construyendo, en modo dev-partner.",
+          "orderIndicator": "3 de 3 · para escala",
           "price": "399 €/mes",
           "monthly": 399,
           "annual": 339,
@@ -854,6 +860,7 @@
       "manageBilling": "Gestionar suscripción",
       "currentPlan": "Plan actual"
     },
+    "reassuranceTitle": "Lo que siempre vale",
     "reassurance": [
       "Primer mes siempre gratis · pruébalo sin compromiso",
       "Cancelable cada mes · sin razón, sin preguntas",
@@ -900,6 +907,8 @@
         "ctaAnonymous": "Reservar primera llamada →",
         "interpretationTemplate": "Con este presupuesto solemos construir un {project}.",
         "interpretationNone": "Elige una Build extension arriba para ver el período de construcción y el coste total.",
+        "timelineDuring": "durante el build ({months} m)",
+        "timelineAfter": "después continuo",
         "interpretationLabels": {
           "none": "—",
           "light": "web de marketing o landing page",

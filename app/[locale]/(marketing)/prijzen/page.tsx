@@ -37,7 +37,6 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   const t = await getTranslations("pricing");
   const tCare = await getTranslations("pricing.care");
-  const tPhilo = await getTranslations("pricing.philosophy");
   const tBuild = await getTranslations("pricing.build");
   const tCalc = await getTranslations("pricing.build.calculator");
   const tBuildOpts = await getTranslations("pricing.build.options");
@@ -95,23 +94,6 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         </div>
       </section>
 
-      {/* Reassurance strip — keeps the eye moving from cards into the rest. */}
-      <section className="px-6 pb-16">
-        <ul className="mx-auto flex max-w-5xl flex-col flex-wrap gap-3 sm:flex-row sm:gap-x-8 sm:gap-y-3">
-          {reassurance.map((r, i) => (
-            <RevealOnScroll key={i} delay={i * 0.04}>
-              <li className="flex items-start gap-2.5 text-[14px] text-(--color-muted)">
-                <Check
-                  className="mt-1 h-3.5 w-3.5 shrink-0 text-(--color-accent)"
-                  strokeWidth={2.5}
-                />
-                {r}
-              </li>
-            </RevealOnScroll>
-          ))}
-        </ul>
-      </section>
-
       {/* Build extensions + calculator */}
       <section className="border-t border-(--color-border) px-6 py-24">
         <div className="mx-auto max-w-5xl">
@@ -138,6 +120,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 standard: tCalc("interpretationLabels.standard"),
                 custom: tCalc("interpretationLabels.custom"),
               },
+              timelineDuring: tCalc("timelineDuring"),
+              timelineAfter: tCalc("timelineAfter"),
               tierOptions: [
                 { id: "care", name: tTierNames("care") },
                 { id: "studio", name: tTierNames("studio") },
@@ -186,46 +170,41 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         </div>
       </section>
 
-      {/* Philosophy: three-column "voor jou / voor ons / voor het werk" */}
-      <section className="border-t border-(--color-border) bg-(--color-text) px-6 py-24 text-(--color-bg)">
-        <div className="mx-auto max-w-5xl">
-          <RevealOnScroll className="mb-12 max-w-3xl space-y-4">
-            <h2 className="text-2xl md:text-3xl">{t("philosophyTitle")}</h2>
-            <p className="leading-relaxed text-(--color-bg)/75">{t("philosophyBody")}</p>
-          </RevealOnScroll>
-          <div className="grid gap-8 md:grid-cols-3">
-            {(
-              [
-                ["voorJouTitle", "voorJouBody"],
-                ["voorOnsTitle", "voorOnsBody"],
-                ["voorWerkTitle", "voorWerkBody"],
-              ] as const
-            ).map(([titleKey, bodyKey], i) => (
-              <RevealOnScroll key={titleKey} delay={i * 0.06}>
-                <h3 className="font-mono text-[11px] tracking-widest text-(--color-accent-soft) uppercase">
-                  {tPhilo(titleKey)}
-                </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-(--color-bg)/80">
-                  {tPhilo(bodyKey)}
-                </p>
-              </RevealOnScroll>
-            ))}
+      {/* Reassurance + add-ons — gecombineerde strip onder calculator */}
+      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-20">
+        <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-2">
+          <div>
+            <h2 className="mb-6 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+              {t("reassuranceTitle")}
+            </h2>
+            <ul className="space-y-3">
+              {reassurance.map((r, i) => (
+                <RevealOnScroll key={i} delay={i * 0.04}>
+                  <li className="flex items-start gap-2.5 text-[14px] text-(--color-muted)">
+                    <Check
+                      className="mt-1 h-3.5 w-3.5 shrink-0 text-(--color-accent)"
+                      strokeWidth={2.5}
+                    />
+                    {r}
+                  </li>
+                </RevealOnScroll>
+              ))}
+            </ul>
           </div>
-        </div>
-      </section>
-
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
-        <div className="mx-auto max-w-3xl">
-          <RevealOnScroll>
-            <h2 className="text-2xl md:text-3xl">{t("addonsTitle")}</h2>
-          </RevealOnScroll>
-          <ul className="mt-8 space-y-3">
-            {addons.map((a, i) => (
-              <RevealOnScroll key={i} delay={i * 0.04}>
-                <li className="border-b border-(--color-border) pb-3 text-(--color-muted)">{a}</li>
-              </RevealOnScroll>
-            ))}
-          </ul>
+          <div>
+            <h2 className="mb-6 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+              {t("addonsTitle")}
+            </h2>
+            <ul className="space-y-3">
+              {addons.map((a, i) => (
+                <RevealOnScroll key={i} delay={i * 0.04}>
+                  <li className="border-b border-(--color-border) pb-3 text-[14px] text-(--color-muted)">
+                    {a}
+                  </li>
+                </RevealOnScroll>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
     </main>
