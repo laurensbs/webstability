@@ -1,6 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
+import { Globe, ShoppingBag, LayoutDashboard, KeyRound, type LucideIcon } from "lucide-react";
 import { routing } from "@/i18n/routing";
 import { auth } from "@/lib/auth";
 import { getUserWithOrg } from "@/lib/db/queries/portal";
@@ -13,6 +14,8 @@ import {
   PricingCardsWithToggle,
   type PricingItem,
 } from "@/components/marketing/PricingCardsWithToggle";
+
+const BUILD_ICONS: LucideIcon[] = [Globe, ShoppingBag, LayoutDashboard, KeyRound];
 
 type BuildItem = { name: string; price: string; body: string };
 
@@ -50,23 +53,29 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             </TabsList>
 
             <TabsContent value="build" className="mt-12 w-full">
-              <p className="mx-auto max-w-2xl text-center text-(--color-muted)">
+              <p className="mx-auto mb-10 max-w-2xl text-center text-(--color-muted)">
                 {t("build.intro")}
               </p>
-              <div className="mt-10 grid gap-6 md:grid-cols-2">
-                {buildItems.map((item, i) => (
-                  <RevealOnScroll key={i} delay={i * 0.05}>
-                    <article className="h-full rounded-lg border border-(--color-border) bg-(--color-surface) p-8">
-                      <div className="flex items-baseline justify-between gap-4">
-                        <h3 className="text-2xl">{item.name}</h3>
-                        <p className="font-mono text-sm text-(--color-accent)">{item.price}</p>
-                      </div>
-                      <p className="mt-3 text-sm leading-relaxed text-(--color-muted)">
-                        {item.body}
-                      </p>
-                    </article>
-                  </RevealOnScroll>
-                ))}
+              <div className="grid gap-5 md:grid-cols-2">
+                {buildItems.map((item, i) => {
+                  const Icon = BUILD_ICONS[i] ?? Globe;
+                  return (
+                    <RevealOnScroll key={i} delay={i * 0.05}>
+                      <article className="group flex h-full flex-col rounded-[28px] border border-(--color-border) bg-(--color-surface) p-8 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]">
+                        <div className="mb-6 grid h-12 w-12 place-items-center rounded-[14px] bg-(--color-accent-soft) text-(--color-accent) transition-all duration-300 group-hover:scale-105 group-hover:rotate-[-6deg] group-hover:bg-(--color-accent) group-hover:text-white">
+                          <Icon className="h-[22px] w-[22px]" strokeWidth={2} />
+                        </div>
+                        <div className="flex items-baseline justify-between gap-4">
+                          <h3 className="text-[24px]">{item.name}</h3>
+                          <p className="font-mono text-sm text-(--color-accent)">{item.price}</p>
+                        </div>
+                        <p className="mt-3 text-[15px] leading-[1.6] text-(--color-muted)">
+                          {item.body}
+                        </p>
+                      </article>
+                    </RevealOnScroll>
+                  );
+                })}
               </div>
             </TabsContent>
 
