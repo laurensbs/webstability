@@ -9,6 +9,7 @@ import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { AvailabilityPill } from "@/components/animate/AvailabilityPill";
 import { Eyebrow } from "@/components/animate/Eyebrow";
+import { CaravanMount } from "@/components/r3f/CaravanMount";
 import { FlashCounter } from "@/components/animate/FlashCounter";
 import { MagneticButton } from "@/components/animate/MagneticButton";
 import { QuoteMarkDraw } from "@/components/animate/QuoteMarkDraw";
@@ -51,6 +52,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             background: "radial-gradient(circle, var(--color-accent-soft) 0%, transparent 65%)",
           }}
         />
+        {/* Caravan — desktop-only ambient, sits over the accent blob.
+            Component itself bails on touch / reduced-motion. */}
+        <CaravanMount className="pointer-events-none absolute top-12 right-0 hidden aspect-square w-[520px] lg:block" />
         <div className="relative mx-auto max-w-[1200px]">
           <AvailabilityPill href="/contact">{t("eyebrow")}</AvailabilityPill>
 
