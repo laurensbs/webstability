@@ -39,7 +39,7 @@
   "home": {
     "eyebrow": "begur · costa brava",
     "headline": "Sin puzzles de Excel. *Sin* reservas duplicadas. Sin cinco herramientas sueltas.",
-    "tagline": "Un sistema que funciona, un Laurens que lo construye y mantiene. Suscripción continua desde 69 € al mes — construir + mantener en una sola cuota.",
+    "tagline": "Un sistema que funciona, un Laurens que lo construye y mantiene. Suscripción continua desde 95 € al mes — construir + mantener en una sola cuota.",
     "ctaPrimary": "Reservar primera llamada",
     "ctaSecondary": "Ver casos",
 
@@ -50,7 +50,7 @@
       "availability": "Disponible para 2 nuevos proyectos — mayo 2026",
       "eyebrowMessages": [
         "Disponible para 2 nuevos proyectos — mayo 2026",
-        "Desde 69 €/m · primer mes gratis",
+        "Desde 95 €/m · primer mes gratis",
         "Un sistema en lugar de cinco herramientas"
       ],
       "metaYearsLabel": "años de experiencia",
@@ -66,7 +66,7 @@
         "plataformas de reservas",
         "tiendas online"
       ],
-      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado. Suscripción continua desde 69 € al mes. Desde Costa Brava, para empresarios en Países Bajos y España."
+      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado. Suscripción continua desde 95 € al mes. Desde Costa Brava, para empresarios en Países Bajos y España."
     },
 
     "logoStrip": {
@@ -192,7 +192,7 @@
       "items": [
         {
           "q": "¿Cuánto cuesta un proyecto típico?",
-          "a": "Depende de qué quieras construir. Una web de marketing o landing page: ~600 € de build en 3 meses, después 69 €/m de mantenimiento. Una tienda online con IVA/BTW: ~2.000 € de build en 3 meses, después 179 €/m. Una plataforma de alquiler o software empresarial a medida: ~7.800 € de build en 6 meses, después 399 €/m de mantenimiento + desarrollo continuo. Cálculo concreto en la página de precios."
+          "a": "Depende de qué quieras construir. Una web de marketing o landing page: ~1.050 € de build en 3 meses, después 95 €/m de mantenimiento. Una tienda online con IVA/BTW: ~2.000 € de build en 3 meses, después 179 €/m. Una plataforma de alquiler o software empresarial a medida: ~7.800 € de build en 6 meses, después 399 €/m de mantenimiento + desarrollo continuo. Cálculo concreto en la página de precios."
         },
         {
           "q": "¿Por qué solo suscripción, sin precio por proyecto?",
@@ -207,8 +207,8 @@
           "a": "Siempre. La subida entra en la siguiente factura, la bajada al mes siguiente. Sin drama, sin 'lo planificamos para el próximo trimestre'."
         },
         {
-          "q": "¿Recibo calidad alta por 69 € al mes?",
-          "a": "Por 69 €/m recibes 1 hora de trabajo + hosting + monitorización. Suficiente para mantenimiento, no para crecer. Si quieres trabajar activamente en tu web, vas a Studio (179 €) o más. Somos honestos: elige el tier que encaja, no el más barato."
+          "q": "¿Recibo calidad alta por 95 € al mes?",
+          "a": "Por 95 €/m recibes hosting premium (NL/EU edge), monitorización, backups diarios, updates de seguridad y 1 hora al mes para pequeños ajustes. Suficiente para mantener tu nuevo portal estable desde el día uno tras lanzamiento. Si quieres seguir construyendo o SEO activo, vas a Studio (179 €) o más."
         },
         {
           "q": "¿Puedo construir una aplicación grande con estos precios?",
@@ -611,9 +611,9 @@
           "Lighthouse 95+ en móvil"
         ],
         "packageTitle": "Cómo funciona en cuanto a paquete",
-        "packageBody": "**Web de marketing:** Care (69 €/m) + Build Light (+199 €/m) durante 2-3 meses. **Tienda:** Studio (179 €/m) + Build Standard (+499 €/m) durante 3-5 meses. Después continúas en el tier elegido.",
+        "packageBody": "**Web de marketing:** Care (95 €/m) + Build Light (+349 €/m) durante 2-3 meses. **Tienda:** Studio (179 €/m) + Build Standard (+499 €/m) durante 3-5 meses. Después continúas en el tier elegido.",
         "exampleTitle": "Ejemplo",
-        "exampleBody": "Web de marketing en 3 meses: ~**600 € build** + 69 €/m mantenimiento. Tienda online en 3 meses: ~**2.000 € build** + 179 €/m mantenimiento.",
+        "exampleBody": "Web de marketing en 3 meses: ~**1.050 € build** + 95 €/m mantenimiento. Tienda online en 3 meses: ~**2.000 € build** + 179 €/m mantenimiento.",
         "ctaPrimary": "Reserva una llamada",
         "ctaSecondary": "Ver detalle de precios →",
         "ctaSecondaryHref": "/precios"
@@ -640,9 +640,9 @@
           "Acceso al portal de cliente"
         ],
         "packageTitle": "Cómo funciona en cuanto a paquete",
-        "packageBody": "**Care · 69 €/m** continuo. Cancelable mensualmente, primer mes gratis, 15% de descuento con pago anual.",
+        "packageBody": "**Care · 95 €/m** continuo. Cancelable mensualmente, primer mes gratis, 15% de descuento con pago anual.",
         "exampleTitle": "Ejemplo",
-        "exampleBody": "Un site + panel nuevo que construimos para ti, después live en Care: 69 €/m. Tomar una web existente también funciona — mismo nivel.",
+        "exampleBody": "Un site + panel nuevo que construimos para ti, después live en Care: 95 €/m. Tomar una web existente también funciona — mismo nivel.",
         "ctaPrimary": "Empezar primer mes gratis",
         "ctaSecondary": "Ver detalle de Care →",
         "ctaSecondaryHref": "/precios"
@@ -772,7 +772,7 @@
     "footerCtaLabel": "Reserva una llamada"
   },
   "pricing": {
-    "eyebrow": "suscripciones · desde 69 €/m",
+    "eyebrow": "suscripciones · desde 95 €/m",
     "title": "Un precio al mes. *Sin* presupuestos, sin sorpresas.",
     "lede": "Trabajamos solo por suscripción. Entrada baja, cancelable cuando quieras. Una cuota fija para mantenimiento, crecimiento y todo lo intermedio.",
     "care": {
@@ -781,11 +781,11 @@
         {
           "id": "care",
           "name": "Care",
-          "humanLabel": "live tras lanzamiento",
-          "price": "69 €/mes",
-          "monthly": 69,
-          "annual": 59,
-          "body": "La base desde el día uno tras lanzamiento — site y panel admin activos, seguros, con margen para pequeños ajustes.",
+          "humanLabel": "portal live",
+          "price": "95 €/mes",
+          "monthly": 95,
+          "annual": 81,
+          "body": "La base desde el día uno tras lanzamiento — tu portal completo (site público + admin) activo, seguro, con margen para pequeños ajustes.",
           "features": [
             "Hosting premium (NL/EU edge)",
             "SSL & backups diarios",
@@ -914,9 +914,9 @@
         "items": [
           {
             "what": "Web de marketing o landing page",
-            "package": "Care + Build Light · 69 € + 199 €",
-            "build": "3 meses · ~600 € build",
-            "after": "69 €/m"
+            "package": "Care + Build Light · 95 € + 349 €",
+            "build": "3 meses · ~1.050 € build",
+            "after": "95 €/m"
           },
           {
             "what": "Tienda online con IVA/BTW",

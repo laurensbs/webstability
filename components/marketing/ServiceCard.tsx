@@ -43,7 +43,7 @@ export function ServiceCard({
   ctaLabel?: string;
   /**
    * Short price + duration line shown right below the title, e.g.
-   * "vanaf €6k · 6 mnd build" or "€69/m · doorlopend". Set when the
+   * "vanaf €6k · 6 mnd build" or "€95/m · doorlopend". Set when the
    * card represents a concrete pakket so visitors get the cost in the
    * same scan as the title.
    */

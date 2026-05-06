@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/Button";
 type TierId = "care" | "studio" | "atelier";
 type BuildId = "none" | "light" | "standard" | "custom";
 
-const TIER_PRICES: Record<TierId, number> = { care: 69, studio: 179, atelier: 399 };
-const BUILD_PRICES: Record<BuildId, number> = { none: 0, light: 199, standard: 499, custom: 899 };
+const TIER_PRICES: Record<TierId, number> = { care: 95, studio: 179, atelier: 399 };
+const BUILD_PRICES: Record<BuildId, number> = { none: 0, light: 349, standard: 499, custom: 899 };
 
 export type BuildCalculatorStrings = {
   tierLabel: string;

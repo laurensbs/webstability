@@ -101,7 +101,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
               <p className="mt-1 font-serif text-[28px] leading-none">
                 {revenue.distribution.care}
               </p>
-              <p className="mt-1 font-mono text-[10px] text-(--color-muted)">€69/m</p>
+              <p className="mt-1 font-mono text-[10px] text-(--color-muted)">€95/m</p>
             </div>
             <div>
               <p className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">

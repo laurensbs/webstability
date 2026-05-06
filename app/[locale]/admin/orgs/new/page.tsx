@@ -64,7 +64,7 @@ export default async function NewOrgPage({ params }: { params: Promise<{ locale:
               className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
             >
               <option value="">{t("planNone")}</option>
-              <option value="care">{tPricing("care")} · €69/m</option>
+              <option value="care">{tPricing("care")} · €95/m</option>
               <option value="studio">{tPricing("studio")} · €179/m</option>
               <option value="atelier">{tPricing("atelier")} · €399/m</option>
             </select>

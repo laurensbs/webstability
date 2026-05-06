@@ -183,7 +183,7 @@ export async function getRevenueStats() {
     .groupBy(organizations.plan);
 
   // Pricing per plan in EUR/m, parallel aan lib/stripe.ts CARE_PLANS.
-  const PRICE: Record<string, number> = { care: 69, studio: 179, atelier: 399 };
+  const PRICE: Record<string, number> = { care: 95, studio: 179, atelier: 399 };
 
   const distribution = { care: 0, studio: 0, atelier: 0, unassigned: 0 };
   let mrr = 0;

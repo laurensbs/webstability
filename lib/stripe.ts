@@ -17,7 +17,7 @@ export function isStripeConfigured() {
 // Care plans — Price IDs are created in Stripe Dashboard → Products,
 // then dropped into env. Code stays the same regardless of test/live mode.
 export const CARE_PLANS = {
-  care: { id: "care", priceEnv: "STRIPE_PRICE_CARE", monthly: 69 },
+  care: { id: "care", priceEnv: "STRIPE_PRICE_CARE", monthly: 95 },
   studio: { id: "studio", priceEnv: "STRIPE_PRICE_STUDIO", monthly: 179 },
   atelier: { id: "atelier", priceEnv: "STRIPE_PRICE_ATELIER", monthly: 399 },
 } as const;
@@ -34,7 +34,7 @@ export function priceIdFor(plan: CarePlanId): string | null {
 // Subscription is created with `cancel_at` so it auto-stops after N
 // billing cycles.
 export const BUILD_EXTENSIONS = {
-  light: { id: "light", priceEnv: "STRIPE_PRICE_BUILD_LIGHT", monthly: 199 },
+  light: { id: "light", priceEnv: "STRIPE_PRICE_BUILD_LIGHT", monthly: 349 },
   standard: { id: "standard", priceEnv: "STRIPE_PRICE_BUILD_STANDARD", monthly: 499 },
   custom: { id: "custom", priceEnv: "STRIPE_PRICE_BUILD_CUSTOM", monthly: 899 },
 } as const;

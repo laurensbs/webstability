@@ -39,7 +39,7 @@
   "home": {
     "eyebrow": "begur · costa brava",
     "headline": "Geen Excel-puzzels meer. *Geen* dubbele boekingen. Geen vijf losse tools.",
-    "tagline": "Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt. Doorlopend abonnement vanaf €69 per maand — bouwen + onderhouden in één.",
+    "tagline": "Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt. Doorlopend abonnement vanaf €95 per maand — bouwen + onderhouden in één.",
     "ctaPrimary": "Plan een kennismaking",
     "ctaSecondary": "Bekijk klantverhalen",
 
@@ -50,7 +50,7 @@
       "availability": "Beschikbaar voor 2 nieuwe projecten — mei 2026",
       "eyebrowMessages": [
         "Beschikbaar voor 2 nieuwe projecten — mei 2026",
-        "Vanaf €69/m · eerste maand gratis",
+        "Vanaf €95/m · eerste maand gratis",
         "Eén systeem ipv vijf losse tools"
       ],
       "metaYearsLabel": "jaar ervaring",
@@ -66,7 +66,7 @@
         "boekingsplatformen",
         "webshops"
       ],
-      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem. Doorlopend abonnement vanaf €69 per maand. Vanuit Costa Brava, voor ondernemers in Nederland en Spanje."
+      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem. Doorlopend abonnement vanaf €95 per maand. Vanuit Costa Brava, voor ondernemers in Nederland en Spanje."
     },
 
     "logoStrip": {
@@ -192,7 +192,7 @@
       "items": [
         {
           "q": "Wat kost een typisch project?",
-          "a": "Hangt af van wat je wil bouwen. Een marketing-site of landingpage: ~€600 build over 3 maanden, daarna €69/m onderhoud. Een webshop met BTW/IVA: ~€2.000 build over 3 maanden, daarna €179/m. Een verhuurplatform of bedrijfssoftware op maat: ~€7.800 build over 6 maanden, daarna €399/m onderhoud + doorontwikkeling. Concreet uitrekenen kun je op de pricing-pagina."
+          "a": "Hangt af van wat je wil bouwen. Een marketing-site of landingpage: ~€1.050 build over 3 maanden, daarna €95/m onderhoud. Een webshop met BTW/IVA: ~€2.000 build over 3 maanden, daarna €179/m. Een verhuurplatform of bedrijfssoftware op maat: ~€7.800 build over 6 maanden, daarna €399/m onderhoud + doorontwikkeling. Concreet uitrekenen kun je op de pricing-pagina."
         },
         {
           "q": "Waarom alleen abonnement, geen project-prijs?",
@@ -207,8 +207,8 @@
           "a": "Altijd. Upgrade gaat in vanaf de volgende factuur, downgrade vanaf de maand erna. Geen drama, geen 'we plannen het volgende kwartaal in'."
         },
         {
-          "q": "Krijg ik wel hoge kwaliteit voor €69 per maand?",
-          "a": "Voor €69/m krijg je 1 uur werk + hosting + monitoring. Genoeg voor onderhoud, niet voor groei. Wil je actief werken aan je site, ga je naar Studio (€179) of hoger. We zijn eerlijk: kies de tier die past, niet de goedkoopste."
+          "q": "Krijg ik wel hoge kwaliteit voor €95 per maand?",
+          "a": "Voor €95/m krijg je premium hosting (NL/EU edge), monitoring, dagelijkse backups, security updates én 1 uur werk per maand voor kleine aanpassingen. Genoeg om je nieuwe portaal stabiel te houden vanaf dag één na livegang. Wil je actief doorbouwen of SEO, ga je naar Studio (€179) of hoger."
         },
         {
           "q": "Kan ik een grote applicatie laten bouwen voor deze prijzen?",
@@ -616,9 +616,9 @@
           "Lighthouse 95+ op mobiel"
         ],
         "packageTitle": "Hoe het werkt qua pakket",
-        "packageBody": "**Marketing-site:** Care (€69/m) + Build Light (+€199/m) voor 2-3 maanden. **Webshop:** Studio (€179/m) + Build Standard (+€499/m) voor 3-5 maanden. Daarna door op de gekozen tier.",
+        "packageBody": "**Marketing-site:** Care (€95/m) + Build Light (+€349/m) voor 2-3 maanden. **Webshop:** Studio (€179/m) + Build Standard (+€499/m) voor 3-5 maanden. Daarna door op de gekozen tier.",
         "exampleTitle": "Voorbeeld",
-        "exampleBody": "Marketing-site in 3 mnd: ~**€600 build** + €69/m onderhoud. Webshop in 3 mnd: ~**€2.000 build** + €179/m onderhoud.",
+        "exampleBody": "Marketing-site in 3 mnd: ~**€1.050 build** + €95/m onderhoud. Webshop in 3 mnd: ~**€2.000 build** + €179/m onderhoud.",
         "ctaPrimary": "Plan een kennismaking",
         "ctaSecondary": "Bekijk pricing-detail →",
         "ctaSecondaryHref": "/prijzen"
@@ -645,9 +645,9 @@
           "Toegang tot klantportaal"
         ],
         "packageTitle": "Hoe het werkt qua pakket",
-        "packageBody": "**Care · €69/m** doorlopend. Maandelijks opzegbaar, eerste maand gratis, 15% korting bij jaarbetaling.",
+        "packageBody": "**Care · €95/m** doorlopend. Maandelijks opzegbaar, eerste maand gratis, 15% korting bij jaarbetaling.",
         "exampleTitle": "Voorbeeld",
-        "exampleBody": "Een nieuwe site + paneel die we voor je bouwen, daarna live houden: €69/m. Of een bestaande site overnemen kan ook — zelfde tier.",
+        "exampleBody": "Een nieuwe site + paneel die we voor je bouwen, daarna live houden: €95/m. Of een bestaande site overnemen kan ook — zelfde tier.",
         "ctaPrimary": "Start eerste maand gratis",
         "ctaSecondary": "Bekijk Care-details →",
         "ctaSecondaryHref": "/prijzen"
@@ -777,7 +777,7 @@
     "footerCtaLabel": "Plan een kennismaking"
   },
   "pricing": {
-    "eyebrow": "abonnementen · vanaf €69/m",
+    "eyebrow": "abonnementen · vanaf €95/m",
     "title": "Eén prijs per maand. *Geen* offertes, geen verrassingen.",
     "lede": "We werken alleen op abonnement. Lage instap, opzegbaar wanneer je wil. Een vaste maandprijs voor onderhoud, groei, en alles ertussen.",
     "care": {
@@ -786,11 +786,11 @@
         {
           "id": "care",
           "name": "Care",
-          "humanLabel": "live houden",
-          "price": "€69/maand",
-          "monthly": 69,
-          "annual": 59,
-          "body": "De basis vanaf dag één na livegang — site én admin paneel actief, veilig, en met ruimte voor kleine aanpassingen.",
+          "humanLabel": "portaal live houden",
+          "price": "€95/maand",
+          "monthly": 95,
+          "annual": 81,
+          "body": "De basis vanaf dag één na livegang — je complete portaal (publieke site + admin) actief, veilig, en met ruimte voor kleine aanpassingen.",
           "features": [
             "Premium hosting (NL/EU edge)",
             "SSL & dagelijkse backups",
@@ -919,9 +919,9 @@
         "items": [
           {
             "what": "Marketing-site of landingpage",
-            "package": "Care + Build Light · €69 + €199",
-            "build": "3 mnd · ~€600 build",
-            "after": "€69/m"
+            "package": "Care + Build Light · €95 + €349",
+            "build": "3 mnd · ~€1.050 build",
+            "after": "€95/m"
           },
           {
             "what": "Webshop met BTW/IVA",

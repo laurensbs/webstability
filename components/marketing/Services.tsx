@@ -22,7 +22,7 @@ type SolutionItem = {
 const SOLUTIONS: SolutionItem[] = [
   { key: "platform", pricePill: "vanaf €7.800 · 4-6 mnd build", ctaHref: "/diensten#platform" },
   { key: "webshop", pricePill: "vanaf €600 · 2-3 mnd build", ctaHref: "/diensten#webshop" },
-  { key: "care", pricePill: "€69/m · doorlopend", ctaHref: "/prijzen" },
+  { key: "care", pricePill: "€95/m · doorlopend", ctaHref: "/prijzen" },
   { key: "growth", pricePill: "€179/m · doorlopend", ctaHref: "/prijzen" },
 ];
 

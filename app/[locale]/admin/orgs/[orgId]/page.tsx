@@ -103,7 +103,7 @@ export default async function OrgDetail({
               className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
             >
               <option value="">— geen tier —</option>
-              <option value="care">Care · €69/m</option>
+              <option value="care">Care · €95/m</option>
               <option value="studio">Studio · €179/m</option>
               <option value="atelier">Atelier · €399/m</option>
             </select>
