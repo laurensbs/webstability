@@ -45,7 +45,16 @@
       "metaYearsLabel": "jaar ervaring",
       "metaUptimeLabel": "uptime · 30d",
       "metaRegionLabel": "werkgebied",
-      "metaRegionValue": "NL · ES"
+      "metaRegionValue": "NL · ES",
+      "taglinePrefix": "Wij bouwen",
+      "rotatingWords": [
+        "verhuurplatformen",
+        "reparatieportalen",
+        "boekingssystemen",
+        "klantportalen",
+        "operationele dashboards"
+      ],
+      "taglineSuffix": "die jouw dagelijkse chaos vervangen door één rustige plek. Vanuit Costa Brava, voor ondernemers in Nederland en Spanje."
     },
 
     "logoStrip": {

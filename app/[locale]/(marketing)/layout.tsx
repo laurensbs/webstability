@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Navigation } from "@/components/marketing/Navigation";
 import { Footer } from "@/components/marketing/Footer";
+import { SmoothScroll } from "@/components/animate/SmoothScroll";
 
 export default async function MarketingLayout({
   children,
@@ -20,6 +21,7 @@ export default async function MarketingLayout({
 
   return (
     <>
+      <SmoothScroll />
       <a href="#main" className="skip-link">
         {t("skipToContent")}
       </a>

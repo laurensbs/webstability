@@ -45,7 +45,16 @@
       "metaYearsLabel": "años de experiencia",
       "metaUptimeLabel": "uptime · 30d",
       "metaRegionLabel": "zona de trabajo",
-      "metaRegionValue": "NL · ES"
+      "metaRegionValue": "NL · ES",
+      "taglinePrefix": "Construimos",
+      "rotatingWords": [
+        "plataformas de alquiler",
+        "portales de reparación",
+        "sistemas de reservas",
+        "portales cliente",
+        "dashboards operativos"
+      ],
+      "taglineSuffix": "que sustituyen tu caos diario por un solo lugar tranquilo. Desde Costa Brava, para empresarios en Países Bajos y España."
     },
 
     "logoStrip": {

@@ -5,10 +5,13 @@ import { Button } from "@/components/ui/Button";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { FlashCounter } from "@/components/animate/FlashCounter";
 import { MagneticButton } from "@/components/animate/MagneticButton";
+import { RotatingWords } from "@/components/animate/RotatingWords";
 
 export async function Hero() {
   const t = await getTranslations("home");
   const tHero = await getTranslations("home.hero");
+  const tRaw = await getTranslations();
+  const rotatingWords = tRaw.raw("home.hero.rotatingWords") as string[];
   const startYear = 2016;
   const yearsExp = new Date().getFullYear() - startYear;
 
@@ -54,7 +57,7 @@ export async function Hero() {
         </AnimatedHeading>
 
         <p className="mt-6 max-w-[52ch] text-[19px] leading-[1.55] text-(--color-muted)">
-          {t("tagline")}
+          {tHero("taglinePrefix")} <RotatingWords words={rotatingWords} /> {tHero("taglineSuffix")}
         </p>
 
         <div className="mt-9 flex flex-wrap items-center gap-3.5">
