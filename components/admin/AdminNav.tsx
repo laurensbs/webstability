@@ -26,7 +26,7 @@ export function AdminNav({ labels }: { labels: Labels }) {
             className={cn(
               "flex items-center gap-2 rounded-sm px-3 py-1.5 text-sm transition-colors",
               active
-                ? "bg-(--color-text) text-(--color-bg)"
+                ? "bg-(--color-text) text-(--color-bg) shadow-[inset_0_-2px_0_var(--color-wine)]"
                 : "text-(--color-muted) hover:text-(--color-text)",
             )}
           >

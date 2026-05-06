@@ -13,6 +13,12 @@
   --color-teal: #2c5f5d;
   --color-success: #5a7a4a;
 
+  /* Wijn-rood premium accent — alleen op 3 plekken in de UI:
+     productlijn-cards (top-border), Studio featured tier (border + badge),
+     AdminNav active link. Niet inzetten op hover, CTA-buttons of taglines. */
+  --color-wine: #6b1e2c;
+  --color-wine-soft: #8e3f4c;
+
   /* Typography */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;

@@ -87,7 +87,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <RevealOnScroll
                 key={item.anchor}
                 delay={i * 0.06}
-                className="group flex h-full flex-col overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface) transition-all duration-300 [border-top:2px_solid_#6B1E2C] hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12)]"
+                className="group flex h-full flex-col overflow-hidden rounded-[24px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12)]"
               >
                 <article id={item.anchor} className="flex h-full scroll-mt-24 flex-col">
                   <div className="relative">
