@@ -29,6 +29,15 @@ function auditBcc(to: string): string | undefined {
   return MAIL_AUDIT_BCC;
 }
 
+// Production session cookies are scoped to .webstability.eu so a
+// session set on the apex (where Auth.js handles the magic-link
+// callback) is also valid on admin.webstability.eu. Locally we leave
+// the domain unset — the browser scopes it to localhost automatically.
+const SESSION_COOKIE_DOMAIN =
+  process.env.AUTH_URL && process.env.AUTH_URL.includes("webstability.eu")
+    ? ".webstability.eu"
+    : undefined;
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: DrizzleAdapter(db, {
     usersTable: users,
@@ -37,6 +46,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     verificationTokensTable: verificationTokens,
   }),
   session: { strategy: "database" },
+  cookies: SESSION_COOKIE_DOMAIN
+    ? {
+        sessionToken: {
+          name: "__Secure-authjs.session-token",
+          options: {
+            httpOnly: true,
+            sameSite: "lax",
+            path: "/",
+            secure: true,
+            domain: SESSION_COOKIE_DOMAIN,
+          },
+        },
+      }
+    : undefined,
   pages: {
     signIn: "/login",
     verifyRequest: "/verify",

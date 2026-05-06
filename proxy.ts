@@ -28,6 +28,19 @@ export default function proxy(req: NextRequest) {
   const url = req.nextUrl;
 
   if (isAdminHost(host)) {
+    // Auth-related routes are shared across hosts and live at their
+    // own top-level paths. Don't rewrite them — let next-intl serve
+    // /login, /verify, /api/auth/... as-is on the admin host too.
+    const isAuthRoute =
+      url.pathname === "/login" ||
+      url.pathname.startsWith("/login/") ||
+      url.pathname === "/verify" ||
+      url.pathname.startsWith("/verify/") ||
+      /^\/(nl|es)\/(login|verify)(\/|$)/.test(url.pathname) ||
+      url.pathname.startsWith("/api/auth");
+
+    if (isAuthRoute) return intlProxy(req);
+
     // Already on admin host. If the URL accidentally already has the
     // /admin prefix (someone bookmarked admin.webstability.eu/admin),
     // strip it so we don't double-prefix on the rewrite.
