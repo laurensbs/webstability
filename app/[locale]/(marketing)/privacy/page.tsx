@@ -4,6 +4,18 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { PageHeader } from "@/components/marketing/PageHeader";
 
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "privacy");
+}
+
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();

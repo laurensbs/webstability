@@ -8,6 +8,18 @@ import { listMonitors, aggregateStatus, type Monitor } from "@/lib/better-stack"
 import { MarkupText } from "@/components/animate/MarkupText";
 import { SystemsGlobeMount } from "@/components/r3f/SystemsGlobeMount";
 
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "status");
+}
+
 export const revalidate = 60;
 
 function statusDot(status: Monitor["status"]) {

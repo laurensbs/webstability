@@ -14,6 +14,18 @@ import { FlashCounter } from "@/components/animate/FlashCounter";
 import { MagneticButton } from "@/components/animate/MagneticButton";
 import { QuoteMarkDraw } from "@/components/animate/QuoteMarkDraw";
 
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "verhuur");
+}
+
 type MetaItem = { num: string; label: string };
 type ProblemItem = { title: string; body: string };
 type SolutionItem = { title: string; body: string; bullets?: string[] };

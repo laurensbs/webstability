@@ -10,6 +10,18 @@ import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 import { FounderFormMount } from "@/components/r3f/FounderFormMount";
 
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "over");
+}
+
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();

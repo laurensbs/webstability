@@ -7,6 +7,18 @@ import { CalEmbed } from "@/components/marketing/CalEmbed";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { MarkupText } from "@/components/animate/MarkupText";
 
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "contact");
+}
+
 type AfterStep = { kicker: string; title: string; body: string };
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {

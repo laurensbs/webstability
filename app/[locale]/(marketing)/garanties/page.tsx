@@ -9,6 +9,18 @@ import { MarkupText } from "@/components/animate/MarkupText";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "garanties");
+}
+
 const ICONS: LucideIcon[] = [EyeOff, Database, UserCheck, Unlock];
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {

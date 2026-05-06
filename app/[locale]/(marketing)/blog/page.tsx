@@ -9,6 +9,18 @@ import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { listPosts, type BlogPost } from "@/lib/blog";
 import { MarkupText } from "@/components/animate/MarkupText";
 
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "blog");
+}
+
 function postHref(locale: string, slug: string) {
   return locale === "nl" ? `/blog/${slug}` : `/${locale}/blog/${slug}`;
 }

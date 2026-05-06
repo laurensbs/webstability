@@ -1,8 +1,19 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { pageMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/Hero";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "home");
+}
 import { LogoStrip } from "@/components/marketing/LogoStrip";
 import { HowItWorksWrapper } from "@/components/marketing/HowItWorksWrapper";
 import { Services } from "@/components/marketing/Services";

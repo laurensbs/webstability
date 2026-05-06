@@ -1,0 +1,149 @@
+import type { Metadata } from "next";
+
+type Locale = "nl" | "es";
+
+type RouteKey =
+  | "home"
+  | "verhuur"
+  | "over"
+  | "prijzen"
+  | "contact"
+  | "status"
+  | "garanties"
+  | "blog"
+  | "privacy"
+  | "avisoLegal";
+
+type Copy = { title: string; description: string };
+
+/**
+ * Per-route SEO copy. Titles are deliberately under 60 chars (Google
+ * truncates around there) and descriptions land between 130-160 chars.
+ *
+ * Falls back to the [locale]/layout.tsx root metadata if a route key
+ * is missing — that root has title.template: "%s · Webstability" so
+ * any returned title automatically gets the brand suffix.
+ */
+const COPY: Record<Locale, Record<RouteKey, Copy>> = {
+  nl: {
+    home: {
+      title: "Het systeem onder je bedrijf",
+      description:
+        "Wij bouwen het complete systeem onder je bedrijf — publieke site, online boekingen, jouw admin paneel, alles geïntegreerd. Vanuit Costa Brava voor MKB in Nederland en Spanje.",
+    },
+    verhuur: {
+      title: "Software voor verhuurbedrijven",
+      description:
+        "Stop met dubbele boekingen tussen Airbnb, Booking en je Excel. Eén dashboard, automatische facturen, contracten in één klik. Maatwerk verhuursoftware voor caravans, boten, vakantiehuizen.",
+    },
+    over: {
+      title: "Over Laurens",
+      description:
+        "Eén ontwikkelaar, twaalf jaar ervaring, sinds drie jaar vanuit Costa Brava. Geen accountmanagers — direct contact met de developer die jouw systeem bouwt en blijft onderhouden.",
+    },
+    prijzen: {
+      title: "Heldere prijzen",
+      description:
+        "Care-abonnementen vanaf €99/m, Build-projecten vanaf €499 setup. Maandelijks opzegbaar, eerste maand gratis, 15% korting bij jaarbetaling. Geen meerwerk-facturen.",
+    },
+    contact: {
+      title: "Plan een gesprek",
+      description:
+        "Eerste gesprek is gratis — dertig minuten, geen pitch-deck, geen verkooppraat. Alleen een eerlijk advies of, en hoe, we elkaar kunnen helpen.",
+    },
+    status: {
+      title: "Live status",
+      description:
+        "Live uptime van Webstability-services. Realtime data uit Better Stack, ververst elke minuut.",
+    },
+    garanties: {
+      title: "Garanties",
+      description:
+        "Wat ik nooit doe: geen portfolio zonder toestemming, geen data-retentie na afloop, geen sub-processors zonder melding, geen vendor lock-in.",
+    },
+    blog: {
+      title: "Blog",
+      description:
+        "Artikelen over verhuursoftware, integrale systemen en MKB-tech vanuit Costa Brava. Praktisch, eerlijk, gericht op ondernemers.",
+    },
+    privacy: {
+      title: "Privacy",
+      description: "Hoe Webstability omgaat met je persoonsgegevens. AVG/GDPR-conform, EU-hosted.",
+    },
+    avisoLegal: {
+      title: "Aviso legal",
+      description: "Wettelijke kennisgeving voor de Spaanse markt. KvK + NIF + Webstability BV.",
+    },
+  },
+  es: {
+    home: {
+      title: "El sistema bajo tu empresa",
+      description:
+        "Construimos el sistema completo bajo tu empresa — web pública, reservas online, tu panel de admin, todo integrado. Desde Costa Brava para pymes en Países Bajos y España.",
+    },
+    verhuur: {
+      title: "Software para empresas de alquiler",
+      description:
+        "Acaba con las reservas duplicadas entre Airbnb, Booking y tu Excel. Un dashboard, facturas automáticas, contratos en un clic. Software a medida para alquiler de caravanas, barcos, casas.",
+    },
+    over: {
+      title: "Sobre Laurens",
+      description:
+        "Un desarrollador, doce años de experiencia, desde hace tres años en Costa Brava. Sin gestores de cuenta — hablas directamente con el dev que construye y mantiene tu sistema.",
+    },
+    prijzen: {
+      title: "Precios claros",
+      description:
+        "Care desde 99 €/m, Build desde 499 € setup. Cancelable mensualmente, primer mes gratis, 15% de descuento con pago anual. Sin facturas sorpresa por horas extra.",
+    },
+    contact: {
+      title: "Reservar primera llamada",
+      description:
+        "La primera llamada es gratis — treinta minutos, sin presentación comercial. Solo un consejo honesto sobre si, y cómo, podemos ayudarnos.",
+    },
+    status: {
+      title: "Estado en vivo",
+      description:
+        "Uptime en vivo de los servicios de Webstability. Datos en tiempo real de Better Stack, actualizados cada minuto.",
+    },
+    garanties: {
+      title: "Garantías",
+      description:
+        "Lo que nunca hago: sin portfolio sin permiso, sin retención de datos tras finalizar, sin subprocesadores sin avisar, sin vendor lock-in.",
+    },
+    blog: {
+      title: "Blog",
+      description:
+        "Artículos sobre software de alquiler, sistemas integrados y tech para pymes desde Costa Brava. Práctico, honesto, dirigido a empresarios.",
+    },
+    privacy: {
+      title: "Privacidad",
+      description:
+        "Cómo Webstability gestiona tus datos personales. Conforme a RGPD, alojado en la UE.",
+    },
+    avisoLegal: {
+      title: "Aviso legal",
+      description: "Aviso legal para el mercado español. KvK + NIF + Webstability BV.",
+    },
+  },
+};
+
+export function pageMetadata(locale: string, key: RouteKey): Metadata {
+  const lang: Locale = locale === "es" ? "es" : "nl";
+  const copy = COPY[lang][key];
+  return {
+    title: copy.title,
+    description: copy.description,
+    openGraph: {
+      title: `${copy.title} · Webstability`,
+      description: copy.description,
+      locale: lang,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${copy.title} · Webstability`,
+      description: copy.description,
+    },
+  };
+}
