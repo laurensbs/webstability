@@ -64,7 +64,10 @@ export default async function LoginPage({
           <span>
             webstability<span className="text-(--color-accent)">.</span>
           </span>
-          <span className="font-mono text-[10px] font-normal tracking-widest text-(--color-bg)/55 uppercase">
+          <span
+            className="font-mono text-[10px] font-normal tracking-widest uppercase"
+            style={{ color: "rgba(245, 240, 232, 0.6)" }}
+          >
             Eén plek voor je
           </span>
         </Link>
