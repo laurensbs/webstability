@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
+import { FounderFormMount } from "@/components/r3f/FounderFormMount";
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -33,10 +34,22 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         />
         <div className="relative mx-auto grid max-w-5xl gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <RevealOnScroll>
-            <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-lg border border-(--color-border) bg-(--color-bg-warm)">
-              <div className="flex h-full items-center justify-center font-mono text-xs tracking-widest text-(--color-muted) uppercase">
-                {/* TODO: portrait image — replace with /public/laurens.jpg */}
-                laurens · begur
+            {/* Portrait box — same gradient + giant L treatment as the
+                homepage Founder block. TODO: swap for a real
+                /public/laurens.jpg when one is ready. */}
+            <div
+              className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[28px] shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]"
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-teal-soft, #DCE8E7) 100%)",
+              }}
+            >
+              <FounderFormMount className="pointer-events-none absolute inset-0 opacity-70 mix-blend-multiply" />
+              <div
+                className="relative grid h-full place-items-center font-serif text-[200px] leading-none font-light"
+                style={{ color: "rgba(31,27,22,0.08)" }}
+              >
+                L
               </div>
               <span className="absolute top-3 left-3 inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-bg)/85 px-2.5 py-1 font-mono text-[10px] tracking-wide text-(--color-muted) backdrop-blur-sm">
                 <span className="relative flex h-1.5 w-1.5">
