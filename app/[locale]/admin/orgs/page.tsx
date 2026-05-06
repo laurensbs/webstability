@@ -14,9 +14,19 @@ export default async function OrgsPage({ params }: { params: Promise<{ locale: s
   const orgs = await listAllOrgs();
   const dateFmt = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
 
+  const newOrgHref = locale === "nl" ? "/admin/orgs/new" : `/${locale}/admin/orgs/new`;
+
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl md:text-4xl">{t("title")}</h1>
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="text-3xl md:text-4xl">{t("title")}</h1>
+        <NextLink
+          href={newOrgHref}
+          className="inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)]"
+        >
+          + {t("newOrg")}
+        </NextLink>
+      </div>
 
       {orgs.length === 0 ? (
         <p className="text-(--color-muted)">{t("empty")}</p>
