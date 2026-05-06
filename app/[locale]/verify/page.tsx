@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { VerifyPanel } from "@/components/auth/VerifyPanel";
 import { MarkupText } from "@/components/animate/MarkupText";
+import { LoginAmbientMount } from "@/components/r3f/LoginAmbientMount";
 
 export default async function VerifyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -28,6 +29,8 @@ export default async function VerifyPage({ params }: { params: Promise<{ locale:
           aria-hidden
           className="pointer-events-none absolute -right-32 -bottom-40 h-[420px] w-[420px] rounded-full bg-(--color-teal) opacity-50 blur-3xl"
         />
+
+        <LoginAmbientMount className="pointer-events-none absolute inset-0 opacity-60" />
 
         <Link
           href="/"

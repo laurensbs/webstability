@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { MarkupText } from "@/components/animate/MarkupText";
+import { LoginAmbientMount } from "@/components/r3f/LoginAmbientMount";
 
 export default async function LoginPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -31,6 +32,10 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
           aria-hidden
           className="pointer-events-none absolute -right-32 -bottom-40 h-[420px] w-[420px] rounded-full bg-(--color-teal) opacity-50 blur-3xl"
         />
+
+        {/* 3D distorted blob — sits over the static blobs at low opacity
+            so it adds motion without competing with the panel copy. */}
+        <LoginAmbientMount className="pointer-events-none absolute inset-0 opacity-60" />
 
         <Link
           href="/"
