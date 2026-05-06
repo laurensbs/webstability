@@ -21,6 +21,16 @@ export type BuildCalculatorStrings = {
   ctaAuthenticated: string;
   ctaAnonymous: string;
   perMonth: string;
+  /** Mapping from build choice → projecttype-label, used in the
+   * interpretation line under the calculator outputs. e.g.
+   * { custom: "verhuurplatform op maat", standard: "webshop", … } */
+  interpretationLabels: Record<BuildId, string>;
+  /** Template for the interpretation line — use {project} as
+   * placeholder for the value from interpretationLabels[build]. */
+  interpretationTemplate: string;
+  /** Template for "no build chosen" state — explains the months
+   * slider only kicks in when a build is selected. */
+  interpretationNone: string;
   buildOptions: { id: BuildId; name: string }[];
   tierOptions: { id: TierId; name: string }[];
 };
@@ -107,6 +117,21 @@ export function BuildCalculator({
         <Output label={strings.duringBuildLabel} value={duringBuild} suffix={strings.perMonth} />
         <Output label={strings.afterBuildLabel} value={afterBuild} suffix={strings.perMonth} />
         <Output label={strings.totalBuildLabel} value={totalBuild} muted={build === "none"} />
+      </div>
+
+      {/* Interpretatie-zin onder de outputs — vertaalt het getal naar
+          een herkenbaar projecttype zodat een leek weet wat hij koopt. */}
+      <div className="mt-6 rounded-[14px] border border-(--color-border) bg-(--color-bg-warm) p-4 text-[14px] leading-[1.6] text-(--color-text)">
+        {build === "none" ? (
+          <p className="text-(--color-muted)">{strings.interpretationNone}</p>
+        ) : (
+          <p>
+            {strings.interpretationTemplate.replace(
+              "{project}",
+              strings.interpretationLabels[build] ?? "",
+            )}
+          </p>
+        )}
       </div>
 
       <div className="mt-8 flex justify-end">

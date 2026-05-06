@@ -765,6 +765,7 @@
         {
           "id": "care",
           "name": "Care",
+          "humanLabel": "voor stabiel houden",
           "price": "€69/maand",
           "monthly": 69,
           "annual": 59,
@@ -782,6 +783,7 @@
         {
           "id": "studio",
           "name": "Studio",
+          "humanLabel": "voor groeien",
           "price": "€179/maand",
           "monthly": 179,
           "annual": 152,
@@ -799,6 +801,7 @@
         {
           "id": "atelier",
           "name": "Atelier",
+          "humanLabel": "dev-partner",
           "price": "€399/maand",
           "monthly": 399,
           "annual": 339,
@@ -868,12 +871,50 @@
         "afterBuild": "Na build",
         "totalBuild": "Totaal voor build",
         "ctaAuthenticated": "Start abonnement →",
-        "ctaAnonymous": "Plan een kennismaking →"
+        "ctaAnonymous": "Plan een kennismaking →",
+        "interpretationTemplate": "Voor dit budget bouwen we typisch een {project}.",
+        "interpretationNone": "Kies een Build extension hierboven om de bouwperiode + totaalbedrag te zien.",
+        "interpretationLabels": {
+          "none": "—",
+          "light": "marketing-site of landingpage",
+          "standard": "webshop met BTW/IVA en voorraad",
+          "custom": "verhuurplatform of bedrijfssoftware op maat"
+        }
       },
       "tierNames": {
         "care": "Care",
         "studio": "Studio",
         "atelier": "Atelier"
+      },
+      "paths": {
+        "title": "Veelvoorkomende paden",
+        "lede": "Drie typische combinaties — een ruwe richtlijn voor wat een project gemiddeld kost.",
+        "headers": {
+          "what": "Wat",
+          "package": "Pakket",
+          "build": "Bouwperiode",
+          "after": "Daarna onderhoud"
+        },
+        "items": [
+          {
+            "what": "Marketing-site of landingpage",
+            "package": "Care + Build Light · €69 + €199",
+            "build": "3 mnd · ~€600 build",
+            "after": "€69/m"
+          },
+          {
+            "what": "Webshop met BTW/IVA",
+            "package": "Studio + Build Standard · €179 + €499",
+            "build": "3 mnd · ~€2.000 build",
+            "after": "€179/m"
+          },
+          {
+            "what": "Verhuurplatform of bedrijfssoftware",
+            "package": "Atelier + Build Custom · €399 + €899",
+            "build": "6 mnd · ~€7.800 build",
+            "after": "€399/m"
+          }
+        ]
       }
     }
   },

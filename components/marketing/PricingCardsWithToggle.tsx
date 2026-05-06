@@ -12,6 +12,10 @@ type Cycle = "monthly" | "annual";
 export type PricingItem = {
   id: "care" | "studio" | "atelier";
   name: string;
+  /** 2-3 woorden mens-vertaling, e.g. "voor stabiel houden". Shown
+   * direct onder de tier-naam in een mono-pill zodat een leek meteen
+   * snapt waar de tier voor is voordat hij de volle body leest. */
+  humanLabel?: string;
   /** Short audience tagline, shown under the tier name. */
   body: string;
   monthly: number;
@@ -103,6 +107,17 @@ export function PricingCardsWithToggle({
               <h3 className={`mb-1.5 text-[24px] ${featured ? "text-(--color-bg)" : ""}`}>
                 {item.name}
               </h3>
+              {item.humanLabel ? (
+                <p
+                  className={`mb-3 inline-flex w-fit items-center rounded-full px-2.5 py-1 font-mono text-[10px] tracking-widest uppercase ${
+                    featured
+                      ? "bg-(--color-bg)/15 text-(--color-bg)/85"
+                      : "bg-(--color-bg-warm) text-(--color-accent)"
+                  }`}
+                >
+                  {item.humanLabel}
+                </p>
+              ) : null}
               <p
                 className={`mb-7 text-[14px] ${
                   featured ? "text-(--color-bg)/75" : "text-(--color-muted)"

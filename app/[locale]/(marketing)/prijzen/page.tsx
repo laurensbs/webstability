@@ -38,10 +38,17 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const tCalc = await getTranslations("pricing.build.calculator");
   const tBuildOpts = await getTranslations("pricing.build.options");
   const tTierNames = await getTranslations("pricing.build.tierNames");
+  const tPaths = await getTranslations("pricing.build.paths");
   const tRaw = await getTranslations();
   const careItems = tRaw.raw("pricing.care.items") as PricingItem[];
   const addons = tRaw.raw("pricing.addons") as string[];
   const reassurance = tRaw.raw("pricing.reassurance") as string[];
+  const pathItems = tRaw.raw("pricing.build.paths.items") as Array<{
+    what: string;
+    package: string;
+    build: string;
+    after: string;
+  }>;
 
   const session = await auth();
   const user = session?.user?.id ? await getUserWithOrg(session.user.id) : null;
@@ -118,6 +125,14 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               ctaAuthenticated: tCalc("ctaAuthenticated"),
               ctaAnonymous: tCalc("ctaAnonymous"),
               perMonth: tCare("perMonth"),
+              interpretationTemplate: tCalc("interpretationTemplate"),
+              interpretationNone: tCalc("interpretationNone"),
+              interpretationLabels: {
+                none: tCalc("interpretationLabels.none"),
+                light: tCalc("interpretationLabels.light"),
+                standard: tCalc("interpretationLabels.standard"),
+                custom: tCalc("interpretationLabels.custom"),
+              },
               tierOptions: [
                 { id: "care", name: tTierNames("care") },
                 { id: "studio", name: tTierNames("studio") },
@@ -134,6 +149,35 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               isOwner ? { isOwner, subscribeAction: startCareCheckoutWithBuild } : undefined
             }
           />
+
+          {/* Veelvoorkomende paden — concrete voorbeeld-tabel onder de calculator */}
+          <RevealOnScroll className="mt-12 space-y-4">
+            <div className="space-y-2">
+              <h3 className="text-xl md:text-2xl">{tPaths("title")}</h3>
+              <p className="text-(--color-muted)">{tPaths("lede")}</p>
+            </div>
+            <div className="overflow-hidden rounded-[20px] border border-(--color-border) bg-(--color-surface)">
+              <div className="hidden grid-cols-[1.4fr_1.4fr_1fr_1fr] gap-4 border-b border-(--color-border) bg-(--color-bg-warm) px-5 py-3 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase md:grid">
+                <span>{tPaths("headers.what")}</span>
+                <span>{tPaths("headers.package")}</span>
+                <span>{tPaths("headers.build")}</span>
+                <span>{tPaths("headers.after")}</span>
+              </div>
+              <ul className="divide-y divide-(--color-border)">
+                {pathItems.map((row, i) => (
+                  <li
+                    key={i}
+                    className="grid gap-2 px-5 py-4 md:grid-cols-[1.4fr_1.4fr_1fr_1fr] md:gap-4"
+                  >
+                    <p className="text-[15px] font-medium text-(--color-text)">{row.what}</p>
+                    <p className="text-[14px] text-(--color-muted)">{row.package}</p>
+                    <p className="text-[14px] text-(--color-text)">{row.build}</p>
+                    <p className="text-[14px] text-(--color-text)">{row.after}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </RevealOnScroll>
         </div>
       </section>
 

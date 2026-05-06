@@ -760,6 +760,7 @@
         {
           "id": "care",
           "name": "Care",
+          "humanLabel": "para mantener estable",
           "price": "69 €/mes",
           "monthly": 69,
           "annual": 59,
@@ -777,6 +778,7 @@
         {
           "id": "studio",
           "name": "Studio",
+          "humanLabel": "para crecer",
           "price": "179 €/mes",
           "monthly": 179,
           "annual": 152,
@@ -794,6 +796,7 @@
         {
           "id": "atelier",
           "name": "Atelier",
+          "humanLabel": "dev-partner",
           "price": "399 €/mes",
           "monthly": 399,
           "annual": 339,
@@ -863,12 +866,50 @@
         "afterBuild": "Después del build",
         "totalBuild": "Total del build",
         "ctaAuthenticated": "Empezar suscripción →",
-        "ctaAnonymous": "Reservar primera llamada →"
+        "ctaAnonymous": "Reservar primera llamada →",
+        "interpretationTemplate": "Con este presupuesto solemos construir un {project}.",
+        "interpretationNone": "Elige una Build extension arriba para ver el período de construcción y el coste total.",
+        "interpretationLabels": {
+          "none": "—",
+          "light": "web de marketing o landing page",
+          "standard": "tienda online con IVA/BTW y stock",
+          "custom": "plataforma de alquiler o software empresarial a medida"
+        }
       },
       "tierNames": {
         "care": "Care",
         "studio": "Studio",
         "atelier": "Atelier"
+      },
+      "paths": {
+        "title": "Rutas habituales",
+        "lede": "Tres combinaciones típicas — orientación aproximada de cuánto cuesta un proyecto.",
+        "headers": {
+          "what": "Qué",
+          "package": "Paquete",
+          "build": "Período de construcción",
+          "after": "Después: mantenimiento"
+        },
+        "items": [
+          {
+            "what": "Web de marketing o landing page",
+            "package": "Care + Build Light · 69 € + 199 €",
+            "build": "3 meses · ~600 € build",
+            "after": "69 €/m"
+          },
+          {
+            "what": "Tienda online con IVA/BTW",
+            "package": "Studio + Build Standard · 179 € + 499 €",
+            "build": "3 meses · ~2.000 € build",
+            "after": "179 €/m"
+          },
+          {
+            "what": "Plataforma de alquiler o software empresarial",
+            "package": "Atelier + Build Custom · 399 € + 899 €",
+            "build": "6 meses · ~7.800 € build",
+            "after": "399 €/m"
+          }
+        ]
       }
     }
   },
