@@ -1,0 +1,257 @@
+"use client";
+
+import * as React from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { Check, Calendar, FileText, Wallet, ShieldCheck } from "lucide-react";
+import { Eyebrow } from "@/components/animate/Eyebrow";
+import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
+
+type View = "client" | "owner";
+
+type Strings = {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  toggleClient: string;
+  toggleOwner: string;
+  client: {
+    badge: string;
+    object: string;
+    dates: string;
+    total: string;
+    deposit: string;
+    cta: string;
+  };
+  owner: {
+    badge: string;
+    bookingId: string;
+    customer: string;
+    customerEmail: string;
+    object: string;
+    nights: string;
+    total: string;
+    paid: string;
+    contract: string;
+    deposit: string;
+    calendar: string;
+    statusLabel: string;
+    statusValue: string;
+    actionLabel: string;
+    actionValue: string;
+  };
+};
+
+export function HowItWorks({ strings }: { strings: Strings }) {
+  const reduce = useReducedMotion();
+  const [view, setView] = React.useState<View>("client");
+
+  return (
+    <section className="px-6 py-[100px]">
+      <div className="mx-auto max-w-[1200px]">
+        {/* Heading */}
+        <div className="mx-auto mb-12 max-w-[720px] text-center">
+          <Eyebrow className="mb-[18px]">{strings.eyebrow}</Eyebrow>
+          <AnimatedHeading as="h2" className="mx-auto mb-[18px] text-[clamp(32px,4.5vw,52px)]">
+            {strings.title}
+          </AnimatedHeading>
+          <p className="mx-auto max-w-[56ch] text-[18px] text-(--color-muted)">{strings.lede}</p>
+        </div>
+
+        {/* Toggle */}
+        <div className="mx-auto mb-10 flex w-fit items-center gap-1 rounded-full border border-(--color-border) bg-(--color-surface) p-1.5">
+          <ToggleButton active={view === "client"} onClick={() => setView("client")}>
+            {strings.toggleClient}
+          </ToggleButton>
+          <ToggleButton active={view === "owner"} onClick={() => setView("owner")}>
+            {strings.toggleOwner}
+          </ToggleButton>
+        </div>
+
+        {/* Mockup card */}
+        <div className="relative mx-auto max-w-[820px]">
+          <AnimatePresence mode="wait">
+            {view === "client" ? (
+              <motion.div
+                key="client"
+                initial={reduce ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduce ? undefined : { opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <ClientMockup strings={strings.client} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="owner"
+                initial={reduce ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduce ? undefined : { opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <OwnerMockup strings={strings.owner} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ToggleButton({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`relative rounded-full px-5 py-2 text-[13px] font-medium transition-colors ${
+        active ? "text-(--color-bg)" : "text-(--color-muted) hover:text-(--color-text)"
+      }`}
+    >
+      {active ? (
+        <motion.span
+          layoutId="how-it-works-toggle-pill"
+          className="absolute inset-0 rounded-full bg-(--color-text)"
+          transition={{ type: "spring", stiffness: 400, damping: 32 }}
+        />
+      ) : null}
+      <span className="relative">{children}</span>
+    </button>
+  );
+}
+
+/* -------- CLIENT-VIEW: a public booking page mockup -------- */
+function ClientMockup({ strings }: { strings: Strings["client"] }) {
+  return (
+    <div className="overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface) shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]">
+      {/* Browser chrome */}
+      <div className="flex items-center gap-1.5 border-b border-(--color-border) bg-(--color-bg-warm)/60 px-4 py-3">
+        <span className="h-2.5 w-2.5 rounded-full bg-(--color-border-strong,#D8CDB6)" />
+        <span className="h-2.5 w-2.5 rounded-full bg-(--color-border-strong,#D8CDB6)" />
+        <span className="h-2.5 w-2.5 rounded-full bg-(--color-border-strong,#D8CDB6)" />
+        <span className="ml-3 font-mono text-[11px] text-(--color-muted)">
+          costacaravans.nl/boeken
+        </span>
+      </div>
+
+      <div className="grid gap-8 p-8 md:grid-cols-[1.2fr_1fr] md:p-12">
+        {/* Left — pretend hero / object */}
+        <div className="space-y-4">
+          <div
+            className="aspect-[16/10] w-full rounded-[14px]"
+            style={{
+              background:
+                "linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-teal-soft, #DCE8E7) 100%)",
+            }}
+          />
+          <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+            {strings.badge}
+          </p>
+          <h3 className="font-serif text-[28px] leading-[1.1]">{strings.object}</h3>
+          <p className="text-[14px] text-(--color-muted)">{strings.dates}</p>
+        </div>
+
+        {/* Right — booking summary */}
+        <div className="flex flex-col justify-between gap-6 rounded-[14px] border border-(--color-border) bg-(--color-bg-warm)/40 p-6">
+          <div className="space-y-3">
+            <div className="flex items-baseline justify-between border-b border-(--color-border) pb-3">
+              <span className="text-[13px] text-(--color-muted)">{strings.total}</span>
+              <span className="font-serif text-[28px] leading-none">€840</span>
+            </div>
+            <div className="flex items-baseline justify-between text-[13px]">
+              <span className="text-(--color-muted)">{strings.deposit}</span>
+              <span className="font-medium">€420</span>
+            </div>
+          </div>
+          <button
+            type="button"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-(--color-accent) px-5 py-3 text-[14px] font-medium text-white"
+          >
+            {strings.cta} →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* -------- OWNER-VIEW: an admin dashboard mockup of the same booking -------- */
+function OwnerMockup({ strings }: { strings: Strings["owner"] }) {
+  return (
+    <div className="overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface) shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]">
+      {/* Browser chrome — admin */}
+      <div className="flex items-center gap-1.5 border-b border-(--color-border) bg-(--color-text) px-4 py-3 text-(--color-bg)">
+        <span className="h-2.5 w-2.5 rounded-full bg-(--color-bg)/30" />
+        <span className="h-2.5 w-2.5 rounded-full bg-(--color-bg)/30" />
+        <span className="h-2.5 w-2.5 rounded-full bg-(--color-bg)/30" />
+        <span className="ml-3 font-mono text-[11px] text-(--color-bg)/60">
+          admin.costacaravans.nl/bookings
+        </span>
+      </div>
+
+      <div className="grid gap-6 p-8 md:p-10">
+        <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-(--color-border) pb-5">
+          <div>
+            <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+              {strings.badge}
+            </p>
+            <h3 className="mt-1 font-serif text-[24px]">{strings.bookingId}</h3>
+            <p className="mt-1 text-[13px] text-(--color-muted)">
+              {strings.customer} · {strings.customerEmail}
+            </p>
+          </div>
+          <span className="rounded-full bg-(--color-success)/15 px-3 py-1 font-mono text-[10px] tracking-wide text-(--color-success) uppercase">
+            {strings.statusValue}
+          </span>
+        </div>
+
+        <ul className="grid gap-2.5">
+          <Row icon={Calendar} label={strings.object} value={strings.nights} />
+          <Row icon={Wallet} label={strings.total} value="€840" />
+          <Row icon={Check} label={strings.paid} value="€420 · Mollie" success />
+          <Row icon={FileText} label={strings.contract} value="✓ verstuurd" success />
+          <Row icon={ShieldCheck} label={strings.deposit} value="€500 vastgehouden" />
+          <Row icon={Calendar} label={strings.calendar} value="Booking + Airbnb sync ✓" success />
+        </ul>
+
+        <div className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-(--color-border) pt-5 text-[13px]">
+          <span className="text-(--color-muted)">{strings.actionLabel}</span>
+          <span className="font-medium">{strings.actionValue}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Row({
+  icon: Icon,
+  label,
+  value,
+  success = false,
+}: {
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
+  label: string;
+  value: string;
+  success?: boolean;
+}) {
+  return (
+    <li className="flex items-center justify-between gap-4 rounded-[10px] border border-(--color-border) bg-(--color-bg-warm)/40 px-4 py-3 text-[14px]">
+      <span className="flex items-center gap-2.5 text-(--color-muted)">
+        <Icon className="h-3.5 w-3.5 text-(--color-accent)" strokeWidth={2} />
+        {label}
+      </span>
+      <span
+        className={`font-mono text-[12px] ${success ? "text-(--color-success)" : "text-(--color-text)"}`}
+      >
+        {value}
+      </span>
+    </li>
+  );
+}

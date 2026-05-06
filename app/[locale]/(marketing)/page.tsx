@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Hero } from "@/components/marketing/Hero";
 import { LogoStrip } from "@/components/marketing/LogoStrip";
+import { HowItWorksWrapper } from "@/components/marketing/HowItWorksWrapper";
 import { Services } from "@/components/marketing/Services";
 import { Founder } from "@/components/marketing/Founder";
 import { Testimonials } from "@/components/marketing/Testimonials";
@@ -21,6 +22,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     <main className="flex flex-1 flex-col">
       <Hero />
       <LogoStrip />
+      <HowItWorksWrapper />
       <Services />
       <Founder />
       {/* Testimonials renders nothing until messages.home.testimonials.items has entries. */}

@@ -63,6 +63,39 @@
       "items": ["Next.js", "TypeScript", "Postgres", "Stripe", "Vercel", "Tailwind"]
     },
 
+    "howItWorks": {
+      "eyebrow": "hoe het werkt",
+      "title": "Eén actie. *Twee* zijden. Volledig geïntegreerd.",
+      "lede": "Je klant boekt op je website. Wij zorgen dat jij in je dashboard meteen alles ziet — boeking, betaling, contract, kalender. Geen handmatig overtypen meer.",
+      "toggleClient": "Klant-view",
+      "toggleOwner": "Jouw view",
+      "client": {
+        "badge": "Caravans · Costa Brava",
+        "object": "Caravan Hymer 2024",
+        "dates": "Beschikbaar 14 — 21 juli (7 nachten)",
+        "total": "Totaal",
+        "deposit": "Aanbetaling",
+        "cta": "Boek nu — €420 aanbetaling"
+      },
+      "owner": {
+        "badge": "Boekingen · live",
+        "bookingId": "Boeking #2841",
+        "customer": "Familie Janssen",
+        "customerEmail": "jansens@email.nl",
+        "object": "Caravan Hymer 2024",
+        "nights": "14 — 21 juli · 7 nachten",
+        "total": "Totaal",
+        "paid": "Aanbetaling",
+        "contract": "Contract & e-handtekening",
+        "deposit": "Borg",
+        "calendar": "Kalender",
+        "statusLabel": "Status",
+        "statusValue": "Bevestigd",
+        "actionLabel": "Volgende actie:",
+        "actionValue": "Wacht op check-in 14 juli"
+      }
+    },
+
     "services": {
       "eyebrow": "diensten",
       "title": "Drie dingen, goed gedaan.",

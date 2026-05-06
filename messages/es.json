@@ -63,6 +63,39 @@
       "items": ["Next.js", "TypeScript", "Postgres", "Stripe", "Vercel", "Tailwind"]
     },
 
+    "howItWorks": {
+      "eyebrow": "cómo funciona",
+      "title": "Una acción. *Dos* lados. Totalmente integrado.",
+      "lede": "Tu cliente reserva en tu web. Nos aseguramos de que en tu dashboard veas todo al momento — reserva, pago, contrato, calendario. Sin reescribir nada.",
+      "toggleClient": "Vista cliente",
+      "toggleOwner": "Tu vista",
+      "client": {
+        "badge": "Caravanas · Costa Brava",
+        "object": "Caravana Hymer 2024",
+        "dates": "Disponible 14 — 21 julio (7 noches)",
+        "total": "Total",
+        "deposit": "Anticipo",
+        "cta": "Reservar — anticipo €420"
+      },
+      "owner": {
+        "badge": "Reservas · live",
+        "bookingId": "Reserva #2841",
+        "customer": "Familia Janssen",
+        "customerEmail": "jansens@email.nl",
+        "object": "Caravana Hymer 2024",
+        "nights": "14 — 21 julio · 7 noches",
+        "total": "Total",
+        "paid": "Anticipo",
+        "contract": "Contrato y firma electrónica",
+        "deposit": "Fianza",
+        "calendar": "Calendario",
+        "statusLabel": "Estado",
+        "statusValue": "Confirmada",
+        "actionLabel": "Siguiente paso:",
+        "actionValue": "Esperando check-in 14 julio"
+      }
+    },
+
     "services": {
       "eyebrow": "servicios",
       "title": "Tres cosas, bien hechas.",
