@@ -114,13 +114,13 @@
       "bridgeNote": "Bouwen + onderhouden zit in één doorlopend abonnement. *Tijdens* een build betaal je tijdelijk meer per maand, daarna val je terug op je vaste maandprijs. Zo betaal je over de tijd, niet vooraf.",
       "items": {
         "platform": {
-          "title": "Verhuur- of reparatieplatform",
-          "body": "We hebben het platform al draaiend voor de Spaanse caravan-markt — boekingen, klantlogin, admin met live overzicht. Andere verhuurders en garages krijgen dezelfde basis, op hun bedrijf afgestemd in 4-6 maanden.",
-          "cta": "Bekijk live platform →"
+          "title": "Bedrijfssoftware op maat",
+          "body": "Verhuurplatformen, reparatie-portalen, stallingsbeheer, klantportalen of een eigen admin paneel — vaak gekoppeld aan een publieke site. We hebben drie van zulke platforms al productioneel draaien voor de Spaanse markt.",
+          "cta": "Bekijk live platforms →"
         },
         "webshop": {
-          "title": "Webshop met BTW/IVA op maat",
-          "body": "Nederlandse BTW én Spaanse IVA correct, Mollie of Stripe, voorraad-koppeling optioneel. Snelle pagina's (Lighthouse 95+) en automatische facturatie.",
+          "title": "Website of webshop",
+          "body": "Snelle, meertalige marketing-site of een volledige webshop met BTW/IVA en voorraad-koppeling. Mollie of Stripe, automatische facturatie, Lighthouse 95+ op mobiel.",
           "cta": "Lees meer →"
         },
         "care": {
@@ -569,8 +569,8 @@
       "platform": {
         "anchor": "platform",
         "eyebrow": "productlijn 01",
-        "title": "Verhuur- of reparatieplatform",
-        "what": "We hebben twee platforms al productioneel draaien voor de Spaanse markt — caravanverhuurspanje.com (verhuur met live admin-boekingen) en caravanreparatiespanje (reparatie-orders die direct op iPads in de werkplaats landen). Een nieuwe verhuurder of garage krijgt dezelfde basis als startpunt en we passen 'm in 4-6 maanden aan op het bedrijf.",
+        "title": "Bedrijfssoftware op maat",
+        "what": "Verhuurplatformen, reparatie-portalen, stallingsbeheer, klantportalen of een eigen admin paneel — vaak gekoppeld aan een publieke site. We hebben drie van zulke systemen al productioneel draaien voor de Spaanse caravan-markt; een nieuwe klant krijgt dezelfde basis als startpunt, op zijn bedrijf afgestemd in 4-6 maanden.",
         "solvesTitle": "Wat het oplost",
         "solves": [
           "Geen dubbele boekingen meer tussen Booking, Airbnb en je eigen agenda",
@@ -597,27 +597,28 @@
       "webshop": {
         "anchor": "webshop",
         "eyebrow": "productlijn 02",
-        "title": "Webshop met BTW/IVA op maat",
-        "what": "Een snelle, meertalige webshop die zowel Nederlandse BTW als Spaanse IVA correct afhandelt. Mollie of Stripe als betalingsproviders. Optioneel een voorraad-koppeling als je al een systeem hebt draaien. Klaar in 3 maanden.",
+        "title": "Website of webshop",
+        "what": "Een snelle, meertalige marketing-site (1-3 mnd) of een volledige webshop met BTW/IVA en voorraad-koppeling (3-5 mnd). Mollie of Stripe als betalingsproviders, automatische facturatie, Lighthouse 95+ op mobiel.",
         "solvesTitle": "Wat het oplost",
         "solves": [
-          "BTW/IVA-puzzel per productcategorie automatisch goed",
-          "Eén checkout voor klanten in NL en ES",
+          "Eén meertalige site die werkt voor zowel NL als ES",
+          "BTW/IVA per productcategorie automatisch goed (bij webshop)",
           "Automatische facturen + nummering die je accountant accepteert",
-          "Geen Shopify-fees per transactie"
+          "Geen Shopify-fees per transactie — alles op je eigen domein"
         ],
         "includesTitle": "Wat erbij zit",
         "includes": [
-          "Productcatalogus + categorieën",
+          "Productcatalogus + categorieën (webshop)",
+          "Of een marketing-site met CMS naar keuze",
           "Checkout met Mollie of Stripe",
           "Automatische facturatie (PDF + e-mail)",
           "Voorraad-koppeling optioneel (Holded, e-Boekhouden)",
           "Lighthouse 95+ op mobiel"
         ],
         "packageTitle": "Hoe het werkt qua pakket",
-        "packageBody": "**Studio (€179/m)** met **Build Standard (+€499/m)** voor 3 maanden. Daarna door op Studio voor onderhoud en SEO-werk.",
+        "packageBody": "**Marketing-site:** Care (€69/m) + Build Light (+€199/m) voor 2-3 maanden. **Webshop:** Studio (€179/m) + Build Standard (+€499/m) voor 3-5 maanden. Daarna door op de gekozen tier.",
         "exampleTitle": "Voorbeeld",
-        "exampleBody": "Webshop in 3 maanden: €179 + €499 = €678/m × 3 = **~€2.000 build**. Daarna €179/m voor SEO, productupdates en doorontwikkeling.",
+        "exampleBody": "Marketing-site in 3 mnd: ~**€600 build** + €69/m onderhoud. Webshop in 3 mnd: ~**€2.000 build** + €179/m onderhoud.",
         "ctaPrimary": "Plan een kennismaking",
         "ctaSecondary": "Bekijk pricing-detail →",
         "ctaSecondaryHref": "/prijzen"

@@ -114,13 +114,13 @@
       "bridgeNote": "Construir + mantener está en una sola suscripción continua. *Durante* una construcción pagas más al mes, después vuelves a tu cuota fija. Pagas a lo largo del tiempo, no por adelantado.",
       "items": {
         "platform": {
-          "title": "Plataforma de alquiler o reparación",
-          "body": "Ya tenemos la plataforma funcionando para el mercado caravanero español — reservas, login de cliente, admin con vista en vivo. Otras empresas de alquiler y talleres reciben la misma base, ajustada a su negocio en 4-6 meses.",
-          "cta": "Ver plataforma en vivo →"
+          "title": "Software empresarial a medida",
+          "body": "Plataformas de alquiler, portales de reparación, gestión de almacenaje, portales de cliente o paneles admin propios — a menudo unidos a un site público. Tenemos tres de estos sistemas ya en producción para el mercado caravanero español.",
+          "cta": "Ver plataformas en vivo →"
         },
         "webshop": {
-          "title": "Tienda online con IVA/BTW a medida",
-          "body": "BTW neerlandés e IVA español correctos, Mollie o Stripe, integración de stock opcional. Páginas rápidas (Lighthouse 95+) y facturación automática.",
+          "title": "Web o tienda online",
+          "body": "Web de marketing rápida y multilingüe, o tienda online completa con BTW/IVA y stock. Mollie o Stripe, facturación automática, Lighthouse 95+ en móvil.",
           "cta": "Saber más →"
         },
         "care": {
@@ -564,8 +564,8 @@
       "platform": {
         "anchor": "platform",
         "eyebrow": "línea de producto 01",
-        "title": "Plataforma de alquiler o reparación",
-        "what": "Tenemos dos plataformas funcionando ya en producción para el mercado español — caravanverhuurspanje.com (alquiler con admin de reservas en vivo) y caravanreparatiespanje (órdenes de reparación que llegan directo a iPads en el taller). Una nueva empresa de alquiler o taller recibe la misma base como punto de partida y la adaptamos a su negocio en 4-6 meses.",
+        "title": "Software empresarial a medida",
+        "what": "Plataformas de alquiler, portales de reparación, gestión de almacenaje, portales de cliente o paneles admin propios — a menudo unidos a un site público. Tenemos tres de estos sistemas ya en producción para el mercado caravanero español; un nuevo cliente recibe la misma base como punto de partida, ajustada a su negocio en 4-6 meses.",
         "solvesTitle": "Qué resuelve",
         "solves": [
           "Sin reservas duplicadas entre Booking, Airbnb y tu propia agenda",
@@ -592,27 +592,28 @@
       "webshop": {
         "anchor": "webshop",
         "eyebrow": "línea de producto 02",
-        "title": "Tienda online con IVA/BTW a medida",
-        "what": "Una tienda online rápida y multilingüe que maneja tanto el BTW neerlandés como el IVA español correctamente. Mollie o Stripe como pasarelas de pago. Integración de stock opcional si ya tienes un sistema. Lista en 3 meses.",
+        "title": "Web o tienda online",
+        "what": "Una web de marketing rápida y multilingüe (1-3 meses) o una tienda online completa con BTW/IVA y stock (3-5 meses). Mollie o Stripe como pasarelas de pago, facturación automática, Lighthouse 95+ en móvil.",
         "solvesTitle": "Qué resuelve",
         "solves": [
-          "El puzzle BTW/IVA por categoría de producto resuelto automáticamente",
-          "Un solo checkout para clientes en NL y ES",
+          "Una web multilingüe que funciona tanto en NL como en ES",
+          "BTW/IVA por categoría de producto resuelto automáticamente (en tienda)",
           "Facturas automáticas con numeración aceptada por tu contable",
-          "Sin comisiones por transacción tipo Shopify"
+          "Sin comisiones por transacción tipo Shopify — todo en tu propio dominio"
         ],
         "includesTitle": "Qué incluye",
         "includes": [
-          "Catálogo de productos + categorías",
+          "Catálogo de productos + categorías (tienda)",
+          "O una web de marketing con CMS a elegir",
           "Checkout con Mollie o Stripe",
           "Facturación automática (PDF + email)",
           "Integración de stock opcional (Holded, e-Boekhouden)",
           "Lighthouse 95+ en móvil"
         ],
         "packageTitle": "Cómo funciona en cuanto a paquete",
-        "packageBody": "**Studio (179 €/m)** con **Build Standard (+499 €/m)** durante 3 meses. Después continúas en Studio para mantenimiento y trabajo SEO.",
+        "packageBody": "**Web de marketing:** Care (69 €/m) + Build Light (+199 €/m) durante 2-3 meses. **Tienda:** Studio (179 €/m) + Build Standard (+499 €/m) durante 3-5 meses. Después continúas en el tier elegido.",
         "exampleTitle": "Ejemplo",
-        "exampleBody": "Tienda online en 3 meses: 179 € + 499 € = 678 €/m × 3 = **~2.000 € de construcción**. Después 179 €/m para SEO, actualizaciones de producto y desarrollo continuo.",
+        "exampleBody": "Web de marketing en 3 meses: ~**600 € build** + 69 €/m mantenimiento. Tienda online en 3 meses: ~**2.000 € build** + 179 €/m mantenimiento.",
         "ctaPrimary": "Reserva una llamada",
         "ctaSecondary": "Ver detalle de precios →",
         "ctaSecondaryHref": "/precios"
