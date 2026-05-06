@@ -33,8 +33,8 @@
   },
   "home": {
     "eyebrow": "begur · costa brava",
-    "headline": "No la enésima web. *El sistema* bajo tu empresa.",
-    "tagline": "Construimos plataformas de alquiler, portales de reparación y dashboards operativos que sustituyen tu caos diario por un solo lugar tranquilo. Desde Costa Brava, para empresarios en Países Bajos y España.",
+    "headline": "Tus clientes ven una web. *Tú* ves toda la empresa.",
+    "tagline": "Construimos el sistema completo bajo tu empresa — web pública, reservas online, tu panel de admin, todo integrado.",
     "ctaPrimary": "Reservar primera llamada",
     "ctaSecondary": "Especial para alquiler",
 
@@ -47,15 +47,15 @@
       "metaUptimeLabel": "uptime · 30d",
       "metaRegionLabel": "zona de trabajo",
       "metaRegionValue": "NL · ES",
-      "taglinePrefix": "Construimos",
+      "taglinePrefix": "Una stack para",
       "rotatingWords": [
-        "plataformas de alquiler",
-        "portales de reparación",
-        "sistemas de reservas",
-        "portales cliente",
-        "dashboards operativos"
+        "empresas de alquiler",
+        "talleres de reparación",
+        "restaurantes",
+        "plataformas de reservas",
+        "tiendas online"
       ],
-      "taglineSuffix": "que sustituyen tu caos diario por un solo lugar tranquilo. Desde Costa Brava, para empresarios en Países Bajos y España."
+      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado. Desde Costa Brava, para empresarios en Países Bajos y España."
     },
 
     "logoStrip": {

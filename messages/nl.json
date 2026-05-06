@@ -33,8 +33,8 @@
   },
   "home": {
     "eyebrow": "begur · costa brava",
-    "headline": "Niet de zoveelste website. *Het systeem* onder je bedrijf.",
-    "tagline": "Wij bouwen verhuurplatformen, reparatieportalen en operationele dashboards die jouw dagelijkse chaos vervangen door één rustige plek. Vanuit Costa Brava, voor ondernemers in Nederland en Spanje.",
+    "headline": "Jouw klanten zien een website. *Jij* ziet de hele zaak.",
+    "tagline": "Wij bouwen het complete systeem onder je bedrijf — publieke site, online boekingen, jouw admin paneel, alles geïntegreerd.",
     "ctaPrimary": "Plan een kennismaking",
     "ctaSecondary": "Speciaal voor verhuur",
 
@@ -47,15 +47,15 @@
       "metaUptimeLabel": "uptime · 30d",
       "metaRegionLabel": "werkgebied",
       "metaRegionValue": "NL · ES",
-      "taglinePrefix": "Wij bouwen",
+      "taglinePrefix": "Eén stack voor",
       "rotatingWords": [
-        "verhuurplatformen",
-        "reparatieportalen",
-        "boekingssystemen",
-        "klantportalen",
-        "operationele dashboards"
+        "verhuurbedrijven",
+        "reparatiediensten",
+        "restaurants",
+        "boekingsplatformen",
+        "webshops"
       ],
-      "taglineSuffix": "die jouw dagelijkse chaos vervangen door één rustige plek. Vanuit Costa Brava, voor ondernemers in Nederland en Spanje."
+      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem. Vanuit Costa Brava, voor ondernemers in Nederland en Spanje."
     },
 
     "logoStrip": {
