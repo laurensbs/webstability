@@ -1,14 +1,30 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
 /**
- * Lazy mount for the WebGL systems globe — three.js stays out of the
- * server bundle entirely. Only ships after hydration on devices that
- * pass the fine-pointer + non-reduced-motion gate inside the component.
+ * Vervangt de WebGL pulsing-dots-globe door een 2D pulse-grid. Toont
+ * concreter "wat draait" dan een geroteerde puntenwolk — elk dotje
+ * staat voor een service, met een staggered keyframe-pulse zodat het
+ * voelt als systemen die ademen i.p.v. een generieke screensaver.
  */
-const SystemsGlobe = dynamic(() => import("./SystemsGlobe"), { ssr: false });
-
 export function SystemsGlobeMount({ className }: { className?: string }) {
-  return <SystemsGlobe className={className} />;
+  // 5x5 grid; even patroon zodat het niet te druk wordt.
+  const cells = Array.from({ length: 25 });
+  return (
+    <div className={className} aria-hidden>
+      <div className="grid h-full w-full grid-cols-5 grid-rows-5 place-items-center gap-2">
+        {cells.map((_, i) => {
+          const delay = (i * 137) % 1000; // pseudo-staggered
+          return (
+            <span
+              key={i}
+              className="block h-1.5 w-1.5 rounded-full bg-(--color-accent)/35"
+              style={{
+                animation: `wb-fade-in 2400ms ease-in-out ${delay}ms infinite alternate`,
+              }}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
 }

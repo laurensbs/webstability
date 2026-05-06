@@ -198,6 +198,17 @@ body.is-marketing #main {
   background-position: 0 0;
 }
 
+/* Langzame mesh-rotate voor LoginAmbientMount — vervangt de oude
+   R3F distortion-blob met een rustige conic-gradient ambient. */
+@keyframes wb-mesh-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes accordion-down {
   from {
     height: 0;
