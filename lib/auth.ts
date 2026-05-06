@@ -17,6 +17,18 @@ const SMTP_SERVER = {
   },
 };
 
+// Auto-BCC every transactional mail to the studio inbox so we can
+// audit copy in production. Set MAIL_AUDIT_BCC="" to disable.
+const MAIL_AUDIT_BCC = process.env.MAIL_AUDIT_BCC ?? "hello@webstability.eu";
+
+// Drop the BCC when the recipient IS the audit address — otherwise
+// the studio inbox gets the same mail twice.
+function auditBcc(to: string): string | undefined {
+  if (!MAIL_AUDIT_BCC) return undefined;
+  if (to.trim().toLowerCase() === MAIL_AUDIT_BCC.toLowerCase()) return undefined;
+  return MAIL_AUDIT_BCC;
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: DrizzleAdapter(db, {
     usersTable: users,
@@ -39,6 +51,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const result = await transport.sendMail({
           to: identifier,
           from: provider.from,
+          bcc: auditBcc(identifier),
           subject,
           text,
           html,
@@ -76,6 +89,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         await transport.sendMail({
           to: user.email,
           from: process.env.EMAIL_FROM,
+          bcc: auditBcc(user.email),
           subject,
           text,
           html,
