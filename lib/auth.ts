@@ -5,6 +5,17 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@/lib/db";
 import { users, accounts, sessions, verificationTokens } from "@/lib/db/schema";
 import { renderMagicLinkEmail } from "@/lib/email/magic-link";
+import { renderWelcomeEmail } from "@/lib/email/welcome";
+
+const SMTP_SERVER = {
+  host: process.env.EMAIL_SERVER_HOST,
+  port: Number(process.env.EMAIL_SERVER_PORT),
+  secure: Number(process.env.EMAIL_SERVER_PORT) === 465,
+  auth: {
+    user: process.env.EMAIL_SERVER_USER,
+    pass: process.env.EMAIL_SERVER_PASSWORD,
+  },
+};
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: DrizzleAdapter(db, {
@@ -20,15 +31,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   providers: [
     Nodemailer({
-      server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: Number(process.env.EMAIL_SERVER_PORT),
-        secure: Number(process.env.EMAIL_SERVER_PORT) === 465,
-        auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD,
-        },
-      },
+      server: SMTP_SERVER,
       from: process.env.EMAIL_FROM,
       async sendVerificationRequest({ identifier, url, expires, provider }) {
         const { subject, html, text } = renderMagicLinkEmail({ url, expires });
@@ -47,4 +50,39 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  events: {
+    /**
+     * Fired exactly once when the adapter inserts a new user row — the
+     * first time someone successfully clicks a magic-link for an email
+     * that wasn't previously known. Send a branded welcome email so the
+     * very first portal visit feels intentional, not random.
+     *
+     * Failures are logged but never thrown — a flaky SMTP delivery
+     * shouldn't block the user from actually getting into the portal.
+     */
+    async createUser({ user }) {
+      if (!user.email || !process.env.EMAIL_FROM) return;
+      try {
+        const baseUrl = process.env.NEXTAUTH_URL ?? "https://webstability.eu";
+        const locale: "nl" | "es" =
+          (user as { locale?: "nl" | "es" }).locale === "es" ? "es" : "nl";
+        const portalUrl = `${baseUrl}/${locale}/portal/dashboard`;
+        const { subject, html, text } = renderWelcomeEmail({
+          name: user.name ?? null,
+          portalUrl,
+          locale,
+        });
+        const transport = createTransport(SMTP_SERVER);
+        await transport.sendMail({
+          to: user.email,
+          from: process.env.EMAIL_FROM,
+          subject,
+          text,
+          html,
+        });
+      } catch (err) {
+        console.error("[auth] welcome email failed:", err);
+      }
+    },
+  },
 });
