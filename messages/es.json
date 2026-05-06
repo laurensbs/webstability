@@ -696,7 +696,7 @@
           "anchor": "caravanverhuurspanje",
           "name": "Caravanverhuurspanje",
           "url": "https://caravanverhuurspanje.com",
-          "logoUrl": "/logos/caravanverhuurspanje.png",
+          "logoUrl": "https://u.cubeupload.com/laurensbos/goedelogozwartverhuu.png",
           "tagline": "Plataforma de alquiler · activa en España",
           "what": "Plataforma de reservas pública con login de cliente y un admin donde llegan reservas, pagos y syncs de canales en vivo. Funciona a diario en producción: los clientes reservan solos, el equipo lo ve todo en un solo panel.",
           "for": "Otras empresas de alquiler (caravanas, barcos, casas de vacaciones, equipos) reciben la misma base, ajustada a su negocio.",
@@ -707,7 +707,7 @@
           "anchor": "caravanreparatiespanje",
           "name": "Caravanreparatiespanje",
           "url": "https://caravanreparatiespanje.vercel.app",
-          "logoUrl": "/logos/caravanreparatiespanje.png",
+          "logoUrl": "https://u.cubeupload.com/laurensbos/Ontwerpzondertitel1.png",
           "tagline": "Plataforma de reparación · activa en España",
           "what": "Los clientes reportan su reparación online. La orden llega directa a iPads en el taller — sin papeles sueltos, los mecánicos ven qué hay que hacer en cada vehículo y actualizan el estado mientras trabajan.",
           "for": "Talleres y empresas de mantenimiento con equipo en planta.",
@@ -718,7 +718,7 @@
           "anchor": "caravanstallingspanje",
           "name": "Caravanstallingspanje",
           "url": "https://caravanstallingspanje.com",
-          "logoUrl": "/logos/caravanstallingspanje.png",
+          "logoUrl": "https://u.cubeupload.com/laurensbos/IMG7081.png",
           "tagline": "Plataforma de almacenaje · activa en España",
           "what": "Gestión de almacenaje con login de cliente, vista de plazas, contratos y facturación. Los clientes ven en vivo qué plaza tienen y sus documentos; el propietario gestiona capacidad, pagos y movimientos desde un solo panel.",
           "for": "Almacenajes para caravanas, barcos o trasteros — donde plazas, contratos y facturación anual se juntan.",
@@ -754,7 +754,7 @@
         {
           "name": "Hoogduinonderhoud.nl",
           "url": "https://hoogduinonderhoud.nl",
-          "logoUrl": "/logos/hoogduinonderhoud.png",
+          "logoUrl": "https://u.cubeupload.com/laurensbos/logohoogduinonderhou.png",
           "kind": "Empresa de mantenimiento"
         },
         {
