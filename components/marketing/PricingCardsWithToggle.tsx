@@ -12,9 +12,12 @@ type Cycle = "monthly" | "annual";
 export type PricingItem = {
   id: "care" | "studio" | "atelier";
   name: string;
+  /** Short audience tagline, shown under the tier name. */
   body: string;
   monthly: number;
   annual: number;
+  /** Bulleted feature list shown beneath the price. */
+  features: string[];
 };
 
 type Strings = {
@@ -132,19 +135,22 @@ export function PricingCardsWithToggle({
                 {period}
               </motion.span>
               <ul className="mb-8 flex-grow space-y-2">
-                <li
-                  className={`flex items-start gap-2.5 text-[14px] ${
-                    featured ? "text-(--color-bg)/75" : "text-(--color-muted)"
-                  }`}
-                >
-                  <Check
-                    className={`mt-1 h-3.5 w-3.5 shrink-0 ${
-                      featured ? "text-(--color-accent-soft)" : "text-(--color-accent)"
+                {item.features.map((f) => (
+                  <li
+                    key={f}
+                    className={`flex items-start gap-2.5 text-[14px] ${
+                      featured ? "text-(--color-bg)/75" : "text-(--color-muted)"
                     }`}
-                    strokeWidth={2.5}
-                  />
-                  {item.body}
-                </li>
+                  >
+                    <Check
+                      className={`mt-1 h-3.5 w-3.5 shrink-0 ${
+                        featured ? "text-(--color-accent-soft)" : "text-(--color-accent)"
+                      }`}
+                      strokeWidth={2.5}
+                    />
+                    {f}
+                  </li>
+                ))}
               </ul>
               {authMode ? (
                 authMode.isOwner ? (

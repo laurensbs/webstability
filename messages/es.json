@@ -537,62 +537,63 @@
     }
   },
   "pricing": {
-    "eyebrow": "precios",
-    "title": "Dos modelos. *Sin sorpresas.*",
-    "lede": "Build para proyectos nuevos, Care para software existente que tiene que seguir funcionando. Sin add-ons que no pediste.",
-    "tabBuild": "Build",
-    "tabCare": "Care",
-    "build": {
-      "intro": "Proyecto único, precio fijo, alcance fijo. Código de tu propiedad al entregar.",
-      "items": [
-        {
-          "name": "Web",
-          "price": "desde 4.500 €",
-          "body": "Web de marketing, multilingüe, CMS a elegir, Lighthouse 95+."
-        },
-        {
-          "name": "Tienda online",
-          "price": "desde 8.500 €",
-          "body": "Stripe o Mollie, IVA/BTW correcto, conexión con stock opcional."
-        },
-        {
-          "name": "Sistema a medida",
-          "price": "desde 12.000 €",
-          "body": "Dashboard a medida, multi-usuario, conexiones con contabilidad/CRM."
-        },
-        {
-          "name": "Plataforma de alquiler",
-          "price": "desde 15.000 €",
-          "body": "Reserva, self-service de cliente, planificación, facturación."
-        }
-      ]
-    },
+    "eyebrow": "suscripciones · desde 69 €/m",
+    "title": "Un precio al mes. *Sin* presupuestos, sin sorpresas.",
+    "lede": "Trabajamos solo por suscripción. Entrada baja, cancelable cuando quieras. Una cuota fija para mantenimiento, crecimiento y todo lo intermedio.",
     "care": {
-      "intro": "Mantenimiento sobre software existente. Cancelable mensual. Primer mes gratis.",
+      "intro": "Tres niveles. Subir, bajar o parar entre medias está siempre permitido.",
       "items": [
         {
           "id": "care",
-          "name": "Care Basic",
-          "price": "195 €/mes",
-          "monthly": 195,
-          "annual": 166,
-          "body": "Actualizaciones de seguridad, monitorización, revisión de backups, 2h/mes de cambios."
+          "name": "Care",
+          "price": "69 €/mes",
+          "monthly": 69,
+          "annual": 59,
+          "body": "Para sitios existentes que simplemente deben seguir estables.",
+          "features": [
+            "Hosting premium (NL/EU edge)",
+            "SSL & backups diarios",
+            "Updates de seguridad mensuales",
+            "1 hora de cambios al mes",
+            "Soporte por email en 48h",
+            "Acceso al portal de cliente",
+            "Informe mensual de estado"
+          ]
         },
         {
           "id": "studio",
-          "name": "Care Pro",
-          "price": "395 €/mes",
-          "monthly": 395,
-          "annual": 336,
-          "body": "Todo Basic + 8h/mes de cambios, soporte prioritario en 4h."
+          "name": "Studio",
+          "price": "179 €/mes",
+          "monthly": 179,
+          "annual": 152,
+          "body": "Para empresas que quieren crecer activamente online.",
+          "features": [
+            "Todo Care",
+            "3 horas de cambios al mes",
+            "SEO local (NL & ES)",
+            "Informe SEO + performance mensual",
+            "Soporte prioritario en 4h",
+            "Llamada estratégica trimestral",
+            "Tracking de conversión configurado"
+          ]
         },
         {
           "id": "atelier",
-          "name": "Care Partner",
-          "price": "795 €/mes",
-          "monthly": 795,
-          "annual": 676,
-          "body": "Todo Pro + 20h/mes, llamada estratégica trimestral, SLA de uptime."
+          "name": "Atelier",
+          "price": "399 €/mes",
+          "monthly": 399,
+          "annual": 339,
+          "body": "Para quien opera software a medida y busca un dev-partner.",
+          "features": [
+            "Todo Studio",
+            "8 horas de cambios al mes",
+            "Estrategia de contenido + SEO content",
+            "Reunión estratégica mensual (1h)",
+            "Soporte por teléfono · arreglos same-day",
+            "Tests A/B & trabajo de conversión",
+            "Multi-site monitoring",
+            "Desarrollo de features a medida"
+          ]
         }
       ],
       "billingMonthly": "Mensual",
@@ -607,13 +608,22 @@
     },
     "addonsTitle": "Add-ons",
     "addons": [
-      "Informe Search Console — 95 €/mes",
-      "Añadir segundo idioma — 1.500 € único",
-      "Integración DocuSeal e-sign — 450 € único",
-      "Setup Cal.com self-hosted — 600 € único"
+      "Horas extra — 85 €/h (sobre las del plan)",
+      "Idioma adicional — 29 €/m (incl. hreflang)",
+      "Soporte premium — +59 €/m (respuesta <2h)",
+      "Foto/video mensual — +149 €/m",
+      "Mejora SLA — +149 €/m (99.95% + monitorización 24/7)"
     ],
-    "philosophyTitle": "Filosofía",
-    "philosophyBody": "Sin facturación por horas sueltas. Sin horas extra ocultas. Sin suscripciones que olvidas que tienes. El precio que ves es el que pagas — y si cambia el alcance, lo hablamos antes."
+    "philosophyTitle": "Queremos contento, no atado.",
+    "philosophyBody": "Sin presupuestos, sin horas extra, sin suscripciones que olvidas que tienes. Para cuando deje de tener sentido — ese es el incentivo más sano que se nos ocurre para volver a entregar cada mes.",
+    "philosophy": {
+      "voorJouTitle": "Para ti",
+      "voorJouBody": "Entrada baja. Sin apostar miles de euros antes de saber si funciona. Paras cuando quieras.",
+      "voorOnsTitle": "Para nosotros",
+      "voorOnsBody": "Ingresos predecibles. Sin presupuestos urgentes. Foco en mantener clientes, no en perseguir al siguiente.",
+      "voorWerkTitle": "Para el trabajo",
+      "voorWerkBody": "Software que sigue creciendo mes a mes. Nada de \"entregado, suerte\" — sí un sistema que dentro de dos años está mejor."
+    }
   },
   "legal": {
     "avisoTitle": "Aviso legal",

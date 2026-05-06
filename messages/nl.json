@@ -542,62 +542,63 @@
     }
   },
   "pricing": {
-    "eyebrow": "prijzen",
-    "title": "Twee modellen. *Geen verrassingen.*",
-    "lede": "Build voor nieuwe projecten, Care voor bestaande software die in de lucht moet blijven. Niet uit te breiden met add-ons die je niet vroeg.",
-    "tabBuild": "Build",
-    "tabCare": "Care",
-    "build": {
-      "intro": "Eenmalig project, vaste prijs, vaste scope. Code in jouw eigendom bij oplevering.",
-      "items": [
-        {
-          "name": "Website",
-          "price": "vanaf €4.500",
-          "body": "Marketing-site, meertalig, CMS naar keuze, Lighthouse 95+."
-        },
-        {
-          "name": "Webshop",
-          "price": "vanaf €8.500",
-          "body": "Stripe of Mollie, BTW/IVA correct, voorraad-koppeling optioneel."
-        },
-        {
-          "name": "Admin-systeem",
-          "price": "vanaf €12.000",
-          "body": "Maatwerk dashboard, multi-user, koppelingen met boekhouding/CRM."
-        },
-        {
-          "name": "Verhuurplatform",
-          "price": "vanaf €15.000",
-          "body": "Reservering, klant-self-service, planning, facturatie."
-        }
-      ]
-    },
+    "eyebrow": "abonnementen · vanaf €69/m",
+    "title": "Eén prijs per maand. *Geen* offertes, geen verrassingen.",
+    "lede": "We werken alleen op abonnement. Lage instap, opzegbaar wanneer je wil. Een vaste maandprijs voor onderhoud, groei, en alles ertussen.",
     "care": {
-      "intro": "Onderhoud op bestaande software. Maandelijks opzegbaar. Eerste maand gratis.",
+      "intro": "Drie tiers. Tussendoor upgraden of stoppen mag altijd.",
       "items": [
         {
           "id": "care",
-          "name": "Care Basic",
-          "price": "€195/maand",
-          "monthly": 195,
-          "annual": 166,
-          "body": "Security updates, monitoring, backup-checks, 2u/maand wijzigingen."
+          "name": "Care",
+          "price": "€69/maand",
+          "monthly": 69,
+          "annual": 59,
+          "body": "Voor bestaande sites die gewoon stabiel moeten blijven.",
+          "features": [
+            "Premium hosting (NL/EU edge)",
+            "SSL & dagelijkse backups",
+            "Maandelijkse security updates",
+            "1 uur wijzigingen per maand",
+            "E-mail support binnen 48u",
+            "Toegang tot klantportaal",
+            "Maandelijkse status-rapportage"
+          ]
         },
         {
           "id": "studio",
-          "name": "Care Pro",
-          "price": "€395/maand",
-          "monthly": 395,
-          "annual": 336,
-          "body": "Alles in Basic + 8u/maand wijzigingen, prioriteit-support binnen 4u."
+          "name": "Studio",
+          "price": "€179/maand",
+          "monthly": 179,
+          "annual": 152,
+          "body": "Voor bedrijven die actief willen groeien online.",
+          "features": [
+            "Alles van Care",
+            "3 uur wijzigingen per maand",
+            "Lokale SEO (NL & ES)",
+            "Maandelijkse SEO + performance rapportage",
+            "Priority support binnen 4u",
+            "Kwartaal-strategiegesprek",
+            "Conversie-tracking ingericht"
+          ]
         },
         {
           "id": "atelier",
-          "name": "Care Partner",
-          "price": "€795/maand",
-          "monthly": 795,
-          "annual": 676,
-          "body": "Alles in Pro + 20u/maand, kwartaal-strategiegesprek, SLA op uptime."
+          "name": "Atelier",
+          "price": "€399/maand",
+          "monthly": 399,
+          "annual": 339,
+          "body": "Voor wie maatwerk software runt en een dev-partner zoekt.",
+          "features": [
+            "Alles van Studio",
+            "8 uur wijzigingen per maand",
+            "Content strategie + SEO content",
+            "Maandelijks strategie-overleg (1u)",
+            "Telefoon support · same-day fixes",
+            "A/B-tests & conversie-werk",
+            "Multi-site monitoring",
+            "Custom feature-development"
+          ]
         }
       ],
       "billingMonthly": "Maandelijks",
@@ -606,19 +607,28 @@
       "perMonth": "/m",
       "perMonthBilledAnnually": "/m, jaarlijks gefactureerd",
       "subscribe": "Abonneer",
-      "talk": "Plan een gesprek",
+      "talk": "Plan een kennismaking",
       "manageBilling": "Beheer abonnement",
       "currentPlan": "Huidig plan"
     },
     "addonsTitle": "Add-ons",
     "addons": [
-      "Search Console rapportage — €95/maand",
-      "Tweede taal toevoegen — €1.500 eenmalig",
-      "DocuSeal e-sign integratie — €450 eenmalig",
-      "Cal.com self-hosted setup — €600 eenmalig"
+      "Extra uren — €85/u (boven plan-uren)",
+      "Extra taal — €29/m (incl. hreflang)",
+      "Premium support — +€59/m (reactietijd <2u)",
+      "Maandelijkse foto/video — +€149/m",
+      "SLA upgrade — +€149/m (99.95% + 24/7 monitoring)"
     ],
-    "philosophyTitle": "Filosofie",
-    "philosophyBody": "Geen uurtje-factuurtje. Geen verborgen meeruren. Geen abonnementen waarvan je vergeet dat je ze hebt. De prijs die je ziet is de prijs die je betaalt — en als de scope verandert praten we daar eerst over."
+    "philosophyTitle": "We willen jou tevreden, niet vastgezet.",
+    "philosophyBody": "Geen offertes, geen meeruren, geen abonnementen waarvan je vergeet dat je ze hebt. Stop wanneer het niet meer klopt — dat is de gezondste prikkel die we kunnen bedenken om elke maand opnieuw te leveren.",
+    "philosophy": {
+      "voorJouTitle": "Voor jou",
+      "voorJouBody": "Lage instap. Geen gok van duizenden euro's voor je weet of het werkt. Stop wanneer je wil.",
+      "voorOnsTitle": "Voor ons",
+      "voorOnsBody": "Voorspelbare maandinkomsten. Geen offerte-haastwerk. Focus op bestaande klanten houden, niet op de volgende najagen.",
+      "voorWerkTitle": "Voor het werk",
+      "voorWerkBody": "Software die maand na maand mee blijft groeien. Geen \"opgeleverd, succes ermee\" — wel een systeem dat over twee jaar nog beter is."
+    }
   },
   "legal": {
     "avisoTitle": "Aviso legal",
