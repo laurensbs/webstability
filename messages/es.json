@@ -185,24 +185,28 @@
       "title": "Respuestas por adelantado.",
       "items": [
         {
-          "q": "¿Trabajas solo o con un equipo?",
-          "a": "Trabajo solo. Para partes específicas (copy nativo, revisión de diseño, DevOps complejo) colaboro con freelancers de confianza. Pero la gestión, la arquitectura y el código se quedan conmigo."
+          "q": "¿Por qué solo suscripción, sin precio por proyecto?",
+          "a": "Los precios por proyecto incentivan entregar rápido y desaparecer. Las suscripciones nos obligan a entregar cada mes. Para ti significa entrada baja y la posibilidad de parar siempre. Para nosotros, ingresos predecibles — no tenemos que perseguir al siguiente cliente."
         },
         {
-          "q": "¿Cuánto cuesta un proyecto típico?",
-          "a": "Una web sencilla parte de 4.500 €. Un sistema a medida o tienda online va de 8.000 € a 25.000 € según alcance. Precio fijo por adelantado, sin facturas sorpresa. Mira la página de precios para más detalles."
+          "q": "¿Y si quiero cancelar dentro de tres meses?",
+          "a": "Vale. Los tiers regulares (Care/Studio/Atelier) son cancelables mensualmente sin razón. Las Build extensions tienen un mínimo igual al período de construcción (2-8 meses) — lógico, porque hay que terminarlo. Después, también mes a mes."
         },
         {
-          "q": "¿El código es mío?",
-          "a": "Sí, siempre. Se entrega en tu organización de GitHub, hosting en tu cuenta de Vercel. Si terminamos la colaboración, todo sigue siendo tuyo. Sin lock-in."
+          "q": "¿Y si quiero subir o bajar de tier entre medias?",
+          "a": "Siempre. La subida entra en la siguiente factura, la bajada al mes siguiente. Sin drama, sin 'lo planificamos para el próximo trimestre'."
         },
         {
-          "q": "¿Cómo va el tema del IVA para España?",
-          "a": "Las tiendas se configuran tanto para BTW neerlandés como para IVA español. Stripe para NL, Mollie para ES — ambos con tipos correctos por categoría y facturación automática."
+          "q": "¿Recibo calidad alta por 69 € al mes?",
+          "a": "Por 69 €/m recibes 1 hora de trabajo + hosting + monitorización. Suficiente para mantenimiento, no para crecer. Si quieres trabajar activamente en tu web, vas a Studio (179 €) o más. Somos honestos: elige el tier que encaja, no el más barato."
         },
         {
-          "q": "¿Y si te pones enfermo o lo dejas?",
-          "a": "Pregunta justa. El código está documentado, los despliegues automatizados, la infraestructura corre en proveedores estándar (Vercel, Neon, Stripe). Cualquier otro desarrollador puede continuar. Sin salsas secretas."
+          "q": "¿Puedo construir una aplicación grande con estos precios?",
+          "a": "Sí, vía una Build extension. Una plataforma de alquiler de 4-8 meses cuesta en total 3.600-7.200 € (Build Custom = +899 €/m) más tu tier regular. Bastante por debajo de los 15.000-30.000 € que cuestan los proyectos freelance habitualmente — pagas a lo largo del tiempo."
+        },
+        {
+          "q": "¿Y si un mes no necesito nada?",
+          "a": "Tu sitio sigue funcionando y solo pagas por hosting + estar listos. No acumulamos horas no usadas (sería un incentivo para 'meter algo' antes de fin de mes). ¿Quieres pausar de verdad? Pregunta, encontramos algo."
         }
       ]
     },
@@ -612,6 +616,13 @@
       "manageBilling": "Gestionar suscripción",
       "currentPlan": "Plan actual"
     },
+    "reassurance": [
+      "Primer mes siempre gratis · pruébalo sin compromiso",
+      "Cancelable cada mes · sin razón, sin preguntas",
+      "15% de descuento con pago anual · casi 2 meses gratis",
+      "Build extension flexible · solo durante el proyecto, después fuera",
+      "El código sigue siendo tuyo · también al irte"
+    ],
     "addonsTitle": "Add-ons",
     "addons": [
       "Horas extra — 85 €/h (sobre las del plan)",

@@ -185,24 +185,28 @@
       "title": "Antwoorden vooraf.",
       "items": [
         {
-          "q": "Werk je alleen, of heb je een team?",
-          "a": "Ik werk alleen. Voor specifieke onderdelen (native Spaanse copy, designreview, complexe DevOps) werk ik samen met vaste freelancers. Maar het projectmanagement, de architectuur en de code blijven bij mij."
+          "q": "Waarom alleen abonnement, geen project-prijs?",
+          "a": "Project-prijzen creëren een prikkel om snel te leveren en weg te zijn. Abonnementen verplichten ons elke maand opnieuw te leveren. Voor jou betekent het lagere instap en de mogelijkheid om altijd te stoppen. Voor ons voorspelbare inkomsten, dus we hoeven niet de volgende klant na te jagen."
         },
         {
-          "q": "Wat kost een typisch project?",
-          "a": "Een eenvoudige website begint rond €4.500. Een admin-systeem of webshop ligt tussen €8.000 en €25.000 afhankelijk van scope. Vaste prijs vooraf, geen meeruren achteraf. Bekijk de prijzen-pagina voor details."
+          "q": "Wat als ik al binnen drie maanden wil opzeggen?",
+          "a": "Mag. Reguliere tiers (Care/Studio/Atelier) zijn maandelijks opzegbaar zonder reden. Build extensions hebben een minimumtermijn gelijk aan de bouwperiode (2-8 maanden) — dat is logisch want we moeten hem afmaken. Daarna ook gewoon per maand."
         },
         {
-          "q": "Krijg ik de code in eigendom?",
-          "a": "Ja, altijd. Code wordt opgeleverd in jouw GitHub-organisatie, hosting staat op jouw Vercel-account. Bij beëindiging van de samenwerking blijft alles van jou. Geen vendor lock-in."
+          "q": "Wat als ik tussentijds wil upgraden of downgraden?",
+          "a": "Altijd. Upgrade gaat in vanaf de volgende factuur, downgrade vanaf de maand erna. Geen drama, geen 'we plannen het volgende kwartaal in'."
         },
         {
-          "q": "Hoe zit het met BTW/IVA voor Spanje?",
-          "a": "Webshops worden ingericht voor zowel Nederlandse BTW als Spaanse IVA. Stripe voor NL, Mollie voor ES — beide met correcte tarieven per productcategorie en automatische facturatie."
+          "q": "Krijg ik wel hoge kwaliteit voor €69 per maand?",
+          "a": "Voor €69/m krijg je 1 uur werk + hosting + monitoring. Genoeg voor onderhoud, niet voor groei. Wil je actief werken aan je site, ga je naar Studio (€179) of hoger. We zijn eerlijk: kies de tier die past, niet de goedkoopste."
         },
         {
-          "q": "En als jij ziek wordt of stopt?",
-          "a": "Dat is een terechte vraag. Code is gedocumenteerd, deploys zijn geautomatiseerd, infrastructuur draait op standaard providers (Vercel, Neon, Stripe). Elke andere ontwikkelaar kan het overnemen. Geen geheime sausjes."
+          "q": "Kan ik een grote applicatie laten bouwen voor deze prijzen?",
+          "a": "Ja, via een Build extension. Een verhuurplatform van 4-8 maanden kost in totaal €3.600-€7.200 (Build Custom = €899/m extra) plus je reguliere tier. Dat is fors lager dan de €15.000-€30.000 die freelance-projecten doorgaans kosten — je betaalt over de tijd."
+        },
+        {
+          "q": "Wat als ik even helemaal niets nodig heb voor een maand?",
+          "a": "Dan blijft je site gewoon draaien en betaal je alleen voor hosting + paraatheid. We rollen geen ongebruikte uren door (zou een prikkel zijn om 'nog snel iets' te doen voor het einde van de maand). Wil je echt pauzeren? Vraag het, we vinden iets."
         }
       ]
     },
@@ -617,6 +621,13 @@
       "manageBilling": "Beheer abonnement",
       "currentPlan": "Huidig plan"
     },
+    "reassurance": [
+      "Eerste maand altijd gratis · ervaar het zonder commitment",
+      "Opzegbaar per maand · zonder reden, zonder vragen",
+      "15% korting bij jaarbetaling · ter waarde van bijna 2 maanden gratis",
+      "Build-extension flexibel · alleen tijdens project, daarna weg",
+      "Code blijft van jou · ook na vertrek"
+    ],
     "addonsTitle": "Add-ons",
     "addons": [
       "Extra uren — €85/u (boven plan-uren)",

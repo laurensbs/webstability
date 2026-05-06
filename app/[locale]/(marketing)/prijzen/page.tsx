@@ -1,6 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
+import { Check } from "lucide-react";
 import { routing } from "@/i18n/routing";
 import { auth } from "@/lib/auth";
 import { getUserWithOrg } from "@/lib/db/queries/portal";
@@ -40,6 +41,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const tRaw = await getTranslations();
   const careItems = tRaw.raw("pricing.care.items") as PricingItem[];
   const addons = tRaw.raw("pricing.addons") as string[];
+  const reassurance = tRaw.raw("pricing.reassurance") as string[];
 
   const session = await auth();
   const user = session?.user?.id ? await getUserWithOrg(session.user.id) : null;
@@ -79,6 +81,23 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             }}
           />
         </div>
+      </section>
+
+      {/* Reassurance strip — keeps the eye moving from cards into the rest. */}
+      <section className="px-6 pb-16">
+        <ul className="mx-auto flex max-w-5xl flex-col flex-wrap gap-3 sm:flex-row sm:gap-x-8 sm:gap-y-3">
+          {reassurance.map((r, i) => (
+            <RevealOnScroll key={i} delay={i * 0.04}>
+              <li className="flex items-start gap-2.5 text-[14px] text-(--color-muted)">
+                <Check
+                  className="mt-1 h-3.5 w-3.5 shrink-0 text-(--color-accent)"
+                  strokeWidth={2.5}
+                />
+                {r}
+              </li>
+            </RevealOnScroll>
+          ))}
+        </ul>
       </section>
 
       {/* Build extensions + calculator */}
