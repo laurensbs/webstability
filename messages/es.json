@@ -693,6 +693,7 @@
           "anchor": "caravanverhuurspanje",
           "name": "Caravanverhuurspanje",
           "url": "https://caravanverhuurspanje.com",
+          "logoUrl": "https://u.cubeupload.com/laurensbs/Caravanverhuur3.png",
           "tagline": "Plataforma de alquiler · activa en España",
           "what": "Plataforma de reservas pública con login de cliente y un admin donde llegan reservas, pagos y syncs de canales en vivo. Funciona a diario en producción: los clientes reservan solos, el equipo lo ve todo en un solo panel.",
           "for": "Otras empresas de alquiler (caravanas, barcos, casas de vacaciones, equipos) reciben la misma base, ajustada a su negocio.",
@@ -703,6 +704,7 @@
           "anchor": "caravanreparatiespanje",
           "name": "Caravanreparatiespanje",
           "url": "https://caravanreparatiespanje.vercel.app",
+          "logoUrl": "https://u.cubeupload.com/laurensbs/Ontwerpzondertitel1.png",
           "tagline": "Plataforma de reparación · activa en España",
           "what": "Los clientes reportan su reparación online. La orden llega directa a iPads en el taller — sin papeles sueltos, los mecánicos ven qué hay que hacer en cada vehículo y actualizan el estado mientras trabajan.",
           "for": "Talleres y empresas de mantenimiento con equipo en planta.",
@@ -738,6 +740,7 @@
         {
           "name": "Hoogduinonderhoud.nl",
           "url": "https://hoogduinonderhoud.nl",
+          "logoUrl": "https://u.cubeupload.com/laurensbs/logohoogduinonderhou.png",
           "kind": "Empresa de mantenimiento"
         },
         {

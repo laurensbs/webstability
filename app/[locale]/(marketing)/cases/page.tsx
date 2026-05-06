@@ -25,6 +25,7 @@ type ProductLineItem = {
   anchor: string;
   name: string;
   url: string;
+  logoUrl?: string;
   tagline: string;
   what: string;
   for: string;
@@ -36,6 +37,7 @@ type ClientCase = {
   anchor: string;
   name: string;
   url: string;
+  logoUrl?: string;
   tagline: string;
   what: string;
   result: string;
@@ -45,6 +47,7 @@ type ClientCase = {
 type ProductionItem = {
   name: string;
   url: string;
+  logoUrl?: string;
   kind: string;
 };
 
@@ -84,6 +87,17 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 className="group flex h-full flex-col rounded-[24px] border border-(--color-border) bg-(--color-surface) p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12)]"
               >
                 <article id={item.anchor} className="flex h-full scroll-mt-24 flex-col">
+                  {item.logoUrl ? (
+                    <div className="mb-5 flex h-14 items-center">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={item.logoUrl}
+                        alt={`${item.name} logo`}
+                        loading="lazy"
+                        className="max-h-14 w-auto max-w-[200px] object-contain"
+                      />
+                    </div>
+                  ) : null}
                   <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
                     {item.tagline}
                   </p>
@@ -154,6 +168,17 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 className="rounded-[24px] border border-(--color-border) bg-(--color-surface) p-8"
               >
                 <article id={item.anchor} className="scroll-mt-24">
+                  {item.logoUrl ? (
+                    <div className="mb-5 flex h-14 items-center">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={item.logoUrl}
+                        alt={`${item.name} logo`}
+                        loading="lazy"
+                        className="max-h-14 w-auto max-w-[200px] object-contain"
+                      />
+                    </div>
+                  ) : null}
                   <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
                     {item.tagline}
                   </p>
@@ -197,9 +222,22 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   rel="noopener noreferrer"
                   className="group flex items-center justify-between gap-4 rounded-[14px] border border-(--color-border) bg-(--color-surface) px-5 py-4 transition-colors hover:border-(--color-accent)/50"
                 >
-                  <div className="min-w-0">
-                    <p className="truncate text-[15px] font-medium text-(--color-text)">{p.name}</p>
-                    <p className="text-[12px] text-(--color-muted)">{p.kind}</p>
+                  <div className="flex min-w-0 items-center gap-3">
+                    {p.logoUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={p.logoUrl}
+                        alt={`${p.name} logo`}
+                        loading="lazy"
+                        className="h-8 w-8 shrink-0 rounded-md object-contain"
+                      />
+                    ) : null}
+                    <div className="min-w-0">
+                      <p className="truncate text-[15px] font-medium text-(--color-text)">
+                        {p.name}
+                      </p>
+                      <p className="text-[12px] text-(--color-muted)">{p.kind}</p>
+                    </div>
                   </div>
                   <ExternalLink
                     className="h-4 w-4 shrink-0 text-(--color-muted) transition-colors group-hover:text-(--color-accent)"

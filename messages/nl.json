@@ -698,6 +698,7 @@
           "anchor": "caravanverhuurspanje",
           "name": "Caravanverhuurspanje",
           "url": "https://caravanverhuurspanje.com",
+          "logoUrl": "https://u.cubeupload.com/laurensbs/Caravanverhuur3.png",
           "tagline": "Verhuurplatform · live in Spanje",
           "what": "Publiek boekingsplatform met klantlogin en een admin waar live boekingen, betalingen en kanaal-syncs binnenkomen. Draait dagelijks productioneel: klanten boeken zelf, het team ziet alles in één paneel.",
           "for": "Andere verhuurders (caravans, boten, vakantiehuizen, materieel) krijgen dezelfde basis, op het bedrijf afgestemd.",
@@ -708,6 +709,7 @@
           "anchor": "caravanreparatiespanje",
           "name": "Caravanreparatiespanje",
           "url": "https://caravanreparatiespanje.vercel.app",
+          "logoUrl": "https://u.cubeupload.com/laurensbs/Ontwerpzondertitel1.png",
           "tagline": "Reparatieplatform · live in Spanje",
           "what": "Klanten melden hun reparatie online. De order belandt direct op iPads in de werkplaats — geen losse papiertjes meer, monteurs zien wat er aan welk voertuig moet gebeuren en updaten de status terwijl ze werken.",
           "for": "Garages, werkplaatsen en onderhoudsbedrijven met een team op de vloer.",
@@ -743,6 +745,7 @@
         {
           "name": "Hoogduinonderhoud.nl",
           "url": "https://hoogduinonderhoud.nl",
+          "logoUrl": "https://u.cubeupload.com/laurensbs/logohoogduinonderhou.png",
           "kind": "Onderhoudsbedrijf"
         },
         {
