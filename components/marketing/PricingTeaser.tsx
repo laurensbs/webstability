@@ -3,7 +3,8 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { Button } from "@/components/ui/Button";
-import { MarkupText } from "@/components/animate/MarkupText";
+import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
+import { Eyebrow } from "@/components/animate/Eyebrow";
 
 type CareItem = { id: "basic" | "pro" | "partner"; name: string; price: string; body: string };
 
@@ -17,16 +18,15 @@ export async function PricingTeaser() {
   return (
     <section id="prijzen" className="bg-(--color-bg-warm) px-6 py-[100px]">
       <div className="mx-auto max-w-[1200px]">
-        <RevealOnScroll className="mx-auto mb-14 max-w-[720px] text-center">
-          <p className="mb-[18px] font-mono text-[12px] tracking-[0.1em] text-(--color-accent) uppercase">
-            {"// "}
-            {t("eyebrow")}
-          </p>
-          <h2 className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">
-            {<MarkupText>{t("title")}</MarkupText>}
-          </h2>
-          <p className="mx-auto max-w-[56ch] text-[18px] text-(--color-muted)">{t("lede")}</p>
-        </RevealOnScroll>
+        <div className="mx-auto mb-14 max-w-[720px] text-center">
+          <Eyebrow className="mb-[18px]">{t("eyebrow")}</Eyebrow>
+          <AnimatedHeading as="h2" className="mx-auto mb-[18px] text-[clamp(32px,4.5vw,52px)]">
+            {t("title")}
+          </AnimatedHeading>
+          <RevealOnScroll>
+            <p className="mx-auto max-w-[56ch] text-[18px] text-(--color-muted)">{t("lede")}</p>
+          </RevealOnScroll>
+        </div>
 
         <div className="grid gap-5 md:grid-cols-3">
           {items.map((item, i) => {

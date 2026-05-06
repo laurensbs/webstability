@@ -1,7 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { MarkupText } from "@/components/animate/MarkupText";
+import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
+import { Eyebrow } from "@/components/animate/Eyebrow";
 
 export async function Founder() {
   const t = await getTranslations("home.founder");
@@ -37,13 +38,10 @@ export async function Founder() {
         </RevealOnScroll>
 
         <RevealOnScroll delay={0.1}>
-          <p className="mb-[18px] font-mono text-[12px] tracking-[0.1em] text-(--color-accent) uppercase">
-            {"// "}
-            {t("eyebrow")}
-          </p>
-          <h2 className="mb-6 text-[clamp(32px,4vw,48px)]">
-            {<MarkupText>{t("title")}</MarkupText>}
-          </h2>
+          <Eyebrow className="mb-[18px]">{t("eyebrow")}</Eyebrow>
+          <AnimatedHeading as="h2" className="mb-6 text-[clamp(32px,4vw,48px)]">
+            {t("title")}
+          </AnimatedHeading>
           <p className="mb-[18px] font-serif text-[19px] leading-[1.5] text-(--color-text)">
             {t("body")}
           </p>

@@ -6,6 +6,8 @@ import { routing } from "@/i18n/routing";
 import { PageHeader } from "@/components/marketing/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { MarkupText } from "@/components/animate/MarkupText";
+import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
+import { Eyebrow } from "@/components/animate/Eyebrow";
 
 const ICONS: LucideIcon[] = [EyeOff, Database, UserCheck, Unlock];
 
@@ -50,12 +52,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       {/* Promises grid */}
       <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
         <div className="mx-auto max-w-6xl">
-          <RevealOnScroll className="max-w-2xl space-y-3">
-            <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
-              {"// "}beloftes
-            </p>
-            <h2 className="text-3xl md:text-4xl">{t("promisesTitle")}</h2>
-          </RevealOnScroll>
+          <div className="max-w-2xl space-y-3">
+            <Eyebrow>beloftes</Eyebrow>
+            <AnimatedHeading as="h2" className="text-3xl md:text-4xl">
+              {t("promisesTitle")}
+            </AnimatedHeading>
+          </div>
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {promises.map((p, i) => {
               const Icon = ICONS[i] ?? Shield;

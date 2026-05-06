@@ -1,5 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
+import { Eyebrow } from "@/components/animate/Eyebrow";
 
 export async function Approach() {
   const t = await getTranslations("home.approach");
@@ -8,14 +10,15 @@ export async function Approach() {
   return (
     <section className="px-6 py-[100px]">
       <div className="mx-auto max-w-[1200px]">
-        <RevealOnScroll className="mb-14 max-w-[720px]">
-          <p className="mb-[18px] font-mono text-[12px] tracking-[0.1em] text-(--color-accent) uppercase">
-            {"// "}
-            {t("eyebrow")}
-          </p>
-          <h2 className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">{t("title")}</h2>
-          <p className="max-w-[56ch] text-[18px] text-(--color-muted)">{t("lede")}</p>
-        </RevealOnScroll>
+        <div className="mb-14 max-w-[720px]">
+          <Eyebrow className="mb-[18px]">{t("eyebrow")}</Eyebrow>
+          <AnimatedHeading as="h2" className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">
+            {t("title")}
+          </AnimatedHeading>
+          <RevealOnScroll>
+            <p className="max-w-[56ch] text-[18px] text-(--color-muted)">{t("lede")}</p>
+          </RevealOnScroll>
+        </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {keys.map((key, i) => (

@@ -6,7 +6,8 @@ import { routing } from "@/i18n/routing";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { Button } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
-import { MarkupText } from "@/components/animate/MarkupText";
+import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
+import { Eyebrow } from "@/components/animate/Eyebrow";
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -52,9 +53,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
               {t("eyebrow")}
             </p>
-            <h1 className="text-4xl leading-[1.05] md:text-6xl">
-              {<MarkupText>{t("title")}</MarkupText>}
-            </h1>
+            <AnimatedHeading as="h1" className="text-4xl leading-[1.05] md:text-6xl">
+              {t("title")}
+            </AnimatedHeading>
             <p className="text-lg leading-relaxed text-(--color-muted) md:text-xl">{t("intro")}</p>
           </RevealOnScroll>
         </div>
@@ -63,12 +64,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       {/* PRINCIPLES */}
       <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
         <div className="mx-auto max-w-6xl">
-          <RevealOnScroll className="max-w-2xl space-y-3">
-            <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
-              {"// "}principes
-            </p>
-            <h2 className="text-3xl md:text-5xl">{t("principlesTitle")}</h2>
-          </RevealOnScroll>
+          <div className="max-w-2xl space-y-3">
+            <Eyebrow>principes</Eyebrow>
+            <AnimatedHeading as="h2" className="text-3xl md:text-5xl">
+              {t("principlesTitle")}
+            </AnimatedHeading>
+          </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             {principles.map((p, i) => (
               <RevealOnScroll key={p.title} delay={i * 0.06}>
@@ -88,12 +89,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       {/* TIMELINE */}
       <section className="px-6 py-24">
         <div className="mx-auto max-w-3xl">
-          <RevealOnScroll className="space-y-3">
-            <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
-              {"// "}tijdlijn
-            </p>
-            <h2 className="text-3xl md:text-5xl">{t("timelineTitle")}</h2>
-          </RevealOnScroll>
+          <div className="space-y-3">
+            <Eyebrow>tijdlijn</Eyebrow>
+            <AnimatedHeading as="h2" className="text-3xl md:text-5xl">
+              {t("timelineTitle")}
+            </AnimatedHeading>
+          </div>
           <ol className="relative mt-14 space-y-10 border-l-2 border-(--color-border) pl-10">
             {timeline.map((item, i) => (
               <RevealOnScroll key={`${item.year}-${i}`} delay={i * 0.05}>

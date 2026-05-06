@@ -3,7 +3,9 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { MarkupText } from "@/components/animate/MarkupText";
+import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
+import { Eyebrow } from "@/components/animate/Eyebrow";
+import { MagneticButton } from "@/components/animate/MagneticButton";
 
 export async function CTABlock() {
   const t = await getTranslations("home.cta");
@@ -18,25 +20,30 @@ export async function CTABlock() {
         }}
       />
       <div className="relative mx-auto max-w-[1200px]">
-        <RevealOnScroll className="mx-auto max-w-3xl space-y-6 text-center">
-          <p className="font-mono text-[12px] tracking-[0.1em] text-(--color-accent) uppercase">
-            {"// "}
-            {t("eyebrow")}
-          </p>
-          <h2 className="text-[clamp(36px,5vw,60px)]">{<MarkupText>{t("title")}</MarkupText>}</h2>
-          <p className="mx-auto max-w-[56ch] text-[18px] text-(--color-muted)">{t("body")}</p>
+        <div className="mx-auto max-w-3xl space-y-6 text-center">
+          <Eyebrow className="text-center">{t("eyebrow")}</Eyebrow>
+          <AnimatedHeading as="h2" className="mx-auto text-[clamp(36px,5vw,60px)]">
+            {t("title")}
+          </AnimatedHeading>
+          <RevealOnScroll>
+            <p className="mx-auto max-w-[56ch] text-[18px] text-(--color-muted)">{t("body")}</p>
+          </RevealOnScroll>
           <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
-            <Button asChild size="lg" variant="primary" className="group">
-              <a href="mailto:hello@webstability.eu">
-                hello@webstability.eu
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link href="/contact">{t("button")} →</Link>
-            </Button>
+            <MagneticButton>
+              <Button asChild size="lg" variant="primary" className="group">
+                <a href="mailto:hello@webstability.eu">
+                  hello@webstability.eu
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </a>
+              </Button>
+            </MagneticButton>
+            <MagneticButton>
+              <Button asChild size="lg" variant="outline">
+                <Link href="/contact">{t("button")} →</Link>
+              </Button>
+            </MagneticButton>
           </div>
-        </RevealOnScroll>
+        </div>
       </div>
     </section>
   );
