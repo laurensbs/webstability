@@ -1,11 +1,15 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
+import { LogoMark } from "@/components/shared/LogoMark";
 import { NavScroll } from "@/components/marketing/NavScroll";
 import { NavLink } from "@/components/marketing/NavLink";
+import { NavLiveBadge } from "@/components/marketing/NavLiveBadge";
+import { MobileNav } from "@/components/marketing/MobileNav";
 
 export async function Navigation() {
   const t = await getTranslations("nav");
+  const tFooter = await getTranslations("footer");
 
   const links = [
     { href: "/diensten", label: t("services") },
@@ -15,18 +19,27 @@ export async function Navigation() {
     { href: "/contact", label: t("contact") },
   ] as const;
 
+  // Korte status-messages voor de live-badge in de nav rechts.
+  // Cyclet elke 5s; reduced-motion blijft op message 0 staan.
+  const liveBadgeMessages = [t("liveBadge"), t("liveBadgeUptime"), t("liveBadgeAvailable")];
+
   return (
     <NavScroll>
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
-        {/* Wordmark */}
+        {/* Wordmark + LogoMark — premium hover op de mark */}
         <Link
           href="/"
-          className="text-[20px] font-extrabold tracking-[-0.045em] text-(--color-text)"
+          className="group inline-flex items-center gap-2.5 text-[20px] font-extrabold tracking-[-0.045em] text-(--color-text)"
         >
-          webstability<span className="text-(--color-accent)">.</span>
+          <span className="text-(--color-accent) transition-transform duration-300 group-hover:rotate-[-6deg]">
+            <LogoMark size={22} animate />
+          </span>
+          <span>
+            webstability<span className="text-(--color-accent)">.</span>
+          </span>
         </Link>
 
-        {/* Center nav links */}
+        {/* Center nav links — desktop only */}
         <div className="hidden items-center gap-8 text-[14.5px] font-medium md:flex">
           {links.map((l) => (
             <NavLink key={l.href} href={l.href}>
@@ -35,22 +48,15 @@ export async function Navigation() {
           ))}
         </div>
 
-        {/* Right side: live badge, lang switcher, primary CTA */}
+        {/* Right side — desktop: badge + lang + CTA, mobile: hamburger */}
         <div className="flex items-center gap-3">
-          <Link
-            href="/status"
-            className="hidden items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3 py-1.5 text-[12px] font-medium text-(--color-muted) transition-colors hover:border-(--color-success)/40 hover:text-(--color-text) lg:inline-flex"
-          >
-            <span
-              className="h-1.5 w-1.5 rounded-full bg-(--color-success)"
-              style={{ boxShadow: "0 0 0 3px rgba(90, 122, 74, 0.18)" }}
-            />
-            {t("liveBadge")}
-          </Link>
-          <LangSwitcher />
+          <NavLiveBadge messages={liveBadgeMessages} />
+          <span className="hidden md:inline-flex">
+            <LangSwitcher />
+          </span>
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)]"
+            className="group hidden items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] md:inline-flex"
           >
             {t("planCall")}
             <svg
@@ -66,6 +72,15 @@ export async function Navigation() {
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </Link>
+
+          {/* Mobile hamburger — only on small */}
+          <MobileNav
+            links={links.map((l) => ({ href: l.href, label: l.label }))}
+            ctaLabel={t("planCall")}
+            ctaHref="/contact"
+            liveBadge={t("liveBadge")}
+            tagline={tFooter("tagline")}
+          />
         </div>
       </nav>
     </NavScroll>
