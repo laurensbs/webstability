@@ -4,10 +4,10 @@ import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { LogoMark } from "@/components/shared/LogoMark";
 import { NavScroll } from "@/components/marketing/NavScroll";
 import { NavLink } from "@/components/marketing/NavLink";
-import { NavLiveBadge } from "@/components/marketing/NavLiveBadge";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 import { MobileNav } from "@/components/marketing/MobileNav";
 
-export async function Navigation() {
+export async function Navigation({ locale }: { locale: string }) {
   const t = await getTranslations("nav");
   const tFooter = await getTranslations("footer");
 
@@ -18,10 +18,6 @@ export async function Navigation() {
     { href: "/over", label: t("about") },
     { href: "/contact", label: t("contact") },
   ] as const;
-
-  // Korte status-messages voor de live-badge in de nav rechts.
-  // Cyclet elke 5s; reduced-motion blijft op message 0 staan.
-  const liveBadgeMessages = [t("liveBadge"), t("liveBadgeUptime"), t("liveBadgeAvailable")];
 
   return (
     <NavScroll>
@@ -48,14 +44,19 @@ export async function Navigation() {
           ))}
         </div>
 
-        {/* Right side — desktop: badge + lang + CTA, mobile: hamburger */}
+        {/* Right side — desktop: lang + login + CTA, mobile: hamburger */}
         <div className="flex items-center gap-3">
-          <NavLiveBadge messages={liveBadgeMessages} />
           <span className="hidden md:inline-flex">
             <LangSwitcher />
           </span>
           <Link
-            href="/contact"
+            href="/login"
+            className="hidden text-[13px] font-medium text-(--color-muted) transition-colors hover:text-(--color-text) md:inline-flex"
+          >
+            {t("login")}
+          </Link>
+          <CalPopupTrigger
+            locale={locale}
             className="group hidden items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] md:inline-flex"
           >
             {t("planCall")}
@@ -71,7 +72,7 @@ export async function Navigation() {
             >
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
-          </Link>
+          </CalPopupTrigger>
 
           {/* Mobile hamburger — only on small */}
           <MobileNav

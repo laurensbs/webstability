@@ -3,6 +3,7 @@ import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Navigation } from "@/components/marketing/Navigation";
+import { TopBar } from "@/components/marketing/TopBar";
 import { Footer } from "@/components/marketing/Footer";
 import { MobileStickyCta } from "@/components/marketing/MobileStickyCta";
 import { AmbientCanvas } from "@/components/r3f/AmbientCanvas";
@@ -34,7 +35,8 @@ export default async function MarketingLayout({
       <a href="#main" className="skip-link">
         {t("skipToContent")}
       </a>
-      <Navigation />
+      <TopBar />
+      <Navigation locale={locale} />
       <div id="main" className="relative z-[1]">
         {children}
       </div>

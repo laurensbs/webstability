@@ -70,6 +70,17 @@ export async function Hero() {
           </MagneticButton>
         </div>
 
+        {/* Inloggen-hint voor bestaande klanten — subtiel, niet prominent */}
+        <p className="mt-5 text-[14px] text-(--color-muted)">
+          {tHero("alreadyClient")}{" "}
+          <Link
+            href="/login"
+            className="font-medium text-(--color-text) transition-colors hover:text-(--color-accent)"
+          >
+            {tHero("loginCta")} →
+          </Link>
+        </p>
+
         {/* Meta row — flat, border-top, no cards */}
         <div className="mt-[72px] flex flex-wrap gap-x-10 gap-y-6 border-t border-(--color-border) pt-9">
           {stats.map((s, i) => (
