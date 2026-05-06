@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
+import { AvailabilityPill } from "@/components/animate/AvailabilityPill";
 import { FlashCounter } from "@/components/animate/FlashCounter";
 import { MagneticButton } from "@/components/animate/MagneticButton";
 import { RotatingWords } from "@/components/animate/RotatingWords";
@@ -37,17 +38,8 @@ export async function Hero() {
         }}
       />
       <div className="relative mx-auto max-w-6xl">
-        {/* Eyebrow pill — green dot + availability */}
-        <Link
-          href="/contact"
-          className="inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3.5 py-1.5 text-[13px] text-(--color-muted) shadow-[0_1px_2px_rgba(31,27,22,0.04),0_1px_3px_rgba(31,27,22,0.06)] transition-colors hover:text-(--color-text)"
-        >
-          <span
-            className="h-1.5 w-1.5 rounded-full bg-(--color-success)"
-            style={{ boxShadow: "0 0 0 3px rgba(90, 122, 74, 0.18)" }}
-          />
-          {tHero("availability")}
-        </Link>
+        {/* Availability pill — spring-scale entry, green dot ring */}
+        <AvailabilityPill href="/contact">{tHero("availability")}</AvailabilityPill>
 
         <AnimatedHeading
           as="h1"

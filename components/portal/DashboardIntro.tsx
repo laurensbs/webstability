@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 export function DashboardIntro({
   greeting,
@@ -14,23 +14,44 @@ export function DashboardIntro({
   /** Optional context line (mono, dim) — e.g. "laatst ingelogd: 2 dagen geleden". */
   subStatus?: string;
 }) {
+  const reduce = useReducedMotion();
+  // Capitalize first letter so "laurens" → "Laurens" but a name that's
+  // already capitalized stays untouched. Defensive against empty strings.
+  const displayName =
+    firstName.length > 0 ? firstName[0]!.toUpperCase() + firstName.slice(1) : firstName;
+  const letters = Array.from(displayName);
+
   return (
     <motion.header
-      initial={{ opacity: 0, y: 12 }}
+      initial={reduce ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className="space-y-3"
     >
-      <h1 className="text-4xl leading-[1.05] tracking-tight md:text-6xl">
+      <h1 className="font-serif text-4xl leading-[1.05] tracking-tight md:text-6xl">
         {greeting},{" "}
-        <motion.em
-          initial={{ opacity: 0, x: -8 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-block"
-        >
-          {firstName}
-        </motion.em>
+        {reduce ? (
+          <em className="inline-block">{displayName}</em>
+        ) : (
+          <span className="inline-block whitespace-nowrap" aria-label={displayName}>
+            {letters.map((char, i) => (
+              <motion.em
+                key={i}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.2 + i * 0.05,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="inline-block"
+                aria-hidden
+              >
+                {char}
+              </motion.em>
+            ))}
+          </span>
+        )}
         .
       </h1>
       <motion.p

@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
+import { AvailabilityPill } from "@/components/animate/AvailabilityPill";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 import { FlashCounter } from "@/components/animate/FlashCounter";
 import { MagneticButton } from "@/components/animate/MagneticButton";
@@ -51,16 +52,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           }}
         />
         <div className="relative mx-auto max-w-[1200px]">
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3.5 py-1.5 text-[13px] text-(--color-muted) shadow-[0_1px_2px_rgba(31,27,22,0.04),0_1px_3px_rgba(31,27,22,0.06)]"
-          >
-            <span
-              className="h-1.5 w-1.5 rounded-full bg-(--color-success)"
-              style={{ boxShadow: "0 0 0 3px rgba(90, 122, 74, 0.18)" }}
-            />
-            {t("eyebrow")}
-          </Link>
+          <AvailabilityPill href="/contact">{t("eyebrow")}</AvailabilityPill>
 
           <AnimatedHeading
             as="h1"
