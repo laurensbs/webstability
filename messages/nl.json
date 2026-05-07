@@ -1000,6 +1000,11 @@
       "already_in_org": "Dit account hoort al bij een andere organisatie.",
       "generic_error": "Er ging iets mis."
     },
+    "incident": {
+      "title": "Storing actief op {project}",
+      "since": "sinds {time}",
+      "cta": "Bekijk monitoring"
+    },
     "livegang": {
       "eyebrow": "Live sinds {date}",
       "headingPrefix": "{name}",
@@ -1305,6 +1310,14 @@
       "orgs": "Organisaties",
       "tickets": "Tickets",
       "team": "Team"
+    },
+    "statusStrip": {
+      "title": "Klanten live",
+      "legendUp": "draait",
+      "legendDegraded": "traag",
+      "legendDown": "down",
+      "legendUnknown": "geen check",
+      "empty": "Nog geen klanten."
     },
     "onboarding": {
       "step": "Stap {n} van 3",

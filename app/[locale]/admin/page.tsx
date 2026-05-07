@@ -12,10 +12,12 @@ import {
   getRecentAdminActivity,
   getRevenueStats,
   getCrossOrgHoursThisMonth,
+  getStudioStatusStrip,
 } from "@/lib/db/queries/admin";
 import { StatCard } from "@/components/portal/StatCard";
 import { AdminActivityFeed } from "@/components/admin/AdminActivityFeed";
 import { AdminWelcomeOnboarding } from "@/components/admin/AdminWelcomeOnboarding";
+import { StudioStatusStrip } from "@/components/admin/StudioStatusStrip";
 
 export default async function AdminOverview({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -24,11 +26,13 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
 
   const t = await getTranslations("admin");
   const tOnboarding = await getTranslations("admin.onboarding");
-  const [stats, events, revenue, crossOrgMinutes] = await Promise.all([
+  const tStrip = await getTranslations("admin.statusStrip");
+  const [stats, events, revenue, crossOrgMinutes, statusStrip] = await Promise.all([
     getStudioStats(),
     getRecentAdminActivity(8),
     getRevenueStats(),
     getCrossOrgHoursThisMonth(),
+    getStudioStatusStrip(),
   ]);
 
   // Eerste-keer detectie: lastLoginAt wordt door het signIn-event in
@@ -116,6 +120,20 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
           accent={Number(stats.openInvoices) > 0}
         />
       </section>
+
+      {/* Studio status-strip — wijn-rode dot per org-met-down, accent
+          per degraded, success per up. Bij hover: org-naam. */}
+      <StudioStatusStrip
+        items={statusStrip}
+        strings={{
+          title: tStrip("title"),
+          legendUp: tStrip("legendUp"),
+          legendDegraded: tStrip("legendDegraded"),
+          legendDown: tStrip("legendDown"),
+          legendUnknown: tStrip("legendUnknown"),
+          empty: tStrip("empty"),
+        }}
+      />
 
       {/* Revenue + uren — studio-level overzicht */}
       <section className="grid gap-5 lg:grid-cols-[1.5fr_1fr]">

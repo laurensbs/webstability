@@ -360,3 +360,52 @@ export async function listAllTicketsForKanban() {
     replyCount: counts.get(t.id) ?? 0,
   }));
 }
+
+/**
+ * Per-org meest recente monitoring-status voor de admin status-strip.
+ * Returnt voor elke org de aggregate status van zijn projects (worst-case
+ * van alle live-projecten met een recent check). Geen check binnen 30 min
+ * = "unknown". Voor visuele admin-overview-grid waar 1 dot = 1 org.
+ */
+export async function getStudioStatusStrip() {
+  const orgs = await db
+    .select({
+      id: organizations.id,
+      name: organizations.name,
+      slug: organizations.slug,
+      isVip: organizations.isVip,
+    })
+    .from(organizations)
+    .orderBy(desc(organizations.createdAt));
+
+  // Recentste check per live-project in één raw-SQL met DISTINCT ON.
+  const latestPerProject = await db.execute(sql`
+    select distinct on (mc.project_id)
+      mc.project_id,
+      mc.status,
+      p.organization_id
+    from monitoring_checks mc
+    join projects p on p.id = mc.project_id
+    where p.status = 'live'
+    order by mc.project_id, mc.checked_at desc
+  `);
+
+  type Status = "up" | "degraded" | "down" | "unknown";
+  const orgStatus = new Map<string, Status>();
+  for (const row of latestPerProject.rows as Array<{
+    project_id: string;
+    status: "up" | "degraded" | "down";
+    organization_id: string;
+  }>) {
+    const cur = orgStatus.get(row.organization_id) ?? "unknown";
+    if (row.status === "down") orgStatus.set(row.organization_id, "down");
+    else if (row.status === "degraded" && cur !== "down")
+      orgStatus.set(row.organization_id, "degraded");
+    else if (row.status === "up" && cur === "unknown") orgStatus.set(row.organization_id, "up");
+  }
+
+  return orgs.map((o) => ({
+    ...o,
+    status: orgStatus.get(o.id) ?? ("unknown" as Status),
+  }));
+}

@@ -17,6 +17,7 @@ import {
   getOrgHoursThisMonth,
   getActiveBuildPhase,
   getRecentLivegangs,
+  getActiveIncidentsForOrg,
 } from "@/lib/db/queries/portal";
 import { StatCard } from "@/components/portal/StatCard";
 import { StatusBanner } from "@/components/portal/StatusBanner";
@@ -31,6 +32,7 @@ import {
 import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/DashboardIntro";
 import { AuthVerifiedBeacon } from "@/components/auth/AuthVerifiedBeacon";
 import { LivegangCelebration } from "@/components/portal/LivegangCelebration";
+import { IncidentBanner } from "@/components/portal/IncidentBanner";
 import { HoursWidget } from "@/components/portal/HoursWidget";
 import { SecurityCard } from "@/components/portal/SecurityCard";
 import { RoadmapCard } from "@/components/portal/RoadmapCard";
@@ -93,7 +95,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   const tProjects = await getTranslations("portal.projects");
   const tInvoices = await getTranslations("portal.invoices");
   const tStatus = await getTranslations("status");
-  const [stats, projects, tickets, invoices, hours, buildPhase, recentLivegangs] =
+  const [stats, projects, tickets, invoices, hours, buildPhase, recentLivegangs, incidents] =
     await Promise.all([
       getDashboardStats(user.organizationId),
       listOrgProjects(user.organizationId),
@@ -102,9 +104,15 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
       getOrgHoursThisMonth(user.organizationId),
       getActiveBuildPhase(user.organizationId),
       getRecentLivegangs(user.organizationId, 7),
+      getActiveIncidentsForOrg(user.organizationId),
     ]);
   const tLivegang = await getTranslations("portal.livegang");
+  const tIncident = await getTranslations("portal.incident");
   const dateFmtLivegang = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
+  const dateFmtIncident = new Intl.DateTimeFormat(locale, {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
 
   // Tier-aware widget visibility — Care krijgt alleen Hours + Security,
   // Studio voegt SEO + Performance toe (al aanwezig), Atelier krijgt
@@ -158,6 +166,23 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   return (
     <div className="space-y-10">
       <AuthVerifiedBeacon />
+
+      {/* Incident-banners — wijn-rood, één per actief incident. Geen
+          dismiss; verdwijnen vanzelf zodra de monitoring-cron resolved. */}
+      {incidents.map((inc) => (
+        <IncidentBanner
+          key={inc.id}
+          projectName={inc.projectName ?? "—"}
+          startedAt={inc.startedAt}
+          href={`/${locale}/portal/monitoring`}
+          dateFmt={dateFmtIncident}
+          strings={{
+            title: tIncident("title"),
+            since: tIncident("since"),
+            cta: tIncident("cta"),
+          }}
+        />
+      ))}
 
       {/* Livegang-feestmoment — toont voor projecten die binnen de
           afgelopen 7 dagen live zijn gegaan. Per project dismissable. */}

@@ -1,4 +1,4 @@
-import { eq, and, asc, desc, count, gte, lt, sum, gt } from "drizzle-orm";
+import { eq, and, asc, desc, count, gte, lt, sum, gt, isNull } from "drizzle-orm";
 import { db } from "@/lib/db";
 import {
   users,
@@ -8,6 +8,8 @@ import {
   files,
   hoursLogged,
   buildPhases,
+  monitoringChecks,
+  incidents,
 } from "@/lib/db/schema";
 
 export async function listOrgMembers(orgId: string) {
@@ -181,4 +183,43 @@ export async function getRecentLivegangs(orgId: string, days = 7) {
   // null filter — drizzle-types laten liveAt als nullable, maar gte(...,
   // cutoff) garandeert non-null. Cast veilig.
   return rows.filter((r): r is typeof r & { liveAt: Date } => r.liveAt !== null);
+}
+
+/**
+ * Per-project uptime-data voor de laatste N dagen. Voor de sparkline
+ * op portal-monitoring én voor een binnenkort komende admin-overview.
+ */
+export async function getProjectUptime(projectId: string, days = 30) {
+  const cutoff = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  const rows = await db
+    .select({
+      status: monitoringChecks.status,
+      responseTimeMs: monitoringChecks.responseTimeMs,
+      checkedAt: monitoringChecks.checkedAt,
+    })
+    .from(monitoringChecks)
+    .where(and(eq(monitoringChecks.projectId, projectId), gte(monitoringChecks.checkedAt, cutoff)))
+    .orderBy(asc(monitoringChecks.checkedAt));
+  return rows;
+}
+
+/**
+ * Open incidents voor één org — gebruikt door portal-dashboard om
+ * een wijn-rode banner te tonen bij actieve storingen.
+ */
+export async function getActiveIncidentsForOrg(orgId: string) {
+  return db
+    .select({
+      id: incidents.id,
+      projectId: incidents.projectId,
+      startedAt: incidents.startedAt,
+      severity: incidents.severity,
+      summary: incidents.summary,
+      projectName: projects.name,
+      monitoringTargetUrl: projects.monitoringTargetUrl,
+    })
+    .from(incidents)
+    .leftJoin(projects, eq(incidents.projectId, projects.id))
+    .where(and(eq(projects.organizationId, orgId), isNull(incidents.resolvedAt)))
+    .orderBy(desc(incidents.startedAt));
 }

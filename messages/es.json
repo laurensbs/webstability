@@ -999,6 +999,11 @@
       "already_in_org": "Esta cuenta ya pertenece a otra organización.",
       "generic_error": "Algo salió mal."
     },
+    "incident": {
+      "title": "Caída activa en {project}",
+      "since": "desde {time}",
+      "cta": "Ver monitorización"
+    },
     "livegang": {
       "eyebrow": "Activo desde {date}",
       "headingPrefix": "{name}",
@@ -1305,6 +1310,14 @@
       "orgs": "Organizaciones",
       "tickets": "Tickets",
       "team": "Equipo"
+    },
+    "statusStrip": {
+      "title": "Clientes en vivo",
+      "legendUp": "ok",
+      "legendDegraded": "lento",
+      "legendDown": "caído",
+      "legendUnknown": "sin check",
+      "empty": "Aún sin clientes."
     },
     "onboarding": {
       "step": "Paso {n} de 3",
