@@ -5,6 +5,8 @@ import { Pause, Play, X as IconX, ArrowUpRight, Coins } from "lucide-react";
 import { ToastForm } from "@/components/portal/ToastForm";
 import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
 import { DiscountModal } from "@/components/admin/DiscountModal";
+import { LivePulsePill } from "@/components/admin/LivePulsePill";
+import { ConfettiBurst } from "@/components/animate/ConfettiBurst";
 import type { ActionResult } from "@/lib/action-result";
 
 type Action = (prev: ActionResult | null, formData: FormData) => Promise<ActionResult>;
@@ -92,10 +94,16 @@ export function SubscriptionTab({
   locale: string;
 }) {
   const [confirmCancel, setConfirmCancel] = React.useState(false);
+  const [discountFired, setDiscountFired] = React.useState(false);
   const dateFmt = React.useMemo(
     () => new Intl.DateTimeFormat(locale, { dateStyle: "medium" }),
     [locale],
   );
+
+  function fireDiscountConfetti() {
+    setDiscountFired(true);
+    window.setTimeout(() => setDiscountFired(false), 1500);
+  }
 
   if (!sub?.stripeSubscriptionId) {
     return (
@@ -123,8 +131,8 @@ export function SubscriptionTab({
             <p className="text-[12px] text-(--color-muted)">
               {strings.status}: <span className="text-(--color-text)">{sub.status ?? "—"}</span>
               {sub.paused ? (
-                <span className="ml-2 inline-flex items-center rounded-full bg-(--color-wine)/10 px-2 py-0.5 text-[11px] font-medium text-(--color-wine)">
-                  {strings.pausedLabel}
+                <span className="ml-2 inline-block">
+                  <LivePulsePill variant="wine">{strings.pausedLabel}</LivePulsePill>
                 </span>
               ) : null}
             </p>
@@ -245,21 +253,27 @@ export function SubscriptionTab({
               {strings.discountBody}
             </p>
           </div>
-          <DiscountModal
-            action={grantDiscount}
-            strings={{
-              triggerLabel: strings.discountTrigger,
-              title: strings.discountTitle,
-              body: strings.discountBody,
-              percentLabel: strings.discountPercent,
-              monthsLabel: strings.discountMonths,
-              monthsForever: strings.discountForever,
-              reasonLabel: strings.discountReason,
-              reasonPlaceholder: strings.discountReasonPlaceholder,
-              submit: strings.discountSubmit,
-              cancel: strings.discountCancel,
-            }}
-          />
+          <div className="relative">
+            <DiscountModal
+              action={grantDiscount}
+              onSuccess={(key) => {
+                if (key === "saved") fireDiscountConfetti();
+              }}
+              strings={{
+                triggerLabel: strings.discountTrigger,
+                title: strings.discountTitle,
+                body: strings.discountBody,
+                percentLabel: strings.discountPercent,
+                monthsLabel: strings.discountMonths,
+                monthsForever: strings.discountForever,
+                reasonLabel: strings.discountReason,
+                reasonPlaceholder: strings.discountReasonPlaceholder,
+                submit: strings.discountSubmit,
+                cancel: strings.discountCancel,
+              }}
+            />
+            <ConfettiBurst fire={discountFired} variant="wine" anchor="center" />
+          </div>
         </header>
 
         <div className="mt-6 border-t border-(--color-border) pt-5">

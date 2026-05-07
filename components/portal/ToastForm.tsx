@@ -24,11 +24,15 @@ export function ToastForm({
   resetOnSuccess = false,
   className,
   children,
+  onSuccess,
 }: {
   action: Action;
   resetOnSuccess?: boolean;
   className?: string;
   children: React.ReactNode;
+  /** Optionele callback bij succes (state.ok === true) — voor
+   * confetti-trigger of andere knipogen. Krijgt de messageKey mee. */
+  onSuccess?: (messageKey: string) => void;
 }) {
   const t = useTranslations("portal.toasts");
   const formRef = React.useRef<HTMLFormElement>(null);
@@ -50,10 +54,12 @@ export function ToastForm({
     if (state.ok) {
       toast.success(msg);
       if (resetOnSuccess) formRef.current?.reset();
+      const k = state.messageKey ?? "saved";
+      onSuccess?.(k);
     } else {
       toast.error(msg);
     }
-  }, [state, t, resetOnSuccess]);
+  }, [state, t, resetOnSuccess, onSuccess]);
 
   const ctx = React.useMemo(() => ({ pending }), [pending]);
 

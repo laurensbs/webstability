@@ -29,7 +29,17 @@ type Strings = {
  * `action` is `grantDiscount.bind(null, organizationId)` — de modal
  * weet niet welke org, alleen dat de action een ActionResult teruggeeft.
  */
-export function DiscountModal({ action, strings }: { action: Action; strings: Strings }) {
+export function DiscountModal({
+  action,
+  strings,
+  onSuccess,
+}: {
+  action: Action;
+  strings: Strings;
+  /** Optionele callback bij success — voor parent-component om
+   * confetti of andere knipogen te triggeren. */
+  onSuccess?: (messageKey: string) => void;
+}) {
   const [open, setOpen] = React.useState(false);
   const [percent, setPercent] = React.useState(20);
   const [months, setMonths] = React.useState<number>(3);
@@ -89,7 +99,17 @@ export function DiscountModal({ action, strings }: { action: Action; strings: St
               <h2 className="font-serif text-2xl">{strings.title}</h2>
               <p className="mt-2 text-[14px] leading-[1.55] text-(--color-muted)">{strings.body}</p>
 
-              <ToastForm action={action} resetOnSuccess className="mt-6 space-y-5">
+              <ToastForm
+                action={action}
+                resetOnSuccess
+                className="mt-6 space-y-5"
+                onSuccess={(key) => {
+                  if (key === "saved") {
+                    setOpen(false);
+                  }
+                  onSuccess?.(key);
+                }}
+              >
                 {/* Percent slider */}
                 <label className="block">
                   <span className="mb-2 flex items-center justify-between text-[13px] font-medium text-(--color-text)">
