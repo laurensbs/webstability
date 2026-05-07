@@ -8,6 +8,14 @@ import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { sendStaffInvite } from "@/lib/email/staff-invite";
 import {
+  changeSubscriptionPlan,
+  pauseStripeSubscription,
+  resumeStripeSubscription,
+  cancelStripeSubscription,
+  applyDiscountCoupon,
+  isStripeConfigured,
+} from "@/lib/stripe";
+import {
   users,
   projects,
   tickets,
@@ -15,6 +23,9 @@ import {
   organizations,
   buildPhases,
   staffInvites,
+  discounts,
+  subscriptions,
+  auditLog,
 } from "@/lib/db/schema";
 import type { ActionResult } from "@/lib/action-result";
 
@@ -490,4 +501,394 @@ export async function promoteUserIfInvited(email: string): Promise<boolean> {
     .set({ acceptedAt: new Date() })
     .where(eq(staffInvites.id, invite.id));
   return true;
+}
+
+// --- Subscription, discount, VIP -----------------------------------------
+
+/**
+ * Wissel het base-plan van een klant naar een andere tier. Vereist een
+ * actieve Stripe-subscription op de organisatie. Stripe handelt prorate;
+ * daarna sync'en we de lokale subscriptions-row. Bumpt planStartedAt op
+ * de organisatie zodat het portal "sinds {datum}" correct toont.
+ */
+export async function changePlan(
+  organizationId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch {
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  if (!isStripeConfigured()) return { ok: false, messageKey: "missing_fields" };
+
+  const planInput = String(formData.get("plan") ?? "");
+  const plan = (PLAN_VALUES as readonly string[]).includes(planInput) ? (planInput as Plan) : null;
+  if (!plan) return { ok: false, messageKey: "missing_fields" };
+
+  const sub = await db.query.subscriptions.findFirst({
+    where: eq(subscriptions.organizationId, organizationId),
+    orderBy: (s, { desc: d }) => [d(s.createdAt)],
+  });
+  if (!sub?.stripeSubscriptionId) return { ok: false, messageKey: "missing_fields" };
+
+  try {
+    await changeSubscriptionPlan(sub.stripeSubscriptionId, plan);
+  } catch (err) {
+    console.error("[admin] Stripe plan-change failed:", err);
+    return { ok: false, messageKey: "generic_error" };
+  }
+
+  await db
+    .update(subscriptions)
+    .set({ plan, status: "active" })
+    .where(eq(subscriptions.id, sub.id));
+  await db
+    .update(organizations)
+    .set({ plan, planStartedAt: new Date() })
+    .where(eq(organizations.id, organizationId));
+  await db.insert(auditLog).values({
+    organizationId,
+    userId,
+    action: "subscription.plan_changed",
+    targetType: "subscription",
+    targetId: sub.id,
+    metadata: { newPlan: plan, oldPlan: sub.plan },
+  });
+
+  revalidatePath(`/admin/orgs/${organizationId}`);
+  revalidatePath(`/portal/dashboard`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/**
+ * Pauzeer collection voor 1-3 maanden. Klant houdt toegang, geen
+ * invoices in die periode.
+ */
+export async function pauseSubscription(
+  organizationId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch {
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  if (!isStripeConfigured()) return { ok: false, messageKey: "missing_fields" };
+
+  const months = Math.max(1, Math.min(3, Number(formData.get("months") ?? 1)));
+  const sub = await db.query.subscriptions.findFirst({
+    where: eq(subscriptions.organizationId, organizationId),
+    orderBy: (s, { desc: d }) => [d(s.createdAt)],
+  });
+  if (!sub?.stripeSubscriptionId) return { ok: false, messageKey: "missing_fields" };
+
+  try {
+    await pauseStripeSubscription(sub.stripeSubscriptionId, months);
+  } catch (err) {
+    console.error("[admin] Stripe pause failed:", err);
+    return { ok: false, messageKey: "generic_error" };
+  }
+
+  await db.insert(auditLog).values({
+    organizationId,
+    userId,
+    action: "subscription.paused",
+    targetType: "subscription",
+    targetId: sub.id,
+    metadata: { months },
+  });
+
+  revalidatePath(`/admin/orgs/${organizationId}`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/**
+ * Resume gepauzeerde subscription — collection start direct weer.
+ */
+export async function resumeSubscription(
+  organizationId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  void formData;
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch {
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  if (!isStripeConfigured()) return { ok: false, messageKey: "missing_fields" };
+
+  const sub = await db.query.subscriptions.findFirst({
+    where: eq(subscriptions.organizationId, organizationId),
+    orderBy: (s, { desc: d }) => [d(s.createdAt)],
+  });
+  if (!sub?.stripeSubscriptionId) return { ok: false, messageKey: "missing_fields" };
+
+  try {
+    await resumeStripeSubscription(sub.stripeSubscriptionId);
+  } catch (err) {
+    console.error("[admin] Stripe resume failed:", err);
+    return { ok: false, messageKey: "generic_error" };
+  }
+
+  await db.insert(auditLog).values({
+    organizationId,
+    userId,
+    action: "subscription.resumed",
+    targetType: "subscription",
+    targetId: sub.id,
+  });
+
+  revalidatePath(`/admin/orgs/${organizationId}`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/**
+ * Cancel-at-period-end. Klant houdt toegang tot eind van huidige
+ * periode; geen nieuwe invoices.
+ */
+export async function cancelSubscription(
+  organizationId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  void formData;
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch {
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  if (!isStripeConfigured()) return { ok: false, messageKey: "missing_fields" };
+
+  const sub = await db.query.subscriptions.findFirst({
+    where: eq(subscriptions.organizationId, organizationId),
+    orderBy: (s, { desc: d }) => [d(s.createdAt)],
+  });
+  if (!sub?.stripeSubscriptionId) return { ok: false, messageKey: "missing_fields" };
+
+  try {
+    await cancelStripeSubscription(sub.stripeSubscriptionId);
+  } catch (err) {
+    console.error("[admin] Stripe cancel failed:", err);
+    return { ok: false, messageKey: "generic_error" };
+  }
+
+  await db.insert(auditLog).values({
+    organizationId,
+    userId,
+    action: "subscription.cancelled",
+    targetType: "subscription",
+    targetId: sub.id,
+  });
+
+  revalidatePath(`/admin/orgs/${organizationId}`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/**
+ * Geef een klant een Stripe-coupon-discount op zijn actieve subscription.
+ * percentOff: 5-100. monthsApplied: 0 = forever, anders 1-12 maanden.
+ */
+export async function grantDiscount(
+  organizationId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch {
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  if (!isStripeConfigured()) return { ok: false, messageKey: "missing_fields" };
+
+  const percentOff = Math.max(5, Math.min(100, Number(formData.get("percentOff") ?? 0)));
+  const monthsRaw = Number(formData.get("monthsApplied") ?? 0);
+  const monthsApplied = monthsRaw === 0 ? null : Math.max(1, Math.min(12, Math.round(monthsRaw)));
+  const reason = String(formData.get("reason") ?? "").trim();
+  if (!reason) return { ok: false, messageKey: "missing_fields" };
+
+  const org = await db.query.organizations.findFirst({
+    where: eq(organizations.id, organizationId),
+    columns: { name: true },
+  });
+  if (!org) return { ok: false, messageKey: "missing_fields" };
+
+  const sub = await db.query.subscriptions.findFirst({
+    where: eq(subscriptions.organizationId, organizationId),
+    orderBy: (s, { desc: d }) => [d(s.createdAt)],
+  });
+  if (!sub?.stripeSubscriptionId) return { ok: false, messageKey: "missing_fields" };
+
+  let couponId: string;
+  try {
+    couponId = await applyDiscountCoupon({
+      stripeSubscriptionId: sub.stripeSubscriptionId,
+      percentOff,
+      monthsApplied,
+      orgName: org.name,
+    });
+  } catch (err) {
+    console.error("[admin] Stripe coupon failed:", err);
+    return { ok: false, messageKey: "generic_error" };
+  }
+
+  await db.insert(discounts).values({
+    organizationId,
+    stripeCouponId: couponId,
+    percentOff,
+    monthsApplied,
+    reason,
+    grantedBy: userId,
+  });
+  await db.insert(auditLog).values({
+    organizationId,
+    userId,
+    action: "discount.granted",
+    targetType: "subscription",
+    targetId: sub.id,
+    metadata: { percentOff, monthsApplied, reason },
+  });
+
+  revalidatePath(`/admin/orgs/${organizationId}`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/**
+ * Toggle de VIP-flag op een organisatie. Visueel: wijn-rode tag in
+ * alle admin-lijsten. Functioneel kun je hier later SLA-prioriteit of
+ * premium support aan koppelen.
+ */
+export async function toggleVip(
+  organizationId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  void formData;
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch {
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  const current = await db.query.organizations.findFirst({
+    where: eq(organizations.id, organizationId),
+    columns: { isVip: true },
+  });
+  const next = !current?.isVip;
+
+  await db.update(organizations).set({ isVip: next }).where(eq(organizations.id, organizationId));
+  await db.insert(auditLog).values({
+    organizationId,
+    userId,
+    action: next ? "org.vip_set" : "org.vip_unset",
+    targetType: "organization",
+    targetId: organizationId,
+  });
+
+  revalidatePath(`/admin/orgs/${organizationId}`);
+  revalidatePath(`/admin/orgs`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/**
+ * Wizard create-org: 3-stappen formulier in 1 server-action. Maakt org
+ * + ownership-user (als email opgegeven) + optioneel welcome-mail.
+ */
+export async function createOrgWithOwner(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  try {
+    await requireStaff();
+  } catch {
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  const name = String(formData.get("name") ?? "").trim();
+  const countryInput = String(formData.get("country") ?? "");
+  const planInput = String(formData.get("plan") ?? "");
+  const vatInput = String(formData.get("vatNumber") ?? "").trim();
+  const ownerName = String(formData.get("ownerName") ?? "").trim();
+  const ownerEmail = String(formData.get("ownerEmail") ?? "")
+    .trim()
+    .toLowerCase();
+
+  const country = (COUNTRY_VALUES as readonly string[]).includes(countryInput)
+    ? (countryInput as Country)
+    : null;
+  if (!name || !country) return { ok: false, messageKey: "missing_fields" };
+
+  const plan = (PLAN_VALUES as readonly string[]).includes(planInput) ? (planInput as Plan) : null;
+
+  let slug = slugify(name) || "org";
+  let suffix = 1;
+  while (true) {
+    const existing = await db.query.organizations.findFirst({
+      where: eq(organizations.slug, slug),
+      columns: { id: true },
+    });
+    if (!existing) break;
+    suffix += 1;
+    slug = `${slugify(name) || "org"}-${suffix}`;
+  }
+
+  const [org] = await db
+    .insert(organizations)
+    .values({
+      name,
+      slug,
+      country,
+      plan,
+      planStartedAt: plan ? new Date() : null,
+      vatNumber: vatInput || null,
+    })
+    .returning({ id: organizations.id });
+
+  // Owner-user: maak alleen aan als email opgegeven. Naam mag leeg —
+  // klant kan 'm later zelf zetten via portal/settings.
+  if (ownerEmail && ownerEmail.includes("@")) {
+    const existingUser = await db.query.users.findFirst({
+      where: eq(users.email, ownerEmail),
+      columns: { id: true, organizationId: true },
+    });
+    if (existingUser) {
+      // Bestaande user — koppel aan deze org als hij nog geen org heeft.
+      if (!existingUser.organizationId) {
+        await db
+          .update(users)
+          .set({ organizationId: org.id, role: "owner", name: ownerName || null })
+          .where(eq(users.id, existingUser.id));
+      }
+    } else {
+      // Nieuwe user — auth.js DrizzleAdapter maakt hem normaal pas bij
+      // eerste magic-link; hier creëren we de row alvast zodat de admin
+      // hem in de members-lijst ziet en zodat de welcome-mail naar
+      // het juiste id verwijst.
+      await db.insert(users).values({
+        id: randomUUID(),
+        email: ownerEmail,
+        name: ownerName || null,
+        organizationId: org.id,
+        role: "owner",
+      });
+    }
+  }
+
+  revalidatePath(`/admin`);
+  revalidatePath(`/admin/orgs`);
+  redirect(`/admin/orgs/${org.id}`);
 }

@@ -78,6 +78,10 @@ export const organizations = pgTable("organizations", {
   mollieCustomerId: text("mollie_customer_id"),
   plan: planEnum("plan"),
   planStartedAt: timestamp("plan_started_at", { withTimezone: true }),
+  /** VIP-flag — staff kan klanten markeren voor extra zorg. Toont een
+   * wijn-rode tag in alle admin-lijsten en kan in de toekomst worden
+   * gebruikt om SLA-prioriteit of premium support af te leiden. */
+  isVip: boolean("is_vip").notNull().default(false),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .default(sql`now()`),
@@ -405,6 +409,34 @@ export const hoursLogged = pgTable(
       .default(sql`now()`),
   },
   (t) => [index("hours_org_worked_idx").on(t.organizationId, t.workedOn)],
+);
+
+// --- discounts -----------------------------------------------------------
+//
+// Audit-trail van toegekende kortingen per organisatie. Elke rij wijst
+// naar een Stripe coupon (server-side gemaakt via stripe.coupons.create)
+// die op een subscription is toegepast. We bewaren reden + grantedBy zodat
+// later inzichtelijk is waarom een klant korting kreeg, ook als de
+// Stripe-coupon zelf is verlopen of opgezegd.
+export const discounts = pgTable(
+  "discounts",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    stripeCouponId: text("stripe_coupon_id"),
+    /** Korting in procent (5–100). 100 = gratis. */
+    percentOff: integer("percent_off").notNull(),
+    /** Voor hoeveel maanden de korting geldt. Null = forever. */
+    monthsApplied: integer("months_applied"),
+    reason: text("reason").notNull(),
+    grantedBy: text("granted_by").references(() => users.id, { onDelete: "set null" }),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [index("discounts_org_idx").on(t.organizationId, t.createdAt)],
 );
 
 // --- staff_invites -------------------------------------------------------

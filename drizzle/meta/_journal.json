@@ -43,6 +43,13 @@
       "when": 1778099639050,
       "tag": "0005_overconfident_leper_queen",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1778138277891,
+      "tag": "0006_heavy_captain_flint",
+      "breakpoints": true
     }
   ]
 }

@@ -8,6 +8,9 @@ import {
   users,
   hoursLogged,
   staffInvites,
+  subscriptions,
+  discounts,
+  auditLog,
 } from "@/lib/db/schema";
 
 export async function listAllOrgs() {
@@ -19,6 +22,7 @@ export async function listAllOrgs() {
       slug: organizations.slug,
       country: organizations.country,
       plan: organizations.plan,
+      isVip: organizations.isVip,
       createdAt: organizations.createdAt,
       memberCount: sql<number>`(select count(*) from ${users} where ${users.organizationId} = ${organizations.id})`,
       projectCount: sql<number>`(select count(*) from ${projects} where ${projects.organizationId} = ${organizations.id})`,
@@ -260,4 +264,59 @@ export async function listStudioStaff() {
     .from(users)
     .where(eq(users.isStaff, true))
     .orderBy(desc(users.createdAt));
+}
+
+/**
+ * Volledige org-overview voor het admin detail-page met alle relaties:
+ * members, projects, latest subscription, recente discounts, recente
+ * audit-events. Gebruikt door de tab-layout.
+ */
+export async function getOrgFullView(orgId: string) {
+  const org = await db.query.organizations.findFirst({
+    where: eq(organizations.id, orgId),
+    with: {
+      members: {
+        columns: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          lastLoginAt: true,
+          createdAt: true,
+        },
+      },
+      projects: { orderBy: [desc(projects.createdAt)] },
+    },
+  });
+  if (!org) return null;
+
+  const [latestSub] = await db
+    .select()
+    .from(subscriptions)
+    .where(eq(subscriptions.organizationId, orgId))
+    .orderBy(desc(subscriptions.createdAt))
+    .limit(1);
+
+  const recentDiscounts = await db
+    .select({
+      id: discounts.id,
+      percentOff: discounts.percentOff,
+      monthsApplied: discounts.monthsApplied,
+      reason: discounts.reason,
+      createdAt: discounts.createdAt,
+      stripeCouponId: discounts.stripeCouponId,
+    })
+    .from(discounts)
+    .where(eq(discounts.organizationId, orgId))
+    .orderBy(desc(discounts.createdAt))
+    .limit(20);
+
+  const recentAuditEvents = await db
+    .select()
+    .from(auditLog)
+    .where(eq(auditLog.organizationId, orgId))
+    .orderBy(desc(auditLog.createdAt))
+    .limit(20);
+
+  return { org, latestSub: latestSub ?? null, recentDiscounts, recentAuditEvents };
 }
