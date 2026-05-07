@@ -75,6 +75,7 @@ export function OrgTable({
             <li key={o.id}>
               <Link
                 href={{ pathname: "/admin/orgs/[orgId]", params: { orgId: o.id } }}
+                prefetch
                 className="flex items-center justify-between gap-6 px-6 py-4 transition-colors hover:bg-(--color-bg-warm)"
               >
                 <div className="min-w-0 flex-1">

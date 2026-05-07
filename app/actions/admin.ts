@@ -1,5 +1,6 @@
 "use server";
 
+import { cache } from "react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { eq, and, isNull, gt } from "drizzle-orm";
@@ -30,13 +31,20 @@ import {
 } from "@/lib/db/schema";
 import type { ActionResult } from "@/lib/action-result";
 
+// Per-request cached lookup — voorkomt dat een server-action die meerdere
+// staff-checks doet (bv. logHours + revalidatePath) twee identieke
+// SELECT queries doet.
+const fetchStaffUser = cache(async (sessionUserId: string) => {
+  return db.query.users.findFirst({
+    where: eq(users.id, sessionUserId),
+    columns: { id: true, isStaff: true, isDemo: true },
+  });
+});
+
 async function requireStaff() {
   const session = await auth();
   if (!session?.user?.id) throw new Error("unauthorized");
-  const user = await db.query.users.findFirst({
-    where: eq(users.id, session.user.id),
-    columns: { id: true, isStaff: true, isDemo: true },
-  });
+  const user = await fetchStaffUser(session.user.id);
   if (!user?.isStaff) throw new Error("forbidden");
   // Demo-staff mag alleen lezen — write-guard hier zodat álle actions
   // die requireStaff() aanroepen automatisch beschermd zijn. Throw een
