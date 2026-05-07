@@ -1000,6 +1000,14 @@
       "already_in_org": "Dit account hoort al bij een andere organisatie.",
       "generic_error": "Er ging iets mis."
     },
+    "livegang": {
+      "eyebrow": "Live sinds {date}",
+      "headingPrefix": "{name}",
+      "headingSuffix": "is live.",
+      "body": "Vanaf nu draait je site voor klanten. Wij houden monitoring + uptime in de gaten — je hoort het direct als er iets niet klopt.",
+      "visit": "Open de site",
+      "dismiss": "Sluit deze melding"
+    },
     "loading": {
       "title": "We zijn je portaal aan het laden",
       "messages": [

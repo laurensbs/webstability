@@ -16,6 +16,7 @@ import {
   listOrgInvoices,
   getOrgHoursThisMonth,
   getActiveBuildPhase,
+  getRecentLivegangs,
 } from "@/lib/db/queries/portal";
 import { StatCard } from "@/components/portal/StatCard";
 import { StatusBanner } from "@/components/portal/StatusBanner";
@@ -29,6 +30,7 @@ import {
 } from "@/components/portal/MonitoringCardAsync";
 import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/DashboardIntro";
 import { AuthVerifiedBeacon } from "@/components/auth/AuthVerifiedBeacon";
+import { LivegangCelebration } from "@/components/portal/LivegangCelebration";
 import { HoursWidget } from "@/components/portal/HoursWidget";
 import { SecurityCard } from "@/components/portal/SecurityCard";
 import { RoadmapCard } from "@/components/portal/RoadmapCard";
@@ -91,14 +93,18 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   const tProjects = await getTranslations("portal.projects");
   const tInvoices = await getTranslations("portal.invoices");
   const tStatus = await getTranslations("status");
-  const [stats, projects, tickets, invoices, hours, buildPhase] = await Promise.all([
-    getDashboardStats(user.organizationId),
-    listOrgProjects(user.organizationId),
-    listOrgTickets(user.organizationId),
-    listOrgInvoices(user.organizationId),
-    getOrgHoursThisMonth(user.organizationId),
-    getActiveBuildPhase(user.organizationId),
-  ]);
+  const [stats, projects, tickets, invoices, hours, buildPhase, recentLivegangs] =
+    await Promise.all([
+      getDashboardStats(user.organizationId),
+      listOrgProjects(user.organizationId),
+      listOrgTickets(user.organizationId),
+      listOrgInvoices(user.organizationId),
+      getOrgHoursThisMonth(user.organizationId),
+      getActiveBuildPhase(user.organizationId),
+      getRecentLivegangs(user.organizationId, 7),
+    ]);
+  const tLivegang = await getTranslations("portal.livegang");
+  const dateFmtLivegang = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
 
   // Tier-aware widget visibility — Care krijgt alleen Hours + Security,
   // Studio voegt SEO + Performance toe (al aanwezig), Atelier krijgt
@@ -152,6 +158,28 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   return (
     <div className="space-y-10">
       <AuthVerifiedBeacon />
+
+      {/* Livegang-feestmoment — toont voor projecten die binnen de
+          afgelopen 7 dagen live zijn gegaan. Per project dismissable. */}
+      {recentLivegangs.map((proj) => (
+        <LivegangCelebration
+          key={proj.id}
+          projectId={proj.id}
+          projectName={proj.name}
+          projectUrl={proj.monitoringTargetUrl}
+          liveAt={proj.liveAt}
+          dateFmt={dateFmtLivegang}
+          strings={{
+            eyebrow: tLivegang("eyebrow"),
+            headingPrefix: tLivegang("headingPrefix"),
+            headingSuffix: tLivegang("headingSuffix"),
+            body: tLivegang("body"),
+            visitLabel: tLivegang("visit"),
+            dismissLabel: tLivegang("dismiss"),
+          }}
+        />
+      ))}
+
       <DashboardIntro
         greeting={greeting}
         firstName={firstName}

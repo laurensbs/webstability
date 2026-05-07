@@ -172,6 +172,11 @@ export const projects = pgTable(
     githubRepoUrl: text("github_repo_url"),
     vercelProjectId: text("vercel_project_id"),
     monitoringTargetUrl: text("monitoring_target_url"),
+    /** Tijdstempel van het moment dat status flipt naar 'live'. Wordt
+     * automatisch gezet door updateProject() als status van iets-anders
+     * naar 'live' gaat én liveAt nog null is. Klant-portal gebruikt dit
+     * om binnen 7 dagen na livegang een sparkle-banner te tonen. */
+    liveAt: timestamp("live_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .default(sql`now()`),

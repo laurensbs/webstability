@@ -50,6 +50,13 @@
       "when": 1778138277891,
       "tag": "0006_heavy_captain_flint",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1778139146331,
+      "tag": "0007_lazy_miracleman",
+      "breakpoints": true
     }
   ]
 }

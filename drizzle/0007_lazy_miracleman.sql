@@ -1,0 +1,1 @@
+ALTER TABLE "projects" ADD COLUMN "live_at" timestamp with time zone;

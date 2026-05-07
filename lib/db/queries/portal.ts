@@ -160,3 +160,25 @@ export async function getOrgHoursThisMonth(orgId: string) {
     monthStart: startOfMonth,
   };
 }
+
+/**
+ * Projecten van een org die binnen `days` dagen geleden live zijn
+ * gegaan. Voor de feestelijke banner op portal-dashboard.
+ */
+export async function getRecentLivegangs(orgId: string, days = 7) {
+  const cutoff = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  const rows = await db
+    .select({
+      id: projects.id,
+      name: projects.name,
+      monitoringTargetUrl: projects.monitoringTargetUrl,
+      liveAt: projects.liveAt,
+    })
+    .from(projects)
+    .where(and(eq(projects.organizationId, orgId), gte(projects.liveAt, cutoff)))
+    .orderBy(desc(projects.liveAt))
+    .limit(3);
+  // null filter — drizzle-types laten liveAt als nullable, maar gte(...,
+  // cutoff) garandeert non-null. Cast veilig.
+  return rows.filter((r): r is typeof r & { liveAt: Date } => r.liveAt !== null);
+}

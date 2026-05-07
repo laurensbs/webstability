@@ -48,8 +48,9 @@ export async function updateProject(
   _prev: ActionResult | null,
   formData: FormData,
 ): Promise<ActionResult> {
+  let userId: string;
   try {
-    await requireStaff();
+    ({ userId } = await requireStaff());
   } catch {
     return { ok: false, messageKey: "forbidden" };
   }
@@ -64,16 +65,68 @@ export async function updateProject(
 
   const progress = Math.max(0, Math.min(100, Math.round(progressInput)));
 
+  // Livegang-detectie: als de status nu flipt naar 'live' en liveAt
+  // nog null is, set 'm. Stuurt mail naar org-owner + audit-log entry.
+  // Doen we vóór de update zodat we de oude status kunnen vergelijken.
+  const current = await db.query.projects.findFirst({
+    where: eq(projects.id, projectId),
+    columns: {
+      status: true,
+      liveAt: true,
+      organizationId: true,
+      name: true,
+      monitoringTargetUrl: true,
+    },
+  });
+  const becomesLive = current && status === "live" && !current.liveAt;
+  const liveAt = becomesLive ? new Date() : undefined;
+
   await db
     .update(projects)
     .set({
       status,
       progress,
       monitoringTargetUrl: urlInput || null,
+      ...(liveAt ? { liveAt } : {}),
     })
     .where(eq(projects.id, projectId));
+
+  if (becomesLive && current) {
+    await db.insert(auditLog).values({
+      organizationId: current.organizationId,
+      userId,
+      action: "project.live",
+      targetType: "project",
+      targetId: projectId,
+      metadata: { name: current.name, url: urlInput || current.monitoringTargetUrl || null },
+    });
+
+    // Stuur livegang-mail naar org-owner. Faalt graceful — admin kan
+    // sowieso de banner zien op portal-dashboard.
+    try {
+      const owner = await db.query.users.findFirst({
+        where: and(eq(users.organizationId, current.organizationId), eq(users.role, "owner")),
+        columns: { email: true, name: true, locale: true },
+      });
+      if (owner?.email) {
+        const { sendLivegangMail } = await import("@/lib/email/livegang");
+        await sendLivegangMail({
+          to: owner.email,
+          name: owner.name ?? null,
+          projectName: current.name,
+          projectUrl: urlInput || current.monitoringTargetUrl || null,
+          locale: owner.locale === "es" ? "es" : "nl",
+        });
+      }
+    } catch (err) {
+      console.error("[admin] livegang mail failed:", err);
+    }
+  }
+
   revalidatePath(`/admin`);
   revalidatePath(`/admin/orgs`);
+  revalidatePath(`/admin/orgs/${current?.organizationId ?? ""}`);
+  revalidatePath(`/portal/dashboard`);
   return { ok: true, messageKey: "saved" };
 }
 

@@ -999,6 +999,14 @@
       "already_in_org": "Esta cuenta ya pertenece a otra organización.",
       "generic_error": "Algo salió mal."
     },
+    "livegang": {
+      "eyebrow": "Activo desde {date}",
+      "headingPrefix": "{name}",
+      "headingSuffix": "está en vivo.",
+      "body": "Desde ahora tu site funciona para los clientes. Nosotros vigilamos monitoring + uptime — te avisamos al momento si algo no cuadra.",
+      "visit": "Abrir el sitio",
+      "dismiss": "Cerrar mensaje"
+    },
     "loading": {
       "title": "Estamos cargando tu portal",
       "messages": [
