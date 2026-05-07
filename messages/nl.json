@@ -1339,7 +1339,20 @@
       "overview": "Overzicht",
       "orgs": "Organisaties",
       "tickets": "Tickets",
-      "team": "Team"
+      "team": "Team",
+      "collapse": "Inklappen",
+      "brandTagline": "studio",
+      "portalLink": "↗ portal"
+    },
+    "cmdK": {
+      "placeholder": "Zoek klant, ticket, project…",
+      "empty": "Geen resultaten gevonden.",
+      "emptyHint": "Type minstens 2 letters om te zoeken.",
+      "recentTitle": "Recent",
+      "hintEnter": "open",
+      "hintEsc": "sluit",
+      "hintArrows": "navigeer",
+      "closeLabel": "Sluit"
     },
     "demoFunnel": {
       "title": "Demo-bezoeken",

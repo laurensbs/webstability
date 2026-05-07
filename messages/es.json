@@ -1339,7 +1339,20 @@
       "overview": "Resumen",
       "orgs": "Organizaciones",
       "tickets": "Tickets",
-      "team": "Equipo"
+      "team": "Equipo",
+      "collapse": "Colapsar",
+      "brandTagline": "studio",
+      "portalLink": "↗ portal"
+    },
+    "cmdK": {
+      "placeholder": "Busca cliente, ticket, proyecto…",
+      "empty": "Sin resultados.",
+      "emptyHint": "Escribe al menos 2 letras para buscar.",
+      "recentTitle": "Reciente",
+      "hintEnter": "abrir",
+      "hintEsc": "cerrar",
+      "hintArrows": "navegar",
+      "closeLabel": "Cerrar"
     },
     "demoFunnel": {
       "title": "Visitas a la demo",
