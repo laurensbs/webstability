@@ -2,12 +2,12 @@ import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
-import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { RotatingPill } from "@/components/animate/RotatingPill";
 import { FlashCounter } from "@/components/animate/FlashCounter";
 import { MagneticButton } from "@/components/animate/MagneticButton";
 import { RotatingWords } from "@/components/animate/RotatingWords";
 import { DemoChooserModal } from "@/components/marketing/DemoChooserModal";
+import { HeroProposition } from "@/components/marketing/HeroProposition";
 
 export async function Hero() {
   const t = await getTranslations("home");
@@ -15,6 +15,10 @@ export async function Hero() {
   const tRaw = await getTranslations();
   const rotatingWords = tRaw.raw("home.hero.rotatingWords") as string[];
   const eyebrowMessages = tRaw.raw("home.hero.eyebrowMessages") as string[];
+  const propositionLines = tRaw.raw("home.hero.proposition") as Array<{
+    icon: "layers" | "zap" | "sparkles";
+    text: string;
+  }>;
   const startYear = 2016;
   const yearsExp = new Date().getFullYear() - startYear;
 
@@ -44,12 +48,7 @@ export async function Hero() {
         {/* Availability pill — spring-scale entry, green dot ring */}
         <RotatingPill href="/contact" messages={eyebrowMessages} />
 
-        <AnimatedHeading
-          as="h1"
-          className="mt-7 max-w-[14ch] text-[clamp(44px,7vw,84px)] leading-[1.05]"
-        >
-          {t("headline")}
-        </AnimatedHeading>
+        <HeroProposition lines={propositionLines} />
 
         <p className="mt-6 max-w-[52ch] text-[19px] leading-[1.55] text-(--color-muted)">
           {tHero("taglinePrefix")} <RotatingWords words={rotatingWords} /> {tHero("taglineSuffix")}

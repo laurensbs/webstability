@@ -63,6 +63,11 @@
         "Desde 95 €/m · primer mes gratis",
         "Un sistema en lugar de cinco herramientas"
       ],
+      "proposition": [
+        { "icon": "layers", "text": "Un solo sistema." },
+        { "icon": "zap", "text": "Reservas en vivo." },
+        { "icon": "sparkles", "text": "Sincronizado en tiempo real." }
+      ],
       "metaYearsLabel": "años de experiencia",
       "metaUptimeLabel": "uptime · 30d",
       "metaPlatformsLabel": "plataformas en producción",

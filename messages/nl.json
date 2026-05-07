@@ -63,6 +63,11 @@
         "Vanaf €95/m · eerste maand gratis",
         "Eén systeem ipv vijf losse tools"
       ],
+      "proposition": [
+        { "icon": "layers", "text": "Eén systeem." },
+        { "icon": "zap", "text": "Live boekingen." },
+        { "icon": "sparkles", "text": "Realtime synchroon." }
+      ],
       "metaYearsLabel": "jaar ervaring",
       "metaUptimeLabel": "uptime · 30d",
       "metaPlatformsLabel": "platforms productioneel",
