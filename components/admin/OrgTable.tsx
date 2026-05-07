@@ -34,13 +34,17 @@ type Strings = {
 export function OrgTable({
   orgs,
   strings,
-  dateFmt,
+  locale,
 }: {
   orgs: OrgRow[];
   strings: Strings;
-  dateFmt: Intl.DateTimeFormat;
+  locale: string;
 }) {
   const [query, setQuery] = React.useState("");
+  const dateFmt = React.useMemo(
+    () => new Intl.DateTimeFormat(locale, { dateStyle: "medium" }),
+    [locale],
+  );
   const filtered = React.useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return orgs;

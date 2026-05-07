@@ -31,13 +31,23 @@ export function TicketRepliesLive({
   ticketId,
   initialReplies,
   strings,
-  dateFmt,
+  locale,
 }: {
   ticketId: string;
   initialReplies: Reply[];
   strings: Strings;
-  dateFmt: Intl.DateTimeFormat;
+  /** Locale-string ipv Intl.DateTimeFormat: classes zijn niet
+   * serializable van server- naar client-component (Next 16). */
+  locale: string;
 }) {
+  const dateFmt = React.useMemo(
+    () =>
+      new Intl.DateTimeFormat(locale, {
+        dateStyle: "medium",
+        timeStyle: "short",
+      }),
+    [locale],
+  );
   const reduce = useReducedMotion();
   const [replies, setReplies] = React.useState<Reply[]>(initialReplies);
   const [pulse, setPulse] = React.useState(false);

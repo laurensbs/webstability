@@ -77,7 +77,7 @@ export default async function TicketDetail({
             isStaff: r.user.isStaff,
           },
         }))}
-        dateFmt={dateFmt}
+        locale={locale}
         strings={{
           noReplies: t("noReplies"),
           staffBadge: t("staffBadge"),

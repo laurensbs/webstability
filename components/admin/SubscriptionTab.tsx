@@ -77,7 +77,7 @@ export function SubscriptionTab({
   cancel,
   grantDiscount,
   strings,
-  dateFmt,
+  locale,
 }: {
   sub: SubData | null;
   discounts: Discount[];
@@ -87,9 +87,15 @@ export function SubscriptionTab({
   cancel: Action;
   grantDiscount: Action;
   strings: Strings;
-  dateFmt: Intl.DateTimeFormat;
+  /** Locale-string ipv Intl.DateTimeFormat: classes zijn niet
+   * serializable van server- naar client-components in Next 16. */
+  locale: string;
 }) {
   const [confirmCancel, setConfirmCancel] = React.useState(false);
+  const dateFmt = React.useMemo(
+    () => new Intl.DateTimeFormat(locale, { dateStyle: "medium" }),
+    [locale],
+  );
 
   if (!sub?.stripeSubscriptionId) {
     return (

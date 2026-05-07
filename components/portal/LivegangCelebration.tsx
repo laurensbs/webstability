@@ -24,16 +24,16 @@ export function LivegangCelebration({
   projectId,
   projectName,
   projectUrl,
-  liveAt,
+  liveAtLabel,
   strings,
-  dateFmt,
 }: {
   projectId: string;
   projectName: string;
   projectUrl: string | null;
-  liveAt: Date;
+  /** Pre-geformatteerde datum-string ipv Intl.DateTimeFormat: classes
+   * zijn niet serializable van server- naar client-component (Next 16). */
+  liveAtLabel: string;
   strings: Strings;
-  dateFmt: Intl.DateTimeFormat;
 }) {
   const reduce = useReducedMotion();
   const STORAGE_KEY = `wb:livegang-seen-${projectId}`;
@@ -117,7 +117,7 @@ export function LivegangCelebration({
 
           <div className="min-w-0 flex-1">
             <p className="text-[11px] font-medium tracking-[0.08em] text-(--color-wine)">
-              {strings.eyebrow.replace("{date}", dateFmt.format(liveAt))}
+              {strings.eyebrow.replace("{date}", liveAtLabel)}
             </p>
             <h2 className="mt-2 font-serif text-2xl leading-tight md:text-3xl">
               {strings.headingPrefix.replace("{name}", projectName)}{" "}

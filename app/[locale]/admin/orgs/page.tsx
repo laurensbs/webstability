@@ -14,7 +14,6 @@ export default async function OrgsPage({ params }: { params: Promise<{ locale: s
 
   const t = await getTranslations("admin.orgs");
   const orgs = await listAllOrgs();
-  const dateFmt = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
 
   // Cast naar OrgRow shape — runtime nummer-conversies in een keer.
   const rows: OrgRow[] = orgs.map((o) => ({
@@ -44,7 +43,7 @@ export default async function OrgsPage({ params }: { params: Promise<{ locale: s
 
       <OrgTable
         orgs={rows}
-        dateFmt={dateFmt}
+        locale={locale}
         strings={{
           searchPlaceholder: t("searchPlaceholder"),
           empty: t("empty"),

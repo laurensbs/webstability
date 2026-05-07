@@ -211,7 +211,7 @@ export default async function OrgDetail({
       resume={resumeAction}
       cancel={cancelAction}
       grantDiscount={grantDiscountAction}
-      dateFmt={dateFmt}
+      locale={locale}
       strings={{
         noSubscription: tSub("noSubscription"),
         noSubscriptionBody: tSub("noSubscriptionBody"),

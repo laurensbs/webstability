@@ -17,16 +17,16 @@ type Strings = {
  */
 export function IncidentBanner({
   projectName,
-  startedAt,
   href,
   strings,
-  dateFmt,
+  startedAtLabel,
 }: {
   projectName: string;
-  startedAt: Date;
   href: string;
   strings: Strings;
-  dateFmt: Intl.DateTimeFormat;
+  /** Datum als string ipv Intl.DateTimeFormat — class is niet
+   * serializable van server- naar client-component (Next 16). */
+  startedAtLabel: string;
 }) {
   return (
     <motion.a
@@ -43,7 +43,7 @@ export function IncidentBanner({
             {strings.title.replace("{project}", projectName)}
           </p>
           <p className="mt-0.5 text-[12px] text-(--color-muted)">
-            {strings.since.replace("{time}", dateFmt.format(startedAt))} · {strings.cta} →
+            {strings.since.replace("{time}", startedAtLabel)} · {strings.cta} →
           </p>
         </div>
       </div>

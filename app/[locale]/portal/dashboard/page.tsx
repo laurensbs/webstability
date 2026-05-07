@@ -214,9 +214,8 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         <IncidentBanner
           key={inc.id}
           projectName={inc.projectName ?? "—"}
-          startedAt={inc.startedAt}
+          startedAtLabel={dateFmtIncident.format(inc.startedAt)}
           href={`/${locale}/portal/monitoring`}
-          dateFmt={dateFmtIncident}
           strings={{
             title: tIncident("title"),
             since: tIncident("since"),
@@ -233,8 +232,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
           projectId={proj.id}
           projectName={proj.name}
           projectUrl={proj.monitoringTargetUrl}
-          liveAt={proj.liveAt}
-          dateFmt={dateFmtLivegang}
+          liveAtLabel={dateFmtLivegang.format(proj.liveAt)}
           strings={{
             eyebrow: tLivegang("eyebrow"),
             headingPrefix: tLivegang("headingPrefix"),
