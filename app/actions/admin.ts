@@ -7,6 +7,7 @@ import { randomUUID } from "node:crypto";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { sendStaffInvite } from "@/lib/email/staff-invite";
+import { DemoReadonlyError } from "@/lib/demo-guard";
 import {
   changeSubscriptionPlan,
   pauseStripeSubscription,
@@ -34,10 +35,28 @@ async function requireStaff() {
   if (!session?.user?.id) throw new Error("unauthorized");
   const user = await db.query.users.findFirst({
     where: eq(users.id, session.user.id),
-    columns: { id: true, isStaff: true },
+    columns: { id: true, isStaff: true, isDemo: true },
   });
   if (!user?.isStaff) throw new Error("forbidden");
+  // Demo-staff mag alleen lezen — write-guard hier zodat álle actions
+  // die requireStaff() aanroepen automatisch beschermd zijn. Throw een
+  // DemoReadonlyError; de catch-blok in elke action vangt 'm af en
+  // geeft een succesvolle ActionResult met messageKey 'demo_readonly'.
+  if (user.isDemo) throw new DemoReadonlyError();
   return { userId: user.id };
+}
+
+/**
+ * Centrale catch-helper voor server-actions die requireStaff() doen.
+ * Onderscheidt DemoReadonlyError (success-toast met demo_readonly) van
+ * gewone forbidden/unauthorized errors. Hergebruikt door alle 17 catch-
+ * blokken zodat de boilerplate niet 17× doodgewicht is.
+ */
+function handleAuthError(e: unknown): ActionResult {
+  if (e instanceof DemoReadonlyError) {
+    return { ok: true, messageKey: "demo_readonly" };
+  }
+  return { ok: false, messageKey: "forbidden" };
 }
 
 const PROJECT_STATUSES = ["planning", "in_progress", "review", "live", "done"] as const;
@@ -51,8 +70,8 @@ export async function updateProject(
   let userId: string;
   try {
     ({ userId } = await requireStaff());
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   const statusInput = String(formData.get("status") ?? "");
@@ -140,8 +159,8 @@ export async function updateTicketStatus(
 ): Promise<ActionResult> {
   try {
     await requireStaff();
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   const statusInput = String(formData.get("status") ?? "");
@@ -176,8 +195,8 @@ export async function logHours(
   let userId: string;
   try {
     ({ userId } = await requireStaff());
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   const minutes = Number(formData.get("minutes") ?? 0);
@@ -232,8 +251,8 @@ export async function createOrg(
 ): Promise<ActionResult> {
   try {
     await requireStaff();
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   const name = String(formData.get("name") ?? "").trim();
@@ -289,8 +308,8 @@ export async function updateOrg(
 ): Promise<ActionResult> {
   try {
     await requireStaff();
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   const name = String(formData.get("name") ?? "").trim();
@@ -348,8 +367,8 @@ export async function createProject(
 ): Promise<ActionResult> {
   try {
     await requireStaff();
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   const name = String(formData.get("name") ?? "").trim();
@@ -391,8 +410,8 @@ export async function createBuildPhase(
 ): Promise<ActionResult> {
   try {
     await requireStaff();
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   const extensionInput = String(formData.get("extension") ?? "");
@@ -450,8 +469,8 @@ export async function inviteStaff(
   let userId: string;
   try {
     ({ userId } = await requireStaff());
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   const emailRaw = String(formData.get("email") ?? "")
@@ -515,8 +534,8 @@ export async function revokeStaffInvite(
   void formData;
   try {
     await requireStaff();
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   await db
@@ -572,8 +591,8 @@ export async function changePlan(
   let userId: string;
   try {
     ({ userId } = await requireStaff());
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   if (!isStripeConfigured()) return { ok: false, messageKey: "missing_fields" };
@@ -629,8 +648,8 @@ export async function pauseSubscription(
   let userId: string;
   try {
     ({ userId } = await requireStaff());
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   if (!isStripeConfigured()) return { ok: false, messageKey: "missing_fields" };
@@ -674,8 +693,8 @@ export async function resumeSubscription(
   let userId: string;
   try {
     ({ userId } = await requireStaff());
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   if (!isStripeConfigured()) return { ok: false, messageKey: "missing_fields" };
@@ -718,8 +737,8 @@ export async function cancelSubscription(
   let userId: string;
   try {
     ({ userId } = await requireStaff());
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   if (!isStripeConfigured()) return { ok: false, messageKey: "missing_fields" };
@@ -761,8 +780,8 @@ export async function grantDiscount(
   let userId: string;
   try {
     ({ userId } = await requireStaff());
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   if (!isStripeConfigured()) return { ok: false, messageKey: "missing_fields" };
@@ -833,8 +852,8 @@ export async function toggleVip(
   let userId: string;
   try {
     ({ userId } = await requireStaff());
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   const current = await db.query.organizations.findFirst({
@@ -867,8 +886,8 @@ export async function createOrgWithOwner(
 ): Promise<ActionResult> {
   try {
     await requireStaff();
-  } catch {
-    return { ok: false, messageKey: "forbidden" };
+  } catch (e) {
+    return handleAuthError(e);
   }
 
   const name = String(formData.get("name") ?? "").trim();

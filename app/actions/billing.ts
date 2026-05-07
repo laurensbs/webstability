@@ -12,6 +12,7 @@ import {
   type CarePlanId,
   type BuildExtensionId,
 } from "@/lib/stripe";
+import { DemoReadonlyError } from "@/lib/demo-guard";
 
 const APP_URL = process.env.AUTH_URL ?? "http://localhost:3000";
 
@@ -24,6 +25,7 @@ async function requireOwner() {
   });
   if (!user?.organization) throw new Error("no_org");
   if (user.role !== "owner") throw new Error("forbidden");
+  if (user.isDemo) throw new DemoReadonlyError();
   return { user, org: user.organization };
 }
 
@@ -91,7 +93,13 @@ export async function startCareCheckout(formData: FormData) {
   const priceId = priceIdFor(plan);
   if (!priceId) throw new Error("price_not_configured");
 
-  const { user, org } = await requireOwner();
+  let user, org;
+  try {
+    ({ user, org } = await requireOwner());
+  } catch (e) {
+    if (e instanceof DemoReadonlyError) redirect("/portal/dashboard?demo=readonly");
+    throw e;
+  }
   const customerId = await ensureStripeCustomer(org.id, org.name, user.email);
 
   const session = await stripe().checkout.sessions.create({
@@ -138,7 +146,13 @@ export async function startCareCheckoutWithBuild(formData: FormData) {
   const planPriceId = priceIdFor(plan);
   if (!planPriceId) throw new Error("price_not_configured");
 
-  const { user, org } = await requireOwner();
+  let user, org;
+  try {
+    ({ user, org } = await requireOwner());
+  } catch (e) {
+    if (e instanceof DemoReadonlyError) redirect("/portal/dashboard?demo=readonly");
+    throw e;
+  }
   const customerId = await ensureStripeCustomer(org.id, org.name, user.email);
 
   const baseSession = await stripe().checkout.sessions.create({
@@ -178,7 +192,13 @@ export async function startCareCheckoutWithBuild(formData: FormData) {
 }
 
 export async function openBillingPortal() {
-  const { org } = await requireOwner();
+  let org;
+  try {
+    ({ org } = await requireOwner());
+  } catch (e) {
+    if (e instanceof DemoReadonlyError) redirect("/portal/dashboard?demo=readonly");
+    throw e;
+  }
   if (!org.stripeCustomerId) throw new Error("no_customer");
 
   const session = await stripe().billingPortal.sessions.create({

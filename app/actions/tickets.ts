@@ -7,15 +7,17 @@ import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { tickets, ticketReplies, users, organizations } from "@/lib/db/schema";
 import type { ActionResult } from "@/lib/action-result";
+import { DemoReadonlyError } from "@/lib/demo-guard";
 
 async function requireUserOrg() {
   const session = await auth();
   if (!session?.user?.id) throw new Error("unauthorized");
   const user = await db.query.users.findFirst({
     where: eq(users.id, session.user.id),
-    columns: { id: true, organizationId: true },
+    columns: { id: true, organizationId: true, isDemo: true },
   });
   if (!user?.organizationId) throw new Error("no_org");
+  if (user.isDemo) throw new DemoReadonlyError();
   return { userId: user.id, orgId: user.organizationId };
 }
 
@@ -38,7 +40,20 @@ function categoryToPriority(c: Category): "low" | "normal" | "high" {
 }
 
 export async function createTicket(formData: FormData) {
-  const { userId, orgId } = await requireUserOrg();
+  let userId: string;
+  let orgId: string;
+  try {
+    const u = await requireUserOrg();
+    userId = u.userId;
+    orgId = u.orgId;
+  } catch (e) {
+    if (e instanceof DemoReadonlyError) {
+      // Demo-portal-user — form was submit, geen DB-write. Redirect
+      // terug naar form met flag zodat een toast verschijnt.
+      redirect("/portal/tickets/new?demo=readonly");
+    }
+    throw e;
+  }
 
   const subject = String(formData.get("subject") ?? "").trim();
   const body = String(formData.get("body") ?? "").trim();
@@ -102,7 +117,10 @@ export async function replyToTicket(
     const u = await requireUserOrg();
     userId = u.userId;
     orgId = u.orgId;
-  } catch {
+  } catch (e) {
+    if (e instanceof DemoReadonlyError) {
+      return { ok: true, messageKey: "demo_readonly" };
+    }
     return { ok: false, messageKey: "unauthorized" };
   }
 

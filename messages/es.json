@@ -997,6 +997,7 @@
       "blob_not_configured": "Almacenamiento no configurado.",
       "invalid_email": "Introduce un email válido.",
       "already_in_org": "Esta cuenta ya pertenece a otra organización.",
+      "demo_readonly": "Modo demo — los cambios no se guardan.",
       "generic_error": "Algo salió mal."
     },
     "subTagline": {

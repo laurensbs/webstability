@@ -998,6 +998,7 @@
       "blob_not_configured": "Bestandsopslag niet geconfigureerd.",
       "invalid_email": "Vul een geldig e-mailadres in.",
       "already_in_org": "Dit account hoort al bij een andere organisatie.",
+      "demo_readonly": "Demo-mode — wijzigingen worden niet opgeslagen.",
       "generic_error": "Er ging iets mis."
     },
     "subTagline": {

@@ -83,6 +83,11 @@ export const organizations = pgTable("organizations", {
    * wijn-rode tag in alle admin-lijsten en kan in de toekomst worden
    * gebruikt om SLA-prioriteit of premium support af te leiden. */
   isVip: boolean("is_vip").notNull().default(false),
+  /** Demo-flag — markeert de seed-org die publiek toegankelijk is via
+   * /demo/portal en /demo/admin. Demo-data wordt nooit gemuteerd door
+   * server-actions (zie lib/demo-guard.ts). Slechts één row tegelijk in
+   * productie verwacht; meerdere kan voor lokaal testen. */
+  isDemo: boolean("is_demo").notNull().default(false),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .default(sql`now()`),
@@ -109,6 +114,11 @@ export const users = pgTable("users", {
   // Studio-side staff flag — orthogonal to org `role`. Studio staff can see
   // the cross-org /admin views; clients cannot, regardless of their own role.
   isStaff: boolean("is_staff").notNull().default(false),
+  /** Demo-flag — markeert de seed-users (demo-portal en demo-admin) die
+   * via /demo/portal en /demo/admin inloggen zonder magic-link. Mutaties
+   * door deze users worden gevangen in lib/demo-guard.ts en als no-op
+   * teruggegeven met toast "Demo-mode". */
+  isDemo: boolean("is_demo").notNull().default(false),
   lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
