@@ -9,6 +9,7 @@ import { routing } from "@/i18n/routing";
 import { AdminNav } from "@/components/admin/AdminNav";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { Link } from "@/i18n/navigation";
+import { DemoBanner } from "@/components/portal/DemoBanner";
 
 export default async function AdminLayout({
   children,
@@ -26,7 +27,7 @@ export default async function AdminLayout({
 
   const me = await db.query.users.findFirst({
     where: eq(users.id, session.user.id),
-    columns: { id: true, email: true, isStaff: true },
+    columns: { id: true, email: true, isStaff: true, isDemo: true },
   });
   if (!me?.isStaff) {
     // Don't 404 — show a friendly message via redirect to dashboard.
@@ -34,9 +35,11 @@ export default async function AdminLayout({
   }
 
   const t = await getTranslations("admin");
+  const tDemo = await getTranslations("demo.banner");
 
   return (
     <div className="min-h-screen">
+      {me.isDemo ? <DemoBanner strings={{ label: tDemo("label"), cta: tDemo("cta") }} /> : null}
       <header className="border-b border-(--color-text)/15 bg-(--color-text) text-(--color-bg)">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
           <Link

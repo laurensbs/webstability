@@ -49,6 +49,14 @@
       "live": "live nu",
       "alreadyClient": "Al klant?",
       "loginCta": "Inloggen op je portaal",
+      "tryDemo": "Of probeer de demo",
+      "demoModalTitle": "Welk paneel wil je zien?",
+      "demoModalBody": "Live demo met levensechte data. Klikken mag, mutaties worden niet opgeslagen — geen account nodig.",
+      "demoPortalLabel": "Klantenportaal",
+      "demoPortalBody": "Hoe je klant het ziet: dashboard, tickets, facturen, livegang-banner.",
+      "demoAdminLabel": "Studio admin",
+      "demoAdminBody": "Wat ik elke dag gebruik: kanban, subscription-mgmt, status-strip, audit-log.",
+      "demoCancel": "Sluit",
       "availability": "Beschikbaar voor 2 nieuwe projecten — mei 2026",
       "eyebrowMessages": [
         "Beschikbaar voor 2 nieuwe projecten — mei 2026",
@@ -780,12 +788,22 @@
     },
     "footerCtaTitle": "Iets vergelijkbaars in gedachten?",
     "footerCtaBody": "Eerste gesprek is gratis — dertig minuten, geen pitch-deck.",
-    "footerCtaLabel": "Plan een kennismaking"
+    "footerCtaLabel": "Plan een kennismaking",
+    "demoCallout": {
+      "eyebrow": "Live demo",
+      "title": "Wil je zien hoe het portaal eruit ziet voor je klanten?",
+      "body": "Open een live demo van het klantenportaal — met levensechte data. Klikken mag, niets wordt opgeslagen.",
+      "cta": "Open demo-portaal"
+    }
   },
   "pricing": {
     "eyebrow": "abonnementen · vanaf €95/m",
     "title": "Eén prijs per maand. *Geen* offertes, geen verrassingen.",
     "lede": "We werken alleen op abonnement. Lage instap, opzegbaar wanneer je wil. Een vaste maandprijs voor onderhoud, groei, en alles ertussen.",
+    "demoCallout": {
+      "body": "Niet zeker welk tier? Bekijk wat er ínzit —",
+      "cta": "open een live demo"
+    },
     "care": {
       "intro": "Drie tiers — voor elke fase na livegang. Tussendoor upgraden of stoppen mag altijd.",
       "items": [
@@ -1524,6 +1542,18 @@
     "activity": {
       "title": "Recente activiteit",
       "empty": "Nog niets gebeurd."
+    }
+  },
+  "demo": {
+    "banner": {
+      "label": "Live demo — wijzigingen worden niet opgeslagen",
+      "cta": "Plan een gesprek"
+    },
+    "limited": {
+      "title": "Demo even niet beschikbaar",
+      "body": "Te veel demo-bezoekers tegelijk, of de demo-data is nog niet ingericht in deze omgeving. Probeer het over een uur opnieuw, of plan direct een gesprek voor een persoonlijke rondleiding.",
+      "ctaPrimary": "Plan een gesprek",
+      "ctaSecondary": "Terug naar website"
     }
   }
 }

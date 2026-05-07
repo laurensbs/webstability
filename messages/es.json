@@ -49,6 +49,14 @@
       "live": "en línea",
       "alreadyClient": "¿Ya eres cliente?",
       "loginCta": "Acceder a tu portal",
+      "tryDemo": "O prueba la demo",
+      "demoModalTitle": "¿Qué panel quieres ver?",
+      "demoModalBody": "Demo en vivo con datos realistas. Haz clic libremente, los cambios no se guardan — sin cuenta.",
+      "demoPortalLabel": "Portal de cliente",
+      "demoPortalBody": "Cómo lo ve tu cliente: dashboard, tickets, facturas, banner de lanzamiento.",
+      "demoAdminLabel": "Studio admin",
+      "demoAdminBody": "Lo que uso a diario: kanban, gestión de suscripción, status-strip, audit-log.",
+      "demoCancel": "Cerrar",
       "availability": "Disponible para 2 nuevos proyectos — mayo 2026",
       "eyebrowMessages": [
         "Disponible para 2 nuevos proyectos — mayo 2026",
@@ -779,12 +787,22 @@
     },
     "footerCtaTitle": "¿Algo similar en mente?",
     "footerCtaBody": "Primera llamada gratis — treinta minutos, sin presentación comercial.",
-    "footerCtaLabel": "Reserva una llamada"
+    "footerCtaLabel": "Reserva una llamada",
+    "demoCallout": {
+      "eyebrow": "Demo en vivo",
+      "title": "¿Quieres ver cómo se ve el portal para tus clientes?",
+      "body": "Abre una demo en vivo del portal de cliente — con datos realistas. Haz clic libremente, nada se guarda.",
+      "cta": "Abrir demo-portal"
+    }
   },
   "pricing": {
     "eyebrow": "suscripciones · desde 95 €/m",
     "title": "Un precio al mes. *Sin* presupuestos, sin sorpresas.",
     "lede": "Trabajamos solo por suscripción. Entrada baja, cancelable cuando quieras. Una cuota fija para mantenimiento, crecimiento y todo lo intermedio.",
+    "demoCallout": {
+      "body": "¿No estás seguro de qué tier? Mira lo que hay dentro —",
+      "cta": "abre una demo en vivo"
+    },
     "care": {
       "intro": "Tres niveles — para cada fase tras el lanzamiento. Subir, bajar o parar entre medias siempre se puede.",
       "items": [
@@ -1524,6 +1542,18 @@
     "activity": {
       "title": "Actividad reciente",
       "empty": "Aún sin movimientos."
+    }
+  },
+  "demo": {
+    "banner": {
+      "label": "Demo en vivo — los cambios no se guardan",
+      "cta": "Reserva una llamada"
+    },
+    "limited": {
+      "title": "Demo no disponible ahora mismo",
+      "body": "Demasiadas visitas a la demo a la vez, o aún no hemos preparado la demo en este entorno. Vuelve a intentarlo en una hora, o reserva una llamada para una visita guiada.",
+      "ctaPrimary": "Reserva una llamada",
+      "ctaSecondary": "Volver al sitio"
     }
   }
 }

@@ -170,6 +170,28 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               </div>
             </div>
           </RevealOnScroll>
+
+          {/* Demo-callout — wijn-rood, links naar /demo/portal */}
+          <RevealOnScroll className="mt-6 rounded-[20px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-6 md:p-7">
+            <div className="flex flex-col items-start gap-3 md:flex-row md:items-center md:justify-between md:gap-6">
+              <div>
+                <p className="text-[11px] font-medium tracking-[0.08em] text-(--color-wine)">
+                  {t("demoCallout.eyebrow")}
+                </p>
+                <h3 className="mt-2 font-serif text-xl md:text-2xl">{t("demoCallout.title")}</h3>
+                <p className="mt-2 text-[14px] leading-[1.55] text-(--color-muted)">
+                  {t("demoCallout.body")}
+                </p>
+              </div>
+              <Link
+                href="/demo/portal"
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-(--color-wine) px-4 py-2 text-[13px] font-medium text-(--color-bg) transition-opacity hover:opacity-90"
+              >
+                {t("demoCallout.cta")}
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </RevealOnScroll>
         </div>
       </section>
 

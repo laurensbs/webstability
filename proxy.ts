@@ -39,7 +39,13 @@ export default function proxy(req: NextRequest) {
       /^\/(nl|es)\/(login|verify)(\/|$)/.test(url.pathname) ||
       url.pathname.startsWith("/api/auth");
 
-    if (isAuthRoute) return intlProxy(req);
+    // /demo/* routes mogen óók op admin-host bestaan zonder dat ze
+    // gerewrite worden naar /admin/demo/*. Demo-portal moet apex-routing
+    // krijgen zodat /portal/* daarna correct rendert.
+    const isDemoRoute =
+      url.pathname.startsWith("/demo/") || /^\/(nl|es)\/demo\//.test(url.pathname);
+
+    if (isAuthRoute || isDemoRoute) return intlProxy(req);
 
     // Already on admin host. If the URL accidentally already has the
     // /admin prefix (someone bookmarked admin.webstability.eu/admin),

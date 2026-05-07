@@ -8,6 +8,7 @@ import { Toaster } from "sonner";
 import { Sidebar } from "@/components/portal/Sidebar";
 import { Topbar } from "@/components/portal/Topbar";
 import { RouteTransition } from "@/components/portal/RouteTransition";
+import { DemoBanner } from "@/components/portal/DemoBanner";
 
 export default async function PortalLayout({
   children,
@@ -27,6 +28,7 @@ export default async function PortalLayout({
   if (!userWithOrg) redirect("/login");
 
   const t = await getTranslations("portal");
+  const tDemo = await getTranslations("demo.banner");
 
   const navLabels = {
     dashboard: t("nav.dashboard"),
@@ -41,19 +43,24 @@ export default async function PortalLayout({
   };
 
   return (
-    <div className="flex min-h-screen">
-      <Sidebar labels={navLabels} />
-      <div className="flex min-w-0 flex-1 flex-col">
-        <Topbar
-          userEmail={userWithOrg.email}
-          orgName={userWithOrg.organization?.name ?? null}
-          logoutLabel={t("nav.logout")}
-          navLabels={navLabels}
-          isStaff={userWithOrg.isStaff}
-        />
-        <main className="flex-1 px-6 py-8 md:px-10 md:py-12">
-          <RouteTransition>{children}</RouteTransition>
-        </main>
+    <div className="flex min-h-screen flex-col">
+      {userWithOrg.isDemo ? (
+        <DemoBanner strings={{ label: tDemo("label"), cta: tDemo("cta") }} />
+      ) : null}
+      <div className="flex min-h-0 flex-1">
+        <Sidebar labels={navLabels} />
+        <div className="flex min-w-0 flex-1 flex-col">
+          <Topbar
+            userEmail={userWithOrg.email}
+            orgName={userWithOrg.organization?.name ?? null}
+            logoutLabel={t("nav.logout")}
+            navLabels={navLabels}
+            isStaff={userWithOrg.isStaff}
+          />
+          <main className="flex-1 px-6 py-8 md:px-10 md:py-12">
+            <RouteTransition>{children}</RouteTransition>
+          </main>
+        </div>
       </div>
       <Toaster
         position="bottom-right"

@@ -7,6 +7,7 @@ import { RotatingPill } from "@/components/animate/RotatingPill";
 import { FlashCounter } from "@/components/animate/FlashCounter";
 import { MagneticButton } from "@/components/animate/MagneticButton";
 import { RotatingWords } from "@/components/animate/RotatingWords";
+import { DemoChooserModal } from "@/components/marketing/DemoChooserModal";
 
 export async function Hero() {
   const t = await getTranslations("home");
@@ -72,14 +73,29 @@ export async function Hero() {
           </MagneticButton>
         </div>
 
-        {/* Cases-link tertiair onder de buttons */}
-        <p className="mt-5 text-[14px] text-(--color-muted)">
+        {/* Cases-link + demo-chooser tertiair onder de buttons */}
+        <p className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] text-(--color-muted)">
           <Link
             href="/cases"
             className="underline decoration-(--color-border) underline-offset-4 transition-colors hover:text-(--color-text) hover:decoration-(--color-accent)"
           >
             {t("ctaSecondary")} →
           </Link>
+          <span aria-hidden className="text-(--color-border)">
+            ·
+          </span>
+          <DemoChooserModal
+            strings={{
+              triggerLabel: tHero("tryDemo"),
+              title: tHero("demoModalTitle"),
+              body: tHero("demoModalBody"),
+              portalLabel: tHero("demoPortalLabel"),
+              portalBody: tHero("demoPortalBody"),
+              adminLabel: tHero("demoAdminLabel"),
+              adminBody: tHero("demoAdminBody"),
+              cancel: tHero("demoCancel"),
+            }}
+          />
         </p>
 
         {/* Meta row — flat, border-top, no cards */}

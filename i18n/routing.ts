@@ -63,6 +63,9 @@ export const routing = defineRouting({
     "/admin/orgs/new": "/admin/orgs/new",
     "/admin/tickets": "/admin/tickets",
     "/admin/team": "/admin/team",
+    "/demo/portal": "/demo/portal",
+    "/demo/admin": "/demo/admin",
+    "/demo/limited": "/demo/limited",
   },
 });
 

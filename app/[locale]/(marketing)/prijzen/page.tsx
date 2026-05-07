@@ -3,6 +3,7 @@ import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { Check } from "lucide-react";
 import { routing } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
 import { auth } from "@/lib/auth";
 import { getUserWithOrg } from "@/lib/db/queries/portal";
 import { PageHeader } from "@/components/marketing/PageHeader";
@@ -91,6 +92,17 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               currentPlanLabel: tCare("currentPlan"),
             }}
           />
+
+          {/* Demo-callout — subtiel zinnetje onder de tier-cards */}
+          <p className="mx-auto mt-8 max-w-2xl text-center text-[14px] text-(--color-muted)">
+            {t("demoCallout.body")}{" "}
+            <Link
+              href="/demo/portal"
+              className="font-medium text-(--color-wine) underline decoration-(--color-wine)/40 underline-offset-4 hover:decoration-(--color-wine)"
+            >
+              {t("demoCallout.cta")} →
+            </Link>
+          </p>
         </div>
       </section>
 
