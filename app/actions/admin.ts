@@ -945,3 +945,23 @@ export async function createOrgWithOwner(
   revalidatePath(`/admin/orgs`);
   redirect(`/admin/orgs/${org.id}`);
 }
+
+/**
+ * Drag-and-drop variant van updateTicketStatus — neemt direct het
+ * nieuwe status-string in plaats van FormData. Bedoeld voor de
+ * kanban-view in /admin/tickets waar we niet door een form heen gaan.
+ */
+export async function changeTicketStatusDirect(
+  ticketId: string,
+  newStatus: "open" | "in_progress" | "waiting" | "closed",
+): Promise<void> {
+  await requireStaff();
+  await db
+    .update(tickets)
+    .set({
+      status: newStatus,
+      closedAt: newStatus === "closed" ? new Date() : null,
+    })
+    .where(eq(tickets.id, ticketId));
+  revalidatePath(`/admin/tickets`);
+}

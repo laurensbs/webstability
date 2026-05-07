@@ -1106,6 +1106,17 @@
       "bodyLabel": "Bericht",
       "priorityLabel": "Prioriteit",
       "submit": "Verstuur",
+      "submitForce": "Stuur tóch",
+      "budgetWarningTitle": "Je hebt {open} open tickets — limiet is {limit}.",
+      "budgetWarningBody": "Wacht tot een ticket gesloten is, of upgrade naar een hogere tier voor meer ruimte. Je kan er ook tóch eentje sturen — dan komt 'ie als 'over-budget' bij Laurens binnen.",
+      "category": {
+        "bugLabel": "Bug",
+        "bugBody": "Er is iets stuk dat moet werken.",
+        "featureLabel": "Feature-verzoek",
+        "featureBody": "Ik wil iets nieuws of een aanpassing.",
+        "questionLabel": "Vraag",
+        "questionBody": "Ik begrijp iets niet, of zoek advies."
+      },
       "priority": { "low": "laag", "normal": "normaal", "high": "hoog" },
       "status": {
         "open": "open",
@@ -1116,7 +1127,8 @@
       "createdAt": "Aangemaakt {when}",
       "back": "Alle tickets",
       "reply": "Antwoorden",
-      "noReplies": "Nog geen antwoorden."
+      "noReplies": "Nog geen antwoorden.",
+      "staffBadge": "studio"
     },
     "invoices": {
       "title": "Facturen",
@@ -1458,14 +1470,28 @@
       "hoursNone": "Nog geen uren deze maand."
     },
     "tickets": {
-      "title": "Open tickets — alle klanten",
+      "title": "Tickets — alle klanten",
+      "subtitle": "Sleep tickets tussen kolommen om de status te wijzigen. Klant ziet de update meteen op zijn portaal.",
       "empty": "Geen open tickets.",
       "subject": "Onderwerp",
       "from": "Van",
       "org": "Organisatie",
       "priority": "Prioriteit",
       "status": "Status",
-      "save": "Wijzig status"
+      "save": "Wijzig status",
+      "kanban": {
+        "colInbox": "Inbox",
+        "colInProgress": "In behandeling",
+        "colWaiting": "Wacht op klant",
+        "colClosed": "Gesloten",
+        "emptyColumn": "—",
+        "ageDays": "{n, number}d",
+        "ageHours": "{n, number}u",
+        "noOrg": "geen org",
+        "filterAll": "alles",
+        "filterCategory": "Categorie",
+        "filterPriority": "Prio"
+      }
     },
     "forbidden": "Geen toegang. Alleen Webstability staff.",
     "activity": {

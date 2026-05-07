@@ -8,6 +8,7 @@ import { replyToTicket } from "@/app/actions/tickets";
 import NextLink from "next/link";
 import { ToastForm } from "@/components/portal/ToastForm";
 import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
+import { TicketRepliesLive } from "@/components/portal/TicketRepliesLive";
 
 export default async function TicketDetail({
   params,
@@ -63,23 +64,25 @@ export default async function TicketDetail({
         <p className="leading-relaxed whitespace-pre-wrap">{ticket.body}</p>
       </article>
 
-      <section className="space-y-4">
-        {ticket.replies.length === 0 ? (
-          <p className="text-sm text-(--color-muted)">{t("noReplies")}</p>
-        ) : (
-          ticket.replies.map((r) => (
-            <article
-              key={r.id}
-              className="rounded-lg border border-(--color-border) bg-(--color-bg-warm)/50 p-5"
-            >
-              <p className="font-mono text-xs text-(--color-muted)">
-                {r.user?.name ?? r.user?.email} · {dateFmt.format(r.createdAt)}
-              </p>
-              <p className="mt-2 leading-relaxed whitespace-pre-wrap">{r.body}</p>
-            </article>
-          ))
-        )}
-      </section>
+      <TicketRepliesLive
+        ticketId={ticket.id}
+        initialReplies={ticket.replies.map((r) => ({
+          id: r.id,
+          body: r.body,
+          createdAt: r.createdAt.toISOString(),
+          author: {
+            id: r.user.id,
+            name: r.user.name,
+            email: r.user.email,
+            isStaff: r.user.isStaff,
+          },
+        }))}
+        dateFmt={dateFmt}
+        strings={{
+          noReplies: t("noReplies"),
+          staffBadge: t("staffBadge"),
+        }}
+      />
 
       <ToastForm action={replyAction} resetOnSuccess className="space-y-3">
         <textarea

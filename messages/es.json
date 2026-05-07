@@ -1105,6 +1105,17 @@
       "bodyLabel": "Mensaje",
       "priorityLabel": "Prioridad",
       "submit": "Enviar",
+      "submitForce": "Enviar igualmente",
+      "budgetWarningTitle": "Tienes {open} tickets abiertos — el límite es {limit}.",
+      "budgetWarningBody": "Espera a que se cierre uno, o sube de tier para tener más espacio. También puedes enviar igualmente — entrará a Laurens marcado como 'sobre presupuesto'.",
+      "category": {
+        "bugLabel": "Bug",
+        "bugBody": "Algo está roto que debería funcionar.",
+        "featureLabel": "Petición de feature",
+        "featureBody": "Quiero algo nuevo o un ajuste.",
+        "questionLabel": "Pregunta",
+        "questionBody": "No entiendo algo, o busco un consejo."
+      },
       "priority": { "low": "baja", "normal": "normal", "high": "alta" },
       "status": {
         "open": "abierto",
@@ -1115,7 +1126,8 @@
       "createdAt": "Creado {when}",
       "back": "Todos los tickets",
       "reply": "Responder",
-      "noReplies": "Sin respuestas aún."
+      "noReplies": "Sin respuestas aún.",
+      "staffBadge": "studio"
     },
     "invoices": {
       "title": "Facturas",
@@ -1458,14 +1470,28 @@
       "hoursNone": "Aún no hay horas este mes."
     },
     "tickets": {
-      "title": "Tickets abiertos — todos los clientes",
+      "title": "Tickets — todos los clientes",
+      "subtitle": "Arrastra tickets entre columnas para cambiar el estado. El cliente lo ve al instante en su portal.",
       "empty": "Sin tickets abiertos.",
       "subject": "Asunto",
       "from": "De",
       "org": "Organización",
       "priority": "Prioridad",
       "status": "Estado",
-      "save": "Cambiar estado"
+      "save": "Cambiar estado",
+      "kanban": {
+        "colInbox": "Entrada",
+        "colInProgress": "En curso",
+        "colWaiting": "Esperando cliente",
+        "colClosed": "Cerrado",
+        "emptyColumn": "—",
+        "ageDays": "{n, number}d",
+        "ageHours": "{n, number}h",
+        "noOrg": "sin org",
+        "filterAll": "todo",
+        "filterCategory": "Categoría",
+        "filterPriority": "Prioridad"
+      }
     },
     "forbidden": "Sin acceso. Solo staff de Webstability.",
     "activity": {

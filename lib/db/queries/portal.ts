@@ -96,9 +96,9 @@ export async function getTicketWithReplies(orgId: string, ticketId: string) {
     with: {
       replies: {
         orderBy: (r, { asc }) => [asc(r.createdAt)],
-        with: { user: { columns: { name: true, email: true } } },
+        with: { user: { columns: { id: true, name: true, email: true, isStaff: true } } },
       },
-      user: { columns: { name: true, email: true } },
+      user: { columns: { id: true, name: true, email: true, isStaff: true } },
     },
   });
 }

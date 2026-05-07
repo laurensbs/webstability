@@ -320,3 +320,43 @@ export async function getOrgFullView(orgId: string) {
 
   return { org, latestSub: latestSub ?? null, recentDiscounts, recentAuditEvents };
 }
+
+/**
+ * Cross-org tickets voor de kanban-view. Bevat alle 4 statussen,
+ * met reply-count per ticket en org/user-relations. Limiet zit op 200
+ * meest-recente tickets — snel genoeg en de UI wordt niet onleesbaar.
+ */
+export async function listAllTicketsForKanban() {
+  const all = await db.query.tickets.findMany({
+    orderBy: [desc(tickets.createdAt)],
+    limit: 200,
+    with: {
+      organization: { columns: { id: true, name: true, slug: true } },
+      user: { columns: { name: true, email: true } },
+    },
+  });
+
+  // Reply-count per ticket — één SQL-query met group-by zou efficiënter
+  // zijn maar drizzle's relations laten dit niet trivial doen; voor 200
+  // tickets is dit goed genoeg.
+  const replyCountsRaw = await db.execute(
+    sql`select ticket_id, count(*) as n from ticket_replies group by ticket_id`,
+  );
+  const counts = new Map<string, number>();
+  for (const row of replyCountsRaw.rows as Array<{ ticket_id: string; n: string }>) {
+    counts.set(row.ticket_id, Number(row.n));
+  }
+
+  return all.map((t) => ({
+    id: t.id,
+    subject: t.subject,
+    status: t.status,
+    category: t.category,
+    priority: t.priority,
+    overBudget: t.overBudget,
+    createdAt: t.createdAt,
+    organization: t.organization ?? { id: "", name: "—", slug: "" },
+    user: t.user,
+    replyCount: counts.get(t.id) ?? 0,
+  }));
+}

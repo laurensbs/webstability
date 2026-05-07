@@ -42,6 +42,7 @@ export const ticketStatusEnum = pgEnum("ticket_status", [
   "waiting",
   "closed",
 ]);
+export const ticketCategoryEnum = pgEnum("ticket_category", ["bug", "feature", "question"]);
 export const invoiceStatusEnum = pgEnum("invoice_status", [
   "draft",
   "sent",
@@ -201,6 +202,13 @@ export const tickets = pgTable(
     body: text("body").notNull(),
     priority: ticketPriorityEnum("priority").notNull().default("normal"),
     status: ticketStatusEnum("status").notNull().default("open"),
+    /** Klant-input bij aanmaak: bug | feature | question. Auto-mapt
+     * naar priority bij de createTicket-action: bug=high, feature=normal,
+     * question=low. */
+    category: ticketCategoryEnum("category").notNull().default("question"),
+    /** True als de klant zijn tier-budget heeft overschreden bij aanmaak.
+     * Niet blocking — geeft staff context bij triage. */
+    overBudget: boolean("over_budget").notNull().default(false),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .default(sql`now()`),
