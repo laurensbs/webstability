@@ -25,9 +25,15 @@ export async function listAllOrgs() {
       plan: organizations.plan,
       isVip: organizations.isVip,
       createdAt: organizations.createdAt,
-      memberCount: sql<number>`(select count(*) from ${users} where ${users.organizationId} = ${organizations.id})`,
-      projectCount: sql<number>`(select count(*) from ${projects} where ${projects.organizationId} = ${organizations.id})`,
-      openTicketCount: sql<number>`(select count(*) from ${tickets} where ${tickets.organizationId} = ${organizations.id} and ${tickets.status} = 'open')`,
+      // Subqueries gebruiken expliciete table-aliassen (u/p/t) zodat
+      // Postgres niet de inner kolom-resolutie pakt voor "id". Zonder
+      // alias resolved Postgres "id" naar de subquery's eigen tabel
+      // (bv. users.id, dat is een text-PK), wat een uuid=text type-mismatch
+      // geeft. Met expliciete alias + organizations.id als outer ref
+      // krijgt de planner het juiste type.
+      memberCount: sql<number>`(select count(*) from ${users} u where u.organization_id = ${organizations.id})`,
+      projectCount: sql<number>`(select count(*) from ${projects} p where p.organization_id = ${organizations.id})`,
+      openTicketCount: sql<number>`(select count(*) from ${tickets} t where t.organization_id = ${organizations.id} and t.status = 'open')`,
     })
     .from(organizations)
     .orderBy(desc(organizations.createdAt));
