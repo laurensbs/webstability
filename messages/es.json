@@ -1280,7 +1280,40 @@
       "thisMonth": "Este mes",
       "hoursLede": "Cross-org · todos los clientes"
     },
-    "nav": { "overview": "Resumen", "orgs": "Organizaciones", "tickets": "Tickets" },
+    "nav": {
+      "overview": "Resumen",
+      "orgs": "Organizaciones",
+      "tickets": "Tickets",
+      "team": "Equipo"
+    },
+    "onboarding": {
+      "step": "Paso {n} de 3",
+      "step1Title": "Hola {firstName}, bienvenido a tu cockpit del estudio.",
+      "step1Body": "Desde aquí gestionas clientes, suscripciones, tickets y proyectos. Un solo lugar para todo lo que está en marcha — igual que se lo vendes a tus clientes.",
+      "step2Title": "{n} clientes te están esperando",
+      "step2Cta": "Ver clientes",
+      "step3Title": "{n} tickets en la cola",
+      "step3Cta": "Abrir cola de tickets",
+      "next": "Siguiente",
+      "dismiss": "Cerrar"
+    },
+    "team": {
+      "title": "Equipo e invitaciones",
+      "subtitle": "Invita a un compañero de estudio sin tocar la base de datos. La invitación caduca a los 7 días.",
+      "inviteHeading": "Invitar nuevo staff",
+      "inviteEmailLabel": "Correo electrónico",
+      "inviteEmailPlaceholder": "colega@webstability.eu",
+      "inviteSubmit": "Enviar invitación",
+      "inviteSent": "Invitación enviada",
+      "pendingHeading": "Invitaciones pendientes",
+      "pendingEmpty": "Sin invitaciones pendientes.",
+      "pendingExpires": "Caduca el {when}",
+      "pendingRevoke": "Anular",
+      "staffHeading": "Staff del estudio",
+      "staffEmpty": "Aún no hay más staff.",
+      "staffSince": "Miembro desde {when}",
+      "staffYou": "(tú)"
+    },
     "orgs": {
       "title": "Organizaciones",
       "empty": "Aún no hay clientes.",

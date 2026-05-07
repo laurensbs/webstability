@@ -9,6 +9,8 @@ import { LoginForm } from "@/components/auth/LoginForm";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { MarkupText } from "@/components/animate/MarkupText";
 import { LoginAmbientMount } from "@/components/r3f/LoginAmbientMount";
+import { AdminLoginTagline } from "@/components/admin/AdminLoginTagline";
+import { getStudioStats, getRevenueStats } from "@/lib/db/queries/admin";
 
 export default async function LoginPage({
   params,
@@ -38,6 +40,32 @@ export default async function LoginPage({
   // Customer login still has its noAccount/contactCta strings under auth.login.
   const tCustomer = await getTranslations("auth.login");
   const year = new Date().getFullYear();
+
+  // Op de admin-host fetchen we live studio-stats voor de rotating
+  // tagline boven de login-form. Gracefully fallback naar één statisch
+  // bericht als de DB faalt — login mag nooit blokkeren door telemetry.
+  let adminTaglineMessages: string[] = ["studio online"];
+  if (isAdminHost) {
+    try {
+      const [stats, revenue] = await Promise.all([getStudioStats(), getRevenueStats()]);
+      const eurFmt = new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency: "EUR",
+        maximumFractionDigits: 0,
+      });
+      const totalActiveOrgs =
+        revenue.distribution.care + revenue.distribution.studio + revenue.distribution.atelier;
+      adminTaglineMessages = [
+        `${totalActiveOrgs} ${totalActiveOrgs === 1 ? "klant" : "klanten"} actief`,
+        `${eurFmt.format(revenue.mrr)}/m MRR`,
+        Number(stats.openTickets) === 0
+          ? "geen open tickets"
+          : `${stats.openTickets} ${stats.openTickets === 1 ? "open ticket" : "open tickets"}`,
+      ];
+    } catch {
+      // SSR-fail tolerant: blijf op default.
+    }
+  }
 
   return (
     <main className="grid min-h-screen md:grid-cols-2">
@@ -106,9 +134,7 @@ export default async function LoginPage({
       >
         <header className="flex items-center justify-between">
           {isAdminHost ? (
-            <p className="font-mono text-[11px] tracking-widest text-(--color-bg)/55 uppercase">
-              admin.webstability.eu
-            </p>
+            <AdminLoginTagline messages={adminTaglineMessages} />
           ) : (
             <p className="text-sm text-(--color-muted)">
               {tCustomer("noAccount")}{" "}

@@ -70,6 +70,7 @@ export default async function AdminLayout({
               overview: t("nav.overview"),
               orgs: t("nav.orgs"),
               tickets: t("nav.tickets"),
+              team: t("nav.team"),
             }}
           />
         </div>

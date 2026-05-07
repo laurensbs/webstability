@@ -1280,7 +1280,40 @@
       "thisMonth": "Deze maand",
       "hoursLede": "Cross-org · alle klanten samen"
     },
-    "nav": { "overview": "Overzicht", "orgs": "Organisaties", "tickets": "Tickets" },
+    "nav": {
+      "overview": "Overzicht",
+      "orgs": "Organisaties",
+      "tickets": "Tickets",
+      "team": "Team"
+    },
+    "onboarding": {
+      "step": "Stap {n} van 3",
+      "step1Title": "Hi {firstName}, welkom in je studio-cockpit.",
+      "step1Body": "Vanaf hier beheer je klanten, abonnementen, tickets en projecten. Eén plek, alles wat draait — zoals jij het ook aan klanten verkoopt.",
+      "step2Title": "{n} klanten wachten op je",
+      "step2Cta": "Bekijk klanten",
+      "step3Title": "{n} tickets in de queue",
+      "step3Cta": "Open ticket-queue",
+      "next": "Volgende",
+      "dismiss": "Sluit"
+    },
+    "team": {
+      "title": "Team & invites",
+      "subtitle": "Nodig collega-staff uit zonder DB-toegang. Een invite is 7 dagen geldig.",
+      "inviteHeading": "Nieuwe staff uitnodigen",
+      "inviteEmailLabel": "E-mailadres",
+      "inviteEmailPlaceholder": "collega@webstability.eu",
+      "inviteSubmit": "Verstuur invite",
+      "inviteSent": "Invite verstuurd",
+      "pendingHeading": "Openstaande invites",
+      "pendingEmpty": "Geen openstaande invites.",
+      "pendingExpires": "Verloopt op {when}",
+      "pendingRevoke": "Trek in",
+      "staffHeading": "Studio-staff",
+      "staffEmpty": "Nog geen extra staff.",
+      "staffSince": "Lid sinds {when}",
+      "staffYou": "(jij)"
+    },
     "orgs": {
       "title": "Organisaties",
       "empty": "Nog geen klanten.",

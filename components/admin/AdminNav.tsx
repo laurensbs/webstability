@@ -1,15 +1,16 @@
 "use client";
 
-import { LayoutDashboard, Building2, Inbox } from "lucide-react";
+import { LayoutDashboard, Building2, Inbox, Users } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
-type Labels = { overview: string; orgs: string; tickets: string };
+type Labels = { overview: string; orgs: string; tickets: string; team: string };
 
 const items = [
   { href: "/admin", icon: LayoutDashboard, key: "overview", exact: true },
   { href: "/admin/orgs", icon: Building2, key: "orgs", exact: false },
   { href: "/admin/tickets", icon: Inbox, key: "tickets", exact: false },
+  { href: "/admin/team", icon: Users, key: "team", exact: false },
 ] as const;
 
 export function AdminNav({ labels }: { labels: Labels }) {

@@ -88,6 +88,45 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   events: {
     /**
+     * Fired on every successful magic-link click. Two responsibilities:
+     * 1. Bump users.lastLoginAt so the portal can compute "last seen X
+     *    minutes ago" en de admin first-time-detection (lastLoginAt is
+     *    null betekent dit is de allereerste login).
+     * 2. Promote tot staff als er een actieve invite voor dit email
+     *    bestaat — zo hoeft een nieuwe collega geen DB-toegang.
+     *
+     * Faalt graceful: SMTP/DB-hick mag de inlog zelf nooit blokkeren.
+     */
+    async signIn({ user }) {
+      if (!user?.email) return;
+      try {
+        // Update lastLoginAt — using raw drizzle hier ipv server-action
+        // omdat dit in auth-context draait waar revalidatePath onnodig is.
+        const { db } = await import("@/lib/db");
+        const { users: usersTable } = await import("@/lib/db/schema");
+        const { eq: dEq } = await import("drizzle-orm");
+        const existing = await db.query.users.findFirst({
+          where: dEq(usersTable.email, user.email.toLowerCase()),
+          columns: { id: true, isStaff: true },
+        });
+        if (existing) {
+          await db
+            .update(usersTable)
+            .set({ lastLoginAt: new Date() })
+            .where(dEq(usersTable.id, existing.id));
+        }
+
+        // Auto-promote als er een open invite is.
+        if (existing && !existing.isStaff) {
+          const { promoteUserIfInvited } = await import("@/app/actions/admin");
+          await promoteUserIfInvited(user.email);
+        }
+      } catch (err) {
+        console.error("[auth] signIn event failed:", err);
+      }
+    },
+
+    /**
      * Fired exactly once when the adapter inserts a new user row — the
      * first time someone successfully clicks a magic-link for an email
      * that wasn't previously known. Send a branded welcome email so the

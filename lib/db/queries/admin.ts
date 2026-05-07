@@ -1,6 +1,14 @@
-import { eq, and, desc, count, sql, gte, lt } from "drizzle-orm";
+import { eq, and, desc, count, sql, gte, lt, isNull, gt } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { organizations, projects, tickets, invoices, users, hoursLogged } from "@/lib/db/schema";
+import {
+  organizations,
+  projects,
+  tickets,
+  invoices,
+  users,
+  hoursLogged,
+  staffInvites,
+} from "@/lib/db/schema";
 
 export async function listAllOrgs() {
   // Aggregate counts per org so the index page is one query.
@@ -220,4 +228,36 @@ export async function getCrossOrgHoursThisMonth() {
     );
 
   return Number(totalRow?.minutes ?? 0);
+}
+
+/**
+ * Lijst openstaande staff-invites (niet ge-accept, niet revoked, niet
+ * expired). Gebruikt door /admin/team.
+ */
+export async function listPendingStaffInvites() {
+  return db.query.staffInvites.findMany({
+    where: and(
+      isNull(staffInvites.acceptedAt),
+      isNull(staffInvites.revokedAt),
+      gt(staffInvites.expiresAt, new Date()),
+    ),
+    orderBy: [desc(staffInvites.createdAt)],
+  });
+}
+
+/**
+ * Alle users met isStaff=true. Voor de "Studio-staff" sectie op /admin/team.
+ */
+export async function listStudioStaff() {
+  return db
+    .select({
+      id: users.id,
+      name: users.name,
+      email: users.email,
+      createdAt: users.createdAt,
+      lastLoginAt: users.lastLoginAt,
+    })
+    .from(users)
+    .where(eq(users.isStaff, true))
+    .orderBy(desc(users.createdAt));
 }

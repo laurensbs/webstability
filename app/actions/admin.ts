@@ -2,10 +2,20 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { eq } from "drizzle-orm";
+import { eq, and, isNull, gt } from "drizzle-orm";
+import { randomUUID } from "node:crypto";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { users, projects, tickets, hoursLogged, organizations, buildPhases } from "@/lib/db/schema";
+import { sendStaffInvite } from "@/lib/email/staff-invite";
+import {
+  users,
+  projects,
+  tickets,
+  hoursLogged,
+  organizations,
+  buildPhases,
+  staffInvites,
+} from "@/lib/db/schema";
 import type { ActionResult } from "@/lib/action-result";
 
 async function requireStaff() {
@@ -351,4 +361,133 @@ export async function createBuildPhase(
   revalidatePath(`/admin/orgs/${organizationId}`);
   revalidatePath(`/portal/dashboard`);
   return { ok: true, messageKey: "saved" };
+}
+
+// --- staff invites -------------------------------------------------------
+//
+// Token-based invite-flow. Een staff-member kan via /admin/team een email
+// uitnodigen; de invitee krijgt een mail met magic-link naar /login. Bij
+// eerste signIn match'en we email tegen actieve invites en flippen
+// users.isStaff = true. Geen DB-toegang meer nodig om collega-staff toe te
+// voegen.
+
+const INVITE_TTL_DAYS = 7;
+
+/**
+ * Maak een nieuwe staff-invite aan. Email wordt genormaliseerd naar
+ * lowercase. Eventuele actieve invite voor dezelfde email wordt
+ * vervangen — geen dubbele tokens. Stuurt mail; faalt graceful als
+ * SMTP klapt (invite blijft staan, kan worden re-sent).
+ */
+export async function inviteStaff(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch {
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  const emailRaw = String(formData.get("email") ?? "")
+    .trim()
+    .toLowerCase();
+  if (!emailRaw || !emailRaw.includes("@") || !emailRaw.includes(".")) {
+    return { ok: false, messageKey: "missing_fields" };
+  }
+
+  // Revoke any existing live invite for this email — clean replace.
+  await db
+    .update(staffInvites)
+    .set({ revokedAt: new Date() })
+    .where(
+      and(
+        eq(staffInvites.email, emailRaw),
+        isNull(staffInvites.acceptedAt),
+        isNull(staffInvites.revokedAt),
+      ),
+    );
+
+  const token = randomUUID();
+  const expiresAt = new Date(Date.now() + INVITE_TTL_DAYS * 24 * 60 * 60 * 1000);
+
+  await db.insert(staffInvites).values({
+    email: emailRaw,
+    token,
+    invitedBy: userId,
+    expiresAt,
+  });
+
+  try {
+    const inviter = await db.query.users.findFirst({
+      where: eq(users.id, userId),
+      columns: { name: true, email: true },
+    });
+    await sendStaffInvite({
+      to: emailRaw,
+      inviterName: inviter?.name ?? null,
+      inviterEmail: inviter?.email ?? null,
+    });
+  } catch (err) {
+    // Mail kan stuk zijn — invite blijft staan in DB, kan re-sent.
+    console.error("[admin] invite email failed:", err);
+  }
+
+  revalidatePath(`/admin/team`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/**
+ * Trek een nog niet geaccepteerde invite in. Token wordt ongeldig.
+ */
+export async function revokeStaffInvite(
+  inviteId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  // formData niet gebruikt — revoke heeft geen body. Touch om
+  // ts/eslint vreedzaam te houden.
+  void formData;
+  try {
+    await requireStaff();
+  } catch {
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  await db
+    .update(staffInvites)
+    .set({ revokedAt: new Date() })
+    .where(and(eq(staffInvites.id, inviteId), isNull(staffInvites.acceptedAt)));
+
+  revalidatePath(`/admin/team`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/**
+ * Markeer een user als isStaff op basis van email-match met een actieve
+ * invite. Aangeroepen vanuit lib/auth.ts events.signIn — daar weten we
+ * net wie er inlogt. Returnt of de promote heeft plaatsgevonden zodat
+ * de auth-flow eventueel kan loggen.
+ */
+export async function promoteUserIfInvited(email: string): Promise<boolean> {
+  const trimmed = email.trim().toLowerCase();
+  if (!trimmed) return false;
+
+  const invite = await db.query.staffInvites.findFirst({
+    where: and(
+      eq(staffInvites.email, trimmed),
+      isNull(staffInvites.acceptedAt),
+      isNull(staffInvites.revokedAt),
+      gt(staffInvites.expiresAt, new Date()),
+    ),
+  });
+  if (!invite) return false;
+
+  await db.update(users).set({ isStaff: true }).where(eq(users.email, trimmed));
+  await db
+    .update(staffInvites)
+    .set({ acceptedAt: new Date() })
+    .where(eq(staffInvites.id, invite.id));
+  return true;
 }

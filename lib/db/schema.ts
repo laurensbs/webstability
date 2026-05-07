@@ -407,6 +407,32 @@ export const hoursLogged = pgTable(
   (t) => [index("hours_org_worked_idx").on(t.organizationId, t.workedOn)],
 );
 
+// --- staff_invites -------------------------------------------------------
+//
+// Token-based invite voor het toevoegen van extra studio-staff zonder
+// directe DB-toegang. Een staff-member maakt een invite (creates row +
+// stuurt mail), de invitee opent de magic-link, NextAuth maakt user-row,
+// en in de auth-callback (lib/auth.ts events.signIn) zoeken we matchende
+// invite op email — als die bestaat en niet expired, set isStaff=true en
+// markeer invite als accepted. Na 7 dagen vervalt de invite zonder
+// gebruik.
+export const staffInvites = pgTable(
+  "staff_invites",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    email: text("email").notNull(),
+    token: text("token").notNull().unique(),
+    invitedBy: text("invited_by").references(() => users.id, { onDelete: "set null" }),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    acceptedAt: timestamp("accepted_at", { withTimezone: true }),
+    revokedAt: timestamp("revoked_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [index("staff_invites_email_idx").on(t.email)],
+);
+
 // --- audit_log -----------------------------------------------------------
 
 export const auditLog = pgTable(
