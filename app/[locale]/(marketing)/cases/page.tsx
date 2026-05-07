@@ -27,6 +27,9 @@ type ProductLineItem = {
   name: string;
   url: string;
   logoUrl?: string;
+  /** Optionele Vimeo share-URL — als aanwezig vervangt de video de
+   * statische microlink-screenshot in CaseScreenshot. */
+  videoUrl?: string;
   tagline: string;
   what: string;
   for: string;
@@ -91,7 +94,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               >
                 <article id={item.anchor} className="flex h-full scroll-mt-24 flex-col">
                   <div className="relative">
-                    <CaseScreenshot url={item.url} alt={`${item.name} screenshot`} />
+                    <CaseScreenshot
+                      url={item.url}
+                      alt={`${item.name} screenshot`}
+                      videoUrl={item.videoUrl}
+                    />
                     {item.logoUrl ? (
                       <div className="absolute top-3 right-3 flex h-11 w-11 items-center justify-center rounded-[10px] bg-white/95 p-1.5 shadow-[0_4px_12px_rgba(31,27,22,0.12)] backdrop-blur">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
