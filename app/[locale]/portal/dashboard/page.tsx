@@ -34,6 +34,7 @@ import { AuthVerifiedBeacon } from "@/components/auth/AuthVerifiedBeacon";
 import { LivegangCelebration } from "@/components/portal/LivegangCelebration";
 import { IncidentBanner } from "@/components/portal/IncidentBanner";
 import { DemoTourOverlay } from "@/components/demo/DemoTourOverlay";
+import { DemoAnalyticsBeacon } from "@/components/demo/DemoAnalyticsBeacon";
 import { daysUntil } from "@/lib/format-age";
 import { HoursWidget } from "@/components/portal/HoursWidget";
 import { SecurityCard } from "@/components/portal/SecurityCard";
@@ -187,7 +188,8 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
     <div className="space-y-10">
       <AuthVerifiedBeacon />
 
-      {/* Demo-tour — alleen voor demo-users; eerste paint */}
+      {/* Demo-analytics + tour — alleen voor demo-users */}
+      {user.isDemo ? <DemoAnalyticsBeacon kind="entered" role="portal" /> : null}
       {user.isDemo ? (
         <DemoTourOverlay
           role="portal"

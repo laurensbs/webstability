@@ -1335,6 +1335,13 @@
       "tickets": "Tickets",
       "team": "Team"
     },
+    "demoFunnel": {
+      "title": "Demo-bezoeken",
+      "window": "{days}d",
+      "entered": "Bezoeken",
+      "ctaClicks": "CTA-klikken",
+      "conversion": "Conversie"
+    },
     "statusStrip": {
       "title": "Klanten live",
       "legendUp": "draait",

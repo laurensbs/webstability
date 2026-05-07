@@ -13,6 +13,7 @@ import {
   getRevenueStats,
   getCrossOrgHoursThisMonth,
   getStudioStatusStrip,
+  getDemoFunnelStats,
 } from "@/lib/db/queries/admin";
 import { StatCard } from "@/components/portal/StatCard";
 import { AdminActivityFeed } from "@/components/admin/AdminActivityFeed";
@@ -20,6 +21,7 @@ import { FlashCounter } from "@/components/animate/FlashCounter";
 import { AdminWelcomeOnboarding } from "@/components/admin/AdminWelcomeOnboarding";
 import { StudioStatusStrip } from "@/components/admin/StudioStatusStrip";
 import { DemoTourOverlay } from "@/components/demo/DemoTourOverlay";
+import { DemoAnalyticsBeacon } from "@/components/demo/DemoAnalyticsBeacon";
 
 export default async function AdminOverview({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -30,13 +32,15 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
   const tOnboarding = await getTranslations("admin.onboarding");
   const tStrip = await getTranslations("admin.statusStrip");
   const tTour = await getTranslations("demo.tour.admin");
-  const [stats, events, revenue, crossOrgMinutes, statusStrip] = await Promise.all([
+  const [stats, events, revenue, crossOrgMinutes, statusStrip, demoFunnel] = await Promise.all([
     getStudioStats(),
     getRecentAdminActivity(8),
     getRevenueStats(),
     getCrossOrgHoursThisMonth(),
     getStudioStatusStrip(),
+    getDemoFunnelStats(7),
   ]);
+  const tDemo = await getTranslations("admin.demoFunnel");
 
   // Eerste-keer detectie: lastLoginAt wordt door het signIn-event in
   // lib/auth.ts pas ná de session-cookie gezet — bij allereerste paint
@@ -86,6 +90,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
 
   return (
     <div className="space-y-10">
+      {isDemoStaff ? <DemoAnalyticsBeacon kind="entered" role="admin" /> : null}
       {isDemoStaff ? (
         <DemoTourOverlay
           role="admin"
@@ -153,6 +158,44 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
           accent={Number(stats.openInvoices) > 0}
         />
       </section>
+
+      {/* Demo-funnel — bezoeken + cta-clicks + conversion-% over 7d */}
+      {demoFunnel.entered > 0 ? (
+        <article className="rounded-2xl border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-5">
+          <header className="flex items-center justify-between border-b border-(--color-border) pb-3">
+            <h2 className="text-[14px] font-medium">{tDemo("title")}</h2>
+            <span className="font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+              {tDemo("window", { days: demoFunnel.days })}
+            </span>
+          </header>
+          <div className="grid grid-cols-3 gap-6 pt-4">
+            <div>
+              <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                {tDemo("entered")}
+              </p>
+              <p className="mt-1 font-serif text-[28px] leading-none">
+                <FlashCounter to={demoFunnel.entered} />
+              </p>
+            </div>
+            <div>
+              <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                {tDemo("ctaClicks")}
+              </p>
+              <p className="mt-1 font-serif text-[28px] leading-none text-(--color-wine)">
+                <FlashCounter to={demoFunnel.ctaClicks} />
+              </p>
+            </div>
+            <div>
+              <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                {tDemo("conversion")}
+              </p>
+              <p className="mt-1 font-serif text-[28px] leading-none">
+                <FlashCounter to={demoFunnel.conversion} suffix="%" />
+              </p>
+            </div>
+          </div>
+        </article>
+      ) : null}
 
       {/* Studio status-strip — wijn-rode dot per org-met-down, accent
           per degraded, success per up. Bij hover: org-naam. */}

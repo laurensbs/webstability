@@ -1335,6 +1335,13 @@
       "tickets": "Tickets",
       "team": "Equipo"
     },
+    "demoFunnel": {
+      "title": "Visitas a la demo",
+      "window": "{days}d",
+      "entered": "Visitas",
+      "ctaClicks": "Clics CTA",
+      "conversion": "Conversión"
+    },
     "statusStrip": {
       "title": "Clientes en vivo",
       "legendUp": "ok",

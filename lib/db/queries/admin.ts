@@ -11,6 +11,7 @@ import {
   subscriptions,
   discounts,
   auditLog,
+  demoEvents,
 } from "@/lib/db/schema";
 
 export async function listAllOrgs() {
@@ -408,4 +409,30 @@ export async function getStudioStatusStrip() {
     ...o,
     status: orgStatus.get(o.id) ?? ("unknown" as Status),
   }));
+}
+
+/**
+ * Funnel-stats voor de demo-bezoeken in laatste N dagen. Per-kind
+ * count + unique-visit-count (op basis van ipHash). Conversion-rate
+ * = cta_clicked / entered.
+ */
+export async function getDemoFunnelStats(days = 7) {
+  const cutoff = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  const rows = await db
+    .select({
+      kind: demoEvents.kind,
+      n: count(),
+    })
+    .from(demoEvents)
+    .where(gte(demoEvents.createdAt, cutoff))
+    .groupBy(demoEvents.kind);
+
+  const counts: Record<string, number> = {};
+  for (const r of rows) counts[r.kind] = Number(r.n);
+
+  const entered = counts.entered ?? 0;
+  const ctaClicks = counts.cta_clicked ?? 0;
+  const conversion = entered > 0 ? Math.round((ctaClicks / entered) * 100) : 0;
+
+  return { entered, ctaClicks, conversion, days };
 }

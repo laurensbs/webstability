@@ -462,6 +462,42 @@ export const discounts = pgTable(
   (t) => [index("discounts_org_idx").on(t.organizationId, t.createdAt)],
 );
 
+// --- demo_events ---------------------------------------------------------
+//
+// Lichtgewicht funnel-tracking voor de live-demo. We bewaren géén
+// volledige IPs (privacy) — alleen een SHA-256 hash voor uniqueness
+// detectie. De `kind` enum dekt de hele funnel: entered (welke ingang),
+// tour_completed/dismissed, cta_clicked (in demo-banner = gold),
+// session_ended (cookie-expire of dismiss). Source vertelt welke
+// marketing-ingang gebruikt is.
+export const demoEventKindEnum = pgEnum("demo_event_kind", [
+  "entered",
+  "tour_completed",
+  "tour_dismissed",
+  "cta_clicked",
+  "session_ended",
+]);
+
+export const demoEvents = pgTable(
+  "demo_events",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    kind: demoEventKindEnum("kind").notNull(),
+    /** Bv. 'hero', 'cases', 'pricing', 'banner_cta', 'tour_step_3'. */
+    source: text("source"),
+    /** Welke role: portal | admin (alleen relevant voor entered/tour). */
+    role: text("role"),
+    userAgent: text("user_agent"),
+    /** SHA-256 hash van het IP-adres + dag — voor coarse-grained
+     * uniqueness binnen 24u zonder volle IP op te slaan. */
+    ipHash: text("ip_hash"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [index("demo_events_kind_time_idx").on(t.kind, t.createdAt)],
+);
+
 // --- staff_invites -------------------------------------------------------
 //
 // Token-based invite voor het toevoegen van extra studio-staff zonder
