@@ -109,7 +109,7 @@ export default async function OrgDetail({
           className="grid gap-4 rounded-lg border border-(--color-border) bg-(--color-surface) p-6 sm:grid-cols-2"
         >
           <label className="space-y-1">
-            <span className="block text-xs font-medium">Naam</span>
+            <span className="block text-xs font-medium">{t("nameLabel")}</span>
             <input
               type="text"
               name="name"
@@ -119,32 +119,32 @@ export default async function OrgDetail({
             />
           </label>
           <label className="space-y-1">
-            <span className="block text-xs font-medium">Land</span>
+            <span className="block text-xs font-medium">{t("countryLabel")}</span>
             <select
               name="country"
               defaultValue={org.country}
               required
               className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
             >
-              <option value="NL">Nederland</option>
-              <option value="ES">España</option>
+              <option value="NL">{t("countryNL")}</option>
+              <option value="ES">{t("countryES")}</option>
             </select>
           </label>
           <label className="space-y-1">
-            <span className="block text-xs font-medium">Tier</span>
+            <span className="block text-xs font-medium">{t("tierLabel")}</span>
             <select
               name="plan"
               defaultValue={org.plan ?? ""}
               className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
             >
-              <option value="">— geen tier —</option>
+              <option value="">{t("noTier")}</option>
               <option value="care">Care · €95/m</option>
               <option value="studio">Studio · €179/m</option>
               <option value="atelier">Atelier · €399/m</option>
             </select>
           </label>
           <label className="space-y-1">
-            <span className="block text-xs font-medium">BTW / NIF</span>
+            <span className="block text-xs font-medium">{t("vatLabel")}</span>
             <input
               type="text"
               name="vatNumber"
@@ -276,7 +276,7 @@ export default async function OrgDetail({
                     />
                   </label>
                   <label className="space-y-1">
-                    <span className="block text-xs font-medium">Status</span>
+                    <span className="block text-xs font-medium">{t("statusLabel")}</span>
                     <select
                       name="status"
                       defaultValue={p.status}
@@ -441,7 +441,7 @@ export default async function OrgDetail({
                   defaultValue=""
                   className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
                 >
-                  <option value="">— geen —</option>
+                  <option value="">—</option>
                   {org.projects.map((p) => (
                     <option key={p.id} value={p.id}>
                       {p.name}
