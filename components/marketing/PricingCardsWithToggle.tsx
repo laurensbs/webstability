@@ -6,6 +6,8 @@ import { Check } from "lucide-react";
 import { motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
+import { TierPreview } from "@/components/marketing/TierPreview";
+import { MeshBackground } from "@/components/marketing/MeshBackground";
 
 type Cycle = "monthly" | "annual";
 
@@ -113,10 +115,40 @@ export function PricingCardsWithToggle({
               key={item.id}
               className={`group relative flex h-full flex-col overflow-hidden rounded-[28px] p-7 transition-all duration-300 sm:p-10 ${sizeClass} ${
                 featured
-                  ? "scale-[1.02] border border-(--color-wine) bg-(--color-text) text-(--color-bg) hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.3)]"
-                  : "border border-(--color-border) bg-(--color-surface) hover:-translate-y-1.5 hover:border-(--color-accent)/40 hover:shadow-[0_24px_48px_-12px_rgba(201,97,79,0.18),0_8px_16px_-4px_rgba(31,27,22,0.06)]"
+                  ? "scale-[1.02] border border-(--color-wine) bg-(--color-text) text-(--color-bg) hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_32px_64px_-16px_rgba(31,27,22,0.4),0_8px_24px_-6px_rgba(107,30,44,0.3)]"
+                  : "border border-(--color-border) bg-(--color-surface) shadow-[0_1px_2px_rgba(31,27,22,0.04),0_4px_12px_-4px_rgba(31,27,22,0.06),0_24px_48px_-16px_rgba(31,27,22,0.04)] hover:-translate-y-1.5 hover:border-(--color-accent)/40 hover:shadow-[0_2px_4px_rgba(31,27,22,0.06),0_8px_24px_-6px_rgba(201,97,79,0.18),0_32px_64px_-16px_rgba(31,27,22,0.12)]"
               }`}
             >
+              {/* Featured-card krijgt animated mesh-bg achter alles */}
+              {featured ? <MeshBackground className="opacity-60" /> : null}
+              {/* Particle-glints in 4 hoeken — alleen featured */}
+              {featured ? (
+                <>
+                  {[
+                    { top: "8%", left: "12%", delay: 0 },
+                    { top: "18%", right: "16%", delay: 1.2 },
+                    { bottom: "20%", left: "18%", delay: 2.4 },
+                    { bottom: "12%", right: "22%", delay: 0.8 },
+                  ].map((pos, i) => (
+                    <motion.span
+                      key={i}
+                      aria-hidden
+                      className="pointer-events-none absolute h-1 w-1 rounded-full bg-(--color-bg)"
+                      style={pos}
+                      animate={{
+                        opacity: [0, 0.7, 0],
+                        scale: [0.5, 1.2, 0.5],
+                      }}
+                      transition={{
+                        duration: 3,
+                        delay: pos.delay,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  ))}
+                </>
+              ) : null}
               {item.orderIndicator ? (
                 <p
                   className={`mb-3 font-mono text-[11px] tracking-widest uppercase md:hidden ${
@@ -151,7 +183,7 @@ export function PricingCardsWithToggle({
                   {strings.featuredLabel}
                 </span>
               ) : null}
-              <h3 className={`mb-1.5 text-[24px] ${featured ? "text-(--color-bg)" : ""}`}>
+              <h3 className={`relative mb-1.5 text-[24px] ${featured ? "text-(--color-bg)" : ""}`}>
                 {item.name}
               </h3>
               {item.humanLabel ? (
@@ -196,7 +228,7 @@ export function PricingCardsWithToggle({
               >
                 {period}
               </motion.span>
-              <ul className="mb-8 flex-grow space-y-2">
+              <ul className="mb-6 flex-grow space-y-2">
                 {item.features.map((f) => (
                   <li
                     key={f}
@@ -214,6 +246,12 @@ export function PricingCardsWithToggle({
                   </li>
                 ))}
               </ul>
+
+              {/* Tier-preview — concrete mini-widget die laat zien wat
+                  je krijgt voor je geld. Decorative, aria-hidden. */}
+              <div className="relative mb-6">
+                <TierPreview id={item.id} featured={featured} />
+              </div>
               {authMode ? (
                 authMode.isOwner ? (
                   authMode.currentPlan === item.id ? (
