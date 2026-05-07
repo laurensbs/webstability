@@ -1549,6 +1549,32 @@
       "label": "Demo en vivo — los cambios no se guardan",
       "cta": "Reserva una llamada"
     },
+    "tour": {
+      "portal": {
+        "step": "Paso {n} de 3",
+        "step1Title": "Bienvenido a tu portal",
+        "step1Body": "Aquí ves dashboard, proyectos en curso, tickets y facturas. Arriba hay un banner de un lanzamiento de hace 3 días — se cierra haciendo clic.",
+        "step2Title": "Abre un ticket",
+        "step2Body": "Haz clic en 'El formulario de reserva no funciona en iPhone' en Tickets. Verás cómo responde Studio y cómo va una conversación.",
+        "step3Title": "Haz clic libremente",
+        "step3Body": "Nada se guarda — es tu espacio seguro para explorar. ¿Listo para tener tu propio portal? Reserva una llamada en el banner de arriba.",
+        "next": "Siguiente",
+        "done": "Empezar",
+        "dismiss": "Cerrar"
+      },
+      "admin": {
+        "step": "Paso {n} de 3",
+        "step1Title": "Bienvenido al cockpit",
+        "step1Body": "Esto es lo que uso cada día. MRR en vivo, estado de los sites de clientes, actividad reciente. Un cliente activo en esta demo.",
+        "step2Title": "Arrastra, clica, aplica descuentos",
+        "step2Body": "Abre Tickets y arrastra entre columnas. Abre Demo Caravanverhuur y dales 20% de descuento por 3 meses — todo funciona, nada se guarda.",
+        "step3Title": "¿Listo para tu propio estudio?",
+        "step3Body": "Reserva una llamada en el banner de arriba. Primeros 30 minutos gratis, sin presentación comercial.",
+        "next": "Siguiente",
+        "done": "Empezar tour",
+        "dismiss": "Cerrar"
+      }
+    },
     "limited": {
       "title": "Demo no disponible ahora mismo",
       "body": "Demasiadas visitas a la demo a la vez, o aún no hemos preparado la demo en este entorno. Vuelve a intentarlo en una hora, o reserva una llamada para una visita guiada.",

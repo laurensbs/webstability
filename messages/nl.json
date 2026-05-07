@@ -1549,6 +1549,32 @@
       "label": "Live demo — wijzigingen worden niet opgeslagen",
       "cta": "Plan een gesprek"
     },
+    "tour": {
+      "portal": {
+        "step": "Stap {n} van 3",
+        "step1Title": "Welkom in je portaal",
+        "step1Body": "Hier zie je dashboard, lopende projecten, tickets en facturen. Boven staat een banner van een livegang van 3 dagen geleden — klikbaar weg.",
+        "step2Title": "Open een ticket",
+        "step2Body": "Klik op 'Boekingsformulier doet niks op iPhone' bij Tickets. Je ziet hoe Studio reageert en hoe een gesprek loopt.",
+        "step3Title": "Klik vrij rond",
+        "step3Body": "Niets wordt opgeslagen — dit is jouw veilige speeltuin. Klaar om je eigen portaal te krijgen? Plan een gesprek via de banner bovenaan.",
+        "next": "Volgende",
+        "done": "Aan de slag",
+        "dismiss": "Sluit"
+      },
+      "admin": {
+        "step": "Stap {n} van 3",
+        "step1Title": "Welkom in de cockpit",
+        "step1Body": "Dit is wat ik elke dag gebruik. Live MRR, status van alle klant-sites, recente activity. Eén actieve klant in deze demo.",
+        "step2Title": "Sleep, klik, geef korting",
+        "step2Body": "Open Tickets en sleep een ticket tussen kolommen. Open Demo Caravanverhuur en geef ze 20% korting voor 3 maanden — alles werkt, niets wordt opgeslagen.",
+        "step3Title": "Klaar voor je eigen studio?",
+        "step3Body": "Plan een gesprek via de banner bovenaan. Eerste 30 minuten gratis, geen pitch-deck.",
+        "next": "Volgende",
+        "done": "Begin de tour",
+        "dismiss": "Sluit"
+      }
+    },
     "limited": {
       "title": "Demo even niet beschikbaar",
       "body": "Te veel demo-bezoekers tegelijk, of de demo-data is nog niet ingericht in deze omgeving. Probeer het over een uur opnieuw, of plan direct een gesprek voor een persoonlijke rondleiding.",

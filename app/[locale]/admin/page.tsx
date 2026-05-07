@@ -19,6 +19,7 @@ import { AdminActivityFeed } from "@/components/admin/AdminActivityFeed";
 import { FlashCounter } from "@/components/animate/FlashCounter";
 import { AdminWelcomeOnboarding } from "@/components/admin/AdminWelcomeOnboarding";
 import { StudioStatusStrip } from "@/components/admin/StudioStatusStrip";
+import { DemoTourOverlay } from "@/components/demo/DemoTourOverlay";
 
 export default async function AdminOverview({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -28,6 +29,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
   const t = await getTranslations("admin");
   const tOnboarding = await getTranslations("admin.onboarding");
   const tStrip = await getTranslations("admin.statusStrip");
+  const tTour = await getTranslations("demo.tour.admin");
   const [stats, events, revenue, crossOrgMinutes, statusStrip] = await Promise.all([
     getStudioStats(),
     getRecentAdminActivity(8),
@@ -44,13 +46,21 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
   // timestamp-vergelijking, geen Date.now() in render.
   const session = await auth();
   let isFirstTimeStaff = false;
+  let isDemoStaff = false;
   let firstName = "";
   if (session?.user?.id) {
     const me = await db.query.users.findFirst({
       where: eq(users.id, session.user.id),
-      columns: { name: true, email: true, lastLoginAt: true, createdAt: true },
+      columns: {
+        name: true,
+        email: true,
+        lastLoginAt: true,
+        createdAt: true,
+        isDemo: true,
+      },
     });
     if (me) {
+      isDemoStaff = me.isDemo;
       firstName =
         (me.name ?? "").split(" ")[0]?.trim() ||
         (me.email?.split("@")[0]?.trim() ?? "") ||
@@ -76,7 +86,24 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
 
   return (
     <div className="space-y-10">
-      {isFirstTimeStaff ? (
+      {isDemoStaff ? (
+        <DemoTourOverlay
+          role="admin"
+          strings={{
+            step: tTour("step"),
+            step1Title: tTour("step1Title"),
+            step1Body: tTour("step1Body"),
+            step2Title: tTour("step2Title"),
+            step2Body: tTour("step2Body"),
+            step3Title: tTour("step3Title"),
+            step3Body: tTour("step3Body"),
+            next: tTour("next"),
+            done: tTour("done"),
+            dismiss: tTour("dismiss"),
+          }}
+        />
+      ) : null}
+      {isFirstTimeStaff && !isDemoStaff ? (
         <AdminWelcomeOnboarding
           firstName={firstName}
           orgsCount={Number(stats.orgs)}

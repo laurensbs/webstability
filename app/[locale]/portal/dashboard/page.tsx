@@ -33,6 +33,7 @@ import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/Dashboa
 import { AuthVerifiedBeacon } from "@/components/auth/AuthVerifiedBeacon";
 import { LivegangCelebration } from "@/components/portal/LivegangCelebration";
 import { IncidentBanner } from "@/components/portal/IncidentBanner";
+import { DemoTourOverlay } from "@/components/demo/DemoTourOverlay";
 import { daysUntil } from "@/lib/format-age";
 import { HoursWidget } from "@/components/portal/HoursWidget";
 import { SecurityCard } from "@/components/portal/SecurityCard";
@@ -109,6 +110,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
     ]);
   const tLivegang = await getTranslations("portal.livegang");
   const tIncident = await getTranslations("portal.incident");
+  const tTour = await getTranslations("demo.tour.portal");
   const tRot = await getTranslations("portal.subTagline");
   const dateFmtLivegang = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
   const dateFmtIncident = new Intl.DateTimeFormat(locale, {
@@ -184,6 +186,25 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   return (
     <div className="space-y-10">
       <AuthVerifiedBeacon />
+
+      {/* Demo-tour — alleen voor demo-users; eerste paint */}
+      {user.isDemo ? (
+        <DemoTourOverlay
+          role="portal"
+          strings={{
+            step: tTour("step"),
+            step1Title: tTour("step1Title"),
+            step1Body: tTour("step1Body"),
+            step2Title: tTour("step2Title"),
+            step2Body: tTour("step2Body"),
+            step3Title: tTour("step3Title"),
+            step3Body: tTour("step3Body"),
+            next: tTour("next"),
+            done: tTour("done"),
+            dismiss: tTour("dismiss"),
+          }}
+        />
+      ) : null}
 
       {/* Incident-banners — wijn-rood, één per actief incident. Geen
           dismiss; verdwijnen vanzelf zodra de monitoring-cron resolved. */}
