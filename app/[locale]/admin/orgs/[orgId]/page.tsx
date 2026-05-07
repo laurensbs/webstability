@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import { getOrgFullView, getOrgHoursThisMonth } from "@/lib/db/queries/admin";
 import { getActiveBuildPhase } from "@/lib/db/queries/portal";
 import { getActiveStripeSubscription } from "@/lib/stripe";
+import { dateInDays } from "@/lib/format-age";
 import {
   updateProject,
   logHours,
@@ -50,24 +51,41 @@ export default async function OrgDetail({
     budgetMinutes > 0 ? Math.min(100, Math.round((usedMinutes / budgetMinutes) * 100)) : 0;
 
   // Live Stripe-state — best-effort. Falen mag niet de page breken.
-  const stripeSub = org.stripeCustomerId
-    ? await getActiveStripeSubscription(org.stripeCustomerId)
-    : null;
+  // Voor demo-orgs slaan we Stripe over en bouwen we een gefingeerde
+  // subData zodat de tab niet "geen abonnement" toont. Demo-acties
+  // zijn al guarded in P1 (DemoReadonlyError) — knoppen blijven
+  // klikbaar en tonen toast.
+  const stripeSub =
+    org.stripeCustomerId && !org.isDemo
+      ? await getActiveStripeSubscription(org.stripeCustomerId)
+      : null;
   // Stripe verplaatste `current_period_end` van de subscription naar
   // het eerste item; we falle terug op de DB-row als beide leeg zijn.
   const stripePeriodEnd = stripeSub?.items.data[0]?.current_period_end ?? null;
-  const subData = latestSub
+  const subData = org.isDemo
     ? {
-        plan: latestSub.plan,
-        status: stripeSub?.status ?? latestSub.status,
-        currentPeriodEnd: stripePeriodEnd
-          ? new Date(stripePeriodEnd * 1000)
-          : latestSub.currentPeriodEnd,
-        cancelAt: stripeSub?.cancel_at ? new Date(stripeSub.cancel_at * 1000) : latestSub.cancelAt,
-        stripeSubscriptionId: latestSub.stripeSubscriptionId,
-        paused: Boolean(stripeSub?.pause_collection),
+        // Faux subscription zodat SubscriptionTab vol oogt voor demo.
+        plan: "studio" as const,
+        status: "active",
+        currentPeriodEnd: dateInDays(23),
+        cancelAt: null,
+        stripeSubscriptionId: "sub_demo_studio",
+        paused: false,
       }
-    : null;
+    : latestSub
+      ? {
+          plan: latestSub.plan,
+          status: stripeSub?.status ?? latestSub.status,
+          currentPeriodEnd: stripePeriodEnd
+            ? new Date(stripePeriodEnd * 1000)
+            : latestSub.currentPeriodEnd,
+          cancelAt: stripeSub?.cancel_at
+            ? new Date(stripeSub.cancel_at * 1000)
+            : latestSub.cancelAt,
+          stripeSubscriptionId: latestSub.stripeSubscriptionId,
+          paused: Boolean(stripeSub?.pause_collection),
+        }
+      : null;
 
   const t = await getTranslations("admin.org");
   const tProjects = await getTranslations("portal.projects");

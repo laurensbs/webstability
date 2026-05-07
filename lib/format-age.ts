@@ -21,3 +21,12 @@ export function formatAgeLabel(
 export function daysUntil(target: Date): number {
   return Math.round((target.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
 }
+
+/**
+ * Datum N dagen in de toekomst — server-side helper buiten React-render
+ * om purity-violations te vermijden. Demo-page gebruikt 'm voor faux
+ * subscription periodEnd.
+ */
+export function dateInDays(n: number): Date {
+  return new Date(Date.now() + n * 24 * 60 * 60 * 1000);
+}
