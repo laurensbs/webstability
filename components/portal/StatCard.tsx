@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
 
 export function StatCard({
   label,
@@ -9,7 +10,9 @@ export function StatCard({
   accent = false,
 }: {
   label: string;
-  value: string | number;
+  /** String/number renderen we direct; ReactNode laat caller een
+   * FlashCounter/animation injecten. */
+  value: ReactNode | string | number;
   hint?: string;
   icon?: LucideIcon;
   trend?: { value: string; direction: "up" | "down" | "flat" };

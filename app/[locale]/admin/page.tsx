@@ -16,6 +16,7 @@ import {
 } from "@/lib/db/queries/admin";
 import { StatCard } from "@/components/portal/StatCard";
 import { AdminActivityFeed } from "@/components/admin/AdminActivityFeed";
+import { FlashCounter } from "@/components/animate/FlashCounter";
 import { AdminWelcomeOnboarding } from "@/components/admin/AdminWelcomeOnboarding";
 import { StudioStatusStrip } from "@/components/admin/StudioStatusStrip";
 
@@ -99,23 +100,28 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
         <p className="text-(--color-muted)">{t("subtitle")}</p>
       </header>
 
-      {/* Operationele stats */}
+      {/* Operationele stats — FlashCounter voor de getallen, knipoog
+          bij elke fresh paint. Honoreert prefers-reduced-motion intern. */}
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label={t("stats.orgs")} value={Number(stats.orgs)} icon={Building2} />
+        <StatCard
+          label={t("stats.orgs")}
+          value={<FlashCounter to={Number(stats.orgs)} />}
+          icon={Building2}
+        />
         <StatCard
           label={t("stats.openTickets")}
-          value={Number(stats.openTickets)}
+          value={<FlashCounter to={Number(stats.openTickets)} />}
           icon={MessageSquare}
           accent={Number(stats.openTickets) > 0}
         />
         <StatCard
           label={t("stats.activeProjects")}
-          value={Number(stats.activeProjects)}
+          value={<FlashCounter to={Number(stats.activeProjects)} />}
           icon={FolderKanban}
         />
         <StatCard
           label={t("stats.openInvoices")}
-          value={Number(stats.openInvoices)}
+          value={<FlashCounter to={Number(stats.openInvoices)} />}
           icon={Receipt}
           accent={Number(stats.openInvoices) > 0}
         />

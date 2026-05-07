@@ -1000,6 +1000,11 @@
       "already_in_org": "Dit account hoort al bij een andere organisatie.",
       "generic_error": "Er ging iets mis."
     },
+    "subTagline": {
+      "noTickets": "Geen open tickets — alles draait soepel.",
+      "buildLive": "{days, plural, =0 {Vandaag gaat je build live} one {# dag tot je build live gaat} other {# dagen tot je build live gaat}}.",
+      "invoiceReady": "Nieuwe factuur klaar — check facturen."
+    },
     "incident": {
       "title": "Storing actief op {project}",
       "since": "sinds {time}",

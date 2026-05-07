@@ -33,6 +33,7 @@ import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/Dashboa
 import { AuthVerifiedBeacon } from "@/components/auth/AuthVerifiedBeacon";
 import { LivegangCelebration } from "@/components/portal/LivegangCelebration";
 import { IncidentBanner } from "@/components/portal/IncidentBanner";
+import { daysUntil } from "@/lib/format-age";
 import { HoursWidget } from "@/components/portal/HoursWidget";
 import { SecurityCard } from "@/components/portal/SecurityCard";
 import { RoadmapCard } from "@/components/portal/RoadmapCard";
@@ -108,11 +109,28 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
     ]);
   const tLivegang = await getTranslations("portal.livegang");
   const tIncident = await getTranslations("portal.incident");
+  const tRot = await getTranslations("portal.subTagline");
   const dateFmtLivegang = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
   const dateFmtIncident = new Intl.DateTimeFormat(locale, {
     dateStyle: "medium",
     timeStyle: "short",
   });
+
+  // Rotating sub-tagline messages — alleen tonen wat van toepassing is.
+  // Geen open tickets → "alles draait"-message; build-phase actief →
+  // "X dagen tot live"-message; openstaande factuur → "factuur klaar".
+  const rotatingMessages: string[] = [];
+  if (Number(stats.openTickets) === 0) {
+    rotatingMessages.push(tRot("noTickets"));
+  }
+  if (buildPhase) {
+    const daysToEnd = Math.max(0, daysUntil(buildPhase.endsAt));
+    rotatingMessages.push(tRot("buildLive", { days: daysToEnd }));
+  }
+  const unpaidInvoice = invoices.find((i) => i.status === "sent");
+  if (unpaidInvoice) {
+    rotatingMessages.push(tRot("invoiceReady"));
+  }
 
   // Tier-aware widget visibility — Care krijgt alleen Hours + Security,
   // Studio voegt SEO + Performance toe (al aanwezig), Atelier krijgt
@@ -210,6 +228,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         firstName={firstName}
         status={status}
         subStatus={subStatus}
+        rotatingMessages={rotatingMessages}
       />
 
       <StatusBanner

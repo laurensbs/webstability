@@ -1,18 +1,24 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import * as React from "react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 
 export function DashboardIntro({
   greeting,
   firstName,
   status,
   subStatus,
+  rotatingMessages,
 }: {
   greeting: string;
   firstName: string;
   status: string;
   /** Optional context line (mono, dim) — e.g. "laatst ingelogd: 2 dagen geleden". */
   subStatus?: string;
+  /** Optionele lijst contextual meldingen die roteren onder de greeting.
+   * Bijv. "X dagen tot je build live gaat", "Geen open tickets". Cycled
+   * elke 6s. Niets als undefined of lege array. */
+  rotatingMessages?: string[];
 }) {
   const reduce = useReducedMotion();
   // Capitalize first letter so "laurens" → "Laurens" but a name that's
@@ -20,6 +26,18 @@ export function DashboardIntro({
   const displayName =
     firstName.length > 0 ? firstName[0]!.toUpperCase() + firstName.slice(1) : firstName;
   const letters = Array.from(displayName);
+
+  // Rotating sub-tagline state — cycle elke 6s door rotatingMessages.
+  const [rotIdx, setRotIdx] = React.useState(0);
+  React.useEffect(() => {
+    if (!rotatingMessages || rotatingMessages.length <= 1 || reduce) return;
+    const id = window.setInterval(() => {
+      setRotIdx((i) => (i + 1) % rotatingMessages.length);
+    }, 6000);
+    return () => window.clearInterval(id);
+  }, [rotatingMessages, reduce]);
+  const visibleRot =
+    rotatingMessages && rotatingMessages.length > 0 ? rotatingMessages[reduce ? 0 : rotIdx] : null;
 
   return (
     <motion.header
@@ -72,6 +90,27 @@ export function DashboardIntro({
           {"// "}
           {subStatus}
         </motion.p>
+      ) : null}
+      {visibleRot ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.65 }}
+          className="relative inline-block min-h-[1.4em] overflow-hidden text-[14px] text-(--color-text)/85"
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={visibleRot}
+              initial={reduce ? false : { y: 8, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={reduce ? undefined : { y: -8, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="block"
+            >
+              {visibleRot}
+            </motion.span>
+          </AnimatePresence>
+        </motion.div>
       ) : null}
     </motion.header>
   );

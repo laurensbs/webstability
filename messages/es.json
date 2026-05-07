@@ -999,6 +999,11 @@
       "already_in_org": "Esta cuenta ya pertenece a otra organización.",
       "generic_error": "Algo salió mal."
     },
+    "subTagline": {
+      "noTickets": "Sin tickets abiertos — todo va fluido.",
+      "buildLive": "{days, plural, =0 {Tu build sale en vivo hoy} one {# día para que tu build esté en vivo} other {# días para que tu build esté en vivo}}.",
+      "invoiceReady": "Nueva factura lista — revisa facturas."
+    },
     "incident": {
       "title": "Caída activa en {project}",
       "since": "desde {time}",
