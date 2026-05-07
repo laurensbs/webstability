@@ -44,8 +44,20 @@ export async function Navigation({ locale }: { locale: string }) {
           ))}
         </div>
 
-        {/* Right side — desktop: lang + login + CTA, mobile: hamburger */}
+        {/* Right side — live-status + lang + login + CTA, mobile: hamburger */}
         <div className="flex items-center gap-3">
+          {/* Live-status pulse — vervangt de losgesneden TopBar */}
+          <Link
+            href="/status"
+            className="hidden items-center gap-1.5 text-[12px] font-medium text-(--color-muted) transition-colors hover:text-(--color-text) lg:inline-flex"
+            aria-label={t("liveBadge")}
+          >
+            <span className="relative inline-flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-(--color-success) opacity-50" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-(--color-success)" />
+            </span>
+            <span className="tracking-[0.04em]">{t("liveBadge")}</span>
+          </Link>
           <span className="hidden md:inline-flex">
             <LangSwitcher />
           </span>
