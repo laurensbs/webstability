@@ -118,7 +118,7 @@ function ToggleButton({
         <motion.span
           layoutId="hero-mockup-pill"
           className="absolute inset-0 rounded-full bg-(--color-text)"
-          transition={{ type: "spring", stiffness: 400, damping: 32 }}
+          transition={{ type: "spring", stiffness: 160, damping: 26, mass: 1.1 }}
         />
       ) : null}
       <span className="relative">{children}</span>

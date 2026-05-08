@@ -8,6 +8,7 @@ import { Link } from "@/i18n/navigation";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { MarkupText } from "@/components/animate/MarkupText";
+import { MountReveal } from "@/components/animate/MountReveal";
 import { LoginAmbientMount } from "@/components/r3f/LoginAmbientMount";
 import { AdminLoginTagline } from "@/components/admin/AdminLoginTagline";
 import { getStudioStats, getRevenueStats } from "@/lib/db/queries/admin";
@@ -85,42 +86,52 @@ export default async function LoginPage({
             so it adds motion without competing with the panel copy. */}
         <LoginAmbientMount className="pointer-events-none absolute inset-0 opacity-60" />
 
-        <Link
-          href="/"
-          className="relative z-10 inline-flex items-baseline gap-3 text-[20px] font-extrabold tracking-[-0.045em] text-(--color-bg)"
-        >
-          <span>
-            webstability<span className="text-(--color-accent)">.</span>
-          </span>
-          <span
-            className="font-mono text-[10px] font-normal tracking-widest uppercase"
-            style={{ color: "rgba(245, 240, 232, 0.6)" }}
+        <MountReveal delay={0}>
+          <Link
+            href="/"
+            className="relative z-10 inline-flex items-baseline gap-3 text-[20px] font-extrabold tracking-[-0.045em] text-(--color-bg)"
           >
-            Eén plek voor je
-          </span>
-        </Link>
+            <span>
+              webstability<span className="text-(--color-accent)">.</span>
+            </span>
+            <span
+              className="font-mono text-[10px] font-normal tracking-widest uppercase"
+              style={{ color: "rgba(245, 240, 232, 0.6)" }}
+            >
+              Eén plek voor je
+            </span>
+          </Link>
+        </MountReveal>
 
         <div className="relative z-10 max-w-md space-y-8">
-          <h2 className="text-3xl leading-[1.15] md:text-4xl">
-            {<MarkupText>{t("panelTitle")}</MarkupText>}
-          </h2>
-          <p className="text-(--color-bg)/70">{t("panelLede")}</p>
+          <MountReveal delay={0.15}>
+            <h2 className="text-3xl leading-[1.15] md:text-4xl">
+              {<MarkupText>{t("panelTitle")}</MarkupText>}
+            </h2>
+          </MountReveal>
+          <MountReveal delay={0.25}>
+            <p className="text-(--color-bg)/70">{t("panelLede")}</p>
+          </MountReveal>
           <ul className="space-y-3">
-            {bullets.map((b) => (
-              <li key={b} className="flex items-start gap-3 text-sm text-(--color-bg)/85">
-                <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--color-accent)/20 text-(--color-accent)">
-                  <Check className="h-3 w-3" strokeWidth={3} />
+            {bullets.map((b, i) => (
+              <MountReveal key={b} delay={0.35 + i * 0.08} as="li">
+                <span className="flex items-start gap-3 text-sm text-(--color-bg)/85">
+                  <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--color-accent)/20 text-(--color-accent)">
+                    <Check className="h-3 w-3" strokeWidth={3} />
+                  </span>
+                  {b}
                 </span>
-                {b}
-              </li>
+              </MountReveal>
             ))}
           </ul>
         </div>
 
-        <p className="relative z-10 font-mono text-xs tracking-widest text-(--color-bg)/45 uppercase">
-          {"// "}
-          {tFooter("tagline")}
-        </p>
+        <MountReveal delay={0.6}>
+          <p className="relative z-10 font-mono text-xs tracking-widest text-(--color-bg)/45 uppercase">
+            {"// "}
+            {tFooter("tagline")}
+          </p>
+        </MountReveal>
       </section>
 
       {/* RIGHT — login form. On admin host the panel goes dark too so
@@ -147,37 +158,47 @@ export default async function LoginPage({
         </header>
 
         <div className="mx-auto w-full max-w-[min(384px,100%)] py-12">
-          <p
-            className={`font-mono text-xs tracking-widest uppercase ${
-              isAdminHost ? "text-(--color-accent)" : "text-(--color-accent)"
-            }`}
-          >
-            {"// "}
-            {t("eyebrow")}
-          </p>
-          <h1 className="mt-4 text-4xl md:text-5xl">{<MarkupText>{t("title")}</MarkupText>}</h1>
-          <p className={`mt-3 ${isAdminHost ? "text-(--color-bg)/70" : "text-(--color-muted)"}`}>
-            {t("subtitle")}
-          </p>
+          <MountReveal delay={0.1}>
+            <p
+              className={`font-mono text-xs tracking-widest uppercase ${
+                isAdminHost ? "text-(--color-accent)" : "text-(--color-accent)"
+              }`}
+            >
+              {"// "}
+              {t("eyebrow")}
+            </p>
+          </MountReveal>
+          <MountReveal delay={0.2}>
+            <h1 className="mt-4 text-4xl md:text-5xl">{<MarkupText>{t("title")}</MarkupText>}</h1>
+          </MountReveal>
+          <MountReveal delay={0.3}>
+            <p className={`mt-3 ${isAdminHost ? "text-(--color-bg)/70" : "text-(--color-muted)"}`}>
+              {t("subtitle")}
+            </p>
+          </MountReveal>
           {fromCheckout ? (
-            <div className="mt-5 rounded-lg border border-(--color-success)/40 bg-(--color-success)/10 px-4 py-3 text-[14px] text-(--color-text)">
-              {tCustomer("checkoutWelcome")}
-            </div>
+            <MountReveal delay={0.4}>
+              <div className="mt-5 rounded-lg border border-(--color-success)/40 bg-(--color-success)/10 px-4 py-3 text-[14px] text-(--color-text)">
+                {tCustomer("checkoutWelcome")}
+              </div>
+            </MountReveal>
           ) : null}
-          <div className="mt-8">
-            <LoginForm
-              variant={isAdminHost ? "dark" : "light"}
-              defaultEmail={emailParam ?? ""}
-              stateCopy={
-                isAdminHost
-                  ? undefined
-                  : {
-                      returning: tCustomer("stateReturning"),
-                      fresh: tCustomer("stateNew"),
-                    }
-              }
-            />
-          </div>
+          <MountReveal delay={0.45}>
+            <div className="mt-8">
+              <LoginForm
+                variant={isAdminHost ? "dark" : "light"}
+                defaultEmail={emailParam ?? ""}
+                stateCopy={
+                  isAdminHost
+                    ? undefined
+                    : {
+                        returning: tCustomer("stateReturning"),
+                        fresh: tCustomer("stateNew"),
+                      }
+                }
+              />
+            </div>
+          </MountReveal>
         </div>
 
         <footer
