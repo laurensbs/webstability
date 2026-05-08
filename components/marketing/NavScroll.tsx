@@ -55,13 +55,14 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
         ].join(" ")}
       />
 
-      {/* Laag 2 — pill-frame, gebonden aan inner-nav-breedte via
-          dezelfde max-w-6xl mx-auto die de inner <nav> ook gebruikt. */}
-      <div className="pointer-events-none absolute inset-0 mx-auto max-w-6xl px-4">
+      {/* Laag 2 — pill-frame, breder dan de inner-nav (max-w-7xl, 1280px)
+          zodat de pill na de transform ruim om de content valt. Inset-x
+          op 6 voor wat marge tot de viewport-randen. */}
+      <div className="pointer-events-none absolute inset-0 mx-auto max-w-7xl px-2">
         <span
           aria-hidden
           className={[
-            "absolute inset-y-2 right-4 left-4 transform-gpu rounded-full border bg-(--color-text) shadow-[0_12px_32px_-12px_rgba(31,27,22,0.45)]",
+            "absolute inset-y-1.5 right-2 left-2 transform-gpu rounded-full border bg-(--color-text) shadow-[0_12px_32px_-12px_rgba(31,27,22,0.45)]",
             "transition-[opacity,border-color]",
             easing,
             scrolled ? "border-(--color-bg)/15 opacity-100" : "border-transparent opacity-0",
