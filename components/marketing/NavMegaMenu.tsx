@@ -142,9 +142,15 @@ export function NavMegaMenu({
             <div aria-hidden className="absolute -top-3 right-0 left-0 h-3" />
 
             <div
-              className="overflow-hidden rounded-[18px] border border-t-2 border-(--color-border) border-t-(--color-wine)/70 bg-(--color-surface) text-(--color-text) shadow-[0_24px_60px_-16px_rgba(31,27,22,0.18),0_8px_20px_-4px_rgba(31,27,22,0.08)]"
+              className="relative overflow-hidden rounded-[18px] border border-t-2 border-(--color-bg)/15 border-t-(--color-wine) bg-(--color-text) text-(--color-bg) shadow-[0_24px_60px_-16px_rgba(31,27,22,0.45),0_8px_20px_-4px_rgba(31,27,22,0.25)]"
               role="menu"
             >
+              {/* Halo-blob top-left voor depth, zelfde sfeer als
+                  StudioStatement + footer-zone-1 */}
+              <span
+                aria-hidden
+                className="wb-soft-halo pointer-events-none absolute -top-24 -left-24 h-[280px] w-[280px] rounded-full bg-(--color-wine) opacity-30 blur-3xl"
+              />
               {open === "services" ? (
                 <ServicesPanel strings={strings} onSelect={() => setOpen(null)} />
               ) : (
@@ -200,14 +206,17 @@ function ServicesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSele
   ];
 
   return (
-    <div>
-      {/* Header strip met eyebrow + featured illustratie rechts */}
-      <div className="flex items-center justify-between border-b border-(--color-border) bg-(--color-bg-warm)/40 px-6 py-3.5">
+    <div className="relative">
+      {/* Header strip — cream/55 eyebrow op donker */}
+      <div className="flex items-center justify-between border-b border-(--color-bg)/10 bg-(--color-bg)/[0.03] px-6 py-3.5">
         <div>
           <p className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+            {"// "}
             {strings.servicesEyebrow}
           </p>
-          <p className="mt-0.5 text-[15px] font-medium">{strings.servicesTitle}</p>
+          <p className="mt-0.5 text-[15px] font-medium text-(--color-bg)">
+            {strings.servicesTitle}
+          </p>
         </div>
       </div>
 
@@ -221,16 +230,18 @@ function ServicesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSele
                 href={href as never}
                 onClick={onSelect}
                 role="menuitem"
-                className="group relative flex h-full flex-col gap-2 rounded-[12px] p-4 transition-colors hover:bg-(--color-bg-warm)/60 focus-visible:bg-(--color-bg-warm)/60 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-accent)"
+                className="group relative flex h-full flex-col gap-2 rounded-[12px] p-4 transition-colors hover:bg-(--color-bg)/[0.06] focus-visible:bg-(--color-bg)/[0.06] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-accent)"
               >
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-(--color-accent-soft) text-(--color-accent) transition-colors group-hover:bg-(--color-accent) group-hover:text-white">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-(--color-accent)/15 text-(--color-accent) transition-colors group-hover:bg-(--color-accent) group-hover:text-white">
                   <Icon className="h-4 w-4" strokeWidth={2} />
                 </span>
                 <div>
-                  <p className="text-[13.5px] leading-tight font-medium">{item.title}</p>
-                  <p className="mt-1 text-[12px] leading-snug text-(--color-muted)">{item.blurb}</p>
+                  <p className="text-[13.5px] leading-tight font-medium text-(--color-bg)">
+                    {item.title}
+                  </p>
+                  <p className="mt-1 text-[12px] leading-snug text-(--color-bg)/60">{item.blurb}</p>
                 </div>
-                <span className="mt-auto inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wide text-(--color-wine) uppercase">
+                <span className="mt-auto inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wide text-(--color-accent) uppercase">
                   {item.price}
                   <ArrowRight className="h-2.5 w-2.5 transition-transform group-hover:translate-x-0.5" />
                 </span>
@@ -244,7 +255,7 @@ function ServicesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSele
       <Link
         href="/diensten"
         onClick={onSelect}
-        className="flex items-center justify-between border-t border-(--color-border) bg-(--color-bg-warm)/40 px-6 py-3 text-[12.5px] font-medium text-(--color-text) transition-colors hover:bg-(--color-bg-warm)"
+        className="flex items-center justify-between border-t border-(--color-bg)/10 bg-(--color-bg)/[0.03] px-6 py-3 text-[12.5px] font-medium text-(--color-bg) transition-colors hover:bg-(--color-bg)/[0.06]"
       >
         <span>{strings.servicesFooter}</span>
         <ArrowRight className="h-3.5 w-3.5 text-(--color-accent)" />
@@ -261,12 +272,13 @@ function CasesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSelect:
   ];
 
   return (
-    <div>
-      <div className="border-b border-(--color-border) bg-(--color-bg-warm)/40 px-6 py-3.5">
+    <div className="relative">
+      <div className="border-b border-(--color-bg)/10 bg-(--color-bg)/[0.03] px-6 py-3.5">
         <p className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+          {"// "}
           {strings.casesEyebrow}
         </p>
-        <p className="mt-0.5 text-[15px] font-medium">{strings.casesTitle}</p>
+        <p className="mt-0.5 text-[15px] font-medium text-(--color-bg)">{strings.casesTitle}</p>
       </div>
 
       <ul className="grid grid-cols-3 gap-1 p-2">
@@ -278,22 +290,22 @@ function CasesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSelect:
                 href={href as never}
                 onClick={onSelect}
                 role="menuitem"
-                className="group flex h-full flex-col rounded-[12px] p-3 transition-colors hover:bg-(--color-bg-warm)/60 focus-visible:bg-(--color-bg-warm)/60 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-accent)"
+                className="group flex h-full flex-col rounded-[12px] p-3 transition-colors hover:bg-(--color-bg)/[0.06] focus-visible:bg-(--color-bg)/[0.06] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-accent)"
               >
                 {/* Mini "screen" preview met accent-strepen */}
-                <div className="relative mb-2.5 aspect-[16/10] overflow-hidden rounded-[8px] border border-(--color-border) bg-(--color-bg-warm)">
+                <div className="relative mb-2.5 aspect-[16/10] overflow-hidden rounded-[8px] border border-(--color-bg)/10 bg-(--color-bg)/[0.05]">
                   <div
                     className="absolute top-0 right-0 left-0 h-1.5"
                     style={{ background: color }}
                   />
                   <div className="absolute inset-x-3 top-3 space-y-1">
-                    <span className="block h-1.5 w-2/3 rounded-full bg-(--color-text)/15" />
-                    <span className="block h-1.5 w-1/2 rounded-full bg-(--color-text)/10" />
+                    <span className="block h-1.5 w-2/3 rounded-full bg-(--color-bg)/25" />
+                    <span className="block h-1.5 w-1/2 rounded-full bg-(--color-bg)/15" />
                   </div>
                   <div className="absolute right-3 bottom-3 left-3 grid grid-cols-3 gap-1">
-                    <span className="h-2.5 rounded-sm bg-(--color-text)/10" />
-                    <span className="h-2.5 rounded-sm" style={{ background: `${color}50` }} />
-                    <span className="h-2.5 rounded-sm bg-(--color-text)/10" />
+                    <span className="h-2.5 rounded-sm bg-(--color-bg)/15" />
+                    <span className="h-2.5 rounded-sm" style={{ background: color }} />
+                    <span className="h-2.5 rounded-sm bg-(--color-bg)/15" />
                   </div>
                   {/* Live-dot rechtsboven */}
                   <span className="absolute top-2.5 right-2.5 flex h-1.5 w-1.5">
@@ -301,10 +313,10 @@ function CasesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSelect:
                     <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-(--color-success)" />
                   </span>
                 </div>
-                <p className="text-[12.5px] leading-tight font-medium transition-colors group-hover:text-(--color-accent)">
+                <p className="text-[12.5px] leading-tight font-medium text-(--color-bg) transition-colors group-hover:text-(--color-accent)">
                   {item.title}
                 </p>
-                <p className="mt-1 font-mono text-[10px] leading-snug text-(--color-muted)">
+                <p className="mt-1 font-mono text-[10px] leading-snug text-(--color-bg)/60">
                   {item.blurb}
                 </p>
               </Link>
@@ -316,7 +328,7 @@ function CasesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSelect:
       <Link
         href="/cases"
         onClick={onSelect}
-        className="flex items-center justify-between border-t border-(--color-border) bg-(--color-bg-warm)/40 px-6 py-3 text-[12.5px] font-medium text-(--color-text) transition-colors hover:bg-(--color-bg-warm)"
+        className="flex items-center justify-between border-t border-(--color-bg)/10 bg-(--color-bg)/[0.03] px-6 py-3 text-[12.5px] font-medium text-(--color-bg) transition-colors hover:bg-(--color-bg)/[0.06]"
       >
         <span>{strings.casesFooter}</span>
         <ArrowRight className="h-3.5 w-3.5 text-(--color-accent)" />
