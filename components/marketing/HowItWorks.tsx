@@ -5,8 +5,6 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Check, Calendar, FileText, Wallet, ShieldCheck } from "lucide-react";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
-import { CaravanIllustration } from "@/components/marketing/CaravanIllustration";
-import { BookingCalendarMini } from "@/components/marketing/BookingCalendarMini";
 import { MeshBackground } from "@/components/marketing/MeshBackground";
 
 type View = "client" | "owner";
@@ -43,10 +41,6 @@ type Strings = {
     actionValue: string;
   };
   flowSteps: string[];
-  calendar: {
-    weekdays: [string, string, string, string, string, string, string];
-    monthLabel: string;
-  };
   bridgeLabel: string;
 };
 
@@ -107,11 +101,7 @@ export function HowItWorks({ strings }: { strings: Strings }) {
                 exit={reduce ? undefined : { opacity: 0, y: -12 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                <OwnerMockup
-                  strings={strings.owner}
-                  flowSteps={strings.flowSteps}
-                  calendar={strings.calendar}
-                />
+                <OwnerMockup strings={strings.owner} flowSteps={strings.flowSteps} />
               </motion.div>
             )}
           </AnimatePresence>
@@ -202,33 +192,17 @@ function ClientMockup({ strings }: { strings: Strings["client"] }) {
       </div>
 
       <div className="grid gap-8 p-8 md:grid-cols-[1.2fr_1fr] md:p-12">
-        {/* Left — illustrated hero + thumbnail strip */}
+        {/* Left — object info */}
         <div className="space-y-4">
-          <CaravanIllustration />
-
-          {/* Thumbnail strip — suggestie van meerdere foto's */}
-          <div className="flex gap-2">
-            {[0, 1, 2].map((i) => (
-              <button
-                key={i}
-                type="button"
-                aria-label={`Foto ${i + 1}`}
-                className={`aspect-[4/3] flex-1 rounded-md border transition-all ${
-                  i === 0
-                    ? "border-(--color-accent) ring-1 ring-(--color-accent)/30"
-                    : "border-(--color-border) opacity-70 hover:opacity-100"
-                }`}
-                style={{
-                  background:
-                    i === 0
-                      ? "linear-gradient(135deg, #FBE9D8 0%, #E5D4C4 100%)"
-                      : i === 1
-                        ? "linear-gradient(135deg, #DCE8E7 0%, #B8CFCD 100%)"
-                        : "linear-gradient(135deg, #F4DCD4 0%, #C9614F33 100%)",
-                }}
-              />
-            ))}
-          </div>
+          {/* Object-placeholder: cream gradient ipv illustratie */}
+          <div
+            aria-hidden
+            className="aspect-[16/10] w-full rounded-[14px] border border-(--color-border)"
+            style={{
+              background:
+                "linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-bg-warm) 100%)",
+            }}
+          />
 
           <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
             {strings.badge}
@@ -262,15 +236,7 @@ function ClientMockup({ strings }: { strings: Strings["client"] }) {
 }
 
 /* -------- OWNER-VIEW: an admin dashboard mockup of the same booking -------- */
-function OwnerMockup({
-  strings,
-  flowSteps,
-  calendar,
-}: {
-  strings: Strings["owner"];
-  flowSteps: string[];
-  calendar: Strings["calendar"];
-}) {
+function OwnerMockup({ strings, flowSteps }: { strings: Strings["owner"]; flowSteps: string[] }) {
   return (
     <div className="overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface) shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]">
       {/* Browser chrome — admin */}
@@ -302,19 +268,14 @@ function OwnerMockup({
         {/* Status flow — Boeking → Betaling → Contract → Borg → Bevestigd */}
         <StatusFlow steps={flowSteps} />
 
-        {/* Two-column: details + mini calendar */}
-        <div className="grid gap-5 md:grid-cols-[1.4fr_1fr]">
-          <ul className="grid gap-2.5">
-            <Row icon={Calendar} label={strings.object} value={strings.nights} />
-            <Row icon={Wallet} label={strings.total} value="€840" />
-            <Row icon={Check} label={strings.paid} value="€420 · Mollie" success />
-            <Row icon={FileText} label={strings.contract} value="✓ verstuurd" success />
-            <Row icon={ShieldCheck} label={strings.deposit} value="€500 vastgehouden" />
-            <Row icon={Calendar} label={strings.calendar} value="Booking + Airbnb sync ✓" success />
-          </ul>
-
-          <BookingCalendarMini strings={calendar} />
-        </div>
+        <ul className="grid gap-2.5">
+          <Row icon={Calendar} label={strings.object} value={strings.nights} />
+          <Row icon={Wallet} label={strings.total} value="€840" />
+          <Row icon={Check} label={strings.paid} value="€420 · Mollie" success />
+          <Row icon={FileText} label={strings.contract} value="✓ verstuurd" success />
+          <Row icon={ShieldCheck} label={strings.deposit} value="€500 vastgehouden" />
+          <Row icon={Calendar} label={strings.calendar} value="Booking + Airbnb sync ✓" success />
+        </ul>
 
         <div className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-(--color-border) pt-5 text-[13px]">
           <span className="text-(--color-muted)">{strings.actionLabel}</span>

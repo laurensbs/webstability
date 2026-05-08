@@ -11,10 +11,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { PlatformIllustration } from "@/components/marketing/illustrations/PlatformIllustration";
-import { WebshopIllustration } from "@/components/marketing/illustrations/WebshopIllustration";
-import { CareIllustration } from "@/components/marketing/illustrations/CareIllustration";
-import { GrowthIllustration } from "@/components/marketing/illustrations/GrowthIllustration";
 
 type ServiceItem = {
   title: string;
@@ -182,7 +178,7 @@ function Trigger({
       onFocus={onEnter}
       onClick={onClick}
       aria-expanded={isOpen}
-      className={`relative inline-flex items-center gap-1 transition-colors ${
+      className={`inline-flex items-center gap-1 rounded transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent) ${
         active || isOpen ? "text-(--color-text)" : "text-(--color-muted) hover:text-(--color-text)"
       }`}
     >
@@ -191,44 +187,16 @@ function Trigger({
         className={`h-3 w-3 transition-transform ${isOpen ? "rotate-180" : ""}`}
         strokeWidth={2.5}
       />
-      {active ? (
-        <motion.span
-          layoutId="nav-active-underline"
-          aria-hidden
-          className="absolute right-0 -bottom-1.5 left-0 h-[2px] rounded-full bg-(--color-wine)"
-          transition={{ type: "spring", stiffness: 400, damping: 32 }}
-        />
-      ) : null}
     </button>
   );
 }
 
 function ServicesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSelect: () => void }) {
   const items = [
-    {
-      key: "platform" as const,
-      icon: Layers,
-      href: "/diensten#platform",
-      illustration: PlatformIllustration,
-    },
-    {
-      key: "webshop" as const,
-      icon: ShoppingBag,
-      href: "/diensten#webshop",
-      illustration: WebshopIllustration,
-    },
-    {
-      key: "care" as const,
-      icon: ShieldCheck,
-      href: "/diensten#care",
-      illustration: CareIllustration,
-    },
-    {
-      key: "growth" as const,
-      icon: TrendingUp,
-      href: "/diensten#growth",
-      illustration: GrowthIllustration,
-    },
+    { key: "platform" as const, icon: Layers, href: "/diensten#platform" },
+    { key: "webshop" as const, icon: ShoppingBag, href: "/diensten#webshop" },
+    { key: "care" as const, icon: ShieldCheck, href: "/diensten#care" },
+    { key: "growth" as const, icon: TrendingUp, href: "/diensten#growth" },
   ];
 
   return (
@@ -245,7 +213,7 @@ function ServicesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSele
 
       {/* 2x2 grid */}
       <ul className="grid grid-cols-2 gap-1 p-2">
-        {items.map(({ key, icon: Icon, href, illustration: Illustration }) => {
+        {items.map(({ key, icon: Icon, href }) => {
           const item = strings.items[key];
           return (
             <li key={key}>
@@ -255,15 +223,9 @@ function ServicesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSele
                 role="menuitem"
                 className="group relative flex h-full flex-col gap-2 rounded-[12px] p-4 transition-colors hover:bg-(--color-bg-warm)/60 focus-visible:bg-(--color-bg-warm)/60 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-accent)"
               >
-                <div className="flex items-start justify-between gap-3">
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-(--color-accent-soft) text-(--color-accent) transition-colors group-hover:bg-(--color-accent) group-hover:text-white">
-                    <Icon className="h-4 w-4" strokeWidth={2} />
-                  </span>
-                  {/* Mini-illustratie alleen tonen op hover, rechtsboven */}
-                  <span className="pointer-events-none h-10 w-16 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                    <Illustration />
-                  </span>
-                </div>
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-(--color-accent-soft) text-(--color-accent) transition-colors group-hover:bg-(--color-accent) group-hover:text-white">
+                  <Icon className="h-4 w-4" strokeWidth={2} />
+                </span>
                 <div>
                   <p className="text-[13.5px] leading-tight font-medium">{item.title}</p>
                   <p className="mt-1 text-[12px] leading-snug text-(--color-muted)">{item.blurb}</p>

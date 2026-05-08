@@ -9,10 +9,6 @@ import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { MarkupText } from "@/components/animate/MarkupText";
 import { Button } from "@/components/ui/Button";
 import { AnimatedCheck } from "@/components/marketing/AnimatedCheck";
-import { PlatformIllustration } from "@/components/marketing/illustrations/PlatformIllustration";
-import { WebshopIllustration } from "@/components/marketing/illustrations/WebshopIllustration";
-import { CareIllustration } from "@/components/marketing/illustrations/CareIllustration";
-import { GrowthIllustration } from "@/components/marketing/illustrations/GrowthIllustration";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 
@@ -26,13 +22,6 @@ export async function generateMetadata({
 }
 
 const SOLUTION_KEYS = ["platform", "webshop", "care", "growth"] as const;
-
-const ILLUSTRATIONS: Record<(typeof SOLUTION_KEYS)[number], React.ComponentType> = {
-  platform: PlatformIllustration,
-  webshop: WebshopIllustration,
-  care: CareIllustration,
-  growth: GrowthIllustration,
-};
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -72,7 +61,6 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         // Sectie 1 + 3 krijgen een wijn-rode top-hairline — earned
         // wijn-rood zonder de "premium accent"-regel te breken.
         const wineDivider = i === 0 || i === 2;
-        const Illustration = ILLUSTRATIONS[key];
 
         return (
           <section
@@ -83,13 +71,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             } ${altRow ? "border-y border-(--color-border) bg-(--color-bg-warm)" : ""}`}
           >
             <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.1fr_1fr]">
-              {/* Left — illustratie + eyebrow + titel + wat het oplost */}
+              {/* Left — eyebrow + titel + wat het oplost */}
               <RevealOnScroll className="space-y-6">
-                {/* Mini-illustratie — stagger-anker per service */}
-                <div className="relative -mx-2 aspect-[16/10] overflow-hidden rounded-[18px] border border-(--color-border) bg-(--color-surface) shadow-[0_8px_24px_-12px_rgba(31,27,22,0.08)]">
-                  <Illustration />
-                </div>
-
                 <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
                   {"// "}
                   {item.eyebrow}

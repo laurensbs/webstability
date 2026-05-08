@@ -14,15 +14,14 @@ export async function Navigation({ locale }: { locale: string }) {
   const tRaw = await getTranslations();
   const menuStrings = tRaw.raw("nav.menu") as MegaMenuStrings;
 
-  // Links zonder mega-menu — Diensten + Cases krijgen apart een mega-menu.
+  // Diensten + Cases via NavMegaMenu, de rest via simpele NavLinks.
   const simpleLinks = [
     { href: "/prijzen", label: t("pricing") },
     { href: "/over", label: t("about") },
     { href: "/contact", label: t("contact") },
   ] as const;
 
-  // Mobile drawer toont gewoon álle routes plat — geen mega-menu op
-  // touch. Tuple-typing zodat Link's route-checked href accepteert.
+  // Mobile drawer toont alle routes plat — geen mega-menu op touch.
   const allMobileLinks = [
     { href: "/diensten", label: t("services") },
     { href: "/cases", label: t("cases") },
@@ -33,23 +32,23 @@ export async function Navigation({ locale }: { locale: string }) {
 
   return (
     <NavScroll>
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
-        {/* Wordmark + LogoMark — premium hover op de mark */}
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-3.5">
+        {/* Wordmark — strak, subtiele hover op de mark */}
         <Link
           href="/"
-          className="group inline-flex items-center gap-2.5 text-[20px] font-extrabold tracking-[-0.045em] text-(--color-text)"
+          className="group inline-flex items-center gap-2.5 text-[18px] font-extrabold tracking-[-0.045em] text-(--color-text) transition-opacity hover:opacity-90"
         >
           <span className="text-(--color-accent) transition-transform duration-300 group-hover:rotate-[-6deg]">
-            <LogoMark size={22} animate />
+            <LogoMark size={20} animate />
           </span>
           <span>
             webstability<span className="text-(--color-accent)">.</span>
           </span>
         </Link>
 
-        {/* Center nav — desktop only. Diensten + Cases via NavMegaMenu,
-            de rest via simpele NavLinks. */}
-        <div className="hidden items-center gap-8 text-[14.5px] font-medium md:flex">
+        {/* Center nav — desktop only. Mega-menu voor diensten + cases,
+            de rest plain NavLinks. */}
+        <div className="hidden items-center gap-7 text-[14px] font-medium md:flex">
           <NavMegaMenu
             strings={menuStrings}
             servicesLabel={t("services")}
@@ -64,32 +63,20 @@ export async function Navigation({ locale }: { locale: string }) {
           ))}
         </div>
 
-        {/* Right side — live-status + lang + login + CTA, mobile: hamburger */}
+        {/* Right side — lang + login + CTA. Mobile: hamburger. */}
         <div className="flex items-center gap-3">
-          {/* Live-status pulse — link naar /status */}
-          <Link
-            href="/status"
-            className="hidden items-center gap-1.5 text-[12px] font-medium text-(--color-muted) transition-colors hover:text-(--color-text) lg:inline-flex"
-            aria-label={t("liveBadge")}
-          >
-            <span className="relative inline-flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-(--color-success) opacity-50" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-(--color-success)" />
-            </span>
-            <span className="tracking-[0.04em]">{t("liveBadge")}</span>
-          </Link>
           <span className="hidden md:inline-flex">
             <LangSwitcher />
           </span>
           <Link
             href="/login"
-            className="hidden text-[13px] font-medium text-(--color-muted) transition-colors hover:text-(--color-text) md:inline-flex"
+            className="hidden rounded text-[13.5px] font-medium text-(--color-muted) transition-colors hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent) md:inline-flex"
           >
             {t("login")}
           </Link>
           <CalPopupTrigger
             locale={locale}
-            className="group hidden items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] md:inline-flex"
+            className="group hidden items-center gap-1.5 rounded-full bg-(--color-text) px-4 py-2 text-[13px] font-medium text-(--color-bg) transition-all hover:bg-(--color-text)/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:inline-flex"
           >
             {t("planCall")}
             <svg
