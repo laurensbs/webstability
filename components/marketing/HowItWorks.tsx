@@ -6,6 +6,7 @@ import { Check, Calendar, FileText, Wallet, ShieldCheck } from "lucide-react";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { MeshBackground } from "@/components/marketing/MeshBackground";
+import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 
 type View = "client" | "owner";
 
@@ -56,18 +57,22 @@ export function HowItWorks({ strings }: { strings: Strings }) {
           <AnimatedHeading as="h2" className="mx-auto mb-[18px] text-[clamp(32px,4.5vw,52px)]">
             {strings.title}
           </AnimatedHeading>
-          <p className="mx-auto max-w-[56ch] text-[18px] text-(--color-muted)">{strings.lede}</p>
+          <RevealOnScroll delay={0.15}>
+            <p className="mx-auto max-w-[56ch] text-[18px] text-(--color-muted)">{strings.lede}</p>
+          </RevealOnScroll>
         </div>
 
         {/* Toggle */}
-        <div className="mx-auto mb-12 flex w-fit items-center gap-1 rounded-full border border-(--color-border) bg-(--color-surface) p-1.5">
-          <ToggleButton active={view === "client"} onClick={() => setView("client")}>
-            {strings.toggleClient}
-          </ToggleButton>
-          <ToggleButton active={view === "owner"} onClick={() => setView("owner")}>
-            {strings.toggleOwner}
-          </ToggleButton>
-        </div>
+        <RevealOnScroll delay={0.25}>
+          <div className="mx-auto mb-12 flex w-fit items-center gap-1 rounded-full border border-(--color-border) bg-(--color-surface) p-1.5">
+            <ToggleButton active={view === "client"} onClick={() => setView("client")}>
+              {strings.toggleClient}
+            </ToggleButton>
+            <ToggleButton active={view === "owner"} onClick={() => setView("owner")}>
+              {strings.toggleOwner}
+            </ToggleButton>
+          </div>
+        </RevealOnScroll>
 
         {/* Mockup card with floating ambient glow */}
         <div className="relative mx-auto max-w-[820px]">

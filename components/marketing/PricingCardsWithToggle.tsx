@@ -175,7 +175,7 @@ export function PricingCardsWithToggle({
                 }`}
               />
               {featured ? (
-                <span className="absolute -top-2.5 right-6 inline-flex items-center gap-1.5 rounded-full bg-(--color-wine) px-3 py-1 text-[11px] font-medium text-white">
+                <span className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-(--color-wine) px-3 py-1 text-[11px] font-medium text-white shadow-[0_4px_12px_-2px_rgba(107,30,44,0.5)]">
                   <span className="relative flex h-1.5 w-1.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60" />
                     <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
