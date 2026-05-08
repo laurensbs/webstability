@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { RotatingPill } from "@/components/animate/RotatingPill";
-import { FlashCounter } from "@/components/animate/FlashCounter";
 import { MagneticButton } from "@/components/animate/MagneticButton";
 import { RotatingWords } from "@/components/animate/RotatingWords";
 import { DemoChooserModal } from "@/components/marketing/DemoChooserModal";
@@ -21,20 +20,6 @@ export async function Hero() {
     icon: "layers" | "zap" | "sparkles";
     text: string;
   }>;
-  const startYear = 2016;
-  const yearsExp = new Date().getFullYear() - startYear;
-
-  // Stats with raw numerical values so FlashCounter can tween properly.
-  // Region label (NL · ES) is a plain string, not animatable as a number.
-  const stats: Array<
-    | { value: number; suffix?: string; decimals?: number; label: string }
-    | { plain: string; label: string }
-  > = [
-    { value: yearsExp, suffix: "+", label: tHero("metaYearsLabel") },
-    { value: 2, label: tHero("metaPlatformsLabel") },
-    { value: 99.98, suffix: "%", decimals: 2, label: tHero("metaUptimeLabel") },
-    { plain: tHero("metaRegionValue"), label: tHero("metaRegionLabel") },
-  ];
 
   return (
     <section className="relative overflow-hidden px-6 pt-20 pb-24 md:pt-24 md:pb-28">
@@ -110,32 +95,6 @@ export async function Hero() {
           {/* Rechter kolom — live admin-mockup, alleen vanaf lg */}
           <div className="hidden lg:block">
             <HeroMockup />
-          </div>
-        </div>
-
-        {/* Meta row — flat, border-top, no cards */}
-        <div className="mt-[72px] flex flex-wrap gap-x-10 gap-y-6 border-t border-(--color-border) pt-9">
-          {stats.map((s, i) => (
-            <div key={i}>
-              <div className="font-serif text-[34px] leading-none">
-                {"plain" in s ? (
-                  s.plain
-                ) : (
-                  <FlashCounter to={s.value} suffix={s.suffix ?? ""} decimals={s.decimals ?? 0} />
-                )}
-              </div>
-              <div className="mt-1.5 text-[13px] text-(--color-muted)">{s.label}</div>
-            </div>
-          ))}
-          {/* Live status item — at the end, distinct */}
-          <div className="ml-auto flex items-center gap-2.5 text-[13px]">
-            <span
-              className="h-2 w-2 rounded-full bg-(--color-success)"
-              style={{ boxShadow: "0 0 0 3px rgba(90, 122, 74, 0.18)" }}
-            />
-            <span className="font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
-              {tHero("live")}
-            </span>
           </div>
         </div>
       </div>

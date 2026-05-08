@@ -147,6 +147,7 @@ export async function loginAsDemoPortal(): Promise<never> {
   const ip = await getClientIp();
   if (!checkRateLimit(ip)) redirect("/demo/limited?reason=rate-limit");
   await setDemoSession("portal");
+  // Portal blijft op apex (geen subdomain rewrite door proxy nodig).
   redirect("/portal/dashboard");
 }
 
@@ -154,5 +155,15 @@ export async function loginAsDemoAdmin(): Promise<never> {
   const ip = await getClientIp();
   if (!checkRateLimit(ip)) redirect("/demo/limited?reason=rate-limit");
   await setDemoSession("admin");
+  // Admin op productie zit op een ander subdomain. Cookie is al gezet
+  // met domain: .webstability.eu zodat 'ie cross-subdomain meegestuurd
+  // wordt. Direct naar admin-host redirect'en voorkomt dat de proxy
+  // een 308-redirect tussenvoegt waarbij sommige browsers / iOS Safari
+  // de Set-Cookie header soms negeren tijdens redirect-chains.
+  const authUrl = process.env.AUTH_URL ?? "";
+  const isProd = authUrl.includes(PRODUCTION_HOST);
+  if (isProd) {
+    redirect("https://admin.webstability.eu/admin");
+  }
   redirect("/admin");
 }
