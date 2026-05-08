@@ -356,16 +356,51 @@ body.is-marketing #main {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
-  .animate-ping {
-    animation: none !important;
+  /*
+   * iOS Safari verbruikt enorme rasterbuffers voor grote blurs +
+   * infinite loops. Op touch-devices (coarse pointer) strippen we
+   * alle non-essentiële continue animaties zodat scrollen + gestures
+   * weer butter-smooth zijn.
+   */
+  .animate-ping,
+  .animate-spin {
+    animation-duration: 2s !important;
   }
   /*
    * Large decorative blurs (>32px) force iOS to rasterise huge offscreen
    * buffers. We mark them with .wb-soft-halo so this rule can drop the
    * blur on touch without affecting small UI blurs that need to remain.
+   * Ook elke Tailwind blur-2xl/3xl/[*px] halo wordt op alle elementen
+   * gestript via attribuut-selector — dubbel verzekerd voor het geval
+   * een element wb-soft-halo mist.
    */
-  .wb-soft-halo {
+  .wb-soft-halo,
+  [class*="blur-2xl"],
+  [class*="blur-3xl"],
+  [class*="blur-[40px]"],
+  [class*="blur-[60px]"] {
+    filter: none !important;
+    opacity: 0.25 !important;
+  }
+  /*
+   * wb-mesh-rotate roteert continu een conic-gradient onder een blur(60px).
+   * Op iOS is dat een GPU-killer omdat elke frame een gigantische blur
+   * herrekent. Op touch:
+   *  - Animation off (geen rotate-rerender per frame)
+   *  - Filter off (geen blur-rasterisatie)
+   *  - Opacity laag (subtiele kleur blijft, geen visuele dominantie)
+   */
+  .wb-mesh-conic {
+    animation: none !important;
     filter: none !important;
     opacity: 0.3 !important;
+  }
+  /*
+   * Decoratieve infinite-loop particles (pricing-card glints, etc).
+   * Hebben geen UX-functie, kostbaar in main thread.
+   */
+  .wb-particle-glint {
+    animation: none !important;
+    opacity: 0.4 !important;
   }
 }

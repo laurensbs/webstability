@@ -12,7 +12,7 @@ export function FounderFormMount({ className }: { className?: string }) {
   return (
     <div className={className} aria-hidden>
       <div
-        className="absolute inset-0"
+        className="wb-mesh-conic absolute inset-0"
         style={{
           background:
             "radial-gradient(ellipse at 30% 30%, rgba(244,220,212,0.7) 0%, transparent 55%), radial-gradient(ellipse at 70% 75%, rgba(44,95,93,0.35) 0%, transparent 55%)",

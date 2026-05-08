@@ -133,7 +133,7 @@ export function PricingCardsWithToggle({
                     <motion.span
                       key={i}
                       aria-hidden
-                      className="pointer-events-none absolute h-1 w-1 rounded-full bg-(--color-bg)"
+                      className="wb-particle-glint pointer-events-none absolute h-1 w-1 rounded-full bg-(--color-bg)"
                       style={pos}
                       animate={{
                         opacity: [0, 0.7, 0],

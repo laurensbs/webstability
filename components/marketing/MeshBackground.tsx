@@ -17,7 +17,7 @@ export function MeshBackground({ className = "" }: { className?: string }) {
       className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
     >
       <div
-        className="absolute inset-[-50%]"
+        className="wb-mesh-conic absolute inset-[-50%]"
         style={{
           background: `
             radial-gradient(ellipse 40% 30% at 30% 20%, rgba(107,30,44,0.55) 0%, transparent 60%),
