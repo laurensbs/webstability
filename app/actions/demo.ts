@@ -64,17 +64,18 @@ function getCookieConfig() {
 
 const SESSION_TTL_MS = 30 * 60 * 1000;
 
-export async function loginAsDemoPortal(): Promise<never> {
-  // We mogen `loginAs` niet als-is gebruiken want die throwt aan eind.
-  // Inline de body met juiste redirect target.
-  const ip = await getClientIp();
-  if (!checkRateLimit(ip)) redirect("/demo/limited");
-
+async function setDemoSession(role: "portal" | "admin"): Promise<string> {
+  const email = role === "portal" ? "demo-portal@webstability.eu" : "demo-admin@webstability.eu";
   const user = await db.query.users.findFirst({
-    where: and(eq(users.email, "demo-portal@webstability.eu"), eq(users.isDemo, true)),
+    where: and(eq(users.email, email), eq(users.isDemo, true)),
     columns: { id: true },
   });
-  if (!user) redirect("/demo/limited");
+  if (!user) {
+    console.error(
+      `[demo] no isDemo user found for ${email} — run \`pnpm db:seed:demo\` op productie`,
+    );
+    redirect(`/demo/limited?reason=missing&role=${role}`);
+  }
 
   const sessionToken = randomUUID();
   const expires = new Date(Date.now() + SESSION_TTL_MS);
@@ -91,33 +92,22 @@ export async function loginAsDemoPortal(): Promise<never> {
     expires,
   });
 
+  console.info(
+    `[demo] ${role} session set: token=${sessionToken.slice(0, 8)}…, cookie=${cfg.name}, domain=${cfg.domain ?? "<localhost>"}`,
+  );
+  return sessionToken;
+}
+
+export async function loginAsDemoPortal(): Promise<never> {
+  const ip = await getClientIp();
+  if (!checkRateLimit(ip)) redirect("/demo/limited?reason=rate-limit");
+  await setDemoSession("portal");
   redirect("/portal/dashboard");
 }
 
 export async function loginAsDemoAdmin(): Promise<never> {
   const ip = await getClientIp();
-  if (!checkRateLimit(ip)) redirect("/demo/limited");
-
-  const user = await db.query.users.findFirst({
-    where: and(eq(users.email, "demo-admin@webstability.eu"), eq(users.isDemo, true)),
-    columns: { id: true },
-  });
-  if (!user) redirect("/demo/limited");
-
-  const sessionToken = randomUUID();
-  const expires = new Date(Date.now() + SESSION_TTL_MS);
-  await db.insert(sessions).values({ sessionToken, userId: user.id, expires });
-
-  const cfg = getCookieConfig();
-  const jar = await cookies();
-  jar.set(cfg.name, sessionToken, {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-    secure: cfg.secure,
-    domain: cfg.domain,
-    expires,
-  });
-
+  if (!checkRateLimit(ip)) redirect("/demo/limited?reason=rate-limit");
+  await setDemoSession("admin");
   redirect("/admin");
 }
