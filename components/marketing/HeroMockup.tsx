@@ -142,7 +142,7 @@ function ClientView({ reduce }: { reduce: boolean }) {
         <span className="h-2 w-2 rounded-full bg-(--color-border)" />
         <span className="h-2 w-2 rounded-full bg-(--color-border)" />
         <span className="ml-2 truncate font-mono text-[10px] text-(--color-muted)">
-          jouwbedrijf.nl/boeken/caravan-hymer
+          jouwbedrijf.nl/boeken
         </span>
         <span className="ml-auto rounded-full bg-(--color-success)/15 px-1.5 py-0.5 font-mono text-[8px] tracking-wide text-(--color-success) uppercase">
           SSL
@@ -150,60 +150,28 @@ function ClientView({ reduce }: { reduce: boolean }) {
       </div>
 
       <div className="p-4 md:p-5">
-        {/* Hero-strip met caravan + sun */}
+        {/* Abstracte product-hero — gradient + grid-lijnen voor depth.
+            Generiek genoeg voor elke productlijn: verhuur, retail,
+            reparatie, stallingen — geen caravan-fixatie. */}
         <div
-          className="relative mb-3 aspect-[16/7] overflow-hidden rounded-[12px]"
+          aria-hidden
+          className="relative mb-3 aspect-[16/7] overflow-hidden rounded-[12px] border border-(--color-border)"
           style={{
             background:
-              "linear-gradient(180deg, #FBE9D8 0%, #F4DCD4 35%, #E5D4C4 65%, #D8CDB6 100%)",
+              "linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-bg-warm) 60%, var(--color-bg) 100%)",
           }}
         >
-          {/* Sun */}
+          {/* Subtle terracotta halo top-right */}
+          <span className="wb-soft-halo absolute -top-12 -right-12 h-32 w-32 rounded-full bg-(--color-accent)/30 blur-2xl" />
+          {/* Grid-lijnen voor structuur */}
           <span
-            aria-hidden
-            className="absolute top-3 right-5 h-6 w-6 rounded-full"
+            className="absolute inset-0 opacity-[0.07]"
             style={{
-              background: "radial-gradient(circle, #FFD9A0 0%, #F4B26A 70%, #C9614F 100%)",
-              boxShadow: "0 0 14px rgba(255,200,130,0.5)",
+              backgroundImage:
+                "linear-gradient(var(--color-text) 1px, transparent 1px), linear-gradient(90deg, var(--color-text) 1px, transparent 1px)",
+              backgroundSize: "32px 32px",
             }}
           />
-          {/* Mountains + caravan silhouet */}
-          <svg
-            viewBox="0 0 320 100"
-            preserveAspectRatio="none"
-            className="absolute inset-0 h-full w-full"
-            aria-hidden
-          >
-            <path
-              d="M 0 70 L 50 50 L 100 60 L 160 40 L 220 55 L 280 45 L 320 55 L 320 100 L 0 100 Z"
-              fill="rgba(107,30,44,0.12)"
-            />
-            <line
-              x1="0"
-              y1="70"
-              x2="320"
-              y2="70"
-              stroke="#1F1B16"
-              strokeWidth="0.4"
-              strokeOpacity="0.18"
-            />
-            {/* Mini caravan */}
-            <g transform="translate(130, 55)">
-              <rect
-                x="0"
-                y="0"
-                width="60"
-                height="22"
-                rx="6"
-                fill="#FFFFFF"
-                stroke="#1F1B16"
-                strokeWidth="1.2"
-              />
-              <rect x="2" y="9" width="56" height="2" fill="#C9614F" opacity="0.7" />
-              <circle cx="12" cy="22" r="4" fill="#1F1B16" />
-              <circle cx="48" cy="22" r="4" fill="#1F1B16" />
-            </g>
-          </svg>
           {/* "Beschikbaar" badge */}
           <span className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full bg-(--color-surface)/90 px-2 py-0.5 font-mono text-[9px] tracking-wide text-(--color-success) backdrop-blur-sm">
             <span className="h-1 w-1 rounded-full bg-(--color-success)" />
@@ -219,10 +187,10 @@ function ClientView({ reduce }: { reduce: boolean }) {
         <div className="mb-3 flex items-baseline justify-between gap-2">
           <div className="min-w-0">
             <p className="font-mono text-[8px] tracking-widest text-(--color-muted) uppercase">
-              Caravans · Costa Brava
+              Productlijn · Beschikbaar
             </p>
             <h3 className="mt-0.5 truncate font-serif text-[16px] leading-tight">
-              Caravan Hymer 2024 · 6p
+              Object · 14—21 jul
             </h3>
           </div>
           <div className="flex shrink-0 items-center gap-1 font-mono text-[10px] text-(--color-muted)">
@@ -389,13 +357,13 @@ function AdminView({ reduce }: { reduce: boolean }) {
         <div className="space-y-1.5">
           <ExistingRow
             customer="Familie de Vries"
-            object="Caravan Hymer · 7—14 jul"
+            object="Object · 7—14 jul"
             amount="€720"
             status="betaald"
           />
           <ExistingRow
             customer="J. Bakker"
-            object="Caravan Adria · 12—19 jul"
+            object="Bestelling #2841 · 3 items"
             amount="€640"
             status="contract"
           />
@@ -418,7 +386,7 @@ function AdminView({ reduce }: { reduce: boolean }) {
               <div className="min-w-0">
                 <p className="truncate text-[11.5px] font-medium">Familie Janssen</p>
                 <p className="truncate font-mono text-[9px] text-(--color-muted)">
-                  Caravan Hymer · 14—21 jul · 7n
+                  Object · 14—21 jul · 7n
                 </p>
               </div>
             </div>

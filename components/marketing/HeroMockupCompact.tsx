@@ -92,7 +92,7 @@ export function HeroMockupCompact() {
               <div className="min-w-0">
                 <p className="truncate text-[11px] font-medium">Familie Janssen</p>
                 <p className="truncate font-mono text-[9px] text-(--color-muted)">
-                  Caravan · 14—21 jul · 7n
+                  Object · 14—21 jul · 7n
                 </p>
               </div>
             </div>
