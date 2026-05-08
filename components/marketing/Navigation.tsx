@@ -70,7 +70,7 @@ export async function Navigation({ locale }: { locale: string }) {
           </span>
           <Link
             href="/login"
-            className="hidden rounded text-[13.5px] font-medium text-(--color-bg)/65 transition-colors hover:text-(--color-bg) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent) md:inline-flex"
+            className="hidden items-center rounded-full border border-(--color-bg)/25 px-4 py-2 text-[13px] font-medium text-(--color-bg)/85 transition-colors hover:border-(--color-bg)/60 hover:text-(--color-bg) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:inline-flex"
           >
             {t("login")}
           </Link>
