@@ -2,8 +2,11 @@ import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { MarkupText } from "@/components/animate/MarkupText";
+import { ScrambleText } from "@/components/animate/ScrambleText";
 import { LoginAmbientMount } from "@/components/r3f/LoginAmbientMount";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { StudioParallaxHalos } from "@/components/marketing/StudioParallaxHalos";
+import { StudioStats } from "@/components/marketing/StudioStats";
 
 /**
  * "Studio establishment shot" — donkere sectie op de homepage tussen
@@ -12,6 +15,10 @@ import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
  *
  * Niet "wat we doen" (dat zegt /diensten), wel "wie we zijn" — één
  * ontwikkelaar, MKB in NL+ES, doorlopend abonnement.
+ *
+ * Animaties: ScrambleText op eyebrow, halo-blobs volgen cursor met
+ * spring-lag, stat-strip krijgt FlashCounter count-up + stagger reveal
+ * + stroke-draw divider — alles scroll-triggered, niets continu.
  */
 export async function StudioStatement() {
   const t = await getTranslations("home.studioStatement");
@@ -29,15 +36,8 @@ export async function StudioStatement() {
 
   return (
     <section className="relative isolate overflow-hidden bg-(--color-text) text-(--color-bg)">
-      {/* Statische halo-blobs — terracotta linksboven, teal rechtsonder */}
-      <div
-        aria-hidden
-        className="wb-soft-halo pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-(--color-accent) opacity-40 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="wb-soft-halo pointer-events-none absolute -right-32 -bottom-32 h-[420px] w-[420px] rounded-full bg-(--color-teal) opacity-50 blur-3xl"
-      />
+      {/* Halo-blobs met subtle cursor-parallax */}
+      <StudioParallaxHalos />
 
       {/* Conic-mesh — langzaam roterend ambient */}
       <LoginAmbientMount className="pointer-events-none absolute inset-0 -z-10 opacity-60" />
@@ -45,8 +45,7 @@ export async function StudioStatement() {
       <div className="relative mx-auto max-w-[960px] px-6 py-24 md:py-32">
         <RevealOnScroll>
           <p className="font-mono text-[11px] tracking-widest text-(--color-bg)/55 uppercase">
-            {"// "}
-            {t("eyebrow")}
+            <ScrambleText text={`// ${t("eyebrow")}`} duration={900} />
           </p>
         </RevealOnScroll>
         <RevealOnScroll delay={0.1}>
@@ -60,15 +59,15 @@ export async function StudioStatement() {
           </p>
         </RevealOnScroll>
 
-        {/* Stat-strip — flat, border-top zoals hero */}
-        <RevealOnScroll delay={0.3}>
-          <div className="mt-12 grid grid-cols-2 gap-x-10 gap-y-6 border-t border-(--color-bg)/15 pt-9 sm:grid-cols-4">
-            <Stat label={stats.yearsLabel} value={stats.yearsValue} />
-            <Stat label={stats.productsLabel} value={stats.productsValue} />
-            <Stat label={stats.uptimeLabel} value={stats.uptimeValue} />
-            <Stat label={stats.regionLabel} value={stats.regionValue} />
-          </div>
-        </RevealOnScroll>
+        {/* Stat-strip met FlashCounter + stagger + stroke-draw divider */}
+        <StudioStats
+          stats={[
+            { value: 10, suffix: "+", label: stats.yearsLabel },
+            { value: 3, label: stats.productsLabel },
+            { value: 99.98, suffix: "%", decimals: 2, label: stats.uptimeLabel },
+            { plain: stats.regionValue, label: stats.regionLabel },
+          ]}
+        />
 
         {/* CTA-rij */}
         <RevealOnScroll delay={0.4}>
@@ -90,16 +89,5 @@ export async function StudioStatement() {
         </RevealOnScroll>
       </div>
     </section>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <div className="font-serif text-[34px] leading-none tabular-nums">{value}</div>
-      <div className="mt-1.5 font-mono text-[11px] tracking-widest text-(--color-bg)/55 uppercase">
-        {label}
-      </div>
-    </div>
   );
 }
