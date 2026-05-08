@@ -2,7 +2,8 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { Check, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/Button";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { auth } from "@/lib/auth";
@@ -227,12 +228,10 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <h2 className="text-2xl md:text-4xl">{t("footerCtaTitle")}</h2>
           <p className="text-(--color-muted)">{t("footerCtaBody")}</p>
           <div className="flex flex-wrap justify-center gap-3 pt-2">
-            <Button asChild variant="primary">
-              <Link href="/contact">
-                {t("footerCtaPrimary")}
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </Button>
+            <CalPopupTrigger locale={locale} className={buttonVariants({ variant: "primary" })}>
+              {t("footerCtaPrimary")}
+              <ArrowRight className="h-3.5 w-3.5" />
+            </CalPopupTrigger>
             <Button asChild variant="outline">
               <Link href="/cases">
                 {t("footerCtaSecondary")}

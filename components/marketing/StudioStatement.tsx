@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { MarkupText } from "@/components/animate/MarkupText";
@@ -7,6 +7,7 @@ import { LoginAmbientMount } from "@/components/r3f/LoginAmbientMount";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { StudioParallaxHalos } from "@/components/marketing/StudioParallaxHalos";
 import { StudioStats } from "@/components/marketing/StudioStats";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 
 /**
  * "Studio establishment shot" — donkere sectie op de homepage tussen
@@ -23,6 +24,7 @@ import { StudioStats } from "@/components/marketing/StudioStats";
 export async function StudioStatement() {
   const t = await getTranslations("home.studioStatement");
   const tRaw = await getTranslations();
+  const locale = await getLocale();
   const stats = tRaw.raw("home.studioStatement.stats") as {
     yearsLabel: string;
     yearsValue: string;
@@ -72,13 +74,13 @@ export async function StudioStatement() {
         {/* CTA-rij */}
         <RevealOnScroll delay={0.4}>
           <div className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-3">
-            <Link
-              href="/contact"
+            <CalPopupTrigger
+              locale={locale}
               className="group inline-flex items-center gap-2 rounded-full bg-(--color-accent) px-5 py-2.5 text-[14px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
             >
               {t("ctaPrimary")}
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-            </Link>
+            </CalPopupTrigger>
             <Link
               href={t("ctaSecondaryHref") as never}
               className="rounded text-[14px] font-medium text-(--color-bg)/70 underline decoration-(--color-bg)/30 underline-offset-4 transition-colors hover:text-(--color-bg) hover:decoration-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent)"

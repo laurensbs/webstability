@@ -1,14 +1,15 @@
 import { ArrowRight } from "lucide-react";
-import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
-import { Button } from "@/components/ui/Button";
+import { getTranslations, getLocale } from "next-intl/server";
+import { Button, buttonVariants } from "@/components/ui/Button";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 import { MagneticButton } from "@/components/animate/MagneticButton";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 
 export async function CTABlock() {
   const t = await getTranslations("home.cta");
+  const locale = await getLocale();
   return (
     <section id="contact" className="relative overflow-hidden px-6 py-[120px]">
       {/* Ambient terracotta blob */}
@@ -38,9 +39,12 @@ export async function CTABlock() {
               </Button>
             </MagneticButton>
             <MagneticButton>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/contact">{t("button")} →</Link>
-              </Button>
+              <CalPopupTrigger
+                locale={locale}
+                className={buttonVariants({ variant: "outline", size: "lg" })}
+              >
+                {t("button")} →
+              </CalPopupTrigger>
             </MagneticButton>
           </div>
         </div>

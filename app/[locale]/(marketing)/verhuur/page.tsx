@@ -3,8 +3,8 @@ import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check, Calendar, FileText, CreditCard, X, Zap, Clock } from "lucide-react";
 import { routing } from "@/i18n/routing";
-import { Link } from "@/i18n/navigation";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/Button";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { AvailabilityPill } from "@/components/animate/AvailabilityPill";
@@ -335,9 +335,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/contact">{t("ctaButton")} →</Link>
-              </Button>
+              <CalPopupTrigger
+                locale={locale}
+                className={buttonVariants({ variant: "outline", size: "lg" })}
+              >
+                {t("ctaButton")} →
+              </CalPopupTrigger>
             </div>
           </RevealOnScroll>
         </div>

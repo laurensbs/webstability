@@ -4,8 +4,8 @@ import { notFound } from "next/navigation";
 import { MapPin } from "lucide-react";
 import { routing } from "@/i18n/routing";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { Button } from "@/components/ui/Button";
-import { Link } from "@/i18n/navigation";
+import { buttonVariants } from "@/components/ui/Button";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 import { FounderFormMount } from "@/components/r3f/FounderFormMount";
@@ -144,9 +144,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <h2 className="text-3xl md:text-5xl">{t("ctaTitle")}</h2>
           <p className="text-(--color-muted)">{t("ctaBody")}</p>
           <div className="pt-2">
-            <Button asChild size="lg" variant="accent">
-              <Link href="/contact">{t("ctaButton")}</Link>
-            </Button>
+            <CalPopupTrigger
+              locale={locale}
+              className={buttonVariants({ variant: "accent", size: "lg" })}
+            >
+              {t("ctaButton")}
+            </CalPopupTrigger>
           </div>
         </RevealOnScroll>
       </section>

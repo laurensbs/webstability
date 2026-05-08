@@ -1,7 +1,7 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/Button";
 import { RotatingPill } from "@/components/animate/RotatingPill";
 import { MagneticButton } from "@/components/animate/MagneticButton";
 import { RotatingWords } from "@/components/animate/RotatingWords";
@@ -9,11 +9,13 @@ import { DemoChooserModal } from "@/components/marketing/DemoChooserModal";
 import { HeroProposition } from "@/components/marketing/HeroProposition";
 import { HeroMockup } from "@/components/marketing/HeroMockup";
 import { HeroMockupCompact } from "@/components/marketing/HeroMockupCompact";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 
 export async function Hero() {
   const t = await getTranslations("home");
   const tHero = await getTranslations("home.hero");
   const tRaw = await getTranslations();
+  const locale = await getLocale();
   const rotatingWords = tRaw.raw("home.hero.rotatingWords") as string[];
   const eyebrowMessages = tRaw.raw("home.hero.eyebrowMessages") as string[];
   const propositionLines = tRaw.raw("home.hero.proposition") as Array<{
@@ -46,12 +48,13 @@ export async function Hero() {
 
             <div className="mt-9 flex flex-col items-stretch gap-3.5 sm:flex-row sm:flex-wrap sm:items-center">
               <MagneticButton>
-                <Button asChild size="lg" variant="primary" className="group w-full sm:w-auto">
-                  <Link href="/contact">
-                    {t("ctaPrimary")}
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                </Button>
+                <CalPopupTrigger
+                  locale={locale}
+                  className={`${buttonVariants({ variant: "primary", size: "lg" })} group w-full sm:w-auto`}
+                >
+                  {t("ctaPrimary")}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </CalPopupTrigger>
               </MagneticButton>
               <MagneticButton>
                 <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">

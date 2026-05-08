@@ -6,7 +6,8 @@ import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { MarkupText } from "@/components/animate/MarkupText";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/Button";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 import { AnimatedCheck } from "@/components/marketing/AnimatedCheck";
 import { SystemWireframe } from "@/components/marketing/SystemWireframe";
 import { LoginAmbientMount } from "@/components/r3f/LoginAmbientMount";
@@ -224,12 +225,13 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   </div>
 
                   <div className="relative flex flex-wrap items-center gap-3 pt-2">
-                    <Button asChild variant="accent">
-                      <Link href="/contact">
-                        {item.ctaPrimary}
-                        <ArrowRight className="h-3.5 w-3.5" />
-                      </Link>
-                    </Button>
+                    <CalPopupTrigger
+                      locale={locale}
+                      className={buttonVariants({ variant: "accent" })}
+                    >
+                      {item.ctaPrimary}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </CalPopupTrigger>
                     <a
                       href={item.ctaSecondaryHref}
                       className="text-[14px] font-medium text-(--color-accent) hover:underline"

@@ -1,10 +1,11 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Mail, ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LivePulse } from "@/components/animate/LivePulse";
 import { LogoMark } from "@/components/shared/LogoMark";
 import { MarkupText } from "@/components/animate/MarkupText";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 
 /**
  * Premium "studio"-footer. Drie zones:
@@ -20,6 +21,7 @@ import { LangSwitcher } from "@/components/shared/LangSwitcher";
 export async function Footer() {
   const t = await getTranslations("footer");
   const tNav = await getTranslations("nav");
+  const locale = await getLocale();
   const year = new Date().getFullYear();
 
   // Vercel-exposed env-vars — bestaan in productie, fallbacken in dev.
@@ -104,13 +106,13 @@ export async function Footer() {
                   hello@webstability.eu
                 </a>
               </div>
-              <Link
-                href="/contact"
+              <CalPopupTrigger
+                locale={locale}
                 className="inline-flex w-full items-center justify-between gap-2 rounded-full bg-(--color-accent) px-4 py-3 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) sm:w-auto sm:py-2.5"
               >
                 <span>{tNav("planCall")}</span>
                 <ArrowUpRight className="h-3.5 w-3.5" />
-              </Link>
+              </CalPopupTrigger>
             </div>
           </div>
         </div>

@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { useLocale } from "next-intl";
 import { Calendar, MessageCircle } from "lucide-react";
-import { Link } from "@/i18n/navigation";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim().replace(/\D/g, "") ?? "";
 
@@ -25,6 +26,7 @@ export function MobileStickyCta({
   whatsappLabel: string;
 }) {
   const reduce = useReducedMotion();
+  const locale = useLocale();
   const [visible, setVisible] = React.useState(false);
 
   React.useEffect(() => {
@@ -47,13 +49,13 @@ export function MobileStickyCta({
       className="fixed right-0 bottom-0 left-0 z-30 flex gap-2.5 border-t border-(--color-border) bg-(--color-bg)/95 px-4 py-3 backdrop-blur-md md:hidden"
       style={{ pointerEvents: visible ? "auto" : "none" }}
     >
-      <Link
-        href="/contact"
+      <CalPopupTrigger
+        locale={locale}
         className="flex flex-1 items-center justify-center gap-2 rounded-full bg-(--color-text) px-4 py-3 text-[14px] font-medium text-(--color-bg)"
       >
         <Calendar className="h-3.5 w-3.5" />
         {planLabel}
-      </Link>
+      </CalPopupTrigger>
       {waHref ? (
         <a
           href={waHref}

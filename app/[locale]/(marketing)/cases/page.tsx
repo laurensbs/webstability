@@ -8,8 +8,9 @@ import { PageHeader } from "@/components/marketing/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { MarkupText } from "@/components/animate/MarkupText";
 import { Eyebrow } from "@/components/animate/Eyebrow";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/Button";
 import { CaseScreenshot } from "@/components/marketing/CaseScreenshot";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 
@@ -169,12 +170,10 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 </p>
               </div>
               <div className="flex md:justify-end">
-                <Button asChild variant="accent">
-                  <Link href="/contact">
-                    {t("productLines.ctaButton")}
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </Button>
+                <CalPopupTrigger locale={locale} className={buttonVariants({ variant: "accent" })}>
+                  {t("productLines.ctaButton")}
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </CalPopupTrigger>
               </div>
             </div>
           </RevealOnScroll>
@@ -330,12 +329,10 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <h2 className="text-2xl md:text-4xl">{t("footerCtaTitle")}</h2>
           <p className="text-(--color-muted)">{t("footerCtaBody")}</p>
           <div className="flex flex-wrap justify-center gap-3 pt-2">
-            <Button asChild variant="primary">
-              <Link href="/contact">
-                {t("footerCtaLabel")}
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </Button>
+            <CalPopupTrigger locale={locale} className={buttonVariants({ variant: "primary" })}>
+              {t("footerCtaLabel")}
+              <ArrowRight className="h-3.5 w-3.5" />
+            </CalPopupTrigger>
             <Button asChild variant="outline">
               <Link href="/diensten">
                 {tNav("services")}
