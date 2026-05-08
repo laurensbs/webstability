@@ -81,7 +81,7 @@ export async function Footer() {
               <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
                 {t("contactRegion")}
               </p>
-              <h2 className="max-w-none font-serif text-[clamp(28px,4vw,44px)] leading-[1.1] sm:max-w-[18ch]">
+              <h2 className="max-w-none font-serif text-[clamp(28px,4vw,44px)] leading-[1.1] text-(--color-bg) sm:max-w-[18ch]">
                 <MarkupText>{t("studioTagline")}</MarkupText>
               </h2>
               <p className="max-w-[52ch] text-[15px] leading-[1.6] text-(--color-bg)/70">

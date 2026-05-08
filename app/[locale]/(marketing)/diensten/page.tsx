@@ -91,7 +91,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               {"// "}
               {t("eyebrow")}
             </p>
-            <h1 className="max-w-[18ch] font-serif text-[clamp(36px,5.5vw,64px)] leading-[1.05]">
+            <h1 className="max-w-[18ch] font-serif text-[clamp(36px,5.5vw,64px)] leading-[1.05] text-(--color-bg)">
               <MarkupText>{t("title")}</MarkupText>
             </h1>
             <p className="max-w-[56ch] text-[17px] leading-[1.65] text-(--color-bg)/70">

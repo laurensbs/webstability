@@ -46,7 +46,7 @@ export async function StudioStatement() {
           {"// "}
           {t("eyebrow")}
         </p>
-        <h2 className="mt-5 max-w-[20ch] font-serif text-[clamp(32px,5vw,56px)] leading-[1.1]">
+        <h2 className="mt-5 max-w-[20ch] font-serif text-[clamp(32px,5vw,56px)] leading-[1.1] text-(--color-bg)">
           <MarkupText>{t("title")}</MarkupText>
         </h2>
         <p className="mt-6 max-w-[58ch] text-[17px] leading-[1.65] text-(--color-bg)/70">

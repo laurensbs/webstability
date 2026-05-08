@@ -3,10 +3,10 @@
 import * as React from "react";
 
 /**
- * Sticky donker header. Bovenop pagina is de bar bijna transparant
- * met blur, bij scroll voorbij 12px wordt 'ie compacter en donkerder.
- * De donkere bar past bij de "studio after dark"-merkstem die ook op
- * /login terugkomt.
+ * Sticky donker header. Volledig donker vanaf scroll 0 — past bij de
+ * "studio after dark"-merkstem die ook op /login terugkomt. Bij scroll
+ * voorbij 12px voegen we alleen een lichte border + shadow toe als
+ * subtiele depth-cue.
  */
 export function NavScroll({ children }: { children: React.ReactNode }) {
   const [scrolled, setScrolled] = React.useState(() => {
@@ -36,7 +36,7 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
   return (
     <header
       data-scrolled={scrolled || undefined}
-      className="sticky top-0 z-30 border-b border-(--color-text)/10 bg-(--color-text)/80 text-(--color-bg) backdrop-blur-md transition-[border-color,background-color,box-shadow] duration-200 data-[scrolled]:border-(--color-text)/20 data-[scrolled]:bg-(--color-text)/95 data-[scrolled]:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.35)]"
+      className="sticky top-0 z-30 border-b border-transparent bg-(--color-text) text-(--color-bg) transition-[border-color,box-shadow] duration-200 data-[scrolled]:border-(--color-bg)/15 data-[scrolled]:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.45)]"
     >
       {children}
     </header>
