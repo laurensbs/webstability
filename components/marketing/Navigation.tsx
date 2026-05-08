@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { LogIn } from "lucide-react";
+import { KeyRound } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { LogoMark } from "@/components/shared/LogoMark";
@@ -73,9 +73,13 @@ export async function Navigation({ locale }: { locale: string }) {
             href="/login"
             aria-label={t("login")}
             title={t("login")}
-            className="hidden h-10 w-10 items-center justify-center rounded-full border border-(--color-bg)/25 text-(--color-bg)/75 transition-colors hover:border-(--color-bg)/60 hover:text-(--color-bg) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:inline-flex"
+            className="group hidden h-10 w-10 items-center justify-center rounded-full border border-(--color-bg)/25 text-(--color-bg)/75 transition-colors hover:border-(--color-bg)/60 hover:text-(--color-bg) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:inline-flex"
           >
-            <LogIn className="h-4 w-4" strokeWidth={2} aria-hidden />
+            <KeyRound
+              className="h-4 w-4 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:rotate-[-12deg]"
+              strokeWidth={2}
+              aria-hidden
+            />
           </Link>
           {/* CTA — terracotta op donker; komt nu pas tot zijn recht */}
           <CalPopupTrigger
