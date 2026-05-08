@@ -39,7 +39,7 @@ export function RotatingPill({ href, messages }: { href: Href; messages: string[
     >
       <Link
         href={href}
-        className="inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3.5 py-1.5 text-[13px] text-(--color-muted) shadow-[0_1px_2px_rgba(31,27,22,0.04),0_1px_3px_rgba(31,27,22,0.06)] transition-colors hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+        className="inline-flex items-center gap-2 rounded-full px-1 text-[13px] text-(--color-muted) transition-colors hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
       >
         <span
           className="h-1.5 w-1.5 rounded-full bg-(--color-success)"
