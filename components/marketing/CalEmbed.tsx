@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { Spinner } from "@/components/animate/Spinner";
 
 // Cal.com embed wordt direct geladen — eerder zat er een opt-in
 // klikknop op zodat de runtime pas binnenkwam na expliciete toestemming,
@@ -14,10 +15,7 @@ const Cal = dynamic(() => import("@calcom/embed-react"), {
   loading: () => (
     <div className="flex h-[640px] w-full items-center justify-center rounded-lg border border-(--color-border) bg-(--color-surface)">
       <span className="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-(--color-muted) uppercase">
-        <span
-          className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-(--color-accent) border-t-transparent"
-          aria-hidden
-        />
+        <Spinner size={14} variant="accent" />
         agenda laden…
       </span>
     </div>

@@ -4,6 +4,7 @@ import * as React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import dynamic from "next/dynamic";
 import { X } from "lucide-react";
+import { Spinner } from "@/components/animate/Spinner";
 
 /**
  * Klikt op de trigger? → Radix Dialog opent met de Cal-embed direct
@@ -19,10 +20,7 @@ const Cal = dynamic(() => import("@calcom/embed-react"), {
   loading: () => (
     <div className="flex h-full w-full items-center justify-center">
       <span className="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-(--color-muted) uppercase">
-        <span
-          className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-(--color-accent) border-t-transparent"
-          aria-hidden
-        />
+        <Spinner size={14} variant="accent" />
         agenda laden…
       </span>
     </div>
