@@ -2,7 +2,6 @@ import { getTranslations } from "next-intl/server";
 import { KeyRound } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
-import { LogoMark } from "@/components/shared/LogoMark";
 import { NavScroll } from "@/components/marketing/NavScroll";
 import { NavLink } from "@/components/marketing/NavLink";
 import { NavMegaMenu, type MegaMenuStrings } from "@/components/marketing/NavMegaMenu";
@@ -37,14 +36,9 @@ export async function Navigation({ locale }: { locale: string }) {
         {/* Wordmark — cream op donker, terracotta accent-punt */}
         <Link
           href="/"
-          className="group inline-flex items-center gap-2.5 text-[18px] font-extrabold tracking-[-0.045em] text-(--color-bg) transition-opacity hover:opacity-90"
+          className="inline-flex items-center text-[18px] font-extrabold tracking-[-0.045em] text-(--color-bg) transition-opacity hover:opacity-90"
         >
-          <span className="text-(--color-accent) transition-transform duration-300 group-hover:rotate-[-6deg]">
-            <LogoMark size={20} animate />
-          </span>
-          <span>
-            webstability<span className="text-(--color-accent)">.</span>
-          </span>
+          webstability<span className="text-(--color-accent)">.</span>
         </Link>
 
         {/* Center nav — desktop only. Mega-menu voor diensten + cases,
