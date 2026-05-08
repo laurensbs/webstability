@@ -105,7 +105,7 @@ export default async function LoginPage({
 
         <div className="relative z-10 max-w-md space-y-8">
           <MountReveal delay={0.15}>
-            <h2 className="text-3xl leading-[1.15] md:text-4xl">
+            <h2 className="text-3xl leading-[1.15] text-(--color-bg) md:text-4xl">
               {<MarkupText>{t("panelTitle")}</MarkupText>}
             </h2>
           </MountReveal>
@@ -169,7 +169,13 @@ export default async function LoginPage({
             </p>
           </MountReveal>
           <MountReveal delay={0.2}>
-            <h1 className="mt-4 text-4xl md:text-5xl">{<MarkupText>{t("title")}</MarkupText>}</h1>
+            <h1
+              className={`mt-4 text-4xl md:text-5xl ${
+                isAdminHost ? "text-(--color-bg)" : "text-(--color-text)"
+              }`}
+            >
+              {<MarkupText>{t("title")}</MarkupText>}
+            </h1>
           </MountReveal>
           <MountReveal delay={0.3}>
             <p className={`mt-3 ${isAdminHost ? "text-(--color-bg)/70" : "text-(--color-muted)"}`}>
