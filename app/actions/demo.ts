@@ -5,25 +5,27 @@ import { cookies, headers } from "next/headers";
 import { eq, and } from "drizzle-orm";
 import { randomUUID } from "node:crypto";
 import { db } from "@/lib/db";
-import { users, sessions } from "@/lib/db/schema";
+import { users, sessions, organizations } from "@/lib/db/schema";
 
 /**
- * Demo-login flow zonder magic-link. Maakt een Auth.js-compatible
- * sessie-row + cookie aan voor de seed-user `demo-portal@…` of
- * `demo-admin@…`. De DrizzleAdapter accepteert deze sessies tijdens
- * `auth()` calls omdat ze in dezelfde `sessions` tabel staan.
+ * Demo-login flow zonder magic-link. Gebruikt of de bestaande seed-users
+ * (`demo-portal@…` / `demo-admin@…`), of maakt ze on-the-fly aan als ze
+ * nog niet bestaan in deze omgeving — voorheen redirect'te dat naar
+ * /demo/limited wat verwarrend was. Idempotent: 2e bezoek vindt 'em
+ * gewoon terug.
  *
- * Sliding TTL van 30 min — bij elke subsequent action wordt expires
- * niet expliciet bijgewerkt, maar bezoekers die actief klikken houden
- * de cookie levend doordat de cookie zelf elke 30 min een nieuwe
- * `expires` krijgt via een lichte refresh in de DemoBanner-component
- * (P3). MVP is goed genoeg.
+ * Sessie via een Auth.js-compatible row in de `sessions` tabel + cookie
+ * met dezelfde naam die Auth.js zelf zou zetten. De DrizzleAdapter
+ * accepteert deze sessies tijdens `auth()` calls.
  */
 
 const PRODUCTION_HOST = "webstability.eu";
 
-// In-memory rate-limit per IP. 10 demo-logins per uur. Reset bij
-// server-restart, niet cross-region — voldoende voor MVP-volume.
+const PORTAL_EMAIL = "demo-portal@webstability.eu";
+const ADMIN_EMAIL = "demo-admin@webstability.eu";
+const PORTAL_ORG_SLUG = "demo-portal-org";
+
+// In-memory rate-limit per IP. 10 demo-logins per uur.
 type Bucket = { count: number; resetAt: number };
 const rateLimit = new Map<string, Bucket>();
 const RATE_LIMIT_MAX = 10;
@@ -47,10 +49,9 @@ async function getClientIp(): Promise<string> {
 }
 
 /**
- * Detecteer of we op een productie-host zitten (webstability.eu of
- * admin.webstability.eu). Op apex/subdomain gebruiken we secure-cookie
- * + cross-subdomain domain. Lokaal niet — daar zou secure de cookie
- * stuksturen.
+ * Detecteer of we op een productie-host zitten. Op apex/subdomain
+ * gebruiken we secure-cookie + cross-subdomain domain. Lokaal niet
+ * — daar zou secure de cookie stuksturen.
  */
 function getCookieConfig() {
   const authUrl = process.env.AUTH_URL ?? "";
@@ -64,18 +65,62 @@ function getCookieConfig() {
 
 const SESSION_TTL_MS = 30 * 60 * 1000;
 
-async function setDemoSession(role: "portal" | "admin"): Promise<string> {
-  const email = role === "portal" ? "demo-portal@webstability.eu" : "demo-admin@webstability.eu";
-  const user = await db.query.users.findFirst({
+/**
+ * Vind óf maak een demo-org. Idempotent op slug.
+ */
+async function ensureDemoOrg(): Promise<string> {
+  const existing = await db.query.organizations.findFirst({
+    where: eq(organizations.slug, PORTAL_ORG_SLUG),
+    columns: { id: true },
+  });
+  if (existing) return existing.id;
+
+  const [created] = await db
+    .insert(organizations)
+    .values({
+      name: "Demo Bedrijf",
+      slug: PORTAL_ORG_SLUG,
+      country: "NL",
+      plan: "studio",
+      isDemo: true,
+    })
+    .returning({ id: organizations.id });
+  return created.id;
+}
+
+/**
+ * Vind óf maak de demo-user. Portal-user krijgt een org gekoppeld;
+ * admin-user is staff zonder org.
+ */
+async function ensureDemoUser(role: "portal" | "admin"): Promise<{ id: string }> {
+  const email = role === "portal" ? PORTAL_EMAIL : ADMIN_EMAIL;
+  const existing = await db.query.users.findFirst({
     where: and(eq(users.email, email), eq(users.isDemo, true)),
     columns: { id: true },
   });
-  if (!user) {
-    console.error(
-      `[demo] no isDemo user found for ${email} — run \`pnpm db:seed:demo\` op productie`,
-    );
-    redirect(`/demo/limited?reason=missing&role=${role}`);
-  }
+  if (existing) return existing;
+
+  const orgId = role === "portal" ? await ensureDemoOrg() : null;
+  const [created] = await db
+    .insert(users)
+    .values({
+      email,
+      name: role === "portal" ? "Demo Klant" : "Demo Studio",
+      emailVerified: new Date(),
+      locale: "nl",
+      role: "owner",
+      organizationId: orgId,
+      isStaff: role === "admin",
+      isDemo: true,
+      lastLoginAt: new Date(),
+    })
+    .returning({ id: users.id });
+  console.info(`[demo] auto-created ${role} user (${email}) → ${created.id}`);
+  return created;
+}
+
+async function setDemoSession(role: "portal" | "admin"): Promise<string> {
+  const user = await ensureDemoUser(role);
 
   const sessionToken = randomUUID();
   const expires = new Date(Date.now() + SESSION_TTL_MS);
