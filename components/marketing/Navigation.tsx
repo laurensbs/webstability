@@ -33,10 +33,10 @@ export async function Navigation({ locale }: { locale: string }) {
   return (
     <NavScroll>
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-3.5">
-        {/* Wordmark — strak, subtiele hover op de mark */}
+        {/* Wordmark — cream op donker, terracotta accent-punt */}
         <Link
           href="/"
-          className="group inline-flex items-center gap-2.5 text-[18px] font-extrabold tracking-[-0.045em] text-(--color-text) transition-opacity hover:opacity-90"
+          className="group inline-flex items-center gap-2.5 text-[18px] font-extrabold tracking-[-0.045em] text-(--color-bg) transition-opacity hover:opacity-90"
         >
           <span className="text-(--color-accent) transition-transform duration-300 group-hover:rotate-[-6deg]">
             <LogoMark size={20} animate />
@@ -66,17 +66,18 @@ export async function Navigation({ locale }: { locale: string }) {
         {/* Right side — lang + login + CTA. Mobile: hamburger. */}
         <div className="flex items-center gap-3">
           <span className="hidden md:inline-flex">
-            <LangSwitcher />
+            <LangSwitcher variant="dark" />
           </span>
           <Link
             href="/login"
-            className="hidden rounded text-[13.5px] font-medium text-(--color-muted) transition-colors hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent) md:inline-flex"
+            className="hidden rounded text-[13.5px] font-medium text-(--color-bg)/65 transition-colors hover:text-(--color-bg) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent) md:inline-flex"
           >
             {t("login")}
           </Link>
+          {/* CTA — terracotta op donker; komt nu pas tot zijn recht */}
           <CalPopupTrigger
             locale={locale}
-            className="group hidden items-center gap-1.5 rounded-full bg-(--color-text) px-4 py-2 text-[13px] font-medium text-(--color-bg) transition-all hover:bg-(--color-text)/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:inline-flex"
+            className="group hidden items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:inline-flex"
           >
             {t("planCall")}
             <svg

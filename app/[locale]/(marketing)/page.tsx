@@ -17,6 +17,7 @@ export async function generateMetadata({
 }
 import { LogoStrip } from "@/components/marketing/LogoStrip";
 import { HowItWorksWrapper } from "@/components/marketing/HowItWorksWrapper";
+import { StudioStatement } from "@/components/marketing/StudioStatement";
 import { Services } from "@/components/marketing/Services";
 import { Founder } from "@/components/marketing/Founder";
 import { Testimonials } from "@/components/marketing/Testimonials";
@@ -36,6 +37,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <Hero />
       <LogoStrip />
       <HowItWorksWrapper />
+      <StudioStatement />
       <Services />
       <Founder />
       {/* Testimonials renders nothing until messages.home.testimonials.items has entries. */}

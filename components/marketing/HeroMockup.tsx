@@ -59,7 +59,7 @@ export function HeroMockup() {
       ) : null}
 
       {/* View-toggle pill — bovenop de mockup */}
-      <div className="mb-3 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-center">
         <div className="inline-flex items-center gap-0.5 rounded-full border border-(--color-border) bg-(--color-surface) p-1 shadow-[0_1px_2px_rgba(31,27,22,0.04)]">
           <ToggleButton active={view === "client"} onClick={() => handleSwitch("client")}>
             Klant ziet dit
@@ -68,19 +68,6 @@ export function HeroMockup() {
             Jij ziet dit
           </ToggleButton>
         </div>
-        {/* Sync-pill rechts — knipoog "data flowt tussen de twee" */}
-        <span className="hidden items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface) px-2.5 py-1 shadow-[0_1px_2px_rgba(31,27,22,0.04)] sm:inline-flex">
-          <span className="relative flex h-1.5 w-1.5">
-            <span
-              className="absolute inline-flex h-full w-full rounded-full bg-(--color-wine)"
-              style={{ animation: reduce ? undefined : "wb-soft-pulse 2.4s ease-out infinite" }}
-            />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-(--color-wine)" />
-          </span>
-          <span className="font-mono text-[10px] tracking-wide text-(--color-muted)">
-            #2841 synct realtime
-          </span>
-        </span>
       </div>
 
       <AnimatePresence mode="wait">

@@ -6,9 +6,9 @@ import type { ComponentProps } from "react";
 type Href = ComponentProps<typeof Link>["href"];
 
 /**
- * Marketing nav link — strak en clean. Active link is volle text-kleur,
- * inactive is muted. Geen accent-onderlijn, geen pill — minder ruis,
- * meer Stripe-stijl rust.
+ * Marketing nav-link, donkere header-variant. Active link is cream
+ * vol, inactive is cream/65 met hover naar vol cream. Geen accent-
+ * onderlijn — past bij Stripe-stijl rust.
  */
 export function NavLink({ href, children }: { href: Href; children: React.ReactNode }) {
   const pathname = usePathname();
@@ -20,7 +20,7 @@ export function NavLink({ href, children }: { href: Href; children: React.ReactN
       href={href}
       aria-current={active ? "page" : undefined}
       className={`rounded transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent) ${
-        active ? "text-(--color-text)" : "text-(--color-muted) hover:text-(--color-text)"
+        active ? "text-(--color-bg)" : "text-(--color-bg)/65 hover:text-(--color-bg)"
       }`}
     >
       {children}

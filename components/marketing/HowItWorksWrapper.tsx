@@ -47,7 +47,6 @@ export async function HowItWorksWrapper() {
         client,
         owner,
         flowSteps,
-        bridgeLabel: t("bridge.label"),
       }}
     />
   );

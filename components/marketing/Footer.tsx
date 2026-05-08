@@ -62,173 +62,181 @@ export async function Footer() {
   ] as const;
 
   return (
-    <footer className="relative z-[1] mt-auto overflow-hidden border-t-2 border-(--color-wine)/70 bg-(--color-bg-warm)">
-      {/* Subtiele radial-glow rechtsboven — wijn-rood, decoratief */}
-      <div
-        aria-hidden
-        className="wb-soft-halo pointer-events-none absolute -top-32 -right-24 h-[420px] w-[420px] rounded-full opacity-50 blur-[60px]"
-        style={{
-          background: "radial-gradient(circle, rgba(107,30,44,0.25) 0%, transparent 60%)",
-        }}
-      />
+    <footer className="relative z-[1] mt-auto">
+      {/* ---- Zone 1: Donker tagline-block met conic-mesh hint ---- */}
+      <div className="relative isolate overflow-hidden bg-(--color-text) text-(--color-bg)">
+        {/* Halo-blobs */}
+        <div
+          aria-hidden
+          className="wb-soft-halo pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-(--color-accent) opacity-35 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="wb-soft-halo pointer-events-none absolute -right-32 -bottom-32 h-[420px] w-[420px] rounded-full bg-(--color-wine) opacity-45 blur-3xl"
+        />
 
-      <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-20">
-        {/* ---- Zone 1: Tagline-block ---- */}
-        <div className="grid gap-10 border-b border-(--color-border) pb-14 md:grid-cols-[1.4fr_1fr]">
-          <div className="space-y-4">
-            <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
-              {t("contactRegion")}
-            </p>
-            <h2 className="max-w-none font-serif text-[clamp(28px,4vw,44px)] leading-[1.1] sm:max-w-[18ch]">
-              <MarkupText>{t("studioTagline")}</MarkupText>
-            </h2>
-            <p className="max-w-[52ch] text-[15px] leading-[1.6] text-(--color-muted)">
-              {t("studioSub")}
-            </p>
-          </div>
-
-          {/* Werken-met-ons card */}
-          <div className="flex flex-col justify-between gap-5 rounded-[18px] border border-t-2 border-(--color-border) border-t-(--color-wine)/60 bg-(--color-surface) p-6 shadow-[0_8px_24px_-12px_rgba(31,27,22,0.08)]">
-            <div>
-              <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
-                {t("responseLabel")}
+        <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-20">
+          <div className="grid gap-10 md:grid-cols-[1.4fr_1fr]">
+            <div className="space-y-4">
+              <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
+                {t("contactRegion")}
               </p>
-              <p className="mt-1 font-serif text-[28px] leading-none">{t("responseValue")}</p>
-              <a
-                href="mailto:hello@webstability.eu"
-                className="mt-4 inline-flex items-center gap-2 text-[14px] font-medium text-(--color-text) transition-colors hover:text-(--color-accent)"
-              >
-                <Mail className="h-3.5 w-3.5" />
-                hello@webstability.eu
-              </a>
+              <h2 className="max-w-none font-serif text-[clamp(28px,4vw,44px)] leading-[1.1] sm:max-w-[18ch]">
+                <MarkupText>{t("studioTagline")}</MarkupText>
+              </h2>
+              <p className="max-w-[52ch] text-[15px] leading-[1.6] text-(--color-bg)/70">
+                {t("studioSub")}
+              </p>
             </div>
-            <Link
-              href="/contact"
-              className="inline-flex w-full items-center justify-between gap-2 rounded-full bg-(--color-text) px-4 py-3 text-[13px] font-medium text-(--color-bg) transition-all hover:bg-(--color-text)/90 hover:shadow-[0_8px_20px_-8px_rgba(31,27,22,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) sm:w-auto sm:py-2.5"
-            >
-              <span>{tNav("planCall")}</span>
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </Link>
+
+            {/* Werken-met-ons card — cream surface op donker */}
+            <div className="flex flex-col justify-between gap-5 rounded-[18px] border border-t-2 border-(--color-bg)/15 border-t-(--color-accent) bg-(--color-bg)/5 p-6 backdrop-blur-sm">
+              <div>
+                <p className="font-mono text-[10px] tracking-widest text-(--color-bg)/55 uppercase">
+                  {t("responseLabel")}
+                </p>
+                <p className="mt-1 font-serif text-[28px] leading-none">{t("responseValue")}</p>
+                <a
+                  href="mailto:hello@webstability.eu"
+                  className="mt-4 inline-flex items-center gap-2 text-[14px] font-medium text-(--color-bg) transition-colors hover:text-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+                >
+                  <Mail className="h-3.5 w-3.5" />
+                  hello@webstability.eu
+                </a>
+              </div>
+              <Link
+                href="/contact"
+                className="inline-flex w-full items-center justify-between gap-2 rounded-full bg-(--color-accent) px-4 py-3 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) sm:w-auto sm:py-2.5"
+              >
+                <span>{tNav("planCall")}</span>
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* ---- Zone 2: Brand + 3 link-kolommen ---- */}
-        <div className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
-          <div className="space-y-4">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-[18px] font-extrabold tracking-[-0.045em] text-(--color-text)"
-            >
-              <span className="text-(--color-accent)">
-                <LogoMark size={20} />
+      {/* ---- Zone 2 + 3: Cream-warm met wijn-rood top-hairline ---- */}
+      <div className="relative overflow-hidden border-t-2 border-(--color-wine)/70 bg-(--color-bg-warm)">
+        <div className="relative mx-auto max-w-6xl px-6 py-14 md:py-16">
+          {/* ---- Zone 2: Brand + 3 link-kolommen ---- */}
+          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+            {/* Brand */}
+            <div className="space-y-4">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 text-[18px] font-extrabold tracking-[-0.045em] text-(--color-text)"
+              >
+                <span className="text-(--color-accent)">
+                  <LogoMark size={20} />
+                </span>
+                <span>
+                  webstability<span className="text-(--color-accent)">.</span>
+                </span>
+              </Link>
+              <p className="text-sm leading-relaxed text-(--color-muted)">{t("tagline")}</p>
+              <div className="flex items-center gap-2 pt-1">
+                <Link
+                  href="/status"
+                  className="inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3 py-1 text-[11px] font-medium tracking-[0.08em] text-(--color-muted) transition-colors hover:border-(--color-accent)/40 hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+                >
+                  <LivePulse />
+                  {t("liveBadge")}
+                </Link>
+              </div>
+            </div>
+
+            {/* Services */}
+            <FooterColumn title={t("cols.services")} items={services} />
+            {/* Company */}
+            <FooterColumn title={t("cols.company")} items={company} />
+            {/* Resources / Contact */}
+            <FooterColumn title={t("cols.contact")} items={resources}>
+              <li className="text-sm text-(--color-muted)">{t("contactRegion")}</li>
+              <li>
+                <a
+                  href="mailto:hello@webstability.eu"
+                  className="text-sm text-(--color-text) transition-colors hover:text-(--color-accent)"
+                >
+                  hello@webstability.eu
+                </a>
+              </li>
+            </FooterColumn>
+          </div>
+
+          {/* ---- Zone 3: Meta-strip ---- */}
+          <div className="grid gap-6 border-t border-(--color-border) pt-6 md:grid-cols-[1fr_auto] md:items-center">
+            {/* Links: copyright + last-deploy + (KvK/BTW achter details
+              op mobile, inline vanaf sm:) */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[10.5px] tracking-[0.06em] text-(--color-muted) uppercase">
+              <span>© {year} Webstability</span>
+
+              {/* KvK + BTW: alleen inline vanaf sm: */}
+              <span className="hidden text-(--color-border) sm:inline" aria-hidden>
+                ·
+              </span>
+              <span className="hidden sm:inline">
+                {t("kvkLabel")} <span className="text-(--color-text)">91186307</span>
+              </span>
+              <span className="hidden text-(--color-border) sm:inline" aria-hidden>
+                ·
+              </span>
+              <span className="hidden sm:inline">
+                {t("vatLabel")} <span className="text-(--color-text)">NL004875371B72</span>
+              </span>
+
+              <span className="text-(--color-border)" aria-hidden>
+                ·
               </span>
               <span>
-                webstability<span className="text-(--color-accent)">.</span>
+                {t("lastDeployLabel")} <span className="text-(--color-text)">{deployedLabel}</span>
+                <span className="ml-1.5 inline-flex items-center gap-1 rounded-full bg-(--color-bg)/60 px-1.5 py-0.5 text-(--color-accent)">
+                  {sha}
+                </span>
               </span>
-            </Link>
-            <p className="text-sm leading-relaxed text-(--color-muted)">{t("tagline")}</p>
-            <div className="flex items-center gap-2 pt-1">
-              <Link
-                href="/status"
-                className="inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3 py-1 text-[11px] font-medium tracking-[0.08em] text-(--color-muted) transition-colors hover:border-(--color-accent)/40 hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
-              >
-                <LivePulse />
-                {t("liveBadge")}
-              </Link>
+
+              {/* Disclosure voor KvK + BTW op mobile — vanaf sm: verstopt */}
+              <details className="basis-full sm:hidden">
+                <summary className="cursor-pointer list-none text-[10.5px] tracking-[0.06em] text-(--color-muted) uppercase transition-colors hover:text-(--color-text)">
+                  Bedrijfsgegevens ▾
+                </summary>
+                <div className="mt-2 space-y-1 pl-1 text-[10.5px] normal-case">
+                  <p>
+                    {t("kvkLabel")} <span className="text-(--color-text)">91186307</span>
+                  </p>
+                  <p>
+                    {t("vatLabel")} <span className="text-(--color-text)">NL004875371B72</span>
+                  </p>
+                </div>
+              </details>
             </div>
-          </div>
 
-          {/* Services */}
-          <FooterColumn title={t("cols.services")} items={services} />
-          {/* Company */}
-          <FooterColumn title={t("cols.company")} items={company} />
-          {/* Resources / Contact */}
-          <FooterColumn title={t("cols.contact")} items={resources}>
-            <li className="text-sm text-(--color-muted)">{t("contactRegion")}</li>
-            <li>
+            {/* Rechts: legal-links + GitHub + lang-switcher */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              {legal.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="rounded font-mono text-[10.5px] tracking-[0.06em] text-(--color-muted) uppercase transition-colors hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+                >
+                  {l.label}
+                </Link>
+              ))}
               <a
-                href="mailto:hello@webstability.eu"
-                className="text-sm text-(--color-text) transition-colors hover:text-(--color-accent)"
+                href="https://github.com/laurensbos"
+                target="_blank"
+                rel="noopener"
+                aria-label="GitHub"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-muted) transition-colors hover:border-(--color-accent)/40 hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
               >
-                hello@webstability.eu
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.2.9 2.3v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3" />
+                </svg>
               </a>
-            </li>
-          </FooterColumn>
-        </div>
-
-        {/* ---- Zone 3: Meta-strip ---- */}
-        <div className="grid gap-6 border-t border-(--color-border) pt-6 md:grid-cols-[1fr_auto] md:items-center">
-          {/* Links: copyright + last-deploy + (KvK/BTW achter details
-              op mobile, inline vanaf sm:) */}
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[10.5px] tracking-[0.06em] text-(--color-muted) uppercase">
-            <span>© {year} Webstability</span>
-
-            {/* KvK + BTW: alleen inline vanaf sm: */}
-            <span className="hidden text-(--color-border) sm:inline" aria-hidden>
-              ·
-            </span>
-            <span className="hidden sm:inline">
-              {t("kvkLabel")} <span className="text-(--color-text)">91186307</span>
-            </span>
-            <span className="hidden text-(--color-border) sm:inline" aria-hidden>
-              ·
-            </span>
-            <span className="hidden sm:inline">
-              {t("vatLabel")} <span className="text-(--color-text)">NL004875371B72</span>
-            </span>
-
-            <span className="text-(--color-border)" aria-hidden>
-              ·
-            </span>
-            <span>
-              {t("lastDeployLabel")} <span className="text-(--color-text)">{deployedLabel}</span>
-              <span className="ml-1.5 inline-flex items-center gap-1 rounded-full bg-(--color-bg)/60 px-1.5 py-0.5 text-(--color-accent)">
-                {sha}
+              <span className="inline-flex items-center">
+                <LangSwitcher />
               </span>
-            </span>
-
-            {/* Disclosure voor KvK + BTW op mobile — vanaf sm: verstopt */}
-            <details className="basis-full sm:hidden">
-              <summary className="cursor-pointer list-none text-[10.5px] tracking-[0.06em] text-(--color-muted) uppercase transition-colors hover:text-(--color-text)">
-                Bedrijfsgegevens ▾
-              </summary>
-              <div className="mt-2 space-y-1 pl-1 text-[10.5px] normal-case">
-                <p>
-                  {t("kvkLabel")} <span className="text-(--color-text)">91186307</span>
-                </p>
-                <p>
-                  {t("vatLabel")} <span className="text-(--color-text)">NL004875371B72</span>
-                </p>
-              </div>
-            </details>
-          </div>
-
-          {/* Rechts: legal-links + GitHub + lang-switcher */}
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            {legal.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="rounded font-mono text-[10.5px] tracking-[0.06em] text-(--color-muted) uppercase transition-colors hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
-              >
-                {l.label}
-              </Link>
-            ))}
-            <a
-              href="https://github.com/laurensbos"
-              target="_blank"
-              rel="noopener"
-              aria-label="GitHub"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-muted) transition-colors hover:border-(--color-accent)/40 hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.2.9 2.3v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3" />
-              </svg>
-            </a>
-            <span className="inline-flex items-center">
-              <LangSwitcher />
-            </span>
+            </div>
           </div>
         </div>
       </div>

@@ -41,7 +41,6 @@ type Strings = {
     actionValue: string;
   };
   flowSteps: string[];
-  bridgeLabel: string;
 };
 
 export function HowItWorks({ strings }: { strings: Strings }) {
@@ -61,7 +60,7 @@ export function HowItWorks({ strings }: { strings: Strings }) {
         </div>
 
         {/* Toggle */}
-        <div className="mx-auto mb-6 flex w-fit items-center gap-1 rounded-full border border-(--color-border) bg-(--color-surface) p-1.5">
+        <div className="mx-auto mb-12 flex w-fit items-center gap-1 rounded-full border border-(--color-border) bg-(--color-surface) p-1.5">
           <ToggleButton active={view === "client"} onClick={() => setView("client")}>
             {strings.toggleClient}
           </ToggleButton>
@@ -69,9 +68,6 @@ export function HowItWorks({ strings }: { strings: Strings }) {
             {strings.toggleOwner}
           </ToggleButton>
         </div>
-
-        {/* Sync-bridge — connector between toggle and mockup */}
-        <SyncBridge view={view} label={strings.bridgeLabel} />
 
         {/* Mockup card with floating ambient glow */}
         <div className="relative mx-auto max-w-[820px]">
@@ -141,42 +137,6 @@ function ToggleButton({
 }
 
 /* -------- SYNC-BRIDGE: connector with live-pulse dot + booking ID -------- */
-function SyncBridge({ view, label }: { view: View; label: string }) {
-  return (
-    <div className="mx-auto mb-8 flex max-w-[480px] items-center gap-3">
-      <span
-        className={`h-px flex-1 bg-gradient-to-r ${
-          view === "client"
-            ? "from-transparent to-(--color-accent)/60"
-            : "from-(--color-accent)/60 to-transparent"
-        }`}
-      />
-      <div className="relative flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3 py-1.5">
-        <span className="relative flex h-2 w-2">
-          <motion.span
-            layoutId="how-sync-dot"
-            className="absolute inset-0 rounded-full bg-(--color-accent)"
-            transition={{ type: "spring", stiffness: 380, damping: 30 }}
-          />
-          <span
-            aria-hidden
-            className="absolute inset-0 rounded-full bg-(--color-accent)"
-            style={{ animation: "wb-soft-pulse 2.4s ease-out infinite" }}
-          />
-        </span>
-        <span className="font-mono text-[10px] tracking-wide text-(--color-muted)">{label}</span>
-      </div>
-      <span
-        className={`h-px flex-1 bg-gradient-to-r ${
-          view === "owner"
-            ? "from-transparent to-(--color-accent)/60"
-            : "from-(--color-accent)/60 to-transparent"
-        }`}
-      />
-    </div>
-  );
-}
-
 /* -------- CLIENT-VIEW: a public booking page mockup -------- */
 function ClientMockup({ strings }: { strings: Strings["client"] }) {
   return (

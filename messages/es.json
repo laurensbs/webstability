@@ -180,10 +180,26 @@
       "calendar": {
         "weekdays": ["L", "M", "X", "J", "V", "S", "D"],
         "monthLabel": "Julio 2026"
-      },
-      "bridge": {
-        "label": "Reserva #2841 sincroniza en tiempo real"
       }
+    },
+
+    "studioStatement": {
+      "eyebrow": "el estudio",
+      "title": "Un solo desarrollador. *Software* que sigue funcionando después de la entrega.",
+      "lede": "Webstability construye y mantiene software a medida para pymes en Países Bajos y España. Sin gestores de cuenta entre tú y el desarrollador. Sin vendor lock-in. Sí: una suscripción continua que mantiene construir y mantener en uno.",
+      "stats": {
+        "yearsLabel": "años construyendo",
+        "yearsValue": "10+",
+        "productsLabel": "productos en vivo",
+        "productsValue": "3",
+        "uptimeLabel": "uptime · 30d",
+        "uptimeValue": "99,98%",
+        "regionLabel": "mercado",
+        "regionValue": "NL · ES"
+      },
+      "ctaPrimary": "Reservar llamada",
+      "ctaSecondary": "Cómo trabajo →",
+      "ctaSecondaryHref": "/sobre"
     },
 
     "services": {

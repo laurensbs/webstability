@@ -179,7 +179,7 @@ function Trigger({
       onClick={onClick}
       aria-expanded={isOpen}
       className={`inline-flex items-center gap-1 rounded transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent) ${
-        active || isOpen ? "text-(--color-text)" : "text-(--color-muted) hover:text-(--color-text)"
+        active || isOpen ? "text-(--color-bg)" : "text-(--color-bg)/65 hover:text-(--color-bg)"
       }`}
     >
       {label}
