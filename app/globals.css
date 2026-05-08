@@ -352,55 +352,80 @@ body.is-marketing #main {
  * back to their solid background colour and pinging dots become static.
  */
 @media (pointer: coarse) {
+  /*
+   * iOS Safari mobile-perf protocol — alles dat continue compositing
+   * vraagt of grote rasterbuffers genereert wordt hier gekapt zodat
+   * scroll + gestures op 60fps blijven.
+   */
+
+  /* 1. Backdrop-blur is per definitie GPU-zwaar op iOS */
   [class*="backdrop-blur"] {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
-  /*
-   * iOS Safari verbruikt enorme rasterbuffers voor grote blurs +
-   * infinite loops. Op touch-devices (coarse pointer) strippen we
-   * alle non-essentiële continue animaties zodat scrollen + gestures
-   * weer butter-smooth zijn.
-   */
-  .animate-ping,
-  .animate-spin {
-    animation-duration: 2s !important;
-  }
-  /*
-   * Large decorative blurs (>32px) force iOS to rasterise huge offscreen
-   * buffers. We mark them with .wb-soft-halo so this rule can drop the
-   * blur on touch without affecting small UI blurs that need to remain.
-   * Ook elke Tailwind blur-2xl/3xl/[*px] halo wordt op alle elementen
-   * gestript via attribuut-selector — dubbel verzekerd voor het geval
-   * een element wb-soft-halo mist.
-   */
+
+  /* 2. Alle CSS filters (blur) op decoratieve halo's eruit — iOS
+   *    moet anders elke frame een huge offscreen buffer rasteren. */
   .wb-soft-halo,
   [class*="blur-2xl"],
   [class*="blur-3xl"],
   [class*="blur-[40px]"],
   [class*="blur-[60px]"] {
     filter: none !important;
-    opacity: 0.25 !important;
+    opacity: 0.2 !important;
   }
-  /*
-   * wb-mesh-rotate roteert continu een conic-gradient onder een blur(60px).
-   * Op iOS is dat een GPU-killer omdat elke frame een gigantische blur
-   * herrekent. Op touch:
-   *  - Animation off (geen rotate-rerender per frame)
-   *  - Filter off (geen blur-rasterisatie)
-   *  - Opacity laag (subtiele kleur blijft, geen visuele dominantie)
-   */
-  .wb-mesh-conic {
-    animation: none !important;
-    filter: none !important;
-    opacity: 0.3 !important;
-  }
-  /*
-   * Decoratieve infinite-loop particles (pricing-card glints, etc).
-   * Hebben geen UX-functie, kostbaar in main thread.
-   */
+
+  /* 3. Conic-mesh rotaties + decoratieve particle-loops — uit. */
+  .wb-mesh-conic,
   .wb-particle-glint {
     animation: none !important;
-    opacity: 0.4 !important;
+    filter: none !important;
+    opacity: 0.25 !important;
+  }
+
+  /* 4. Infinite ping/spin: iOS jankt op fast-loop scale + opacity.
+   *    Opt voor langere duration (2.4s) om frame-budget te halveren. */
+  .animate-ping {
+    animation-duration: 2.4s !important;
+  }
+
+  /*
+   * 5. NavScroll header — `position: sticky` + `transform-gpu` op
+   *    nested elementen veroorzaakt op iOS Safari "sticky-jank":
+   *    de browser blijft de hele header herrekend per scroll-frame.
+   *    Op mobile is een subtiele overgang minder belangrijk dan
+   *    smooth scrollen — zet sticky → static (header scrolt mee weg)
+   *    en kap de transform-state-toggle volledig.
+   */
+  header[data-scrolled],
+  header:not([data-scrolled]) {
+    position: static !important;
+  }
+  header [class*="transform-gpu"] {
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+  /* De pill-fade laag (laag 2) zit altijd op de pill-staat —
+   *    altijd transparant (laat de full-width donker zien) zodat
+   *    we geen opacity-transition meer triggeren bij scroll. */
+  header > span[aria-hidden]:nth-of-type(2),
+  header > div > span[aria-hidden] {
+    opacity: 0 !important;
+    transition: none !important;
+  }
+
+  /* 6. Globale motion-frame-budget cap — alle CSS transitions onder
+   *    300ms blijven, zodat lange durations (450/550/700ms) iOS niet
+   *    in een trage interpolatie gevangen houden. */
+  *,
+  *::before,
+  *::after {
+    transition-duration: 200ms !important;
+    animation-duration: 200ms;
+  }
+  /* uitzondering: laat .animate-ping zijn duurpattern houden */
+  .animate-ping {
+    animation-duration: 2.4s !important;
   }
 }
