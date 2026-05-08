@@ -3,10 +3,12 @@
 import * as React from "react";
 
 /**
- * Sticky donker header. Volledig donker vanaf scroll 0 — past bij de
- * "studio after dark"-merkstem die ook op /login terugkomt. Bij scroll
- * voorbij 12px voegen we alleen een lichte border + shadow toe als
- * subtiele depth-cue.
+ * Sticky donkere header. Bij scroll voorbij 12px transformt de bar:
+ *  - Krimpt los van de viewport-randen (mx-3 + max-w-1100)
+ *  - Krijgt rounded-full + lichte cream/15 border + shadow
+ *  - Inner nav-padding compresseert (py-3.5 → py-2.5)
+ * Linear/Framer-stijl floating pill. Honoreert prefers-reduced-motion
+ * via de korte transition-duration die geen layout-jank introduceert.
  */
 export function NavScroll({ children }: { children: React.ReactNode }) {
   const [scrolled, setScrolled] = React.useState(() => {
@@ -36,7 +38,20 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
   return (
     <header
       data-scrolled={scrolled || undefined}
-      className="sticky top-0 z-30 border-b border-transparent bg-(--color-text) text-(--color-bg) transition-[border-color,box-shadow] duration-200 data-[scrolled]:border-(--color-bg)/15 data-[scrolled]:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.45)]"
+      className={[
+        // Sticky outer wrapper — z-30 boven content, blijft top-0
+        "sticky top-0 z-30 transition-[padding] duration-300 ease-out",
+        // Op scroll: padding rondom om "los" te laten zweven
+        "data-[scrolled]:px-3 data-[scrolled]:pt-3",
+        // Inner bar styling
+        "[&>nav]:transition-all [&>nav]:duration-300 [&>nav]:ease-out",
+        // Niet-scrolled: full-width donker met onderborder
+        "[&>nav]:border-b [&>nav]:border-transparent [&>nav]:bg-(--color-text) [&>nav]:text-(--color-bg)",
+        // Scrolled: floating pill — rounded, max-width, cream/15 border, shadow
+        "data-[scrolled]:[&>nav]:mx-auto data-[scrolled]:[&>nav]:max-w-[1100px]",
+        "data-[scrolled]:[&>nav]:rounded-full data-[scrolled]:[&>nav]:border-(--color-bg)/15",
+        "data-[scrolled]:[&>nav]:py-2 data-[scrolled]:[&>nav]:shadow-[0_12px_32px_-12px_rgba(31,27,22,0.45)]",
+      ].join(" ")}
     >
       {children}
     </header>
