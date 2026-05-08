@@ -41,14 +41,18 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
       className={[
         // Sticky outer wrapper — z-30 boven content, blijft top-0
         "sticky top-0 z-30 transition-[padding] duration-300 ease-out",
-        // Op scroll: padding rondom om "los" te laten zweven
-        "data-[scrolled]:px-3 data-[scrolled]:pt-3",
-        // Inner bar styling
+        // Op scroll: padding rondom om de pill "los" te laten zweven
+        "data-[scrolled]:px-4 data-[scrolled]:pt-3",
+        // Inner bar krijgt smooth alle transitions
         "[&>nav]:transition-all [&>nav]:duration-300 [&>nav]:ease-out",
-        // Niet-scrolled: full-width donker met onderborder
-        "[&>nav]:border-b [&>nav]:border-transparent [&>nav]:bg-(--color-text) [&>nav]:text-(--color-bg)",
-        // Scrolled: floating pill — rounded, max-width, cream/15 border, shadow
-        "data-[scrolled]:[&>nav]:mx-auto data-[scrolled]:[&>nav]:max-w-[1100px]",
+        // Niet-scrolled — donkere bar, NEEM DE VOLLE BREEDTE: override
+        // Navigation's eigen mx-auto max-w-6xl naar full-width.
+        "[&>nav]:!max-w-none [&>nav]:bg-(--color-text) [&>nav]:text-(--color-bg)",
+        "[&>nav]:border-b [&>nav]:border-transparent",
+        // Scrolled — floating pill: nog steeds royaal breed (1280) maar
+        // met margin-auto en pill-styling. Iets ruimer dan voorheen
+        // zodat 'ie niet smal aanvoelt.
+        "data-[scrolled]:[&>nav]:!mx-auto data-[scrolled]:[&>nav]:!max-w-[1280px]",
         "data-[scrolled]:[&>nav]:rounded-full data-[scrolled]:[&>nav]:border-(--color-bg)/15",
         "data-[scrolled]:[&>nav]:py-2 data-[scrolled]:[&>nav]:shadow-[0_12px_32px_-12px_rgba(31,27,22,0.45)]",
       ].join(" ")}
