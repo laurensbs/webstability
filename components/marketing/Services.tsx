@@ -58,8 +58,10 @@ export async function Services() {
           ))}
         </div>
 
-        {/* Uitleg-strook onder grid — verbindt build-prijs met maandprijs */}
-        <RevealOnScroll className="mx-auto mt-12 max-w-3xl rounded-[20px] border border-(--color-border) bg-(--color-bg-warm) p-7">
+        {/* Uitleg-strook onder grid — verbindt build-prijs met maandprijs.
+            Cream-card met wijn-rode top-2px hairline om te claimen dat
+            dit een "earned"-insight is naast de donkere service-cards. */}
+        <RevealOnScroll className="mx-auto mt-12 max-w-3xl rounded-[20px] border border-t-2 border-(--color-border) border-t-(--color-wine)/60 bg-(--color-surface) p-7 shadow-[0_8px_24px_-12px_rgba(31,27,22,0.08)]">
           <p className="text-[15px] leading-[1.65] text-(--color-text)">
             <MarkupText>{t("bridgeNote")}</MarkupText>
           </p>
