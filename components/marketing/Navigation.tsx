@@ -32,7 +32,7 @@ export async function Navigation({ locale }: { locale: string }) {
 
   return (
     <NavScroll>
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-3.5">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 pt-3.5 pb-5">
         {/* Wordmark — cream op donker, terracotta accent-punt */}
         <Link
           href="/"
