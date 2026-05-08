@@ -3,18 +3,16 @@
 import * as React from "react";
 
 /**
- * Sticky donkere header met scroll-driven pill-transformatie.
+ * Sticky donkere header met transform-based pill-transitie.
  *
- * Premium-tuning:
- *  - Specifieke `transition-property` ipv `transition-all` — voorkomt
- *    dat ongewenste properties (border-radius, transform, etc.)
- *    mee-animeren en houdt de browser-paint pipeline kort.
- *  - Border-radius snapt direct (geen 0 → 9999px logaritmische lelijke
- *    interpolatie) — Linear/Framer doen dit ook zo.
- *  - `transform-gpu` tilt de header naar een eigen GPU-layer zodat
- *    compositing niet vecht met page-content eronder.
- *  - 550ms expo-out — sweet spot tussen "instant" (te snap) en "trage
- *    drag" (voelt schokkerig op layout-properties).
+ * Drie compositor-only lagen voor butter-smooth 60fps:
+ *  1. Full-width donkere achtergrond (fade-out op scroll)
+ *  2. Pill-frame binnen max-w-6xl wrapper (fade-in op scroll)
+ *  3. Inner content met subtle transform (lift + krimp) op scroll
+ *
+ * Layout-properties (max-width, padding) zijn nooit getransitioneerd
+ * — alleen opacity + transform = compositor-only = vloeiend op elke
+ * device. Linear/Vercel doen het identiek.
  */
 export function NavScroll({ children }: { children: React.ReactNode }) {
   const [scrolled, setScrolled] = React.useState(() => {
@@ -41,29 +39,48 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Premium expo-out, 450ms — sweet spot voor compositor-only animaties
+  const easing = "duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]";
+
   return (
-    <header
-      data-scrolled={scrolled || undefined}
-      className={[
-        // Outer — alleen padding-transition voor "loslaten van rand"
-        "sticky top-0 z-30 transform-gpu",
-        "transition-[padding] duration-[550ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]",
-        "data-[scrolled]:px-4 data-[scrolled]:pt-3",
-        // Inner — specifieke properties (max-width, padding, border-color, shadow)
-        // Border-radius en transform NIET in de transition zodat ze direct snappen.
-        "[&>nav]:transform-gpu [&>nav]:will-change-[max-width]",
-        "[&>nav]:[transition-property:max-width,padding-top,padding-bottom,border-color,box-shadow]",
-        "[&>nav]:duration-[550ms] [&>nav]:[transition-timing-function:cubic-bezier(0.22,1,0.36,1)]",
-        // Niet-scrolled — full-width donker
-        "[&>nav]:!max-w-none [&>nav]:bg-(--color-text) [&>nav]:text-(--color-bg)",
-        "[&>nav]:border [&>nav]:border-transparent",
-        // Scrolled — pill 1280, rounded-full direct (geen interpolatie)
-        "data-[scrolled]:[&>nav]:!mx-auto data-[scrolled]:[&>nav]:!max-w-[1280px]",
-        "data-[scrolled]:[&>nav]:rounded-full data-[scrolled]:[&>nav]:border-(--color-bg)/15",
-        "data-[scrolled]:[&>nav]:py-2 data-[scrolled]:[&>nav]:shadow-[0_12px_32px_-12px_rgba(31,27,22,0.45)]",
-      ].join(" ")}
-    >
-      {children}
+    <header data-scrolled={scrolled || undefined} className="sticky top-0 z-30">
+      {/* Laag 1 — full-width donkere achtergrond, fade-out op scroll */}
+      <span
+        aria-hidden
+        className={[
+          "pointer-events-none absolute inset-0 transform-gpu bg-(--color-text)",
+          "transition-opacity",
+          easing,
+          scrolled ? "opacity-0" : "opacity-100",
+        ].join(" ")}
+      />
+
+      {/* Laag 2 — pill-frame, gebonden aan inner-nav-breedte via
+          dezelfde max-w-6xl mx-auto die de inner <nav> ook gebruikt. */}
+      <div className="pointer-events-none absolute inset-0 mx-auto max-w-6xl px-4">
+        <span
+          aria-hidden
+          className={[
+            "absolute inset-y-2 right-4 left-4 transform-gpu rounded-full border bg-(--color-text) shadow-[0_12px_32px_-12px_rgba(31,27,22,0.45)]",
+            "transition-[opacity,border-color]",
+            easing,
+            scrolled ? "border-(--color-bg)/15 opacity-100" : "border-transparent opacity-0",
+          ].join(" ")}
+        />
+      </div>
+
+      {/* Laag 3 — inner content. translate-Y + scale = compositor-only,
+          geen layout-recompute. */}
+      <div
+        className={[
+          "relative transform-gpu text-(--color-bg) will-change-transform",
+          "transition-transform",
+          easing,
+          scrolled ? "translate-y-1 scale-[0.985]" : "translate-y-0 scale-100",
+        ].join(" ")}
+      >
+        {children}
+      </div>
     </header>
   );
 }
