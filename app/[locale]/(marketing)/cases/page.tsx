@@ -63,6 +63,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   setRequestLocale(locale);
 
   const t = await getTranslations("casesPage");
+  const tNav = await getTranslations("nav");
   const tRaw = await getTranslations();
   const productLines = tRaw.raw("casesPage.productLines.items") as ProductLineItem[];
   const clientCases = tRaw.raw("casesPage.clientCases.items") as ClientCase[];
@@ -328,10 +329,22 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <RevealOnScroll className="mx-auto max-w-3xl space-y-5 text-center">
           <h2 className="text-2xl md:text-4xl">{t("footerCtaTitle")}</h2>
           <p className="text-(--color-muted)">{t("footerCtaBody")}</p>
-          <div className="flex justify-center pt-2">
+          <div className="flex flex-wrap justify-center gap-3 pt-2">
             <Button asChild variant="primary">
               <Link href="/contact">
                 {t("footerCtaLabel")}
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/diensten">
+                {tNav("services")}
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/prijzen">
+                {tNav("pricing")}
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </Button>

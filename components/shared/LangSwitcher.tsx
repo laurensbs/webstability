@@ -20,7 +20,7 @@ export function LangSwitcher() {
       href={pathname as any}
       locale={otherLocale}
       aria-label={`Switch to ${otherLocale.toUpperCase()}`}
-      className="inline-flex h-8 min-w-[44px] items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) px-3 text-[12px] font-medium tracking-wide text-(--color-muted) uppercase transition-colors hover:border-(--color-text) hover:text-(--color-text)"
+      className="inline-flex h-11 min-w-[44px] items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) px-3 text-[12px] font-medium tracking-wide text-(--color-muted) uppercase transition-colors hover:border-(--color-text) hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:h-10"
     >
       {otherLocale}
     </Link>

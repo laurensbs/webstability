@@ -47,7 +47,7 @@ export function MobileNav({
       <Dialog.Trigger asChild>
         <button
           aria-label="Open menu"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-text) transition-colors hover:border-(--color-accent)/50 md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-text) transition-colors hover:border-(--color-accent)/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:hidden"
         >
           <Menu className="h-5 w-5" strokeWidth={2} />
         </button>
@@ -58,7 +58,7 @@ export function MobileNav({
 
         <Dialog.Content
           aria-describedby={undefined}
-          className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right fixed top-0 right-0 z-50 flex h-full w-full max-w-md flex-col bg-(--color-bg) shadow-2xl md:hidden"
+          className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right fixed top-0 right-0 z-50 flex h-full w-full max-w-md flex-col border-t-2 border-(--color-wine) bg-(--color-bg) shadow-2xl md:hidden"
         >
           <Dialog.Title className="sr-only">Navigatie</Dialog.Title>
 

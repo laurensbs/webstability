@@ -69,7 +69,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-(--color-success)" />
                 </span>
                 <MapPin className="h-3 w-3" />
-                Begur · Costa Brava
+                Costa Brava · Spanje
               </span>
             </div>
           </RevealOnScroll>

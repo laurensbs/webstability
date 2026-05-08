@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -11,6 +12,52 @@ import { Callout } from "@/components/marketing/blog/Callout";
 import { PullQuote } from "@/components/marketing/blog/PullQuote";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { blogPostingLd } from "@/lib/seo";
+
+const SITE_URL = "https://webstability.eu";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  if (!hasLocale(routing.locales, locale)) return {};
+
+  const post = await getPost(locale as "nl" | "es", slug);
+  if (!post) return {};
+
+  const path = locale === "nl" ? `/blog/${slug}` : `/${locale}/blog/${slug}`;
+  const url = `${SITE_URL}${path}`;
+  // Custom OG via dynamische og-route — pakt eyebrow + titel mee.
+  const ogImage = `${SITE_URL}/og?title=${encodeURIComponent(post.title)}&eyebrow=${encodeURIComponent("blog")}`;
+
+  return {
+    title: `${post.title} · webstability`,
+    description: post.description,
+    alternates: {
+      canonical: url,
+      languages: {
+        nl: `${SITE_URL}/blog/${slug}`,
+        es: `${SITE_URL}/es/blog/${slug}`,
+      },
+    },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.description,
+      url,
+      publishedTime: post.date,
+      authors: [post.author],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [ogImage],
+    },
+  };
+}
 
 /**
  * MDX components made available inside any blog post. Use them like:

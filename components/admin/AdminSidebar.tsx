@@ -198,7 +198,9 @@ export function AdminSidebar({ labels, email }: { labels: Labels; email: string 
         <button
           type="button"
           onClick={toggle}
-          className="flex items-center gap-3 rounded-md px-2.5 py-2 text-[12px] text-(--color-bg)/55 transition-colors hover:bg-(--color-bg)/5 hover:text-(--color-bg)/85"
+          aria-label={labels.collapse}
+          aria-expanded={!collapsed}
+          className="flex items-center gap-3 rounded-md px-2.5 py-2 text-[12px] text-(--color-bg)/55 transition-colors hover:bg-(--color-bg)/5 hover:text-(--color-bg)/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
           title={labels.collapse}
         >
           <ChevronLeft

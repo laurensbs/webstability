@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import NumberFlow from "@number-flow/react";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Clock, Check } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 
@@ -113,7 +113,7 @@ export function BuildCalculator({
             step={1}
             value={months}
             onChange={(e) => setMonths(Number(e.target.value))}
-            className="h-3 w-full accent-(--color-accent) [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6"
+            className="h-3 w-full accent-(--color-wine) disabled:opacity-40 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6"
             disabled={build === "none"}
           />
         </Field>
@@ -150,8 +150,14 @@ export function BuildCalculator({
       </div>
 
       {/* Interpretatie-zin onder de outputs — vertaalt het getal naar
-          een herkenbaar projecttype zodat een leek weet wat hij koopt. */}
-      <div className="mt-6 rounded-[14px] border border-(--color-border) bg-(--color-bg-warm) p-4 text-[14px] leading-[1.6] text-(--color-text)">
+          een herkenbaar projecttype zodat een leek weet wat hij koopt.
+          Wijn-rode top-border claimt de "premium-insight"-status. */}
+      <div className="mt-6 flex items-start gap-3 rounded-[14px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-bg-warm) p-4 text-[14px] leading-[1.6] text-(--color-text)">
+        <Sparkles
+          className="mt-[3px] h-4 w-4 shrink-0 text-(--color-wine)"
+          strokeWidth={2}
+          aria-hidden
+        />
         {build === "none" ? (
           <p className="text-(--color-muted)">{strings.interpretationNone}</p>
         ) : (
@@ -202,26 +208,60 @@ function Timeline({
   // Schaal: maximum visuele looptijd is 12 maanden zodat 8-mnd builds
   // niet de hele balk vullen — zo blijft het na-build segment zichtbaar.
   const VISUAL_MAX = 12;
-  const duringPct = Math.min(95, Math.max(20, (months / VISUAL_MAX) * 100));
+  const duringPct = Math.min(80, Math.max(20, (months / VISUAL_MAX) * 100));
   return (
-    <div role="img" aria-label={`${duringLabel} → ${afterLabel}`} className="space-y-2">
-      <div className="flex h-9 w-full overflow-hidden rounded-full border border-(--color-border) bg-(--color-bg)">
-        <div
-          className="flex h-full items-center justify-center bg-(--color-accent) text-[12px] font-medium text-white transition-[width] duration-300"
-          style={{ width: `${duringPct}%` }}
-        >
-          <span className="truncate px-3">{duringLabel}</span>
-        </div>
-        <div className="relative flex h-full flex-1 items-center justify-center bg-[repeating-linear-gradient(45deg,var(--color-bg-warm)_0_8px,var(--color-bg)_8px_16px)] text-[12px] font-medium text-(--color-text)">
-          <span className="truncate px-3">{afterLabel}</span>
+    <div role="img" aria-label={`${duringLabel} → ${afterLabel}`} className="space-y-3">
+      {/* Maand-markers boven de bar — min-w voorkomt clipping op 320px */}
+      <div className="relative h-4">
+        <div className="absolute inset-x-0 top-0 flex items-start font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+          <span style={{ width: `${duringPct}%` }} className="flex min-w-[24px] justify-start">
+            <span className="pl-1">M1</span>
+          </span>
+          <span className="flex min-w-[28px] flex-1 justify-start pl-2">
+            <span>M{months + 1}+</span>
+          </span>
         </div>
       </div>
-      <div className="flex justify-between font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
-        <span>
-          €{duringMonthly}
-          {perMonth} × {months}
+
+      {/* Hoofd-balk — wijn-rood "tijdens" + accent-cream "doorlopend".
+          Op mobile alleen icoon; vanaf sm: voluit. */}
+      <div className="relative flex h-11 w-full overflow-hidden rounded-full border border-(--color-border) bg-(--color-bg)">
+        <div
+          className="relative flex h-full items-center justify-center gap-1.5 bg-(--color-wine) text-[12px] font-medium text-white transition-[width] duration-300"
+          style={{ width: `${duringPct}%` }}
+        >
+          <Clock className="h-3.5 w-3.5 shrink-0" strokeWidth={2.2} aria-hidden />
+          <span className="hidden truncate px-1 sm:inline">{duringLabel}</span>
+          {/* Subtiele lichtflits voor "premium" feel */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/10 to-transparent"
+          />
+        </div>
+        <div className="relative flex h-full flex-1 items-center justify-center gap-1.5 bg-(--color-accent-soft) text-[12px] font-medium text-(--color-text)">
+          <Check
+            className="h-3.5 w-3.5 shrink-0 text-(--color-success)"
+            strokeWidth={2.5}
+            aria-hidden
+          />
+          <span className="hidden truncate px-1 sm:inline">{afterLabel}</span>
+        </div>
+        <span
+          aria-hidden
+          className="pointer-events-none absolute top-0 bottom-0 w-px bg-(--color-text)/20"
+          style={{ left: `${duringPct}%` }}
+        />
+      </div>
+
+      {/* Bedragen — op mobile gestapeld, vanaf sm: naast elkaar */}
+      <div className="flex flex-col gap-1 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase sm:flex-row">
+        <span className="text-(--color-wine) sm:flex sm:justify-start" style={{ width: `100%` }}>
+          <span className="sm:block" style={{ width: `${duringPct}%` }}>
+            €{duringMonthly}
+            {perMonth} × {months}
+          </span>
         </span>
-        <span>
+        <span className="sm:flex sm:flex-1 sm:justify-start sm:pl-1">
           €{afterMonthly}
           {perMonth}
         </span>

@@ -74,7 +74,7 @@ export function ServiceCard({
       {/* Soft accent halo — verschijnt op hover, rechtsboven */}
       <span
         aria-hidden
-        className="pointer-events-none absolute -top-20 -right-16 h-44 w-44 rounded-full bg-(--color-accent-soft) opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-70"
+        className="wb-soft-halo pointer-events-none absolute -top-20 -right-16 h-44 w-44 rounded-full bg-(--color-accent-soft) opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-70"
       />
 
       {/* Per-service mini-preview rechtsboven — decorative anker */}

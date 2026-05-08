@@ -69,7 +69,7 @@ export default async function OG({ params }: { params: Promise<{ locale: string 
             display: "inline-block",
           }}
         />
-        {isEs ? "begur · costa brava" : "begur · costa brava"}
+        {isEs ? "costa brava · españa" : "costa brava · spanje"}
       </div>
 
       {/* Headline — two lines so the accent break is visible */}

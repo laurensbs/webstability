@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { EyeOff, Database, UserCheck, Unlock, Shield, type LucideIcon } from "lucide-react";
 import { routing } from "@/i18n/routing";
 import { PageHeader } from "@/components/marketing/PageHeader";
+import { LastUpdated } from "@/components/marketing/LastUpdated";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { MarkupText } from "@/components/animate/MarkupText";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
@@ -91,6 +92,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 </RevealOnScroll>
               );
             })}
+          </div>
+          <div className="mt-12 text-center">
+            <LastUpdated />
           </div>
         </div>
       </section>

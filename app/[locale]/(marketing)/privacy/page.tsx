@@ -3,6 +3,7 @@ import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { PageHeader } from "@/components/marketing/PageHeader";
+import { LastUpdated } from "@/components/marketing/LastUpdated";
 
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
@@ -29,6 +30,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <section className="px-6 pb-24">
         <div className="mx-auto max-w-3xl">
           <p className="leading-relaxed text-(--color-muted)">{t("privacyBody")}</p>
+          <LastUpdated />
         </div>
       </section>
     </main>

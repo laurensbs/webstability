@@ -34,6 +34,11 @@ export async function HowItWorksWrapper() {
     actionLabel: string;
     actionValue: string;
   };
+  const flowSteps = tRaw.raw("home.howItWorks.flow.steps") as string[];
+  const calendar = tRaw.raw("home.howItWorks.calendar") as {
+    weekdays: [string, string, string, string, string, string, string];
+    monthLabel: string;
+  };
 
   return (
     <HowItWorks
@@ -45,6 +50,9 @@ export async function HowItWorksWrapper() {
         toggleOwner: t("toggleOwner"),
         client,
         owner,
+        flowSteps,
+        calendar,
+        bridgeLabel: t("bridge.label"),
       }}
     />
   );

@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 import { withSentryConfig } from "@sentry/nextjs";
@@ -5,7 +6,12 @@ import { withSentryConfig } from "@sentry/nextjs";
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
-  // Phase 1: keep config minimal. Image domains, security headers etc. land in Phase 2.
+  // Pin Turbopack root: a stray pnpm-lock.yaml in /Users/laurens makes
+  // Next infer the home dir as workspace root, which breaks resolving
+  // tailwindcss + breaks CSS in Server Components renders.
+  turbopack: {
+    root: path.resolve(__dirname),
+  },
 };
 
 const intlWrapped = withNextIntl(nextConfig);

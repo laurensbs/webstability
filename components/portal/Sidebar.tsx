@@ -94,7 +94,7 @@ export function MobileNav({ labels }: { labels: Labels }) {
         <button
           type="button"
           aria-label="Open menu"
-          className="rounded-md border border-(--color-border) p-2 text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-(--color-border) text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:hidden"
         >
           <Menu className="h-4 w-4" />
         </button>
@@ -113,7 +113,7 @@ export function MobileNav({ labels }: { labels: Labels }) {
             </Link>
             <Dialog.Close
               aria-label="Close menu"
-              className="rounded-md p-2 text-(--color-muted) hover:bg-(--color-bg-warm)"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-md text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
             >
               <X className="h-4 w-4" />
             </Dialog.Close>

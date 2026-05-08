@@ -27,7 +27,7 @@ export function AudienceVisual({
 }: {
   nlLabel: string;
   esLabel: string;
-  tzLabel: string; // e.g. "vandaag in Begur" / "hoy en Begur"
+  tzLabel: string; // e.g. "nu op de Costa Brava" / "ahora en la Costa Brava"
 }) {
   const reduce = useReducedMotion();
   // Both NL and ES sit in CET — single clock is honest.

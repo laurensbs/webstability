@@ -6,7 +6,7 @@ export const runtime = "edge";
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const title = searchParams.get("title")?.slice(0, 120) ?? "Webstability";
-  const eyebrow = searchParams.get("eyebrow")?.slice(0, 60) ?? "begur · costa brava";
+  const eyebrow = searchParams.get("eyebrow")?.slice(0, 60) ?? "costa brava · spanje";
 
   return new ImageResponse(
     <div

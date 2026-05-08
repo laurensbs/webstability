@@ -170,7 +170,7 @@ export function PricingCardsWithToggle({
               {/* Soft accent halo — verschijnt op hover, top-right */}
               <span
                 aria-hidden
-                className={`pointer-events-none absolute -top-24 -right-20 h-56 w-56 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-60 ${
+                className={`wb-soft-halo pointer-events-none absolute -top-24 -right-20 h-56 w-56 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-60 ${
                   featured ? "bg-(--color-accent)" : "bg-(--color-accent-soft)"
                 }`}
               />

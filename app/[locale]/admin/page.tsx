@@ -95,7 +95,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
         <DemoTourOverlay
           role="admin"
           strings={{
-            step: tTour("step"),
+            step: tTour.raw("step") as string,
             step1Title: tTour("step1Title"),
             step1Body: tTour("step1Body"),
             step2Title: tTour("step2Title"),
@@ -122,7 +122,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
             step3Cta: tOnboarding("step3Cta"),
             next: tOnboarding("next"),
             dismiss: tOnboarding("dismiss"),
-            step: tOnboarding("step"),
+            step: tOnboarding.raw("step") as string,
           }}
         />
       ) : null}
@@ -168,7 +168,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
               {tDemo("window", { days: demoFunnel.days })}
             </span>
           </header>
-          <div className="grid grid-cols-3 gap-6 pt-4">
+          <div className="grid grid-cols-1 gap-6 pt-4 sm:grid-cols-3">
             <div>
               <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
                 {tDemo("entered")}

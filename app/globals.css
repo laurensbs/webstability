@@ -126,6 +126,15 @@ body.is-marketing #main {
   font-style: italic;
   font-weight: 400;
 }
+/* Op smalle schermen kleiner en niet-floatend — een 4.5rem floating cap
+   in een 343px-kolom oogt overweldigend. */
+@media (max-width: 640px) {
+  .prose-wb > p:first-child::first-letter {
+    float: none;
+    font-size: 2.5rem;
+    padding: 0 0.2rem 0 0;
+  }
+}
 
 /* Inline code — JetBrains Mono in a soft cream pill. */
 .prose-wb code {

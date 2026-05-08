@@ -4,14 +4,26 @@ import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { LogoMark } from "@/components/shared/LogoMark";
 import { NavScroll } from "@/components/marketing/NavScroll";
 import { NavLink } from "@/components/marketing/NavLink";
+import { NavMegaMenu, type MegaMenuStrings } from "@/components/marketing/NavMegaMenu";
 import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 import { MobileNav } from "@/components/marketing/MobileNav";
 
 export async function Navigation({ locale }: { locale: string }) {
   const t = await getTranslations("nav");
   const tFooter = await getTranslations("footer");
+  const tRaw = await getTranslations();
+  const menuStrings = tRaw.raw("nav.menu") as MegaMenuStrings;
 
-  const links = [
+  // Links zonder mega-menu — Diensten + Cases krijgen apart een mega-menu.
+  const simpleLinks = [
+    { href: "/prijzen", label: t("pricing") },
+    { href: "/over", label: t("about") },
+    { href: "/contact", label: t("contact") },
+  ] as const;
+
+  // Mobile drawer toont gewoon álle routes plat — geen mega-menu op
+  // touch. Tuple-typing zodat Link's route-checked href accepteert.
+  const allMobileLinks = [
     { href: "/diensten", label: t("services") },
     { href: "/cases", label: t("cases") },
     { href: "/prijzen", label: t("pricing") },
@@ -35,9 +47,17 @@ export async function Navigation({ locale }: { locale: string }) {
           </span>
         </Link>
 
-        {/* Center nav links — desktop only */}
+        {/* Center nav — desktop only. Diensten + Cases via NavMegaMenu,
+            de rest via simpele NavLinks. */}
         <div className="hidden items-center gap-8 text-[14.5px] font-medium md:flex">
-          {links.map((l) => (
+          <NavMegaMenu
+            strings={menuStrings}
+            servicesLabel={t("services")}
+            casesLabel={t("cases")}
+            servicesActive={false}
+            casesActive={false}
+          />
+          {simpleLinks.map((l) => (
             <NavLink key={l.href} href={l.href}>
               {l.label}
             </NavLink>
@@ -46,7 +66,7 @@ export async function Navigation({ locale }: { locale: string }) {
 
         {/* Right side — live-status + lang + login + CTA, mobile: hamburger */}
         <div className="flex items-center gap-3">
-          {/* Live-status pulse — vervangt de losgesneden TopBar */}
+          {/* Live-status pulse — link naar /status */}
           <Link
             href="/status"
             className="hidden items-center gap-1.5 text-[12px] font-medium text-(--color-muted) transition-colors hover:text-(--color-text) lg:inline-flex"
@@ -88,7 +108,7 @@ export async function Navigation({ locale }: { locale: string }) {
 
           {/* Mobile hamburger — only on small */}
           <MobileNav
-            links={links.map((l) => ({ href: l.href, label: l.label }))}
+            links={allMobileLinks.map((l) => ({ href: l.href, label: l.label }))}
             ctaLabel={t("planCall")}
             ctaHref="/contact"
             liveBadge={t("liveBadge")}

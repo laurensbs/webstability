@@ -33,8 +33,8 @@ export function StatCard({
         accent ? "border-(--color-accent)/40" : "border-(--color-border)"
       }`}
     >
-      <div className="flex items-start justify-between">
-        <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+      <div className="flex items-start justify-between gap-2">
+        <p className="min-w-0 truncate font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
           {label}
         </p>
         {Icon ? (

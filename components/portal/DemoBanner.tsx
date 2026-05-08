@@ -29,7 +29,7 @@ export function DemoBanner({ strings }: { strings: Strings }) {
         <Link
           href="/contact"
           onClick={() => fire("cta_clicked", "banner")}
-          className="text-[13px] font-medium underline underline-offset-4 transition-opacity hover:opacity-80"
+          className="-my-1 inline-flex items-center rounded px-1 py-1.5 text-[13px] font-medium underline underline-offset-4 transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-bg)"
         >
           {strings.cta} →
         </Link>

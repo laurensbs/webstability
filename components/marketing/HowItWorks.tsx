@@ -5,6 +5,9 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Check, Calendar, FileText, Wallet, ShieldCheck } from "lucide-react";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
+import { CaravanIllustration } from "@/components/marketing/CaravanIllustration";
+import { BookingCalendarMini } from "@/components/marketing/BookingCalendarMini";
+import { MeshBackground } from "@/components/marketing/MeshBackground";
 
 type View = "client" | "owner";
 
@@ -39,6 +42,12 @@ type Strings = {
     actionLabel: string;
     actionValue: string;
   };
+  flowSteps: string[];
+  calendar: {
+    weekdays: [string, string, string, string, string, string, string];
+    monthLabel: string;
+  };
+  bridgeLabel: string;
 };
 
 export function HowItWorks({ strings }: { strings: Strings }) {
@@ -58,7 +67,7 @@ export function HowItWorks({ strings }: { strings: Strings }) {
         </div>
 
         {/* Toggle */}
-        <div className="mx-auto mb-10 flex w-fit items-center gap-1 rounded-full border border-(--color-border) bg-(--color-surface) p-1.5">
+        <div className="mx-auto mb-6 flex w-fit items-center gap-1 rounded-full border border-(--color-border) bg-(--color-surface) p-1.5">
           <ToggleButton active={view === "client"} onClick={() => setView("client")}>
             {strings.toggleClient}
           </ToggleButton>
@@ -67,8 +76,18 @@ export function HowItWorks({ strings }: { strings: Strings }) {
           </ToggleButton>
         </div>
 
-        {/* Mockup card */}
+        {/* Sync-bridge — connector between toggle and mockup */}
+        <SyncBridge view={view} label={strings.bridgeLabel} />
+
+        {/* Mockup card with floating ambient glow */}
         <div className="relative mx-auto max-w-[820px]">
+          {/* Ambient mesh-glow behind card — only when motion allowed */}
+          {reduce ? null : (
+            <div aria-hidden className="pointer-events-none absolute -inset-12 -z-10 opacity-40">
+              <MeshBackground />
+            </div>
+          )}
+
           <AnimatePresence mode="wait">
             {view === "client" ? (
               <motion.div
@@ -88,7 +107,11 @@ export function HowItWorks({ strings }: { strings: Strings }) {
                 exit={reduce ? undefined : { opacity: 0, y: -12 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                <OwnerMockup strings={strings.owner} />
+                <OwnerMockup
+                  strings={strings.owner}
+                  flowSteps={strings.flowSteps}
+                  calendar={strings.calendar}
+                />
               </motion.div>
             )}
           </AnimatePresence>
@@ -127,30 +150,86 @@ function ToggleButton({
   );
 }
 
+/* -------- SYNC-BRIDGE: connector with live-pulse dot + booking ID -------- */
+function SyncBridge({ view, label }: { view: View; label: string }) {
+  return (
+    <div className="mx-auto mb-8 flex max-w-[480px] items-center gap-3">
+      <span
+        className={`h-px flex-1 bg-gradient-to-r ${
+          view === "client"
+            ? "from-transparent to-(--color-accent)/60"
+            : "from-(--color-accent)/60 to-transparent"
+        }`}
+      />
+      <div className="relative flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3 py-1.5">
+        <span className="relative flex h-2 w-2">
+          <motion.span
+            layoutId="how-sync-dot"
+            className="absolute inset-0 rounded-full bg-(--color-accent)"
+            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+          />
+          <span
+            aria-hidden
+            className="absolute inset-0 rounded-full bg-(--color-accent)"
+            style={{ animation: "wb-soft-pulse 2.4s ease-out infinite" }}
+          />
+        </span>
+        <span className="font-mono text-[10px] tracking-wide text-(--color-muted)">{label}</span>
+      </div>
+      <span
+        className={`h-px flex-1 bg-gradient-to-r ${
+          view === "owner"
+            ? "from-transparent to-(--color-accent)/60"
+            : "from-(--color-accent)/60 to-transparent"
+        }`}
+      />
+    </div>
+  );
+}
+
 /* -------- CLIENT-VIEW: a public booking page mockup -------- */
 function ClientMockup({ strings }: { strings: Strings["client"] }) {
   return (
     <div className="overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface) shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]">
       {/* Browser chrome */}
       <div className="flex items-center gap-1.5 border-b border-(--color-border) bg-(--color-bg-warm)/60 px-4 py-3">
-        <span className="h-2.5 w-2.5 rounded-full bg-(--color-border-strong,#D8CDB6)" />
-        <span className="h-2.5 w-2.5 rounded-full bg-(--color-border-strong,#D8CDB6)" />
-        <span className="h-2.5 w-2.5 rounded-full bg-(--color-border-strong,#D8CDB6)" />
+        <span className="h-2.5 w-2.5 rounded-full bg-(--color-border)" />
+        <span className="h-2.5 w-2.5 rounded-full bg-(--color-border)" />
+        <span className="h-2.5 w-2.5 rounded-full bg-(--color-border)" />
         <span className="ml-3 font-mono text-[11px] text-(--color-muted)">
           costacaravans.nl/boeken
         </span>
       </div>
 
       <div className="grid gap-8 p-8 md:grid-cols-[1.2fr_1fr] md:p-12">
-        {/* Left — pretend hero / object */}
+        {/* Left — illustrated hero + thumbnail strip */}
         <div className="space-y-4">
-          <div
-            className="aspect-[16/10] w-full rounded-[14px]"
-            style={{
-              background:
-                "linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-teal-soft, #DCE8E7) 100%)",
-            }}
-          />
+          <CaravanIllustration />
+
+          {/* Thumbnail strip — suggestie van meerdere foto's */}
+          <div className="flex gap-2">
+            {[0, 1, 2].map((i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Foto ${i + 1}`}
+                className={`aspect-[4/3] flex-1 rounded-md border transition-all ${
+                  i === 0
+                    ? "border-(--color-accent) ring-1 ring-(--color-accent)/30"
+                    : "border-(--color-border) opacity-70 hover:opacity-100"
+                }`}
+                style={{
+                  background:
+                    i === 0
+                      ? "linear-gradient(135deg, #FBE9D8 0%, #E5D4C4 100%)"
+                      : i === 1
+                        ? "linear-gradient(135deg, #DCE8E7 0%, #B8CFCD 100%)"
+                        : "linear-gradient(135deg, #F4DCD4 0%, #C9614F33 100%)",
+                }}
+              />
+            ))}
+          </div>
+
           <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
             {strings.badge}
           </p>
@@ -183,7 +262,15 @@ function ClientMockup({ strings }: { strings: Strings["client"] }) {
 }
 
 /* -------- OWNER-VIEW: an admin dashboard mockup of the same booking -------- */
-function OwnerMockup({ strings }: { strings: Strings["owner"] }) {
+function OwnerMockup({
+  strings,
+  flowSteps,
+  calendar,
+}: {
+  strings: Strings["owner"];
+  flowSteps: string[];
+  calendar: Strings["calendar"];
+}) {
   return (
     <div className="overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface) shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]">
       {/* Browser chrome — admin */}
@@ -212,14 +299,22 @@ function OwnerMockup({ strings }: { strings: Strings["owner"] }) {
           </span>
         </div>
 
-        <ul className="grid gap-2.5">
-          <Row icon={Calendar} label={strings.object} value={strings.nights} />
-          <Row icon={Wallet} label={strings.total} value="€840" />
-          <Row icon={Check} label={strings.paid} value="€420 · Mollie" success />
-          <Row icon={FileText} label={strings.contract} value="✓ verstuurd" success />
-          <Row icon={ShieldCheck} label={strings.deposit} value="€500 vastgehouden" />
-          <Row icon={Calendar} label={strings.calendar} value="Booking + Airbnb sync ✓" success />
-        </ul>
+        {/* Status flow — Boeking → Betaling → Contract → Borg → Bevestigd */}
+        <StatusFlow steps={flowSteps} />
+
+        {/* Two-column: details + mini calendar */}
+        <div className="grid gap-5 md:grid-cols-[1.4fr_1fr]">
+          <ul className="grid gap-2.5">
+            <Row icon={Calendar} label={strings.object} value={strings.nights} />
+            <Row icon={Wallet} label={strings.total} value="€840" />
+            <Row icon={Check} label={strings.paid} value="€420 · Mollie" success />
+            <Row icon={FileText} label={strings.contract} value="✓ verstuurd" success />
+            <Row icon={ShieldCheck} label={strings.deposit} value="€500 vastgehouden" />
+            <Row icon={Calendar} label={strings.calendar} value="Booking + Airbnb sync ✓" success />
+          </ul>
+
+          <BookingCalendarMini strings={calendar} />
+        </div>
 
         <div className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-(--color-border) pt-5 text-[13px]">
           <span className="text-(--color-muted)">{strings.actionLabel}</span>
@@ -227,6 +322,59 @@ function OwnerMockup({ strings }: { strings: Strings["owner"] }) {
         </div>
       </div>
     </div>
+  );
+}
+
+function StatusFlow({ steps }: { steps: string[] }) {
+  // All steps before the last are "done"; the last is "pending".
+  return (
+    <ol className="flex items-center gap-1.5 overflow-x-auto">
+      {steps.map((step, i) => {
+        const done = i < steps.length - 1;
+        const isLast = i === steps.length - 1;
+        return (
+          <React.Fragment key={step}>
+            <li className="flex items-center gap-2 whitespace-nowrap">
+              <span
+                className={`relative flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold ${
+                  done
+                    ? "bg-(--color-success) text-white"
+                    : "border-2 border-(--color-accent) bg-(--color-surface) text-(--color-accent)"
+                }`}
+              >
+                {done ? (
+                  <Check className="h-3 w-3" strokeWidth={3} />
+                ) : (
+                  <>
+                    <span
+                      aria-hidden
+                      className="absolute inset-0 rounded-full bg-(--color-accent)/40"
+                      style={{ animation: "wb-soft-pulse 2.4s ease-out infinite" }}
+                    />
+                    <span className="relative">{i + 1}</span>
+                  </>
+                )}
+              </span>
+              <span
+                className={`font-mono text-[10px] tracking-wide uppercase ${
+                  isLast ? "text-(--color-accent)" : "text-(--color-muted)"
+                }`}
+              >
+                {step}
+              </span>
+            </li>
+            {i < steps.length - 1 ? (
+              <span
+                aria-hidden
+                className={`h-px w-4 flex-shrink ${
+                  done ? "bg-(--color-success)/40" : "bg-(--color-border)"
+                }`}
+              />
+            ) : null}
+          </React.Fragment>
+        );
+      })}
+    </ol>
   );
 }
 

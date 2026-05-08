@@ -194,7 +194,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         <DemoTourOverlay
           role="portal"
           strings={{
-            step: tTour("step"),
+            step: tTour.raw("step") as string,
             step1Title: tTour("step1Title"),
             step1Body: tTour("step1Body"),
             step2Title: tTour("step2Title"),
@@ -234,8 +234,8 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
           projectUrl={proj.monitoringTargetUrl}
           liveAtLabel={dateFmtLivegang.format(proj.liveAt)}
           strings={{
-            eyebrow: tLivegang("eyebrow"),
-            headingPrefix: tLivegang("headingPrefix"),
+            eyebrow: tLivegang.raw("eyebrow") as string,
+            headingPrefix: tLivegang.raw("headingPrefix") as string,
             headingSuffix: tLivegang("headingSuffix"),
             body: tLivegang("body"),
             visitLabel: tLivegang("visit"),

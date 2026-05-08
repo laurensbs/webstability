@@ -171,7 +171,6 @@ export function organizationLd(locale: string) {
     },
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Begur",
       addressRegion: "Costa Brava",
       addressCountry: "ES",
     },
@@ -230,17 +229,49 @@ export function blogPostingLd({
   };
 }
 
+/**
+ * Per-locale paden voor elke route. NL is de canonical (geen prefix),
+ * ES krijgt vertaalde slugs. Komt overeen met `i18n/routing.ts`
+ * `pathnames`. Wijzigt daar iets, dan ook hier aanpassen.
+ */
+const ROUTE_PATHS: Record<RouteKey, { nl: string; es: string }> = {
+  home: { nl: "/", es: "/es" },
+  verhuur: { nl: "/verhuur", es: "/es/alquiler" },
+  diensten: { nl: "/diensten", es: "/es/servicios" },
+  cases: { nl: "/cases", es: "/es/cases" },
+  over: { nl: "/over", es: "/es/sobre" },
+  prijzen: { nl: "/prijzen", es: "/es/precios" },
+  contact: { nl: "/contact", es: "/es/contacto" },
+  status: { nl: "/status", es: "/es/estado" },
+  garanties: { nl: "/garanties", es: "/es/garantias" },
+  blog: { nl: "/blog", es: "/es/blog" },
+  privacy: { nl: "/privacy", es: "/es/privacy" },
+  avisoLegal: { nl: "/aviso-legal", es: "/es/aviso-legal" },
+};
+
 export function pageMetadata(locale: string, key: RouteKey): Metadata {
   const lang: Locale = locale === "es" ? "es" : "nl";
   const copy = COPY[lang][key];
+  const paths = ROUTE_PATHS[key];
+  const canonicalPath = paths[lang];
+  const canonical = `${SITE_BASE_URL}${canonicalPath}`;
   return {
     title: copy.title,
     description: copy.description,
+    alternates: {
+      canonical,
+      languages: {
+        nl: `${SITE_BASE_URL}${paths.nl}`,
+        es: `${SITE_BASE_URL}${paths.es}`,
+        "x-default": `${SITE_BASE_URL}${paths.nl}`,
+      },
+    },
     openGraph: {
       title: `${copy.title} · Webstability`,
       description: copy.description,
-      locale: lang,
+      locale: lang === "es" ? "es_ES" : "nl_NL",
       type: "website",
+      url: canonical,
     },
     twitter: {
       card: "summary_large_image",

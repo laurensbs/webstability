@@ -17,7 +17,51 @@
     "liveBadgeUptime": "99.98% uptime · 30d",
     "liveBadgeAvailable": "Mei 2026 · 2 plekken vrij",
     "planCall": "Boek afspraak",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "menu": {
+      "servicesEyebrow": "Vier productlijnen",
+      "servicesTitle": "Wat we voor je bouwen",
+      "servicesFooter": "Alle diensten →",
+      "items": {
+        "platform": {
+          "title": "Bedrijfssoftware op maat",
+          "blurb": "Verhuurplatform, klantportaal of admin op maat",
+          "price": "vanaf €399/m"
+        },
+        "webshop": {
+          "title": "Website of webshop",
+          "blurb": "Snelle, meertalige site met checkout",
+          "price": "vanaf €95/m"
+        },
+        "care": {
+          "title": "Onderhoud & monitoring",
+          "blurb": "We houden het draaiende — uptime, backups, updates",
+          "price": "vanaf €95/m"
+        },
+        "growth": {
+          "title": "Doorontwikkeling",
+          "blurb": "Nieuwe features op je live-product",
+          "price": "doorlopend"
+        }
+      },
+      "casesEyebrow": "Live producten",
+      "casesTitle": "Klantverhalen",
+      "casesFooter": "Alle cases →",
+      "caseItems": {
+        "caravan": {
+          "title": "Caravanstallingspanje",
+          "blurb": "Verhuurplatform · 4 maanden build · 99.98% uptime"
+        },
+        "marbella": {
+          "title": "Marbella Stays",
+          "blurb": "Boekingssysteem · 6 maanden build · live sinds 2024"
+        },
+        "voltauto": {
+          "title": "VOLT/AUTO",
+          "blurb": "Reparatie-portaal · 3 maanden build · 47 garages"
+        }
+      }
+    }
   },
   "footer": {
     "tagline": "Eén ontwikkelaar. Software die blijft werken.",
@@ -33,11 +77,21 @@
       "company": "Bedrijf",
       "contact": "Contact"
     },
-    "contactRegion": "Begur · Costa Brava",
-    "liveBadge": "alle systemen draaien"
+    "contactRegion": "Costa Brava · Spanje",
+    "liveBadge": "alle systemen draaien",
+    "studioTagline": "Eén studio. Eén ontwikkelaar. *Software* die blijft werken nadat 'ie is opgeleverd.",
+    "studioSub": "Webstability bouwt en onderhoudt klant-software voor MKB-ondernemers in Nederland en Spanje. Doorlopend abonnement vanaf €95/m — bouwen en onderhouden in één.",
+    "responseLabel": "Reactie binnen",
+    "responseValue": "24 uur",
+    "lastDeployLabel": "Laatste deploy",
+    "buildLabel": "Build",
+    "kvkLabel": "KvK",
+    "vatLabel": "BTW",
+    "languageLabel": "Taal",
+    "switchToEs": "Español"
   },
   "home": {
-    "eyebrow": "begur · costa brava",
+    "eyebrow": "costa brava · spanje",
     "headline": "Geen Excel-puzzels meer. *Geen* dubbele boekingen. Geen vijf losse tools.",
     "tagline": "Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt. Doorlopend abonnement vanaf €95 per maand — bouwen + onderhouden in één.",
     "ctaPrimary": "Plan een kennismaking",
@@ -119,6 +173,16 @@
         "statusValue": "Bevestigd",
         "actionLabel": "Volgende actie:",
         "actionValue": "Wacht op check-in 14 juli"
+      },
+      "flow": {
+        "steps": ["Boeking", "Betaling", "Contract", "Borg", "Bevestigd"]
+      },
+      "calendar": {
+        "weekdays": ["M", "D", "W", "D", "V", "Z", "Z"],
+        "monthLabel": "Juli 2026"
+      },
+      "bridge": {
+        "label": "Boeking #2841 synct realtime"
       }
     },
 
@@ -159,7 +223,7 @@
       "body3": "Mijn ding zijn de saaie systemen die niemand wil bouwen — verhuuradministraties, reparatiebonnen, voorraadkoppelingen. Onzichtbaar werk dat ondernemers wakker houdt. Dat is precies waar ik het verschil maak.",
       "name": "Laurens Bos",
       "role": "Founder & lead developer · Webstability",
-      "liveBadge": "Live vanuit Begur, Costa Brava",
+      "liveBadge": "Live vanuit de Costa Brava",
       "timelineLabel": "elk jaar bouwend",
       "cta": "Lees het hele verhaal"
     },
@@ -198,7 +262,7 @@
       "body": "Ondernemers in Nederland en Spanje die een serieuze digitale stap willen zetten zonder zich aan een bureau over te leveren. Korte lijnen, eigenaarschap van de code, en een ontwikkelaar die je naam onthoudt.",
       "nlLabel": "Nederland",
       "esLabel": "España",
-      "tzLabel": "nu in Begur"
+      "tzLabel": "nu op de Costa Brava"
     },
 
     "faq": {
@@ -275,7 +339,7 @@
     "openCalendarButton": "Open kalender",
     "calFallbackTitle": "Stuur me een mail",
     "calFallbackHint": "De online agenda komt zo. Tot die tijd: gewoon mailen werkt prima.",
-    "regionBadge": "Vanuit Begur",
+    "regionBadge": "Vanuit de Costa Brava",
     "afterTitle": "Wat er daarna gebeurt",
     "after": [
       {
@@ -355,7 +419,7 @@
   "about": {
     "eyebrow": "over webstability",
     "title": "Eén ontwikkelaar, *tien jaar* ervaring.",
-    "intro": "Ik ben Laurens Bos. Ik bouw software voor MKB-ondernemers sinds 2015 — eerst vanuit Nederland, sinds 2022 vanuit Begur aan de Costa Brava. Wat begon als freelance opdrachten voor verhuurbedrijven werd Webstability: een studio die zich specialiseert in software die niet ophoudt met werken na de oplevering.",
+    "intro": "Ik ben Laurens Bos. Ik bouw software voor MKB-ondernemers sinds 2015 — eerst vanuit Nederland, sinds 2022 vanuit Spanje. Wat begon als freelance opdrachten voor verhuurbedrijven werd Webstability: een studio die zich specialiseert in software die niet ophoudt met werken na de oplevering.",
     "principlesTitle": "Vier principes",
     "principles": [
       {
@@ -391,7 +455,7 @@
       },
       {
         "year": "2022",
-        "body": "Verhuisd naar Begur, Costa Brava. Eerste Spaanse klanten via lokale ondernemers."
+        "body": "Verhuisd naar de Costa Brava. Eerste Spaanse klanten via lokale ondernemers."
       },
       {
         "year": "2024",
@@ -976,13 +1040,19 @@
           }
         ]
       }
-    }
+    },
+    "footerCtaTitle": "Nog niet zeker welke kant op?",
+    "footerCtaBody": "Plan een eerste gesprek (30 min, gratis) of bekijk wat we voor andere bedrijven gebouwd hebben.",
+    "footerCtaPrimary": "Plan een gesprek",
+    "footerCtaSecondary": "Bekijk cases"
   },
   "legal": {
     "avisoTitle": "Aviso legal",
     "avisoBody": "Verantwoordelijke: Laurens Bos. Adres: Carrer Major, 17255 Begur, Girona, Spanje. KvK: 91186307. BTW: NL004875371B72. NIF: in aanvraag. Contact: hello@webstability.eu. Hosting: Vercel Inc., 340 S Lemon Ave #4133, Walnut CA 91789, USA.",
     "privacyTitle": "Privacy",
-    "privacyBody": "Webstability verwerkt persoonsgegevens conform AVG/RGPD. Verzamelde data: naam en e-mail (login en facturatie), Plausible-analytics (geanonimiseerd, EU-hosted), facturatiedata (Stripe/Mollie). Bewaartermijn: account-data tot 30 dagen na opzegging, fiscale data 7 jaar conform wetgeving. Sub-processors: Vercel, Neon, Stripe, Mollie, Plausible, Resend, Better Stack, Sentry. Recht op inzage, correctie en verwijdering: mail naar hello@webstability.eu."
+    "privacyBody": "Webstability verwerkt persoonsgegevens conform AVG/RGPD. Verzamelde data: naam en e-mailadres (login en facturatie), Plausible-analytics (geanonimiseerd, EU-hosted), facturatiedata (Stripe/Mollie). Bewaartermijn: account-data tot 30 dagen na opzegging, fiscale data 7 jaar conform wetgeving. Sub-processors: Vercel, Neon, Stripe, Mollie, Plausible, Resend, Better Stack, Sentry. Recht op inzage, correctie en verwijdering: mail naar hello@webstability.eu. DSAR-verzoeken worden binnen 30 dagen behandeld conform AVG art. 12.",
+    "lastUpdatedLabel": "Laatst bijgewerkt",
+    "lastUpdatedDate": "8 mei 2026"
   },
   "portal": {
     "nav": {

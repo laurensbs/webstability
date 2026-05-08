@@ -146,7 +146,7 @@ export default async function LoginPage({
           <LangSwitcher />
         </header>
 
-        <div className="mx-auto w-full max-w-sm py-12">
+        <div className="mx-auto w-full max-w-[min(384px,100%)] py-12">
           <p
             className={`font-mono text-xs tracking-widest uppercase ${
               isAdminHost ? "text-(--color-accent)" : "text-(--color-accent)"

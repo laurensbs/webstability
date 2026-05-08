@@ -35,7 +35,7 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
   return (
     <header
       data-scrolled={scrolled || undefined}
-      className="sticky top-0 z-30 border-b border-transparent bg-(--color-bg)/80 backdrop-blur-md transition-[border-color,box-shadow,background-color] duration-200 data-[scrolled]:border-(--color-border) data-[scrolled]:bg-(--color-bg)/95 data-[scrolled]:shadow-[0_1px_0_rgba(229,221,204,0.6),0_8px_24px_-12px_rgba(31,27,22,0.08)]"
+      className="sticky top-0 z-30 border-b border-transparent bg-(--color-bg)/80 backdrop-blur-md transition-[border-color,box-shadow,background-color] duration-200 data-[scrolled]:border-(--color-border) data-[scrolled]:bg-(--color-surface)/85 data-[scrolled]:shadow-[inset_0_-1px_0_0_rgba(107,30,44,0.18),0_1px_0_rgba(229,221,204,0.6),0_8px_24px_-12px_rgba(31,27,22,0.08)]"
     >
       {children}
     </header>

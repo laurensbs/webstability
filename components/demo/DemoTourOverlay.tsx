@@ -68,7 +68,7 @@ export function DemoTourOverlay({ role, strings }: { role: "portal" | "admin"; s
       <button
         type="button"
         onClick={dismiss}
-        className="absolute top-3 right-3 inline-flex h-8 w-8 items-center justify-center rounded-full text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) hover:text-(--color-text)"
+        className="absolute top-2 right-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:top-3 md:right-3 md:h-8 md:w-8"
         aria-label={strings.dismiss}
       >
         <X className="h-4 w-4" />
