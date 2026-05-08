@@ -3,12 +3,18 @@
 import * as React from "react";
 
 /**
- * Sticky donkere header. Bij scroll voorbij 12px transformt de bar:
- *  - Krimpt los van de viewport-randen (mx-3 + max-w-1100)
- *  - Krijgt rounded-full + lichte cream/15 border + shadow
- *  - Inner nav-padding compresseert (py-3.5 → py-2.5)
- * Linear/Framer-stijl floating pill. Honoreert prefers-reduced-motion
- * via de korte transition-duration die geen layout-jank introduceert.
+ * Sticky donkere header met scroll-driven pill-transformatie.
+ *
+ * Premium-tuning:
+ *  - Specifieke `transition-property` ipv `transition-all` — voorkomt
+ *    dat ongewenste properties (border-radius, transform, etc.)
+ *    mee-animeren en houdt de browser-paint pipeline kort.
+ *  - Border-radius snapt direct (geen 0 → 9999px logaritmische lelijke
+ *    interpolatie) — Linear/Framer doen dit ook zo.
+ *  - `transform-gpu` tilt de header naar een eigen GPU-layer zodat
+ *    compositing niet vecht met page-content eronder.
+ *  - 550ms expo-out — sweet spot tussen "instant" (te snap) en "trage
+ *    drag" (voelt schokkerig op layout-properties).
  */
 export function NavScroll({ children }: { children: React.ReactNode }) {
   const [scrolled, setScrolled] = React.useState(() => {
@@ -39,18 +45,19 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
     <header
       data-scrolled={scrolled || undefined}
       className={[
-        // Sticky outer wrapper — z-30 boven content, blijft top-0.
-        // Trage premium expo-out ease zodat de transitie zacht naloopt.
-        "sticky top-0 z-30 transition-[padding] duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
-        // Op scroll: padding rondom om de pill "los" te laten zweven
+        // Outer — alleen padding-transition voor "loslaten van rand"
+        "sticky top-0 z-30 transform-gpu",
+        "transition-[padding] duration-[550ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]",
         "data-[scrolled]:px-4 data-[scrolled]:pt-3",
-        // Inner bar — alle transitions even sloom + zelfde ease
-        "[&>nav]:transition-all [&>nav]:duration-700 [&>nav]:[transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
-        // Niet-scrolled — donkere bar, NEEM DE VOLLE BREEDTE: override
-        // Navigation's eigen mx-auto max-w-6xl naar full-width.
+        // Inner — specifieke properties (max-width, padding, border-color, shadow)
+        // Border-radius en transform NIET in de transition zodat ze direct snappen.
+        "[&>nav]:transform-gpu [&>nav]:will-change-[max-width]",
+        "[&>nav]:[transition-property:max-width,padding-top,padding-bottom,border-color,box-shadow]",
+        "[&>nav]:duration-[550ms] [&>nav]:[transition-timing-function:cubic-bezier(0.22,1,0.36,1)]",
+        // Niet-scrolled — full-width donker
         "[&>nav]:!max-w-none [&>nav]:bg-(--color-text) [&>nav]:text-(--color-bg)",
-        "[&>nav]:border-b [&>nav]:border-transparent",
-        // Scrolled — floating pill: royaal breed (1280) met pill-styling.
+        "[&>nav]:border [&>nav]:border-transparent",
+        // Scrolled — pill 1280, rounded-full direct (geen interpolatie)
         "data-[scrolled]:[&>nav]:!mx-auto data-[scrolled]:[&>nav]:!max-w-[1280px]",
         "data-[scrolled]:[&>nav]:rounded-full data-[scrolled]:[&>nav]:border-(--color-bg)/15",
         "data-[scrolled]:[&>nav]:py-2 data-[scrolled]:[&>nav]:shadow-[0_12px_32px_-12px_rgba(31,27,22,0.45)]",
