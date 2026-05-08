@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { LogIn } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { LogoMark } from "@/components/shared/LogoMark";
@@ -70,9 +71,11 @@ export async function Navigation({ locale }: { locale: string }) {
           </span>
           <Link
             href="/login"
-            className="hidden items-center rounded-full border border-(--color-bg)/25 px-4 py-2 text-[13px] font-medium text-(--color-bg)/85 transition-colors hover:border-(--color-bg)/60 hover:text-(--color-bg) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:inline-flex"
+            aria-label={t("login")}
+            title={t("login")}
+            className="hidden h-10 w-10 items-center justify-center rounded-full border border-(--color-bg)/25 text-(--color-bg)/75 transition-colors hover:border-(--color-bg)/60 hover:text-(--color-bg) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:inline-flex"
           >
-            {t("login")}
+            <LogIn className="h-4 w-4" strokeWidth={2} aria-hidden />
           </Link>
           {/* CTA — terracotta op donker; komt nu pas tot zijn recht */}
           <CalPopupTrigger

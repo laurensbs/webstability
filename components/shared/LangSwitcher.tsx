@@ -1,16 +1,15 @@
 "use client";
 
 import { useLocale } from "next-intl";
+import { Languages } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 
 /**
- * Compact language toggle. Shows the *other* locale as a single pill
- * button — clicking jumps to the same path in that locale. The current
- * locale is implicit (you're on it), so we don't repeat it in the UI.
- *
- * `variant="dark"` keert de pill om voor gebruik op donkere achtergrond
- * (header, login-panel, footer-zone-1).
+ * Compact language toggle. Icon + huidige locale-code als kleine pill,
+ * klik switcht naar de andere locale. `variant="dark"` keert de
+ * styling om voor donkere achtergrond (header, login-panel, footer-
+ * zone-1).
  */
 export function LangSwitcher({ variant = "light" }: { variant?: "light" | "dark" }) {
   const locale = useLocale() as Locale;
@@ -19,7 +18,7 @@ export function LangSwitcher({ variant = "light" }: { variant?: "light" | "dark"
 
   const styling =
     variant === "dark"
-      ? "border-(--color-bg)/20 bg-(--color-bg)/5 text-(--color-bg)/65 hover:border-(--color-bg)/50 hover:text-(--color-bg)"
+      ? "border-(--color-bg)/25 bg-transparent text-(--color-bg)/75 hover:border-(--color-bg)/60 hover:text-(--color-bg)"
       : "border-(--color-border) bg-(--color-surface) text-(--color-muted) hover:border-(--color-text) hover:text-(--color-text)";
 
   return (
@@ -28,9 +27,11 @@ export function LangSwitcher({ variant = "light" }: { variant?: "light" | "dark"
       href={pathname as any}
       locale={otherLocale}
       aria-label={`Switch to ${otherLocale.toUpperCase()}`}
-      className={`inline-flex h-11 min-w-[44px] items-center justify-center rounded-full border px-3 text-[12px] font-medium tracking-wide uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:h-10 ${styling}`}
+      title={`Switch to ${otherLocale.toUpperCase()}`}
+      className={`inline-flex h-10 items-center gap-1.5 rounded-full border px-3 text-[11px] font-medium tracking-wide uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) ${styling}`}
     >
-      {otherLocale}
+      <Languages className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
+      <span>{otherLocale}</span>
     </Link>
   );
 }

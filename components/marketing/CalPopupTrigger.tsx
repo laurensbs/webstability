@@ -65,43 +65,56 @@ export function CalPopupTrigger({
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out fixed inset-0 z-50 bg-(--color-text)/50 backdrop-blur-sm" />
+        <Dialog.Overlay className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out fixed inset-0 z-50 bg-(--color-wine)/40 backdrop-blur-sm" />
 
         <Dialog.Content
           aria-describedby={undefined}
-          className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out fixed top-1/2 left-1/2 z-50 flex h-[min(720px,90vh)] w-[min(960px,calc(100vw-32px))] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-[20px] border border-(--color-border) bg-(--color-surface) shadow-[0_24px_60px_-12px_rgba(31,27,22,0.3)]"
+          className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out fixed top-1/2 left-1/2 z-50 flex h-[min(720px,90vh)] w-[min(960px,calc(100vw-32px))] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-[20px] border border-t-2 border-(--color-text)/20 border-t-(--color-wine) bg-(--color-text) text-(--color-bg) shadow-[0_24px_60px_-12px_rgba(31,27,22,0.5)]"
         >
+          {/* Halo-blobs voor depth — zelfde sfeer als login-panel + footer */}
+          <div
+            aria-hidden
+            className="wb-soft-halo pointer-events-none absolute -top-32 -left-32 h-[320px] w-[320px] rounded-full bg-(--color-accent) opacity-30 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="wb-soft-halo pointer-events-none absolute -right-32 -bottom-32 h-[320px] w-[320px] rounded-full bg-(--color-wine) opacity-40 blur-3xl"
+          />
+
           <Dialog.Title className="sr-only">Plan een gesprek</Dialog.Title>
 
-          <header className="flex items-center justify-between border-b border-(--color-border) bg-(--color-bg-warm) px-5 py-3">
-            <p className="font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+          <header className="relative flex items-center justify-between border-b border-(--color-bg)/10 bg-(--color-text) px-5 py-3">
+            <p className="font-mono text-[11px] tracking-widest text-(--color-bg)/60 uppercase">
+              {"// "}
               {locale === "es" ? "Reservar cita" : "Boek afspraak"}
             </p>
             <Dialog.Close asChild>
               <button
                 type="button"
                 aria-label="Sluit"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full text-(--color-muted) transition-colors hover:bg-(--color-surface) hover:text-(--color-text)"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-(--color-bg)/60 transition-colors hover:bg-(--color-bg)/10 hover:text-(--color-bg) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
               >
                 <X className="h-4 w-4" strokeWidth={2} />
               </button>
             </Dialog.Close>
           </header>
 
-          <div className="flex-1 overflow-hidden">
-            {/* Cal vult de hele beschikbare ruimte; minHeight nodig
-                want anders krijgt iframe 0px in een flex-kind. */}
-            <Cal
-              calLink={CAL_LINK}
-              calOrigin={CAL_ORIGIN}
-              embedJsUrl={CAL_EMBED_JS}
-              style={{ width: "100%", height: "100%", minHeight: 540 }}
-              config={{
-                layout: "month_view",
-                theme: "light",
-                ...(locale ? { locale } : {}),
-              }}
-            />
+          {/* Cream-card binnen het donkere modal — Cal embed wil licht
+              achter de agenda-tegels, anders zijn dagen onleesbaar */}
+          <div className="relative flex-1 overflow-hidden bg-(--color-surface) p-2 md:p-3">
+            <div className="h-full w-full overflow-hidden rounded-[12px]">
+              <Cal
+                calLink={CAL_LINK}
+                calOrigin={CAL_ORIGIN}
+                embedJsUrl={CAL_EMBED_JS}
+                style={{ width: "100%", height: "100%", minHeight: 540 }}
+                config={{
+                  layout: "month_view",
+                  theme: "light",
+                  ...(locale ? { locale } : {}),
+                }}
+              />
+            </div>
           </div>
         </Dialog.Content>
       </Dialog.Portal>
