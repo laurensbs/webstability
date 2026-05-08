@@ -142,7 +142,7 @@ export function NavMegaMenu({
             <div aria-hidden className="absolute -top-3 right-0 left-0 h-3" />
 
             <div
-              className="overflow-hidden rounded-[18px] border border-t-2 border-(--color-border) border-t-(--color-wine)/70 bg-(--color-surface) shadow-[0_24px_60px_-16px_rgba(31,27,22,0.18),0_8px_20px_-4px_rgba(31,27,22,0.08)]"
+              className="overflow-hidden rounded-[18px] border border-t-2 border-(--color-border) border-t-(--color-wine)/70 bg-(--color-surface) text-(--color-text) shadow-[0_24px_60px_-16px_rgba(31,27,22,0.18),0_8px_20px_-4px_rgba(31,27,22,0.08)]"
               role="menu"
             >
               {open === "services" ? (
