@@ -174,23 +174,29 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   </div>
                 </RevealOnScroll>
 
-                {/* Right — wat erbij zit + pakket + voorbeeld + CTA */}
+                {/* Right — donkere wijn-rode card met cream tekst */}
                 <RevealOnScroll
                   delay={0.08}
-                  className="group space-y-6 rounded-[24px] border border-(--color-border) bg-(--color-surface) p-8 shadow-[0_1px_2px_rgba(31,27,22,0.04),0_4px_12px_-4px_rgba(31,27,22,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-(--color-accent)/40 hover:shadow-[0_2px_4px_rgba(31,27,22,0.06),0_24px_48px_-12px_rgba(201,97,79,0.18)] md:p-10"
+                  className="group relative space-y-6 overflow-hidden rounded-[24px] border border-t-2 border-(--color-text)/20 border-t-(--color-wine) bg-(--color-text) p-8 text-(--color-bg) shadow-[0_1px_2px_rgba(31,27,22,0.08),0_8px_24px_-8px_rgba(31,27,22,0.18)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_2px_4px_rgba(31,27,22,0.12),0_24px_48px_-12px_rgba(107,30,44,0.32)] md:p-10"
                 >
-                  <div>
-                    <h3 className="mb-4 font-mono text-[11px] tracking-widest text-(--color-text) uppercase">
+                  {/* Wijn-rode halo voor depth */}
+                  <span
+                    aria-hidden
+                    className="wb-soft-halo pointer-events-none absolute -top-32 -right-24 h-[280px] w-[280px] rounded-full bg-(--color-wine) opacity-40 blur-3xl"
+                  />
+
+                  <div className="relative">
+                    <h3 className="mb-4 font-mono text-[11px] tracking-widest text-(--color-bg) uppercase">
                       {item.includesTitle}
                     </h3>
                     <ul className="space-y-2">
                       {item.includes.map((f, idx) => (
                         <li
                           key={f}
-                          className="flex items-start gap-2.5 text-[14px] text-(--color-muted)"
+                          className="flex items-start gap-2.5 text-[14px] text-(--color-bg)/75"
                         >
-                          <span className="mt-1 shrink-0">
-                            <AnimatedCheck delay={idx * 0.06} />
+                          <span className="mt-1 shrink-0 text-(--color-accent)">
+                            <AnimatedCheck delay={idx * 0.06} color="currentColor" />
                           </span>
                           <span>{f}</span>
                         </li>
@@ -198,27 +204,27 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                     </ul>
                   </div>
 
-                  {/* Pakket-info met wijn-rode top-border — premium "earned" accent */}
-                  <div className="rounded-[14px] border border-t-2 border-(--color-border) border-t-(--color-wine)/60 bg-(--color-bg-warm) p-5">
-                    <h4 className="mb-2 font-mono text-[11px] tracking-widest text-(--color-text) uppercase">
+                  {/* Pakket-info — cream/5 glass-card binnen het donkere paneel */}
+                  <div className="relative rounded-[14px] border border-(--color-bg)/15 bg-(--color-bg)/5 p-5 backdrop-blur-sm">
+                    <h4 className="mb-2 font-mono text-[11px] tracking-widest text-(--color-bg) uppercase">
                       {item.packageTitle}
                     </h4>
-                    <p className="text-[14px] leading-[1.6] text-(--color-muted)">
+                    <p className="text-[14px] leading-[1.6] text-(--color-bg)/70">
                       <MarkupText>{item.packageBody}</MarkupText>
                     </p>
                   </div>
 
-                  <div>
+                  <div className="relative">
                     <h4 className="mb-2 font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
                       {item.exampleTitle}
                     </h4>
-                    <p className="text-[14px] leading-[1.6] text-(--color-text)">
+                    <p className="text-[14px] leading-[1.6] text-(--color-bg)/85">
                       <MarkupText>{item.exampleBody}</MarkupText>
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-3 pt-2">
-                    <Button asChild variant="primary">
+                  <div className="relative flex flex-wrap items-center gap-3 pt-2">
+                    <Button asChild variant="accent">
                       <Link href="/contact">
                         {item.ctaPrimary}
                         <ArrowRight className="h-3.5 w-3.5" />

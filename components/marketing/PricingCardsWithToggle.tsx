@@ -256,7 +256,7 @@ export function PricingCardsWithToggle({
                 authMode.isOwner ? (
                   authMode.currentPlan === item.id ? (
                     <span
-                      className={`inline-flex w-full items-center justify-center rounded-full border px-4 py-2.5 font-mono text-[11px] tracking-widest uppercase ${
+                      className={`relative inline-flex w-full items-center justify-center rounded-full border px-4 py-2.5 font-mono text-[11px] tracking-widest uppercase ${
                         featured
                           ? "border-(--color-bg)/30 text-(--color-bg)/80"
                           : "border-(--color-border) text-(--color-muted)"
@@ -265,7 +265,7 @@ export function PricingCardsWithToggle({
                       {authMode.currentPlanLabel}
                     </span>
                   ) : (
-                    <form action={authMode.subscribeAction} className="w-full">
+                    <form action={authMode.subscribeAction} className="relative w-full">
                       <input type="hidden" name="plan" value={item.id} />
                       <Button
                         type="submit"
@@ -281,7 +281,7 @@ export function PricingCardsWithToggle({
                     </form>
                   )
                 ) : (
-                  <form action={authMode.anonSubscribeAction} className="w-full">
+                  <form action={authMode.anonSubscribeAction} className="relative w-full">
                     <input type="hidden" name="plan" value={item.id} />
                     <Button
                       type="submit"
@@ -300,7 +300,7 @@ export function PricingCardsWithToggle({
                 <Button
                   asChild
                   variant={featured ? "ghost" : "outline"}
-                  className={`w-full justify-center ${
+                  className={`relative w-full justify-center ${
                     featured
                       ? "bg-(--color-bg) text-(--color-text) hover:bg-(--color-accent-soft) hover:text-(--color-text)"
                       : ""
