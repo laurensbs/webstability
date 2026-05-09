@@ -235,10 +235,26 @@ body.is-marketing #main {
   }
 }
 .animate-accordion-down {
-  animation: accordion-down 220ms ease-out;
+  animation: accordion-down 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .animate-accordion-up {
-  animation: accordion-up 220ms ease-out;
+  animation: accordion-up 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Inner-content fade-in voor accordion — paralleel aan height-tween
+   zodat de tekst niet rauw verschijnt maar zacht onthuld wordt. */
+@keyframes wb-accordion-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.wb-accordion-fade-in {
+  animation: wb-accordion-fade-in 360ms cubic-bezier(0.22, 1, 0.36, 1) 60ms both;
 }
 
 /* Skeleton-shimmer voor Shimmer.tsx — gradient-sweep links→rechts. */
@@ -390,27 +406,24 @@ body.is-marketing #main {
   }
 
   /*
-   * 5. NavScroll header — `position: sticky` + `transform-gpu` op
-   *    nested elementen veroorzaakt op iOS Safari "sticky-jank":
-   *    de browser blijft de hele header herrekend per scroll-frame.
-   *    Op mobile is een subtiele overgang minder belangrijk dan
-   *    smooth scrollen — zet sticky → static (header scrolt mee weg)
-   *    en kap de transform-state-toggle volledig.
+   * 5. NavScroll header op mobile — sticky BLIJFT zodat 'ie altijd
+   *    bovenaan zichtbaar is, óók wanneer je naar boven scrollt. Maar
+   *    de pill-transformatie + transform-gpu lagen worden uitgezet zodat
+   *    we geen sticky-jank krijgen op iOS Safari.
+   *
+   *    Resultaat: full-width donkere bar die altijd top-0 plakt, zonder
+   *    krimp/scale/border-fade rondom. Alleen achtergrond-laag 1 blijft
+   *    zichtbaar, de pill-laag (2) en transform-laag (3) zijn neutraal.
    */
-  header[data-scrolled],
-  header:not([data-scrolled]) {
-    position: static !important;
-  }
   header [class*="transform-gpu"] {
     transform: none !important;
     transition: none !important;
     will-change: auto !important;
   }
-  /* De pill-fade laag (laag 2) zit altijd op de pill-staat —
-   *    altijd transparant (laat de full-width donker zien) zodat
-   *    we geen opacity-transition meer triggeren bij scroll. */
-  header > span[aria-hidden]:nth-of-type(2),
-  header > div > span[aria-hidden] {
+  /* Pill-laag (2) altijd onzichtbaar op mobile — full-width donker is
+     genoeg, geen gefloated pill. Selector matcht de pill-span binnen
+     de max-w-7xl wrapper (laag 2). */
+  header > div[class*="max-w-7xl"] > span {
     opacity: 0 !important;
     transition: none !important;
   }

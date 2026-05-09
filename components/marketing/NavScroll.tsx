@@ -7,27 +7,37 @@ import * as React from "react";
  *
  * Drie compositor-only lagen voor butter-smooth 60fps:
  *  1. Full-width donkere achtergrond (fade-out op scroll)
- *  2. Pill-frame binnen max-w-6xl wrapper (fade-in op scroll)
+ *  2. Pill-frame binnen max-w-7xl wrapper (fade-in op scroll)
  *  3. Inner content met subtle transform (lift + krimp) op scroll
  *
  * Layout-properties (max-width, padding) zijn nooit getransitioneerd
  * — alleen opacity + transform = compositor-only = vloeiend op elke
  * device. Linear/Vercel doen het identiek.
+ *
+ * Threshold: pill verschijnt pas wanneer de hero voorbij is (~70%
+ * viewport-height). Bovenop de pagina blijft de header full-width
+ * donker zodat de hero z'n eigen visuele claim houdt.
  */
+function initialScrolled() {
+  if (typeof window === "undefined") return false;
+  return window.scrollY > Math.max(280, window.innerHeight * 0.7);
+}
+
 export function NavScroll({ children }: { children: React.ReactNode }) {
-  const [scrolled, setScrolled] = React.useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.scrollY > 12;
-  });
+  const [scrolled, setScrolled] = React.useState(initialScrolled);
 
   React.useEffect(() => {
     let ticking = false;
-    let lastValue = window.scrollY > 12;
+    // Threshold is 70% van viewport-hoogte — pas voorbij de hero.
+    const getThreshold = () => Math.max(280, window.innerHeight * 0.7);
+    let threshold = getThreshold();
+    let lastValue = window.scrollY > threshold;
+
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        const next = window.scrollY > 12;
+        const next = window.scrollY > threshold;
         if (next !== lastValue) {
           lastValue = next;
           setScrolled(next);
@@ -35,8 +45,20 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
         ticking = false;
       });
     };
+    const onResize = () => {
+      threshold = getThreshold();
+      const next = window.scrollY > threshold;
+      if (next !== lastValue) {
+        lastValue = next;
+        setScrolled(next);
+      }
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   // Premium expo-out, 450ms — sweet spot voor compositor-only animaties
