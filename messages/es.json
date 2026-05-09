@@ -98,6 +98,9 @@
     "ctaSecondary": "Ver casos",
 
     "hero": {
+      "eyebrow": "el estudio · costa brava",
+      "title": "Un sistema bajo tu *negocio*. Construido y mantenido por un único desarrollador.",
+      "lede": "Webstability construye y mantiene software a medida para pymes en Países Bajos y España. Web pública y panel de admin como un sistema integrado.",
       "years": "años construyendo",
       "since": "desde",
       "live": "en línea",
