@@ -255,22 +255,26 @@
         "one": {
           "kicker": "01",
           "title": "Kennismaking",
-          "body": "Een half uur. We praten over je proces, knelpunten en wat het je waard is om opgelost te krijgen. Geen verkooppraat."
+          "body": "Een half uur. We praten over je proces, knelpunten en wat het je waard is om opgelost te krijgen. Geen verkooppraat.",
+          "meta": "30 min · gratis"
         },
         "two": {
           "kicker": "02",
           "title": "Voorstel & scope",
-          "body": "Concreet plan met tijdlijn, prijs en wat erin zit — duidelijk en zonder kleine letters. Eén pagina."
+          "body": "Concreet plan met tijdlijn, prijs en wat erin zit — duidelijk en zonder kleine letters. Eén pagina.",
+          "meta": "1 pagina · binnen 5 dagen"
         },
         "three": {
           "kicker": "03",
           "title": "Bouwen in sprints",
-          "body": "Wekelijkse opleveringen die je live ziet in je portaal. Feedback wordt direct verwerkt."
+          "body": "Wekelijkse opleveringen die je live ziet in je portaal. Feedback wordt direct verwerkt.",
+          "meta": "elke week zichtbaar"
         },
         "four": {
           "kicker": "04",
           "title": "Live & onderhoud",
-          "body": "Na livegang draait je systeem onder een care-plan. Jij blijft bouwen aan je bedrijf."
+          "body": "Na livegang draait je systeem onder een care-plan. Jij blijft bouwen aan je bedrijf.",
+          "meta": "doorlopend · vanaf €95/m"
         }
       }
     },

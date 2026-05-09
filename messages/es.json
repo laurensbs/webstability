@@ -255,22 +255,26 @@
         "one": {
           "kicker": "01",
           "title": "Llamada inicial",
-          "body": "Media hora. Hablamos de tu proceso, dolores reales y qué te merece la pena resolver. Sin presentación comercial."
+          "body": "Media hora. Hablamos de tu proceso, dolores reales y qué te merece la pena resolver. Sin presentación comercial.",
+          "meta": "30 min · gratis"
         },
         "two": {
           "kicker": "02",
           "title": "Propuesta & alcance",
-          "body": "Plan concreto con fechas, precio y qué incluye — claro y sin letra pequeña. Una página."
+          "body": "Plan concreto con fechas, precio y qué incluye — claro y sin letra pequeña. Una página.",
+          "meta": "1 página · en 5 días"
         },
         "three": {
           "kicker": "03",
           "title": "Construir en sprints",
-          "body": "Entregas semanales visibles en tu portal. El feedback se procesa al momento."
+          "body": "Entregas semanales visibles en tu portal. El feedback se procesa al momento.",
+          "meta": "visible cada semana"
         },
         "four": {
           "kicker": "04",
           "title": "Live & mantenimiento",
-          "body": "Tras el lanzamiento, tu sistema corre bajo un care-plan. Tú sigues construyendo tu empresa."
+          "body": "Tras el lanzamiento, tu sistema corre bajo un care-plan. Tú sigues construyendo tu empresa.",
+          "meta": "continuo · desde €95/m"
         }
       }
     },
