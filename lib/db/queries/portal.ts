@@ -271,6 +271,19 @@ export async function getHandoverStatus(orgId: string, projectId: string) {
   return { project, items, allDone, deliverablesCount: currentVersions.length };
 }
 
+/**
+ * Meest recente maandrapport-file voor een org. Toont op portal-
+ * dashboard als banner "Maandrapport [maand] is klaar →" met
+ * download-link. Sprint E.
+ */
+export async function getLatestMonthlyReport(orgId: string) {
+  return db.query.files.findFirst({
+    where: and(eq(files.organizationId, orgId), eq(files.category, "report")),
+    orderBy: [desc(files.createdAt)],
+    columns: { id: true, name: true, url: true, createdAt: true },
+  });
+}
+
 export async function listOrgTickets(orgId: string) {
   return db.query.tickets.findMany({
     where: eq(tickets.organizationId, orgId),

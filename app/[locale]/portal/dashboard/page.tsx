@@ -2,7 +2,15 @@ import { Suspense } from "react";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
-import { Activity, Inbox, FolderKanban, Receipt, CheckCircle2, ArrowRight } from "lucide-react";
+import {
+  Activity,
+  Inbox,
+  FolderKanban,
+  Receipt,
+  CheckCircle2,
+  ArrowRight,
+  FileText,
+} from "lucide-react";
 import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -22,6 +30,7 @@ import {
   getReferralEligibleProject,
   getPendingDeliverables,
   getActivitySince,
+  getLatestMonthlyReport,
 } from "@/lib/db/queries/portal";
 import { StatCard } from "@/components/portal/StatCard";
 import { StatusBanner } from "@/components/portal/StatusBanner";
@@ -63,6 +72,10 @@ function pickGreeting(t: (k: string) => string) {
  */
 function daysSinceDate(date: Date): number {
   return Math.max(1, Math.floor((Date.now() - date.getTime()) / (1000 * 60 * 60 * 24)));
+}
+
+function isRecentReport(createdAt: Date, days = 14): boolean {
+  return Date.now() - createdAt.getTime() < days * 24 * 60 * 60 * 1000;
 }
 
 const HOUR_MS = 60 * 60 * 1000;
@@ -138,6 +151,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
     referralProject,
     activity,
     pendingDeliverables,
+    latestMonthlyReport,
   ] = await Promise.all([
     getDashboardStats(user.organizationId),
     listOrgProjects(user.organizationId),
@@ -150,6 +164,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
     getReferralEligibleProject(user.organizationId, 90),
     getActivitySince(user.organizationId, since),
     getPendingDeliverables(user.organizationId),
+    getLatestMonthlyReport(user.organizationId),
   ]);
   const tLivegang = await getTranslations("portal.livegang");
   const tIncident = await getTranslations("portal.incident");
@@ -298,6 +313,16 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         <PendingDeliverablesBanner
           count={pendingDeliverables.length}
           firstProjectId={pendingDeliverables[0]?.projectId ?? null}
+          locale={locale}
+        />
+      ) : null}
+
+      {/* Maandrapport-banner — toont alleen de eerste 14 dagen na
+          uitlevering zodat hij niet permanent in beeld blijft. */}
+      {latestMonthlyReport && isRecentReport(latestMonthlyReport.createdAt) ? (
+        <MonthlyReportBanner
+          name={latestMonthlyReport.name}
+          url={latestMonthlyReport.url}
           locale={locale}
         />
       ) : null}
@@ -578,5 +603,37 @@ function PendingDeliverablesBanner({
         />
       </span>
     </Link>
+  );
+}
+
+function MonthlyReportBanner({ name, url, locale }: { name: string; url: string; locale: string }) {
+  const isEs = locale === "es";
+  const title = isEs ? `${name} listo` : `${name} is klaar`;
+  const sub = isEs ? "Tu informe mensual está disponible" : "Je maandrapport staat klaar";
+  const cta = isEs ? "Abrir informe" : "Open rapport";
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex flex-wrap items-center gap-3 rounded-[14px] border border-(--color-accent)/30 bg-(--color-accent)/5 px-5 py-4 transition-colors hover:bg-(--color-accent)/10"
+    >
+      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-(--color-accent)/15 text-(--color-accent)">
+        <FileText className="h-4 w-4" strokeWidth={2.4} />
+      </span>
+      <span className="min-w-0 flex-1">
+        <p className="text-[14px] font-medium text-(--color-text)">{title}</p>
+        <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+          {sub}
+        </p>
+      </span>
+      <span className="inline-flex items-center gap-1 font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
+        {cta}
+        <ArrowRight
+          className="h-3 w-3 transition-transform group-hover:translate-x-0.5"
+          strokeWidth={2.5}
+        />
+      </span>
+    </a>
   );
 }
