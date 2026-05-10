@@ -66,6 +66,11 @@ export function useFireDemoEvent() {
           keepalive: true,
         });
       }
+      // Broadcast voor de DemoFollowUpModal — luistert op cta_clicked
+      // om de email-vraag te tonen. Geen prop-drilling nodig zo.
+      if (kind === "cta_clicked") {
+        window.dispatchEvent(new CustomEvent("demo-cta-clicked", { detail: { source, role } }));
+      }
     } catch {
       // noop
     }

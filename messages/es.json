@@ -1554,6 +1554,17 @@
       "openInvoices": "Facturas pendientes",
       "uptime": "Uptime últimos 30d"
     },
+    "demoFollowUp": {
+      "title": "¿Quieres que te siga?",
+      "body": "Deja tu email — no envío publicidad, solo notas relevantes si las hay.",
+      "placeholder": "tu@empresa.com",
+      "submit": "Seguir",
+      "submitting": "Procesando…",
+      "dismiss": "Cerrar",
+      "successToast": "Gracias — vuelvo pronto.",
+      "errorToast": "Algo salió mal. Inténtalo de nuevo.",
+      "invalidEmail": "Introduce un email válido."
+    },
     "banner": {
       "healthy": "Todos los sistemas funcionando con normalidad.",
       "issue": "Hay una incidencia. Laurens está en ello.",

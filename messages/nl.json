@@ -1550,6 +1550,17 @@
       "openInvoices": "Openstaande facturen",
       "uptime": "Uptime laatste 30d"
     },
+    "demoFollowUp": {
+      "title": "Wil je dat ik je volg?",
+      "body": "Laat je e-mail achter — ik stuur je geen reclame, alleen relevante notities als ze er zijn.",
+      "placeholder": "jij@bedrijf.nl",
+      "submit": "Volgen",
+      "submitting": "Bezig…",
+      "dismiss": "Sluiten",
+      "successToast": "Bedankt — ik kom binnenkort terug.",
+      "errorToast": "Er ging iets mis. Probeer het opnieuw.",
+      "invalidEmail": "Vul een geldig e-mailadres in."
+    },
     "banner": {
       "healthy": "Alle systemen draaien zoals het hoort.",
       "issue": "Er is een verstoring. Laurens werkt eraan.",

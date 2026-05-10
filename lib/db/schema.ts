@@ -552,11 +552,19 @@ export const demoEvents = pgTable(
     /** SHA-256 hash van het IP-adres + dag — voor coarse-grained
      * uniqueness binnen 24u zonder volle IP op te slaan. */
     ipHash: text("ip_hash"),
+    /** Optionele identity: na cta_clicked kan de demo-bezoeker zijn
+     * email achterlaten via de "Wil je dat ik je volg?"-modal. Latere
+     * bezoeken aan dezelfde email worden via de leads-tabel
+     * gekoppeld. */
+    email: text("email"),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .default(sql`now()`),
   },
-  (t) => [index("demo_events_kind_time_idx").on(t.kind, t.createdAt)],
+  (t) => [
+    index("demo_events_kind_time_idx").on(t.kind, t.createdAt),
+    index("demo_events_email_idx").on(t.email),
+  ],
 );
 
 // --- staff_invites -------------------------------------------------------

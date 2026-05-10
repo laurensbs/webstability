@@ -10,6 +10,7 @@ import { Sidebar } from "@/components/portal/Sidebar";
 import { Topbar } from "@/components/portal/Topbar";
 import { RouteTransition } from "@/components/portal/RouteTransition";
 import { DemoBanner } from "@/components/portal/DemoBanner";
+import { DemoFollowUpModal } from "@/components/demo/DemoFollowUpModal";
 import { MobileBottomNav } from "@/components/portal/MobileBottomNav";
 
 export default async function PortalLayout({
@@ -63,7 +64,23 @@ export default async function PortalLayout({
   return (
     <div className="flex min-h-screen flex-col">
       {userWithOrg.isDemo ? (
-        <DemoBanner strings={{ label: tDemo("label"), cta: tDemo("cta") }} />
+        <>
+          <DemoBanner strings={{ label: tDemo("label"), cta: tDemo("cta") }} />
+          <DemoFollowUpModal
+            role="portal"
+            strings={{
+              title: t("demoFollowUp.title"),
+              body: t("demoFollowUp.body"),
+              placeholder: t("demoFollowUp.placeholder"),
+              submit: t("demoFollowUp.submit"),
+              submitting: t("demoFollowUp.submitting"),
+              dismiss: t("demoFollowUp.dismiss"),
+              successToast: t("demoFollowUp.successToast"),
+              errorToast: t("demoFollowUp.errorToast"),
+              invalidEmail: t("demoFollowUp.invalidEmail"),
+            }}
+          />
+        </>
       ) : null}
       <div className="flex min-h-0 flex-1">
         <Sidebar labels={navLabels} />
