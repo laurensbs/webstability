@@ -7,6 +7,7 @@
   "nav": {
     "home": "Inicio",
     "services": "Servicios",
+    "verhuur": "Alquiler",
     "pricing": "Precios",
     "about": "Sobre",
     "blog": "Blog",
@@ -23,25 +24,25 @@
       "servicesTitle": "Qué construimos para ti",
       "servicesFooter": "Todos los servicios →",
       "items": {
+        "verhuurplatform": {
+          "title": "Plataforma de alquiler — NL y España",
+          "blurb": "Reservas + portal + sincronización de canales, entrega en 4 semanas",
+          "price": "precio fijo 5–8 k €"
+        },
         "platform": {
           "title": "Software a medida",
-          "blurb": "Plataforma de alquiler, portal de cliente o admin a medida",
-          "price": "desde €399/m"
+          "blurb": "Portal de reparaciones, portal de cliente o admin a medida",
+          "price": "desde 5–8 k €"
         },
         "webshop": {
           "title": "Web o tienda online",
           "blurb": "Sitio rápido y multilingüe con checkout",
-          "price": "desde €95/m"
+          "price": "desde 1.050 €"
         },
         "care": {
-          "title": "Mantenimiento y monitoring",
-          "blurb": "Lo mantenemos en marcha — uptime, backups, actualizaciones",
-          "price": "desde €95/m"
-        },
-        "growth": {
-          "title": "Evolución continua",
-          "blurb": "Nuevas funciones en tu producto en vivo",
-          "price": "continuo"
+          "title": "Mantenimiento & evolución",
+          "blurb": "Hosting, monitoring, cambios — Studio para nuevos clientes",
+          "price": "Studio 179 €/m"
         }
       },
       "casesEyebrow": "Productos en vivo",
@@ -79,8 +80,8 @@
     },
     "contactRegion": "Costa Brava · España",
     "liveBadge": "todo en línea",
-    "studioTagline": "Un solo estudio. Un solo desarrollador. *Software* que sigue funcionando después de la entrega.",
-    "studioSub": "Webstability construye y mantiene software a medida para pymes en Países Bajos y España. Suscripción continua desde €95/m — construir y mantener en uno.",
+    "studioTagline": "Un sistema bajo empresas de *alquiler* y reparación en Países Bajos y España.",
+    "studioSub": "Precio fijo 5–8 k €, entrega en cuatro semanas, mantenimiento continuo desde 179 €/m. Un solo desarrollador que lo construye y lo mantiene en pie.",
     "responseLabel": "Respuesta en",
     "responseValue": "24 horas",
     "lastDeployLabel": "Último deploy",
@@ -117,7 +118,8 @@
       "availability": "Disponible para 2 nuevos proyectos — mayo 2026",
       "eyebrowMessages": [
         "Disponible para 2 nuevos proyectos — mayo 2026",
-        "Desde 95 €/m · primer mes gratis",
+        "Precio fijo · entrega en 4 semanas",
+        "Para alquiler en NL y España",
         "Un sistema en lugar de cinco herramientas"
       ],
       "proposition": [
@@ -138,7 +140,7 @@
         "plataformas de reservas",
         "tiendas online"
       ],
-      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado. Suscripción continua desde 95 € al mes, para empresarios en Países Bajos y España."
+      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado. Precio fijo 5–8 k €, entrega en 4 semanas, suscripción continua desde 179 €/mes, para empresarios en Países Bajos y España."
     },
 
     "logoStrip": {
@@ -211,25 +213,29 @@
       "lede": "Un sistema que funciona. Un Laurens que lo construye y mantiene — para pymes en Países Bajos y España.",
       "bridgeNote": "Construir + mantener está en una sola suscripción continua. *Durante* una construcción pagas más al mes, después vuelves a tu cuota fija. Pagas a lo largo del tiempo, no por adelantado.",
       "items": {
+        "verhuurplatform": {
+          "title": "Plataforma de alquiler — NL y España",
+          "body": "El sistema por el que vienen la mayoría de clientes. Plataforma de reservas completa, portal de cliente y sincronización de canales. Tres ya activas en la Costa Brava y la Costa del Sol.",
+          "pricePill": "precio fijo 5–8 k € · 4 semanas",
+          "cta": "Ver página de alquiler →"
+        },
         "platform": {
           "title": "Software empresarial a medida",
-          "body": "Plataformas de alquiler, portales de reparación, gestión de almacenaje, portales de cliente o paneles admin propios — a menudo unidos a un site público. Tenemos tres de estos sistemas ya en producción para el mercado caravanero español.",
+          "body": "Portales de reparación, gestión de almacenaje, portales de cliente o paneles admin propios — a menudo unidos a un site público. Primera versión funcional en 4 semanas, ampliación posterior.",
+          "pricePill": "desde 5–8 k € · 4 semanas primera versión",
           "cta": "Ver plataformas en vivo →"
         },
         "webshop": {
           "title": "Web o tienda online",
           "body": "Web de marketing rápida y multilingüe, o tienda online completa con BTW/IVA y stock. Mollie o Stripe, facturación automática, Lighthouse 95+ en móvil.",
+          "pricePill": "desde 1.050 € · 2-3 meses build",
           "cta": "Saber más →"
         },
         "care": {
-          "title": "Mantener live tras lanzamiento",
-          "body": "Desde el día uno tras lanzamiento: hosting, seguridad, backups y monitorización — más 1 hora al mes para pequeños ajustes. Para tu site y tu panel.",
-          "cta": "Ver Care →"
-        },
-        "growth": {
-          "title": "Crecer y ser visible localmente",
-          "body": "Care más 3 horas al mes: SEO en NL y ES, ajustes de performance, y desarrollo continuo del panel. Para quien quiere ver crecer su nuevo site activamente.",
-          "cta": "Ver Studio →"
+          "title": "Mantenimiento & evolución",
+          "body": "Studio (179 €/m) es la entrada para nuevos clientes — mantenimiento + 3 h de cambios + SEO local. Care (95 €/m) sigue activo para clientes existentes como ancla.",
+          "pricePill": "Studio 179 €/m · continuo",
+          "cta": "Ver precios →"
         }
       }
     },
@@ -363,6 +369,14 @@
     "calFallbackTitle": "Mándame un email",
     "calFallbackHint": "La agenda online llega pronto. De momento, escribir va perfecto.",
     "regionBadge": "Desde la Costa Brava",
+    "intake": {
+      "title": "¿Qué encaja mejor? Un clic ahorra 5 minutos en la llamada.",
+      "options": {
+        "verhuur": "Alquiler (caravanas, casa vacacional, material)",
+        "reparatie": "Reparación / taller",
+        "other": "Otra cosa"
+      }
+    },
     "afterTitle": "Qué pasa después",
     "after": [
       {
@@ -466,6 +480,28 @@
         "body": "BTW e IVA. .nl y .es. Entiendo el contexto fiscal y cultural de ambos mercados."
       }
     ],
+    "nowBuilding": {
+      "eyebrow": "lo que construyo ahora",
+      "title": "Tres cifras que *acortan* la historia.",
+      "lede": "No 'pymes en general'. Sí: tres plataformas de alquiler en producción, una plataforma de reparación con 47 talleres, y una stack estándar que cabe en 4 semanas sobre un nuevo cliente.",
+      "items": [
+        {
+          "metric": "3",
+          "label": "plataformas de alquiler en producción",
+          "body": "Costa Brava + Costa del Sol. Caravanas, casas vacacionales, material — cada una con marca y admin propios."
+        },
+        {
+          "metric": "47",
+          "label": "talleres en una sola plataforma",
+          "body": "VOLT/AUTO multi-tenant. Orden de trabajo iPad-first, sin papel, integración contable NL+ES."
+        },
+        {
+          "metric": "4 sem",
+          "label": "precio fijo, primera versión funcional",
+          "body": "Stack estándar que pongo sobre un cliente nuevo en 4 semanas por 5–8 k €. Ampliación vía Atelier."
+        }
+      ]
+    },
     "timelineTitle": "Trayectoria",
     "timeline": [
       {
@@ -557,6 +593,7 @@
       "lede": "Un solo dashboard donde se reúnen todos tus canales — caravanas, barcos, casas, vehículos. Agenda en vivo, facturas automáticas, contratos en un clic. Sin reservas duplicadas, sin reescribir nada.",
       "ctaPrimary": "Ver demo en vivo",
       "ctaSecondary": "Pide presupuesto",
+      "liveDemo": "O abre una demo en vivo sin cuenta",
       "metaItems": [
         { "num": "8h", "label": "Ahorradas por semana (media)" },
         { "num": "0", "label": "Reservas duplicadas tras lanzamiento" },
@@ -604,50 +641,81 @@
           "body": "Conexión con Mollie o Stripe para anticipo, pago final y devolución automática de fianza tras inspección."
         }
       ],
+      "competitorsEyebrow": "cuando el SaaS deja de encajar",
+      "competitorsTitle": "Buenas herramientas, *otro* trabajo.",
+      "competitorsLede": "Tommy, Booqable, Avantio e Icnea están bien — para lo que son. Aquí dónde se rompen para alquiladores que trabajan en dos países o tienen un flujo propio.",
+      "competitors": [
+        {
+          "name": "Tommy",
+          "dna": "Software de caja que también hace alquiler.",
+          "breaks": "Sin portal multilingüe, sin conexión nativa con contabilidad NL a medida."
+        },
+        {
+          "name": "Booqable",
+          "dna": "SaaS de alquiler genérico, una sola plantilla.",
+          "breaks": "Funciona con un tipo de producto. Se rompe al combinar distintos objetos o ubicaciones."
+        },
+        {
+          "name": "Avantio",
+          "dna": "Alquiler vacacional enterprise, desde 20 unidades.",
+          "breaks": "Desde 280 €/m, prioridad español, sin interfaz NL. Demasiado pesado para 5-15 propiedades."
+        },
+        {
+          "name": "Icnea",
+          "dna": "Modelo por propiedad para el mercado español.",
+          "breaks": "Se pierde tu marca. El cliente ve Icnea, no a ti. Sin checkout en tu propio dominio."
+        }
+      ],
+      "competitorsClaim": "A medida donde el SaaS se queda corto — precio fijo 5–8 k €, entrega en 4 semanas.",
       "quoteText": "Antes de trabajar con Webstability teníamos tres reservas duplicadas al mes. Desde el lanzamiento en 2024 — literalmente cero. Y ahorro al menos medio día a la semana en admin.",
       "quoteName": "Marco Jansen",
       "quoteRole": "Propietario · Costa Caravans Verhuur (12 caravanas · 4 mobile-homes)",
       "quoteInitials": "MJ",
-      "pricingEyebrow": "tiempo y precio",
-      "pricingTitle": "Estimación por tipo de alquiler.",
-      "pricingLede": "Sin lista de precios fija — cada empresa de alquiler es distinta. Sí una indicación honesta para que sepas si encaja en tu presupuesto.",
+      "pricingEyebrow": "qué cuesta, cuánto dura",
+      "pricingTitle": "Tres tramos, un precio por tramo.",
+      "pricingLede": "Precio fijo por adelantado, entrega en cuatro semanas, mantenimiento continuo después. Sin presupuestos, sin discusiones de horas extra.",
       "plans": [
         {
-          "id": "starter",
-          "name": "Starter",
-          "desc": "1-5 objetos · canales estándar · facturación simple",
-          "price": "€499",
-          "period": "setup + €349/m desde el mes 2 · sin IVA",
-          "items": ["Agenda central", "Sync Booking & Airbnb", "Facturación", "Plazo: 3-4 semanas"],
+          "id": "klein",
+          "name": "Pequeño",
+          "desc": "1–5 objetos · una ubicación · canales estándar",
+          "price": "5.000 €",
+          "period": "precio fijo · entrega en 4 semanas · sin IVA",
+          "items": [
+            "Agenda central + reservas",
+            "Sync Booking & Airbnb",
+            "Mollie/Stripe checkout + facturación",
+            "Después Studio (179 €/m) de mantenimiento"
+          ],
           "cta": "Conversemos"
         },
         {
-          "id": "pro",
-          "name": "Pro",
-          "desc": "5-25 objetos · multi-canal · contratos y fianza",
-          "price": "€999",
-          "period": "setup + €749/m desde el mes 2 · sin IVA",
+          "id": "mid",
+          "name": "Medio",
+          "desc": "5–15 objetos · clientes NL+ES · contratos y fianza",
+          "price": "6.500 €",
+          "period": "precio fijo · entrega en 4 semanas · sin IVA",
           "items": [
-            "Todo de Starter",
+            "Todo de Pequeño",
             "Generación de contrato y firma electrónica",
-            "Fianza vía Mollie/Stripe",
-            "Acceso multi-usuario",
-            "Plazo: 6-8 semanas"
+            "Flujo de fianza vía Mollie/Stripe",
+            "Portal multilingüe NL+ES",
+            "Después Studio (179 €/m) de mantenimiento"
           ],
           "cta": "Pedir presupuesto"
         },
         {
-          "id": "scale",
-          "name": "Scale",
-          "desc": "25+ objetos · varias ubicaciones · integraciones a medida",
-          "price": "€1.999",
-          "period": "setup + €1.299/m desde el mes 2 · sin IVA",
+          "id": "groot",
+          "name": "Grande",
+          "desc": "15–30 objetos · multi-ubicación · integración contable a medida",
+          "price": "8.000 €",
+          "period": "precio fijo · entrega en 4 semanas · sin IVA",
           "items": [
-            "Todo de Pro",
-            "Multi-ubicación y multi-divisa",
-            "Portal cliente propio",
-            "Integración contable a medida",
-            "Plazo: desde 10 semanas"
+            "Todo de Medio",
+            "Multi-ubicación + multi-divisa",
+            "Integración contable a medida (Holded/e-Boekhouden)",
+            "Acceso multi-usuario para tu equipo",
+            "Después Atelier (399 €/m) mantenimiento + ampliación"
           ],
           "cta": "Reunión estratégica"
         }
@@ -661,47 +729,104 @@
   "servicesPage": {
     "eyebrow": "servicios",
     "title": "Lo que *construimos* y *mantenemos* para ti.",
-    "lede": "Cuatro paquetes concretos. Cada uno con qué es, qué resuelve, cuánto cuesta y cuánto dura.",
+    "lede": "Cuatro paquetes concretos — precio fijo, alcance fijo, y una suscripción continua para que el sistema siga creciendo contigo.",
+    "heroMetrics": [
+      { "value": "3", "label": "plataformas de alquiler en producción" },
+      { "value": "47", "label": "talleres en una sola plataforma" },
+      { "value": "4 sem", "label": "precio fijo, primera versión" }
+    ],
+    "timeline": {
+      "eyebrow": "cómo va una build de 4 semanas",
+      "title": "Cuatro semanas, un precio fijo.",
+      "lede": "Sin presupuestos, sin discusiones de horas extra. Cada miércoles una stand-up corta para que veas el progreso en vivo.",
+      "steps": [
+        {
+          "week": "semana 1",
+          "title": "Reunión + alcance",
+          "body": "Una llamada de 60 min, después un alcance escrito con un solo número. Acuerdo = empezamos."
+        },
+        {
+          "week": "semana 2",
+          "title": "Build",
+          "body": "La stack ya está lista. Encima va tu marca, contenido e integraciones. Primer preview live al final de la semana."
+        },
+        {
+          "week": "semana 3",
+          "title": "Review + iteraciones",
+          "body": "Tú revisas, yo ajusto. Tres ciclos de revisión incluidos — sin coste extra."
+        },
+        {
+          "week": "semana 4",
+          "title": "Lanzamiento",
+          "body": "Migramos tu dominio, monitorización activa, primer mes de mantenimiento gratis. Listo."
+        }
+      ]
+    },
     "items": {
-      "platform": {
-        "anchor": "platform",
+      "verhuurplatform": {
+        "anchor": "verhuurplatform",
         "eyebrow": "línea de producto 01",
-        "title": "Software empresarial a medida",
-        "what": "Plataformas de alquiler, portales de reparación, gestión de almacenaje, portales de cliente o paneles admin propios — a menudo unidos a un site público. Tenemos tres de estos sistemas ya en producción para el mercado caravanero español; un nuevo cliente recibe la misma base como punto de partida, ajustada a su negocio en 4-6 meses.",
+        "title": "Plataforma de alquiler — NL y España",
+        "dnaLine": "El sistema por el que viene la mayoría. Plataforma de reservas, portal de cliente y sincronización de canales — cuatro semanas, precio fijo.",
+        "pricePill": "5–8 k € · 4 semanas",
         "solvesTitle": "Qué resuelve",
         "solves": [
           "Sin reservas duplicadas entre Booking, Airbnb y tu propia agenda",
-          "Sin caos de papeles en el taller — las órdenes están en iPads",
-          "Sin cinco herramientas sueltas para alquiler, facturas, comunicación",
-          "Los clientes reservan online, tú lo ves todo en un solo admin"
+          "Un portal multilingüe para clientes NL y ES",
+          "Facturas automáticas con BTW/IVA correcto por país",
+          "Tu marca al frente — sin 'powered by Tommy' o look Booqable"
         ],
         "includesTitle": "Qué incluye",
         "includes": [
           "Plataforma de reservas pública con login de cliente",
-          "Admin con vista en vivo de reservas u órdenes",
-          "Integraciones con Mollie/Stripe y tu contabilidad",
-          "Acceso multi-usuario para tu equipo",
+          "Admin con vista en vivo + multi-ubicación",
+          "Channel-sync (Airbnb, Booking, Vrbo)",
+          "Mollie/Stripe checkout + facturas automáticas",
           "Hosting + monitorización + mantenimiento mensual"
         ],
-        "packageTitle": "Cómo funciona en cuanto a paquete",
-        "packageBody": "Durante la construcción estás en **Atelier (399 €/m)** con **Build Custom (+899 €/m)** durante 4-8 meses. Después vuelves a Atelier para mantenimiento y desarrollo continuo.",
-        "exampleTitle": "Ejemplo",
-        "exampleBody": "Una plataforma de alquiler de 6 meses: 399 € + 899 € = 1.298 €/m × 6 = **~7.800 € de construcción total**. Después 399 €/m para desarrollo continuo, monitorización y soporte.",
+        "afterBuild": "Ampliación posterior vía suscripción continua — mira /precios para la comparativa de niveles.",
+        "ctaPrimary": "Reserva una llamada",
+        "ctaSecondary": "Ver página de alquiler →",
+        "ctaSecondaryHref": "/verhuur"
+      },
+      "platform": {
+        "anchor": "platform",
+        "eyebrow": "línea de producto 02",
+        "title": "Software empresarial a medida",
+        "dnaLine": "Portales de reparación, almacenaje, portales de cliente o paneles admin propios. Primera versión funcional en cuatro semanas.",
+        "pricePill": "5–8 k € · 4 semanas",
+        "solvesTitle": "Qué resuelve",
+        "solves": [
+          "Caos de papeles en el taller — órdenes en iPads",
+          "Cinco herramientas sueltas para alquiler, facturas, comunicación",
+          "Los clientes reservan online, tú lo ves todo en un solo admin",
+          "Integración contable a medida (Holded, e-Boekhouden, Moneybird)"
+        ],
+        "includesTitle": "Qué incluye",
+        "includes": [
+          "Portal público con login de cliente",
+          "Admin con vista en vivo + acceso multi-usuario",
+          "Integraciones con Mollie/Stripe y tu contabilidad",
+          "Mobile-first crew flow",
+          "Hosting + monitorización + mantenimiento mensual"
+        ],
+        "afterBuild": "Para ampliación intensiva tras lanzamiento: Atelier-tier con Build Custom — mira /precios.",
         "ctaPrimary": "Reserva una llamada",
         "ctaSecondary": "Ver plataforma en vivo →",
         "ctaSecondaryHref": "/cases#caravanverhuurspanje"
       },
       "webshop": {
         "anchor": "webshop",
-        "eyebrow": "línea de producto 02",
+        "eyebrow": "línea de producto 03",
         "title": "Web o tienda online",
-        "what": "Una web de marketing rápida y multilingüe (1-3 meses) o una tienda online completa con BTW/IVA y stock (3-5 meses). Mollie o Stripe como pasarelas de pago, facturación automática, Lighthouse 95+ en móvil.",
+        "dnaLine": "Web de marketing rápida y multilingüe, o tienda con BTW/IVA y stock. Lighthouse 95+ en móvil.",
+        "pricePill": "1–2 k € build · 2–3 meses",
         "solvesTitle": "Qué resuelve",
         "solves": [
           "Una web multilingüe que funciona tanto en NL como en ES",
-          "BTW/IVA por categoría de producto resuelto automáticamente (en tienda)",
+          "BTW/IVA por categoría resuelto automáticamente (en tienda)",
           "Facturas automáticas con numeración aceptada por tu contable",
-          "Sin comisiones por transacción tipo Shopify — todo en tu propio dominio"
+          "Sin comisiones por transacción tipo Shopify — todo en tu dominio"
         ],
         "includesTitle": "Qué incluye",
         "includes": [
@@ -709,27 +834,24 @@
           "O una web de marketing con CMS a elegir",
           "Checkout con Mollie o Stripe",
           "Facturación automática (PDF + email)",
-          "Integración de stock opcional (Holded, e-Boekhouden)",
-          "Lighthouse 95+ en móvil"
+          "Integración de stock opcional (Holded, e-Boekhouden)"
         ],
-        "packageTitle": "Cómo funciona en cuanto a paquete",
-        "packageBody": "**Web de marketing:** Care (95 €/m) + Build Light (+349 €/m) durante 2-3 meses. **Tienda:** Studio (179 €/m) + Build Standard (+499 €/m) durante 3-5 meses. Después continúas en el tier elegido.",
-        "exampleTitle": "Ejemplo",
-        "exampleBody": "Web de marketing en 3 meses: ~**1.050 € build** + 95 €/m mantenimiento. Tienda online en 3 meses: ~**2.000 € build** + 179 €/m mantenimiento.",
+        "afterBuild": "Webs de marketing van en Care, tiendas en Studio — mira /precios para la comparativa.",
         "ctaPrimary": "Reserva una llamada",
         "ctaSecondary": "Ver detalle de precios →",
         "ctaSecondaryHref": "/precios"
       },
       "care": {
         "anchor": "care",
-        "eyebrow": "suscripción 01",
-        "title": "Mantener live tras lanzamiento",
-        "what": "Desde el día uno tras lanzamiento tu site y panel admin funcionan en Care. Hosting, seguridad, backups, monitorización — más 1 hora al mes para pequeños cambios. Sin presupuestos por proyecto — una cuota fija al mes.",
+        "eyebrow": "línea de producto 04",
+        "title": "Mantenimiento & evolución",
+        "dnaLine": "Studio es la entrada para nuevos clientes. Hosting, seguridad, backups, monitorización — más tres horas de cambios al mes y SEO local.",
+        "pricePill": "Studio 179 €/m · continuo",
         "solvesTitle": "Qué resuelve",
         "solves": [
           "Sin perder el sueño preguntándote si tu web está actualizada",
-          "Revisiones de seguridad semanales sin que tú lo monitorices",
           "Un solo punto de contacto para cambios — nadie 'desaparece' tras lanzamiento",
+          "SEO local en NL y ES, con informe mensual",
           "Backups que realmente funcionan cuando hacen falta"
         ],
         "includesTitle": "Qué incluye",
@@ -737,60 +859,47 @@
           "Hosting premium (NL/EU edge)",
           "SSL y backups diarios",
           "Actualizaciones de seguridad mensuales",
-          "1 hora de cambios al mes",
-          "Soporte por email en 48h",
+          "3 horas de cambios al mes",
+          "SEO local + informe mensual",
           "Acceso al portal de cliente"
         ],
-        "packageTitle": "Cómo funciona en cuanto a paquete",
-        "packageBody": "**Care · 95 €/m** continuo. Cancelable mensualmente, primer mes gratis, 15% de descuento con pago anual.",
-        "exampleTitle": "Ejemplo",
-        "exampleBody": "Un site + panel nuevo que construimos para ti, después live en Care: 95 €/m. Tomar una web existente también funciona — mismo nivel.",
-        "ctaPrimary": "Empezar primer mes gratis",
-        "ctaSecondary": "Ver detalle de Care →",
-        "ctaSecondaryHref": "/precios"
-      },
-      "growth": {
-        "anchor": "growth",
-        "eyebrow": "suscripción 02",
-        "title": "Crecer y ser visible localmente",
-        "what": "Care más 3 horas al mes para trabajar activamente en tu site: SEO en NL y ES, ajustes de performance, y desarrollo continuo del panel. Más informe mensual para que veas qué aporta.",
-        "solvesTitle": "Qué resuelve",
-        "solves": [
-          "Visibilidad local tanto en Países Bajos como en España",
-          "Prueba mensual de qué aporta el trabajo",
-          "Tracking de conversión configurado para saber qué funciona",
-          "3 horas al mes para probar algo nuevo o ajustar"
-        ],
-        "includesTitle": "Qué incluye",
-        "includes": [
-          "Todo lo de Care",
-          "3 horas de cambios al mes",
-          "SEO local (NL & ES)",
-          "Informe mensual de SEO + performance",
-          "Soporte prioritario en 4h",
-          "Llamada estratégica trimestral"
-        ],
-        "packageTitle": "Cómo funciona en cuanto a paquete",
-        "packageBody": "**Studio · 179 €/m** continuo. Subir desde Care siempre se puede, bajar desde el mes siguiente.",
-        "exampleTitle": "Ejemplo",
-        "exampleBody": "Un proveedor de servicios local (jardinero, mantenimiento, salón) que quiere subir en buscadores: 179 €/m, primer mes gratis.",
-        "ctaPrimary": "Empezar primer mes gratis",
-        "ctaSecondary": "Ver detalle de Studio →",
+        "afterBuild": "Care (95 €/m) sigue activo para clientes existentes como ancla — ya no se ofrece a nuevos clientes.",
+        "ctaPrimary": "Ver detalle de Studio",
+        "ctaSecondary": "Comparativa de tiers →",
         "ctaSecondaryHref": "/precios"
       }
+    },
+    "notFor": {
+      "eyebrow": "siendo honestos",
+      "title": "¿Cuándo estás *mejor* en otro sitio?",
+      "lede": "No trabajamos para todos. Tres escenarios donde otra ruta tiene más sentido — sin perder tiempo en una llamada que no encaja.",
+      "scenarios": [
+        {
+          "title": "Quieres testear un MVP",
+          "body": "Sin clientes ni facturación — un freelance medior o una herramienta no-code (Softr, Bubble) sale más barato hasta que sepas si funciona. Vuelve cuando el dolor sea real."
+        },
+        {
+          "title": "Un SaaS cubre el 80% de tu trabajo",
+          "body": "Tommy, Booqable o Avantio cuesta ~50–280 €/m y se monta rápido. Si no tienes muchos workarounds ni necesitas integración contable NL+ES a medida, escoge eso."
+        },
+        {
+          "title": "Tienes un build enterprise de 30 k €+",
+          "body": "Más de un developer en paralelo, integraciones con ERPs grandes, o SLAs dedicados. Una agencia (Stuurlui, Searchlab, Invenix) tiene la escala que solo no ofrece."
+        }
+      ]
     },
     "footerCtaTitle": "¿Cómo se ve un proyecto así en la práctica?",
     "footerCtaBody": "Casos de cliente y plataformas propias — lo que ya tenemos en marcha.",
     "footerCtaLabel": "Ver casos →"
   },
   "casesPage": {
-    "eyebrow": "casos & proyectos",
+    "eyebrow": "3 plataformas de alquiler · 47 talleres · NL+ES",
     "title": "Lo que ya tenemos *en marcha*.",
     "lede": "Plataformas propias, casos de cliente y sitios en producción. Sin mockups, sin presentaciones — trabajo que se usa cada día.",
     "productLines": {
       "eyebrow": "plataformas que operamos",
       "title": "Líneas de producto",
-      "lede": "Tres plataformas que mantenemos en marcha para el mercado español. Otras empresas reciben la misma base como punto de partida y la adaptamos a su negocio en 4-6 meses.",
+      "lede": "Tres plataformas que mantenemos en marcha para el mercado NL+ES. Otras empresas reciben la misma base como punto de partida — primera versión funcional en 4 semanas a precio fijo 5–8 k €, después ampliación vía Atelier + Build Custom.",
       "items": [
         {
           "anchor": "caravanverhuurspanje",
@@ -897,7 +1006,7 @@
       "cta": "abre una demo en vivo"
     },
     "care": {
-      "intro": "Tres niveles — para cada fase tras el lanzamiento. Subir, bajar o parar entre medias siempre se puede.",
+      "intro": "Tres niveles — para cada fase tras el lanzamiento. Studio es la entrada para nuevos clientes; Care sigue activo para los actuales.",
       "items": [
         {
           "id": "care",
@@ -969,7 +1078,9 @@
       "subscribe": "Suscribirse",
       "talk": "Reserva una llamada",
       "manageBilling": "Gestionar suscripción",
-      "currentPlan": "Plan actual"
+      "currentPlan": "Plan actual",
+      "legacyBadge": "solo clientes existentes",
+      "legacyCta": "A consultar"
     },
     "reassuranceTitle": "Lo que siempre vale",
     "reassurance": [
@@ -1020,6 +1131,7 @@
         "interpretationNone": "Elige una Build extension arriba para ver el período de construcción y el coste total.",
         "timelineDuring": "durante el build ({months} m)",
         "timelineAfter": "después continuo",
+        "fixedPriceClaim": "Precio fijo · entrega en 4 semanas · 5–8 k €",
         "interpretationLabels": {
           "none": "—",
           "light": "web de marketing o landing page",
@@ -1159,6 +1271,17 @@
       "healthy": "Todos los sistemas funcionando con normalidad.",
       "issue": "Hay una incidencia. Laurens está en ello.",
       "viewStatus": "Página de estado"
+    },
+    "sinceLastVisit": {
+      "eyebrow": "desde tu última visita",
+      "ticketClosedSingle": "1 ticket resuelto",
+      "ticketClosedPlural": "{n} tickets resueltos",
+      "invoiceNewSingle": "1 factura nueva",
+      "invoiceNewPlural": "{n} facturas nuevas",
+      "livegangSingle": "1 proyecto en vivo",
+      "livegangPlural": "{n} proyectos en vivo",
+      "monitoringStable": "monitorización estable — sin incidencias",
+      "incidentsAllResolved": "todas las {n} incidencias resueltas"
     },
     "dashboard": {
       "recentProjects": "Proyectos recientes",
@@ -1305,9 +1428,38 @@
     },
     "seo": {
       "title": "SEO",
+      "intro": "Cómo te encuentran — clics, impresiones, CTR y el tiempo que dedico cada mes a SEO.",
       "comingSoon": "La integración con Search Console está en camino.",
       "body": "En cuanto configure las credenciales OAuth de Google, aquí verás clics, impresiones, CTR y las consultas más relevantes de tu sitio — directamente desde Search Console.",
-      "configure": "Faltan credenciales OAuth de Google para activarlo."
+      "configure": "Faltan credenciales OAuth de Google para activarlo.",
+      "upsell": {
+        "eyebrow": "función de studio",
+        "title": "El SEO está en Studio.",
+        "body": "En Care mantenemos tu site activo. En Studio (179 €/m) trabajo activamente en visibilidad cada mes: SEO local en NL y ES, optimización de rendimiento, tracking de conversión, e informe mensual para que veas qué aporta.",
+        "bullets": [
+          "3 horas de cambios al mes",
+          "SEO local NL y ES",
+          "Informe SEO + rendimiento mensual",
+          "Tracking de conversión configurado",
+          "Llamada estratégica trimestral"
+        ],
+        "cta": "Ver tier Studio"
+      },
+      "overview": {
+        "metricsTitle": "Últimos 30 días",
+        "metricsEmpty": "Search Console aún no conectado.",
+        "metrics": {
+          "avgRanking": "Pos. media",
+          "impressions": "Impresiones",
+          "clicks": "Clics",
+          "ctr": "CTR"
+        },
+        "rankingsTitle": "Rankings locales",
+        "rankingsEmpty": "Añade keywords desde /portal/settings.",
+        "hoursTitle": "Lo que hice de SEO este mes",
+        "hoursEmpty": "Sin horas de SEO registradas en los últimos 30 días.",
+        "connectGsc": "Conecta tu Search Console para ver esto"
+      }
     },
     "files": {
       "title": "Archivos",
@@ -1454,6 +1606,22 @@
       "ctaClicks": "Clics CTA",
       "conversion": "Conversión"
     },
+    "demoManagement": {
+      "eyebrow": "entorno demo",
+      "title": "Costa Caravans Verhuur en marcha",
+      "body": "Refresca manualmente tras cambiar la seed-data o antes de una llamada en vivo donde la demo debe verse fresca.",
+      "metric": {
+        "lastRun": "Último flip del cron",
+        "entered": "Visitas demo (7d)",
+        "ctaClicks": "Clics CTA (7d)"
+      },
+      "refreshAction": "Forzar refresh",
+      "refreshing": "Procesando…",
+      "refreshed": "Datos demo refrescados.",
+      "refreshError": "Refresh fallido — revisa el cron-handler.",
+      "notSeeded": "Sin organización demo",
+      "notSeededHint": "ejecuta `pnpm db:seed:demo`"
+    },
     "statusStrip": {
       "title": "Clientes en vivo",
       "legendUp": "ok",
@@ -1571,7 +1739,40 @@
       "members": "{count, plural, one {# miembro} other {# miembros}}",
       "projects": "{count, plural, one {# proyecto} other {# proyectos}}",
       "openTickets": "{count, plural, =0 {} one {# ticket abierto} other {# tickets abiertos}}",
-      "newOrg": "Nuevo cliente"
+      "newOrg": "Nuevo cliente",
+      "bulk": {
+        "selectionLabel": "seleccionar organización",
+        "selected": "{n} seleccionados",
+        "mailAction": "Mail",
+        "clear": "deseleccionar",
+        "modal": {
+          "title": "Mail masivo a clientes seleccionados",
+          "body": "Estás a punto de enviar mail a {n} clientes. Elige una plantilla — sin texto libre, así se mantiene corto y consistente.",
+          "templateLabel": "Plantilla",
+          "templates": {
+            "short_update": {
+              "name": "Update corto",
+              "description": "'Resumen rápido' — una sola línea sobre el estado."
+            },
+            "invoice_reminder": {
+              "name": "Recordatorio factura",
+              "description": "Recordatorio amable con link a la factura pendiente."
+            },
+            "quarterly_report": {
+              "name": "Informe trimestral listo",
+              "description": "Notifica que el informe trimestral está en el portal."
+            }
+          },
+          "confirmHint": "{n} personas recibirán este mail. Una entrada en el audit-log por destinatario.",
+          "cancel": "Cancelar",
+          "confirm": "Enviar",
+          "sending": "Enviando…"
+        },
+        "toast": {
+          "success": "Mail masivo enviado.",
+          "error": "Envío fallido — ningún mail enviado."
+        }
+      }
     },
     "newOrg": {
       "title": "Crear nuevo cliente",
@@ -1655,6 +1856,26 @@
         "filterAll": "todo",
         "filterCategory": "Categoría",
         "filterPriority": "Prioridad"
+      },
+      "inbox": {
+        "viewKanban": "kanban",
+        "viewInbox": "inbox",
+        "filterAll": "todo",
+        "searchPlaceholder": "Busca por asunto, cliente o email…",
+        "emptyList": "Sin tickets en esta vista.",
+        "selectPrompt": "Selecciona un ticket para ver los detalles.",
+        "shortcutHint": "? para atajos",
+        "shortcutsTitle": "Atajos",
+        "resolved": "Resuelto",
+        "reopened": "Reabierto",
+        "shortcuts": [
+          { "keys": "j / k", "label": "Siguiente / anterior ticket" },
+          { "keys": "e", "label": "Cambiar estado (abierto → en curso → cerrado)" },
+          { "keys": "c", "label": "Cerrar ticket" },
+          { "keys": "/", "label": "Enfocar buscador" },
+          { "keys": "?", "label": "Mostrar / ocultar atajos" },
+          { "keys": "Esc", "label": "Cerrar overlay" }
+        ]
       }
     },
     "forbidden": "Sin acceso. Solo staff de Webstability.",

@@ -29,6 +29,7 @@ export async function generateMetadata({
 type MetaItem = { num: string; label: string };
 type ProblemItem = { title: string; body: string };
 type SolutionItem = { title: string; body: string; bullets?: string[] };
+type CompetitorItem = { name: string; dna: string; breaks: string };
 type Plan = {
   id: string;
   name: string;
@@ -51,6 +52,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const metaItems = tRaw.raw("verhuur.v2.metaItems") as MetaItem[];
   const problems = tRaw.raw("verhuur.v2.problems") as ProblemItem[];
   const solutions = tRaw.raw("verhuur.v2.solutions") as SolutionItem[];
+  const competitors = tRaw.raw("verhuur.v2.competitors") as CompetitorItem[];
   const plans = tRaw.raw("verhuur.v2.plans") as Plan[];
 
   return (
@@ -80,7 +82,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             {t("lede")}
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-3.5">
+          <div className="mt-9 flex flex-wrap items-center gap-3.5">
             <MagneticButton>
               <Button asChild size="lg" variant="primary" className="group">
                 <a href="#solution">
@@ -94,6 +96,15 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 <a href="#contact">{t("ctaSecondary")} →</a>
               </Button>
             </MagneticButton>
+            {/* Tertiary link naar live demo — strategie zegt: hoogste-
+                intentie pagina (verhuur) verdient een directe demo-deep-
+                link. Geen modal nodig, hier weten ze al wat ze willen. */}
+            <a
+              href={`/${locale === "nl" ? "" : `${locale}/`}demo/portal`}
+              className="ml-1 inline-flex items-center gap-1.5 text-[14px] text-(--color-text)/70 underline decoration-(--color-border) underline-offset-4 transition-colors hover:text-(--color-text) hover:decoration-(--color-wine)"
+            >
+              {t("liveDemo")} →
+            </a>
           </div>
 
           {/* Meta-row */}
@@ -205,6 +216,44 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         </div>
       </section>
 
+      {/* COMPETITORS — wanneer SaaS niet meer past */}
+      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-[100px]">
+        <div className="mx-auto max-w-[1200px]">
+          <RevealOnScroll className="mb-14 max-w-[720px]">
+            <Eyebrow className="mb-[18px]">{t("competitorsEyebrow")}</Eyebrow>
+            <AnimatedHeading as="h2" className="mb-[18px] text-[clamp(32px,4.5vw,52px)]">
+              {t("competitorsTitle")}
+            </AnimatedHeading>
+            <p className="max-w-[56ch] text-[18px] text-(--color-muted)">{t("competitorsLede")}</p>
+          </RevealOnScroll>
+
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {competitors.map((c, i) => (
+              <RevealOnScroll key={c.name} delay={i * 0.06}>
+                <article className="flex h-full flex-col rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.1)]">
+                  <h3 className="mb-3 font-serif text-[22px] leading-tight">{c.name}</h3>
+                  <p className="mb-4 text-[14px] leading-[1.6] text-(--color-text)">{c.dna}</p>
+                  <p className="mt-auto border-t border-(--color-border) pt-4 text-[13px] leading-[1.55] text-(--color-muted)">
+                    <span className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+                      breekt op:
+                    </span>
+                    <br />
+                    {c.breaks}
+                  </p>
+                </article>
+              </RevealOnScroll>
+            ))}
+          </div>
+
+          <RevealOnScroll className="mt-12">
+            <p className="inline-flex items-center gap-2 rounded-full border border-(--color-wine)/20 bg-(--color-wine)/5 px-4 py-2 font-mono text-[11px] tracking-widest text-(--color-wine) uppercase">
+              <Clock className="h-3 w-3" strokeWidth={2.2} aria-hidden />
+              {t("competitorsClaim")}
+            </p>
+          </RevealOnScroll>
+        </div>
+      </section>
+
       {/* FEATURED TESTIMONIAL */}
       <section className="bg-(--color-text) px-6 py-[80px] text-(--color-bg)">
         <RevealOnScroll className="mx-auto max-w-[760px] text-center">
@@ -235,7 +284,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
           <div className="grid gap-5 md:grid-cols-3">
             {plans.map((plan, i) => {
-              const featured = plan.id === "pro";
+              const featured = plan.id === "mid";
               return (
                 <RevealOnScroll key={plan.id} delay={i * 0.08}>
                   <article

@@ -249,12 +249,41 @@ const ROUTE_PATHS: Record<RouteKey, { nl: string; es: string }> = {
   avisoLegal: { nl: "/aviso-legal", es: "/es/aviso-legal" },
 };
 
+/**
+ * Strategische og-eyebrow per pagina. De `/og`-route rendert een hero-card
+ * met `?title=` + `?eyebrow=` als parameters; standaard is "costa brava ·
+ * spanje", maar voor verhuur/prijzen/cases willen we de wig zichtbaar
+ * maken op LinkedIn/X-shares. Geen entry hier = generieke eyebrow.
+ */
+const OG_EYEBROW: Partial<Record<RouteKey, { nl: string; es: string }>> = {
+  verhuur: {
+    nl: "voor verhuurbedrijven · NL+ES",
+    es: "para empresas de alquiler · NL+ES",
+  },
+  prijzen: {
+    nl: "vaste prijs · 4 weken levering",
+    es: "precio fijo · entrega en 4 semanas",
+  },
+  cases: {
+    nl: "3 verhuurplatforms · 47 werkplaatsen",
+    es: "3 plataformas alquiler · 47 talleres",
+  },
+};
+
+function ogImageUrl(title: string, eyebrow: string | null): string {
+  const params = new URLSearchParams({ title });
+  if (eyebrow) params.set("eyebrow", eyebrow);
+  return `${SITE_BASE_URL}/og?${params.toString()}`;
+}
+
 export function pageMetadata(locale: string, key: RouteKey): Metadata {
   const lang: Locale = locale === "es" ? "es" : "nl";
   const copy = COPY[lang][key];
   const paths = ROUTE_PATHS[key];
   const canonicalPath = paths[lang];
   const canonical = `${SITE_BASE_URL}${canonicalPath}`;
+  const eyebrow = OG_EYEBROW[key]?.[lang] ?? null;
+  const ogImage = ogImageUrl(copy.title, eyebrow);
   return {
     title: copy.title,
     description: copy.description,
@@ -272,11 +301,13 @@ export function pageMetadata(locale: string, key: RouteKey): Metadata {
       locale: lang === "es" ? "es_ES" : "nl_NL",
       type: "website",
       url: canonical,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: copy.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${copy.title} · Webstability`,
       description: copy.description,
+      images: [ogImage],
     },
   };
 }

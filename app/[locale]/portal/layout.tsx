@@ -9,6 +9,7 @@ import { Sidebar } from "@/components/portal/Sidebar";
 import { Topbar } from "@/components/portal/Topbar";
 import { RouteTransition } from "@/components/portal/RouteTransition";
 import { DemoBanner } from "@/components/portal/DemoBanner";
+import { MobileBottomNav } from "@/components/portal/MobileBottomNav";
 
 export default async function PortalLayout({
   children,
@@ -57,11 +58,19 @@ export default async function PortalLayout({
             navLabels={navLabels}
             isStaff={userWithOrg.isStaff}
           />
-          <main className="flex-1 px-6 py-8 md:px-10 md:py-12">
+          <main className="flex-1 px-6 pt-8 pb-28 md:px-10 md:py-12">
             <RouteTransition>{children}</RouteTransition>
           </main>
         </div>
       </div>
+      <MobileBottomNav
+        labels={{
+          dashboard: navLabels.dashboard,
+          tickets: navLabels.tickets,
+          invoices: navLabels.invoices,
+          monitoring: navLabels.monitoring,
+        }}
+      />
       <Toaster
         position="bottom-right"
         toastOptions={{

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Search, Star } from "lucide-react";
+import { Search, Star, Check } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 
 export type OrgRow = {
@@ -35,10 +35,18 @@ export function OrgTable({
   orgs,
   strings,
   locale,
+  selection,
 }: {
   orgs: OrgRow[];
   strings: Strings;
   locale: string;
+  /** Bulk-mode: als gezet, render een checkbox per rij + aria-pressed
+   * styling op de actieve rij. Geen visuele wijziging als prop ontbreekt. */
+  selection?: {
+    selected: Set<string>;
+    onToggle: (orgId: string) => void;
+    label: string;
+  };
 }) {
   const [query, setQuery] = React.useState("");
   const dateFmt = React.useMemo(
@@ -71,39 +79,65 @@ export function OrgTable({
         <p className="py-8 text-center text-(--color-muted)">{strings.empty}</p>
       ) : (
         <ul className="divide-y divide-(--color-border) overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)">
-          {filtered.map((o) => (
-            <li key={o.id}>
-              <Link
-                href={{ pathname: "/admin/orgs/[orgId]", params: { orgId: o.id } }}
-                prefetch
-                className="flex items-center justify-between gap-6 px-6 py-4 transition-colors hover:bg-(--color-bg-warm)"
-              >
-                <div className="min-w-0 flex-1">
-                  <p className="flex items-center gap-2 truncate font-medium">
-                    {o.name}
-                    {o.isVip ? (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-(--color-wine)/10 px-2 py-0.5 text-[10px] font-medium text-(--color-wine)">
-                        <Star className="h-2.5 w-2.5" fill="currentColor" />
-                        {strings.vip}
+          {filtered.map((o) => {
+            const checked = selection?.selected.has(o.id) ?? false;
+            return (
+              <li key={o.id} className="flex items-stretch">
+                {selection ? (
+                  <button
+                    type="button"
+                    onClick={() => selection.onToggle(o.id)}
+                    aria-pressed={checked}
+                    aria-label={`${selection.label} — ${o.name}`}
+                    className={`flex w-12 shrink-0 items-center justify-center border-r border-(--color-border) transition-colors ${
+                      checked
+                        ? "bg-(--color-accent)/10 text-(--color-accent)"
+                        : "text-(--color-border) hover:bg-(--color-bg-warm) hover:text-(--color-muted)"
+                    }`}
+                  >
+                    <span
+                      className={`grid h-5 w-5 place-items-center rounded border ${
+                        checked
+                          ? "border-(--color-accent) bg-(--color-accent) text-white"
+                          : "border-(--color-border)"
+                      }`}
+                    >
+                      {checked ? <Check className="h-3 w-3" strokeWidth={3} /> : null}
+                    </span>
+                  </button>
+                ) : null}
+                <Link
+                  href={{ pathname: "/admin/orgs/[orgId]", params: { orgId: o.id } }}
+                  prefetch
+                  className="flex flex-1 items-center justify-between gap-6 px-6 py-4 transition-colors hover:bg-(--color-bg-warm)"
+                >
+                  <div className="min-w-0 flex-1">
+                    <p className="flex items-center gap-2 truncate font-medium">
+                      {o.name}
+                      {o.isVip ? (
+                        <span className="inline-flex items-center gap-1 rounded-full bg-(--color-wine)/10 px-2 py-0.5 text-[10px] font-medium text-(--color-wine)">
+                          <Star className="h-2.5 w-2.5" fill="currentColor" />
+                          {strings.vip}
+                        </span>
+                      ) : null}
+                    </p>
+                    <p className="mt-1 truncate font-mono text-xs text-(--color-muted)">
+                      {o.country} · {o.plan ?? "no-plan"} · {dateFmt.format(o.createdAt)}
+                    </p>
+                  </div>
+                  <div className="hidden shrink-0 gap-4 font-mono text-xs text-(--color-muted) md:flex">
+                    <span>{strings.members(o.memberCount)}</span>
+                    <span>{strings.projects(o.projectCount)}</span>
+                    {o.openTicketCount > 0 ? (
+                      <span className="text-(--color-accent)">
+                        {strings.openTickets(o.openTicketCount)}
                       </span>
                     ) : null}
-                  </p>
-                  <p className="mt-1 truncate font-mono text-xs text-(--color-muted)">
-                    {o.country} · {o.plan ?? "no-plan"} · {dateFmt.format(o.createdAt)}
-                  </p>
-                </div>
-                <div className="hidden shrink-0 gap-4 font-mono text-xs text-(--color-muted) md:flex">
-                  <span>{strings.members(o.memberCount)}</span>
-                  <span>{strings.projects(o.projectCount)}</span>
-                  {o.openTicketCount > 0 ? (
-                    <span className="text-(--color-accent)">
-                      {strings.openTickets(o.openTicketCount)}
-                    </span>
-                  ) : null}
-                </div>
-              </Link>
-            </li>
-          ))}
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

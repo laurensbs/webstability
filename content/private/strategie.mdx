@@ -1,0 +1,213 @@
+---
+title: "Webstability strategie"
+lastUpdated: "2026-05-09"
+nextReview: "2026-08-09"
+version: 1
+---
+
+<Callout variant="info">
+Dit document is **privé**. Niet gedeeld met klanten, niet in de
+sitemap, niet in zoekresultaten. Het zit hier zodat ik het op elke
+device kan teruglezen. Werk het bij voor elke kwartaal-review.
+</Callout>
+
+## Mode-keuze: hybride met build-marge als ruggengraat
+
+Hybride. Build-fee is het inkomen, abonnement is de retention.
+
+**Geen pure abonnement.** Plafond ligt bij ~€150k/jaar solo. Race-to-
+bottom risico: er komt altijd iemand die hetzelfde voor €40/m belooft.
+Klant gaat het zien als gym-abonnement waar 'ie niet komt.
+
+**Geen percentage van omzet.** Drie redenen:
+
+- Klant ziet jou als rente-op-omzet, niet als partner. Voelt onveilig.
+- Bookkeeping-hel: Stripe webhook → omzet meten → maandfactuur → BTW per
+  land. Werkt voor 5 klanten, niet voor 30.
+- Juridisch grijs in NL voor verhuur. Inzage in cijfers staat
+  ondernemers tegen.
+
+**De keuze**: build betaalt nu, abonnement bindt morgen. Productisering
+is jaar-2 spel. Niet eerder.
+
+<PullQuote attribution="Het mantra">
+De build is het salaris. Het abonnement is het pensioen. De productized
+versie is het huis aan de kust.
+</PullQuote>
+
+## Markt-snapshot
+
+### Segmenten waar het werkt
+
+1. **Recreatieverhuur / vakantiestallingen / campings** — NL kust, ES
+   Costa Brava. Pijn: Tommy/Booking.com koppelingen breken, double-
+   bookings. Budget: €3k–€15k build, €100–€400/m.
+2. **Reparatieportalen** — fietsen, witgoed, scooters. Pijn: Excel +
+   WhatsApp + papier. Budget: €2k–€8k, €95–€250/m.
+3. **Verhuurbedrijven materiaal** — steigers, aanhangers, e-bikes,
+   watersport. Booqable concurrent. Budget: €4k–€12k, €150–€399/m.
+4. **MKB met verouderd admin-paneel** — oude PHP, hosting verloopt.
+   Budget: €5k–€20k migratie, €200–€500/m.
+5. **NL-expat ondernemers in Spanje** — Costa Brava/del Sol. Onder-
+   bediend, bereid in NL te factureren. **Dit is mijn wig.**
+
+### Concurrentie NL
+
+- Bureaus (Stuurlui, Searchlab, Invenix, Appfront): €25k–€75k builds,
+  €500–€2k/m. Te duur voor MKB <€1M omzet.
+- Freelancers: €70–€100/u medior, €100–€150 senior. Project-uurtjes,
+  geen recurring, geen merk.
+- SaaS: Tommy €45/m (kassa-DNA), Booqable €29–€199/m (generiek),
+  Bookingplanner (hotels). Missen: huisstijl, eigen workflows,
+  NL boekhoud-koppeling op maat.
+
+### Concurrentie ES
+
+- Bureaus: €1.5k–€8k builds, €50–€300/m. Lager prijspeil.
+- Freelancers: €30–€75/u, veel Oost-Europese remote concurrenten.
+- SaaS verhuur: Avantio Valencia €280/m+ (20 units), Icnea Barcelona
+  €23/property/m, Lodgify entry-level. **Niet tegen bouwen — bouw
+  eromheen** (eigen-merk-frontend + custom admin op hun API).
+
+### Sweet spot
+
+€3k–€8k build + €150–€250/m care. Daar zit de meeste vraag, daar is
+volume zonder bureau-prijs te raken.
+
+<Callout variant="warning">
+**€95/m care is een anker, geen aanbod.** Onder €150 verlies ik tijd
+per ticket. Sluiten voor nieuwe instroom, €150-floor zetten.
+</Callout>
+
+## Werven-strategie
+
+Drie kanalen. Meer is verspilling.
+
+### 1. Outbound naar zichtbaar gefrustreerde verhuurders
+
+Trustpilot-klagers van Tommy/Booqable, Reddit r/AirBnBHosts/r/dutch,
+Spaanse expat-Facebook-groepen ("Nederlanders in Spanje", "Costa Brava
+Ondernemers"). **5 berichten per week, persoonlijk**, met één concrete
+observatie over hun site of proces. Geen DM-massa, geen template-spam.
+
+Reply-rate target: 2–5%. Conversie naar gesprek: 1 op 5 replies. Naar
+klant: 1 op 10 gesprekken. Dus 5 berichten/week = ~1 nieuwe klant per
+2–3 maanden via dit kanaal alleen.
+
+### 2. Niche-SEO op het taalverschil
+
+`/blog/seo-spanje` werkt — doortrekken naar long-tail:
+
+- "verhuursysteem in twee talen"
+- "Tommy alternatief Nederlands"
+- "Booqable vs maatwerk"
+- "BTW IVA verhuur Spanje Nederland"
+- "Avantio Nederlandstalig"
+
+Lage volumes (50–200 zoekopdrachten/maand per keyword), hoge intent
+(iemand die specifiek dít zoekt is dichtbij koop). Compounding effect
+na 6 maanden.
+
+### 3. Eén referral-loop per kwartaal
+
+Bestaande klant levert nieuwe klant op = **€250 korting op care voor
+6 maanden**. Niet automatiseren — persoonlijk vragen 90 dagen na launch
+("ken jij iemand met dit probleem?"). Persoonlijke vraag converteert
+3–4× hoger dan koud.
+
+### Wat NIET werkt
+
+- LinkedIn — MKB-eigenaren in verhuur/reparatie zitten daar niet. Wel
+  voor white-label aan andere bureaus, maar dat is een ander spel.
+- Cold email aan koud-domein — eet je tijd, conversie 0.5%.
+- Marketplaces (Werkspot, Jellow, Bark, Malt) — race-to-bottom. Alleen
+  als bridge in eerste 6 maanden zonder pipeline.
+- Ads zonder funnel die converteert — eerst de drie hierboven.
+
+## Pricing-architectuur
+
+### Build = inkomen
+
+€5–€8k per project. AI-leverage (Cursor, Claude Code) maakt 80u-builds
+haalbaar voor wat bureaus 200+ uur voor rekenen. **6 builds/jaar =
+€30–€48k.** Dit is de ruggengraat.
+
+Communiceer als "vaste prijs, 4 weken levering". Niet als "AI-versneld".
+Niemand koopt AI, ze kopen voorspelbaarheid.
+
+### Abonnement = retention
+
+- **Care €95** — sluiten voor nieuwe instroom. Anker blijft op site
+  voor sociaal-bewijs ("vanaf €95"), maar nieuwe contracten gaan op
+  €150-floor.
+- **Studio €179** — populairste tier, blijft.
+- **Atelier €399** — premium, blijft.
+
+**Doel**: 12–15 klanten × gemiddeld €200/m = €30–€36k/jaar voorspelbaar.
+Dat is de cashflow-vloer waar je builds bovenop gestapeld worden.
+
+### Productisering = rijk-worden
+
+Pas starten als build-pipeline draait. Eén verticaal SaaS extraheren uit
+een build:
+
+- Verhuur-template, gehost, €49/m. Multi-tenant.
+- Eigen onboarding, geen sales-call nodig.
+- Doel: 100 klanten × €49 = €4.900/m extra zonder extra uren.
+
+**Dit is jaar-2 spel.** Nu niet starten — leidt af van builds en care.
+
+### Verwacht plafond
+
+Met deze mix: **~€150k/jaar solo**. Daarboven alleen via productisering,
+niet via meer uren werken. Op een gegeven moment is je tijd op.
+
+<PullQuote attribution="Solo-realiteit">
+Bij 30 klanten zit je vol. Bij 50 ben je overworked. Bij 80 zit je in
+burn-out. Productisering of een tweede dev — geen derde optie.
+</PullQuote>
+
+## 90-dagen actieplan
+
+### Week 1–2: Pricing-shift
+
+- Care €95 sluiten voor nieuwe instroom (knop op /prijzen verbergen of
+  tonen als "uitlopend, alleen voor bestaande klanten")
+- €150-floor instellen op /prijzen. Nieuwe Care-tier of Care herzien.
+- Copy aanpassen: maandrapport-belofte expliciet maken ("elke maand:
+  uptime + tickets + deploys + omzet via je site")
+
+### Week 3–6: Outbound
+
+- 3 berichten per week (geen 5 om burn-out te vermijden)
+- Log in spreadsheet: datum, wie, kanaal, observatie, reply, resultaat
+- Target: 12 berichten/maand → 0–1 reply/maand → 1 gesprek/2 maanden
+  → 1 klant/3 maanden via dit kanaal
+
+### Week 7–9: SEO-content
+
+- 2 nieuwe blog-posts in de SEO-wig
+  - 1 NL: bv. "Tommy alternatief: wanneer is maatwerk de moeite waard"
+  - 1 ES: bv. "Avantio o sistema a medida — guía para alquiler vacacional"
+- Cross-link naar /diensten en /cases
+- Submit naar Google Search Console
+
+### Week 10–12: Review
+
+- Kill wat niet werkt
+- Verdubbel wat wel werkt
+- Update dit document met wat je hebt geleerd
+
+## Update-log
+
+| Datum | Versie | Wijziging |
+|-------|--------|-----------|
+| 2026-05-09 | 1 | Eerste versie. Hybride model gekozen, €150-floor, 90-dagen plan |
+
+**Volgende review: 2026-08-09.**
+
+<Callout variant="warning">
+Als ik dit lees na augustus en het is niet bijgewerkt: stop met wat ik
+aan het doen ben en update het eerst. Strategie zonder review is
+hopen-en-bidden.
+</Callout>

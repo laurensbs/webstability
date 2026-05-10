@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { cookies } from "next/headers";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
@@ -18,6 +19,8 @@ import {
   getActiveBuildPhase,
   getRecentLivegangs,
   getActiveIncidentsForOrg,
+  getReferralEligibleProject,
+  getActivitySince,
 } from "@/lib/db/queries/portal";
 import { StatCard } from "@/components/portal/StatCard";
 import { StatusBanner } from "@/components/portal/StatusBanner";
@@ -40,6 +43,8 @@ import { HoursWidget } from "@/components/portal/HoursWidget";
 import { SecurityCard } from "@/components/portal/SecurityCard";
 import { RoadmapCard } from "@/components/portal/RoadmapCard";
 import { DeliveryCard } from "@/components/portal/DeliveryCard";
+import { ReferralCard } from "@/components/portal/ReferralCard";
+import { SinceLastVisit } from "@/components/portal/SinceLastVisit";
 import { budgetMinutesFor, type TierId } from "@/lib/plan-budget";
 import type { Monitor } from "@/lib/better-stack";
 
@@ -55,6 +60,23 @@ function pickGreeting(t: (k: string) => string) {
  * van het component-render zodat de purity-rule (`Date.now` ≠ pure)
  * niet aanslaat.
  */
+function daysSinceDate(date: Date): number {
+  return Math.max(1, Math.floor((Date.now() - date.getTime()) / (1000 * 60 * 60 * 24)));
+}
+
+const HOUR_MS = 60 * 60 * 1000;
+
+function computeSinceStrip(lastLoginAt: Date | null): { since: Date; showStrip: boolean } {
+  const now = Date.now();
+  if (!lastLoginAt) {
+    return { since: new Date(now - 7 * 24 * HOUR_MS), showStrip: true };
+  }
+  return {
+    since: lastLoginAt,
+    showStrip: now - lastLoginAt.getTime() > 24 * HOUR_MS,
+  };
+}
+
 function computeBuildPhaseProps(
   phase: { startedAt: Date; endsAt: Date } | null | undefined,
 ): { pct: number; daysRemaining: number } | null {
@@ -98,17 +120,34 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   const tProjects = await getTranslations("portal.projects");
   const tInvoices = await getTranslations("portal.invoices");
   const tStatus = await getTranslations("status");
-  const [stats, projects, tickets, invoices, hours, buildPhase, recentLivegangs, incidents] =
-    await Promise.all([
-      getDashboardStats(user.organizationId),
-      listOrgProjects(user.organizationId),
-      listOrgTickets(user.organizationId),
-      listOrgInvoices(user.organizationId),
-      getOrgHoursThisMonth(user.organizationId),
-      getActiveBuildPhase(user.organizationId),
-      getRecentLivegangs(user.organizationId, 7),
-      getActiveIncidentsForOrg(user.organizationId),
-    ]);
+  // SinceLastVisit window: max(1d, lastLoginAt..now). Onder de drempel
+  // van 24h slaan we de strip over (voorkomt herhaling). Date.now()
+  // wordt buiten render gecomputeerd via de helper.
+  const { since, showStrip: showSinceStrip } = computeSinceStrip(user.lastLoginAt ?? null);
+
+  const [
+    stats,
+    projects,
+    tickets,
+    invoices,
+    hours,
+    buildPhase,
+    recentLivegangs,
+    incidents,
+    referralProject,
+    activity,
+  ] = await Promise.all([
+    getDashboardStats(user.organizationId),
+    listOrgProjects(user.organizationId),
+    listOrgTickets(user.organizationId),
+    listOrgInvoices(user.organizationId),
+    getOrgHoursThisMonth(user.organizationId),
+    getActiveBuildPhase(user.organizationId),
+    getRecentLivegangs(user.organizationId, 7),
+    getActiveIncidentsForOrg(user.organizationId),
+    getReferralEligibleProject(user.organizationId, 90),
+    getActivitySince(user.organizationId, since),
+  ]);
   const tLivegang = await getTranslations("portal.livegang");
   const tIncident = await getTranslations("portal.incident");
   const tTour = await getTranslations("demo.tour.portal");
@@ -182,6 +221,22 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   const subStatus = lastSeenLine(t, user.lastLoginAt ?? null);
   await db.update(users).set({ lastLoginAt: new Date() }).where(eq(users.id, user.id));
 
+  // Bump `last_org` cookie zodat de volgende /login render een
+  // org-specifieke stat-line kan tonen ("X · uptime · Y dagen live").
+  // Geen identifier — alleen de slug. Demo-orgs worden uitgesloten,
+  // anders ziet een prospect de demo-stats in plaats van studio-stats
+  // de eerstvolgende keer dat hij niet ingelogd is.
+  if (user.organization?.slug && !user.isDemo) {
+    const jar = await cookies();
+    jar.set("last_org", user.organization.slug, {
+      httpOnly: false,
+      sameSite: "lax",
+      path: "/",
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60 * 24 * 90, // 90 dagen
+    });
+  }
+
   const healthy = !stats.hasHighPriority && stats.openTickets === 0;
 
   return (
@@ -243,6 +298,35 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
           }}
         />
       ))}
+
+      {/* Referral-card — alleen voor klanten die ≥90 dagen live zijn,
+          en niet als er nu een livegang-feestmoment loopt. Strategie:
+          persoonlijke vraag op het moment dat het systeem zijn waarde
+          heeft bewezen. */}
+      {referralProject && recentLivegangs.length === 0 ? (
+        <ReferralCard
+          projectName={referralProject.name}
+          daysSinceLive={daysSinceDate(referralProject.liveAt)}
+          locale={locale as "nl" | "es"}
+        />
+      ) : null}
+
+      {showSinceStrip ? (
+        <SinceLastVisit
+          activity={activity}
+          strings={{
+            eyebrow: t("sinceLastVisit.eyebrow"),
+            ticketClosedSingle: t("sinceLastVisit.ticketClosedSingle"),
+            ticketClosedPlural: t("sinceLastVisit.ticketClosedPlural"),
+            invoiceNewSingle: t("sinceLastVisit.invoiceNewSingle"),
+            invoiceNewPlural: t("sinceLastVisit.invoiceNewPlural"),
+            livegangSingle: t("sinceLastVisit.livegangSingle"),
+            livegangPlural: t("sinceLastVisit.livegangPlural"),
+            monitoringStable: t("sinceLastVisit.monitoringStable"),
+            incidentsAllResolved: t("sinceLastVisit.incidentsAllResolved"),
+          }}
+        />
+      ) : null}
 
       <DashboardIntro
         greeting={greeting}

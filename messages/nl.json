@@ -7,6 +7,7 @@
   "nav": {
     "home": "Home",
     "services": "Diensten",
+    "verhuur": "Verhuur",
     "pricing": "Prijzen",
     "about": "Over",
     "blog": "Blog",
@@ -23,25 +24,25 @@
       "servicesTitle": "Wat we voor je bouwen",
       "servicesFooter": "Alle diensten →",
       "items": {
+        "verhuurplatform": {
+          "title": "Verhuurplatform — NL en Spanje",
+          "blurb": "Boekingen + portal + kanaalkoppelingen, 4 weken levering",
+          "price": "vaste prijs €5–8k"
+        },
         "platform": {
           "title": "Bedrijfssoftware op maat",
-          "blurb": "Verhuurplatform, klantportaal of admin op maat",
-          "price": "vanaf €399/m"
+          "blurb": "Reparatie-portaal, klantportaal of admin op maat",
+          "price": "vanaf €5–8k"
         },
         "webshop": {
           "title": "Website of webshop",
           "blurb": "Snelle, meertalige site met checkout",
-          "price": "vanaf €95/m"
+          "price": "vanaf €1.050"
         },
         "care": {
-          "title": "Onderhoud & monitoring",
-          "blurb": "We houden het draaiende — uptime, backups, updates",
-          "price": "vanaf €95/m"
-        },
-        "growth": {
-          "title": "Doorontwikkeling",
-          "blurb": "Nieuwe features op je live-product",
-          "price": "doorlopend"
+          "title": "Onderhoud & doorbouwen",
+          "blurb": "Hosting, monitoring, wijzigingen — Studio voor nieuwe klanten",
+          "price": "Studio €179/m"
         }
       },
       "casesEyebrow": "Live producten",
@@ -79,8 +80,8 @@
     },
     "contactRegion": "Costa Brava · Spanje",
     "liveBadge": "alle systemen draaien",
-    "studioTagline": "Eén studio. Eén ontwikkelaar. *Software* die blijft werken nadat 'ie is opgeleverd.",
-    "studioSub": "Webstability bouwt en onderhoudt klant-software voor MKB-ondernemers in Nederland en Spanje. Doorlopend abonnement vanaf €95/m — bouwen en onderhouden in één.",
+    "studioTagline": "Eén systeem onder verhuur- en *reparatiebedrijven* in Nederland en Spanje.",
+    "studioSub": "Vaste prijs €5–8k, vier weken levering, doorlopend onderhoud vanaf €179/m. Eén ontwikkelaar die het bouwt en in de lucht houdt.",
     "responseLabel": "Reactie binnen",
     "responseValue": "24 uur",
     "lastDeployLabel": "Laatste deploy",
@@ -117,7 +118,8 @@
       "availability": "Beschikbaar voor 2 nieuwe projecten — mei 2026",
       "eyebrowMessages": [
         "Beschikbaar voor 2 nieuwe projecten — mei 2026",
-        "Vanaf €95/m · eerste maand gratis",
+        "Vaste prijs · 4 weken levering",
+        "Voor verhuur in NL en Spanje",
         "Eén systeem ipv vijf losse tools"
       ],
       "proposition": [
@@ -138,7 +140,7 @@
         "boekingsplatformen",
         "webshops"
       ],
-      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem. Doorlopend abonnement vanaf €95 per maand, voor ondernemers in Nederland en Spanje."
+      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem. Vaste prijs €5–8k, 4 weken levering, doorlopend abonnement vanaf €179/maand, voor ondernemers in Nederland en Spanje."
     },
 
     "logoStrip": {
@@ -211,25 +213,29 @@
       "lede": "Eén systeem dat draait. Eén Laurens die het bouwt en in de lucht houdt — voor MKB in Nederland en Spanje.",
       "bridgeNote": "Bouwen + onderhouden zit in één doorlopend abonnement. *Tijdens* een build betaal je tijdelijk meer per maand, daarna val je terug op je vaste maandprijs. Zo betaal je over de tijd, niet vooraf.",
       "items": {
+        "verhuurplatform": {
+          "title": "Verhuurplatform — NL en Spanje",
+          "body": "Het systeem waar de meeste klanten voor komen. Compleet boekingsplatform, klantportaal en kanaalkoppelingen. Drie van deze platforms draaien al op de Costa Brava en Costa del Sol.",
+          "pricePill": "vaste prijs €5–8k · 4 weken levering",
+          "cta": "Bekijk verhuur-pagina →"
+        },
         "platform": {
           "title": "Bedrijfssoftware op maat",
-          "body": "Verhuurplatformen, reparatie-portalen, stallingsbeheer, klantportalen of een eigen admin paneel — vaak gekoppeld aan een publieke site. We hebben drie van zulke platforms al productioneel draaien voor de Spaanse markt.",
+          "body": "Reparatie-portalen, stallingsbeheer, klantportalen of een eigen admin paneel — vaak gekoppeld aan een publieke site. Eerste werkende versie in 4 weken, doorbouwen daarna.",
+          "pricePill": "vanaf €5–8k · 4 weken eerste versie",
           "cta": "Bekijk live platforms →"
         },
         "webshop": {
           "title": "Website of webshop",
           "body": "Snelle, meertalige marketing-site of een volledige webshop met BTW/IVA en voorraad-koppeling. Mollie of Stripe, automatische facturatie, Lighthouse 95+ op mobiel.",
+          "pricePill": "vanaf €1.050 · 2-3 mnd build",
           "cta": "Lees meer →"
         },
         "care": {
-          "title": "Live houden na livegang",
-          "body": "Vanaf dag één na livegang: hosting, security, backups en monitoring — plus 1 uur per maand om kleine dingen aan te passen. Voor je site én je paneel.",
-          "cta": "Bekijk Care →"
-        },
-        "growth": {
-          "title": "Doorgroeien & vindbaar maken",
-          "body": "Care plus 3 uur werk per maand: SEO in NL en ES, performance-tuning, en kleine doorontwikkeling. Voor wie zijn nieuwe site actief wil zien groeien.",
-          "cta": "Bekijk Studio →"
+          "title": "Onderhoud & doorbouwen",
+          "body": "Studio (€179/m) is de instap voor nieuwe klanten — onderhoud + 3 uur wijzigingen + lokale SEO. Care (€95/m) blijft draaien voor bestaande klanten als anker.",
+          "pricePill": "Studio €179/m · doorlopend",
+          "cta": "Bekijk pricing →"
         }
       }
     },
@@ -363,6 +369,14 @@
     "calFallbackTitle": "Stuur me een mail",
     "calFallbackHint": "De online agenda komt zo. Tot die tijd: gewoon mailen werkt prima.",
     "regionBadge": "Vanuit de Costa Brava",
+    "intake": {
+      "title": "Wat past het beste? Eén klik scheelt 5 minuten in het gesprek.",
+      "options": {
+        "verhuur": "Verhuur (caravans, vakantiehuis, materiaal)",
+        "reparatie": "Reparatie / werkplaats",
+        "other": "Iets anders"
+      }
+    },
     "afterTitle": "Wat er daarna gebeurt",
     "after": [
       {
@@ -466,6 +480,28 @@
         "body": "BTW én IVA. .nl én .es. Ik snap de fiscale en culturele context van beide markten."
       }
     ],
+    "nowBuilding": {
+      "eyebrow": "wat ik nu bouw",
+      "title": "Drie cijfers die het verhaal *kort* maken.",
+      "lede": "Niet 'voor MKB in het algemeen'. Wel: drie verhuurplatforms productioneel, één reparatieplatform met 47 werkplaatsen, en een standaardstack die binnen 4 weken op een nieuwe klant past.",
+      "items": [
+        {
+          "metric": "3",
+          "label": "verhuurplatforms productioneel",
+          "body": "Costa Brava + Costa del Sol. Caravans, vakantiehuizen, materiaal — elk met eigen merk + admin."
+        },
+        {
+          "metric": "47",
+          "label": "reparatie-werkplaatsen op één platform",
+          "body": "VOLT/AUTO multi-tenant. iPad-first werkbon, papierloos, NL+ES boekhoudkoppeling."
+        },
+        {
+          "metric": "4 wkn",
+          "label": "vaste prijs, eerste werkende versie",
+          "body": "Standaardstack die ik in 4 weken op een nieuwe klant zet voor €5–8k. Doorbouwen via Atelier."
+        }
+      ]
+    },
     "timelineTitle": "Tijdlijn",
     "timeline": [
       {
@@ -557,6 +593,7 @@
       "lede": "Eén dashboard waar al je verhuurkanalen samenkomen — caravans, boten, vakantiehuizen, voertuigen. Live agenda, automatische facturen, contracten in één klik. Geen dubbele reserveringen meer, geen handmatig overtypen.",
       "ctaPrimary": "Bekijk live demo",
       "ctaSecondary": "Vraag offerte aan",
+      "liveDemo": "Of open een live demo zonder account",
       "metaItems": [
         { "num": "8u", "label": "Bespaard per week (gemiddeld)" },
         { "num": "0", "label": "Dubbele boekingen na livegang" },
@@ -604,55 +641,81 @@
           "body": "Mollie- of Stripe-koppeling voor aanbetaling, eindbetaling en automatische borg-retour na inspectie."
         }
       ],
+      "competitorsEyebrow": "wanneer SaaS niet meer past",
+      "competitorsTitle": "Goede tools, *andere* job.",
+      "competitorsLede": "Tommy, Booqable, Avantio en Icnea zijn prima — voor wat ze zijn. Hieronder waar ze breken voor verhuurders die in twee landen werken of een eigen workflow hebben.",
+      "competitors": [
+        {
+          "name": "Tommy",
+          "dna": "Kassa-software die verhuur erbij doet.",
+          "breaks": "Geen meertalige klantportal, geen native NL-boekhoudkoppeling op maat."
+        },
+        {
+          "name": "Booqable",
+          "dna": "Generieke verhuur-SaaS, één template.",
+          "breaks": "Werkt voor 1 type product. Breekt zodra je verschillende soorten objecten of locaties combineert."
+        },
+        {
+          "name": "Avantio",
+          "dna": "Enterprise vakantieverhuur, vanaf 20 units.",
+          "breaks": "€280+/m, Spaans-eerst, geen NL-interface. Te zwaar voor 5-15 panden."
+        },
+        {
+          "name": "Icnea",
+          "dna": "Per-property model voor Spaanse markt.",
+          "breaks": "Eigen merk gaat verloren. Klant ziet Icnea, niet jou. Geen eigen domein-checkout."
+        }
+      ],
+      "competitorsClaim": "Maatwerk waar SaaS ophoudt — vaste prijs €5–8k, 4 weken levering.",
       "quoteText": "Voor we met Webstability werkten, hadden we drie dubbele boekingen per maand. Sinds de livegang in 2024 — letterlijk nul. En ik bespaar minstens een halve dag per week aan administratie.",
       "quoteName": "Marco Jansen",
       "quoteRole": "Eigenaar · Costa Caravans Verhuur (12 caravans · 4 stacaravans)",
       "quoteInitials": "MJ",
-      "pricingEyebrow": "hoe lang & wat kost het",
-      "pricingTitle": "Indicatie per type verhuur.",
-      "pricingLede": "Geen vast prijslijstje — elke verhuurder is anders. Wel een eerlijke indicatie zodat je weet of het bij je budget past.",
+      "pricingEyebrow": "wat kost het, hoe lang duurt het",
+      "pricingTitle": "Drie staffels, één prijs per staffel.",
+      "pricingLede": "Vaste prijs vooraf, vier weken levering, doorlopend onderhoud daarna. Geen offertes, geen meeruren-discussies.",
       "plans": [
         {
-          "id": "starter",
-          "name": "Starter",
-          "desc": "1-5 objecten · standaard kanalen · simpele facturatie",
-          "price": "€499",
-          "period": "setup + €349/m vanaf maand 2 · excl. btw",
+          "id": "klein",
+          "name": "Klein",
+          "desc": "1–5 objecten · één locatie · standaard kanalen",
+          "price": "€5.000",
+          "period": "vaste prijs · 4 weken levering · excl. btw",
           "items": [
-            "Centrale agenda",
+            "Centrale agenda + boekingen",
             "Booking & Airbnb sync",
-            "Facturatie",
-            "Doorlooptijd: 3-4 weken"
+            "Mollie/Stripe checkout + facturatie",
+            "Daarna Studio (€179/m) onderhoud"
           ],
           "cta": "Bespreek mogelijkheden"
         },
         {
-          "id": "pro",
-          "name": "Pro",
-          "desc": "5-25 objecten · multi-channel · contracten & borg",
-          "price": "€999",
-          "period": "setup + €749/m vanaf maand 2 · excl. btw",
+          "id": "mid",
+          "name": "Mid",
+          "desc": "5–15 objecten · NL+ES klantbasis · contracten & borg",
+          "price": "€6.500",
+          "period": "vaste prijs · 4 weken levering · excl. btw",
           "items": [
-            "Alles van Starter",
+            "Alles van Klein",
             "Contractgeneratie & e-handtekening",
-            "Borg via Mollie/Stripe",
-            "Multi-user toegang",
-            "Doorlooptijd: 6-8 weken"
+            "Borg-flow via Mollie/Stripe",
+            "Meertalige klantportal NL+ES",
+            "Daarna Studio (€179/m) onderhoud"
           ],
           "cta": "Vraag offerte aan"
         },
         {
-          "id": "scale",
-          "name": "Scale",
-          "desc": "25+ objecten · meerdere locaties · maatwerk-koppelingen",
-          "price": "€1.999",
-          "period": "setup + €1.299/m vanaf maand 2 · excl. btw",
+          "id": "groot",
+          "name": "Groot",
+          "desc": "15–30 objecten · multi-locatie · boekhoudkoppeling op maat",
+          "price": "€8.000",
+          "period": "vaste prijs · 4 weken levering · excl. btw",
           "items": [
-            "Alles van Pro",
-            "Multi-locatie & multi-currency",
-            "Eigen klantportaal",
-            "Boekhoudkoppeling op maat",
-            "Doorlooptijd: vanaf 10 weken"
+            "Alles van Mid",
+            "Multi-locatie + multi-currency",
+            "Boekhoudkoppeling op maat (Holded/e-Boekhouden)",
+            "Multi-user team-toegang",
+            "Daarna Atelier (€399/m) onderhoud + uitbouw"
           ],
           "cta": "Plan strategiegesprek"
         }
@@ -666,41 +729,98 @@
   "servicesPage": {
     "eyebrow": "diensten",
     "title": "Wat we voor je *bouwen* en *onderhouden*.",
-    "lede": "Vier concrete pakketten. Elk met wat het is, wat het oplost, wat het kost en hoe lang het duurt.",
+    "lede": "Vier concrete pakketten — vaste prijs, vaste scope, en een lopend abonnement zodat je systeem mee blijft groeien.",
+    "heroMetrics": [
+      { "value": "3", "label": "verhuurplatforms productioneel" },
+      { "value": "47", "label": "werkplaatsen op één platform" },
+      { "value": "4 wkn", "label": "vaste prijs, eerste versie" }
+    ],
+    "timeline": {
+      "eyebrow": "hoe een 4-weken build verloopt",
+      "title": "Vier weken, één vaste prijs.",
+      "lede": "Geen offertes, geen meeruren-discussies. Elke woensdag een korte stand-up zodat je live ziet wat er staat.",
+      "steps": [
+        {
+          "week": "week 1",
+          "title": "Kennismaking + scope",
+          "body": "Eén gesprek van 60 min, daarna een schriftelijke scope met één getal. Akkoord = we beginnen."
+        },
+        {
+          "week": "week 2",
+          "title": "Build",
+          "body": "De stack staat al klaar. Je merk, content en koppelingen erop. Eerste live preview eind van de week."
+        },
+        {
+          "week": "week 3",
+          "title": "Review + iteraties",
+          "body": "Jij klikt rond, ik schaaf bij. Drie review-cycles ingebakken — geen extra kosten."
+        },
+        {
+          "week": "week 4",
+          "title": "Livegang",
+          "body": "We zetten je domein om, monitoring aan, eerste maand onderhoud gratis. Klaar."
+        }
+      ]
+    },
     "items": {
-      "platform": {
-        "anchor": "platform",
+      "verhuurplatform": {
+        "anchor": "verhuurplatform",
         "eyebrow": "productlijn 01",
-        "title": "Bedrijfssoftware op maat",
-        "what": "Verhuurplatformen, reparatie-portalen, stallingsbeheer, klantportalen of een eigen admin paneel — vaak gekoppeld aan een publieke site. We hebben drie van zulke systemen al productioneel draaien voor de Spaanse caravan-markt; een nieuwe klant krijgt dezelfde basis als startpunt, op zijn bedrijf afgestemd in 4-6 maanden.",
+        "title": "Verhuurplatform — NL en Spanje",
+        "dnaLine": "Het systeem waar de meeste klanten voor komen. Boekingsplatform, klantportaal en kanaalkoppelingen — vier weken, vaste prijs.",
+        "pricePill": "€5–8k · 4 weken",
         "solvesTitle": "Wat het oplost",
         "solves": [
           "Geen dubbele boekingen meer tussen Booking, Airbnb en je eigen agenda",
-          "Geen orderpapier-chaos in de werkplaats — orders staan op iPads",
-          "Geen vijf losse tools voor verhuur, facturen, klantcommunicatie",
-          "Klanten boeken zelf online, jij ziet alles in één admin"
+          "Eén meertalige klantportal voor NL én ES klanten",
+          "Automatische facturen met BTW/IVA goed per land",
+          "Eigen merk vooraan — geen 'powered by Tommy' of Booqable-look"
         ],
         "includesTitle": "Wat erbij zit",
         "includes": [
           "Publiek boekingsplatform met klantlogin",
-          "Admin met live boekings- of order-overzicht",
-          "Koppelingen met Mollie/Stripe en je boekhouding",
-          "Multi-user toegang voor je team",
+          "Admin met live boekings-overzicht + multi-locatie",
+          "Channel-sync (Airbnb, Booking, Vrbo)",
+          "Mollie/Stripe checkout + automatische facturen",
           "Hosting + monitoring + maandelijks onderhoud"
         ],
-        "packageTitle": "Hoe het werkt qua pakket",
-        "packageBody": "Tijdens de bouw zit je op **Atelier (€399/m)** met **Build Custom (+€899/m)** voor 4-8 maanden. Daarna val je terug op Atelier voor onderhoud en doorontwikkeling.",
-        "exampleTitle": "Voorbeeld",
-        "exampleBody": "Een verhuurplatform van 6 maanden: €399 + €899 = €1.298/m × 6 = **~€7.800 totale build**. Daarna €399/m voor doorontwikkeling, monitoring en support.",
+        "afterBuild": "Doorbouwen via een doorlopend abonnement — bekijk /prijzen voor de tier-vergelijking.",
+        "ctaPrimary": "Plan een kennismaking",
+        "ctaSecondary": "Bekijk live verhuur-pagina →",
+        "ctaSecondaryHref": "/verhuur"
+      },
+      "platform": {
+        "anchor": "platform",
+        "eyebrow": "productlijn 02",
+        "title": "Bedrijfssoftware op maat",
+        "dnaLine": "Reparatie-portalen, stallingsbeheer, klantportalen of een eigen admin paneel. Eerste werkende versie binnen vier weken.",
+        "pricePill": "€5–8k · 4 weken",
+        "solvesTitle": "Wat het oplost",
+        "solves": [
+          "Papier-chaos in de werkplaats — orders staan op iPads",
+          "Vijf losse tools voor verhuur, facturen, klantcommunicatie",
+          "Klanten boeken zelf online, jij ziet alles in één admin",
+          "Boekhoud-koppeling op maat (Holded, e-Boekhouden, Moneybird)"
+        ],
+        "includesTitle": "Wat erbij zit",
+        "includes": [
+          "Publiek portaal met klantlogin",
+          "Admin met live overzicht + multi-user toegang",
+          "Koppelingen met Mollie/Stripe en je boekhouding",
+          "Mobiel-first crew-flow",
+          "Hosting + monitoring + maandelijks onderhoud"
+        ],
+        "afterBuild": "Voor zwaardere uitbouw na livegang: Atelier-tier met Build Custom-extension — bekijk /prijzen.",
         "ctaPrimary": "Plan een kennismaking",
         "ctaSecondary": "Bekijk live platform →",
         "ctaSecondaryHref": "/cases#caravanverhuurspanje"
       },
       "webshop": {
         "anchor": "webshop",
-        "eyebrow": "productlijn 02",
+        "eyebrow": "productlijn 03",
         "title": "Website of webshop",
-        "what": "Een snelle, meertalige marketing-site (1-3 mnd) of een volledige webshop met BTW/IVA en voorraad-koppeling (3-5 mnd). Mollie of Stripe als betalingsproviders, automatische facturatie, Lighthouse 95+ op mobiel.",
+        "dnaLine": "Snelle, meertalige marketing-site of webshop met BTW/IVA en voorraadkoppeling. Lighthouse 95+ op mobiel.",
+        "pricePill": "€1k–€2k build · 2–3 mnd",
         "solvesTitle": "Wat het oplost",
         "solves": [
           "Eén meertalige site die werkt voor zowel NL als ES",
@@ -714,27 +834,24 @@
           "Of een marketing-site met CMS naar keuze",
           "Checkout met Mollie of Stripe",
           "Automatische facturatie (PDF + e-mail)",
-          "Voorraad-koppeling optioneel (Holded, e-Boekhouden)",
-          "Lighthouse 95+ op mobiel"
+          "Voorraad-koppeling optioneel (Holded, e-Boekhouden)"
         ],
-        "packageTitle": "Hoe het werkt qua pakket",
-        "packageBody": "**Marketing-site:** Care (€95/m) + Build Light (+€349/m) voor 2-3 maanden. **Webshop:** Studio (€179/m) + Build Standard (+€499/m) voor 3-5 maanden. Daarna door op de gekozen tier.",
-        "exampleTitle": "Voorbeeld",
-        "exampleBody": "Marketing-site in 3 mnd: ~**€1.050 build** + €95/m onderhoud. Webshop in 3 mnd: ~**€2.000 build** + €179/m onderhoud.",
+        "afterBuild": "Marketing-sites lopen op Care, webshops op Studio — bekijk /prijzen voor de tier-vergelijking.",
         "ctaPrimary": "Plan een kennismaking",
         "ctaSecondary": "Bekijk pricing-detail →",
         "ctaSecondaryHref": "/prijzen"
       },
       "care": {
         "anchor": "care",
-        "eyebrow": "abonnement 01",
-        "title": "Live houden na livegang",
-        "what": "Vanaf dag één na livegang draait je nieuwe site én admin paneel op Care. Hosting, security, backups, monitoring — plus 1 uur per maand voor kleine aanpassingen. Geen project-prijs, geen offerte — één vast bedrag per maand.",
+        "eyebrow": "productlijn 04",
+        "title": "Onderhoud & doorbouwen",
+        "dnaLine": "Studio is de instap voor nieuwe klanten. Hosting, security, backups, monitoring — plus drie uur wijzigingen per maand en lokale SEO.",
+        "pricePill": "Studio €179/m · doorlopend",
         "solvesTitle": "Wat het oplost",
         "solves": [
           "Geen wakker liggen of je site nog up-to-date is",
-          "Wekelijkse security-checks zonder dat jij het hoeft te bewaken",
           "Eén aanspreekpunt voor wijzigingen — niemand kwijt na livegang",
+          "Lokale SEO in NL én ES, met maandelijkse rapportage",
           "Backups die ook echt werken als ze nodig zijn"
         ],
         "includesTitle": "Wat erbij zit",
@@ -742,60 +859,47 @@
           "Premium hosting (NL/EU edge)",
           "SSL & dagelijkse backups",
           "Maandelijkse security updates",
-          "1 uur wijzigingen per maand",
-          "E-mail support binnen 48u",
+          "3 uur wijzigingen per maand",
+          "Lokale SEO + maandrapport",
           "Toegang tot klantportaal"
         ],
-        "packageTitle": "Hoe het werkt qua pakket",
-        "packageBody": "**Care · €95/m** doorlopend. Maandelijks opzegbaar, eerste maand gratis, 15% korting bij jaarbetaling.",
-        "exampleTitle": "Voorbeeld",
-        "exampleBody": "Een nieuwe site + paneel die we voor je bouwen, daarna live houden: €95/m. Of een bestaande site overnemen kan ook — zelfde tier.",
-        "ctaPrimary": "Start eerste maand gratis",
-        "ctaSecondary": "Bekijk Care-details →",
-        "ctaSecondaryHref": "/prijzen"
-      },
-      "growth": {
-        "anchor": "growth",
-        "eyebrow": "abonnement 02",
-        "title": "Doorgroeien & vindbaar maken",
-        "what": "Care plus 3 uur per maand om actief aan je site te werken: SEO in NL en ES, performance-tuning, en doorontwikkeling van je paneel. Plus een maandrapport waarin je ziet wat het oplevert.",
-        "solvesTitle": "Wat het oplost",
-        "solves": [
-          "Lokaal vindbaar in zowel Nederland als Spanje",
-          "Maandelijks bewijs van wat het werk oplevert",
-          "Conversie-tracking ingericht zodat je weet wat werkt",
-          "3 uur per maand om iets nieuws te proberen of bij te schaven"
-        ],
-        "includesTitle": "Wat erbij zit",
-        "includes": [
-          "Alles van Care",
-          "3 uur wijzigingen per maand",
-          "Lokale SEO (NL & ES)",
-          "Maandelijks SEO + performance rapport",
-          "Priority support binnen 4u",
-          "Kwartaal-strategiegesprek"
-        ],
-        "packageTitle": "Hoe het werkt qua pakket",
-        "packageBody": "**Studio · €179/m** doorlopend. Upgraden vanaf Care kan altijd, downgraden vanaf de maand erna.",
-        "exampleTitle": "Voorbeeld",
-        "exampleBody": "Een lokale dienstverlener (hovenier, onderhoudsbedrijf, salon) die hoger wil komen in zoekresultaten: €179/m, eerste maand gratis.",
-        "ctaPrimary": "Start eerste maand gratis",
-        "ctaSecondary": "Bekijk Studio-details →",
+        "afterBuild": "Care (€95/m) blijft draaien voor bestaande klanten als anker — niet meer als aanbod voor nieuwe instroom.",
+        "ctaPrimary": "Bekijk Studio-details",
+        "ctaSecondary": "Tier-vergelijking →",
         "ctaSecondaryHref": "/prijzen"
       }
+    },
+    "notFor": {
+      "eyebrow": "eerlijk maken",
+      "title": "Wanneer ben je *beter af* elders?",
+      "lede": "We werken niet voor iedereen. Drie scenario's waar een andere route slimmer is — geen tijd verspild aan een gesprek waar het niet past.",
+      "scenarios": [
+        {
+          "title": "Je wil eerst een MVP testen",
+          "body": "Nog geen klanten, geen omzet — een freelance medior of een no-code tool (Softr, Bubble) is goedkoper tot je weet of het werkt. Kom terug zodra de pijn echt is."
+        },
+        {
+          "title": "Een SaaS dekt 80% van je werk",
+          "body": "Tommy, Booqable of Avantio is ~€50–€280/m en vlot live. Als je weinig workarounds hebt en geen NL+ES boekhoudkoppeling op maat nodig, kies daarvoor."
+        },
+        {
+          "title": "Je hebt een €30k+ enterprise-build",
+          "body": "Meer dan één developer parallel, integraties met grote ERP's, of dedicated support-SLA's? Een bureau (Stuurlui, Searchlab, Invenix) heeft de schaal die solo niet biedt."
+        }
+      ]
     },
     "footerCtaTitle": "Hoe ziet zo'n project eruit in praktijk?",
     "footerCtaBody": "Klantverhalen en eigen platforms — wat we al draaiend hebben.",
     "footerCtaLabel": "Bekijk klantverhalen →"
   },
   "casesPage": {
-    "eyebrow": "cases & klantverhalen",
+    "eyebrow": "3 verhuurplatforms · 47 werkplaatsen · NL+ES",
     "title": "Wat we *al draaiend* hebben.",
     "lede": "Eigen platforms, klantcases en sites in productie. Geen mock-ups, geen pitch-decks — werk dat dagelijks gebruikt wordt.",
     "productLines": {
       "eyebrow": "platforms die we zelf draaien",
       "title": "Productlijnen",
-      "lede": "Drie platforms die we zelf in de lucht houden voor de Spaanse markt. Andere bedrijven krijgen dezelfde basis als startpunt en passen we in 4-6 maanden aan op hun bedrijf.",
+      "lede": "Drie platforms die we zelf in de lucht houden voor de NL+ES markt. Andere bedrijven krijgen dezelfde basis als startpunt — eerste werkende versie in 4 weken voor €5–8k vaste prijs, daarna doorbouwen via Atelier + Build Custom.",
       "items": [
         {
           "anchor": "caravanverhuurspanje",
@@ -898,7 +1002,7 @@
       "cta": "open een live demo"
     },
     "care": {
-      "intro": "Drie tiers — voor elke fase na livegang. Tussendoor upgraden of stoppen mag altijd.",
+      "intro": "Drie tiers — voor elke fase na livegang. Studio is de instap voor nieuwe klanten; Care draait door voor bestaande.",
       "items": [
         {
           "id": "care",
@@ -970,7 +1074,9 @@
       "subscribe": "Abonneer",
       "talk": "Plan een kennismaking",
       "manageBilling": "Beheer abonnement",
-      "currentPlan": "Huidig plan"
+      "currentPlan": "Huidig plan",
+      "legacyBadge": "alleen bestaande klanten",
+      "legacyCta": "Op aanvraag"
     },
     "reassuranceTitle": "Wat altijd geldt",
     "reassurance": [
@@ -1021,6 +1127,7 @@
         "interpretationNone": "Kies een Build extension hierboven om de bouwperiode + totaalbedrag te zien.",
         "timelineDuring": "tijdens build ({months} mnd)",
         "timelineAfter": "daarna doorlopend",
+        "fixedPriceClaim": "Vaste prijs · 4 weken levering · €5–8k",
         "interpretationLabels": {
           "none": "—",
           "light": "marketing-site of landingpage",
@@ -1160,6 +1267,17 @@
       "healthy": "Alle systemen draaien zoals het hoort.",
       "issue": "Er is een verstoring. Laurens werkt eraan.",
       "viewStatus": "Status pagina"
+    },
+    "sinceLastVisit": {
+      "eyebrow": "sinds je laatste bezoek",
+      "ticketClosedSingle": "1 ticket afgehandeld",
+      "ticketClosedPlural": "{n} tickets afgehandeld",
+      "invoiceNewSingle": "1 nieuwe factuur",
+      "invoiceNewPlural": "{n} nieuwe facturen",
+      "livegangSingle": "1 project live gegaan",
+      "livegangPlural": "{n} projecten live gegaan",
+      "monitoringStable": "monitoring stabiel — geen incidenten",
+      "incidentsAllResolved": "alle {n} incidenten opgelost"
     },
     "dashboard": {
       "recentProjects": "Recente projecten",
@@ -1306,9 +1424,38 @@
     },
     "seo": {
       "title": "SEO",
+      "intro": "Hoe goed je site gevonden wordt — kliks, vertoningen, CTR en de tijd die ik elke maand aan SEO besteed.",
       "comingSoon": "Search Console-koppeling komt eraan.",
       "body": "Zodra ik de Google OAuth-credentials heb ingesteld, vind je hier kliks, vertoningen, CTR en de top-zoekopdrachten van je site — direct uit Search Console.",
-      "configure": "Google OAuth-credentials nodig om te activeren."
+      "configure": "Google OAuth-credentials nodig om te activeren.",
+      "upsell": {
+        "eyebrow": "studio-feature",
+        "title": "SEO zit in Studio.",
+        "body": "Op Care houden we je site live. Op Studio (€179/m) werk ik elke maand actief aan vindbaarheid: lokale SEO in NL en ES, performance-tuning, conversie-tracking, en een maandelijks rapport zodat je ziet wat het oplevert.",
+        "bullets": [
+          "3 uur wijzigingen per maand",
+          "Lokale SEO voor NL én ES",
+          "Maandelijks SEO + performance rapport",
+          "Conversie-tracking ingericht",
+          "Kwartaal-strategiegesprek"
+        ],
+        "cta": "Bekijk Studio-tier"
+      },
+      "overview": {
+        "metricsTitle": "Laatste 30 dagen",
+        "metricsEmpty": "Search Console nog niet gekoppeld.",
+        "metrics": {
+          "avgRanking": "Gem. positie",
+          "impressions": "Vertoningen",
+          "clicks": "Kliks",
+          "ctr": "CTR"
+        },
+        "rankingsTitle": "Lokale rankings",
+        "rankingsEmpty": "Voeg keywords toe via /portal/settings.",
+        "hoursTitle": "Wat ik deze maand deed aan SEO",
+        "hoursEmpty": "Geen SEO-uren gelogd in de laatste 30 dagen.",
+        "connectGsc": "Koppel je Search Console om dit te zien"
+      }
     },
     "files": {
       "title": "Bestanden",
@@ -1454,6 +1601,22 @@
       "ctaClicks": "CTA-klikken",
       "conversion": "Conversie"
     },
+    "demoManagement": {
+      "eyebrow": "demo-omgeving",
+      "title": "Costa Caravans Verhuur draait",
+      "body": "Ververs handmatig wanneer je net seed-data hebt gewijzigd of een live afspraak hebt waar de demo even fris moet zijn.",
+      "metric": {
+        "lastRun": "Laatste cron-flip",
+        "entered": "Demo-bezoeken (7d)",
+        "ctaClicks": "CTA-klikken (7d)"
+      },
+      "refreshAction": "Forceer refresh",
+      "refreshing": "Bezig…",
+      "refreshed": "Demo-data ververst.",
+      "refreshError": "Refresh mislukt — check de cron-handler.",
+      "notSeeded": "Geen demo-org gevonden",
+      "notSeededHint": "run `pnpm db:seed:demo`"
+    },
     "statusStrip": {
       "title": "Klanten live",
       "legendUp": "draait",
@@ -1571,7 +1734,40 @@
       "members": "{count, plural, one {# lid} other {# leden}}",
       "projects": "{count, plural, one {# project} other {# projecten}}",
       "openTickets": "{count, plural, =0 {} one {# open ticket} other {# open tickets}}",
-      "newOrg": "Nieuwe klant"
+      "newOrg": "Nieuwe klant",
+      "bulk": {
+        "selectionLabel": "selecteer organisatie",
+        "selected": "{n} geselecteerd",
+        "mailAction": "Mail",
+        "clear": "deselecteren",
+        "modal": {
+          "title": "Bulk-mail naar geselecteerde klanten",
+          "body": "Je staat op het punt {n} klanten een mail te sturen. Kies één template — geen vrije tekst, dat houdt het kort en consistent.",
+          "templateLabel": "Template",
+          "templates": {
+            "short_update": {
+              "name": "Korte update",
+              "description": "'Even bijgepraat' — één-paragraaf stand-van-zaken."
+            },
+            "invoice_reminder": {
+              "name": "Factuur-herinnering",
+              "description": "Vriendelijke herinnering met link naar de openstaande factuur."
+            },
+            "quarterly_report": {
+              "name": "Kwartaal-rapport klaar",
+              "description": "Notificatie dat het kwartaal-rapport in het portaal staat."
+            }
+          },
+          "confirmHint": "{n} mensen ontvangen deze mail. Eén audit-log entry per ontvanger.",
+          "cancel": "Annuleren",
+          "confirm": "Versturen",
+          "sending": "Versturen…"
+        },
+        "toast": {
+          "success": "Bulk-mail verstuurd.",
+          "error": "Versturen mislukt — geen mails gestuurd."
+        }
+      }
     },
     "newOrg": {
       "title": "Nieuwe klant aanmaken",
@@ -1655,6 +1851,26 @@
         "filterAll": "alles",
         "filterCategory": "Categorie",
         "filterPriority": "Prio"
+      },
+      "inbox": {
+        "viewKanban": "kanban",
+        "viewInbox": "inbox",
+        "filterAll": "alles",
+        "searchPlaceholder": "Zoek op subject, klant of e-mail…",
+        "emptyList": "Geen tickets in deze view.",
+        "selectPrompt": "Selecteer een ticket om de details te zien.",
+        "shortcutHint": "? voor sneltoetsen",
+        "shortcutsTitle": "Sneltoetsen",
+        "resolved": "Opgelost",
+        "reopened": "Heropend",
+        "shortcuts": [
+          { "keys": "j / k", "label": "Volgende / vorige ticket" },
+          { "keys": "e", "label": "Cycle status (open → in behandeling → gesloten)" },
+          { "keys": "c", "label": "Sluit ticket" },
+          { "keys": "/", "label": "Focus zoekveld" },
+          { "keys": "?", "label": "Toon / verberg sneltoetsen" },
+          { "keys": "Esc", "label": "Sluit overlay" }
+        ]
       }
     },
     "forbidden": "Geen toegang. Alleen Webstability staff.",

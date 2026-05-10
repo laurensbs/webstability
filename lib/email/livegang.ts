@@ -32,6 +32,8 @@ const COPY: Record<
     signoff: string;
     senderName: string;
     senderRole: string;
+    referralEyebrow: string;
+    referralBody: string;
   }
 > = {
   nl: {
@@ -46,6 +48,9 @@ const COPY: Record<
     signoff: "Veel succes,",
     senderName: "Laurens Bos",
     senderRole: "Founder · Webstability",
+    referralEyebrow: "// klein verzoek",
+    referralBody:
+      "Ken je iemand met hetzelfde probleem als waar wij voor jou aan begonnen? Als je 'm doorverwijst en die persoon klant wordt, krijgen jullie allebei €250 korting op Care voor zes maanden. Geen formulier — antwoord op deze mail is genoeg.",
   },
   es: {
     subject: (p) => `${p} está en vivo`,
@@ -59,6 +64,9 @@ const COPY: Record<
     signoff: "¡Mucho éxito,",
     senderName: "Laurens Bos",
     senderRole: "Founder · Webstability",
+    referralEyebrow: "// pequeño favor",
+    referralBody:
+      "¿Conoces a alguien con el mismo problema con el que empezamos? Si lo recomiendas y se hace cliente, ambos recibís 250 € de descuento sobre Care durante seis meses. Sin formulario — responder a este correo es suficiente.",
   },
 };
 
@@ -192,6 +200,23 @@ export async function sendLivegangMail({
             </tr>
 
             <tr>
+              <td style="padding:0 32px 24px 32px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${COLORS.bgWarm};border:1px solid ${COLORS.border};border-radius:10px;">
+                  <tr>
+                    <td style="padding:18px 20px;">
+                      <p style="margin:0 0 6px 0;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:${COLORS.muted};">
+                        ${escapeHtml(t.referralEyebrow)}
+                      </p>
+                      <p style="margin:0;font-size:13px;line-height:1.55;color:${COLORS.text};">
+                        ${escapeHtml(t.referralBody)}
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
               <td style="padding:0 32px 28px 32px;">
                 <p style="margin:0 0 4px 0;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:18px;color:${COLORS.text};">
                   ${escapeHtml(t.signoff)}
@@ -218,6 +243,9 @@ export async function sendLivegangMail({
     "",
     projectUrl ? `${t.visitButton}: ${projectUrl}` : "",
     `${t.portalButton}: ${portalUrl}`,
+    "",
+    "—",
+    t.referralBody,
     "",
     t.signoff,
     t.senderName,

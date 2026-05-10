@@ -28,10 +28,10 @@ export type MegaMenuStrings = {
   servicesTitle: string;
   servicesFooter: string;
   items: {
+    verhuurplatform: ServiceItem;
     platform: ServiceItem;
     webshop: ServiceItem;
     care: ServiceItem;
-    growth: ServiceItem;
   };
   casesEyebrow: string;
   casesTitle: string;
@@ -199,10 +199,10 @@ function Trigger({
 
 function ServicesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSelect: () => void }) {
   const items = [
+    { key: "verhuurplatform" as const, icon: TrendingUp, href: "/verhuur" },
     { key: "platform" as const, icon: Layers, href: "/diensten#platform" },
     { key: "webshop" as const, icon: ShoppingBag, href: "/diensten#webshop" },
     { key: "care" as const, icon: ShieldCheck, href: "/diensten#care" },
-    { key: "growth" as const, icon: TrendingUp, href: "/diensten#growth" },
   ];
 
   return (

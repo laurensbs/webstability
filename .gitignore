@@ -43,3 +43,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# lokale werkbestanden / prompt-drafts
+TRANSFORMATIE_PROMPT*.md

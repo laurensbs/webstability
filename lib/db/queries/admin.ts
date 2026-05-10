@@ -12,6 +12,7 @@ import {
   discounts,
   auditLog,
   demoEvents,
+  incidents,
 } from "@/lib/db/schema";
 
 export async function listAllOrgs() {
@@ -415,6 +416,55 @@ export async function getStudioStatusStrip() {
     ...o,
     status: orgStatus.get(o.id) ?? ("unknown" as Status),
   }));
+}
+
+/**
+ * Snapshot van de demo-omgeving: laatste cron-flip (proxy via meest
+ * recente incident-mutatie op de demo-org), aantal demo-logins/CTA-
+ * clicks deze week. Gebruikt door DemoManagementCard op /admin.
+ */
+export async function getDemoSnapshot() {
+  const demoOrg = await db.query.organizations.findFirst({
+    where: eq(organizations.isDemo, true),
+    columns: { id: true },
+  });
+
+  // Laatste cron-flip: meest recente incident-mutatie op een demo-org-
+  // project. Cron flipt incidents elke 6h — het meest recente
+  // resolvedAt (of startedAt als nog open) is een goede proxy voor
+  // "wanneer liep de cron voor het laatst".
+  let lastRunAt: Date | null = null;
+  if (demoOrg) {
+    const recent = await db
+      .select({
+        startedAt: incidents.startedAt,
+        resolvedAt: incidents.resolvedAt,
+      })
+      .from(incidents)
+      .innerJoin(projects, eq(projects.id, incidents.projectId))
+      .where(eq(projects.organizationId, demoOrg.id))
+      .orderBy(desc(incidents.startedAt))
+      .limit(1);
+    const r = recent[0];
+    if (r) lastRunAt = r.resolvedAt ?? r.startedAt;
+  }
+
+  // Demo-login + CTA-events deze week.
+  const cutoff = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+  const eventRows = await db
+    .select({ kind: demoEvents.kind, n: count() })
+    .from(demoEvents)
+    .where(gte(demoEvents.createdAt, cutoff))
+    .groupBy(demoEvents.kind);
+  const counts: Record<string, number> = {};
+  for (const r of eventRows) counts[r.kind] = Number(r.n);
+
+  return {
+    hasDemoOrg: Boolean(demoOrg),
+    lastRunAt,
+    weeklyEntered: counts.entered ?? 0,
+    weeklyCtaClicks: counts.cta_clicked ?? 0,
+  };
 }
 
 /**

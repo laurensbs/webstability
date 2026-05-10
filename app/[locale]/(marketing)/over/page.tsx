@@ -111,6 +111,44 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         </div>
       </section>
 
+      {/* NOW BUILDING — verhuur-credentials zichtbaar maken. Strategie:
+          MKB-prospects + verhuur-prospects landen allebei op /over;
+          deze drie regels laten ze zien wat de huidige realiteit is. */}
+      <section className="border-t-2 border-(--color-wine)/40 px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-2xl space-y-3">
+            <Eyebrow>{t("nowBuilding.eyebrow")}</Eyebrow>
+            <AnimatedHeading as="h2" className="text-3xl md:text-5xl">
+              {t("nowBuilding.title")}
+            </AnimatedHeading>
+            <p className="max-w-[56ch] text-[17px] leading-[1.65] text-(--color-muted)">
+              {t("nowBuilding.lede")}
+            </p>
+          </div>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {(
+              tRaw.raw("about.nowBuilding.items") as Array<{
+                metric: string;
+                label: string;
+                body: string;
+              }>
+            ).map((it, i) => (
+              <RevealOnScroll key={it.label} delay={i * 0.06}>
+                <article className="h-full rounded-[18px] border border-(--color-border) bg-(--color-surface) p-7 transition-shadow duration-300 hover:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.12)]">
+                  <p className="font-serif text-[40px] leading-none text-(--color-wine)">
+                    {it.metric}
+                  </p>
+                  <p className="mt-3 font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
+                    {it.label}
+                  </p>
+                  <p className="mt-3 text-[14px] leading-[1.6] text-(--color-muted)">{it.body}</p>
+                </article>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* TIMELINE */}
       <section className="px-6 py-24">
         <div className="mx-auto max-w-3xl">

@@ -5,12 +5,14 @@ import NumberFlow from "@number-flow/react";
 import { Sparkles, Clock, Check } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
-
-type TierId = "care" | "studio" | "atelier";
-type BuildId = "none" | "light" | "standard" | "custom";
-
-const TIER_PRICES: Record<TierId, number> = { care: 95, studio: 179, atelier: 399 };
-const BUILD_PRICES: Record<BuildId, number> = { none: 0, light: 349, standard: 499, custom: 899 };
+import {
+  TIER_PRICES,
+  BUILD_PRICES,
+  ENTRY_TIER,
+  isLegacyTier,
+  type TierId,
+  type BuildId,
+} from "@/lib/pricing";
 
 export type BuildCalculatorStrings = {
   tierLabel: string;
@@ -39,6 +41,9 @@ export type BuildCalculatorStrings = {
   timelineAfter: string;
   buildOptions: { id: BuildId; name: string }[];
   tierOptions: { id: TierId; name: string }[];
+  /** Korte intro-claim boven de calculator: "vaste prijs · 4 weken
+   * levering · €5–8k". Centraal verhaal van de build-fee. */
+  fixedPriceClaim: string;
 };
 
 export type AuthMode = {
@@ -63,7 +68,7 @@ export function BuildCalculator({
   strings: BuildCalculatorStrings;
   authMode?: AuthMode;
 }) {
-  const [tier, setTier] = React.useState<TierId>("studio");
+  const [tier, setTier] = React.useState<TierId>(ENTRY_TIER);
   const [build, setBuild] = React.useState<BuildId>("standard");
   const [months, setMonths] = React.useState(4);
 
@@ -75,6 +80,12 @@ export function BuildCalculator({
 
   return (
     <div className="rounded-[28px] border border-(--color-border) bg-(--color-surface) p-8 md:p-10">
+      {/* Build-claim — vaste prijs, 4 weken levering. Strategie-keuze:
+          niet "AI-versneld" verkopen maar voorspelbaarheid. */}
+      <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-(--color-wine)/20 bg-(--color-wine)/5 px-3 py-1 font-mono text-[11px] tracking-widest text-(--color-wine) uppercase">
+        <Clock className="h-3 w-3" strokeWidth={2.2} aria-hidden />
+        {strings.fixedPriceClaim}
+      </p>
       <div className="grid gap-6 md:grid-cols-3">
         <Field label={strings.tierLabel}>
           <select
@@ -82,11 +93,13 @@ export function BuildCalculator({
             onChange={(e) => setTier(e.target.value as TierId)}
             className="block min-h-11 w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-[15px]"
           >
-            {strings.tierOptions.map((o) => (
-              <option key={o.id} value={o.id}>
-                {o.name} · €{TIER_PRICES[o.id]}/m
-              </option>
-            ))}
+            {strings.tierOptions
+              .filter((o) => !isLegacyTier(o.id))
+              .map((o) => (
+                <option key={o.id} value={o.id}>
+                  {o.name} · €{TIER_PRICES[o.id]}/m
+                </option>
+              ))}
           </select>
         </Field>
 

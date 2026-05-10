@@ -39,6 +39,8 @@ export async function PricingTeaser() {
             perMonth: tCare("perMonth"),
             perMonthBilledAnnually: tCare("perMonthBilledAnnually"),
             ctaLabel: tCare("talk"),
+            legacyBadgeLabel: tCare("legacyBadge"),
+            legacyCtaLabel: tCare("legacyCta"),
           }}
         />
 

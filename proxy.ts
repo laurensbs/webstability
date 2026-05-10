@@ -66,6 +66,13 @@ export default function proxy(req: NextRequest) {
     return intlProxy(rewriteReq);
   }
 
+  // /strategie is een privé top-level route buiten next-intl. Geen locale-
+  // prefix, geen alternates, geen sitemap. Handler in app/strategie/ regelt
+  // de wachtwoord-gate zelf.
+  if (url.pathname === "/strategie" || url.pathname.startsWith("/strategie/")) {
+    return NextResponse.next();
+  }
+
   // Apex / www. Block /admin paths so the staff portal has one canonical home.
   if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) {
     const target = new URL(`https://admin.webstability.eu${url.pathname}${url.search}`);

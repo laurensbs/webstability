@@ -8,6 +8,7 @@ import {
   Layers,
   ShieldCheck,
   TrendingUp,
+  Caravan,
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
@@ -17,7 +18,8 @@ const ICONS: Record<string, LucideIcon> = {
   admin: Database,
   websites: Globe,
   webshops: BarChart3,
-  // new keys for the 4-solution grid
+  // 4-solution grid
+  verhuurplatform: Caravan,
   platform: Layers,
   webshop: BarChart3,
   care: ShieldCheck,

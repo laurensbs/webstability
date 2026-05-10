@@ -84,6 +84,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               perMonth: tCare("perMonth"),
               perMonthBilledAnnually: tCare("perMonthBilledAnnually"),
               ctaLabel: tCare("talk"),
+              legacyBadgeLabel: tCare("legacyBadge"),
+              legacyCtaLabel: tCare("legacyCta"),
             }}
             authMode={{
               isOwner,
@@ -136,6 +138,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               },
               timelineDuring: tCalc("timelineDuring"),
               timelineAfter: tCalc("timelineAfter"),
+              fixedPriceClaim: tCalc("fixedPriceClaim"),
               tierOptions: [
                 { id: "care", name: tTierNames("care") },
                 { id: "studio", name: tTierNames("studio") },

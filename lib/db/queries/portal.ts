@@ -1,4 +1,4 @@
-import { eq, and, asc, desc, count, gte, lt, sum, gt, isNull } from "drizzle-orm";
+import { eq, and, asc, desc, count, gte, lt, sum, gt, isNull, or, ilike } from "drizzle-orm";
 import { db } from "@/lib/db";
 import {
   users,
@@ -167,6 +167,108 @@ export async function getOrgHoursThisMonth(orgId: string) {
  * Projecten van een org die binnen `days` dagen geleden live zijn
  * gegaan. Voor de feestelijke banner op portal-dashboard.
  */
+/**
+ * SEO-uren van afgelopen 30d voor een org. Filter op description LIKE
+ * %seo% / %search% / %ranking% — geen `category` kolom op hours_logged,
+ * dus we leunen op tekst-match. Werkt prima omdat staff in praktijk
+ * "SEO meta-titles ES versie" o.i.d. logt.
+ */
+export async function getOrgSeoHours(orgId: string, days = 30) {
+  const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  return db
+    .select({
+      workedOn: hoursLogged.workedOn,
+      minutes: hoursLogged.minutes,
+      description: hoursLogged.description,
+    })
+    .from(hoursLogged)
+    .where(
+      and(
+        eq(hoursLogged.organizationId, orgId),
+        gte(hoursLogged.workedOn, since),
+        or(
+          ilike(hoursLogged.description, "%seo%"),
+          ilike(hoursLogged.description, "%search%"),
+          ilike(hoursLogged.description, "%ranking%"),
+        ),
+      ),
+    )
+    .orderBy(desc(hoursLogged.workedOn))
+    .limit(15);
+}
+
+/**
+ * "Wat is er veranderd sinds je laatste login" — strikte aggregaten,
+ * geen identifiers. Wordt op /portal/dashboard getoond als korte strip
+ * boven de StatusBanner. Window = max(1d, lastLoginAt..now). Onder 24h
+ * is de strip leeg om herhaling te vermijden — caller filtert daarop.
+ */
+export async function getActivitySince(orgId: string, since: Date) {
+  // Tickets gesloten sinds `since`
+  const closedTickets = await db
+    .select({ n: count() })
+    .from(tickets)
+    .where(
+      and(
+        eq(tickets.organizationId, orgId),
+        eq(tickets.status, "closed"),
+        gte(tickets.closedAt, since),
+      ),
+    );
+
+  // Nieuwe invoices (status=sent of paid) sinds `since`
+  const newInvoices = await db
+    .select({ n: count() })
+    .from(invoices)
+    .where(and(eq(invoices.organizationId, orgId), gte(invoices.createdAt, since)));
+
+  // Recent live-gegane projecten in deze window (verschillend van de
+  // 7-dagen ReferralCard; hier is de window flexibel per laatste login)
+  const livegangs = await db
+    .select({ n: count() })
+    .from(projects)
+    .where(and(eq(projects.organizationId, orgId), gte(projects.liveAt, since)));
+
+  // Incidents in deze window (open of resolved) — voor "monitoring
+  // stabiel"-message
+  const incidentRows = await db
+    .select({ id: incidents.id, resolvedAt: incidents.resolvedAt })
+    .from(incidents)
+    .innerJoin(projects, eq(projects.id, incidents.projectId))
+    .where(and(eq(projects.organizationId, orgId), gte(incidents.startedAt, since)));
+
+  return {
+    ticketsClosed: Number(closedTickets[0]?.n ?? 0),
+    invoicesNew: Number(newInvoices[0]?.n ?? 0),
+    livegangs: Number(livegangs[0]?.n ?? 0),
+    incidents: incidentRows.length,
+    incidentsResolved: incidentRows.filter((r) => r.resolvedAt !== null).length,
+  };
+}
+
+/**
+ * Project van de org waarvan de livegang ≥ 90 dagen geleden is. Gebruikt
+ * door de ReferralCard op /portal/dashboard — strategie: pas referral
+ * vragen ná 90 dagen, niet eerder. Geeft het oudste live-project terug
+ * (één is genoeg om de card te tonen).
+ */
+export async function getReferralEligibleProject(orgId: string, daysBefore = 90) {
+  const cutoff = new Date(Date.now() - daysBefore * 24 * 60 * 60 * 1000);
+  const rows = await db
+    .select({
+      id: projects.id,
+      name: projects.name,
+      liveAt: projects.liveAt,
+    })
+    .from(projects)
+    .where(and(eq(projects.organizationId, orgId), lt(projects.liveAt, cutoff)))
+    .orderBy(asc(projects.liveAt))
+    .limit(1);
+  const row = rows[0];
+  if (!row || !row.liveAt) return null;
+  return { id: row.id, name: row.name, liveAt: row.liveAt as Date };
+}
+
 export async function getRecentLivegangs(orgId: string, days = 7) {
   const cutoff = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
   const rows = await db

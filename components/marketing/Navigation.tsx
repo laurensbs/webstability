@@ -15,7 +15,11 @@ export async function Navigation({ locale }: { locale: string }) {
   const menuStrings = tRaw.raw("nav.menu") as MegaMenuStrings;
 
   // Diensten + Cases via NavMegaMenu, de rest via simpele NavLinks.
+  // /verhuur is de scherpe deur voor het primaire segment — directe
+  // top-level link, geen panel (Linear-patroon: speciale segmenten zijn
+  // directe links). Komt na de mega-menu's, vóór prijzen.
   const simpleLinks = [
+    { href: "/verhuur", label: t("verhuur") },
     { href: "/prijzen", label: t("pricing") },
     { href: "/over", label: t("about") },
     { href: "/contact", label: t("contact") },
@@ -25,6 +29,7 @@ export async function Navigation({ locale }: { locale: string }) {
   const allMobileLinks = [
     { href: "/diensten", label: t("services") },
     { href: "/cases", label: t("cases") },
+    { href: "/verhuur", label: t("verhuur") },
     { href: "/prijzen", label: t("pricing") },
     { href: "/over", label: t("about") },
     { href: "/contact", label: t("contact") },

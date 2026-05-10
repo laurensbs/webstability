@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { MapPin } from "lucide-react";
 import { routing } from "@/i18n/routing";
 import { CalEmbed } from "@/components/marketing/CalEmbed";
+import { ContactIntakeSelector } from "@/components/marketing/ContactIntakeSelector";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { MarkupText } from "@/components/animate/MarkupText";
 
@@ -81,12 +82,22 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             </ol>
           </RevealOnScroll>
 
-          {/* Cal embed */}
-          <RevealOnScroll delay={0.15}>
+          {/* Cal embed met lichte intake-selector erboven */}
+          <RevealOnScroll delay={0.15} className="space-y-4">
+            <ContactIntakeSelector
+              strings={{
+                title: t("intake.title"),
+                options: {
+                  verhuur: t("intake.options.verhuur"),
+                  reparatie: t("intake.options.reparatie"),
+                  other: t("intake.options.other"),
+                },
+              }}
+            />
             <div className="overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)">
               <CalEmbed locale={locale} />
             </div>
-            <p className="mt-4 text-center font-mono text-xs tracking-widest text-(--color-muted) uppercase">
+            <p className="text-center font-mono text-xs tracking-widest text-(--color-muted) uppercase">
               {t("calFallback")}
             </p>
           </RevealOnScroll>

@@ -14,16 +14,23 @@ import { MarkupText } from "@/components/animate/MarkupText";
  */
 
 type SolutionItem = {
-  key: "platform" | "webshop" | "care" | "growth";
-  pricePill: string;
+  key: "verhuurplatform" | "platform" | "webshop" | "care";
+  pricePillKey: "verhuurplatform" | "platform" | "webshop" | "care";
   ctaHref: string;
 };
 
+// Verhuurplatform staat eerst — het is de wig (NL+ES verhuur is het
+// primaire segment). Care komt als laatste tile met "alleen bestaande
+// klanten"-framing; Studio-instap zit in /prijzen waar de calculator is.
 const SOLUTIONS: SolutionItem[] = [
-  { key: "platform", pricePill: "vanaf €7.800 · 4-6 mnd build", ctaHref: "/diensten#platform" },
-  { key: "webshop", pricePill: "vanaf €600 · 2-3 mnd build", ctaHref: "/diensten#webshop" },
-  { key: "care", pricePill: "€95/m · doorlopend", ctaHref: "/prijzen" },
-  { key: "growth", pricePill: "€179/m · doorlopend", ctaHref: "/prijzen" },
+  {
+    key: "verhuurplatform",
+    pricePillKey: "verhuurplatform",
+    ctaHref: "/verhuur",
+  },
+  { key: "platform", pricePillKey: "platform", ctaHref: "/diensten#platform" },
+  { key: "webshop", pricePillKey: "webshop", ctaHref: "/diensten#webshop" },
+  { key: "care", pricePillKey: "care", ctaHref: "/prijzen" },
 ];
 
 export async function Services() {
@@ -51,7 +58,7 @@ export async function Services() {
               iconKey={s.key}
               title={t(`items.${s.key}.title`)}
               body={t(`items.${s.key}.body`)}
-              pricePill={s.pricePill}
+              pricePill={t(`items.${s.key}.pricePill`)}
               ctaHref={s.ctaHref}
               ctaLabel={t(`items.${s.key}.cta`)}
             />

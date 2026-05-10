@@ -8,6 +8,7 @@ import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { TierPreview } from "@/components/marketing/TierPreview";
 import { MeshBackground } from "@/components/marketing/MeshBackground";
+import { isLegacyTier } from "@/lib/pricing";
 
 type Cycle = "monthly" | "annual";
 
@@ -40,6 +41,11 @@ type Strings = {
   perMonth: string;
   perMonthBilledAnnually: string;
   ctaLabel: string;
+  /** Badge die verschijnt op legacy-tiers (Care): "alleen voor
+   * bestaande klanten". Strategie-keuze: anker laten staan, geen aanbod. */
+  legacyBadgeLabel: string;
+  /** CTA-tekst op legacy-tier in plaats van "Abonneer". */
+  legacyCtaLabel: string;
 };
 
 /**
@@ -102,14 +108,14 @@ export function PricingCardsWithToggle({
       <div className="grid items-stretch gap-5 md:grid-cols-3">
         {items.map((item) => {
           const featured = item.id === "studio";
+          const legacy = isLegacyTier(item.id);
           const value = cycle === "annual" ? item.annual : item.monthly;
           const period = cycle === "annual" ? strings.perMonthBilledAnnually : strings.perMonth;
-          const sizeClass =
-            item.id === "care"
-              ? "lg:scale-[0.97]"
-              : item.id === "atelier"
-                ? "lg:ring-1 lg:ring-(--color-text)/10"
-                : "";
+          const sizeClass = legacy
+            ? "lg:scale-[0.95] opacity-75 saturate-[0.6]"
+            : item.id === "atelier"
+              ? "lg:ring-1 lg:ring-(--color-text)/10"
+              : "";
           return (
             <article
               key={item.id}
@@ -183,6 +189,11 @@ export function PricingCardsWithToggle({
                   {strings.featuredLabel}
                 </span>
               ) : null}
+              {legacy ? (
+                <span className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-bg-warm) px-3 py-1 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                  {strings.legacyBadgeLabel}
+                </span>
+              ) : null}
               <h3 className={`relative mb-1.5 text-[24px] ${featured ? "text-(--color-bg)" : ""}`}>
                 {item.name}
               </h3>
@@ -252,7 +263,11 @@ export function PricingCardsWithToggle({
               <div className="relative mb-6">
                 <TierPreview id={item.id} featured={featured} />
               </div>
-              {authMode ? (
+              {legacy ? (
+                <Button asChild variant="outline" className="relative w-full justify-center">
+                  <Link href="/contact">{strings.legacyCtaLabel}</Link>
+                </Button>
+              ) : authMode ? (
                 authMode.isOwner ? (
                   authMode.currentPlan === item.id ? (
                     <span

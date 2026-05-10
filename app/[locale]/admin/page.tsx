@@ -14,7 +14,10 @@ import {
   getCrossOrgHoursThisMonth,
   getStudioStatusStrip,
   getDemoFunnelStats,
+  getDemoSnapshot,
 } from "@/lib/db/queries/admin";
+import { triggerDemoRefresh } from "@/app/actions/admin-bulk";
+import { DemoManagementCard } from "@/components/admin/DemoManagementCard";
 import { StatCard } from "@/components/portal/StatCard";
 import { AdminActivityFeed } from "@/components/admin/AdminActivityFeed";
 import { FlashCounter } from "@/components/animate/FlashCounter";
@@ -32,15 +35,18 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
   const tOnboarding = await getTranslations("admin.onboarding");
   const tStrip = await getTranslations("admin.statusStrip");
   const tTour = await getTranslations("demo.tour.admin");
-  const [stats, events, revenue, crossOrgMinutes, statusStrip, demoFunnel] = await Promise.all([
-    getStudioStats(),
-    getRecentAdminActivity(8),
-    getRevenueStats(),
-    getCrossOrgHoursThisMonth(),
-    getStudioStatusStrip(),
-    getDemoFunnelStats(7),
-  ]);
+  const [stats, events, revenue, crossOrgMinutes, statusStrip, demoFunnel, demoSnapshot] =
+    await Promise.all([
+      getStudioStats(),
+      getRecentAdminActivity(8),
+      getRevenueStats(),
+      getCrossOrgHoursThisMonth(),
+      getStudioStatusStrip(),
+      getDemoFunnelStats(7),
+      getDemoSnapshot(),
+    ]);
   const tDemo = await getTranslations("admin.demoFunnel");
+  const tDemoMgmt = await getTranslations("admin.demoManagement");
 
   // Eerste-keer detectie: lastLoginAt wordt door het signIn-event in
   // lib/auth.ts pas ná de session-cookie gezet — bij allereerste paint
@@ -158,6 +164,35 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
           accent={Number(stats.openInvoices) > 0}
         />
       </section>
+
+      {/* Demo-management — laatste cron-run + week-counts + handmatige
+          refresh-knop. Niet-demo-staff alleen (anders triggert demo-staff
+          z'n eigen refresh, wat onnodig confronterend is). */}
+      {!isDemoStaff ? (
+        <DemoManagementCard
+          hasDemoOrg={demoSnapshot.hasDemoOrg}
+          lastRunAt={demoSnapshot.lastRunAt}
+          weeklyEntered={demoSnapshot.weeklyEntered}
+          weeklyCtaClicks={demoSnapshot.weeklyCtaClicks}
+          refreshAction={triggerDemoRefresh}
+          strings={{
+            eyebrow: tDemoMgmt("eyebrow"),
+            title: tDemoMgmt("title"),
+            body: tDemoMgmt("body"),
+            metric: {
+              lastRun: tDemoMgmt("metric.lastRun"),
+              entered: tDemoMgmt("metric.entered"),
+              ctaClicks: tDemoMgmt("metric.ctaClicks"),
+            },
+            refreshAction: tDemoMgmt("refreshAction"),
+            refreshing: tDemoMgmt("refreshing"),
+            refreshed: tDemoMgmt("refreshed"),
+            refreshError: tDemoMgmt("refreshError"),
+            notSeeded: tDemoMgmt("notSeeded"),
+            notSeededHint: tDemoMgmt("notSeededHint"),
+          }}
+        />
+      ) : null}
 
       {/* Demo-funnel — bezoeken + cta-clicks + conversion-% over 7d */}
       {demoFunnel.entered > 0 ? (

@@ -4,9 +4,15 @@
 // (alle child-rijen verdwijnen automatisch via FK ON DELETE CASCADE).
 // Daarna vol vers inserteren. Geen ENV-check; dit script is opt-in.
 //
-// Eindresultaat: één "Demo Caravanverhuur Spanje" org + 2 demo-users
-// (demo-portal owner, demo-admin staff) + levensechte data zodat de
-// demo-bezoeker niet op een leeg dashboard belandt.
+// Eindresultaat: één "Costa Caravans Verhuur" org + 2 demo-users
+// (Marco Jansen als owner — zelfde naam als de testimonial op /verhuur,
+// staff "Studio") + levensechte data. Naamkeuze = bewust: prospect die
+// op /verhuur de quote leest en daarna de demo opent ziet hetzelfde
+// bedrijf, dat versterkt het herkenbaarheidsmoment.
+//
+// Het verhuurproject staat op liveAt = daysAgo(120) → triggert de
+// ReferralCard (≥90d live) zodat het mechanisme zichtbaar is. Het
+// tweede project loopt nog (build-fase actief).
 
 import { db } from "./index";
 import {
@@ -28,7 +34,7 @@ import {
 import { eq } from "drizzle-orm";
 import { randomUUID } from "node:crypto";
 
-const DEMO_ORG_SLUG = "demo-caravanverhuur-spanje";
+const DEMO_ORG_SLUG = "demo-costa-caravans";
 const DEMO_PORTAL_EMAIL = "demo-portal@webstability.eu";
 const DEMO_ADMIN_EMAIL = "demo-admin@webstability.eu";
 
@@ -80,12 +86,12 @@ async function main() {
   const [org] = await db
     .insert(organizations)
     .values({
-      name: "Demo Caravanverhuur Spanje",
+      name: "Costa Caravans Verhuur",
       slug: DEMO_ORG_SLUG,
       country: "ES",
       vatNumber: "ESB12345678",
       plan: "studio",
-      planStartedAt: daysAgo(180),
+      planStartedAt: daysAgo(412),
       isVip: true,
       isDemo: true,
     })
@@ -97,15 +103,15 @@ async function main() {
   await db.insert(users).values({
     id: portalUserId,
     email: DEMO_PORTAL_EMAIL,
-    name: "Marco García",
-    emailVerified: daysAgo(120),
+    name: "Marco Jansen",
+    emailVerified: daysAgo(412),
     locale: "nl",
     role: "owner",
     organizationId: org.id,
     isStaff: false,
     isDemo: true,
     lastLoginAt: minutesAgo(12),
-    createdAt: daysAgo(180),
+    createdAt: daysAgo(412),
   });
 
   const adminUserId = randomUUID();
@@ -125,17 +131,20 @@ async function main() {
   console.log(`demo-seed: 2 users`);
 
   // === Projects ===
+  // Verhuurplatform: live sinds 412 dagen — triggert de ReferralCard
+  // (≥90 dagen live + geen recente livegang-celebration). Demo-bezoeker
+  // ziet daarmee dat het referral-mechanisme bestaat.
   const [verhuurproject] = await db
     .insert(projects)
     .values({
       organizationId: org.id,
-      name: "Verhuurplatform",
+      name: "Boekingsplatform v2",
       type: "build",
       status: "live",
       progress: 100,
-      startedAt: daysAgo(120),
-      liveAt: daysAgo(3),
-      monitoringTargetUrl: "https://caravanverhuurspanje.com",
+      startedAt: daysAgo(450),
+      liveAt: daysAgo(412),
+      monitoringTargetUrl: "https://costacaravans.example",
     })
     .returning({ id: projects.id });
 
@@ -143,7 +152,7 @@ async function main() {
     .insert(projects)
     .values({
       organizationId: org.id,
-      name: "Reparatie-app v2",
+      name: "Klantenportaal — boekingsoverzicht",
       type: "system",
       status: "in_progress",
       progress: 65,
@@ -154,7 +163,7 @@ async function main() {
 
   await db.insert(projects).values({
     organizationId: org.id,
-    name: "Stallingsplatform",
+    name: "Admin redesign Q3",
     type: "build",
     status: "planning",
     progress: 10,
@@ -167,7 +176,7 @@ async function main() {
   await db.insert(buildPhases).values({
     organizationId: org.id,
     extension: "standard",
-    label: "Reparatie-app v2 — admin + iPad-flow",
+    label: "Klantenportaal — boekingsoverzicht + self-service",
     startedAt: daysAgo(45),
     endsAt: daysFromNow(47),
     durationMonths: 4,
@@ -243,6 +252,30 @@ async function main() {
   await db.insert(tickets).values({
     organizationId: org.id,
     userId: portalUserId,
+    subject: "BTW/IVA-rounding: 21% afronding klopt niet op grote bedragen",
+    body: "Op een factuur van €4.250 staat €892,50 IVA, maar de boekhouder rekent €892,52. Lijkt een afrondings-issue tussen jullie systeem en Holded. Kun je kijken welke regel toegepast moet worden?",
+    priority: "normal",
+    status: "open",
+    category: "bug",
+    overBudget: false,
+    createdAt: daysAgo(3),
+  });
+
+  await db.insert(tickets).values({
+    organizationId: org.id,
+    userId: portalUserId,
+    subject: "Webshop-mobile fix: voucher-veld zichtbaar op iPhone SE",
+    body: "Op de oudere iPhone SE valt het kortingsvoucher-veld buiten het scherm. We krijgen melding dat klanten de checkout afbreken. Kan dat snel?",
+    priority: "high",
+    status: "open",
+    category: "bug",
+    overBudget: false,
+    createdAt: minutesAgo(120),
+  });
+
+  await db.insert(tickets).values({
+    organizationId: org.id,
+    userId: portalUserId,
     subject: "Email-template typo 'reservering bevesteigd'",
     body: "Kleine typo in de bevestigings-email. Moet 'bevestigd' zijn.",
     priority: "low",
@@ -264,7 +297,7 @@ async function main() {
     overBudget: true,
     createdAt: minutesAgo(45),
   });
-  console.log(`demo-seed: 5 tickets`);
+  console.log(`demo-seed: 7 tickets`);
 
   // === Ticket replies ===
   await db.insert(ticketReplies).values({
@@ -349,7 +382,7 @@ async function main() {
           : null;
     await db.insert(monitoringChecks).values({
       projectId: verhuurproject.id,
-      targetUrl: "https://caravanverhuurspanje.com",
+      targetUrl: "https://costacaravans.example",
       status,
       responseTimeMs,
       checkedAt,
@@ -400,7 +433,7 @@ async function main() {
 
   // === Audit-log ===
   const auditEvents: Array<{ action: string; daysBack: number; metadata?: object }> = [
-    { action: "project.live", daysBack: 3, metadata: { name: "Verhuurplatform" } },
+    { action: "project.live", daysBack: 412, metadata: { name: "Boekingsplatform v2" } },
     {
       action: "discount.granted",
       daysBack: 60,

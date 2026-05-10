@@ -5,7 +5,9 @@ import { ArrowRight } from "lucide-react";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { listAllOrgs } from "@/lib/db/queries/admin";
-import { OrgTable, type OrgRow } from "@/components/admin/OrgTable";
+import { type OrgRow } from "@/components/admin/OrgTable";
+import { OrgListWithBulk } from "@/components/admin/orgs/OrgListWithBulk";
+import { bulkMailOrgs } from "@/app/actions/admin-bulk";
 
 export default async function OrgsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -13,6 +15,7 @@ export default async function OrgsPage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
 
   const t = await getTranslations("admin.orgs");
+  const tBulk = await getTranslations("admin.orgs.bulk");
   const orgs = await listAllOrgs();
 
   // Cast naar OrgRow shape — runtime nummer-conversies in een keer.
@@ -41,16 +44,52 @@ export default async function OrgsPage({ params }: { params: Promise<{ locale: s
         </Link>
       </div>
 
-      <OrgTable
+      <OrgListWithBulk
         orgs={rows}
         locale={locale}
+        bulkMail={bulkMailOrgs}
         strings={{
-          searchPlaceholder: t("searchPlaceholder"),
-          empty: t("empty"),
-          vip: "VIP",
-          members: (n) => t("members", { count: n }),
-          projects: (n) => t("projects", { count: n }),
-          openTickets: (n) => t("openTickets", { count: n }),
+          table: {
+            searchPlaceholder: t("searchPlaceholder"),
+            empty: t("empty"),
+            vip: "VIP",
+            members: (n) => t("members", { count: n }),
+            projects: (n) => t("projects", { count: n }),
+            openTickets: (n) => t("openTickets", { count: n }),
+          },
+          selectionLabel: tBulk("selectionLabel"),
+          bulk: {
+            selected: tBulk("selected"),
+            mailAction: tBulk("mailAction"),
+            clear: tBulk("clear"),
+          },
+          modal: {
+            title: tBulk("modal.title"),
+            body: tBulk("modal.body"),
+            templateLabel: tBulk("modal.templateLabel"),
+            templates: {
+              short_update: {
+                name: tBulk("modal.templates.short_update.name"),
+                description: tBulk("modal.templates.short_update.description"),
+              },
+              invoice_reminder: {
+                name: tBulk("modal.templates.invoice_reminder.name"),
+                description: tBulk("modal.templates.invoice_reminder.description"),
+              },
+              quarterly_report: {
+                name: tBulk("modal.templates.quarterly_report.name"),
+                description: tBulk("modal.templates.quarterly_report.description"),
+              },
+            },
+            cancel: tBulk("modal.cancel"),
+            confirm: tBulk("modal.confirm"),
+            confirmHint: tBulk("modal.confirmHint"),
+            sending: tBulk("modal.sending"),
+          },
+          toast: {
+            success: tBulk("toast.success"),
+            error: tBulk("toast.error"),
+          },
         }}
       />
     </div>
