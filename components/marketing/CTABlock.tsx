@@ -6,18 +6,29 @@ import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 import { MagneticButton } from "@/components/animate/MagneticButton";
 import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
+import { Link } from "@/i18n/navigation";
 
 export async function CTABlock() {
   const t = await getTranslations("home.cta");
   const locale = await getLocale();
   return (
     <section id="contact" className="relative overflow-hidden px-6 py-[120px]">
-      {/* Ambient terracotta blob */}
+      {/* Ambient terracotta blob — op mobile flatten naar pure gradient
+          zonder blur-filter (iPhone GPU-pijn). md+ behoudt blur-[80px]. */}
       <div
         aria-hidden
-        className="wb-soft-halo pointer-events-none absolute top-1/2 left-1/2 h-[420px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-[80px]"
+        className="wb-soft-halo pointer-events-none absolute top-1/2 left-1/2 hidden h-[420px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-[80px] md:block"
         style={{
           background: "radial-gradient(circle, var(--color-accent-soft) 0%, transparent 65%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 md:hidden"
+        style={{
+          background:
+            "radial-gradient(60% 50% at 50% 50%, var(--color-accent-soft) 0%, transparent 70%)",
+          opacity: 0.35,
         }}
       />
       <div className="relative mx-auto max-w-[1200px]">
@@ -28,6 +39,19 @@ export async function CTABlock() {
           </AnimatedHeading>
           <RevealOnScroll>
             <p className="mx-auto max-w-[56ch] text-[18px] text-(--color-muted)">{t("body")}</p>
+          </RevealOnScroll>
+          {/* Pricing-hint — vervangt de losse PricingTeaser-sectie. Eén
+              regel + link naar /prijzen voor wie het cijfer wil zien. */}
+          <RevealOnScroll>
+            <p className="mx-auto inline-flex max-w-[56ch] flex-wrap items-center justify-center gap-2 text-[14px] text-(--color-muted)">
+              <span>{t("pricingHint")}</span>
+              <Link
+                href="/prijzen"
+                className="font-medium text-(--color-accent) underline decoration-(--color-accent)/40 underline-offset-4 hover:decoration-(--color-accent)"
+              >
+                {t("pricingHintLink")} →
+              </Link>
+            </p>
           </RevealOnScroll>
           <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
             <MagneticButton>

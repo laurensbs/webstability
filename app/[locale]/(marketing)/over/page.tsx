@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -8,7 +9,6 @@ import { buttonVariants } from "@/components/ui/Button";
 import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
-import { FounderFormMount } from "@/components/r3f/FounderFormMount";
 
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
@@ -46,23 +46,17 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         />
         <div className="relative mx-auto grid max-w-5xl gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <RevealOnScroll>
-            {/* Portrait box — same gradient + giant L treatment as the
-                homepage Founder block. TODO: swap for a real
-                /public/laurens.jpg when one is ready. */}
-            <div
-              className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[28px] shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]"
-              style={{
-                background:
-                  "linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-teal-soft, #DCE8E7) 100%)",
-              }}
-            >
-              <FounderFormMount className="pointer-events-none absolute inset-0 opacity-70 mix-blend-multiply" />
-              <div
-                className="relative grid h-full place-items-center font-serif text-[200px] leading-none font-light"
-                style={{ color: "rgba(31,27,22,0.08)" }}
-              >
-                L
-              </div>
+            {/* Portrait — echte foto via remote pattern (cubeupload). Past
+                bij de homepage Founder-block die dezelfde URL toont. */}
+            <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[28px] shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]">
+              <Image
+                src="https://u.cubeupload.com/laurensbos/fc7278a70fe64fb6aa6a.jpg"
+                alt={t("title")}
+                fill
+                sizes="(min-width: 768px) 384px, 100vw"
+                className="object-cover"
+                priority
+              />
               <span className="absolute top-3 left-3 inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-bg)/85 px-2.5 py-1 font-mono text-[10px] tracking-wide text-(--color-muted) backdrop-blur-sm">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-(--color-success) opacity-60" />

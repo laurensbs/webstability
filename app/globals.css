@@ -381,12 +381,16 @@ body.is-marketing #main {
   }
 
   /* 2. Alle CSS filters (blur) op decoratieve halo's eruit — iOS
-   *    moet anders elke frame een huge offscreen buffer rasteren. */
+   *    moet anders elke frame een huge offscreen buffer rasteren.
+   *    Ook blur-[80px] (CTABlock) en blur-[36px] (HeroMockupCompact)
+   *    meegenomen na audit. */
   .wb-soft-halo,
   [class*="blur-2xl"],
   [class*="blur-3xl"],
+  [class*="blur-[36px]"],
   [class*="blur-[40px]"],
-  [class*="blur-[60px]"] {
+  [class*="blur-[60px]"],
+  [class*="blur-[80px]"] {
     filter: none !important;
     opacity: 0.2 !important;
   }
@@ -400,9 +404,11 @@ body.is-marketing #main {
   }
 
   /* 4. Infinite ping/spin: iOS jankt op fast-loop scale + opacity.
-   *    Opt voor langere duration (2.4s) om frame-budget te halveren. */
+   *    Op mobile zetten we `animate-ping` volledig uit — de "live"-
+   *    feel komt al van de groene/witte dot zelf. 7 pinging dots
+   *    tegelijk is gewoon te veel GPU-werk op iPhone. */
   .animate-ping {
-    animation-duration: 2.4s !important;
+    animation: none !important;
   }
 
   /*
@@ -437,8 +443,5 @@ body.is-marketing #main {
     transition-duration: 200ms !important;
     animation-duration: 200ms;
   }
-  /* uitzondering: laat .animate-ping zijn duurpattern houden */
-  .animate-ping {
-    animation-duration: 2.4s !important;
-  }
+  /* `.animate-ping` is hierboven al `animation: none` op coarse-pointer */
 }

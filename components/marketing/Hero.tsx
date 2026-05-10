@@ -29,9 +29,22 @@ export async function Hero() {
 
   return (
     <section className="relative isolate overflow-hidden bg-(--color-text) px-6 pt-20 pb-20 text-(--color-bg) md:pt-28 md:pb-32">
-      {/* Ambient layers — halos + conic-mesh */}
-      <StudioParallaxHalos />
-      <LoginAmbientMount className="pointer-events-none absolute inset-0 -z-10 opacity-50" />
+      {/* Ambient layers — halos + conic-mesh. Op mobile (< md) vervangen
+          door één statische gradient zodat iPhone niet 32s-rotaties +
+          pointermove-springs hoeft te draaien. Premium-gevoel blijft
+          via depth in de gradient zelf. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 md:hidden"
+        style={{
+          background:
+            "radial-gradient(80% 60% at 20% 10%, rgba(201,97,79,0.18) 0%, transparent 60%), radial-gradient(60% 50% at 90% 90%, rgba(107,30,44,0.22) 0%, transparent 60%)",
+        }}
+      />
+      <div className="hidden md:contents">
+        <StudioParallaxHalos />
+        <LoginAmbientMount className="pointer-events-none absolute inset-0 -z-10 opacity-50" />
+      </div>
 
       {/* Bottom-fade naar cream voor zachte overgang naar LogoStrip */}
       <div

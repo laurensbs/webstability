@@ -355,7 +355,9 @@
       "eyebrow": "hablemos",
       "title": "¿Listo para un sistema que *crece contigo*?",
       "body": "Una llamada de 30 minutos sin compromiso. Sin presentación comercial — un consejo honesto sobre si, y cómo, podemos ayudarnos.",
-      "button": "Planificar en agenda"
+      "button": "Planificar en agenda",
+      "pricingHint": "Precio fijo 5–8 k € para la build, después mantenimiento continuo desde 179 €/m. Primer mes gratis.",
+      "pricingHintLink": "Ver comparativa de tiers"
     }
   },
   "contact": {
@@ -1028,7 +1030,9 @@
             "Soporte por email en 48h",
             "Acceso al portal de cliente",
             "Informe mensual de estado"
-          ]
+          ],
+          "anchorValue": "1h",
+          "anchorLabel": "cambios / mes"
         },
         {
           "id": "studio",
@@ -1048,7 +1052,9 @@
             "Soporte prioritario en 4h",
             "Llamada estratégica trimestral",
             "Tracking de conversión configurado"
-          ]
+          ],
+          "anchorValue": "3h",
+          "anchorLabel": "cambios / mes"
         },
         {
           "id": "atelier",
@@ -1069,7 +1075,9 @@
             "Tests A/B & trabajo de conversión",
             "Multi-site monitoring",
             "Desarrollo de features a medida"
-          ]
+          ],
+          "anchorValue": "8h",
+          "anchorLabel": "cambios / mes"
         }
       ],
       "billingMonthly": "Mensual",

@@ -20,14 +20,15 @@ export async function Approach() {
   return (
     <section className="relative isolate overflow-hidden bg-(--color-text) px-6 py-[100px] text-(--color-bg)">
       {/* Wijn-rode halo rechtsboven voor depth — geen volle conic-mesh,
-          de rail moet de visuele dominant blijven. */}
+          de rail moet de visuele dominant blijven. Halos alleen md+; op
+          mobile één rustige gradient zonder blur-3xl. */}
       <div
         aria-hidden
-        className="wb-soft-halo pointer-events-none absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full bg-(--color-wine) opacity-30 blur-3xl"
+        className="wb-soft-halo pointer-events-none absolute -top-32 -right-32 hidden h-[420px] w-[420px] rounded-full bg-(--color-wine) opacity-30 blur-3xl md:block"
       />
       <div
         aria-hidden
-        className="wb-soft-halo pointer-events-none absolute -bottom-32 -left-24 h-[320px] w-[320px] rounded-full bg-(--color-accent) opacity-25 blur-3xl"
+        className="wb-soft-halo pointer-events-none absolute -bottom-32 -left-24 hidden h-[320px] w-[320px] rounded-full bg-(--color-accent) opacity-25 blur-3xl md:block"
       />
 
       <div className="relative mx-auto max-w-[1200px]">

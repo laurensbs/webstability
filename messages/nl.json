@@ -355,7 +355,9 @@
       "eyebrow": "laten we praten",
       "title": "Klaar voor een systeem dat *met je meegroeit*?",
       "body": "Een vrijblijvend gesprek van 30 minuten. Geen verkooppraat — wel een eerlijk advies of, en hoe, we elkaar kunnen helpen.",
-      "button": "Plan in agenda"
+      "button": "Plan in agenda",
+      "pricingHint": "Vaste prijs €5–8k voor de bouw, daarna doorlopend onderhoud vanaf €179/m. Eerste maand gratis.",
+      "pricingHintLink": "Bekijk de tier-vergelijking"
     }
   },
   "contact": {
@@ -1024,7 +1026,9 @@
             "E-mail support binnen 48u",
             "Toegang tot klantportaal",
             "Maandelijkse status-rapportage"
-          ]
+          ],
+          "anchorValue": "1u",
+          "anchorLabel": "wijzigingen / maand"
         },
         {
           "id": "studio",
@@ -1044,7 +1048,9 @@
             "Priority support binnen 4u",
             "Kwartaal-strategiegesprek",
             "Conversie-tracking ingericht"
-          ]
+          ],
+          "anchorValue": "3u",
+          "anchorLabel": "wijzigingen / maand"
         },
         {
           "id": "atelier",
@@ -1065,7 +1071,9 @@
             "A/B-tests & conversie-werk",
             "Multi-site monitoring",
             "Custom feature-development"
-          ]
+          ],
+          "anchorValue": "8u",
+          "anchorLabel": "wijzigingen / maand"
         }
       ],
       "billingMonthly": "Maandelijks",

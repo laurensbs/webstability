@@ -12,6 +12,17 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
+  // External image hosts we trust for founder/case-study assets. Add
+  // sparingly — every host extends the allow-list for `next/image`.
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "u.cubeupload.com",
+        pathname: "/laurensbos/**",
+      },
+    ],
+  },
 };
 
 const intlWrapped = withNextIntl(nextConfig);

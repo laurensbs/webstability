@@ -1,34 +1,29 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 import { LivePulse } from "@/components/animate/LivePulse";
-import { FounderFormMount } from "@/components/r3f/FounderFormMount";
+
+const FOUNDER_PHOTO = "https://u.cubeupload.com/laurensbos/fc7278a70fe64fb6aa6a.jpg";
 
 export async function Founder() {
   const t = await getTranslations("home.founder");
   return (
     <section className="bg-(--color-bg-warm) px-6 py-[120px]">
       <div className="mx-auto grid max-w-[1200px] items-center gap-20 md:grid-cols-[1fr_1.2fr]">
-        {/* Photo block — gradient bg with giant "L" + dark badge */}
+        {/* Photo block — echte portretfoto met dark live-badge onderaan. */}
         <RevealOnScroll>
-          <div
-            className="relative aspect-[4/5] overflow-hidden rounded-[28px] shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]"
-            style={{
-              background:
-                "linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-teal-soft, #DCE8E7) 100%)",
-            }}
-          >
-            {/* Subtle 3D form behind the giant "L" — adds depth without
-                fighting the typography for attention. */}
-            <FounderFormMount className="pointer-events-none absolute inset-0 opacity-70 mix-blend-multiply" />
-            <div
-              className="relative grid h-full place-items-center font-serif text-[200px] leading-none font-light"
-              style={{ color: "rgba(31,27,22,0.08)" }}
-            >
-              L
-            </div>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]">
+            <Image
+              src={FOUNDER_PHOTO}
+              alt={t("name")}
+              fill
+              sizes="(min-width: 768px) 540px, 100vw"
+              className="object-cover"
+              priority={false}
+            />
             <div
               className="absolute right-6 bottom-6 left-6 flex items-center gap-2.5 rounded-[14px] px-4 py-3.5 text-[13px] text-(--color-bg) backdrop-blur-md"
               style={{ background: "rgba(31, 27, 22, 0.85)" }}

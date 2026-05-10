@@ -6,8 +6,6 @@ import { Check } from "lucide-react";
 import { motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
-import { TierPreview } from "@/components/marketing/TierPreview";
-import { MeshBackground } from "@/components/marketing/MeshBackground";
 import { isLegacyTier } from "@/lib/pricing";
 
 type Cycle = "monthly" | "annual";
@@ -31,6 +29,12 @@ export type PricingItem = {
   annual: number;
   /** Bulleted feature list shown beneath the price. */
   features: string[];
+  /** Cijfer-anchor onderaan de card: "1 uur" / "3 uur" / "8 uur" met
+   * mono-label "per maand". Vervangt de oude TierPreview-mini-widget
+   * met één leesbare statistic — past bij de cijfer-trio op /over en
+   * /diensten hero. */
+  anchorValue?: string;
+  anchorLabel?: string;
 };
 
 type Strings = {
@@ -73,6 +77,13 @@ export type AuthMode = {
   currentPlanLabel: string;
 };
 
+/**
+ * Drie tier-kaarten + cycle-toggle. Studio-rust-versie: alle cards
+ * cream-styling, featured Studio krijgt visueel signaal via dunne
+ * wijn-rode top-border + "Meest gekozen"-pill — geen donkere bg, geen
+ * mesh, geen particle-glints. Past bij /diensten + /verhuur stijl-
+ * discipline (één accent, rustig).
+ */
 export function PricingCardsWithToggle({
   items,
   strings,
@@ -86,7 +97,8 @@ export function PricingCardsWithToggle({
 
   return (
     <>
-      {/* Toggle */}
+      {/* Toggle — spring-pill blijft (Linear/Stripe-pattern). De "−15%"
+          inline-badge is eruit; "annualHint" eronder is voldoende. */}
       <div className="mb-10 flex flex-col items-center gap-2">
         <div className="flex w-fit items-center gap-1 rounded-full border border-(--color-border) bg-(--color-surface) p-1.5">
           <ToggleButton active={cycle === "monthly"} onClick={() => setCycle("monthly")}>
@@ -94,13 +106,10 @@ export function PricingCardsWithToggle({
           </ToggleButton>
           <ToggleButton active={cycle === "annual"} onClick={() => setCycle("annual")}>
             {strings.annualLabel}
-            <span className="ml-1.5 rounded-full bg-(--color-accent-soft) px-1.5 py-0.5 font-mono text-[10px] tracking-wide text-(--color-accent)">
-              −15%
-            </span>
           </ToggleButton>
         </div>
         <p className="font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
-          {cycle === "annual" ? strings.annualHint : " "}
+          {cycle === "annual" ? strings.annualHint : " "}
         </p>
       </div>
 
@@ -111,77 +120,23 @@ export function PricingCardsWithToggle({
           const legacy = isLegacyTier(item.id);
           const value = cycle === "annual" ? item.annual : item.monthly;
           const period = cycle === "annual" ? strings.perMonthBilledAnnually : strings.perMonth;
-          const sizeClass = legacy
-            ? "lg:scale-[0.95] opacity-75 saturate-[0.6]"
-            : item.id === "atelier"
-              ? "lg:ring-1 lg:ring-(--color-text)/10"
-              : "";
+
+          // Featured signaleert via dunne wijn-rode top-border + pill.
+          // Atelier krijgt subtiele ring. Care wordt gedimd (legacy).
+          const cardClass = legacy
+            ? "border border-(--color-border) bg-(--color-surface) opacity-75 saturate-[0.7]"
+            : featured
+              ? "border border-(--color-border) border-t-2 border-t-(--color-wine) bg-(--color-surface) shadow-[0_2px_4px_rgba(31,27,22,0.04),0_8px_24px_-8px_rgba(107,30,44,0.12),0_24px_48px_-16px_rgba(31,27,22,0.06)]"
+              : "border border-(--color-border) bg-(--color-surface) shadow-[0_1px_2px_rgba(31,27,22,0.04),0_4px_12px_-4px_rgba(31,27,22,0.06)]";
+
           return (
             <article
               key={item.id}
-              className={`group relative flex h-full flex-col overflow-hidden rounded-[28px] p-7 transition-all duration-300 sm:p-10 ${sizeClass} ${
-                featured
-                  ? "scale-[1.02] border border-(--color-wine) bg-(--color-text) text-(--color-bg) hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_32px_64px_-16px_rgba(31,27,22,0.4),0_8px_24px_-6px_rgba(107,30,44,0.3)]"
-                  : "border border-(--color-border) bg-(--color-surface) shadow-[0_1px_2px_rgba(31,27,22,0.04),0_4px_12px_-4px_rgba(31,27,22,0.06),0_24px_48px_-16px_rgba(31,27,22,0.04)] hover:-translate-y-1.5 hover:border-(--color-accent)/40 hover:shadow-[0_2px_4px_rgba(31,27,22,0.06),0_8px_24px_-6px_rgba(201,97,79,0.18),0_32px_64px_-16px_rgba(31,27,22,0.12)]"
-              }`}
+              className={`group relative flex h-full flex-col overflow-hidden rounded-[24px] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-(--color-accent)/40 hover:shadow-[0_2px_4px_rgba(31,27,22,0.06),0_8px_24px_-6px_rgba(201,97,79,0.16),0_24px_48px_-16px_rgba(31,27,22,0.08)] sm:p-9 ${cardClass}`}
             >
-              {/* Featured-card krijgt animated mesh-bg achter alles */}
-              {featured ? <MeshBackground className="opacity-60" /> : null}
-              {/* Particle-glints in 4 hoeken — alleen featured */}
+              {/* Featured-pill (Meest gekozen) — discreet rechtsboven */}
               {featured ? (
-                <>
-                  {[
-                    { top: "8%", left: "12%", delay: 0 },
-                    { top: "18%", right: "16%", delay: 1.2 },
-                    { bottom: "20%", left: "18%", delay: 2.4 },
-                    { bottom: "12%", right: "22%", delay: 0.8 },
-                  ].map((pos, i) => (
-                    <motion.span
-                      key={i}
-                      aria-hidden
-                      className="wb-particle-glint pointer-events-none absolute h-1 w-1 rounded-full bg-(--color-bg)"
-                      style={pos}
-                      animate={{
-                        opacity: [0, 0.7, 0],
-                        scale: [0.5, 1.2, 0.5],
-                      }}
-                      transition={{
-                        duration: 3,
-                        delay: pos.delay,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  ))}
-                </>
-              ) : null}
-              {item.orderIndicator ? (
-                <p
-                  className={`mb-3 font-mono text-[11px] tracking-widest uppercase md:hidden ${
-                    featured ? "text-(--color-bg)/60" : "text-(--color-muted)"
-                  }`}
-                >
-                  {item.orderIndicator}
-                </p>
-              ) : null}
-              {item.subEyebrow ? (
-                <p
-                  className={`mb-3 font-serif text-[15px] leading-snug italic ${
-                    featured ? "text-(--color-bg)/85" : "text-(--color-text)"
-                  }`}
-                >
-                  {item.subEyebrow}
-                </p>
-              ) : null}
-              {/* Soft accent halo — verschijnt op hover, top-right */}
-              <span
-                aria-hidden
-                className={`wb-soft-halo pointer-events-none absolute -top-24 -right-20 h-56 w-56 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-60 ${
-                  featured ? "bg-(--color-accent)" : "bg-(--color-accent-soft)"
-                }`}
-              />
-              {featured ? (
-                <span className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-(--color-wine) px-3 py-1 text-[11px] font-medium text-white shadow-[0_4px_12px_-2px_rgba(107,30,44,0.5)]">
+                <span className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-(--color-wine) px-3 py-1 text-[11px] font-medium text-white">
                   <span className="relative flex h-1.5 w-1.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60" />
                     <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
@@ -189,38 +144,35 @@ export function PricingCardsWithToggle({
                   {strings.featuredLabel}
                 </span>
               ) : null}
+
+              {/* Legacy-badge (Care: alleen bestaande klanten) */}
               {legacy ? (
                 <span className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-bg-warm) px-3 py-1 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
                   {strings.legacyBadgeLabel}
                 </span>
               ) : null}
-              <h3 className={`relative mb-1.5 text-[24px] ${featured ? "text-(--color-bg)" : ""}`}>
-                {item.name}
-              </h3>
+
+              {item.orderIndicator ? (
+                <p className="mb-3 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase md:hidden">
+                  {item.orderIndicator}
+                </p>
+              ) : null}
+              {item.subEyebrow ? (
+                <p className="mb-3 font-serif text-[15px] leading-snug text-(--color-text) italic">
+                  {item.subEyebrow}
+                </p>
+              ) : null}
+
+              <h3 className="relative mb-1.5 text-[24px]">{item.name}</h3>
               {item.humanLabel ? (
-                <p
-                  className={`mb-3 inline-flex w-fit items-center rounded-full px-2.5 py-1 font-mono text-[10px] tracking-widest uppercase ${
-                    featured
-                      ? "bg-(--color-bg)/15 text-(--color-bg)/85"
-                      : "bg-(--color-bg-warm) text-(--color-accent)"
-                  }`}
-                >
+                <p className="mb-3 inline-flex w-fit items-center rounded-full bg-(--color-bg-warm) px-2.5 py-1 font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
                   {item.humanLabel}
                 </p>
               ) : null}
-              <p
-                className={`mb-7 text-[14px] ${
-                  featured ? "text-(--color-bg)/75" : "text-(--color-muted)"
-                }`}
-              >
-                {item.body}
-              </p>
+              <p className="mb-7 text-[14px] text-(--color-muted)">{item.body}</p>
+
               <div className="flex items-baseline gap-1">
-                <span
-                  className={`font-serif text-[36px] leading-none sm:text-[48px] ${
-                    featured ? "text-(--color-bg)" : ""
-                  }`}
-                >
+                <span className="font-serif text-[36px] leading-none sm:text-[48px]">
                   €
                   <NumberFlow
                     value={value}
@@ -233,24 +185,16 @@ export function PricingCardsWithToggle({
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className={`mt-1 mb-7 block text-[13px] ${
-                  featured ? "text-(--color-bg)/60" : "text-(--color-muted)"
-                }`}
+                className="mt-1 mb-7 block text-[13px] text-(--color-muted)"
               >
                 {period}
               </motion.span>
+
               <ul className="mb-6 flex-grow space-y-2">
                 {item.features.map((f) => (
-                  <li
-                    key={f}
-                    className={`flex items-start gap-2.5 text-[14px] ${
-                      featured ? "text-(--color-bg)/75" : "text-(--color-muted)"
-                    }`}
-                  >
+                  <li key={f} className="flex items-start gap-2.5 text-[14px] text-(--color-muted)">
                     <Check
-                      className={`mt-1 h-3.5 w-3.5 shrink-0 ${
-                        featured ? "text-(--color-accent-soft)" : "text-(--color-accent)"
-                      }`}
+                      className="mt-1 h-3.5 w-3.5 shrink-0 text-(--color-accent)"
                       strokeWidth={2.5}
                     />
                     {f}
@@ -258,11 +202,19 @@ export function PricingCardsWithToggle({
                 ))}
               </ul>
 
-              {/* Tier-preview — concrete mini-widget die laat zien wat
-                  je krijgt voor je geld. Decorative, aria-hidden. */}
-              <div className="relative mb-6">
-                <TierPreview id={item.id} featured={featured} />
-              </div>
+              {/* Cijfer-anchor — vervangt de oude TierPreview. Eén
+                  rustig getal dat tier-onderscheid ondersteunt. */}
+              {item.anchorValue && item.anchorLabel ? (
+                <div className="mb-6 border-t border-(--color-border) pt-5">
+                  <p className="font-serif text-[40px] leading-none text-(--color-wine)">
+                    {item.anchorValue}
+                  </p>
+                  <p className="mt-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                    {item.anchorLabel}
+                  </p>
+                </div>
+              ) : null}
+
               {legacy ? (
                 <Button asChild variant="outline" className="relative w-full justify-center">
                   <Link href="/contact">{strings.legacyCtaLabel}</Link>
@@ -270,27 +222,13 @@ export function PricingCardsWithToggle({
               ) : authMode ? (
                 authMode.isOwner ? (
                   authMode.currentPlan === item.id ? (
-                    <span
-                      className={`relative inline-flex w-full items-center justify-center rounded-full border px-4 py-2.5 font-mono text-[11px] tracking-widest uppercase ${
-                        featured
-                          ? "border-(--color-bg)/30 text-(--color-bg)/80"
-                          : "border-(--color-border) text-(--color-muted)"
-                      }`}
-                    >
+                    <span className="relative inline-flex w-full items-center justify-center rounded-full border border-(--color-border) px-4 py-2.5 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
                       {authMode.currentPlanLabel}
                     </span>
                   ) : (
                     <form action={authMode.subscribeAction} className="relative w-full">
                       <input type="hidden" name="plan" value={item.id} />
-                      <Button
-                        type="submit"
-                        variant={featured ? "ghost" : "accent"}
-                        className={`w-full justify-center ${
-                          featured
-                            ? "bg-(--color-bg) text-(--color-text) hover:bg-(--color-accent-soft) hover:text-(--color-text)"
-                            : ""
-                        }`}
-                      >
+                      <Button type="submit" variant="accent" className="w-full justify-center">
                         {authMode.subscribeLabel}
                       </Button>
                     </form>
@@ -298,29 +236,13 @@ export function PricingCardsWithToggle({
                 ) : (
                   <form action={authMode.anonSubscribeAction} className="relative w-full">
                     <input type="hidden" name="plan" value={item.id} />
-                    <Button
-                      type="submit"
-                      variant={featured ? "ghost" : "accent"}
-                      className={`w-full justify-center ${
-                        featured
-                          ? "bg-(--color-bg) text-(--color-text) hover:bg-(--color-accent-soft) hover:text-(--color-text)"
-                          : ""
-                      }`}
-                    >
+                    <Button type="submit" variant="accent" className="w-full justify-center">
                       {authMode.subscribeLabel}
                     </Button>
                   </form>
                 )
               ) : (
-                <Button
-                  asChild
-                  variant={featured ? "ghost" : "outline"}
-                  className={`relative w-full justify-center ${
-                    featured
-                      ? "bg-(--color-bg) text-(--color-text) hover:bg-(--color-accent-soft) hover:text-(--color-text)"
-                      : ""
-                  }`}
-                >
+                <Button asChild variant="outline" className="relative w-full justify-center">
                   <Link href="/contact">{strings.ctaLabel}</Link>
                 </Button>
               )}

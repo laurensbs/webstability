@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Menu, X, ArrowRight } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 import type { ComponentProps } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LogoMark } from "@/components/shared/LogoMark";
@@ -88,10 +88,13 @@ export function MobileNav({
             <p className="mt-2 text-[17px] leading-[1.4]">{tagline}</p>
           </div>
 
-          {/* Route list */}
+          {/* Route list — Radix Dialog doet zelf een slide-in op het
+              hele content-block; per-link motion.div stagger maakte op
+              iPhone het hele menu schokken. Plain links, snelle premium
+              feel (links komen meteen mee in de slide). */}
           <nav className="flex-1 overflow-y-auto px-6 py-6">
             <ul className="space-y-1">
-              {links.map((link, i) => {
+              {links.map((link) => {
                 const target =
                   typeof link.href === "string"
                     ? link.href
@@ -99,29 +102,23 @@ export function MobileNav({
                 const active = target === "/" ? pathname === "/" : pathname.startsWith(target);
                 return (
                   <li key={target}>
-                    <motion.div
-                      initial={reduce ? false : { opacity: 0, x: 12 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                    <Link
+                      href={link.href}
+                      onClick={handleNavigate}
+                      className={`flex items-center justify-between rounded-md px-3 py-3 font-serif text-[20px] tracking-tight transition-colors ${
+                        active
+                          ? "bg-(--color-bg-warm) text-(--color-accent)"
+                          : "text-(--color-text) hover:bg-(--color-bg-warm)"
+                      }`}
                     >
-                      <Link
-                        href={link.href}
-                        onClick={handleNavigate}
-                        className={`flex items-center justify-between rounded-md px-3 py-3 text-[18px] font-medium transition-colors ${
-                          active
-                            ? "bg-(--color-bg-warm) text-(--color-accent)"
-                            : "text-(--color-text) hover:bg-(--color-bg-warm)"
+                      <span>{link.label}</span>
+                      <ArrowRight
+                        className={`h-4 w-4 transition-transform ${
+                          active ? "translate-x-0 text-(--color-accent)" : "text-(--color-muted)"
                         }`}
-                      >
-                        <span>{link.label}</span>
-                        <ArrowRight
-                          className={`h-4 w-4 transition-transform ${
-                            active ? "translate-x-0 text-(--color-accent)" : "text-(--color-muted)"
-                          }`}
-                          strokeWidth={2}
-                        />
-                      </Link>
-                    </motion.div>
+                        strokeWidth={2}
+                      />
+                    </Link>
                   </li>
                 );
               })}
