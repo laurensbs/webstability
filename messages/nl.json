@@ -1621,7 +1621,35 @@
       "revisionToast": "Reactie verstuurd — ik kom er deze week op terug.",
       "errorToast": "Er ging iets mis. Probeer het opnieuw.",
       "recentFiles": "Andere bestanden",
-      "download": "Open"
+      "download": "Open",
+      "handoverBannerEyebrow": "Bijna live",
+      "handoverBannerTitle": "Open de oplevering-checklist om te zien wat er nog moet gebeuren.",
+      "handoverBannerCta": "Bekijk checklist"
+    },
+    "handover": {
+      "title": "Oplevering-checklist",
+      "backToProject": "Terug naar project",
+      "intro": "Laatste check voor {project} live gaat — zes items, een paar daarvan vink ik zelf zodra ze ✓ zijn.",
+      "doneLabel": "Klaar",
+      "pendingLabel": "Nog open",
+      "autoLabel": "automatisch",
+      "markDoneLabel": "Markeer als klaar",
+      "markUndoneLabel": "Ongedaan maken",
+      "markLiveLabel": "Markeer live",
+      "markingLive": "Bezig…",
+      "liveLabel": "Project is live",
+      "handoverIncompleteToast": "Eerst alle items afvinken — dan kan ik live zetten.",
+      "itemSavedToast": "Opgeslagen.",
+      "errorToast": "Er ging iets mis. Probeer het opnieuw.",
+      "projectLiveToast": "Live — livegang-mail is onderweg.",
+      "items": {
+        "deliverables_approved": "Alle opleveringen door jou goedgekeurd",
+        "domain_coupled": "Domein gekoppeld en DNS gepropageerd",
+        "monitoring_active": "Uptime-monitoring actief",
+        "credentials_sent": "Inloggegevens en handleiding zijn gemaild",
+        "maintenance_explained": "Eerste maand onderhoud uitgelegd",
+        "invoice_paid": "Eindfactuur betaald"
+      }
     },
     "projects": {
       "title": "Projecten",

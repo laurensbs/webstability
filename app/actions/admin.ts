@@ -29,7 +29,9 @@ import {
   subscriptions,
   auditLog,
   projectUpdates,
+  handoverChecklist,
 } from "@/lib/db/schema";
+import { getHandoverStatus } from "@/lib/db/queries/portal";
 import type { ActionResult } from "@/lib/action-result";
 
 // Per-request cached lookup — voorkomt dat een server-action die meerdere
@@ -1073,4 +1075,170 @@ export async function setNextMilestone(
   revalidatePath(`/portal/projects/${projectId}`);
   revalidatePath(`/portal/dashboard`);
   return { ok: true, messageKey: "saved" };
+}
+
+// --- handover-checklist (sprint D) --------------------------------------
+
+const HANDOVER_MANUAL_KEYS = [
+  "domain_coupled",
+  "credentials_sent",
+  "maintenance_explained",
+] as const;
+type HandoverManualKey = (typeof HANDOVER_MANUAL_KEYS)[number];
+
+/**
+ * Vink (of un-vink) een handover-item dat staff handmatig moet
+ * bevestigen. Auto-vinkbare items (deliverables, monitoring, factuur)
+ * worden hier niet behandeld — die komen uit getHandoverStatus.
+ */
+export async function markHandoverItemDone(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch (e) {
+    return handleAuthError(e);
+  }
+
+  const projectId = String(formData.get("projectId") ?? "").trim();
+  const itemKey = String(formData.get("itemKey") ?? "").trim() as HandoverManualKey;
+  const checked = String(formData.get("checked") ?? "") === "true";
+  if (!projectId || !HANDOVER_MANUAL_KEYS.includes(itemKey)) {
+    return { ok: false, messageKey: "missing_fields" };
+  }
+
+  const project = await db.query.projects.findFirst({
+    where: eq(projects.id, projectId),
+    columns: { id: true, organizationId: true, name: true },
+  });
+  if (!project) return { ok: false, messageKey: "not_found" };
+
+  // Idempotent upsert — als er nog geen row is, maak 'm aan met dit
+  // item gezet; anders update alleen het relevante veld.
+  const existing = await db.query.handoverChecklist.findFirst({
+    where: eq(handoverChecklist.projectId, projectId),
+  });
+
+  const now = checked ? new Date() : null;
+  const by = checked ? userId : null;
+  const fieldMap: Record<HandoverManualKey, { at: string; by: string }> = {
+    domain_coupled: { at: "domainCoupledAt", by: "domainCoupledBy" },
+    credentials_sent: { at: "credentialsSentAt", by: "credentialsSentBy" },
+    maintenance_explained: { at: "maintenanceExplainedAt", by: "maintenanceExplainedBy" },
+  };
+  const map = fieldMap[itemKey];
+
+  if (existing) {
+    await db
+      .update(handoverChecklist)
+      .set({ [map.at]: now, [map.by]: by })
+      .where(eq(handoverChecklist.projectId, projectId));
+  } else {
+    await db.insert(handoverChecklist).values({
+      projectId,
+      organizationId: project.organizationId,
+      [map.at]: now,
+      [map.by]: by,
+    });
+  }
+
+  await db.insert(auditLog).values({
+    organizationId: project.organizationId,
+    userId,
+    action: checked ? "handover.item_checked" : "handover.item_unchecked",
+    targetType: "project",
+    targetId: projectId,
+    metadata: { itemKey, projectName: project.name },
+  });
+
+  revalidatePath(`/admin/orgs/${project.organizationId}`);
+  revalidatePath(`/portal/projects/${projectId}/handover`);
+  revalidatePath(`/portal/projects/${projectId}`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/**
+ * Markeer project als live. Alleen toegestaan als alle handover-items
+ * (auto + handmatig) ✓ zijn. Anders return een gerichte error zodat
+ * staff weet wat er nog mist. Triggert dezelfde livegang-flow als de
+ * status-flip via updateProject (mail + audit-log + liveAt).
+ */
+export async function markProjectLive(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch (e) {
+    return handleAuthError(e);
+  }
+
+  const projectId = String(formData.get("projectId") ?? "").trim();
+  if (!projectId) return { ok: false, messageKey: "missing_fields" };
+
+  const project = await db.query.projects.findFirst({
+    where: eq(projects.id, projectId),
+    columns: {
+      id: true,
+      organizationId: true,
+      name: true,
+      status: true,
+      liveAt: true,
+      monitoringTargetUrl: true,
+    },
+  });
+  if (!project) return { ok: false, messageKey: "not_found" };
+  if (project.liveAt) return { ok: true, messageKey: "saved" };
+
+  const status = await getHandoverStatus(project.organizationId, projectId);
+  if (!status || !status.allDone) {
+    return { ok: false, messageKey: "handover_incomplete" };
+  }
+
+  const now = new Date();
+  await db
+    .update(projects)
+    .set({ status: "live", liveAt: now, progress: 100 })
+    .where(eq(projects.id, projectId));
+
+  await db.insert(auditLog).values({
+    organizationId: project.organizationId,
+    userId,
+    action: "project.live",
+    targetType: "project",
+    targetId: projectId,
+    metadata: {
+      name: project.name,
+      url: project.monitoringTargetUrl ?? null,
+      via: "handover_checklist",
+    },
+  });
+
+  try {
+    const owner = await db.query.users.findFirst({
+      where: and(eq(users.organizationId, project.organizationId), eq(users.role, "owner")),
+      columns: { email: true, name: true, locale: true },
+    });
+    if (owner?.email) {
+      const { sendLivegangMail } = await import("@/lib/email/livegang");
+      await sendLivegangMail({
+        to: owner.email,
+        name: owner.name ?? null,
+        projectName: project.name,
+        projectUrl: project.monitoringTargetUrl ?? null,
+        locale: owner.locale === "es" ? "es" : "nl",
+      });
+    }
+  } catch (err) {
+    console.error("[admin] livegang mail failed:", err);
+  }
+
+  revalidatePath(`/admin/orgs/${project.organizationId}`);
+  revalidatePath(`/portal/dashboard`);
+  revalidatePath(`/portal/projects/${projectId}`);
+  revalidatePath(`/portal/projects/${projectId}/handover`);
+  return { ok: true, messageKey: "project_live" };
 }

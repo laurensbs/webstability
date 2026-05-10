@@ -1625,7 +1625,35 @@
       "revisionToast": "Comentario enviado — vuelvo a ti esta semana.",
       "errorToast": "Algo salió mal. Inténtalo de nuevo.",
       "recentFiles": "Otros archivos",
-      "download": "Abrir"
+      "download": "Abrir",
+      "handoverBannerEyebrow": "Casi en vivo",
+      "handoverBannerTitle": "Abre la lista de entrega para ver qué falta.",
+      "handoverBannerCta": "Ver lista"
+    },
+    "handover": {
+      "title": "Lista de entrega",
+      "backToProject": "Volver al proyecto",
+      "intro": "Última revisión antes de que {project} esté en vivo — seis ítems, algunos se marcan solos cuando están ✓.",
+      "doneLabel": "Hecho",
+      "pendingLabel": "Pendiente",
+      "autoLabel": "automático",
+      "markDoneLabel": "Marcar como hecho",
+      "markUndoneLabel": "Deshacer",
+      "markLiveLabel": "Marcar en vivo",
+      "markingLive": "Procesando…",
+      "liveLabel": "Proyecto en vivo",
+      "handoverIncompleteToast": "Primero marca todos los ítems — luego puedo activarlo.",
+      "itemSavedToast": "Guardado.",
+      "errorToast": "Algo salió mal. Inténtalo de nuevo.",
+      "projectLiveToast": "En vivo — el correo de lanzamiento va en camino.",
+      "items": {
+        "deliverables_approved": "Todas las entregas aprobadas por ti",
+        "domain_coupled": "Dominio conectado y DNS propagado",
+        "monitoring_active": "Monitorización de uptime activa",
+        "credentials_sent": "Credenciales y guía enviadas",
+        "maintenance_explained": "Primer mes de mantenimiento explicado",
+        "invoice_paid": "Factura final pagada"
+      }
     },
     "projects": {
       "title": "Proyectos",

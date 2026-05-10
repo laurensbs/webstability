@@ -11,6 +11,7 @@ import {
   monitoringChecks,
   incidents,
   projectUpdates,
+  handoverChecklist,
 } from "@/lib/db/schema";
 
 export async function listOrgMembers(orgId: string) {
@@ -153,6 +154,121 @@ export async function getPendingDeliverables(orgId: string) {
   );
   const replacedIds = new Set(relevant.map((f) => f.replacesFileId).filter(Boolean));
   return relevant.filter((f) => !replacedIds.has(f.id));
+}
+
+/**
+ * Oplevering-checklist voor één project: combineert auto-vinkbare items
+ * (deliverables-akkoord, monitoring-up, eindfactuur-betaald) met staff-
+ * vinkbare items (domein, inloggegevens, eerste-maand). Geeft per item
+ * `{ key, doneAt, doneBy? }` terug. Geeft `null` als project niet bij
+ * org hoort.
+ *
+ * Strategie: één query per checkbron, dan samenvoegen. Niet super-
+ * efficient maar deze page wordt zelden geladen (alleen tijdens
+ * oplevering) en de queries zijn elk al geïndexeerd.
+ */
+export async function getHandoverStatus(orgId: string, projectId: string) {
+  const project = await db.query.projects.findFirst({
+    where: and(eq(projects.id, projectId), eq(projects.organizationId, orgId)),
+    columns: { id: true, name: true, status: true, liveAt: true, monitoringTargetUrl: true },
+  });
+  if (!project) return null;
+
+  // Auto-check 1: alle deliverables goedgekeurd. We tellen relevante
+  // deliverable-categorieën, en checken dat geen enkele non-vervangen
+  // file onbehandeld is. Geen pending = ✓.
+  const allDeliverables = await db.query.files.findMany({
+    where: eq(files.organizationId, orgId),
+    columns: {
+      id: true,
+      category: true,
+      approvedAt: true,
+      replacesFileId: true,
+      projectId: true,
+    },
+  });
+  const deliverableCats = new Set([
+    "deliverable",
+    "screenshot",
+    "wireframe",
+    "brand_kit",
+    "copy",
+    "final_handover",
+  ]);
+  const projectDeliverables = allDeliverables.filter(
+    (f) => f.projectId === projectId && deliverableCats.has(f.category),
+  );
+  const replacedIds = new Set(projectDeliverables.map((f) => f.replacesFileId).filter(Boolean));
+  const currentVersions = projectDeliverables.filter((f) => !replacedIds.has(f.id));
+  const deliverablesApproved =
+    currentVersions.length > 0 && currentVersions.every((f) => f.approvedAt !== null);
+
+  // Auto-check 2: monitoring actief. Eén check in de afgelopen 24h met
+  // status=up volstaat — betekent dat Better Stack ping draait.
+  const dayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  const recentCheck = await db.query.monitoringChecks.findFirst({
+    where: and(
+      eq(monitoringChecks.projectId, projectId),
+      gte(monitoringChecks.checkedAt, dayAgo),
+      eq(monitoringChecks.status, "up"),
+    ),
+    columns: { id: true, checkedAt: true },
+  });
+  const monitoringActive = Boolean(recentCheck);
+
+  // Auto-check 3: eindfactuur. Pakken laatste paid invoice (geen
+  // expliciete koppeling per project — orgs hebben tegelijk maar
+  // typisch één live project).
+  const lastPaidInvoice = await db.query.invoices.findFirst({
+    where: and(eq(invoices.organizationId, orgId), eq(invoices.status, "paid")),
+    orderBy: [desc(invoices.paidAt)],
+    columns: { id: true, paidAt: true, number: true },
+  });
+  const invoicePaid = Boolean(lastPaidInvoice?.paidAt);
+
+  // Staff-vink items uit handover_checklist row (autoloaded of null).
+  const stored = await db.query.handoverChecklist.findFirst({
+    where: eq(handoverChecklist.projectId, projectId),
+  });
+
+  const items = [
+    {
+      key: "deliverables_approved" as const,
+      doneAt: deliverablesApproved ? new Date() : null,
+      auto: true,
+      meta: { total: currentVersions.length },
+    },
+    {
+      key: "domain_coupled" as const,
+      doneAt: stored?.domainCoupledAt ?? null,
+      auto: false,
+    },
+    {
+      key: "monitoring_active" as const,
+      doneAt: monitoringActive ? (recentCheck?.checkedAt ?? null) : null,
+      auto: true,
+    },
+    {
+      key: "credentials_sent" as const,
+      doneAt: stored?.credentialsSentAt ?? null,
+      auto: false,
+    },
+    {
+      key: "maintenance_explained" as const,
+      doneAt: stored?.maintenanceExplainedAt ?? null,
+      auto: false,
+    },
+    {
+      key: "invoice_paid" as const,
+      doneAt: invoicePaid ? (lastPaidInvoice?.paidAt ?? null) : null,
+      auto: true,
+      meta: { invoiceNumber: lastPaidInvoice?.number ?? null },
+    },
+  ];
+
+  const allDone = items.every((i) => i.doneAt !== null);
+
+  return { project, items, allDone, deliverablesCount: currentVersions.length };
 }
 
 export async function listOrgTickets(orgId: string) {

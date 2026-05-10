@@ -1,7 +1,15 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
-import { ArrowLeft, Sparkles, MessageCircle, FileText, Clock, CheckCircle2 } from "lucide-react";
+import {
+  ArrowLeft,
+  Sparkles,
+  MessageCircle,
+  FileText,
+  Clock,
+  CheckCircle2,
+  ListChecks,
+} from "lucide-react";
 import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
@@ -115,6 +123,33 @@ export default async function ProjectDetailPage({
               </span>
             </div>
           </section>
+        ) : null}
+
+        {/* Handover-banner bij review-status */}
+        {project.status === "review" ? (
+          <Link
+            href={{
+              pathname: "/portal/projects/[id]/handover" as never,
+              params: { id: project.id },
+            }}
+            className="flex items-center justify-between gap-4 rounded-[18px] border border-(--color-accent)/30 bg-(--color-accent)/5 px-6 py-5 transition-colors hover:bg-(--color-accent)/10"
+          >
+            <div className="flex items-start gap-3">
+              <ListChecks
+                className="mt-0.5 h-4 w-4 shrink-0 text-(--color-accent)"
+                strokeWidth={2.4}
+              />
+              <div>
+                <p className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+                  {t("handoverBannerEyebrow")}
+                </p>
+                <p className="mt-1 text-[15px] text-(--color-text)">{t("handoverBannerTitle")}</p>
+              </div>
+            </div>
+            <span className="shrink-0 font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
+              {t("handoverBannerCta")} →
+            </span>
+          </Link>
         ) : null}
 
         {/* Volgende mijlpaal */}

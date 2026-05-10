@@ -698,6 +698,48 @@ export const projectUpdates = pgTable(
   ],
 );
 
+// --- handover_checklist (sprint D — oplevering-gate) --------------------
+
+/**
+ * Per project één row die staff-vinkbare handover-items bijhoudt.
+ * Auto-vinkbare items (alle-deliverables-akkoord, monitoring-actief,
+ * eindfactuur) worden ter render-tijd berekend en niet hier gestored —
+ * dit voorkomt drift tussen auto-state en gestored vinkje. Alleen items
+ * waar staff fysiek moet bevestigen ("domein gekoppeld", "inloggegevens
+ * gemaild", "eerste-maand-onderhoud uitgelegd") staan hier.
+ */
+export const handoverChecklist = pgTable(
+  "handover_checklist",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    projectId: uuid("project_id")
+      .notNull()
+      .references(() => projects.id, { onDelete: "cascade" })
+      .unique(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    domainCoupledAt: timestamp("domain_coupled_at", { withTimezone: true }),
+    domainCoupledBy: text("domain_coupled_by").references(() => users.id, {
+      onDelete: "set null",
+    }),
+    credentialsSentAt: timestamp("credentials_sent_at", { withTimezone: true }),
+    credentialsSentBy: text("credentials_sent_by").references(() => users.id, {
+      onDelete: "set null",
+    }),
+    maintenanceExplainedAt: timestamp("maintenance_explained_at", {
+      withTimezone: true,
+    }),
+    maintenanceExplainedBy: text("maintenance_explained_by").references(() => users.id, {
+      onDelete: "set null",
+    }),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [index("handover_project_idx").on(t.projectId)],
+);
+
 // --- relations -----------------------------------------------------------
 
 export const organizationsRelations = relations(organizations, ({ one, many }) => ({
@@ -746,6 +788,21 @@ export const projectsRelations = relations(projects, ({ one, many }) => ({
   monitoringChecks: many(monitoringChecks),
   incidents: many(incidents),
   updates: many(projectUpdates),
+  handover: one(handoverChecklist, {
+    fields: [projects.id],
+    references: [handoverChecklist.projectId],
+  }),
+}));
+
+export const handoverChecklistRelations = relations(handoverChecklist, ({ one }) => ({
+  project: one(projects, {
+    fields: [handoverChecklist.projectId],
+    references: [projects.id],
+  }),
+  organization: one(organizations, {
+    fields: [handoverChecklist.organizationId],
+    references: [organizations.id],
+  }),
 }));
 
 export const projectUpdatesRelations = relations(projectUpdates, ({ one }) => ({
