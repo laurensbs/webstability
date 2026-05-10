@@ -909,13 +909,15 @@
           "anchor": "caravanverhuurspanje",
           "name": "Caravanverhuurspanje",
           "url": "https://caravanverhuurspanje.com",
+          "detailHref": "/cases/caravanverhuurspanje",
           "logoUrl": "https://u.cubeupload.com/laurensbos/goedelogozwartverhuu.png",
           "tagline": "Verhuurplatform · live in Spanje",
           "what": "Publiek boekingsplatform met klantlogin en een admin waar live boekingen, betalingen en kanaal-syncs binnenkomen. Draait dagelijks productioneel: klanten boeken zelf, het team ziet alles in één paneel.",
           "for": "Andere verhuurders (caravans, boten, vakantiehuizen, materieel) krijgen dezelfde basis, op het bedrijf afgestemd.",
           "stack": "Next.js · Postgres · Stripe/Mollie · Multi-user admin",
           "stats": ["Live sinds 2024", "~1.200 boekingen verwerkt", "0 dubbele boekingen"],
-          "cta": "Bekijk live →"
+          "cta": "Bekijk volledig case",
+          "ctaSecondary": "Live site"
         },
         {
           "anchor": "caravanreparatiespanje",
@@ -990,11 +992,87 @@
     "footerCtaTitle": "Iets vergelijkbaars in gedachten?",
     "footerCtaBody": "Eerste gesprek is gratis — dertig minuten, geen pitch-deck.",
     "footerCtaLabel": "Plan een kennismaking",
+    "footerCtaDetailLabel": "Bekijk volledig traject",
     "demoCallout": {
       "eyebrow": "Live demo",
       "title": "Wil je zien hoe het portaal eruit ziet voor je klanten?",
       "body": "Open een live demo van het klantenportaal — met levensechte data. Klikken mag, niets wordt opgeslagen.",
       "cta": "Open demo-portaal"
+    },
+    "detail": {
+      "caravanverhuur": {
+        "metaTitle": "Caravanverhuurspanje — verhuurplatform in 4 weken live",
+        "metaDescription": "Hoe een Nederlandse verhuurder met 12 caravans + 4 stacaravans op de Costa Brava van Excel + dubbele boekingen naar één geïntegreerd platform ging — vaste prijs, vier weken levering.",
+        "eyebrow": "case · verhuurplatform",
+        "title": "Caravanverhuurspanje — *verhuurplatform* in 4 weken live",
+        "lede": "Een Nederlandse verhuurder op de Costa Brava met 12 caravans en 4 stacaravans. Boekingen kwamen binnen via Booking, Airbnb, eigen site en WhatsApp — drie dubbele boekingen per maand, halve dag administratie per week. Eén geïntegreerd platform later: nul dubbele boekingen sinds livegang.",
+        "videoUrl": "https://vimeo.com/1190126706/dae28da598",
+        "metrics": [
+          { "value": "1.200", "label": "boekingen verwerkt" },
+          { "value": "0", "label": "dubbele boekingen sinds 2024" },
+          { "value": "4", "label": "weken vaste prijs build" }
+        ],
+        "problem": {
+          "eyebrow": "het probleem",
+          "title": "Vijf tools die niet met elkaar praatten.",
+          "lede": "Excel voor de planning, Booking + Airbnb voor de kanalen, WhatsApp voor klantcontact, een aparte facturentool, en een mapje 'Contracten 2024' op Google Drive. Werkt — tot het misgaat.",
+          "items": [
+            {
+              "title": "Drie dubbele boekingen per maand",
+              "body": "Een gast boekt op Booking, terwijl een familielid via WhatsApp dezelfde caravan voor hetzelfde weekend reserveert. Crisis op vrijdagavond."
+            },
+            {
+              "title": "Halve dag admin per week",
+              "body": "Boeking → factuur → contract → kalender → boekhouding. Vier keer dezelfde gegevens overtypen, elke keer met een typo-risico."
+            },
+            {
+              "title": "Geen overzicht",
+              "body": "Wie heeft betaald? Welke borg moet terug? Wat staat er volgend weekend leeg? Het antwoord lag in vier verschillende tools."
+            }
+          ]
+        },
+        "scope": {
+          "eyebrow": "wat we bouwden",
+          "title": "Eén platform met vier rollen.",
+          "lede": "Publiek boekingsplatform voor klanten, admin voor het team, channel-sync naar Booking en Airbnb, automatische facturatie naar de boekhouding. Vier weken vaste prijs.",
+          "items": [
+            "Publiek boekingsplatform met klantlogin (NL + ES)",
+            "Admin met live boekings-overzicht en multi-locatie",
+            "Channel-sync (Booking + Airbnb + iCal)",
+            "Mollie/Stripe checkout + automatische facturen",
+            "Borg-flow met automatische retour na inspectie",
+            "Hosting + monitoring + maandelijks onderhoud"
+          ]
+        },
+        "result": {
+          "eyebrow": "het resultaat",
+          "title": "Drie maanden later, nul dubbele boekingen.",
+          "lede": "Sinds livegang in 2024: 1.200 boekingen verwerkt, nul dubbele reserveringen, halve dag tijdwinst per week. Ondertussen blijft het platform doorgroeien — nieuwe vakantiehuis erbij gaat in vijf minuten."
+        },
+        "quote": {
+          "text": "Voor we met Webstability werkten, hadden we drie dubbele boekingen per maand. Sinds de livegang in 2024 — letterlijk nul. En ik bespaar minstens een halve dag per week aan administratie.",
+          "name": "Marco Jansen",
+          "role": "Eigenaar · Costa Caravans Verhuur"
+        },
+        "stack": {
+          "eyebrow": "wat eronder zit",
+          "items": [
+            "Next.js 16",
+            "Postgres (Neon)",
+            "Stripe + Mollie",
+            "Multi-user admin",
+            "iCal sync",
+            "Vercel hosting"
+          ]
+        },
+        "cta": {
+          "title": "Iets vergelijkbaars in gedachten?",
+          "body": "Eerste gesprek is gratis — dertig minuten, geen pitch-deck. Aan het einde weet je of het bij je past en wat de kortste route is.",
+          "primary": "Plan een kennismaking",
+          "secondary": "Bekijk de verhuur-pagina"
+        },
+        "back": "← Bekijk de andere cases"
+      }
     }
   },
   "pricing": {

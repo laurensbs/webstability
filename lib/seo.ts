@@ -7,6 +7,7 @@ type RouteKey =
   | "verhuur"
   | "diensten"
   | "cases"
+  | "caseCaravanverhuur"
   | "over"
   | "prijzen"
   | "contact"
@@ -47,6 +48,11 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
       title: "Cases & klantverhalen",
       description:
         "Eigen platforms en klantcases die laten zien wat het verschil is van één geïntegreerd systeem t.o.v. vijf losse tools — minder Excel-puzzels, meer uren terug per week.",
+    },
+    caseCaravanverhuur: {
+      title: "Caravanverhuurspanje — verhuurplatform in 4 weken",
+      description:
+        "Hoe een Nederlandse verhuurder met 12 caravans + 4 stacaravans op de Costa Brava van Excel + dubbele boekingen naar één geïntegreerd platform ging — vaste prijs, vier weken levering.",
     },
     over: {
       title: "Over Laurens",
@@ -107,6 +113,11 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
       title: "Casos y proyectos",
       description:
         "Plataformas propias y casos de cliente que muestran la diferencia entre un sistema integrado y cinco herramientas sueltas — menos puzzles de Excel, más horas de vuelta cada semana.",
+    },
+    caseCaravanverhuur: {
+      title: "Caravanverhuurspanje — plataforma de alquiler en 4 semanas",
+      description:
+        "Cómo un alquilador neerlandés con 12 caravanas y 4 mobile-homes en la Costa Brava pasó de Excel + reservas duplicadas a una plataforma integrada — precio fijo, entrega en cuatro semanas.",
     },
     over: {
       title: "Sobre Laurens",
@@ -239,6 +250,10 @@ const ROUTE_PATHS: Record<RouteKey, { nl: string; es: string }> = {
   verhuur: { nl: "/verhuur", es: "/es/alquiler" },
   diensten: { nl: "/diensten", es: "/es/servicios" },
   cases: { nl: "/cases", es: "/es/cases" },
+  caseCaravanverhuur: {
+    nl: "/cases/caravanverhuurspanje",
+    es: "/es/cases/caravanverhuurspanje",
+  },
   over: { nl: "/over", es: "/es/sobre" },
   prijzen: { nl: "/prijzen", es: "/es/precios" },
   contact: { nl: "/contact", es: "/es/contacto" },
@@ -267,6 +282,10 @@ const OG_EYEBROW: Partial<Record<RouteKey, { nl: string; es: string }>> = {
   cases: {
     nl: "3 verhuurplatforms · 47 werkplaatsen",
     es: "3 plataformas alquiler · 47 talleres",
+  },
+  caseCaravanverhuur: {
+    nl: "verhuurplatform · 4 weken · live sinds 2024",
+    es: "plataforma alquiler · 4 semanas · activo desde 2024",
   },
 };
 

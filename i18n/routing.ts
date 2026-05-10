@@ -31,6 +31,7 @@ export const routing = defineRouting({
       es: "/servicios",
     },
     "/cases": "/cases",
+    "/cases/caravanverhuurspanje": "/cases/caravanverhuurspanje",
     "/status": {
       nl: "/status",
       es: "/estado",

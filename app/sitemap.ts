@@ -11,6 +11,10 @@ const STATIC_PATHS: Record<string, { nl: string; es: string }> = {
   "/verhuur": { nl: "/verhuur", es: "/es/alquiler" },
   "/diensten": { nl: "/diensten", es: "/es/servicios" },
   "/cases": { nl: "/cases", es: "/es/cases" },
+  "/cases/caravanverhuurspanje": {
+    nl: "/cases/caravanverhuurspanje",
+    es: "/es/cases/caravanverhuurspanje",
+  },
   "/over": { nl: "/over", es: "/es/sobre" },
   "/prijzen": { nl: "/prijzen", es: "/es/precios" },
   "/contact": { nl: "/contact", es: "/es/contacto" },

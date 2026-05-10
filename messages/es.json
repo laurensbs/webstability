@@ -909,13 +909,15 @@
           "anchor": "caravanverhuurspanje",
           "name": "Caravanverhuurspanje",
           "url": "https://caravanverhuurspanje.com",
+          "detailHref": "/cases/caravanverhuurspanje",
           "logoUrl": "https://u.cubeupload.com/laurensbos/goedelogozwartverhuu.png",
           "tagline": "Plataforma de alquiler · activa en España",
           "what": "Plataforma de reservas pública con login de cliente y un admin donde llegan reservas, pagos y syncs de canales en vivo. Funciona a diario en producción: los clientes reservan solos, el equipo lo ve todo en un solo panel.",
           "for": "Otras empresas de alquiler (caravanas, barcos, casas de vacaciones, equipos) reciben la misma base, ajustada a su negocio.",
           "stack": "Next.js · Postgres · Stripe/Mollie · Admin multi-usuario",
           "stats": ["Activo desde 2024", "~1.200 reservas procesadas", "0 reservas duplicadas"],
-          "cta": "Ver en vivo →"
+          "cta": "Ver caso completo",
+          "ctaSecondary": "Sitio en vivo"
         },
         {
           "anchor": "caravanreparatiespanje",
@@ -994,11 +996,87 @@
     "footerCtaTitle": "¿Algo similar en mente?",
     "footerCtaBody": "Primera llamada gratis — treinta minutos, sin presentación comercial.",
     "footerCtaLabel": "Reserva una llamada",
+    "footerCtaDetailLabel": "Ver caso completo",
     "demoCallout": {
       "eyebrow": "Demo en vivo",
       "title": "¿Quieres ver cómo se ve el portal para tus clientes?",
       "body": "Abre una demo en vivo del portal de cliente — con datos realistas. Haz clic libremente, nada se guarda.",
       "cta": "Abrir demo-portal"
+    },
+    "detail": {
+      "caravanverhuur": {
+        "metaTitle": "Caravanverhuurspanje — plataforma de alquiler activa en 4 semanas",
+        "metaDescription": "Cómo un alquilador neerlandés con 12 caravanas y 4 mobile-homes en la Costa Brava pasó de Excel + reservas duplicadas a una plataforma integrada — precio fijo, entrega en cuatro semanas.",
+        "eyebrow": "caso · plataforma de alquiler",
+        "title": "Caravanverhuurspanje — *plataforma de alquiler* en 4 semanas",
+        "lede": "Un alquilador neerlandés en la Costa Brava con 12 caravanas y 4 mobile-homes. Las reservas llegaban por Booking, Airbnb, web propia y WhatsApp — tres reservas duplicadas al mes, medio día de admin por semana. Una plataforma integrada después: cero reservas duplicadas desde el lanzamiento.",
+        "videoUrl": "https://vimeo.com/1190126706/dae28da598",
+        "metrics": [
+          { "value": "1.200", "label": "reservas procesadas" },
+          { "value": "0", "label": "reservas duplicadas desde 2024" },
+          { "value": "4", "label": "semanas a precio fijo" }
+        ],
+        "problem": {
+          "eyebrow": "el problema",
+          "title": "Cinco herramientas que no se hablaban.",
+          "lede": "Excel para la planificación, Booking + Airbnb para los canales, WhatsApp para clientes, una herramienta separada de facturación, y una carpeta 'Contratos 2024' en Google Drive. Funciona — hasta que falla.",
+          "items": [
+            {
+              "title": "Tres reservas duplicadas al mes",
+              "body": "Un huésped reserva en Booking mientras un familiar reserva la misma caravana por WhatsApp para el mismo fin de semana. Crisis el viernes por la noche."
+            },
+            {
+              "title": "Medio día de admin por semana",
+              "body": "Reserva → factura → contrato → calendario → contabilidad. Los mismos datos cuatro veces, con riesgo de typo cada vez."
+            },
+            {
+              "title": "Sin visión global",
+              "body": "¿Quién ha pagado? ¿Qué fianza hay que devolver? ¿Qué hay libre el próximo fin de semana? La respuesta vivía en cuatro herramientas distintas."
+            }
+          ]
+        },
+        "scope": {
+          "eyebrow": "lo que construimos",
+          "title": "Una plataforma con cuatro roles.",
+          "lede": "Plataforma de reservas pública para clientes, admin para el equipo, sync de canales hacia Booking y Airbnb, facturación automática hacia la contabilidad. Cuatro semanas a precio fijo.",
+          "items": [
+            "Plataforma pública con login de cliente (NL + ES)",
+            "Admin con vista en vivo de reservas y multi-ubicación",
+            "Channel-sync (Booking + Airbnb + iCal)",
+            "Mollie/Stripe checkout + facturas automáticas",
+            "Flujo de fianza con devolución automática tras inspección",
+            "Hosting + monitorización + mantenimiento mensual"
+          ]
+        },
+        "result": {
+          "eyebrow": "el resultado",
+          "title": "Tres meses después, cero reservas duplicadas.",
+          "lede": "Desde el lanzamiento en 2024: 1.200 reservas procesadas, cero duplicadas, medio día ahorrado por semana. Mientras tanto la plataforma sigue creciendo — añadir una nueva casa toma cinco minutos."
+        },
+        "quote": {
+          "text": "Antes de trabajar con Webstability teníamos tres reservas duplicadas al mes. Desde el lanzamiento en 2024 — literalmente cero. Y ahorro al menos medio día a la semana en admin.",
+          "name": "Marco Jansen",
+          "role": "Propietario · Costa Caravans Verhuur"
+        },
+        "stack": {
+          "eyebrow": "qué hay debajo",
+          "items": [
+            "Next.js 16",
+            "Postgres (Neon)",
+            "Stripe + Mollie",
+            "Admin multi-usuario",
+            "iCal sync",
+            "Hosting Vercel"
+          ]
+        },
+        "cta": {
+          "title": "¿Algo similar en mente?",
+          "body": "Primera llamada gratis — treinta minutos, sin presentación comercial. Al final sabes si encaja y cuál es la ruta más corta.",
+          "primary": "Reserva una llamada",
+          "secondary": "Ver la página de alquiler"
+        },
+        "back": "← Ver los demás casos"
+      }
     }
   },
   "pricing": {
