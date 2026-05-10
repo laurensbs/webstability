@@ -1,0 +1,299 @@
+"use client";
+
+import * as React from "react";
+import { Loader2, MessageSquare, ListChecks, Building2 } from "lucide-react";
+import { toast } from "sonner";
+import { updateLead, addLeadNote, markLeadAsCustomer } from "@/app/actions/leads";
+import { LEAD_STATUSES, LEAD_STATUS_LABEL_NL, type LeadStatus } from "@/lib/leads";
+
+const FIELD =
+  "block w-full rounded-md border border-(--color-border) bg-(--color-surface) px-3 py-2 text-[14px] focus:border-(--color-accent)/60 focus:outline-none";
+const LABEL = "font-mono text-[10px] tracking-widest text-(--color-muted) uppercase";
+
+type Activity = {
+  id: string;
+  kind: string;
+  summary: string;
+  createdAt: string;
+  actorName: string | null;
+};
+
+export function LeadDetail({
+  leadId,
+  initial,
+  staffOptions,
+  orgOptions,
+  activity,
+  createdAtLabel,
+}: {
+  leadId: string;
+  initial: {
+    status: LeadStatus;
+    notes: string;
+    nextActionAt: string;
+    nextActionLabel: string;
+    ownerStaffId: string;
+    linkedOrgId: string;
+  };
+  staffOptions: { id: string; label: string }[];
+  orgOptions: { id: string; label: string }[];
+  activity: Activity[];
+  createdAtLabel: string;
+}) {
+  const [savingMain, startMain] = React.useTransition();
+  const [savingNote, startNote] = React.useTransition();
+  const [convertingPending, startConvert] = React.useTransition();
+  const [noteDraft, setNoteDraft] = React.useState("");
+  const [showConvert, setShowConvert] = React.useState(false);
+
+  const onSaveMain = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    startMain(async () => {
+      const result = await updateLead(leadId, null, fd);
+      if (result.ok) {
+        toast.success("Opgeslagen");
+      } else {
+        toast.error("Mislukt");
+      }
+    });
+  };
+
+  const onAddNote = () => {
+    if (!noteDraft.trim()) return;
+    const fd = new FormData();
+    fd.set("note", noteDraft);
+    startNote(async () => {
+      const result = await addLeadNote(leadId, null, fd);
+      if (result.ok) {
+        toast.success("Notitie opgeslagen");
+        setNoteDraft("");
+      } else {
+        toast.error("Mislukt");
+      }
+    });
+  };
+
+  const onConvert = (orgId: string) => {
+    const fd = new FormData();
+    fd.set("linkedOrgId", orgId);
+    startConvert(async () => {
+      const result = await markLeadAsCustomer(leadId, null, fd);
+      if (result.ok) {
+        toast.success("Gekoppeld aan klant");
+        setShowConvert(false);
+      } else {
+        toast.error("Mislukt");
+      }
+    });
+  };
+
+  return (
+    <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
+      {/* Main: edit-form + activity */}
+      <div className="space-y-8">
+        <form
+          onSubmit={onSaveMain}
+          className="space-y-5 rounded-[14px] border border-(--color-border) bg-(--color-surface) p-6"
+        >
+          <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+            <ListChecks className="h-3 w-3" strokeWidth={2.4} />
+            Lead bijwerken
+          </p>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label htmlFor="status" className={LABEL}>
+                Status
+              </label>
+              <select
+                id="status"
+                name="status"
+                defaultValue={initial.status}
+                className={`mt-2 ${FIELD}`}
+              >
+                {LEAD_STATUSES.map((s) => (
+                  <option key={s} value={s}>
+                    {LEAD_STATUS_LABEL_NL[s]}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="ownerStaffId" className={LABEL}>
+                Eigenaar
+              </label>
+              <select
+                id="ownerStaffId"
+                name="ownerStaffId"
+                defaultValue={initial.ownerStaffId}
+                className={`mt-2 ${FIELD}`}
+              >
+                <option value="">— onbeheerd —</option>
+                {staffOptions.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label htmlFor="nextActionAt" className={LABEL}>
+                Volgende actie — wanneer
+              </label>
+              <input
+                id="nextActionAt"
+                name="nextActionAt"
+                type="datetime-local"
+                defaultValue={initial.nextActionAt ? initial.nextActionAt.slice(0, 16) : ""}
+                className={`mt-2 ${FIELD}`}
+              />
+            </div>
+            <div>
+              <label htmlFor="nextActionLabel" className={LABEL}>
+                Volgende actie — wat
+              </label>
+              <input
+                id="nextActionLabel"
+                name="nextActionLabel"
+                type="text"
+                defaultValue={initial.nextActionLabel}
+                className={`mt-2 ${FIELD}`}
+                placeholder="Stuur opvolg-mail"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="notes" className={LABEL}>
+              Sticky notes (markdown)
+            </label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows={5}
+              defaultValue={initial.notes}
+              className={`mt-2 ${FIELD}`}
+            />
+          </div>
+
+          <div className="flex items-center justify-end">
+            <button
+              type="submit"
+              disabled={savingMain}
+              className="inline-flex items-center gap-2 rounded-full bg-(--color-text) px-4 py-2 text-[13px] font-medium text-(--color-bg) transition-colors hover:bg-(--color-text)/90 disabled:opacity-60"
+            >
+              {savingMain ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : null}
+              {savingMain ? "Opslaan…" : "Opslaan"}
+            </button>
+          </div>
+        </form>
+
+        {/* Activity */}
+        <section>
+          <p className="mb-3 inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-text) uppercase">
+            <MessageSquare className="h-3 w-3 text-(--color-accent)" strokeWidth={2.4} />
+            Tijdlijn
+          </p>
+
+          <div className="rounded-[14px] border border-(--color-border) bg-(--color-surface) p-5">
+            <textarea
+              value={noteDraft}
+              onChange={(e) => setNoteDraft(e.target.value)}
+              rows={3}
+              placeholder="Korte notitie — wat is er gebeurd / besproken / besloten?"
+              className={FIELD}
+              maxLength={2000}
+            />
+            <div className="mt-3 flex justify-end">
+              <button
+                type="button"
+                onClick={onAddNote}
+                disabled={savingNote || noteDraft.trim().length === 0}
+                className="inline-flex items-center gap-2 rounded-full bg-(--color-accent) px-4 py-1.5 text-[12px] font-medium text-white transition-colors hover:bg-(--color-accent)/90 disabled:opacity-60"
+              >
+                {savingNote ? <Loader2 className="h-3 w-3 animate-spin" /> : null}
+                {savingNote ? "Opslaan…" : "Notitie toevoegen"}
+              </button>
+            </div>
+          </div>
+
+          {activity.length === 0 ? (
+            <p className="mt-4 rounded-[14px] border border-dashed border-(--color-border) bg-(--color-bg-warm)/50 px-5 py-6 text-center text-[14px] text-(--color-muted)">
+              Nog geen activiteit. Notitie hierboven start de tijdlijn.
+            </p>
+          ) : (
+            <ol className="mt-4 space-y-3">
+              {activity.map((a) => (
+                <li
+                  key={a.id}
+                  className="rounded-[12px] border border-(--color-border) bg-(--color-surface) px-4 py-3"
+                >
+                  <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                    {a.createdAt}
+                    {a.actorName ? ` · ${a.actorName}` : ""} · {a.kind}
+                  </p>
+                  <p className="mt-2 text-[13px] leading-[1.55] whitespace-pre-wrap text-(--color-text)">
+                    {a.summary}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          )}
+        </section>
+      </div>
+
+      {/* Sidebar: metadata + convert */}
+      <aside className="space-y-5">
+        <div className="rounded-[14px] border border-(--color-border) bg-(--color-bg-warm)/50 p-5">
+          <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+            Aangemaakt
+          </p>
+          <p className="mt-1 text-[13px] text-(--color-text)">{createdAtLabel}</p>
+        </div>
+
+        {!initial.linkedOrgId ? (
+          <div className="rounded-[14px] border border-(--color-border) bg-(--color-surface) p-5">
+            <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-text) uppercase">
+              <Building2 className="h-3 w-3 text-(--color-success)" strokeWidth={2.4} />
+              Markeer als klant
+            </p>
+            <p className="mt-2 text-[12px] leading-[1.55] text-(--color-muted)">
+              Koppel deze lead aan een bestaande org. Doe dit pas zodra Stripe-checkout afgerond is.
+            </p>
+            {showConvert ? (
+              <select
+                onChange={(e) => {
+                  if (e.target.value) onConvert(e.target.value);
+                }}
+                disabled={convertingPending}
+                defaultValue=""
+                className={`mt-3 ${FIELD}`}
+              >
+                <option value="" disabled>
+                  Kies org…
+                </option>
+                {orgOptions.map((o) => (
+                  <option key={o.id} value={o.id}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setShowConvert(true)}
+                className="mt-3 inline-flex items-center gap-2 rounded-full border border-(--color-success)/40 bg-(--color-success)/5 px-3 py-1.5 font-mono text-[11px] tracking-widest text-(--color-success) uppercase transition-colors hover:bg-(--color-success)/10"
+              >
+                Kies org…
+              </button>
+            )}
+          </div>
+        ) : null}
+      </aside>
+    </div>
+  );
+}

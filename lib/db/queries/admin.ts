@@ -1,4 +1,4 @@
-import { eq, and, desc, count, sql, gte, lt, isNull, gt, asc } from "drizzle-orm";
+import { eq, and, desc, count, sql, gte, lt, isNull, gt, asc, isNotNull, ne } from "drizzle-orm";
 import { db } from "@/lib/db";
 import {
   organizations,
@@ -17,6 +17,7 @@ import {
   buildPhases,
   projectUpdates,
   npsResponses,
+  leads,
 } from "@/lib/db/schema";
 
 export async function listAllOrgs() {
@@ -629,4 +630,112 @@ export async function getNpsStats() {
     avgScore: Math.round(avg * 10) / 10,
     npsScore: Math.round(nps),
   };
+}
+
+/**
+ * Alle leads voor /admin/leads. Eenvoudige lijst met owner-naam +
+ * activity-count. Geen pagination — tot ~500 leads is dit prima.
+ */
+export async function listAllLeads() {
+  return db
+    .select({
+      id: leads.id,
+      email: leads.email,
+      name: leads.name,
+      company: leads.company,
+      source: leads.source,
+      status: leads.status,
+      nextActionAt: leads.nextActionAt,
+      nextActionLabel: leads.nextActionLabel,
+      ownerStaffId: leads.ownerStaffId,
+      ownerName: users.name,
+      linkedOrgId: leads.linkedOrgId,
+      createdAt: leads.createdAt,
+      updatedAt: leads.updatedAt,
+    })
+    .from(leads)
+    .leftJoin(users, eq(users.id, leads.ownerStaffId))
+    .orderBy(desc(leads.updatedAt));
+}
+
+/**
+ * Detail-page voor één lead — lead + activity-tijdlijn + owner-staff
+ * + (indien gekoppeld) linked-org-naam.
+ */
+export async function getLeadDetail(leadId: string) {
+  const lead = await db.query.leads.findFirst({
+    where: eq(leads.id, leadId),
+    with: {
+      ownerStaff: { columns: { id: true, name: true, email: true } },
+      linkedOrg: { columns: { id: true, name: true, slug: true } },
+      activity: {
+        orderBy: (a, { desc }) => [desc(a.createdAt)],
+        limit: 50,
+        with: {
+          actorStaff: { columns: { id: true, name: true, email: true } },
+        },
+      },
+    },
+  });
+  return lead ?? null;
+}
+
+/**
+ * Reminders voor /admin dashboard-widget: leads met nextActionAt
+ * <= today AND status not in (customer, lost). Toont vandaag +
+ * overdue.
+ */
+export async function listLeadRemindersDueToday() {
+  const now = new Date();
+  return db
+    .select({
+      id: leads.id,
+      email: leads.email,
+      name: leads.name,
+      company: leads.company,
+      status: leads.status,
+      nextActionAt: leads.nextActionAt,
+      nextActionLabel: leads.nextActionLabel,
+    })
+    .from(leads)
+    .where(
+      and(
+        isNotNull(leads.nextActionAt),
+        lt(leads.nextActionAt, new Date(now.getTime() + 24 * 60 * 60 * 1000)),
+        ne(leads.status, "customer"),
+        ne(leads.status, "lost"),
+      ),
+    )
+    .orderBy(asc(leads.nextActionAt));
+}
+
+/**
+ * Lijst alle staff-users voor de "owner"-dropdown op lead-detail.
+ */
+export async function listStaffUsersForLeadOwner() {
+  return db
+    .select({ id: users.id, name: users.name, email: users.email })
+    .from(users)
+    .where(eq(users.isStaff, true))
+    .orderBy(asc(users.name));
+}
+
+/**
+ * Aggregate-stats voor /admin/leads bovenaan: per status het aantal.
+ */
+export async function getLeadStats() {
+  const rows = await db
+    .select({ status: leads.status, n: count() })
+    .from(leads)
+    .groupBy(leads.status);
+  const out: Record<string, number> = {
+    cold: 0,
+    warmed: 0,
+    booked: 0,
+    met: 0,
+    customer: 0,
+    lost: 0,
+  };
+  for (const r of rows) out[r.status] = Number(r.n);
+  return out;
 }

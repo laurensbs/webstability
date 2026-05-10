@@ -72,6 +72,29 @@ export const fileCategoryEnum = pgEnum("file_category", [
   "final_handover",
 ]);
 
+export const leadSourceEnum = pgEnum("lead_source", [
+  "cal_booking",
+  "demo_self_serve",
+  "manual",
+  "blog_subscribe",
+  "referral",
+]);
+export const leadStatusEnum = pgEnum("lead_status", [
+  "cold",
+  "warmed",
+  "booked",
+  "met",
+  "customer",
+  "lost",
+]);
+export const leadActivityKindEnum = pgEnum("lead_activity_kind", [
+  "mail_sent",
+  "call_booked",
+  "demo_visit",
+  "note_added",
+  "status_changed",
+]);
+
 // --- organizations -------------------------------------------------------
 
 export const organizations = pgTable("organizations", {
@@ -698,6 +721,79 @@ export const projectUpdates = pgTable(
   ],
 );
 
+// --- leads + lead_activity (fase 2 — outreach-CRM) ----------------------
+
+/**
+ * Outbound + inbound prospects. Eén row per persoon/bedrijf. Wordt
+ * verrijkt door Cal.com-webhook (booking_created), demo-events (klant
+ * vult email in na cta_clicked), of handmatig door staff. status-
+ * machine: cold → warmed → booked → met → customer | lost.
+ *
+ * linkedOrgId wordt gezet zodra een lead klant wordt — koppelt CRM
+ * met de organizations-tabel.
+ */
+export const leads = pgTable(
+  "leads",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    email: text("email").notNull(),
+    name: text("name"),
+    company: text("company"),
+    source: leadSourceEnum("source").notNull().default("manual"),
+    status: leadStatusEnum("status").notNull().default("cold"),
+    /** Wanneer staff weer moet kijken (volgende-actie-datum). Null =
+     * geen actieve opvolging. Gebruikt door reminders-widget. */
+    nextActionAt: timestamp("next_action_at", { withTimezone: true }),
+    nextActionLabel: text("next_action_label"),
+    /** Wie binnen het team verantwoordelijk is. Null = onbeheerd. */
+    ownerStaffId: text("owner_staff_id").references(() => users.id, {
+      onDelete: "set null",
+    }),
+    notes: text("notes"),
+    linkedOrgId: uuid("linked_org_id").references(() => organizations.id, {
+      onDelete: "set null",
+    }),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [
+    index("leads_email_idx").on(t.email),
+    index("leads_status_action_idx").on(t.status, t.nextActionAt),
+  ],
+);
+
+/**
+ * Activity-tijdlijn per lead: mails, calls, demo-visits, notes,
+ * status-changes. Geappend, nooit gemuteerd. Metadata-jsonb voor
+ * kind-specifieke velden (bv. bookingId, demoEventId).
+ */
+export const leadActivity = pgTable(
+  "lead_activity",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    leadId: uuid("lead_id")
+      .notNull()
+      .references(() => leads.id, { onDelete: "cascade" }),
+    kind: leadActivityKindEnum("kind").notNull(),
+    /** Vrij-tekst beschrijving (bv. "Outreach-mail verstuurd",
+     * "Status: cold → warmed"). Pre-rendered zodat de UI niet hoeft
+     * te formatteren per kind. */
+    summary: text("summary").notNull(),
+    metadata: jsonb("metadata"),
+    actorStaffId: text("actor_staff_id").references(() => users.id, {
+      onDelete: "set null",
+    }),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [index("lead_activity_lead_time_idx").on(t.leadId, t.createdAt)],
+);
+
 // --- nps_responses (sprint F — feedback na 30 + 180 dagen) -------------
 
 /**
@@ -829,6 +925,29 @@ export const projectsRelations = relations(projects, ({ one, many }) => ({
   handover: one(handoverChecklist, {
     fields: [projects.id],
     references: [handoverChecklist.projectId],
+  }),
+}));
+
+export const leadsRelations = relations(leads, ({ one, many }) => ({
+  ownerStaff: one(users, {
+    fields: [leads.ownerStaffId],
+    references: [users.id],
+  }),
+  linkedOrg: one(organizations, {
+    fields: [leads.linkedOrgId],
+    references: [organizations.id],
+  }),
+  activity: many(leadActivity),
+}));
+
+export const leadActivityRelations = relations(leadActivity, ({ one }) => ({
+  lead: one(leads, {
+    fields: [leadActivity.leadId],
+    references: [leads.id],
+  }),
+  actorStaff: one(users, {
+    fields: [leadActivity.actorStaffId],
+    references: [users.id],
   }),
 }));
 
