@@ -1,11 +1,12 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
-import { ArrowLeft, Sparkles, MessageCircle, FileText, Clock } from "lucide-react";
+import { ArrowLeft, Sparkles, MessageCircle, FileText, Clock, CheckCircle2 } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { getUserWithOrg, getOrgProjectDetail } from "@/lib/db/queries/portal";
+import { DeliverableApprovalCard } from "@/components/portal/DeliverableApprovalCard";
 
 const STATUS_LABEL = {
   planning: { nl: "Planning", es: "Planificación" },
@@ -196,36 +197,131 @@ export default async function ProjectDetailPage({
           </section>
         ) : null}
 
-        {/* Recente files */}
+        {/* Deliverables (akkoord-flow) + overige files (download) */}
         {recentFiles.length > 0 ? (
-          <section>
-            <h2 className="mb-4 inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-(--color-text) uppercase">
-              <FileText className="h-3 w-3 text-(--color-accent)" strokeWidth={2.4} />
-              {t("recentFiles")}
-            </h2>
-            <ul className="divide-y divide-(--color-border) overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
-              {recentFiles.map((f) => (
-                <li key={f.id} className="flex items-center justify-between gap-4 px-5 py-3">
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-[14px] text-(--color-text)">{f.name}</p>
-                    <p className="font-mono text-[10px] tracking-wide text-(--color-muted) uppercase">
-                      {f.category} · {dateFmt.format(f.createdAt)}
-                    </p>
-                  </div>
-                  <a
-                    href={f.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 font-mono text-[11px] text-(--color-accent) hover:underline"
-                  >
-                    {t("download")}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+          <ProjectFiles files={recentFiles} locale={locale} t={t} dateFmt={dateFmt} />
         ) : null}
       </div>
     </main>
+  );
+}
+
+const DELIVERABLE_CATEGORIES = new Set([
+  "deliverable",
+  "screenshot",
+  "wireframe",
+  "brand_kit",
+  "copy",
+  "final_handover",
+]);
+
+function ProjectFiles({
+  files,
+  locale,
+  t,
+  dateFmt,
+}: {
+  files: Array<{
+    id: string;
+    name: string;
+    url: string;
+    category: string;
+    version: number;
+    approvedAt: Date | null;
+    revisionRequestedAt: Date | null;
+    revisionNote: string | null;
+    createdAt: Date;
+    replacesFileId: string | null;
+  }>;
+  locale: string;
+  t: (key: string) => string;
+  dateFmt: Intl.DateTimeFormat;
+}) {
+  // Splits in deliverables (akkoord-flow) en overige (alleen download).
+  // Toon alleen huidige versies bij deliverables — vervangen versies
+  // worden gefilterd zodat de klant niet vier varianten naast elkaar
+  // ziet. (Voor staff in admin tonen we wel alle versies — andere page.)
+  const replacedIds = new Set(files.filter((f) => f.replacesFileId).map((f) => f.replacesFileId));
+  const deliverables = files
+    .filter((f) => DELIVERABLE_CATEGORIES.has(f.category) && !replacedIds.has(f.id))
+    .map((f) => ({
+      id: f.id,
+      name: f.name,
+      url: f.url,
+      category: f.category,
+      version: f.version,
+      approvedAt: f.approvedAt,
+      revisionRequestedAt: f.revisionRequestedAt,
+      revisionNote: f.revisionNote,
+      createdAt: f.createdAt,
+      replacesFileId: f.replacesFileId,
+    }));
+  const others = files.filter(
+    (f) => !DELIVERABLE_CATEGORIES.has(f.category) && !replacedIds.has(f.id),
+  );
+
+  return (
+    <>
+      {deliverables.length > 0 ? (
+        <section>
+          <h2 className="mb-4 inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-(--color-text) uppercase">
+            <CheckCircle2 className="h-3 w-3 text-(--color-success)" strokeWidth={2.4} />
+            {t("deliverables")}
+          </h2>
+          <DeliverableApprovalCard
+            deliverables={deliverables}
+            locale={locale}
+            strings={{
+              title: t("deliverables"),
+              empty: t("noDeliverables"),
+              approveLabel: t("approve"),
+              approving: t("approving"),
+              approvedLabel: t("approved"),
+              reviseLabel: t("revise"),
+              revising: t("revising"),
+              reviseTitle: t("reviseTitle"),
+              reviseNotePlaceholder: t("reviseNotePlaceholder"),
+              reviseSubmit: t("reviseSubmit"),
+              reviseCancel: t("reviseCancel"),
+              reviewedLabel: t("revisionRequested"),
+              versionLabel: t("versionLabel"),
+              approvedToast: t("approvedToast"),
+              revisionToast: t("revisionToast"),
+              errorToast: t("errorToast"),
+              download: t("download"),
+            }}
+          />
+        </section>
+      ) : null}
+
+      {others.length > 0 ? (
+        <section>
+          <h2 className="mb-4 inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-(--color-text) uppercase">
+            <FileText className="h-3 w-3 text-(--color-accent)" strokeWidth={2.4} />
+            {t("recentFiles")}
+          </h2>
+          <ul className="divide-y divide-(--color-border) overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+            {others.map((f) => (
+              <li key={f.id} className="flex items-center justify-between gap-4 px-5 py-3">
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-[14px] text-(--color-text)">{f.name}</p>
+                  <p className="font-mono text-[10px] tracking-wide text-(--color-muted) uppercase">
+                    {f.category} · {dateFmt.format(f.createdAt)}
+                  </p>
+                </div>
+                <a
+                  href={f.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 font-mono text-[11px] text-(--color-accent) hover:underline"
+                >
+                  {t("download")}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+    </>
   );
 }

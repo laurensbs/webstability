@@ -65,6 +65,11 @@ export const fileCategoryEnum = pgEnum("file_category", [
   "asset",
   "deliverable",
   "report",
+  "brand_kit",
+  "copy",
+  "screenshot",
+  "wireframe",
+  "final_handover",
 ]);
 
 // --- organizations -------------------------------------------------------
@@ -350,11 +355,30 @@ export const files = pgTable(
     blobPath: text("blob_path").notNull(),
     category: fileCategoryEnum("category").notNull(),
     uploadedBy: text("uploaded_by").references(() => users.id, { onDelete: "set null" }),
+    /** Versie-nummer binnen de keten van vervangingen. Vers-uploaded
+     * bestand = v1; staff kan via "vervangt versie X" een v2 + verder
+     * uploaden zodat klant zicht heeft op evolutie. */
+    version: integer("version").notNull().default(1),
+    /** FK naar het file-row dat dit bestand vervangt. Klant ziet bij
+     * de nieuwe versie een 'vervangt v1'-link terug naar het origineel. */
+    replacesFileId: uuid("replaces_file_id"),
+    /** Wordt gezet bij approveDeliverable — formele acceptance van
+     * de klant. Eenmalig (niet weer null te zetten zonder audit-log). */
+    approvedAt: timestamp("approved_at", { withTimezone: true }),
+    approvedBy: text("approved_by").references(() => users.id, { onDelete: "set null" }),
+    /** Optionele revision-feedback van klant. Wordt gezet door
+     * requestRevision en zichtbaar voor staff op admin file-list. */
+    revisionNote: text("revision_note"),
+    revisionRequestedAt: timestamp("revision_requested_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .default(sql`now()`),
   },
-  (t) => [index("files_org_idx").on(t.organizationId)],
+  (t) => [
+    index("files_org_idx").on(t.organizationId),
+    index("files_project_idx").on(t.projectId),
+    index("files_replaces_idx").on(t.replacesFileId),
+  ],
 );
 
 // --- seo_reports ---------------------------------------------------------

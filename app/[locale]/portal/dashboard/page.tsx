@@ -2,11 +2,12 @@ import { Suspense } from "react";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
-import { Activity, Inbox, FolderKanban, Receipt } from "lucide-react";
+import { Activity, Inbox, FolderKanban, Receipt, CheckCircle2, ArrowRight } from "lucide-react";
 import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
+import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import {
   getUserWithOrg,
@@ -19,6 +20,7 @@ import {
   getRecentLivegangs,
   getActiveIncidentsForOrg,
   getReferralEligibleProject,
+  getPendingDeliverables,
   getActivitySince,
 } from "@/lib/db/queries/portal";
 import { StatCard } from "@/components/portal/StatCard";
@@ -135,6 +137,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
     incidents,
     referralProject,
     activity,
+    pendingDeliverables,
   ] = await Promise.all([
     getDashboardStats(user.organizationId),
     listOrgProjects(user.organizationId),
@@ -146,6 +149,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
     getActiveIncidentsForOrg(user.organizationId),
     getReferralEligibleProject(user.organizationId, 90),
     getActivitySince(user.organizationId, since),
+    getPendingDeliverables(user.organizationId),
   ]);
   const tLivegang = await getTranslations("portal.livegang");
   const tIncident = await getTranslations("portal.incident");
@@ -286,6 +290,17 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
           }}
         />
       ))}
+
+      {/* Pending-deliverables banner — toont als er opleveringen
+          wachten op klant-akkoord. Linkt naar het meest-recente
+          project zodat de klant direct kan akkoord-of-revisie geven. */}
+      {pendingDeliverables.length > 0 ? (
+        <PendingDeliverablesBanner
+          count={pendingDeliverables.length}
+          firstProjectId={pendingDeliverables[0]?.projectId ?? null}
+          locale={locale}
+        />
+      ) : null}
 
       {/* Referral-card — alleen voor klanten die ≥90 dagen live zijn,
           en niet als er nu een livegang-feestmoment loopt. Strategie:
@@ -513,5 +528,55 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         statusLabel={(s: string) => tInvoices(`status.${s}`)}
       />
     </div>
+  );
+}
+
+function PendingDeliverablesBanner({
+  count,
+  firstProjectId,
+  locale,
+}: {
+  count: number;
+  firstProjectId: string | null;
+  locale: string;
+}) {
+  const labelNl =
+    count === 1
+      ? "1 oplevering wacht op je akkoord"
+      : `${count} opleveringen wachten op je akkoord`;
+  const labelEs =
+    count === 1
+      ? "1 entregable espera tu aprobación"
+      : `${count} entregables esperan tu aprobación`;
+  const ctaNl = "Bekijk en geef akkoord";
+  const ctaEs = "Revisar y aprobar";
+  const isEs = locale === "es";
+
+  const href = firstProjectId
+    ? ({ pathname: "/portal/projects/[id]" as never, params: { id: firstProjectId } } as const)
+    : ({ pathname: "/portal/files" as never } as const);
+
+  return (
+    <Link
+      href={href}
+      className="group flex flex-wrap items-center gap-3 rounded-[14px] border border-(--color-success)/30 bg-(--color-success)/5 px-5 py-4 transition-colors hover:bg-(--color-success)/10"
+    >
+      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-(--color-success)/15 text-(--color-success)">
+        <CheckCircle2 className="h-4 w-4" strokeWidth={2.4} />
+      </span>
+      <span className="min-w-0 flex-1">
+        <p className="text-[14px] font-medium text-(--color-text)">{isEs ? labelEs : labelNl}</p>
+        <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+          {isEs ? "klik om te beoordelen" : "klik om te beoordelen"}
+        </p>
+      </span>
+      <span className="inline-flex items-center gap-1 font-mono text-[11px] tracking-widest text-(--color-success) uppercase">
+        {isEs ? ctaEs : ctaNl}
+        <ArrowRight
+          className="h-3 w-3 transition-transform group-hover:translate-x-0.5"
+          strokeWidth={2.5}
+        />
+      </span>
+    </Link>
   );
 }

@@ -126,10 +126,33 @@ export async function getOrgProjectDetail(orgId: string, projectId: string) {
   const recentFiles = await db.query.files.findMany({
     where: and(eq(files.organizationId, orgId), eq(files.projectId, projectId)),
     orderBy: [desc(files.createdAt)],
-    limit: 5,
+    limit: 10,
   });
 
   return { project, phase, updates, waitingTickets, recentFiles };
+}
+
+/**
+ * Deliverables die wachten op klant-akkoord — categorie 'deliverable',
+ * 'screenshot', 'wireframe', 'brand_kit', 'copy', of 'final_handover',
+ * en niet eerder vervangen door een nieuwere versie. Toont op
+ * /portal/dashboard als banner: "X opleveringen wachten op je akkoord".
+ */
+export async function getPendingDeliverables(orgId: string) {
+  // Stap 1: alle relevante files (org + niet-goedgekeurd + relevante
+  // categorie). We filteren in TypeScript op "vervangen door nieuwere
+  // versie" — schema-niveau zou een NOT EXISTS-subquery vereisen.
+  const all = await db.query.files.findMany({
+    where: and(eq(files.organizationId, orgId), isNull(files.approvedAt)),
+    orderBy: [desc(files.createdAt)],
+  });
+  const relevant = all.filter((f) =>
+    ["deliverable", "screenshot", "wireframe", "brand_kit", "copy", "final_handover"].includes(
+      f.category,
+    ),
+  );
+  const replacedIds = new Set(relevant.map((f) => f.replacesFileId).filter(Boolean));
+  return relevant.filter((f) => !replacedIds.has(f.id));
 }
 
 export async function listOrgTickets(orgId: string) {
