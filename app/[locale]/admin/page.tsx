@@ -17,11 +17,13 @@ import {
   getDemoSnapshot,
   getUpcomingCalls,
   getStaleProjects,
+  listLeadRemindersDueToday,
 } from "@/lib/db/queries/admin";
 import { triggerDemoRefresh } from "@/app/actions/admin-bulk";
 import { DemoManagementCard } from "@/components/admin/DemoManagementCard";
 import { UpcomingCallsWidget } from "@/components/admin/UpcomingCallsWidget";
 import { StaleProjectsWidget } from "@/components/admin/StaleProjectsWidget";
+import { LeadRemindersWidget } from "@/components/admin/LeadRemindersWidget";
 import { StatCard } from "@/components/portal/StatCard";
 import { AdminActivityFeed } from "@/components/admin/AdminActivityFeed";
 import { FlashCounter } from "@/components/animate/FlashCounter";
@@ -29,6 +31,20 @@ import { AdminWelcomeOnboarding } from "@/components/admin/AdminWelcomeOnboardin
 import { StudioStatusStrip } from "@/components/admin/StudioStatusStrip";
 import { DemoTourOverlay } from "@/components/demo/DemoTourOverlay";
 import { DemoAnalyticsBeacon } from "@/components/demo/DemoAnalyticsBeacon";
+
+/**
+ * Voegt een berekend `overdue` flag toe aan elke reminder-row. Date.now()
+ * staat buiten render zodat de react-hooks/purity-rule niet aanslaat.
+ */
+function withOverdueFlag<T extends { nextActionAt: Date | null }>(
+  rows: T[],
+): Array<T & { overdue: boolean }> {
+  const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+  return rows.map((r) => ({
+    ...r,
+    overdue: r.nextActionAt !== null && r.nextActionAt.getTime() < cutoff,
+  }));
+}
 
 export default async function AdminOverview({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -49,6 +65,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
     demoSnapshot,
     upcomingCalls,
     staleProjects,
+    leadReminders,
   ] = await Promise.all([
     getStudioStats(),
     getRecentAdminActivity(8),
@@ -59,6 +76,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
     getDemoSnapshot(),
     getUpcomingCalls(5),
     getStaleProjects(7),
+    listLeadRemindersDueToday(),
   ]);
   const tDemo = await getTranslations("admin.demoFunnel");
   const tDemoMgmt = await getTranslations("admin.demoManagement");
@@ -187,6 +205,8 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
         <UpcomingCallsWidget calls={upcomingCalls} locale={locale} />
         <StaleProjectsWidget projects={staleProjects} locale={locale} />
       </div>
+
+      <LeadRemindersWidget reminders={withOverdueFlag(leadReminders)} />
 
       {/* Demo-management — laatste cron-run + week-counts + handmatige
           refresh-knop. Niet-demo-staff alleen (anders triggert demo-staff

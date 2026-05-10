@@ -313,6 +313,71 @@ export async function completeLeadAction(
 }
 
 /**
+ * Verstuur een outreach-mail op basis van template + (optionele)
+ * subject/body-overrides. Schrijft een lead_activity entry zodat de
+ * tijdlijn de mail-verstuur registreert.
+ */
+const TEMPLATES = [
+  "lead_outreach_intro",
+  "lead_followup_after_call",
+  "lead_referral_request",
+  "lead_dormant_revive",
+] as const;
+type Template = (typeof TEMPLATES)[number];
+
+export async function sendLeadOutreach(
+  leadId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch (e) {
+    return handleAuthError(e);
+  }
+
+  const templateInput = String(formData.get("template") ?? "");
+  if (!(TEMPLATES as readonly string[]).includes(templateInput)) {
+    return { ok: false, messageKey: "missing_fields" };
+  }
+  const template = templateInput as Template;
+  const customSubject = String(formData.get("subject") ?? "").trim();
+  const customBody = String(formData.get("body") ?? "").trim();
+
+  const lead = await db.query.leads.findFirst({
+    where: eq(leads.id, leadId),
+    columns: { id: true, email: true, name: true },
+  });
+  if (!lead) return { ok: false, messageKey: "not_found" };
+
+  try {
+    const { sendOutreachMail } = await import("@/lib/email/lead-outreach");
+    await sendOutreachMail({
+      to: lead.email,
+      leadName: lead.name,
+      template,
+      customSubject: customSubject || undefined,
+      customBody: customBody || undefined,
+    });
+  } catch (err) {
+    console.error("[leads] outreach mail failed:", err);
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  await db.insert(leadActivity).values({
+    leadId,
+    kind: "mail_sent",
+    summary: `Mail verzonden: ${template}${customSubject ? ` — "${customSubject}"` : ""}`,
+    actorStaffId: userId,
+    metadata: { template, customSubjectUsed: Boolean(customSubject) },
+  });
+
+  revalidatePath(`/admin/leads/${leadId}`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/**
  * Verwijder een lead permanent. Bedoeld voor spam/test-entries. Hard-
  * delete; activity wordt via cascade meegenomen.
  */

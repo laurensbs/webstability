@@ -1,10 +1,17 @@
 "use client";
 
 import * as React from "react";
-import { Loader2, MessageSquare, ListChecks, Building2 } from "lucide-react";
+import { Loader2, MessageSquare, ListChecks, Building2, Send } from "lucide-react";
 import { toast } from "sonner";
-import { updateLead, addLeadNote, markLeadAsCustomer } from "@/app/actions/leads";
-import { LEAD_STATUSES, LEAD_STATUS_LABEL_NL, type LeadStatus } from "@/lib/leads";
+import { updateLead, addLeadNote, markLeadAsCustomer, sendLeadOutreach } from "@/app/actions/leads";
+import {
+  LEAD_STATUSES,
+  LEAD_STATUS_LABEL_NL,
+  OUTREACH_TEMPLATES,
+  OUTREACH_LABEL_NL,
+  type LeadStatus,
+  type OutreachTemplate,
+} from "@/lib/leads";
 
 const FIELD =
   "block w-full rounded-md border border-(--color-border) bg-(--color-surface) px-3 py-2 text-[14px] focus:border-(--color-accent)/60 focus:outline-none";
@@ -43,8 +50,12 @@ export function LeadDetail({
   const [savingMain, startMain] = React.useTransition();
   const [savingNote, startNote] = React.useTransition();
   const [convertingPending, startConvert] = React.useTransition();
+  const [sendingMail, startSend] = React.useTransition();
   const [noteDraft, setNoteDraft] = React.useState("");
   const [showConvert, setShowConvert] = React.useState(false);
+  const [template, setTemplate] = React.useState<OutreachTemplate>(OUTREACH_TEMPLATES[0]);
+  const [customSubject, setCustomSubject] = React.useState("");
+  const [customBody, setCustomBody] = React.useState("");
 
   const onSaveMain = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -68,6 +79,23 @@ export function LeadDetail({
       if (result.ok) {
         toast.success("Notitie opgeslagen");
         setNoteDraft("");
+      } else {
+        toast.error("Mislukt");
+      }
+    });
+  };
+
+  const onSendMail = () => {
+    const fd = new FormData();
+    fd.set("template", template);
+    if (customSubject.trim()) fd.set("subject", customSubject);
+    if (customBody.trim()) fd.set("body", customBody);
+    startSend(async () => {
+      const result = await sendLeadOutreach(leadId, null, fd);
+      if (result.ok) {
+        toast.success("Mail verzonden");
+        setCustomSubject("");
+        setCustomBody("");
       } else {
         toast.error("Mislukt");
       }
@@ -191,6 +219,78 @@ export function LeadDetail({
             </button>
           </div>
         </form>
+
+        {/* Outreach mailer */}
+        <section className="space-y-3 rounded-[14px] border border-(--color-border) bg-(--color-surface) p-6">
+          <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+            <Send className="h-3 w-3" strokeWidth={2.4} />
+            Outreach mail
+          </p>
+          <p className="text-[12px] leading-[1.55] text-(--color-muted)">
+            Pak een template; vul optioneel subject/body in om de defaults te overrijden.
+          </p>
+
+          <div>
+            <label htmlFor="template" className={LABEL}>
+              Template
+            </label>
+            <select
+              id="template"
+              value={template}
+              onChange={(e) => setTemplate(e.target.value as OutreachTemplate)}
+              className={`mt-2 ${FIELD}`}
+            >
+              {OUTREACH_TEMPLATES.map((tpl) => (
+                <option key={tpl} value={tpl}>
+                  {OUTREACH_LABEL_NL[tpl]}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="customSubject" className={LABEL}>
+              Subject (override — laat leeg voor default)
+            </label>
+            <input
+              id="customSubject"
+              type="text"
+              value={customSubject}
+              onChange={(e) => setCustomSubject(e.target.value)}
+              className={`mt-2 ${FIELD}`}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="customBody" className={LABEL}>
+              Body (override — laat leeg voor default)
+            </label>
+            <textarea
+              id="customBody"
+              value={customBody}
+              onChange={(e) => setCustomBody(e.target.value)}
+              rows={5}
+              className={`mt-2 ${FIELD}`}
+              placeholder="Eigen tekst — gebruik \\n voor regels. Geen markdown, geen HTML."
+            />
+          </div>
+
+          <div className="flex items-center justify-end">
+            <button
+              type="button"
+              onClick={onSendMail}
+              disabled={sendingMail}
+              className="inline-flex items-center gap-2 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-colors hover:bg-(--color-accent)/90 disabled:opacity-60"
+            >
+              {sendingMail ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <Send className="h-3.5 w-3.5" strokeWidth={2.2} />
+              )}
+              {sendingMail ? "Versturen…" : "Verstuur mail"}
+            </button>
+          </div>
+        </section>
 
         {/* Activity */}
         <section>

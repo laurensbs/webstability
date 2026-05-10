@@ -29,3 +29,17 @@ export const LEAD_STATUS_LABEL_NL: Record<LeadStatus, string> = {
   customer: "Klant",
   lost: "Verloren",
 };
+
+export const OUTREACH_TEMPLATES = [
+  "lead_outreach_intro",
+  "lead_followup_after_call",
+  "lead_referral_request",
+  "lead_dormant_revive",
+] as const;
+export type OutreachTemplate = (typeof OUTREACH_TEMPLATES)[number];
+export const OUTREACH_LABEL_NL: Record<OutreachTemplate, string> = {
+  lead_outreach_intro: "Koude intro",
+  lead_followup_after_call: "Opvolg na call",
+  lead_referral_request: "Referral-vraag",
+  lead_dormant_revive: "Slapend reactiveren",
+};
