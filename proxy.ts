@@ -73,6 +73,20 @@ export default function proxy(req: NextRequest) {
     return NextResponse.next();
   }
 
+  // Voeg `x-pathname` header toe voor de portal-layout die wil weten of
+  // de huidige route /portal/intake is (om de gate-redirect te voorkomen).
+  // Edge-runtime kan geen DB lezen, dus de daadwerkelijke gate-logica zit
+  // in de layout zelf — we leveren alleen het pad aan.
+  if (
+    url.pathname === "/portal" ||
+    url.pathname.startsWith("/portal/") ||
+    /^\/(nl|es)\/portal(\/|$)/.test(url.pathname)
+  ) {
+    const reqHeaders = new Headers(req.headers);
+    reqHeaders.set("x-pathname", url.pathname);
+    return intlProxy(new NextRequest(req.nextUrl, { ...req, headers: reqHeaders }));
+  }
+
   // Apex / www. Block /admin paths so the staff portal has one canonical home.
   if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) {
     const target = new URL(`https://admin.webstability.eu${url.pathname}${url.search}`);

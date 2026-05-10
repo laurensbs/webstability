@@ -1,6 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
 import { getUserWithOrg } from "@/lib/db/queries/portal";
@@ -27,6 +28,22 @@ export default async function PortalLayout({
 
   const userWithOrg = await getUserWithOrg(session.user.id);
   if (!userWithOrg) redirect("/login");
+
+  // Intake-gate: nieuwe owners die nog geen intake hebben ingevuld worden
+  // doorgestuurd naar /portal/intake — dit voorkomt het 'leeg dashboard
+  // na betaling'-moment. Demo-users en staff worden niet geredirect (die
+  // hoeven geen intake te doen). Pathname uit proxy-header.
+  const pathname = (await headers()).get("x-pathname") ?? "";
+  const onIntakePage = /\/portal\/intake(\/|$)/.test(pathname);
+  const shouldRedirectToIntake =
+    !onIntakePage &&
+    !userWithOrg.isDemo &&
+    !userWithOrg.isStaff &&
+    userWithOrg.role === "owner" &&
+    userWithOrg.organization?.intakeCompletedAt == null;
+  if (shouldRedirectToIntake) {
+    redirect("/portal/intake");
+  }
 
   const t = await getTranslations("portal");
   const tDemo = await getTranslations("demo.banner");

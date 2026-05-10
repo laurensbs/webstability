@@ -1,4 +1,4 @@
-import { eq, and, desc, count, sql, gte, lt, isNull, gt } from "drizzle-orm";
+import { eq, and, desc, count, sql, gte, lt, isNull, gt, asc } from "drizzle-orm";
 import { db } from "@/lib/db";
 import {
   organizations,
@@ -13,6 +13,7 @@ import {
   auditLog,
   demoEvents,
   incidents,
+  bookings,
 } from "@/lib/db/schema";
 
 export async function listAllOrgs() {
@@ -465,6 +466,34 @@ export async function getDemoSnapshot() {
     weeklyEntered: counts.entered ?? 0,
     weeklyCtaClicks: counts.cta_clicked ?? 0,
   };
+}
+
+/**
+ * Aankomende calls — toont de eerstvolgende N gescheduled bookings
+ * over alle orgs heen. Gebruikt door `UpcomingCallsWidget` op /admin
+ * zodat staff in één oogopslag ziet wat er deze week komt en de
+ * intake-antwoorden kan voorbereiden.
+ */
+export async function getUpcomingCalls(limit = 5) {
+  const now = new Date();
+  return db
+    .select({
+      id: bookings.id,
+      type: bookings.type,
+      startsAt: bookings.startsAt,
+      attendeeEmail: bookings.attendeeEmail,
+      attendeeName: bookings.attendeeName,
+      meetingUrl: bookings.meetingUrl,
+      notes: bookings.notes,
+      organizationId: bookings.organizationId,
+      orgName: organizations.name,
+      orgSlug: organizations.slug,
+    })
+    .from(bookings)
+    .innerJoin(organizations, eq(organizations.id, bookings.organizationId))
+    .where(and(eq(bookings.status, "scheduled"), gte(bookings.startsAt, now)))
+    .orderBy(asc(bookings.startsAt))
+    .limit(limit);
 }
 
 /**

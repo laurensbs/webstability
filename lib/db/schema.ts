@@ -88,6 +88,12 @@ export const organizations = pgTable("organizations", {
    * server-actions (zie lib/demo-guard.ts). Slechts één row tegelijk in
    * productie verwacht; meerdere kan voor lokaal testen. */
   isDemo: boolean("is_demo").notNull().default(false),
+  /** Lifecycle-markers voor de fase 1 onboarding-flow. `intakeCompletedAt`
+   * wordt gezet bij submitIntakeForm; we leiden er ook de redirect-logica
+   * van af (geen intake = stuur naar /portal/intake i.p.v. dashboard).
+   * `contractSignedAt` is fase-3 en blijft nullable tot DocuSeal wired is. */
+  intakeCompletedAt: timestamp("intake_completed_at", { withTimezone: true }),
+  contractSignedAt: timestamp("contract_signed_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .default(sql`now()`),
@@ -545,15 +551,119 @@ export const auditLog = pgTable(
   (t) => [index("audit_org_time_idx").on(t.organizationId, t.createdAt)],
 );
 
+// --- intake_responses + bookings (fase 1 lifecycle) -----------------------
+
+export const intakeStatusEnum = pgEnum("intake_status", ["draft", "submitted"]);
+
+/**
+ * Antwoorden op het 8-stappen intake-form. `answers` is een free-form
+ * jsonb-blob zodat de form-shape kan evolueren zonder schema-migraties.
+ * Eén row per organization. Status `draft` betekent klant heeft
+ * 'sla op en sluit' gedaan; `submitted` triggert project-spawn.
+ */
+export const intakeResponses = pgTable(
+  "intake_responses",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" })
+      .unique(),
+    answers: jsonb("answers").notNull().$type<Record<string, unknown>>(),
+    status: intakeStatusEnum("status").notNull().default("draft"),
+    /** Welke stap is de klant tot waar (1-8) — klant kan terugkomen
+     * en verder vullen waar 'ie was. */
+    currentStep: integer("current_step").notNull().default(1),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+    submittedAt: timestamp("submitted_at", { withTimezone: true }),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [index("intake_org_idx").on(t.organizationId)],
+);
+
+export const bookingTypeEnum = pgEnum("booking_type", [
+  "welcome_call",
+  "review_call",
+  "strategy_call",
+]);
+
+export const bookingStatusEnum = pgEnum("booking_status", [
+  "scheduled",
+  "completed",
+  "cancelled",
+  "rescheduled",
+]);
+
+/**
+ * Cal.com-bookings gekoppeld aan een organization (via email-match in
+ * de webhook of via de submitIntakeForm-flow voor de eerste call).
+ * Houdt bij wat er gepland is, wanneer, en of het is afgerond.
+ *
+ * Fase 1 schrijft hier alleen vanuit submitIntakeForm; fase 2 voegt
+ * de Cal-webhook toe die updates pusht.
+ */
+export const bookings = pgTable(
+  "bookings",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    type: bookingTypeEnum("type").notNull(),
+    /** Cal.com booking-id (uit webhook) of null als handmatig
+     * aangemaakt vóór de webhook geconfigureerd is. */
+    calMeetingId: text("cal_meeting_id"),
+    startsAt: timestamp("starts_at", { withTimezone: true }).notNull(),
+    endsAt: timestamp("ends_at", { withTimezone: true }),
+    status: bookingStatusEnum("status").notNull().default("scheduled"),
+    attendeeEmail: text("attendee_email"),
+    attendeeName: text("attendee_name"),
+    /** Cal-link of meeting-URL (Zoom/Google Meet) als die uit de
+     * webhook komt. Voor handmatige bookings: null. */
+    meetingUrl: text("meeting_url"),
+    notes: text("notes"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [
+    index("bookings_org_starts_idx").on(t.organizationId, t.startsAt),
+    index("bookings_starts_idx").on(t.startsAt),
+  ],
+);
+
 // --- relations -----------------------------------------------------------
 
-export const organizationsRelations = relations(organizations, ({ many }) => ({
+export const organizationsRelations = relations(organizations, ({ one, many }) => ({
   members: many(users),
   projects: many(projects),
   tickets: many(tickets),
   invoices: many(invoices),
   subscriptions: many(subscriptions),
   files: many(files),
+  intakeResponse: one(intakeResponses, {
+    fields: [organizations.id],
+    references: [intakeResponses.organizationId],
+  }),
+  bookings: many(bookings),
+}));
+
+export const intakeResponsesRelations = relations(intakeResponses, ({ one }) => ({
+  organization: one(organizations, {
+    fields: [intakeResponses.organizationId],
+    references: [organizations.id],
+  }),
+}));
+
+export const bookingsRelations = relations(bookings, ({ one }) => ({
+  organization: one(organizations, {
+    fields: [bookings.organizationId],
+    references: [organizations.id],
+  }),
 }));
 
 export const usersRelations = relations(users, ({ one, many }) => ({

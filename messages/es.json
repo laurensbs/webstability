@@ -1285,6 +1285,187 @@
       "settings": "Ajustes",
       "logout": "Salir"
     },
+    "intake": {
+      "eyebrow": "paso 1 — empezamos",
+      "title": "Bienvenido a *Webstability*. Ocho preguntas, diez minutos.",
+      "lede": "Con tus respuestas construyo la base de tu sistema y planifico nuestra llamada de bienvenida. Puedes guardar y volver más tarde — encontrarás esta página en tu panel.",
+      "progressLabel": "Paso {current} de {total}",
+      "saveAndClose": "Guardar y cerrar",
+      "next": "Siguiente",
+      "back": "Atrás",
+      "submit": "Listo — enviar",
+      "submitting": "Enviando…",
+      "savedDraft": "Borrador guardado.",
+      "submittedTitle": "Gracias — tus respuestas están listas.",
+      "submittedBody": "Las reviso antes de la llamada de bienvenida. En tu panel ya verás un primer proyecto y la cita que acabas de reservar.",
+      "submittedCta": "Abrir mi panel",
+      "steps": [
+        {
+          "key": "company",
+          "label": "01",
+          "title": "¿Quién eres?",
+          "lede": "Datos de tu empresa — para el contrato y tu panel.",
+          "fields": {
+            "companyName": "Nombre de la empresa",
+            "companyNamePlaceholder": "Por ej. Costa Caravans Verhuur",
+            "vat": "KvK / NIF (opcional)",
+            "vatPlaceholder": "NL000000000B01 o ESB12345678",
+            "website": "Web actual (opcional)",
+            "websitePlaceholder": "https://…",
+            "pitch": "Una frase — ¿qué hace tu empresa?",
+            "pitchPlaceholder": "Alquilamos 16 caravanas en la Costa Brava a familias NL y DE."
+          }
+        },
+        {
+          "key": "build",
+          "label": "02",
+          "title": "¿Qué estás construyendo?",
+          "lede": "Elige lo más cercano. Tienes campo abierto para afinar.",
+          "fields": {
+            "type": "Tipo de sistema",
+            "typeOptions": {
+              "verhuurplatform": "Plataforma de alquiler",
+              "reparatie": "Portal de reparación",
+              "webshop": "Web o tienda online",
+              "anders": "Otra cosa"
+            },
+            "details": "Breve descripción — ¿qué debe hacer?",
+            "detailsPlaceholder": "Reservas + portal de cliente + facturación automática, conectado a Booking.com y Holded."
+          }
+        },
+        {
+          "key": "audience",
+          "label": "03",
+          "title": "¿Para quién es?",
+          "lede": "Describe a tu cliente medio en dos frases. Me ayuda a alinear la UX.",
+          "fields": {
+            "audience": "Público",
+            "audiencePlaceholder": "Familias NL de vacaciones, edad 35-55, reservan 6 semanas antes vía Booking o directamente en la web.",
+            "market": "Mercado",
+            "marketOptions": {
+              "nl": "Solo Países Bajos",
+              "es": "Solo España",
+              "both": "NL y ES"
+            },
+            "languages": "Idiomas en el sistema",
+            "languagesOptions": {
+              "nl": "Neerlandés",
+              "es": "Español",
+              "en": "Inglés",
+              "de": "Alemán"
+            }
+          }
+        },
+        {
+          "key": "current",
+          "label": "04",
+          "title": "¿Qué usas ahora y qué no funciona?",
+          "lede": "Honesto — todo lo que usas. También Excel, WhatsApp, carpetas en papel.",
+          "fields": {
+            "tools": "Herramientas que usas",
+            "toolsOptions": {
+              "excel": "Excel / Google Sheets",
+              "booking": "Booking.com",
+              "airbnb": "Airbnb",
+              "tommy": "Tommy",
+              "booqable": "Booqable",
+              "avantio": "Avantio",
+              "icnea": "Icnea",
+              "shopify": "Shopify",
+              "wp": "WordPress / WooCommerce",
+              "whatsapp": "WhatsApp / email",
+              "anders": "Otra"
+            },
+            "frustration": "¿Qué no funciona?",
+            "frustrationPlaceholder": "Los calendarios de Booking y Airbnb no se sincronizan, reservas duplicadas cada mes, contratos sueltos en Word."
+          }
+        },
+        {
+          "key": "musthaves",
+          "label": "05",
+          "title": "¿Qué funciones son must-have para la semana 1?",
+          "lede": "Marca máximo 5. Lo demás se añade después con una Build-extension.",
+          "fields": {
+            "features": "Must-haves",
+            "featuresOptions": {
+              "bookings": "Reservas online",
+              "portal": "Portal de cliente con login",
+              "invoicing": "Facturación automática (BTW/IVA)",
+              "channelSync": "Sync de canales (Booking/Airbnb/Vrbo)",
+              "contracts": "Contratos + firma electrónica",
+              "deposit": "Flujo de fianza",
+              "reports": "Informes mensuales",
+              "multiLocation": "Multi-ubicación",
+              "multiUser": "Varios usuarios"
+            }
+          }
+        },
+        {
+          "key": "branding",
+          "label": "06",
+          "title": "¿Tienes ya identidad visual?",
+          "lede": "Logo + colores aceleran el diseño. Si no tienes nada, partimos de una base tranquila.",
+          "fields": {
+            "hasBranding": "Estado de tu marca",
+            "hasBrandingOptions": {
+              "ready": "Logo + colores listos — los subo",
+              "partial": "Logo sí, colores no",
+              "none": "Aún no — diseñamos juntos"
+            },
+            "logoUpload": "Logo (svg / png / pdf, máx 5MB)",
+            "vibe": "¿Qué sensación encaja?",
+            "vibeOptions": {
+              "calm": "Tranquilo + premium",
+              "energetic": "Enérgico + colorido",
+              "modern": "Moderno + minimalista",
+              "warm": "Cálido + personal"
+            }
+          }
+        },
+        {
+          "key": "integrations",
+          "label": "07",
+          "title": "¿Qué integraciones necesitas?",
+          "lede": "Marca lo que encaje. ¿Falta algo? Escríbelo abajo.",
+          "fields": {
+            "integrations": "Integraciones",
+            "integrationsOptions": {
+              "mollie": "Mollie",
+              "stripe": "Stripe",
+              "booking": "Booking.com",
+              "airbnb": "Airbnb",
+              "vrbo": "Vrbo",
+              "holded": "Holded",
+              "eboekhouden": "e-Boekhouden",
+              "moneybird": "Moneybird",
+              "exact": "Exact Online",
+              "ical": "Sync iCal",
+              "zapier": "Zapier"
+            },
+            "other": "Otras integraciones",
+            "otherPlaceholder": "Por ej. ERP propio, CMS, o una API específica"
+          }
+        },
+        {
+          "key": "call",
+          "label": "08",
+          "title": "Reserva nuestra llamada de bienvenida.",
+          "lede": "Una llamada de 30 min para fijar el alcance y resolver tus dudas. Obligatoria para terminar el intake.",
+          "fields": {
+            "calLabel": "Abre la agenda y elige una hora",
+            "calNotePlaceholder": "¿Algo concreto que quieras tratar? (opcional)",
+            "calConfirmation": "Reservado para {datetime}",
+            "calOpen": "Reservar llamada →"
+          }
+        }
+      ],
+      "validation": {
+        "required": "Este campo es obligatorio.",
+        "tooLong": "Demasiado largo — resúmelo ({max} caracteres máx).",
+        "fileTooLarge": "Archivo demasiado grande — máx {max}MB.",
+        "tooManyChecked": "Máximo {max} opciones."
+      }
+    },
     "greeting": {
       "morning": "Buenos días",
       "afternoon": "Bienvenido de nuevo",

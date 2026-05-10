@@ -1281,6 +1281,187 @@
       "settings": "Instellingen",
       "logout": "Uitloggen"
     },
+    "intake": {
+      "eyebrow": "stap 1 — laten we beginnen",
+      "title": "Welkom bij *Webstability*. Acht vragen, tien minuten.",
+      "lede": "Met deze antwoorden bouw ik de basis van je systeem en plan onze welkom-call. Tussentijds opslaan kan altijd — je vindt deze pagina terug op je dashboard.",
+      "progressLabel": "Stap {current} van {total}",
+      "saveAndClose": "Sla op en sluit",
+      "next": "Volgende",
+      "back": "Terug",
+      "submit": "Klaar — verstuur",
+      "submitting": "Bezig met versturen…",
+      "savedDraft": "Concept opgeslagen.",
+      "submittedTitle": "Bedankt — je antwoorden staan klaar.",
+      "submittedBody": "Ik kijk ze door vóór onze welkom-call. Op je dashboard zie je nu een eerste project en de afspraak die je net hebt geboekt.",
+      "submittedCta": "Open mijn dashboard",
+      "steps": [
+        {
+          "key": "company",
+          "label": "01",
+          "title": "Wie ben je?",
+          "lede": "Je bedrijfsgegevens — voor het contract en je dashboard.",
+          "fields": {
+            "companyName": "Bedrijfsnaam",
+            "companyNamePlaceholder": "Bijv. Costa Caravans Verhuur",
+            "vat": "KvK / NIF (optioneel)",
+            "vatPlaceholder": "NL000000000B01 of ESB12345678",
+            "website": "Huidige website (optioneel)",
+            "websitePlaceholder": "https://…",
+            "pitch": "Eén-zin pitch — wat doet je bedrijf?",
+            "pitchPlaceholder": "We verhuren 16 caravans op de Costa Brava aan NL en DE families."
+          }
+        },
+        {
+          "key": "build",
+          "label": "02",
+          "title": "Wat ben je nu aan het bouwen?",
+          "lede": "Kies wat het dichtst in de buurt komt. Open veld om te verfijnen.",
+          "fields": {
+            "type": "Type systeem",
+            "typeOptions": {
+              "verhuurplatform": "Verhuurplatform",
+              "reparatie": "Reparatie-portaal",
+              "webshop": "Website of webshop",
+              "anders": "Iets anders"
+            },
+            "details": "Korte beschrijving — wat moet het doen?",
+            "detailsPlaceholder": "Boekingen + klantportaal + automatische facturen, gekoppeld aan Booking.com en Holded."
+          }
+        },
+        {
+          "key": "audience",
+          "label": "03",
+          "title": "Voor wie is het?",
+          "lede": "Schets je gemiddelde klant in twee zinnen. Helpt me om de UX op hun verwachting af te stemmen.",
+          "fields": {
+            "audience": "Doelgroep",
+            "audiencePlaceholder": "NL gezinnen die op vakantie gaan, leeftijd 35-55, boeken 6 weken vooraf via Booking of direct op de site.",
+            "market": "Markt",
+            "marketOptions": {
+              "nl": "Alleen Nederland",
+              "es": "Alleen Spanje",
+              "both": "NL én ES"
+            },
+            "languages": "Talen op het systeem",
+            "languagesOptions": {
+              "nl": "Nederlands",
+              "es": "Spaans",
+              "en": "Engels",
+              "de": "Duits"
+            }
+          }
+        },
+        {
+          "key": "current",
+          "label": "04",
+          "title": "Wat heb je nu en wat werkt niet?",
+          "lede": "Eerlijk — alles wat je gebruikt. Ook Excel, WhatsApp, papieren mapjes.",
+          "fields": {
+            "tools": "Tools die je gebruikt",
+            "toolsOptions": {
+              "excel": "Excel / Google Sheets",
+              "booking": "Booking.com",
+              "airbnb": "Airbnb",
+              "tommy": "Tommy",
+              "booqable": "Booqable",
+              "avantio": "Avantio",
+              "icnea": "Icnea",
+              "shopify": "Shopify",
+              "wp": "WordPress / WooCommerce",
+              "whatsapp": "WhatsApp / mail",
+              "anders": "Iets anders"
+            },
+            "frustration": "Wat werkt niet?",
+            "frustrationPlaceholder": "Booking-en Airbnb-kalenders syncen niet, dubbele boekingen elke maand, contracten zijn losse Word-files."
+          }
+        },
+        {
+          "key": "musthaves",
+          "label": "05",
+          "title": "Welke functies zijn must-have voor week 1?",
+          "lede": "Vink maximaal 5. Wat erbuiten valt komt later via een Build-extension.",
+          "fields": {
+            "features": "Must-haves",
+            "featuresOptions": {
+              "bookings": "Online boekingen",
+              "portal": "Klantportaal met login",
+              "invoicing": "Automatische facturatie (BTW/IVA)",
+              "channelSync": "Channel-sync (Booking/Airbnb/Vrbo)",
+              "contracts": "Contracten + e-handtekening",
+              "deposit": "Borg-flow",
+              "reports": "Maandelijkse rapportage",
+              "multiLocation": "Multi-locatie",
+              "multiUser": "Meerdere medewerkers"
+            }
+          }
+        },
+        {
+          "key": "branding",
+          "label": "06",
+          "title": "Heb je al een huisstijl?",
+          "lede": "Logo + kleuren versnellen het ontwerp. Geen zorgen als je nog niets hebt — dan starten we met een rustige basis.",
+          "fields": {
+            "hasBranding": "Status van je merk",
+            "hasBrandingOptions": {
+              "ready": "Logo + kleuren klaar — ik upload ze",
+              "partial": "Logo wel, geen kleuren / richtlijnen",
+              "none": "Nog niets — graag samen ontwerpen"
+            },
+            "logoUpload": "Logo (svg / png / pdf, max 5MB)",
+            "vibe": "Welke sfeer past?",
+            "vibeOptions": {
+              "calm": "Rustig + premium",
+              "energetic": "Energiek + kleurrijk",
+              "modern": "Modern + minimaal",
+              "warm": "Warm + persoonlijk"
+            }
+          }
+        },
+        {
+          "key": "integrations",
+          "label": "07",
+          "title": "Welke koppelingen heb je nodig?",
+          "lede": "Vink wat past. Ontbreekt iets? Schrijf het in het open veld onderaan.",
+          "fields": {
+            "integrations": "Koppelingen",
+            "integrationsOptions": {
+              "mollie": "Mollie",
+              "stripe": "Stripe",
+              "booking": "Booking.com",
+              "airbnb": "Airbnb",
+              "vrbo": "Vrbo",
+              "holded": "Holded",
+              "eboekhouden": "e-Boekhouden",
+              "moneybird": "Moneybird",
+              "exact": "Exact Online",
+              "ical": "iCal-sync",
+              "zapier": "Zapier"
+            },
+            "other": "Andere koppelingen",
+            "otherPlaceholder": "Bijv. eigen ERP, CMS, of een specifieke API"
+          }
+        },
+        {
+          "key": "call",
+          "label": "08",
+          "title": "Plan onze welkom-call.",
+          "lede": "Een gesprek van 30 minuten waarin we de scope vastleggen en jouw vragen beantwoorden. Verplicht om de intake af te ronden.",
+          "fields": {
+            "calLabel": "Open de agenda en kies een tijd",
+            "calNotePlaceholder": "Iets specifieks dat je wil bespreken? (optioneel)",
+            "calConfirmation": "Geboekt voor {datetime}",
+            "calOpen": "Plan de call →"
+          }
+        }
+      ],
+      "validation": {
+        "required": "Dit veld is verplicht.",
+        "tooLong": "Dat is wel veel — vat het iets korter samen ({max} tekens max).",
+        "fileTooLarge": "Bestand te groot — max {max}MB.",
+        "tooManyChecked": "Maximaal {max} keuzes."
+      }
+    },
     "greeting": {
       "morning": "Goedemorgen",
       "afternoon": "Welkom terug",
