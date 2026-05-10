@@ -1,0 +1,231 @@
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import { hasLocale } from "next-intl";
+import { notFound, redirect } from "next/navigation";
+import { ArrowLeft, Sparkles, MessageCircle, FileText, Clock } from "lucide-react";
+import { auth } from "@/lib/auth";
+import { routing } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
+import { getUserWithOrg, getOrgProjectDetail } from "@/lib/db/queries/portal";
+
+const STATUS_LABEL = {
+  planning: { nl: "Planning", es: "Planificación" },
+  in_progress: { nl: "In ontwikkeling", es: "En desarrollo" },
+  review: { nl: "Review", es: "Revisión" },
+  live: { nl: "Live", es: "En vivo" },
+  done: { nl: "Afgerond", es: "Finalizado" },
+} as const;
+
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+
+function computeProgress(
+  phase: { startedAt: Date | null; endsAt: Date | null } | null | undefined,
+  fallback: number,
+): { pct: number; weekText: string | null } {
+  if (!phase?.startedAt || !phase?.endsAt) return { pct: fallback, weekText: null };
+  const now = Date.now();
+  const total = phase.endsAt.getTime() - phase.startedAt.getTime();
+  const elapsed = Math.max(0, now - phase.startedAt.getTime());
+  const pct = total > 0 ? Math.min(100, Math.round((elapsed / total) * 100)) : 0;
+  const weekIndex = Math.max(1, Math.floor(elapsed / WEEK_MS) + 1);
+  const totalWeeks = Math.max(weekIndex, Math.ceil(total / WEEK_MS));
+  return { pct, weekText: `Week ${weekIndex} van ${totalWeeks}` };
+}
+
+/**
+ * Project-detail-page voor klanten. Toont voortgang, mijlpaal,
+ * staff-updates, openstaande vragen, en recente deliverables.
+ * Strategie: dit is de pagina waar de klant zelf gaat kijken
+ * 'hoe gaat 't?' i.p.v. mailen.
+ */
+export default async function ProjectDetailPage({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string }>;
+}) {
+  const { locale, id } = await params;
+  if (!hasLocale(routing.locales, locale)) notFound();
+  setRequestLocale(locale);
+
+  const session = await auth();
+  if (!session?.user?.id) redirect("/login");
+  const user = await getUserWithOrg(session.user.id);
+  if (!user?.organizationId) redirect("/login");
+
+  const detail = await getOrgProjectDetail(user.organizationId, id);
+  if (!detail) notFound();
+
+  const { project, phase, updates, waitingTickets, recentFiles } = detail;
+  const lang = locale === "es" ? "es" : "nl";
+  const dateFmt = new Intl.DateTimeFormat(locale, { day: "numeric", month: "short" });
+  const fullDateFmt = new Intl.DateTimeFormat(locale, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  // Voortgang berekenen — Date.now() in helper buiten render om
+  // purity-rule te respecteren (zie computeProgress).
+  const { pct: progressPct, weekText } = computeProgress(phase ?? null, project.progress);
+
+  const t = await getTranslations("portal.projectDetail");
+
+  return (
+    <main className="dotted-bg min-h-screen px-6 py-8 md:py-12">
+      <div className="mx-auto max-w-4xl space-y-10">
+        {/* Header */}
+        <div>
+          <Link
+            href="/portal/projects"
+            className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase transition-colors hover:text-(--color-text)"
+          >
+            <ArrowLeft className="h-3 w-3" strokeWidth={2.4} />
+            {t("backToProjects")}
+          </Link>
+          <h1 className="mt-4 font-serif text-[clamp(28px,4vw,40px)] leading-tight">
+            {project.name}
+          </h1>
+          <p className="mt-2 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+            {STATUS_LABEL[project.status][lang]}
+            {phase && weekText ? ` · ${weekText}` : null}
+          </p>
+        </div>
+
+        {/* Voortgang-balk */}
+        {phase ? (
+          <section className="rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6">
+            <div className="flex items-center justify-between gap-4">
+              <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                {t("progress")}
+              </p>
+              <p className="font-mono text-[12px] text-(--color-text)">{progressPct}%</p>
+            </div>
+            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-(--color-border)">
+              <div
+                className="h-full bg-(--color-accent) transition-[width] duration-500"
+                style={{ width: `${progressPct}%` }}
+              />
+            </div>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-[12px] text-(--color-muted)">
+              <span>
+                {phase.startedAt ? `${t("started")} ${fullDateFmt.format(phase.startedAt)}` : ""}
+              </span>
+              <span>
+                {phase.endsAt ? `${t("planned")} ${fullDateFmt.format(phase.endsAt)}` : ""}
+              </span>
+            </div>
+          </section>
+        ) : null}
+
+        {/* Volgende mijlpaal */}
+        {project.nextMilestone ? (
+          <section className="rounded-[18px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-bg-warm) p-6">
+            <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-wine) uppercase">
+              <Sparkles className="h-3 w-3" strokeWidth={2.4} />
+              {t("nextMilestone")}
+            </p>
+            <p className="mt-3 text-[16px] leading-[1.55] text-(--color-text)">
+              {project.nextMilestone}
+            </p>
+            {project.nextMilestoneUpdatedAt ? (
+              <p className="mt-3 font-mono text-[10px] tracking-wide text-(--color-muted) uppercase">
+                {t("updatedOn")} {fullDateFmt.format(project.nextMilestoneUpdatedAt)}
+              </p>
+            ) : null}
+          </section>
+        ) : null}
+
+        {/* Wekelijkse updates */}
+        <section>
+          <h2 className="mb-4 inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-(--color-text) uppercase">
+            <MessageCircle className="h-3 w-3 text-(--color-accent)" strokeWidth={2.4} />
+            {t("recentUpdates")}
+          </h2>
+          {updates.length === 0 ? (
+            <p className="rounded-lg border border-dashed border-(--color-border) bg-(--color-bg-warm)/50 px-5 py-6 text-[14px] text-(--color-muted)">
+              {t("noUpdates")}
+            </p>
+          ) : (
+            <ul className="divide-y divide-(--color-border) overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+              {updates.map((u) => (
+                <li key={u.id} className="px-5 py-4">
+                  <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                    {dateFmt.format(u.createdAt)}
+                    {u.postedByUser?.name ? ` · ${u.postedByUser.name}` : ""}
+                  </p>
+                  <p className="mt-2 text-[14px] leading-[1.6] whitespace-pre-wrap text-(--color-text)">
+                    {u.body}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
+        {/* Open vragen voor klant */}
+        {waitingTickets.length > 0 ? (
+          <section>
+            <h2 className="mb-4 inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-(--color-text) uppercase">
+              <Clock className="h-3 w-3 text-(--color-wine)" strokeWidth={2.4} />
+              {t("waitingForYou")}
+            </h2>
+            <ul className="divide-y divide-(--color-border) overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+              {waitingTickets.map((tk) => (
+                <li key={tk.id}>
+                  <Link
+                    href={{
+                      pathname: "/portal/tickets/[id]" as never,
+                      params: { id: tk.id },
+                    }}
+                    className="flex items-start justify-between gap-4 px-5 py-4 transition-colors hover:bg-(--color-bg-warm)"
+                  >
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-[14px] font-medium text-(--color-text)">
+                        {tk.subject}
+                      </p>
+                      <p className="mt-1 font-mono text-[10px] tracking-wide text-(--color-muted) uppercase">
+                        {dateFmt.format(tk.createdAt)}
+                      </p>
+                    </div>
+                    <span className="shrink-0 font-mono text-[10px] tracking-widest text-(--color-wine) uppercase">
+                      {t("respond")}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {/* Recente files */}
+        {recentFiles.length > 0 ? (
+          <section>
+            <h2 className="mb-4 inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-(--color-text) uppercase">
+              <FileText className="h-3 w-3 text-(--color-accent)" strokeWidth={2.4} />
+              {t("recentFiles")}
+            </h2>
+            <ul className="divide-y divide-(--color-border) overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+              {recentFiles.map((f) => (
+                <li key={f.id} className="flex items-center justify-between gap-4 px-5 py-3">
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-[14px] text-(--color-text)">{f.name}</p>
+                    <p className="font-mono text-[10px] tracking-wide text-(--color-muted) uppercase">
+                      {f.category} · {dateFmt.format(f.createdAt)}
+                    </p>
+                  </div>
+                  <a
+                    href={f.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 font-mono text-[11px] text-(--color-accent) hover:underline"
+                  >
+                    {t("download")}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+      </div>
+    </main>
+  );
+}

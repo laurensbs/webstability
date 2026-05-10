@@ -16,10 +16,12 @@ import {
   getDemoFunnelStats,
   getDemoSnapshot,
   getUpcomingCalls,
+  getStaleProjects,
 } from "@/lib/db/queries/admin";
 import { triggerDemoRefresh } from "@/app/actions/admin-bulk";
 import { DemoManagementCard } from "@/components/admin/DemoManagementCard";
 import { UpcomingCallsWidget } from "@/components/admin/UpcomingCallsWidget";
+import { StaleProjectsWidget } from "@/components/admin/StaleProjectsWidget";
 import { StatCard } from "@/components/portal/StatCard";
 import { AdminActivityFeed } from "@/components/admin/AdminActivityFeed";
 import { FlashCounter } from "@/components/animate/FlashCounter";
@@ -46,6 +48,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
     demoFunnel,
     demoSnapshot,
     upcomingCalls,
+    staleProjects,
   ] = await Promise.all([
     getStudioStats(),
     getRecentAdminActivity(8),
@@ -55,6 +58,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
     getDemoFunnelStats(7),
     getDemoSnapshot(),
     getUpcomingCalls(5),
+    getStaleProjects(7),
   ]);
   const tDemo = await getTranslations("admin.demoFunnel");
   const tDemoMgmt = await getTranslations("admin.demoManagement");
@@ -176,10 +180,13 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
         />
       </section>
 
-      {/* Aankomende calls — widget met de eerstvolgende geplande
-          welcome/review/strategy-calls over alle orgs. Dagelijks
-          relevant voor staff-prep, daarom hoog op de pagina. */}
-      <UpcomingCallsWidget calls={upcomingCalls} locale={locale} />
+      {/* Aankomende calls + klanten-zonder-update — beide dagelijks
+          relevant voor staff. Naast elkaar op desktop, gestapeld op
+          mobile. Stale-widget kleurt wijn-rood als er actie nodig is. */}
+      <div className="grid gap-4 md:grid-cols-2">
+        <UpcomingCallsWidget calls={upcomingCalls} locale={locale} />
+        <StaleProjectsWidget projects={staleProjects} locale={locale} />
+      </div>
 
       {/* Demo-management — laatste cron-run + week-counts + handmatige
           refresh-knop. Niet-demo-staff alleen (anders triggert demo-staff

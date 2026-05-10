@@ -1593,6 +1593,20 @@
       "deliveryPctLabel": "voorbij",
       "deliveryAfter": "Na deze build val je vanzelf terug op je reguliere abonnement. De Build-extension stopt automatisch op de einddatum — geen handmatige opzegging nodig."
     },
+    "projectDetail": {
+      "backToProjects": "Terug naar projecten",
+      "progress": "Voortgang",
+      "started": "Gestart op",
+      "planned": "Plan-livegang",
+      "nextMilestone": "Volgende mijlpaal",
+      "updatedOn": "Bijgewerkt op",
+      "recentUpdates": "Wekelijkse updates",
+      "noUpdates": "Nog geen updates. Vóór de volgende woensdag staat hier de eerste stand-van-zaken.",
+      "waitingForYou": "Vragen voor jou",
+      "respond": "Antwoord",
+      "recentFiles": "Recente bestanden",
+      "download": "Open"
+    },
     "projects": {
       "title": "Projecten",
       "empty": "Nog geen projecten gekoppeld.",

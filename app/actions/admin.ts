@@ -28,6 +28,7 @@ import {
   discounts,
   subscriptions,
   auditLog,
+  projectUpdates,
 } from "@/lib/db/schema";
 import type { ActionResult } from "@/lib/action-result";
 
@@ -991,4 +992,85 @@ export async function changeTicketStatusDirect(
     })
     .where(eq(tickets.id, ticketId));
   revalidatePath(`/admin/tickets`);
+}
+
+/**
+ * Post een korte staff-update op een project. Verschijnt op
+ * /portal/projects/[id] en wordt gebundeld in de wekelijkse update-
+ * mail door cron `weekly-update`. Markdown-tekst, geen versies.
+ */
+export async function postProjectUpdate(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch (e) {
+    return handleAuthError(e);
+  }
+
+  const projectId = String(formData.get("projectId") ?? "").trim();
+  const body = String(formData.get("body") ?? "").trim();
+  if (!projectId || !body) return { ok: false, messageKey: "missing_fields" };
+  if (body.length > 2000) return { ok: false, messageKey: "too_long" };
+
+  // Verifieer project bestaat + haal organizationId op voor index
+  const project = await db.query.projects.findFirst({
+    where: eq(projects.id, projectId),
+    columns: { id: true, organizationId: true, name: true },
+  });
+  if (!project) return { ok: false, messageKey: "not_found" };
+
+  await db.insert(projectUpdates).values({
+    projectId,
+    organizationId: project.organizationId,
+    postedBy: userId,
+    body,
+  });
+
+  await db.insert(auditLog).values({
+    organizationId: project.organizationId,
+    userId,
+    action: "project.update_posted",
+    targetType: "project",
+    targetId: projectId,
+    metadata: { projectName: project.name, length: body.length },
+  });
+
+  revalidatePath(`/admin/orgs/${project.organizationId}`);
+  revalidatePath(`/portal/projects/${projectId}`);
+  revalidatePath(`/portal/dashboard`);
+  return { ok: true, messageKey: "update_posted" };
+}
+
+/**
+ * Update de "volgende mijlpaal"-tekst op een project. Eén korte zin
+ * die staff per week vernieuwt. Geen audit-log nodig — laagdrempelig.
+ */
+export async function setNextMilestone(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  try {
+    await requireStaff();
+  } catch (e) {
+    return handleAuthError(e);
+  }
+
+  const projectId = String(formData.get("projectId") ?? "").trim();
+  const milestone = String(formData.get("milestone") ?? "").trim();
+  if (!projectId) return { ok: false, messageKey: "missing_fields" };
+
+  await db
+    .update(projects)
+    .set({
+      nextMilestone: milestone || null,
+      nextMilestoneUpdatedAt: milestone ? new Date() : null,
+    })
+    .where(eq(projects.id, projectId));
+
+  revalidatePath(`/portal/projects/${projectId}`);
+  revalidatePath(`/portal/dashboard`);
+  return { ok: true, messageKey: "saved" };
 }

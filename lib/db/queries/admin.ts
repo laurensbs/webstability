@@ -14,6 +14,8 @@ import {
   demoEvents,
   incidents,
   bookings,
+  buildPhases,
+  projectUpdates,
 } from "@/lib/db/schema";
 
 export async function listAllOrgs() {
@@ -466,6 +468,60 @@ export async function getDemoSnapshot() {
     weeklyEntered: counts.entered ?? 0,
     weeklyCtaClicks: counts.cta_clicked ?? 0,
   };
+}
+
+/**
+ * Klanten met een actieve build-fase die geen project_update hebben
+ * gehad in de laatste N dagen (default 7). Gebruikt door
+ * `StaleProjectsWidget` op /admin om "klanten zonder update deze week"
+ * te tonen — voorkomt dat staff een klant in stilte laat hangen.
+ */
+export async function getStaleProjects(days = 7) {
+  const cutoff = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  const now = new Date();
+
+  // Alle actieve build-fases (endsAt > now)
+  const activePhases = await db
+    .select({
+      projectId: buildPhases.projectId,
+      orgId: buildPhases.organizationId,
+      orgName: organizations.name,
+      projectName: projects.name,
+    })
+    .from(buildPhases)
+    .innerJoin(organizations, eq(organizations.id, buildPhases.organizationId))
+    .leftJoin(projects, eq(projects.id, buildPhases.projectId))
+    .where(gt(buildPhases.endsAt, now));
+
+  const stale: Array<{
+    projectId: string;
+    orgId: string;
+    orgName: string;
+    projectName: string;
+    lastUpdateAt: Date | null;
+  }> = [];
+
+  for (const p of activePhases) {
+    if (!p.projectId || !p.projectName) continue;
+    const lastUpdate = await db
+      .select({ createdAt: projectUpdates.createdAt })
+      .from(projectUpdates)
+      .where(eq(projectUpdates.projectId, p.projectId))
+      .orderBy(desc(projectUpdates.createdAt))
+      .limit(1);
+    const lastAt = lastUpdate[0]?.createdAt ?? null;
+    if (!lastAt || lastAt < cutoff) {
+      stale.push({
+        projectId: p.projectId,
+        orgId: p.orgId,
+        orgName: p.orgName,
+        projectName: p.projectName,
+        lastUpdateAt: lastAt,
+      });
+    }
+  }
+
+  return stale;
 }
 
 /**

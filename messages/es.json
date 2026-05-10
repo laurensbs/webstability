@@ -1597,6 +1597,20 @@
       "deliveryPctLabel": "transcurrido",
       "deliveryAfter": "Tras esta build vuelves automáticamente a tu suscripción regular. La Build extension termina sola en la fecha de fin — no hay que cancelar nada."
     },
+    "projectDetail": {
+      "backToProjects": "Volver a proyectos",
+      "progress": "Progreso",
+      "started": "Iniciado el",
+      "planned": "Lanzamiento previsto",
+      "nextMilestone": "Próximo hito",
+      "updatedOn": "Actualizado el",
+      "recentUpdates": "Actualizaciones semanales",
+      "noUpdates": "Aún sin actualizaciones. Antes del próximo miércoles tendrás el primer estado.",
+      "waitingForYou": "Pendientes para ti",
+      "respond": "Responder",
+      "recentFiles": "Archivos recientes",
+      "download": "Abrir"
+    },
     "projects": {
       "title": "Proyectos",
       "empty": "Aún no hay proyectos.",

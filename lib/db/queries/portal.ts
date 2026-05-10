@@ -10,6 +10,7 @@ import {
   buildPhases,
   monitoringChecks,
   incidents,
+  projectUpdates,
 } from "@/lib/db/schema";
 
 export async function listOrgMembers(orgId: string) {
@@ -82,6 +83,53 @@ export async function listOrgProjects(orgId: string) {
     where: eq(projects.organizationId, orgId),
     orderBy: [desc(projects.createdAt)],
   });
+}
+
+/**
+ * Detail-page voor een specifiek project: project zelf + actieve build-
+ * fase + laatste 10 staff-updates + waiting-tickets (vragen voor klant)
+ * + recente files. Aangeroepen door /portal/projects/[id].
+ *
+ * Geeft `null` terug als het project niet bij de org hoort — voorkomt
+ * data-leak tussen orgs.
+ */
+export async function getOrgProjectDetail(orgId: string, projectId: string) {
+  const project = await db.query.projects.findFirst({
+    where: and(eq(projects.id, projectId), eq(projects.organizationId, orgId)),
+  });
+  if (!project) return null;
+
+  const phase = await db.query.buildPhases.findFirst({
+    where: and(eq(buildPhases.organizationId, orgId), eq(buildPhases.projectId, projectId)),
+    orderBy: [desc(buildPhases.startedAt)],
+  });
+
+  const updates = await db.query.projectUpdates.findMany({
+    where: eq(projectUpdates.projectId, projectId),
+    orderBy: [desc(projectUpdates.createdAt)],
+    limit: 10,
+    with: {
+      postedByUser: { columns: { name: true, email: true, isStaff: true } },
+    },
+  });
+
+  const waitingTickets = await db.query.tickets.findMany({
+    where: and(
+      eq(tickets.organizationId, orgId),
+      eq(tickets.projectId, projectId),
+      eq(tickets.status, "waiting"),
+    ),
+    orderBy: [desc(tickets.createdAt)],
+    limit: 5,
+  });
+
+  const recentFiles = await db.query.files.findMany({
+    where: and(eq(files.organizationId, orgId), eq(files.projectId, projectId)),
+    orderBy: [desc(files.createdAt)],
+    limit: 5,
+  });
+
+  return { project, phase, updates, waitingTickets, recentFiles };
 }
 
 export async function listOrgTickets(orgId: string) {

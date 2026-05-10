@@ -51,6 +51,7 @@ export const routing = defineRouting({
     "/checkout/done": "/checkout/done",
     "/portal/dashboard": "/portal/dashboard",
     "/portal/intake": "/portal/intake",
+    "/portal/projects/[id]": "/portal/projects/[id]",
     "/portal/projects": "/portal/projects",
     "/portal/tickets": "/portal/tickets",
     "/portal/invoices": "/portal/invoices",

@@ -194,6 +194,14 @@ export const projects = pgTable(
      * naar 'live' gaat én liveAt nog null is. Klant-portal gebruikt dit
      * om binnen 7 dagen na livegang een sparkle-banner te tonen. */
     liveAt: timestamp("live_at", { withTimezone: true }),
+    /** Korte zin die staff per week update — toont op /portal/projects/
+     * [id] als 'volgende mijlpaal'. Vrij tekstveld zodat staff er
+     * naar wens iets in kan zetten ('Klantportaal-skelet klaar voor
+     * jouw review'). Geen audit-log nodig per wijziging. */
+    nextMilestone: text("next_milestone"),
+    nextMilestoneUpdatedAt: timestamp("next_milestone_updated_at", {
+      withTimezone: true,
+    }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .default(sql`now()`),
@@ -636,6 +644,36 @@ export const bookings = pgTable(
   ],
 );
 
+// --- project_updates (sprint B — wekelijkse build-stand-van-zaken) -------
+
+/**
+ * Korte staff-update op een project — verschijnt op /portal/projects/[id]
+ * voor de klant en in de wekelijkse update-mail. Markdown-tekst, geen
+ * versies. Cron 'weekly-update' bundelt alle entries van de afgelopen
+ * 7 dagen in één mail.
+ */
+export const projectUpdates = pgTable(
+  "project_updates",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    projectId: uuid("project_id")
+      .notNull()
+      .references(() => projects.id, { onDelete: "cascade" }),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    postedBy: text("posted_by").references(() => users.id, { onDelete: "set null" }),
+    body: text("body").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [
+    index("project_updates_project_time_idx").on(t.projectId, t.createdAt),
+    index("project_updates_org_time_idx").on(t.organizationId, t.createdAt),
+  ],
+);
+
 // --- relations -----------------------------------------------------------
 
 export const organizationsRelations = relations(organizations, ({ one, many }) => ({
@@ -683,6 +721,22 @@ export const projectsRelations = relations(projects, ({ one, many }) => ({
   tickets: many(tickets),
   monitoringChecks: many(monitoringChecks),
   incidents: many(incidents),
+  updates: many(projectUpdates),
+}));
+
+export const projectUpdatesRelations = relations(projectUpdates, ({ one }) => ({
+  project: one(projects, {
+    fields: [projectUpdates.projectId],
+    references: [projects.id],
+  }),
+  organization: one(organizations, {
+    fields: [projectUpdates.organizationId],
+    references: [organizations.id],
+  }),
+  postedByUser: one(users, {
+    fields: [projectUpdates.postedBy],
+    references: [users.id],
+  }),
 }));
 
 export const ticketsRelations = relations(tickets, ({ one, many }) => ({
