@@ -120,6 +120,7 @@
         "Beschikbaar voor 2 nieuwe projecten — mei 2026",
         "Vaste prijs · 4 weken levering",
         "Voor verhuur in NL en Spanje",
+        "Mobiel-first · 95+ Lighthouse op iPhone",
         "Eén systeem ipv vijf losse tools"
       ],
       "proposition": [
@@ -140,7 +141,7 @@
         "boekingsplatformen",
         "webshops"
       ],
-      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem. Vaste prijs €5–8k, 4 weken levering, doorlopend abonnement vanaf €179/maand, voor ondernemers in Nederland en Spanje."
+      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem, mobiel-first gebouwd zoals jouw klanten 't gebruiken. Vaste prijs €5–8k, 4 weken levering, doorlopend abonnement vanaf €179/maand, voor ondernemers in Nederland en Spanje."
     },
 
     "logoStrip": {
@@ -780,6 +781,7 @@
         "includes": [
           "Publiek boekingsplatform met klantlogin",
           "Admin met live boekings-overzicht + multi-locatie",
+          "Mobiel-first — 95+ Lighthouse op iPhone",
           "Channel-sync (Airbnb, Booking, Vrbo)",
           "Mollie/Stripe checkout + automatische facturen",
           "Hosting + monitoring + maandelijks onderhoud"

@@ -120,6 +120,7 @@
         "Disponible para 2 nuevos proyectos — mayo 2026",
         "Precio fijo · entrega en 4 semanas",
         "Para alquiler en NL y España",
+        "Mobile-first · Lighthouse 95+ en iPhone",
         "Un sistema en lugar de cinco herramientas"
       ],
       "proposition": [
@@ -140,7 +141,7 @@
         "plataformas de reservas",
         "tiendas online"
       ],
-      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado. Precio fijo 5–8 k €, entrega en 4 semanas, suscripción continua desde 179 €/mes, para empresarios en Países Bajos y España."
+      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado, mobile-first como lo usan tus clientes. Precio fijo 5–8 k €, entrega en 4 semanas, suscripción continua desde 179 €/mes, para empresarios en Países Bajos y España."
     },
 
     "logoStrip": {
@@ -780,6 +781,7 @@
         "includes": [
           "Plataforma de reservas pública con login de cliente",
           "Admin con vista en vivo + multi-ubicación",
+          "Mobile-first — Lighthouse 95+ en iPhone",
           "Channel-sync (Airbnb, Booking, Vrbo)",
           "Mollie/Stripe checkout + facturas automáticas",
           "Hosting + monitorización + mantenimiento mensual"

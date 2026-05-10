@@ -27,53 +27,58 @@ const FALLBACK: LoginStatLine = ["webstability draait."];
  * niet bestaat (oude cookie / verwijderde org) → null.
  */
 export async function getOrgLoginStatLine(slug: string): Promise<LoginStatLine | null> {
-  const org = await db.query.organizations.findFirst({
-    where: eq(organizations.slug, slug),
-    columns: { id: true, name: true },
-  });
-  if (!org) return null;
+  try {
+    const org = await db.query.organizations.findFirst({
+      where: eq(organizations.slug, slug),
+      columns: { id: true, name: true },
+    });
+    if (!org) return null;
 
-  // Oudste live-project van deze org — geeft "X dagen live" + uptime.
-  const liveProject = await db
-    .select({
-      id: projects.id,
-      name: projects.name,
-      liveAt: projects.liveAt,
-    })
-    .from(projects)
-    .where(eq(projects.organizationId, org.id))
-    .orderBy(asc(projects.liveAt))
-    .limit(1);
+    // Oudste live-project van deze org — geeft "X dagen live" + uptime.
+    const liveProject = await db
+      .select({
+        id: projects.id,
+        name: projects.name,
+        liveAt: projects.liveAt,
+      })
+      .from(projects)
+      .where(eq(projects.organizationId, org.id))
+      .orderBy(asc(projects.liveAt))
+      .limit(1);
 
-  const proj = liveProject[0];
-  if (!proj || !proj.liveAt) {
-    return [`${org.name} · webstability draait.`];
+    const proj = liveProject[0];
+    if (!proj || !proj.liveAt) {
+      return [`${org.name} · webstability draait.`];
+    }
+
+    const days = Math.max(
+      1,
+      Math.floor((Date.now() - proj.liveAt.getTime()) / (1000 * 60 * 60 * 24)),
+    );
+
+    // Uptime over laatste 1000 monitoring-checks van dit project.
+    const checks = await db
+      .select({ status: monitoringChecks.status })
+      .from(monitoringChecks)
+      .where(eq(monitoringChecks.projectId, proj.id))
+      .limit(1000);
+
+    let uptimePart: string | null = null;
+    if (checks.length > 0) {
+      const ups = checks.filter((c) => c.status === "up").length;
+      const pct = (ups / checks.length) * 100;
+      uptimePart = `${pct.toFixed(2)}% uptime`;
+    }
+
+    const parts = [org.name];
+    if (uptimePart) parts.push(uptimePart);
+    parts.push(`${days} ${days === 1 ? "dag" : "dagen"} live`);
+
+    return [parts.join(" · ")];
+  } catch {
+    // DB faalt of slug oude vorm → val terug op anonymous fallback in caller
+    return null;
   }
-
-  const days = Math.max(
-    1,
-    Math.floor((Date.now() - proj.liveAt.getTime()) / (1000 * 60 * 60 * 24)),
-  );
-
-  // Uptime over laatste 1000 monitoring-checks van dit project.
-  const checks = await db
-    .select({ status: monitoringChecks.status })
-    .from(monitoringChecks)
-    .where(eq(monitoringChecks.projectId, proj.id))
-    .limit(1000);
-
-  let uptimePart: string | null = null;
-  if (checks.length > 0) {
-    const ups = checks.filter((c) => c.status === "up").length;
-    const pct = (ups / checks.length) * 100;
-    uptimePart = `${pct.toFixed(2)}% uptime`;
-  }
-
-  const parts = [org.name];
-  if (uptimePart) parts.push(uptimePart);
-  parts.push(`${days} ${days === 1 ? "dag" : "dagen"} live`);
-
-  return [parts.join(" · ")];
 }
 
 /**

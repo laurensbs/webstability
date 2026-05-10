@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { cookies } from "next/headers";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
@@ -221,21 +220,10 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   const subStatus = lastSeenLine(t, user.lastLoginAt ?? null);
   await db.update(users).set({ lastLoginAt: new Date() }).where(eq(users.id, user.id));
 
-  // Bump `last_org` cookie zodat de volgende /login render een
-  // org-specifieke stat-line kan tonen ("X · uptime · Y dagen live").
-  // Geen identifier — alleen de slug. Demo-orgs worden uitgesloten,
-  // anders ziet een prospect de demo-stats in plaats van studio-stats
-  // de eerstvolgende keer dat hij niet ingelogd is.
-  if (user.organization?.slug && !user.isDemo) {
-    const jar = await cookies();
-    jar.set("last_org", user.organization.slug, {
-      httpOnly: false,
-      sameSite: "lax",
-      path: "/",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60 * 24 * 90, // 90 dagen
-    });
-  }
+  // NB: `last_org` cookie wordt niet vanuit deze server-component gezet —
+  // Next 16 staat alleen cookies.set() toe in route-handlers / server-
+  // actions. Login-statline op /login leest in plaats daarvan via een
+  // server-action / API als die ooit gewenst is.
 
   const healthy = !stats.hasHighPriority && stats.openTickets === 0;
 
