@@ -1276,6 +1276,24 @@
     "lastUpdatedLabel": "Última actualización",
     "lastUpdatedDate": "8 de mayo de 2026"
   },
+  "nps": {
+    "eyebrow": "Una pregunta corta",
+    "title": "¿Cómo nos recomendarías?",
+    "intro": "{days} días después del lanzamiento de {project} — elige un número del 0 al 10. Tu respuesta queda entre nosotros.",
+    "scoreLabel": "Escala",
+    "scoreHelpLow": "para nada",
+    "scoreHelpHigh": "totalmente",
+    "commentLabel": "Una línea de por qué (opcional)",
+    "commentPlaceholder": "¿Qué te gustaría añadir?",
+    "submitLabel": "Enviar",
+    "submitting": "Procesando…",
+    "errorToast": "Algo salió mal. Inténtalo de nuevo.",
+    "successToast": "Gracias — tu respuesta ha llegado.",
+    "thanksTitle": "¡Gracias!",
+    "thanksBody": "Antes diste un {score}/10. Si quieres añadir algo más, escríbeme un email.",
+    "invalidTitle": "Este enlace no es válido",
+    "invalidBody": "Quizá ya se ha usado o ha caducado. Sin preocupación — si hay una nueva pregunta, recibirás otro email."
+  },
   "portal": {
     "nav": {
       "dashboard": "Panel",

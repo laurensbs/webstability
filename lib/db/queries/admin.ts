@@ -16,6 +16,7 @@ import {
   bookings,
   buildPhases,
   projectUpdates,
+  npsResponses,
 } from "@/lib/db/schema";
 
 export async function listAllOrgs() {
@@ -576,4 +577,56 @@ export async function getDemoFunnelStats(days = 7) {
   const conversion = entered > 0 ? Math.round((ctaClicks / entered) * 100) : 0;
 
   return { entered, ctaClicks, conversion, days };
+}
+
+/**
+ * Lijst alle NPS-responses (responded + asked-but-pending). Voor
+ * /admin/nps overzicht. Inclusief org-naam en project-naam.
+ */
+export async function listAllNpsResponses() {
+  return db
+    .select({
+      id: npsResponses.id,
+      orgId: npsResponses.organizationId,
+      orgName: organizations.name,
+      projectId: npsResponses.projectId,
+      projectName: projects.name,
+      askedAfterDays: npsResponses.askedAfterDays,
+      requestedAt: npsResponses.requestedAt,
+      respondedAt: npsResponses.respondedAt,
+      score: npsResponses.score,
+      comment: npsResponses.comment,
+    })
+    .from(npsResponses)
+    .leftJoin(organizations, eq(organizations.id, npsResponses.organizationId))
+    .leftJoin(projects, eq(projects.id, npsResponses.projectId))
+    .orderBy(desc(npsResponses.requestedAt));
+}
+
+/**
+ * Aggregate NPS-stats: gemiddelde score, aantal promotors/passives/
+ * detractors, response-rate. Alleen responded rows tellen.
+ */
+export async function getNpsStats() {
+  const all = await db
+    .select({ score: npsResponses.score, respondedAt: npsResponses.respondedAt })
+    .from(npsResponses);
+  const responded = all.filter((r) => r.respondedAt !== null && r.score !== null);
+  const total = all.length;
+  const respondedCount = responded.length;
+  const promoters = responded.filter((r) => (r.score ?? 0) >= 9).length;
+  const passives = responded.filter((r) => (r.score ?? 0) >= 7 && (r.score ?? 0) <= 8).length;
+  const detractors = responded.filter((r) => (r.score ?? 0) <= 6).length;
+  const avg =
+    respondedCount > 0 ? responded.reduce((s, r) => s + (r.score ?? 0), 0) / respondedCount : 0;
+  const nps = respondedCount > 0 ? ((promoters - detractors) / respondedCount) * 100 : 0;
+  return {
+    total,
+    respondedCount,
+    promoters,
+    passives,
+    detractors,
+    avgScore: Math.round(avg * 10) / 10,
+    npsScore: Math.round(nps),
+  };
 }

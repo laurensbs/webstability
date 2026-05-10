@@ -1272,6 +1272,24 @@
     "lastUpdatedLabel": "Laatst bijgewerkt",
     "lastUpdatedDate": "8 mei 2026"
   },
+  "nps": {
+    "eyebrow": "Eén korte vraag",
+    "title": "Hoe groot is de kans dat je ons aanbeveelt?",
+    "intro": "{days} dagen na de livegang van {project} — kies een getal van 0 tot 10. Je antwoord blijft tussen ons.",
+    "scoreLabel": "Schaal",
+    "scoreHelpLow": "totaal niet",
+    "scoreHelpHigh": "absoluut",
+    "commentLabel": "Eén regel waarom (optioneel)",
+    "commentPlaceholder": "Wat zou je willen toevoegen?",
+    "submitLabel": "Versturen",
+    "submitting": "Bezig…",
+    "errorToast": "Er ging iets mis. Probeer het opnieuw.",
+    "successToast": "Bedankt — je antwoord is binnen.",
+    "thanksTitle": "Bedankt!",
+    "thanksBody": "Je gaf eerder een {score}/10. Mocht je nog iets willen toevoegen — stuur me een mailtje.",
+    "invalidTitle": "Deze link is niet geldig",
+    "invalidBody": "Wellicht is hij al gebruikt of verlopen. Geen zorgen — als er een nieuwe vraag komt, krijg je weer een mail."
+  },
   "portal": {
     "nav": {
       "dashboard": "Dashboard",

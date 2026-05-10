@@ -698,6 +698,44 @@ export const projectUpdates = pgTable(
   ],
 );
 
+// --- nps_responses (sprint F — feedback na 30 + 180 dagen) -------------
+
+/**
+ * NPS-flow: cron stuurt op liveAt+30 of liveAt+180 een mail met
+ * token-link naar /portal/nps?token=. Eerst wordt een rij aangemaakt
+ * met status='asked' + token + askedAfterDays. Bij submit wordt score
+ * en comment ingevuld + respondedAt. Eén rij per (project,
+ * askedAfterDays) zodat dubbele mails niet bestaan.
+ */
+export const npsResponses = pgTable(
+  "nps_responses",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    projectId: uuid("project_id")
+      .notNull()
+      .references(() => projects.id, { onDelete: "cascade" }),
+    /** 30 of 180 — twee touchpoints per project. */
+    askedAfterDays: integer("asked_after_days").notNull(),
+    /** Unguessable token in de mail-link; one-shot. */
+    token: text("token").notNull().unique(),
+    requestedAt: timestamp("requested_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+    respondedAt: timestamp("responded_at", { withTimezone: true }),
+    /** 0..10, NULL totdat de klant antwoordt. */
+    score: integer("score"),
+    /** Optionele toelichting. Max ~500 chars in de form. */
+    comment: text("comment"),
+  },
+  (t) => [
+    index("nps_org_idx").on(t.organizationId),
+    index("nps_project_period_idx").on(t.projectId, t.askedAfterDays),
+  ],
+);
+
 // --- handover_checklist (sprint D — oplevering-gate) --------------------
 
 /**
@@ -791,6 +829,17 @@ export const projectsRelations = relations(projects, ({ one, many }) => ({
   handover: one(handoverChecklist, {
     fields: [projects.id],
     references: [handoverChecklist.projectId],
+  }),
+}));
+
+export const npsResponsesRelations = relations(npsResponses, ({ one }) => ({
+  organization: one(organizations, {
+    fields: [npsResponses.organizationId],
+    references: [organizations.id],
+  }),
+  project: one(projects, {
+    fields: [npsResponses.projectId],
+    references: [projects.id],
   }),
 }));
 
