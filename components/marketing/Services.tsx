@@ -15,22 +15,18 @@ import { MarkupText } from "@/components/animate/MarkupText";
 
 type SolutionItem = {
   key: "verhuurplatform" | "platform" | "webshop" | "care";
-  pricePillKey: "verhuurplatform" | "platform" | "webshop" | "care";
   ctaHref: string;
 };
 
 // Verhuurplatform staat eerst — het is de wig (NL+ES verhuur is het
-// primaire segment). Care komt als laatste tile met "alleen bestaande
-// klanten"-framing; Studio-instap zit in /prijzen waar de calculator is.
+// primaire segment). Website/webshop linkt naar de configurator zodat de
+// bezoeker meteen een richtprijs ziet. Care komt als laatste tile met de
+// "doorlopend abonnement"-framing; Studio-instap zit op /prijzen.
 const SOLUTIONS: SolutionItem[] = [
-  {
-    key: "verhuurplatform",
-    pricePillKey: "verhuurplatform",
-    ctaHref: "/verhuur",
-  },
-  { key: "platform", pricePillKey: "platform", ctaHref: "/diensten#platform" },
-  { key: "webshop", pricePillKey: "webshop", ctaHref: "/diensten#webshop" },
-  { key: "care", pricePillKey: "care", ctaHref: "/prijzen" },
+  { key: "verhuurplatform", ctaHref: "/verhuur" },
+  { key: "platform", ctaHref: "/diensten" },
+  { key: "webshop", ctaHref: "/aanvragen" },
+  { key: "care", ctaHref: "/prijzen" },
 ];
 
 export async function Services() {

@@ -255,7 +255,7 @@
   "home": {
     "eyebrow": "costa brava · spanje",
     "headline": "Geen Excel-puzzels meer. *Geen* dubbele boekingen. Geen vijf losse tools.",
-    "tagline": "Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt. Doorlopend abonnement vanaf €95 per maand — bouwen + onderhouden in één.",
+    "tagline": "Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt. Vaste prijs vanaf €1.050, vier weken levering, doorlopend abonnement vanaf €99 per maand — bouwen én onderhouden in één.",
     "ctaPrimary": "Plan een kennismaking",
     "ctaSecondary": "Bekijk klantverhalen",
 
@@ -302,7 +302,7 @@
         "boekingsplatformen",
         "webshops"
       ],
-      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem, mobiel-first gebouwd zoals jouw klanten 't gebruiken. Vaste prijs €5–8k, 4 weken levering, doorlopend abonnement vanaf €179/maand, voor ondernemers in Nederland en Spanje."
+      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem, mobiel-first gebouwd zoals jouw klanten 't gebruiken. Vaste prijs, vier weken levering, doorlopend abonnement vanaf €99/maand, voor ondernemers in Nederland en Spanje."
     },
 
     "howItWorks": {
@@ -366,33 +366,33 @@
 
     "services": {
       "eyebrow": "diensten",
-      "title": "Geen Excel-puzzels. Geen *dubbele boekingen*. Geen vijf losse tools.",
-      "lede": "Eén systeem dat draait. Eén Laurens die het bouwt en in de lucht houdt — voor MKB in Nederland en Spanje.",
-      "bridgeNote": "Bouwen + onderhouden zit in één doorlopend abonnement. *Tijdens* een build betaal je tijdelijk meer per maand, daarna val je terug op je vaste maandprijs. Zo betaal je over de tijd, niet vooraf.",
+      "title": "Vier richtingen. *Eén* manier van werken.",
+      "lede": "Vaste prijs, vier weken voor een werkende versie, daarna een doorlopend abonnement dat onderhoud en doorbouwen in één houdt — voor MKB in Nederland en Spanje. Eén persoon die het bouwt en blijft.",
+      "bridgeNote": "Bouwen én onderhouden zit in één doorlopend abonnement. *Tijdens* een build betaal je tijdelijk meer per maand, daarna val je terug op je vaste maandprijs. Zo betaal je over de tijd, niet vooraf — en de code staat op jouw account.",
       "items": {
         "verhuurplatform": {
-          "title": "Verhuurplatform — NL en Spanje",
-          "body": "Het systeem waar de meeste klanten voor komen. Compleet boekingsplatform, klantportaal en kanaalkoppelingen. Drie van deze platforms draaien al op de Costa Brava en Costa del Sol.",
+          "title": "Verhuur-boekingssysteem",
+          "body": "Het systeem waar de meeste klanten voor komen: een compleet boekingsplatform, klantportaal en channel-sync (Airbnb, Booking) — één agenda over al je objecten, automatische facturen en contracten met BTW én IVA. Draait al op de Costa Brava.",
           "pricePill": "vaste prijs €5–8k · 4 weken levering",
-          "cta": "Bekijk verhuur-pagina →"
+          "cta": "Bekijk de verhuur-pagina →"
         },
         "platform": {
           "title": "Bedrijfssoftware op maat",
-          "body": "Reparatie-portalen, stallingsbeheer, klantportalen of een eigen admin paneel — vaak gekoppeld aan een publieke site. Eerste werkende versie in 4 weken, doorbouwen daarna.",
+          "body": "Een admin-systeem dat Excel vervangt, een klantportaal, een reparatie-portaal voor de werkplaats — vaak gekoppeld aan een publieke site. Eerste werkende versie in vier weken, daarna incrementeel doorbouwen binnen het abonnement.",
           "pricePill": "vanaf €5–8k · 4 weken eerste versie",
-          "cta": "Bekijk live platforms →"
+          "cta": "Bekijk alle diensten →"
         },
         "webshop": {
           "title": "Website of webshop",
-          "body": "Snelle, meertalige marketing-site of een volledige webshop met BTW/IVA en voorraad-koppeling. Mollie of Stripe, automatische facturatie, Lighthouse 95+ op mobiel.",
-          "pricePill": "vanaf €1.050 · 2-3 mnd build",
-          "cta": "Lees meer →"
+          "body": "Een snelle, meertalige site die niet op een template lijkt, of een volledige webshop met btw/IVA per categorie en voorraad-koppeling. Stel 'm zelf samen — type, pagina's, stijl, opties — en zie meteen de richtprijs.",
+          "pricePill": "vanaf €1.050 · stel 'm zelf samen",
+          "cta": "Vraag je website aan →"
         },
         "care": {
           "title": "Onderhoud & doorbouwen",
-          "body": "Studio (€179/m) is de instap voor nieuwe klanten — onderhoud + 3 uur wijzigingen + lokale SEO. Care (€95/m) blijft draaien voor bestaande klanten als anker.",
-          "pricePill": "Studio €179/m · doorlopend",
-          "cta": "Bekijk pricing →"
+          "body": "Het doorlopende abonnement: hosting, monitoring, security-updates, kleine wijzigingen en doorbouwen op wat je echt nodig hebt. Vanaf €99/m; Studio (€179/m) is de instap voor nieuwe klanten — met onderhoudsuren en lokale SEO erin.",
+          "pricePill": "vanaf €99/m · doorlopend",
+          "cta": "Bekijk de prijzen →"
         }
       }
     },

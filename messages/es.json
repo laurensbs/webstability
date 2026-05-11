@@ -255,7 +255,7 @@
   "home": {
     "eyebrow": "costa brava · españa",
     "headline": "Sin puzzles de Excel. *Sin* reservas duplicadas. Sin cinco herramientas sueltas.",
-    "tagline": "Un sistema que funciona, un Laurens que lo construye y mantiene. Suscripción continua desde 95 € al mes — construir + mantener en una sola cuota.",
+    "tagline": "Un sistema que funciona, un Laurens que lo construye y mantiene. Precio fijo desde 1.050 €, entrega en cuatro semanas, suscripción continua desde 99 € al mes — construir y mantener en una sola cuota.",
     "ctaPrimary": "Reservar primera llamada",
     "ctaSecondary": "Ver casos",
 
@@ -302,7 +302,7 @@
         "plataformas de reservas",
         "tiendas online"
       ],
-      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado, mobile-first como lo usan tus clientes. Precio fijo 5–8 k €, entrega en 4 semanas, suscripción continua desde 179 €/mes, para empresarios en Países Bajos y España."
+      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado, mobile-first como lo usan tus clientes. Precio fijo, entrega en cuatro semanas, suscripción continua desde 99 €/mes, para empresarios en Países Bajos y España."
     },
 
     "howItWorks": {
@@ -366,33 +366,33 @@
 
     "services": {
       "eyebrow": "servicios",
-      "title": "Sin puzzles de Excel. Sin *reservas duplicadas*. Sin cinco herramientas sueltas.",
-      "lede": "Un sistema que funciona. Un Laurens que lo construye y mantiene — para pymes en Países Bajos y España.",
-      "bridgeNote": "Construir + mantener está en una sola suscripción continua. *Durante* una construcción pagas más al mes, después vuelves a tu cuota fija. Pagas a lo largo del tiempo, no por adelantado.",
+      "title": "Cuatro direcciones. *Una* forma de trabajar.",
+      "lede": "Precio fijo, cuatro semanas para una versión funcionando, después una suscripción continua que junta mantenimiento y desarrollo — para pymes en Países Bajos y España. Una persona que lo construye y se queda.",
+      "bridgeNote": "Construir y mantener está en una sola suscripción continua. *Durante* una construcción pagas más al mes, después vuelves a tu cuota fija. Pagas a lo largo del tiempo, no por adelantado — y el código está en tu cuenta.",
       "items": {
         "verhuurplatform": {
-          "title": "Plataforma de alquiler — NL y España",
-          "body": "El sistema por el que vienen la mayoría de clientes. Plataforma de reservas completa, portal de cliente y sincronización de canales. Tres ya activas en la Costa Brava y la Costa del Sol.",
+          "title": "Sistema de reservas de alquiler",
+          "body": "El sistema por el que vienen la mayoría de clientes: una plataforma de reservas completa, portal de cliente y sincronización de canales (Airbnb, Booking) — una sola agenda sobre todos tus objetos, facturas y contratos automáticos con BTW e IVA. Ya activo en la Costa Brava.",
           "pricePill": "precio fijo 5–8 k € · 4 semanas",
-          "cta": "Ver página de alquiler →"
+          "cta": "Ver la página de alquiler →"
         },
         "platform": {
           "title": "Software empresarial a medida",
-          "body": "Portales de reparación, gestión de almacenaje, portales de cliente o paneles admin propios — a menudo unidos a un site público. Primera versión funcional en 4 semanas, ampliación posterior.",
+          "body": "Un sistema interno que reemplaza Excel, un portal de cliente, un portal de reparaciones para el taller — a menudo unido a un site público. Primera versión funcionando en cuatro semanas, luego desarrollo incremental dentro de la suscripción.",
           "pricePill": "desde 5–8 k € · 4 semanas primera versión",
-          "cta": "Ver plataformas en vivo →"
+          "cta": "Ver todos los servicios →"
         },
         "webshop": {
           "title": "Web o tienda online",
-          "body": "Web de marketing rápida y multilingüe, o tienda online completa con BTW/IVA y stock. Mollie o Stripe, facturación automática, Lighthouse 95+ en móvil.",
-          "pricePill": "desde 1.050 € · 2-3 meses build",
-          "cta": "Saber más →"
+          "body": "Una web rápida y multilingüe que no parece una plantilla, o una tienda online completa con IVA por categoría y conexión de inventario. Configúrala tú mismo — tipo, páginas, estilo, opciones — y ve el precio orientativo al instante.",
+          "pricePill": "desde 1.050 € · configúrala tú mismo",
+          "cta": "Solicita tu web →"
         },
         "care": {
           "title": "Mantenimiento & evolución",
-          "body": "Studio (179 €/m) es la entrada para nuevos clientes — mantenimiento + 3 h de cambios + SEO local. Care (95 €/m) sigue activo para clientes existentes como ancla.",
-          "pricePill": "Studio 179 €/m · continuo",
-          "cta": "Ver precios →"
+          "body": "La suscripción continua: hosting, monitoring, actualizaciones de seguridad, pequeños cambios y desarrollo de lo que de verdad necesitas. Desde 99 €/m; Studio (179 €/m) es la entrada para nuevos clientes — con horas de mantenimiento y SEO local incluidos.",
+          "pricePill": "desde 99 €/m · continuo",
+          "cta": "Ver los precios →"
         }
       }
     },
