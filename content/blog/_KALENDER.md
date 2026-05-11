@@ -15,6 +15,7 @@ of een andere blog-post).
 - ✅ admin-systeem-op-maat-vs-excel — "admin systeem op maat", "bedrijf draait op excel"
 - ✅ mkb-maatwerk-software-wanneer-wel-niet — "maatwerk software mkb", "custom software wanneer"
 - ✅ boekhouding-koppelen-aan-verhuursysteem — "holded koppelen", "e-boekhouden integratie verhuur"
+- ✅ verhuursoftware-begrippen-woordenlijst — "verhuursoftware begrippen", "channel manager uitleg"
 - ✅ verhuursoftware-vergelijken-2026 — "verhuursoftware vergelijken", "beste verhuursoftware"
 - ✅ boekingssysteem-laten-bouwen-kosten — "boekingssysteem laten bouwen kosten", "verhuursoftware prijs"
 - ✅ klantportaal-voor-verhuurbedrijf — "klantportaal verhuur", "klantportaal laten bouwen"
@@ -29,11 +30,8 @@ of een andere blog-post).
 - ✅ seo-local-espana (ES) — vertaling van seo-spanje
 
 ## Te schrijven (prioriteit hoog → laag)
-1. **verhuursoftware-begrippen-woordenlijst** — glossary-post: "channel manager", "dubbele boeking",
-   "klantportaal", "multi-currency", "borg-automatisering". Long-tail traffic, interne links naar
-   alle relevante pagina's.
-2. **seo-voor-lokale-bedrijven-spanje** (ES) — uitbreiding van seo-local-espana, dieper.
-3. **avantio-alternativa-personalizada (ES)** afmaken naar 1000+ woorden (nu nog skeleton).
+1. **seo-voor-lokale-bedrijven-spanje** (ES) — uitbreiding van seo-local-espana, dieper.
+2. **avantio-alternativa-personalizada (ES)** afmaken naar 1000+ woorden (nu nog skeleton).
 
 ## Werkwijze per post
 1. Schrijf in `content/blog/nl/[slug].mdx` met volledige frontmatter.
