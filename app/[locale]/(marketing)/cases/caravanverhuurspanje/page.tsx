@@ -12,7 +12,8 @@ import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { MarkupText } from "@/components/animate/MarkupText";
 import { BuildTimeline } from "@/components/marketing/diensten/BuildTimeline";
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, siteUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -61,8 +62,22 @@ export default async function CaravanverhuurDetailPage({
     steps: Array<{ week: string; title: string; body: string }>;
   };
 
+  const casesPath = locale === "es" ? "/es/cases" : "/cases";
+  const detailPath =
+    locale === "es" ? "/es/cases/caravanverhuurspanje" : "/cases/caravanverhuurspanje";
+
   return (
     <main className="dotted-bg flex flex-1 flex-col">
+      <JsonLd
+        data={breadcrumbLd([
+          {
+            name: locale === "es" ? "Inicio" : "Home",
+            url: siteUrl(locale === "es" ? "/es" : "/"),
+          },
+          { name: locale === "es" ? "Casos" : "Cases", url: siteUrl(casesPath) },
+          { name: "Caravanverhuurspanje", url: siteUrl(detailPath) },
+        ])}
+      />
       {/* HERO */}
       <header className="relative overflow-hidden px-6 pt-20 pb-16 md:pt-28 md:pb-20">
         <div

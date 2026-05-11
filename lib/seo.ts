@@ -195,6 +195,145 @@ export function organizationLd(locale: string) {
   };
 }
 
+const SERVICE_TYPES_NL = [
+  "Verhuursoftware",
+  "Boekingssysteem",
+  "Klantportaal",
+  "Maatwerk software",
+  "Webshop ontwikkeling",
+];
+const SERVICE_TYPES_ES = [
+  "Software de alquiler",
+  "Sistema de reservas",
+  "Portal de cliente",
+  "Software a medida",
+  "Desarrollo de tiendas online",
+];
+
+/**
+ * Schema.org LocalBusiness / ProfessionalService payload — emit op de
+ * homepage zodat Google de lokale dienstverlener-entiteit kent (adres,
+ * service-area NL+ES, prijsklasse, talen). Vult de Organization-schema
+ * aan; samen geven ze een vollere knowledge-graph.
+ */
+export function localBusinessLd(locale: string) {
+  const isEs = locale === "es";
+  return {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "ProfessionalService"],
+    name: "Webstability",
+    url: SITE_BASE_URL,
+    image: `${SITE_BASE_URL}/og`,
+    logo: `${SITE_BASE_URL}/og`,
+    priceRange: "€€",
+    email: "hello@webstability.eu",
+    founder: { "@type": "Person", name: "Laurens Bos" },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Carrer Major",
+      addressLocality: "Begur",
+      addressRegion: "Girona",
+      postalCode: "17255",
+      addressCountry: "ES",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 41.954,
+      longitude: 3.207,
+    },
+    areaServed: [
+      { "@type": "Country", name: "Netherlands" },
+      { "@type": "Country", name: "Spain" },
+    ],
+    knowsLanguage: ["nl", "es", "en"],
+    serviceType: isEs ? SERVICE_TYPES_ES : SERVICE_TYPES_NL,
+    inLanguage: isEs ? "es-ES" : "nl-NL",
+  };
+}
+
+/**
+ * Schema.org FAQPage payload — emit op pagina's met een FAQ-blok zodat
+ * de vragen rich results kunnen worden. `items` is een lijst van
+ * { q, a }; antwoorden mogen platte tekst zijn.
+ */
+export function faqPageLd(items: Array<{ q: string; a: string }>, locale: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: locale === "es" ? "es-ES" : "nl-NL",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+}
+
+/**
+ * Schema.org BreadcrumbList payload — emit op detail-pagina's (cases,
+ * blog-posts, verticaal-pagina's) zodat Google de breadcrumb-trail in
+ * de SERP toont. `items` is een geordende lijst van { name, url }
+ * (absolute URLs); de laatste is de huidige pagina.
+ */
+export function breadcrumbLd(items: Array<{ name: string; url: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+}
+
+/**
+ * Schema.org Service payload — emit op dienst-pagina's (/diensten,
+ * /verhuur, verticaal-pagina's) zodat Google de dienst koppelt aan de
+ * provider + service-area.
+ */
+export function serviceLd({
+  name,
+  description,
+  locale,
+  url,
+}: {
+  name: string;
+  description: string;
+  locale: string;
+  url?: string;
+}) {
+  const isEs = locale === "es";
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name,
+    description,
+    ...(url ? { url } : {}),
+    serviceType: isEs ? SERVICE_TYPES_ES : SERVICE_TYPES_NL,
+    provider: {
+      "@type": "Organization",
+      name: "Webstability",
+      url: SITE_BASE_URL,
+    },
+    areaServed: [
+      { "@type": "Country", name: "Netherlands" },
+      { "@type": "Country", name: "Spain" },
+    ],
+    inLanguage: isEs ? "es-ES" : "nl-NL",
+  };
+}
+
+/**
+ * Helper: bouwt een absolute URL voor een breadcrumb-item. NL = geen
+ * prefix, ES = /es-prefix (paden komen 1-op-1 overeen met routing.ts).
+ */
+export function siteUrl(path: string): string {
+  const clean = path.startsWith("/") ? path : `/${path}`;
+  return `${SITE_BASE_URL}${clean}`;
+}
+
 /**
  * Schema.org BlogPosting payload — emit on every blog detail page so
  * the post can light up rich results (date, author, headline).
@@ -260,7 +399,7 @@ const ROUTE_PATHS: Record<RouteKey, { nl: string; es: string }> = {
   status: { nl: "/status", es: "/es/estado" },
   garanties: { nl: "/garanties", es: "/es/garantias" },
   blog: { nl: "/blog", es: "/es/blog" },
-  privacy: { nl: "/privacy", es: "/es/privacy" },
+  privacy: { nl: "/privacy", es: "/es/privacidad" },
   avisoLegal: { nl: "/aviso-legal", es: "/es/aviso-legal" },
 };
 

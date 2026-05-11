@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import {
   Accordion,
   AccordionContent,
@@ -7,14 +7,23 @@ import {
 } from "@/components/ui/Accordion";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { faqPageLd } from "@/lib/seo";
 
-export async function FAQ() {
-  const t = await getTranslations("home.faq");
+/**
+ * FAQ-sectie + FAQPage JSON-LD. De structured data komt mee waar deze
+ * component ook gemount wordt (homepage, /faq). `messagesKey` bepaalt
+ * uit welke i18n-namespace de items komen — default `home.faq`.
+ */
+export async function FAQ({ messagesKey = "home.faq" }: { messagesKey?: string } = {}) {
+  const locale = await getLocale();
+  const t = await getTranslations(messagesKey);
   const tRaw = await getTranslations();
-  const items = tRaw.raw("home.faq.items") as Array<{ q: string; a: string }>;
+  const items = tRaw.raw(`${messagesKey}.items`) as Array<{ q: string; a: string }>;
 
   return (
     <section className="px-6 py-[100px]">
+      <JsonLd data={faqPageLd(items, locale)} />
       <div className="mx-auto max-w-[1200px]">
         <div className="mx-auto mb-14 max-w-[720px] text-center">
           <Eyebrow className="mb-[18px]">{t("eyebrow")}</Eyebrow>

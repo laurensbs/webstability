@@ -11,7 +11,7 @@ import { listPosts, getPost, type BlogPost } from "@/lib/blog";
 import { Callout } from "@/components/marketing/blog/Callout";
 import { PullQuote } from "@/components/marketing/blog/PullQuote";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { blogPostingLd } from "@/lib/seo";
+import { blogPostingLd, breadcrumbLd } from "@/lib/seo";
 
 const SITE_URL = "https://webstability.eu";
 
@@ -34,6 +34,7 @@ export async function generateMetadata({
   return {
     title: `${post.title} · webstability`,
     description: post.description,
+    ...(post.keywords?.length ? { keywords: post.keywords.join(", ") } : {}),
     alternates: {
       canonical: url,
       languages: {
@@ -126,6 +127,19 @@ export default async function Page({
           date: post.date,
           author: post.author,
         })}
+      />
+      <JsonLd
+        data={breadcrumbLd([
+          {
+            name: locale === "es" ? "Inicio" : "Home",
+            url: locale === "es" ? `${SITE_URL}/es` : `${SITE_URL}/`,
+          },
+          {
+            name: "Blog",
+            url: locale === "es" ? `${SITE_URL}/es/blog` : `${SITE_URL}/blog`,
+          },
+          { name: post.title, url: `${SITE_URL}${postHref(locale, post.slug)}` },
+        ])}
       />
       <article className="px-6 pt-24 pb-24 md:pt-32">
         <div className="mx-auto max-w-2xl">

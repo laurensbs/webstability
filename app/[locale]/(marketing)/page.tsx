@@ -3,7 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { pageMetadata, organizationLd } from "@/lib/seo";
+import { pageMetadata, organizationLd, localBusinessLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Hero } from "@/components/marketing/Hero";
 
@@ -33,6 +33,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   return (
     <main className="flex flex-1 flex-col">
       <JsonLd data={organizationLd(locale)} />
+      <JsonLd data={localBusinessLd(locale)} />
       <Hero />
       <LogoStrip />
       <HowItWorksWrapper />

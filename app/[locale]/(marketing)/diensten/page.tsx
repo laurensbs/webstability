@@ -12,7 +12,8 @@ import { AnimatedCheck } from "@/components/marketing/AnimatedCheck";
 import { BuildTimeline } from "@/components/marketing/diensten/BuildTimeline";
 import { NotForSection } from "@/components/marketing/diensten/NotForSection";
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, serviceLd, siteUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -68,6 +69,17 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd
+        data={serviceLd({
+          name: locale === "es" ? "Desarrollo de software a medida" : "Software op maat",
+          description:
+            locale === "es"
+              ? "Plataformas de alquiler y reparación, tiendas online y software de gestión a medida — precio fijo, entrega en 4 semanas, mantenimiento continuo. Para pymes en Países Bajos y España."
+              : "Verhuur- en reparatieplatforms, webshops en admin-systemen op maat — vaste prijs, levering in 4 weken, doorlopend onderhoud. Voor MKB in Nederland en Spanje.",
+          locale,
+          url: siteUrl(locale === "es" ? "/es/servicios" : "/diensten"),
+        })}
+      />
       {/* HERO — rustig: dark bg, één terracotta-halo, serif h1 + lede,
           drie metric-cijfers rechts (geen wireframe, geen 3D-blob). */}
       <section className="relative isolate overflow-hidden bg-(--color-text) text-(--color-bg)">

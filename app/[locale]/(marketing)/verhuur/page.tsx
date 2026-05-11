@@ -15,7 +15,8 @@ import { MagneticButton } from "@/components/animate/MagneticButton";
 import { QuoteMarkDraw } from "@/components/animate/QuoteMarkDraw";
 
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, serviceLd, siteUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -57,6 +58,17 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd
+        data={serviceLd({
+          name: locale === "es" ? "Software para empresas de alquiler" : "Verhuursoftware op maat",
+          description:
+            locale === "es"
+              ? "Sistema de reservas a medida para empresas de alquiler — un dashboard, facturas automáticas, contratos en un clic. Sin reservas duplicadas entre Airbnb, Booking y Excel."
+              : "Maatwerk boekingssysteem voor verhuurbedrijven — één dashboard, automatische facturen, contracten in één klik. Geen dubbele boekingen meer tussen Airbnb, Booking en je Excel.",
+          locale,
+          url: siteUrl(locale === "es" ? "/es/alquiler" : "/verhuur"),
+        })}
+      />
       {/* HERO */}
       <header className="relative overflow-hidden px-6 pt-20 pb-[100px]">
         <div
