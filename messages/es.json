@@ -1401,15 +1401,21 @@
     }
   },
   "pricing": {
-    "eyebrow": "suscripciones · desde 95 €/m",
+    "eyebrow": "suscripciones · desde 179 €/m",
     "title": "Un precio al mes. *Sin* presupuestos, sin sorpresas.",
-    "lede": "Trabajamos solo por suscripción. Entrada baja, cancelable cuando quieras. Una cuota fija para mantenimiento, crecimiento y todo lo intermedio.",
+    "lede": "Tras el lanzamiento trabajas con una cuota fija mensual — hosting, mantenimiento, desarrollo, todo lo intermedio. Entrada baja, cancelable cuando quieras. Studio es la entrada; Atelier para quien sigue creciendo activamente.",
+    "discoveryCallout": {
+      "eyebrow": "antes de empezar",
+      "title": "¿Dudas si el desarrollo a medida encaja?",
+      "body": "Un proceso de discovery de pago (500–750 €): dibujamos juntos tu proceso, recibes un plan concreto y un presupuesto fijo. Si sigues adelante, lo descuento de la build. Sin compromiso, una respuesta honesta por escrito.",
+      "cta": "Reserva una llamada de discovery"
+    },
     "demoCallout": {
       "body": "¿No estás seguro de qué tier? Mira lo que hay dentro —",
       "cta": "abre una demo en vivo"
     },
     "care": {
-      "intro": "Tres niveles — para cada fase tras el lanzamiento. Studio es la entrada para nuevos clientes; Care sigue activo para los actuales.",
+      "intro": "Tres niveles para cada fase tras el lanzamiento. Studio es la entrada para nuevos clientes; Atelier para quien quiere seguir construyendo mes a mes. Care es de salida — solo para clientes existentes.",
       "items": [
         {
           "id": "care",

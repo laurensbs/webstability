@@ -1391,15 +1391,21 @@
     }
   },
   "pricing": {
-    "eyebrow": "abonnementen · vanaf €95/m",
+    "eyebrow": "abonnementen · vanaf €179/m",
     "title": "Eén prijs per maand. *Geen* offertes, geen verrassingen.",
-    "lede": "We werken alleen op abonnement. Lage instap, opzegbaar wanneer je wil. Een vaste maandprijs voor onderhoud, groei, en alles ertussen.",
+    "lede": "Na livegang werk je op een vast maandabonnement — hosting, onderhoud, doorbouwen, alles ertussen. Lage instap, opzegbaar wanneer je wil. Studio is de instap; Atelier voor wie actief blijft doorgroeien.",
+    "discoveryCallout": {
+      "eyebrow": "voor je begint",
+      "title": "Twijfel je of maatwerk past?",
+      "body": "Een betaald discovery-traject (€500–750): we tekenen samen je proces uit, je krijgt een concreet plan en een vaste offerte. Gaat het door, dan verreken ik het bedrag in de build. Geen verplichting, wel een eerlijk antwoord op papier.",
+      "cta": "Plan een discovery-gesprek"
+    },
     "demoCallout": {
       "body": "Niet zeker welk tier? Bekijk wat er ínzit —",
       "cta": "open een live demo"
     },
     "care": {
-      "intro": "Drie tiers — voor elke fase na livegang. Studio is de instap voor nieuwe klanten; Care draait door voor bestaande.",
+      "intro": "Drie tiers voor elke fase na livegang. Studio is de instap voor nieuwe klanten; Atelier voor wie maand na maand wil doorbouwen. Care is uitlopend — alleen nog voor bestaande klanten.",
       "items": [
         {
           "id": "care",

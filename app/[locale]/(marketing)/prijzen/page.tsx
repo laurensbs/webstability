@@ -108,6 +108,27 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               {t("demoCallout.cta")} →
             </Link>
           </p>
+
+          {/* Discovery-pakket — de brug tussen gratis call en €6–10k build */}
+          <div className="mx-auto mt-12 max-w-3xl rounded-[18px] border border-t-2 border-(--color-border) border-t-(--color-accent) bg-(--color-surface) p-7 md:p-8">
+            <p className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+              {`// ${t("discoveryCallout.eyebrow")}`}
+            </p>
+            <h3 className="mt-2 font-serif text-[20px] leading-tight text-(--color-text) md:text-[24px]">
+              {t("discoveryCallout.title")}
+            </h3>
+            <p className="mt-3 text-[15px] leading-[1.6] text-(--color-muted)">
+              {t("discoveryCallout.body")}
+            </p>
+            <div className="mt-5">
+              <CalPopupTrigger
+                locale={locale}
+                className={buttonVariants({ variant: "accent", size: "sm" })}
+              >
+                {t("discoveryCallout.cta")}
+              </CalPopupTrigger>
+            </div>
+          </div>
         </div>
       </section>
 
