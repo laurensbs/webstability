@@ -2,7 +2,7 @@
 title: "Webstability strategie"
 lastUpdated: "2026-05-11"
 nextReview: "2026-08-09"
-version: 3
+version: 4
 ---
 
 <Callout variant="info">
@@ -454,6 +454,28 @@ dicht in Blok 4.2.
 5. **GAP 4 — geen rapport voor Care** — lost zich grotendeels vanzelf
    op (Care sluit). Lage prioriteit.
 
+## Technische staat (audit-resultaten)
+
+<Callout variant="info">
+Toegevoegd in v4 na de performance-audit. Korte status zodat ik niet
+opnieuw ga zoeken naar problemen die er niet zijn.
+</Callout>
+
+**Performance / Core Web Vitals — in goede staat.** De zware dingen
+zijn al weg: geen three.js / WebGL meer (AmbientCanvas + CaravanMount
+zijn nu lichte inline-SVG/CSS), fonts via `next/font` met `display:swap`,
+de Cal-embed lazy via `dynamic()`, images via `next/image` met `sizes`
+en `priority={false}` op below-the-fold (Founder, /over-portret) en
+explicit `aspectRatio` op de screenshot-cards (geen CLS), Plausible met
+`defer`. De `<img>`-tags die er nog zijn, zijn 44px logo-badges met
+`loading="lazy"` op `/cases` — verwaarloosbaar. Geen werk nodig hier
+tenzij een echte Lighthouse-meting na deploy iets aanwijst.
+
+**Te checken bij de volgende ronde** (laag, niet urgent): of een
+Lighthouse-run op productie mobiel inderdaad ≥ 95 scoort op alle
+marketing-pages, en of de microlink-screenshots op `/cases` (externe
+service) geen trage LCP geven op die specifieke pagina.
+
 ## Update-log
 
 | Datum | Versie | Wijziging |
@@ -461,6 +483,7 @@ dicht in Blok 4.2.
 | 2026-05-09 | 1 | Eerste versie. Hybride model gekozen, €150-floor, 90-dagen plan |
 | 2026-05-11 | 2 | Positionering & concurrentie-sectie toegevoegd: de positie in één zin, wat de klant écht wil, waar ik in uitblink, concurrentie-framing (naast, niet tegen), 3 kernboodschappen, prijzen-herziening (build → €6–10k, discovery-pakket, groei-tier), de self-running funnel |
 | 2026-05-11 | 3 | Customer-journey-sectie toegevoegd: 7 fasen van lead tot maand-12-klant, wat geautomatiseerd vs handmatig is, 5 GAP's geïdentificeerd en geprioriteerd (welcome-mail, stille build-week, lead-nurture, maandrapport-verkoop, geen Care-rapport) |
+| 2026-05-11 | 4 | Performance-audit: bevestigd dat de site al goede CWV-hygiëne heeft (geen three.js, geoptimaliseerde fonts/images, lazy Cal-embed). Enige fix: stale "WebGL shader"-comment in BodyBackgroundToggle gecorrigeerd. |
 
 **Volgende review: 2026-08-09.**
 
