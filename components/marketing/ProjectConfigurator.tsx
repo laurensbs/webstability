@@ -22,7 +22,7 @@ import { submitProjectRequest } from "@/app/actions/configurator";
 import { ConfettiBurst } from "@/components/animate/ConfettiBurst";
 
 type StepKey = "kind" | "scope" | "look" | "language" | "options" | "details";
-const STEP_ORDER: StepKey[] = ["kind", "scope", "look", "language", "options", "details"];
+const ALL_STEPS: StepKey[] = ["kind", "scope", "look", "language", "options", "details"];
 
 type Strings = {
   eyebrow: string;
@@ -95,15 +95,25 @@ const eur0 = (cents: number) =>
 export function ProjectConfigurator({
   strings,
   calLink,
+  defaultKind = "website",
+  lockKind = false,
 }: {
   strings: Strings;
   /** Cal.com-link voor de "boek meteen"-knop op het successcherm (mag null). */
   calLink: string | null;
+  /** Begin-type. Bij `lockKind` ook vast (de type-stap wordt overgeslagen) —
+   * gebruikt wanneer de configurator op /diensten/website of /webshop staat. */
+  defaultKind?: ProjectKind;
+  lockKind?: boolean;
 }) {
   const reduce = useReducedMotion();
+  const stepOrder = React.useMemo<StepKey[]>(
+    () => (lockKind ? ALL_STEPS.filter((s) => s !== "kind") : ALL_STEPS),
+    [lockKind],
+  );
   const [stepIdx, setStepIdx] = React.useState(0);
-  const [kind, setKind] = React.useState<ProjectKind>("website");
-  const [pages, setPages] = React.useState<number>(PROJECT_PAGES_INCLUDED.website);
+  const [kind, setKind] = React.useState<ProjectKind>(defaultKind);
+  const [pages, setPages] = React.useState<number>(PROJECT_PAGES_INCLUDED[defaultKind]);
   const [palette, setPalette] = React.useState<ConfigPaletteId>("warm");
   const [customColor, setCustomColor] = React.useState("");
   const [language, setLanguage] = React.useState<ConfigLanguageId>("nl");
@@ -127,8 +137,8 @@ export function ProjectConfigurator({
     [kind, pagesClamped, options],
   );
 
-  const step = STEP_ORDER[stepIdx]!;
-  const total = STEP_ORDER.length;
+  const step = stepOrder[stepIdx]!;
+  const total = stepOrder.length;
   const progressPct = Math.round(((stepIdx + 1) / total) * 100);
 
   const stepValid = ((): boolean => {
