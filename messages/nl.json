@@ -1172,6 +1172,225 @@
         { "label": "Heldere prijzen", "href": "/prijzen" },
         { "label": "Website laten maken", "href": "/diensten/website-laten-maken" }
       ]
+    },
+    "admin-systeem-op-maat": {
+      "metaTitle": "Admin-systeem op maat — weg van Excel, één overzicht",
+      "metaDescription": "Een intern systeem op maat voor je bedrijf: één plek voor klanten, opdrachten, voorraad en team — in plaats van vijf losse tools en een Excel die kraakt. Vaste prijs, vier weken, daarna doorbouwen.",
+      "eyebrow": "admin-systeem op maat",
+      "title": "Eén systeem voor *alles wat je bedrijf bijhoudt*",
+      "lede": "Excel werkt — tot je bedrijf erop draait en het kraakt: één persoon snapt het bestand nog, dezelfde gegevens staan op drie plekken, een fout valt pas weken later op. Een admin-systeem op maat is gebouwd rond wat jouw bedrijf écht doet: jouw begrippen, jouw workflow, vangrails ingebouwd.",
+      "metrics": [
+        { "value": "4 wkn", "label": "van eerste gesprek tot werkende kern" },
+        { "value": "€5–8k", "label": "vaste prijs voor de kern, geen meeruren" },
+        { "value": "1 scherm", "label": "i.p.v. vijf losse tools" }
+      ],
+      "problemEyebrow": "waar het misgaat",
+      "problemTitle": "Waarom bedrijven *weg* willen van Excel",
+      "problems": [
+        {
+          "title": "Het zit in iemands hoofd",
+          "body": "\"Vraag het maar aan Petra, zij heeft dat bestand gemaakt.\" Is Petra weg of op vakantie, dan gaat er kennis mee. Een systeem dat de logica bewaakt is geen luxe — het is wat het bedrijf draaiende houdt zonder dat het van één persoon afhangt."
+        },
+        {
+          "title": "Dezelfde gegevens op vijf plekken",
+          "body": "Een klant in Excel, in je facturentool, in de mailinglijst, in WhatsApp. Adres veranderd? Op vijf plekken bijwerken — en op één plek vergeet je het. Eén bron per gegeven, daar gaat het om."
+        },
+        {
+          "title": "Geen vangrails",
+          "body": "Een typefout in een formule, een rij die per ongeluk gesorteerd raakt, een bedrag in de verkeerde kolom — Excel zegt er niks van. De fout komt pas boven als een klant belt of de boekhouder fronst."
+        }
+      ],
+      "solutionEyebrow": "wat je krijgt",
+      "solutionTitle": "Een systeem dat *jouw structuur bewaakt*",
+      "solutionLede": "Gebouwd rond jouw begrippen — klant, opdracht, project, levering, wat het ook is — met de regels die ertussen gelden. Eén overzicht, rollen en toegang per medewerker, status en geschiedenis per item. Vaste prijs, vier weken voor de kern, daarna bouw je incrementeel uit.",
+      "solutions": [
+        {
+          "title": "Eén overzicht over alles",
+          "body": "Wat speelt er, wat staat open, wat is af — in één scherm. Klanten, opdrachten, voorraad, team-flow: niet vijf tabbladen, niet vijf tools, één systeem."
+        },
+        {
+          "title": "Vangrails ingebouwd",
+          "body": "Verplichte velden, geldige waarden, geen factuur zonder klant, geen overlappende boekingen. Het systeem laat de onzin er niet in — fouten worden voorkomen, niet achteraf opgespoord."
+        },
+        {
+          "title": "Status, geschiedenis, rollen",
+          "body": "Elke opdracht heeft een status die meeloopt en je ziet wat er wanneer gebeurde. Meerdere mensen werken erin, ieder ziet wat hij moet zien — geen schaduw-Excel ernaast."
+        },
+        {
+          "title": "Groeit mee",
+          "body": "Een nieuw soort opdracht, een extra status, een koppeling met je boekhouding of je website — dat bouw je erbij. Je begint niet opnieuw; het systeem volgt je bedrijf."
+        }
+      ],
+      "forWhoEyebrow": "past dit bij jou",
+      "forWhoTitle": "Voor wie een admin-systeem op maat klopt",
+      "forWho": [
+        "Je bedrijf draait op één of meer Excel-bestanden die zijn gegroeid tot iets onoverzichtelijks",
+        "Meer dan één persoon werkt erin, of zou erin moeten werken maar durft het niet aan",
+        "Je houdt dezelfde gegevens op meerdere niet-gekoppelde plekken bij",
+        "Er gaan fouten in die je pas laat ontdekt",
+        "Je groeit en voelt dat Excel het over een jaar niet meer trekt"
+      ],
+      "notFor": [
+        "Je gebruikt Excel voor wat het goed in is — een berekening, een lijstje. Niet alles hoeft een systeem te worden",
+        "Je bedrijf is klein en stabiel en het bestand werkt prima",
+        "Er bestaat een standaard-SaaS-tool die precies past — kies die dan"
+      ],
+      "priceEyebrow": "wat kost het",
+      "priceTitle": "Vaste prijs voor de kern, vier weken",
+      "priceBody": "Een werkend admin-systeem op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken — niet 'het hele bedrijf gedigitaliseerd', maar de kern: de paar dingen die nu het meeste pijn doen, goed gebouwd. Daarna een doorlopend abonnement vanaf €99/m voor hosting, onderhoud en doorbouwen. Je hoeft niet in één keer van Excel af.",
+      "pricePoints": [
+        "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
+        "Vier weken van eerste gesprek tot werkende kern",
+        "Incrementeel doorbouwen op wat in de praktijk blijkt te ontbreken",
+        "Code op jouw account, hosting op jouw naam — geen vendor lock-in"
+      ],
+      "faqEyebrow": "veelgestelde vragen",
+      "faqTitle": "Admin-systeem op maat — de vragen die ik het meest krijg",
+      "faq": [
+        {
+          "q": "Wat kost een admin-systeem op maat?",
+          "a": "Een werkende eerste versie (de kern) kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een abonnement vanaf €99/m voor hosting, onderhoud en doorbouwen. Geen meeruren-facturen."
+        },
+        {
+          "q": "Moet ik in één keer van Excel af?",
+          "a": "Nee. We beginnen met het stuk dat het hardst kraakt; dat gaat live, en de rest volgt — terwijl je al profiteert van het deel dat er staat."
+        },
+        {
+          "q": "Kan het koppelen met mijn boekhouding?",
+          "a": "Ja, een koppeling met je boekhoudpakket (Holded, e-Boekhouden, Moneybird, Exact) kan erbij — klanten, facturen en betalingen stromen dan vanzelf door."
+        },
+        {
+          "q": "Kunnen meerdere medewerkers erin?",
+          "a": "Ja — rollen en toegang per persoon, ieder ziet wat hij moet zien. Geen 'wie heeft die regel veranderd', geen twee versies van het bestand."
+        },
+        {
+          "q": "Wat als ik later iets wil aanpassen?",
+          "a": "Dan mail je het. Met het onderhoudsabonnement zit doorbouwen erbij — geen offerte per wijziging. Het systeem groeit mee met je bedrijf."
+        }
+      ],
+      "ctaTitle": "Vertel me waar je bedrijf op draait — en waar het knelt",
+      "ctaBody": "Stuur me hoe je het nu bijhoudt en waar het kraakt — binnen een dag een eerlijk antwoord of een admin-systeem op maat hier past, en wat het kost.",
+      "ctaButton": "Plan een gesprek",
+      "related": [
+        {
+          "label": "Admin-systeem op maat vs Excel",
+          "href": "/blog/admin-systeem-op-maat-vs-excel"
+        },
+        {
+          "label": "MKB maatwerk — wanneer wel/niet",
+          "href": "/blog/mkb-maatwerk-software-wanneer-wel-niet"
+        },
+        { "label": "Reparatie-portaal voor werkplaatsen", "href": "/diensten/reparatie-portaal" },
+        { "label": "Alle diensten", "href": "/diensten" }
+      ]
+    },
+    "reparatie-portaal": {
+      "metaTitle": "Reparatie-portaal laten bouwen — papierloze werkplaats",
+      "metaDescription": "Een reparatie-portaal voor je werkplaats: digitale werkbonnen, iPad-flow voor de monteurs, status-tracking, en een klantgedeelte waar de klant zelf ziet hoe het ervoor staat. Vaste prijs, vier weken.",
+      "eyebrow": "reparatie-portaal",
+      "title": "Een werkplaats *zonder papierstroom* — en zonder \"is het al klaar?\"",
+      "lede": "Werkbonnen op papier raken kwijt, de status zit in iemands hoofd, en de klant belt om te vragen of het al klaar is. Een reparatie-portaal maakt van die papierstroom één systeem: de monteur werkt op een iPad, de status loopt automatisch mee, de klant volgt het zelf — in jouw huisstijl.",
+      "metrics": [
+        { "value": "4 wkn", "label": "van eerste gesprek tot werkende versie" },
+        { "value": "€5–8k", "label": "vaste prijs, geen meeruren" },
+        { "value": "0", "label": "kwijtgeraakte werkbonnen" }
+      ],
+      "problemEyebrow": "waar het misgaat",
+      "problemTitle": "Waarom werkplaatsen een *eigen* portaal zoeken",
+      "problems": [
+        {
+          "title": "Bonnen raken kwijt, status klopt niet",
+          "body": "Een papieren werkbon ligt ergens op de werkbank, of in het hoofd van iemand die net koffie haalt. Twee monteurs werken aan hetzelfde. \"Waar is die bon\" en \"wie was hier mee bezig\" is een paar keer per dag terugkerende ruis."
+        },
+        {
+          "title": "\"Is het al klaar?\"-telefoontjes",
+          "body": "De vraag die het vaakst binnenkomt — de status — kan de klant niet zelf zien, dus belt 'ie. Bij tientallen reparaties tegelijk telt dat op tot uren per week aan de telefoon."
+        },
+        {
+          "title": "De factuur wordt overgetypt",
+          "body": "Wat er aan een reparatie is gedaan staat op een bon; iemand typt het over in een factuurprogramma. Tussen 'klaar' en 'gefactureerd' zit handwerk en een kans op fouten."
+        }
+      ],
+      "solutionEyebrow": "wat je krijgt",
+      "solutionTitle": "Eén systeem voor *de hele reparatie-stroom*",
+      "solutionLede": "Een werkplaats-admin waar je team vanaf werkt — digitale werkbonnen, status, onderdelen, foto's — en een klantgedeelte waar de klant zijn reparatie volgt. Twee kanten van hetzelfde systeem, op jouw domein en in jouw huisstijl. Vaste prijs, vier weken.",
+      "solutions": [
+        {
+          "title": "Digitale werkbonnen die niet kwijtraken",
+          "body": "Elke reparatie is een bon met object, klant, klacht, status (binnengekomen → in behandeling → wacht op onderdelen → klaar → opgehaald), werkzaamheden, onderdelen, foto's. Iedereen ziet dezelfde, actuele status."
+        },
+        {
+          "title": "iPad-flow op de werkvloer",
+          "body": "De monteur pakt de iPad, opent de bon van het object voor hem, tikt erbij wat hij gedaan heeft, maakt een foto, kiest de onderdelen, zet de status. Niets dat later overgetypt moet worden."
+        },
+        {
+          "title": "Klantgedeelte met status en factuur",
+          "body": "De klant logt in, ziet de status (\"wacht op onderdelen, verwachte oplevering vrijdag\"), de uitgevoerde werkzaamheden, en straks de factuur — in jouw huisstijl, op jouw domein. Minder telefoon."
+        },
+        {
+          "title": "Factuur die zichzelf invult",
+          "body": "De werkbon is de basis van de factuur: werkzaamheden en onderdelen staan er al in. Klaar? De factuur staat klaar — geen overtypen."
+        }
+      ],
+      "forWhoEyebrow": "past dit bij jou",
+      "forWhoTitle": "Voor wie een reparatie-portaal op maat klopt",
+      "forWho": [
+        "Je werkt nu met papieren werkbonnen of los Excel, en dingen raken kwijt",
+        "Je krijgt veel \"is het al klaar?\"-telefoontjes die de klant zelf zou kunnen beantwoorden",
+        "Je hebt meerdere monteurs die aan dezelfde stroom werken",
+        "Je wil je eigen merk en domein, geen generieke werkplaats-tool",
+        "Je maakt facturen op basis van wat er aan een reparatie is gedaan"
+      ],
+      "notFor": [
+        "Je doet een handvol reparaties per maand — dan is papier prima",
+        "Je zoekt alleen een factuurprogramma — dat is wat anders",
+        "Je wil het gratis en accepteert een generieke tool met andermans merk"
+      ],
+      "priceEyebrow": "wat kost het",
+      "priceTitle": "Vaste prijs, vier weken levering",
+      "priceBody": "Een werkend reparatie-portaal op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken — als onderdeel van een groter geheel (publieke site + werkplaats-admin + klantgedeelte) eerder €6.000–10.000. Daarna een doorlopend abonnement vanaf €99/m voor hosting, onderhoud en doorbouwen.",
+      "pricePoints": [
+        "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
+        "Vier weken van eerste gesprek tot werkende versie",
+        "iPad-vriendelijke werkplaats-weergave + klantgedeelte",
+        "Code op jouw account, hosting op jouw naam — geen vendor lock-in"
+      ],
+      "faqEyebrow": "veelgestelde vragen",
+      "faqTitle": "Reparatie-portaal — de vragen die ik het meest krijg",
+      "faq": [
+        {
+          "q": "Wat kost een reparatie-portaal op maat?",
+          "a": "Een werkende eerste versie kost €5.000–8.000, vaste prijs, geleverd in vier weken. Als onderdeel van een groter geheel eerder €6.000–10.000. Daarna een abonnement vanaf €99/m voor hosting, onderhoud en doorbouwen."
+        },
+        {
+          "q": "Werkt het op een iPad in de werkplaats?",
+          "a": "Ja — de werkplaats-weergave is mobiel-eerst ontworpen: grote tap-targets, één bon per scherm, foto's maken direct vanuit de bon. De monteur werkt op de iPad, niet op een papiertje."
+        },
+        {
+          "q": "Ziet de klant de status?",
+          "a": "Ja — de klant logt in op het portaal en ziet de status van zijn reparatie, de uitgevoerde werkzaamheden en de verwachte oplevering. Minder \"is het al klaar?\"-telefoontjes."
+        },
+        {
+          "q": "Kan de factuur erop aansluiten?",
+          "a": "Ja — de werkbon is de basis: werkzaamheden en onderdelen staan er al in, dus de factuur is grotendeels gevuld. Koppeling met je boekhouding kan erbij."
+        },
+        {
+          "q": "Wat als ik later iets wil aanpassen?",
+          "a": "Dan mail je het. Met het onderhoudsabonnement zit doorbouwen erbij — geen offerte per wijziging. Het systeem groeit mee met je werkplaats."
+        }
+      ],
+      "ctaTitle": "Vertel me hoe je werkplaats nu loopt",
+      "ctaBody": "Stuur me hoeveel reparaties je per maand draait en hoe je het nu bijhoudt — binnen een dag een eerlijk antwoord of een reparatie-portaal op maat hier past, en wat het kost.",
+      "ctaButton": "Plan een gesprek",
+      "related": [
+        {
+          "label": "Reparatie-portaal voor werkplaatsen",
+          "href": "/blog/reparatie-portaal-voor-werkplaatsen"
+        },
+        { "label": "Case: Caravanreparatiespanje", "href": "/cases/caravanreparatiespanje" },
+        { "label": "Admin-systeem op maat", "href": "/diensten/admin-systeem-op-maat" },
+        { "label": "Alle diensten", "href": "/diensten" }
+      ]
     }
   },
   "verhuur": {

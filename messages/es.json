@@ -1178,6 +1178,228 @@
         { "label": "Precios claros", "href": "/es/precios" },
         { "label": "Diseño web a medida", "href": "/es/servicios/website-laten-maken" }
       ]
+    },
+    "admin-systeem-op-maat": {
+      "metaTitle": "Sistema interno a medida — adiós a Excel, una sola vista",
+      "metaDescription": "Un sistema interno a medida para tu empresa: un solo sitio para clientes, encargos, inventario y equipo — en lugar de cinco herramientas sueltas y un Excel que cruje. Precio fijo, cuatro semanas, después desarrollo continuo.",
+      "eyebrow": "sistema interno a medida",
+      "title": "Un sistema para *todo lo que tu empresa registra*",
+      "lede": "Excel funciona — hasta que tu empresa funciona sobre él y cruje: una sola persona entiende el archivo, los mismos datos están en tres sitios, un error sale a la luz semanas después. Un sistema interno a medida está construido alrededor de lo que tu empresa realmente hace: tus conceptos, tu flujo, barreras incorporadas.",
+      "metrics": [
+        { "value": "4 sem", "label": "de la primera charla al núcleo funcionando" },
+        { "value": "5–8k €", "label": "precio fijo del núcleo, sin extras" },
+        { "value": "1 pantalla", "label": "en lugar de cinco herramientas sueltas" }
+      ],
+      "problemEyebrow": "dónde falla",
+      "problemTitle": "Por qué las empresas quieren *salir* de Excel",
+      "problems": [
+        {
+          "title": "Está en la cabeza de alguien",
+          "body": "\"Pregúntale a Marta, ella hizo ese archivo.\" Si Marta se va o está de vacaciones, se va conocimiento. Un sistema que vigila la lógica no es un lujo — es lo que mantiene la empresa en marcha sin depender de una persona."
+        },
+        {
+          "title": "Los mismos datos en cinco sitios",
+          "body": "Un cliente en Excel, en tu herramienta de facturación, en la lista de correo, en WhatsApp. ¿Cambió de dirección? Actualizar en cinco sitios — y en uno se te olvida. Una fuente por dato, de eso va."
+        },
+        {
+          "title": "Sin barreras",
+          "body": "Un error tipográfico en una fórmula, una fila que se ordena por accidente, un importe en la columna equivocada — Excel no dice nada. El error aparece cuando un cliente llama o el contable frunce el ceño."
+        }
+      ],
+      "solutionEyebrow": "qué obtienes",
+      "solutionTitle": "Un sistema que *vigila tu estructura*",
+      "solutionLede": "Construido alrededor de tus conceptos — cliente, encargo, proyecto, entrega, lo que sea — con las reglas que se aplican entre ellos. Una sola vista, roles y accesos por empleado, estado e historial por elemento. Precio fijo, cuatro semanas el núcleo, después amplías de forma incremental.",
+      "solutions": [
+        {
+          "title": "Una sola vista sobre todo",
+          "body": "Qué hay en marcha, qué está pendiente, qué está hecho — en una pantalla. Clientes, encargos, inventario, flujo del equipo: no cinco pestañas, no cinco herramientas, un solo sistema."
+        },
+        {
+          "title": "Barreras incorporadas",
+          "body": "Campos obligatorios, valores válidos, nada de facturas sin cliente, nada de reservas solapadas. El sistema no deja entrar la incoherencia — los errores se previenen, no se buscan después."
+        },
+        {
+          "title": "Estado, historial, roles",
+          "body": "Cada encargo tiene un estado que avanza y ves qué pasó y cuándo. Varias personas trabajan en él, cada una ve lo que debe ver — sin un Excel en la sombra al lado."
+        },
+        {
+          "title": "Crece contigo",
+          "body": "Un nuevo tipo de encargo, un estado extra, una conexión con tu contabilidad o tu web — eso lo añades. No empiezas de cero; el sistema sigue a tu empresa."
+        }
+      ],
+      "forWhoEyebrow": "¿encaja contigo?",
+      "forWhoTitle": "Para quién encaja un sistema interno a medida",
+      "forWho": [
+        "Tu empresa funciona sobre uno o más archivos de Excel que han crecido hasta algo poco manejable",
+        "Más de una persona trabaja en ellos, o debería pero no se atreve",
+        "Llevas los mismos datos en varios sitios no conectados",
+        "Entran errores que descubres tarde",
+        "Creces y notas que Excel no aguantará dentro de un año"
+      ],
+      "notFor": [
+        "Usas Excel para lo que se le da bien — un cálculo, una lista. No todo tiene que convertirse en un sistema",
+        "Tu empresa es pequeña y estable y el archivo va bien",
+        "Existe una herramienta SaaS estándar que encaja exactamente — coge esa"
+      ],
+      "priceEyebrow": "qué cuesta",
+      "priceTitle": "Precio fijo del núcleo, cuatro semanas",
+      "priceBody": "Un sistema interno a medida que funciona cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas — no 'toda la empresa digitalizada', sino el núcleo: las pocas cosas que ahora más duelen, bien construidas. Después, un abono continuo desde 99 €/m para hosting, mantenimiento y desarrollo continuo. No tienes que dejar Excel de golpe.",
+      "pricePoints": [
+        "Precio fijo de antemano — sabes qué cuesta y qué obtienes",
+        "Cuatro semanas de la primera charla al núcleo funcionando",
+        "Desarrollo incremental según lo que en la práctica resulte que falta",
+        "Código en tu cuenta, hosting a tu nombre — sin vendor lock-in"
+      ],
+      "faqEyebrow": "preguntas frecuentes",
+      "faqTitle": "Sistema interno a medida — las preguntas que más recibo",
+      "faq": [
+        {
+          "q": "¿Cuánto cuesta un sistema interno a medida?",
+          "a": "Una primera versión funcionando (el núcleo) cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Después, un abono desde 99 €/m para hosting, mantenimiento y desarrollo. Sin facturas por trabajo extra."
+        },
+        {
+          "q": "¿Tengo que dejar Excel de golpe?",
+          "a": "No. Empezamos por la parte que más cruje; eso entra en producción, y el resto sigue — mientras ya te beneficias de lo que está hecho."
+        },
+        {
+          "q": "¿Puede conectarse con mi contabilidad?",
+          "a": "Sí, una conexión con tu programa de contabilidad (Holded, e-Boekhouden, Moneybird, Exact) puede añadirse — clientes, facturas y pagos fluyen solos."
+        },
+        {
+          "q": "¿Pueden trabajar varios empleados?",
+          "a": "Sí — roles y accesos por persona, cada uno ve lo que debe ver. Sin 'quién ha cambiado esa fila', sin dos versiones del archivo."
+        },
+        {
+          "q": "¿Y si más adelante quiero cambiar algo?",
+          "a": "Lo pides por correo. El abono de mantenimiento incluye el desarrollo continuo — sin presupuesto por cambio. El sistema crece con tu empresa."
+        }
+      ],
+      "ctaTitle": "Cuéntame sobre qué funciona tu empresa — y dónde aprieta",
+      "ctaBody": "Cuéntame cómo lo llevas ahora y dónde cruje — en un día, una respuesta honesta de si un sistema interno a medida encaja aquí, y qué cuesta.",
+      "ctaButton": "Reserva una charla",
+      "related": [
+        {
+          "label": "Sistema interno a medida vs Excel",
+          "href": "/es/blog/sistema-interno-a-medida-vs-excel"
+        },
+        {
+          "label": "Software a medida — cuándo sí y cuándo no",
+          "href": "/es/blog/software-a-medida-pymes"
+        },
+        {
+          "label": "Portal de reparaciones para talleres",
+          "href": "/es/servicios/reparatie-portaal"
+        },
+        { "label": "Todos los servicios", "href": "/es/servicios" }
+      ]
+    },
+    "reparatie-portaal": {
+      "metaTitle": "Portal de reparaciones a medida — taller sin papel",
+      "metaDescription": "Un portal de reparaciones para tu taller: órdenes de trabajo digitales, flujo en iPad para los mecánicos, seguimiento de estado, y una parte del cliente donde el cliente ve por sí mismo cómo va. Precio fijo, cuatro semanas.",
+      "eyebrow": "portal de reparaciones",
+      "title": "Un taller *sin flujo de papel* — y sin \"¿ya está?\"",
+      "lede": "Las órdenes de trabajo en papel se pierden, el estado está en la cabeza de alguien, y el cliente llama para preguntar si ya está. Un portal de reparaciones convierte ese flujo de papel en un solo sistema: el mecánico trabaja en un iPad, el estado avanza solo, el cliente lo sigue por su cuenta — con tu identidad.",
+      "metrics": [
+        { "value": "4 sem", "label": "de la primera charla a la versión funcionando" },
+        { "value": "5–8k €", "label": "precio fijo, sin extras" },
+        { "value": "0", "label": "órdenes de trabajo perdidas" }
+      ],
+      "problemEyebrow": "dónde falla",
+      "problemTitle": "Por qué los talleres buscan un portal *propio*",
+      "problems": [
+        {
+          "title": "Las órdenes se pierden, el estado no cuadra",
+          "body": "Una orden en papel anda por el banco de trabajo, o en la cabeza de alguien que ha ido a por un café. Dos mecánicos trabajan en lo mismo. \"¿Dónde está esa orden?\" y \"¿quién estaba con esto?\" es ruido recurrente varias veces al día."
+        },
+        {
+          "title": "Llamadas de \"¿ya está?\"",
+          "body": "La pregunta que más entra — el estado — el cliente no la puede ver por sí mismo, así que llama. Con decenas de reparaciones a la vez eso suma horas a la semana al teléfono."
+        },
+        {
+          "title": "La factura se copia a mano",
+          "body": "Lo que se ha hecho en una reparación está en una orden; alguien lo copia a un programa de facturas. Entre 'lista' y 'facturada' hay trabajo manual y posibilidad de error."
+        }
+      ],
+      "solutionEyebrow": "qué obtienes",
+      "solutionTitle": "Un sistema para *todo el flujo de reparaciones*",
+      "solutionLede": "Una admin de taller desde la que trabaja tu equipo — órdenes de trabajo digitales, estado, piezas, fotos — y una parte del cliente donde el cliente sigue su reparación. Dos caras del mismo sistema, en tu dominio y con tu identidad. Precio fijo, cuatro semanas.",
+      "solutions": [
+        {
+          "title": "Órdenes de trabajo digitales que no se pierden",
+          "body": "Cada reparación es una orden con objeto, cliente, avería, estado (recibida → en proceso → esperando piezas → lista → recogida), trabajos, piezas, fotos. Todos ven el mismo estado actualizado."
+        },
+        {
+          "title": "Flujo en iPad en el taller",
+          "body": "El mecánico coge el iPad, abre la orden del objeto que tiene delante, anota lo que ha hecho, hace una foto, elige las piezas, pone el estado. Nada que copiar después."
+        },
+        {
+          "title": "Parte del cliente con estado y factura",
+          "body": "El cliente entra, ve el estado (\"esperando piezas, entrega prevista el viernes\"), los trabajos realizados, y luego la factura — con tu identidad, en tu dominio. Menos teléfono."
+        },
+        {
+          "title": "Factura que se rellena sola",
+          "body": "La orden de trabajo es la base de la factura: trabajos y piezas ya están dentro. ¿Lista? La factura está preparada — sin copiar."
+        }
+      ],
+      "forWhoEyebrow": "¿encaja contigo?",
+      "forWhoTitle": "Para quién encaja un portal de reparaciones a medida",
+      "forWho": [
+        "Trabajas ahora con órdenes de trabajo en papel o Excel suelto, y se pierden cosas",
+        "Recibes muchas llamadas de \"¿ya está?\" que el cliente podría responder por sí mismo",
+        "Tienes varios mecánicos trabajando en el mismo flujo",
+        "Quieres tu propia marca y dominio, no una herramienta genérica de taller",
+        "Haces facturas a partir de lo que se ha hecho en una reparación"
+      ],
+      "notFor": [
+        "Haces un puñado de reparaciones al mes — entonces el papel va bien",
+        "Buscas solo un programa de facturas — eso es otra cosa",
+        "Lo quieres gratis y aceptas una herramienta genérica con la marca de otro"
+      ],
+      "priceEyebrow": "qué cuesta",
+      "priceTitle": "Precio fijo, cuatro semanas",
+      "priceBody": "Un portal de reparaciones a medida que funciona cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas — como parte de un conjunto mayor (sitio público + admin de taller + parte del cliente) más bien 6.000–10.000 €. Después, un abono continuo desde 99 €/m para hosting, mantenimiento y desarrollo continuo.",
+      "pricePoints": [
+        "Precio fijo de antemano — sabes qué cuesta y qué obtienes",
+        "Cuatro semanas de la primera charla a la versión funcionando",
+        "Vista de taller adaptada al iPad + parte del cliente",
+        "Código en tu cuenta, hosting a tu nombre — sin vendor lock-in"
+      ],
+      "faqEyebrow": "preguntas frecuentes",
+      "faqTitle": "Portal de reparaciones — las preguntas que más recibo",
+      "faq": [
+        {
+          "q": "¿Cuánto cuesta un portal de reparaciones a medida?",
+          "a": "Una primera versión funcionando cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Como parte de un conjunto mayor más bien 6.000–10.000 €. Después, un abono desde 99 €/m para hosting, mantenimiento y desarrollo."
+        },
+        {
+          "q": "¿Funciona en un iPad en el taller?",
+          "a": "Sí — la vista de taller está diseñada mobile-first: targets grandes, una orden por pantalla, fotos directamente desde la orden. El mecánico trabaja en el iPad, no en un papel."
+        },
+        {
+          "q": "¿El cliente ve el estado?",
+          "a": "Sí — el cliente entra en el portal y ve el estado de su reparación, los trabajos realizados y la entrega prevista. Menos llamadas de \"¿ya está?\"."
+        },
+        {
+          "q": "¿La factura puede conectarse?",
+          "a": "Sí — la orden de trabajo es la base: trabajos y piezas ya están dentro, así que la factura está casi rellenada. La conexión con tu contabilidad puede añadirse."
+        },
+        {
+          "q": "¿Y si más adelante quiero cambiar algo?",
+          "a": "Lo pides por correo. El abono de mantenimiento incluye el desarrollo continuo — sin presupuesto por cambio. El sistema crece con tu taller."
+        }
+      ],
+      "ctaTitle": "Cuéntame cómo funciona tu taller ahora",
+      "ctaBody": "Cuéntame cuántas reparaciones haces al mes y cómo lo llevas ahora — en un día, una respuesta honesta de si un portal de reparaciones a medida encaja aquí, y qué cuesta.",
+      "ctaButton": "Reserva una charla",
+      "related": [
+        {
+          "label": "Portal de reparaciones para talleres",
+          "href": "/es/blog/portal-reparaciones-para-talleres"
+        },
+        { "label": "Caso: Caravanreparatiespanje", "href": "/es/cases/caravanreparatiespanje" },
+        { "label": "Sistema interno a medida", "href": "/es/servicios/admin-systeem-op-maat" },
+        { "label": "Todos los servicios", "href": "/es/servicios" }
+      ]
     }
   },
   "verhuur": {

@@ -13,6 +13,8 @@ export const VERTICAL_SLUGS = [
   "klantportaal-laten-bouwen",
   "website-laten-maken",
   "webshop-laten-maken",
+  "admin-systeem-op-maat",
+  "reparatie-portaal",
 ] as const;
 
 /** Verticals waarvoor de publieke project-configurator (/aanvragen)
