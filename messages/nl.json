@@ -154,7 +154,7 @@
       },
       {
         "q": "Met wie werk ik — een team of één persoon?",
-        "a": "Eén persoon: ik. Geen accountmanager, geen tussenlaag. Je mailt of belt de developer die je systeem bouwt en in de lucht houdt. Tien jaar ervaring, sinds 2022 vanuit Spanje."
+        "a": "Eén persoon: ik. Geen accountmanager, geen tussenlaag. Je mailt of belt de developer die je systeem bouwt en in de lucht houdt — opgeleid als software engineer, daarna systemen beheerd bij de marine, nu klant-software. Sinds dit jaar werk ik vanuit Spanje, waar ik ben opgegroeid."
       },
       {
         "q": "Kan het synchroniseren met Airbnb, Booking, mijn boekhouding?",
@@ -429,7 +429,7 @@
     "founder": {
       "eyebrow": "over",
       "title": "Hi, ik ben *Laurens*.",
-      "body": "12 jaar bouw ik systemen voor MKB-ondernemers. Eerst vanuit Nederland, sinds drie jaar vanuit Costa Brava — waar ik dezelfde aanpak nu naar de Spaanse markt breng.",
+      "body": "Opgeleid als software engineer, daarna bij de marine — brugcommunicatie, systemen beheren, zorgen dat dingen blijven werken. Daarna klant-software voor MKB-ondernemers. Sinds dit jaar werk ik vanuit Spanje, waar ik ben opgegroeid — dezelfde aanpak, nu ook voor de Spaanse markt.",
       "body2": "Ik werk niet als bureau. Geen accountmanagers, geen onderaannemers in een tijdzone die je nooit ziet. Je hebt direct contact met de developer die jouw systeem ook bouwt, en die er over twee jaar nog op reageert als er iets stuk is.",
       "body3": "Mijn ding zijn de saaie systemen die niemand wil bouwen — verhuuradministraties, reparatiebonnen, voorraadkoppelingen. Onzichtbaar werk dat ondernemers wakker houdt. Dat is precies waar ik het verschil maak.",
       "name": "Laurens Bos",
@@ -466,7 +466,7 @@
           "kicker": "04",
           "title": "Live & onderhoud",
           "body": "Na livegang draait je systeem onder een care-plan. Jij blijft bouwen aan je bedrijf.",
-          "meta": "doorlopend · vanaf €95/m"
+          "meta": "doorlopend · vanaf €99/m"
         }
       }
     },
@@ -486,31 +486,31 @@
       "items": [
         {
           "q": "Wat kost een typisch project?",
-          "a": "Hangt af van wat je wil bouwen. Een marketing-site of landingpage: ~€1.050 build over 3 maanden, daarna €95/m onderhoud. Een webshop met BTW/IVA: ~€2.000 build over 3 maanden, daarna €179/m. Een verhuurplatform of bedrijfssoftware op maat: ~€7.800 build over 6 maanden, daarna €399/m onderhoud + doorontwikkeling. Concreet uitrekenen kun je op de pricing-pagina."
+          "a": "Vaste prijs, vier weken levering. Een website op maat: vanaf €1.050. Een webshop met BTW/IVA en voorraad-koppeling: vanaf €3.000. Een verhuur-boekingssysteem, klantportaal, admin-systeem of reparatie-portaal op maat: €5.000–8.000 (een groter geheel — publieke site + admin + portaal — eerder €6.000–10.000). Daarna een doorlopend abonnement vanaf €99/m voor hosting, onderhoud en doorbouwen. Stel een website of webshop zelf samen op /aanvragen en zie meteen de richtprijs."
         },
         {
-          "q": "Waarom alleen abonnement, geen project-prijs?",
-          "a": "Project-prijzen creëren een prikkel om snel te leveren en weg te zijn. Abonnementen verplichten ons elke maand opnieuw te leveren. Voor jou betekent het lagere instap en de mogelijkheid om altijd te stoppen. Voor ons voorspelbare inkomsten, dus we hoeven niet de volgende klant na te jagen."
+          "q": "Waarom een vaste prijs en geen offerte-per-uur?",
+          "a": "Per-uur of een offerte met een marge 'voor het onverwachte' schuift het risico naar jou: loopt het uit, dan betaal jij. Ik werk met een vaste prijs en een vaste levertermijn van vier weken voor de eerste werkende versie — loopt het uit, dan is dat mijn probleem. Je weet vooraf wat het kost en wat je krijgt. Geen meeruren-discussies."
         },
         {
-          "q": "Wat als ik al binnen drie maanden wil opzeggen?",
-          "a": "Mag. Reguliere tiers (Care/Studio/Atelier) zijn maandelijks opzegbaar zonder reden. Build extensions hebben een minimumtermijn gelijk aan de bouwperiode (2-8 maanden) — dat is logisch want we moeten hem afmaken. Daarna ook gewoon per maand."
+          "q": "Waarom een abonnement daarna, en niet 'opgeleverd, succes ermee'?",
+          "a": "Een project-prijs prikkelt om snel te leveren en weg te zijn. Een abonnement verplicht me elke maand opnieuw te leveren — onderhoud, security-updates, doorbouwen op wat je echt gebruikt. Voor jou: lagere instap, altijd opzegbaar, en software die mee blijft groeien. Code op jouw GitHub, hosting op jouw account — geen vendor lock-in."
+        },
+        {
+          "q": "Wat zit er in het maandabonnement?",
+          "a": "Vanaf €99/m: premium hosting (NL/EU edge), monitoring, dagelijkse backups, security-updates en ruimte voor kleine wijzigingen — genoeg om je systeem stabiel te houden vanaf dag één. Studio (€179/m) is de instap voor nieuwe klanten: meer onderhoudsuren, lokale SEO en maandelijkse rapportage. Atelier (€399/m) als je maand na maand wil doorbouwen. Care (€95/m) blijft als anker draaien voor bestaande klanten."
         },
         {
           "q": "Wat als ik tussentijds wil upgraden of downgraden?",
           "a": "Altijd. Upgrade gaat in vanaf de volgende factuur, downgrade vanaf de maand erna. Geen drama, geen 'we plannen het volgende kwartaal in'."
         },
         {
-          "q": "Krijg ik wel hoge kwaliteit voor €95 per maand?",
-          "a": "Voor €95/m krijg je premium hosting (NL/EU edge), monitoring, dagelijkse backups, security updates én 1 uur werk per maand voor kleine aanpassingen. Genoeg om je nieuwe portaal stabiel te houden vanaf dag één na livegang. Wil je actief doorbouwen of SEO, ga je naar Studio (€179) of hoger."
-        },
-        {
-          "q": "Kan ik een grote applicatie laten bouwen voor deze prijzen?",
-          "a": "Ja, via een Build extension. Een verhuurplatform van 4-8 maanden kost in totaal €3.600-€7.200 (Build Custom = €899/m extra) plus je reguliere tier. Dat is fors lager dan de €15.000-€30.000 die freelance-projecten doorgaans kosten — je betaalt over de tijd."
+          "q": "Wat als ik wil opzeggen?",
+          "a": "Mag, per maand, zonder reden. Voor maatwerk-builds geldt een minimumtermijn gelijk aan de bouwperiode (logisch — ik moet 'm afmaken). Daarna ook gewoon per maand. Je code en data blijven van jou, ook na vertrek."
         },
         {
           "q": "Wat als ik even helemaal niets nodig heb voor een maand?",
-          "a": "Dan blijft je site gewoon draaien en betaal je alleen voor hosting + paraatheid. We rollen geen ongebruikte uren door (zou een prikkel zijn om 'nog snel iets' te doen voor het einde van de maand). Wil je echt pauzeren? Vraag het, we vinden iets."
+          "a": "Dan blijft je systeem gewoon draaien en betaal je alleen voor hosting + paraatheid. Ongebruikte uren rol ik niet door (zou een prikkel zijn om 'nog snel iets' te doen voor het einde van de maand). Wil je echt pauzeren? Vraag het — we vinden iets."
         }
       ]
     },
@@ -551,7 +551,7 @@
         "Eerste maand gratis",
         "Maandelijks opzegbaar",
         "15% korting bij jaarbetaling",
-        "Build vanaf €499 setup"
+        "Maatwerk vanaf €5–8k · website vanaf €1.050"
       ]
     },
 
@@ -560,7 +560,7 @@
       "title": "Klaar voor een systeem dat *met je meegroeit*?",
       "body": "Een vrijblijvend gesprek van 30 minuten. Geen verkooppraat — wel een eerlijk advies of, en hoe, we elkaar kunnen helpen.",
       "button": "Plan in agenda",
-      "pricingHint": "Vaste prijs €5–8k voor de bouw, daarna doorlopend onderhoud vanaf €179/m. Eerste maand gratis.",
+      "pricingHint": "Maatwerk vanaf €5–8k, website vanaf €1.050 — vaste prijs, vier weken. Daarna een doorlopend abonnement vanaf €99/m. Eerste maand gratis.",
       "pricingHintLink": "Bekijk de tier-vergelijking"
     }
   },
@@ -662,8 +662,8 @@
   },
   "about": {
     "eyebrow": "over webstability",
-    "title": "Tien jaar, en nog steeds *één persoon*.",
-    "intro": "Verhuurders die ik spreek hebben één ding gemeen: een platform dat half doet wat het belooft, en niemand om het te bellen. Ik ben Laurens Bos — sinds 2015 bouw ik die systemen wél goed, vanuit Nederland en sinds 2022 vanaf de Costa Brava. Vaste prijs, jouw eigen merk, en na de oplevering ben ik er nog steeds. Liever lange relaties dan afgeleverde projecten.",
+    "title": "Eén persoon. *Software* die blijft werken.",
+    "intro": "Ik ben Laurens Bos. Opgeleid als software engineer, daarna bij de marine — brugcommunicatie, systemen beheren, zorgen dat dingen blijven werken onder druk. Sinds dit jaar werk ik vanuit Spanje, het land waar ik ben opgegroeid: ik bouw klant-software voor MKB-ondernemers in Nederland én Spanje, en breng dezelfde aanpak naar de Spaanse markt. Vaste prijs, jouw eigen merk, en na de oplevering ben ik er nog steeds.",
     "langBadges": ["NL", "ES"],
     "principlesTitle": "Vier principes",
     "principles": [
@@ -675,63 +675,63 @@
       {
         "kicker": "02",
         "title": "Vaste prijs, vaste scope",
-        "body": "Voor het werk start weet je wat het kost en wat je krijgt. Geen meeruren-discussies."
+        "body": "Vóór het werk start weet je wat het kost en wat je krijgt. Geen meeruren-discussies."
       },
       {
         "kicker": "03",
         "title": "Lange relaties, niet projecten",
-        "body": "Mijn oudste klant werk ik sinds 2017 mee. Software is een verbintenis, geen oplevering."
+        "body": "Software is een verbintenis, geen oplevering. Na livegang blijf ik onderhouden en doorbouwen."
       },
       {
         "kicker": "04",
         "title": "Twee talen, twee landen",
-        "body": "BTW én IVA. .nl én .es. Ik snap de fiscale en culturele context van beide markten."
+        "body": "BTW én IVA. .nl én .es. Ik snap de fiscale en culturele context van beide markten — opgegroeid in Spanje, jaren in Nederland gewerkt."
       }
     ],
     "principlesToProof": "Genoeg principes — hier is wat er nu écht draait.",
     "nowBuilding": {
       "eyebrow": "wat ik nu bouw",
-      "title": "Drie cijfers die het verhaal *kort* maken.",
-      "lede": "Niet 'voor MKB in het algemeen'. Wel: drie verhuurplatforms productioneel, één reparatieplatform met 47 werkplaatsen, en een standaardstack die binnen 4 weken op een nieuwe klant past.",
+      "title": "Drie dingen die het verhaal *kort* maken.",
+      "lede": "Niet 'voor MKB in het algemeen'. Wel: een verhuurplatform aan de Costa Brava, een reparatie-portaal voor een werkplaats, en een standaardstack die binnen vier weken op een nieuwe klant past.",
       "items": [
         {
-          "metric": "3",
-          "label": "verhuurplatforms productioneel",
-          "body": "Costa Brava + Costa del Sol. Caravans, vakantiehuizen, materiaal — elk met eigen merk + admin."
+          "metric": "0",
+          "label": "dubbele boekingen sinds livegang",
+          "body": "Caravanverhuurspanje — Nederlandse verhuurder aan de Costa Brava, 12 caravans + 4 stacaravans. Publieke site, admin en klantenportaal als één geïntegreerd systeem, NL én ES."
         },
         {
-          "metric": "47",
-          "label": "reparatie-werkplaatsen op één platform",
-          "body": "VOLT/AUTO multi-tenant. iPad-first werkbon, papierloos, NL+ES boekhoudkoppeling."
+          "metric": "iPad",
+          "label": "papierloze werkplaats",
+          "body": "Caravanreparatiespanje — digitale werkbonnen, monteurs werken op de iPad, status-tracking, en een klantgedeelte waar de klant zelf ziet hoe het ervoor staat."
         },
         {
           "metric": "4 wkn",
           "label": "vaste prijs, eerste werkende versie",
-          "body": "Standaardstack die ik in 4 weken op een nieuwe klant zet voor €5–8k. Doorbouwen via Atelier."
+          "body": "Een standaardstack die ik in vier weken op een nieuwe klant zet voor €5–8k. Daarna incrementeel doorbouwen binnen het maandabonnement — geen meeruren-facturen."
         }
       ]
     },
-    "timelineTitle": "Tijdlijn",
+    "timelineTitle": "Het pad",
     "timeline": [
       {
-        "year": "2015",
+        "year": "—",
         "type": "start",
-        "body": "Eerste verhuurplatform voor strandhuizen in Zeeland. Geen toeval dat het verhuur was — daar zag ik hoe slecht de standaardtools waren."
+        "body": "Software Engineering. Daar leerde ik systemen ontwerpen die kloppen — niet alleen werken, maar ook over twee jaar nog uit te leggen zijn."
       },
       {
-        "year": "2018",
+        "year": "—",
         "type": "pivot",
-        "body": "Bewust gespecialiseerd in admin-systemen voor MKB. Minder eenmalige sites, meer systemen die jaren meegaan."
+        "body": "Bij de marine: brugcommunicatie, systemen beheren. Verantwoordelijkheid voor dingen die móeten blijven werken, ook als het tegenzit. Daar zit mijn 'in de lucht houden'-instinct vandaan."
       },
       {
-        "year": "2022",
+        "year": "—",
+        "type": "pivot",
+        "body": "Klant-projecten: software bouwen voor MKB-ondernemers — verhuuradministraties, reparatiebonnen, voorraadkoppelingen. De saaie systemen die niemand wil bouwen, en die ondernemers wakker houden."
+      },
+      {
+        "year": "2026",
         "type": "move",
-        "body": "Verhuisd naar de Costa Brava. Eerste Spaanse klanten — en het besef dat NL en ES dezelfde problemen hebben, alleen in twee talen."
-      },
-      {
-        "year": "2024",
-        "type": "pivot",
-        "body": "Webstability als studio-merk. De tweetalige propositie expliciet gemaakt: BTW én IVA, één studio."
+        "body": "Vanuit Spanje verder — het land waar ik ben opgegroeid. Webstability als studio-merk, met de tweetalige propositie expliciet: BTW én IVA, één studio, voor NL én ES."
       },
       {
         "year": "2026",
@@ -741,10 +741,10 @@
     ],
     "firstClientQuote": {
       "quote": "Het scheelt me een halve dag per week. Maar het echte verschil is dat ik 's ochtends niet meer in paniek inlog om te checken of er een dubbele boeking tussen zit.",
-      "attribution": "— Eigenaar · Caravanverhuur Spanje · klant sinds 2024",
+      "attribution": "— Eigenaar · Caravanverhuurspanje · live sinds 2024",
       "caseLabel": "Lees het hele verhaal"
     },
-    "ctaTitle": "Vertel me je verhuursituatie.",
+    "ctaTitle": "Vertel me je situatie.",
     "ctaBody": "Stuur me hoe je het nu doet en waar het knelt — binnen een dag een eerlijk antwoord. Past het, dan plannen we dertig minuten in. Geen pitch-deck, geen accountmanager.",
     "ctaButton": "Plan een gesprek",
     "ctaSecondary": "Bekijk eerst het werk"
@@ -1393,7 +1393,7 @@
   "verhuur": {
     "eyebrow": "voor verhuurbedrijven",
     "title": "Verhuursoftware die *jouw werkwijze* volgt.",
-    "lede": "Specialisatie sinds 2015: reserverings- en planningssystemen voor verhuur — van strandhuizen tot bedrijfswagens, van fietsen tot evenementen-materialen.",
+    "lede": "Reserverings- en planningssystemen voor verhuur — van caravans en vakantiehuizen tot materieel en bedrijfswagens. Eén agenda over al je objecten en kanalen, automatische facturen en contracten, in jouw merk.",
     "problemTitle": "De problemen die ik tegenkom",
     "problems": [
       {
@@ -2024,7 +2024,7 @@
     }
   },
   "pricing": {
-    "eyebrow": "abonnementen · vanaf €179/m",
+    "eyebrow": "abonnementen · vanaf €99/m",
     "title": "Eén prijs per maand. *Geen* offertes, geen verrassingen.",
     "lede": "Na livegang werk je op een vast maandabonnement — hosting, onderhoud, doorbouwen, alles ertussen. Lage instap, opzegbaar wanneer je wil. Studio is de instap; Atelier voor wie actief blijft doorgroeien.",
     "discoveryCallout": {
@@ -2184,31 +2184,31 @@
       },
       "paths": {
         "title": "Veelvoorkomende paden",
-        "lede": "Drie typische combinaties — een ruwe richtlijn voor wat een project gemiddeld kost.",
+        "lede": "Drie typische combinaties — vaste prijs voor de bouw, daarna een doorlopend abonnement.",
         "headers": {
           "what": "Wat",
-          "package": "Pakket",
-          "build": "Bouwperiode",
-          "after": "Daarna onderhoud"
+          "package": "Bouw (vaste prijs)",
+          "build": "Levertijd",
+          "after": "Daarna abonnement"
         },
         "items": [
           {
-            "what": "Marketing-site of landingpage",
-            "package": "Care + Build Light · €95 + €349",
-            "build": "3 mnd · ~€1.050 build",
-            "after": "€95/m"
+            "what": "Website op maat",
+            "package": "vanaf €1.050",
+            "build": "4 weken",
+            "after": "vanaf €99/m"
           },
           {
             "what": "Webshop met BTW/IVA",
-            "package": "Studio + Build Standard · €179 + €499",
-            "build": "3 mnd · ~€2.000 build",
-            "after": "€179/m"
+            "package": "vanaf €3.000",
+            "build": "4 weken",
+            "after": "Studio €179/m"
           },
           {
-            "what": "Verhuurplatform of bedrijfssoftware",
-            "package": "Atelier + Build Custom · €399 + €899",
-            "build": "6 mnd · ~€7.800 build",
-            "after": "€399/m"
+            "what": "Verhuur-, klant- of admin-systeem op maat",
+            "package": "€5.000–8.000",
+            "build": "4 weken",
+            "after": "Studio €179/m of Atelier €399/m"
           }
         ]
       }
@@ -2220,7 +2220,7 @@
   },
   "legal": {
     "avisoTitle": "Aviso legal",
-    "avisoBody": "Verantwoordelijke: Laurens Bos. Adres: Carrer Major, 17255 Begur, Girona, Spanje. KvK: 91186307. BTW: NL004875371B72. NIF: in aanvraag. Contact: hello@webstability.eu. Hosting: Vercel Inc., 340 S Lemon Ave #4133, Walnut CA 91789, USA.",
+    "avisoBody": "Verantwoordelijke: Laurens Bos, eenmanszaak ingeschreven bij de Nederlandse Kamer van Koophandel. KvK: 91186307. BTW: NL004875371B72. NIF: in aanvraag. Werkzaam vanuit Spanje. Contact: hello@webstability.eu — postadres op aanvraag. Hosting: Vercel Inc., 340 S Lemon Ave #4133, Walnut CA 91789, USA.",
     "privacyTitle": "Privacy",
     "privacyBody": "Webstability verwerkt persoonsgegevens conform AVG/RGPD. Verzamelde data: naam en e-mailadres (login en facturatie), Plausible-analytics (geanonimiseerd, EU-hosted), facturatiedata (Stripe/Mollie). Bewaartermijn: account-data tot 30 dagen na opzegging, fiscale data 7 jaar conform wetgeving. Sub-processors: Vercel, Neon, Stripe, Mollie, Plausible, Resend, Better Stack, Sentry. Recht op inzage, correctie en verwijdering: mail naar hello@webstability.eu. DSAR-verzoeken worden binnen 30 dagen behandeld conform AVG art. 12.",
     "lastUpdatedLabel": "Laatst bijgewerkt",

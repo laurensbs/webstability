@@ -154,7 +154,7 @@
       },
       {
         "q": "¿Con quién trabajo — un equipo o una persona?",
-        "a": "Una persona: yo. Sin gestor de cuenta, sin capa intermedia. Escribes o llamas al desarrollador que construye y mantiene tu sistema. Diez años de experiencia, desde 2022 desde España."
+        "a": "Una persona: yo. Sin gestor de cuenta, sin capa intermedia. Escribes o llamas al desarrollador que construye y mantiene tu sistema — formado como ingeniero de software, luego administración de sistemas en la marina, ahora software para clientes. Desde este año trabajo desde España, donde crecí."
       },
       {
         "q": "¿Puede sincronizar con Airbnb, Booking, mi contabilidad?",
@@ -429,7 +429,7 @@
     "founder": {
       "eyebrow": "sobre",
       "title": "Hola, soy *Laurens*.",
-      "body": "Llevo 12 años construyendo sistemas para pymes. Primero desde Países Bajos, desde hace tres años desde Costa Brava — donde traigo el mismo enfoque al mercado español.",
+      "body": "Formado como ingeniero de software, luego en la marina — comunicaciones de puente, administración de sistemas, asegurar que las cosas sigan funcionando. Después, software para pymes. Desde este año trabajo desde España, donde crecí — el mismo enfoque, ahora también para el mercado español.",
       "body2": "No trabajo como agencia. Sin gestores de cuenta, sin subcontratas en una zona horaria que nunca ves. Hablas directamente con el desarrollador que construye tu sistema, y que sigue respondiendo dos años después si algo se rompe.",
       "body3": "Lo mío son los sistemas aburridos que nadie quiere construir — administración de alquileres, partes de reparación, integraciones de inventario. Trabajo invisible que mantiene despiertos a los empresarios. Ahí es donde marco la diferencia.",
       "name": "Laurens Bos",
@@ -466,7 +466,7 @@
           "kicker": "04",
           "title": "Live & mantenimiento",
           "body": "Tras el lanzamiento, tu sistema corre bajo un care-plan. Tú sigues construyendo tu empresa.",
-          "meta": "continuo · desde €95/m"
+          "meta": "continuo · desde €99/m"
         }
       }
     },
@@ -486,31 +486,31 @@
       "items": [
         {
           "q": "¿Cuánto cuesta un proyecto típico?",
-          "a": "Depende de qué quieras construir. Una web de marketing o landing page: ~1.050 € de build en 3 meses, después 95 €/m de mantenimiento. Una tienda online con IVA/BTW: ~2.000 € de build en 3 meses, después 179 €/m. Una plataforma de alquiler o software empresarial a medida: ~7.800 € de build en 6 meses, después 399 €/m de mantenimiento + desarrollo continuo. Cálculo concreto en la página de precios."
+          "a": "Precio fijo, entrega en cuatro semanas. Una web a medida: desde 1.050 €. Una tienda online con IVA/BTW y conexión de inventario: desde 3.000 €. Un sistema de reservas de alquiler, portal de cliente, sistema interno o portal de reparaciones a medida: 5.000–8.000 € (un conjunto mayor — web pública + admin + portal — más bien 6.000–10.000 €). Después, una suscripción continua desde 99 €/m para hosting, mantenimiento y desarrollo. Configura una web o tienda tú mismo en /es/solicitar y ve el precio orientativo al instante."
         },
         {
-          "q": "¿Por qué solo suscripción, sin precio por proyecto?",
-          "a": "Los precios por proyecto incentivan entregar rápido y desaparecer. Las suscripciones nos obligan a entregar cada mes. Para ti significa entrada baja y la posibilidad de parar siempre. Para nosotros, ingresos predecibles — no tenemos que perseguir al siguiente cliente."
+          "q": "¿Por qué precio fijo y no presupuesto por horas?",
+          "a": "Por horas, o un presupuesto con margen 'para lo inesperado', traslada el riesgo a ti: si se alarga, pagas tú. Yo trabajo con precio fijo y un plazo fijo de cuatro semanas para la primera versión funcionando — si se alarga, es mi problema. Sabes de antemano qué cuesta y qué recibes. Sin discusiones de horas extra."
         },
         {
-          "q": "¿Y si quiero cancelar dentro de tres meses?",
-          "a": "Vale. Los tiers regulares (Care/Studio/Atelier) son cancelables mensualmente sin razón. Las Build extensions tienen un mínimo igual al período de construcción (2-8 meses) — lógico, porque hay que terminarlo. Después, también mes a mes."
+          "q": "¿Por qué una suscripción después, y no 'entregado, suerte'?",
+          "a": "Un precio de proyecto incentiva entregar rápido e irse. Una suscripción me obliga a entregar cada mes — mantenimiento, updates de seguridad, desarrollo de lo que de verdad usas. Para ti: entrada más baja, siempre cancelable, software que sigue creciendo. Código en tu GitHub, hosting en tu cuenta — sin vendor lock-in."
+        },
+        {
+          "q": "¿Qué incluye la suscripción mensual?",
+          "a": "Desde 99 €/m: hosting premium (NL/EU edge), monitorización, backups diarios, updates de seguridad y margen para pequeños cambios — suficiente para mantener tu sistema estable desde el día uno. Studio (179 €/m) es la entrada para nuevos clientes: más horas de mantenimiento, SEO local e informe mensual. Atelier (399 €/m) si quieres seguir construyendo mes a mes. Care (95 €/m) sigue como ancla para clientes existentes."
         },
         {
           "q": "¿Y si quiero subir o bajar de tier entre medias?",
           "a": "Siempre. La subida entra en la siguiente factura, la bajada al mes siguiente. Sin drama, sin 'lo planificamos para el próximo trimestre'."
         },
         {
-          "q": "¿Recibo calidad alta por 95 € al mes?",
-          "a": "Por 95 €/m recibes hosting premium (NL/EU edge), monitorización, backups diarios, updates de seguridad y 1 hora al mes para pequeños ajustes. Suficiente para mantener tu nuevo portal estable desde el día uno tras lanzamiento. Si quieres seguir construyendo o SEO activo, vas a Studio (179 €) o más."
-        },
-        {
-          "q": "¿Puedo construir una aplicación grande con estos precios?",
-          "a": "Sí, vía una Build extension. Una plataforma de alquiler de 4-8 meses cuesta en total 3.600-7.200 € (Build Custom = +899 €/m) más tu tier regular. Bastante por debajo de los 15.000-30.000 € que cuestan los proyectos freelance habitualmente — pagas a lo largo del tiempo."
+          "q": "¿Y si quiero cancelar?",
+          "a": "Vale, mes a mes, sin razón. Para builds a medida hay un mínimo igual al período de construcción (lógico — hay que terminarlo). Después, también mes a mes. Tu código y datos siguen siendo tuyos, también tras la salida."
         },
         {
           "q": "¿Y si un mes no necesito nada?",
-          "a": "Tu sitio sigue funcionando y solo pagas por hosting + estar listos. No acumulamos horas no usadas (sería un incentivo para 'meter algo' antes de fin de mes). ¿Quieres pausar de verdad? Pregunta, encontramos algo."
+          "a": "Tu sistema sigue funcionando y solo pagas por hosting + estar listos. No acumulamos horas no usadas (sería un incentivo para 'meter algo' antes de fin de mes). ¿Quieres pausar de verdad? Pregunta — encontramos algo."
         }
       ]
     },
@@ -551,7 +551,7 @@
         "Primer mes gratis",
         "Cancelable mensualmente",
         "15% de descuento con pago anual",
-        "Build desde 499 € setup"
+        "A medida desde 5–8 k € · web desde 1.050 €"
       ]
     },
 
@@ -560,7 +560,7 @@
       "title": "¿Listo para un sistema que *crece contigo*?",
       "body": "Una llamada de 30 minutos sin compromiso. Sin presentación comercial — un consejo honesto sobre si, y cómo, podemos ayudarnos.",
       "button": "Planificar en agenda",
-      "pricingHint": "Precio fijo 5–8 k € para la build, después mantenimiento continuo desde 179 €/m. Primer mes gratis.",
+      "pricingHint": "A medida desde 5–8 k €, web desde 1.050 € — precio fijo, cuatro semanas. Después una suscripción continua desde 99 €/m. Primer mes gratis.",
       "pricingHintLink": "Ver comparativa de tiers"
     }
   },
@@ -662,8 +662,8 @@
   },
   "about": {
     "eyebrow": "sobre webstability",
-    "title": "Diez años, y sigo siendo *una sola persona*.",
-    "intro": "Las empresas de alquiler con las que hablo tienen algo en común: una plataforma que hace a medias lo que promete, y nadie a quien llamar. Soy Laurens Bos — desde 2015 construyo esos sistemas bien, desde Países Bajos y desde 2022 desde la Costa Brava. Precio fijo, tu propia marca, y después de la entrega sigo estando ahí. Prefiero relaciones largas a proyectos entregados.",
+    "title": "Una persona. *Software* que sigue funcionando.",
+    "intro": "Soy Laurens Bos. Formado como ingeniero de software, luego en la marina — comunicaciones de puente, administración de sistemas, asegurarme de que las cosas sigan funcionando bajo presión. Desde este año trabajo desde España, el país donde crecí: construyo software a medida para pymes en Países Bajos y en España, y traigo el mismo enfoque al mercado español. Precio fijo, tu propia marca, y después de la entrega sigo estando ahí.",
     "langBadges": ["NL", "ES"],
     "principlesTitle": "Cuatro principios",
     "principles": [
@@ -680,58 +680,58 @@
       {
         "kicker": "03",
         "title": "Relaciones largas, no proyectos",
-        "body": "Mi cliente más antiguo es de 2017. El software es un compromiso, no una entrega."
+        "body": "El software es un compromiso, no una entrega. Después del lanzamiento sigo manteniendo y desarrollando."
       },
       {
         "kicker": "04",
         "title": "Dos idiomas, dos países",
-        "body": "BTW e IVA. .nl y .es. Entiendo el contexto fiscal y cultural de ambos mercados."
+        "body": "BTW e IVA. .nl y .es. Entiendo el contexto fiscal y cultural de ambos mercados — crecí en España, trabajé años en Países Bajos."
       }
     ],
     "principlesToProof": "Suficientes principios — esto es lo que realmente está funcionando ahora.",
     "nowBuilding": {
       "eyebrow": "lo que construyo ahora",
-      "title": "Tres cifras que *acortan* la historia.",
-      "lede": "No 'pymes en general'. Sí: tres plataformas de alquiler en producción, una plataforma de reparación con 47 talleres, y una stack estándar que cabe en 4 semanas sobre un nuevo cliente.",
+      "title": "Tres cosas que *acortan* la historia.",
+      "lede": "No 'pymes en general'. Sí: una plataforma de alquiler en la Costa Brava, un portal de reparaciones para un taller, y una stack estándar que cabe en cuatro semanas sobre un nuevo cliente.",
       "items": [
         {
-          "metric": "3",
-          "label": "plataformas de alquiler en producción",
-          "body": "Costa Brava + Costa del Sol. Caravanas, casas vacacionales, material — cada una con marca y admin propios."
+          "metric": "0",
+          "label": "reservas duplicadas desde el lanzamiento",
+          "body": "Caravanverhuurspanje — arrendador neerlandés en la Costa Brava, 12 caravanas + 4 bungalows-caravana. Web pública, admin y portal de cliente como un solo sistema integrado, NL y ES."
         },
         {
-          "metric": "47",
-          "label": "talleres en una sola plataforma",
-          "body": "VOLT/AUTO multi-tenant. Orden de trabajo iPad-first, sin papel, integración contable NL+ES."
+          "metric": "iPad",
+          "label": "taller sin papel",
+          "body": "Caravanreparatiespanje — órdenes de trabajo digitales, los mecánicos trabajan en el iPad, seguimiento de estado, y una parte del cliente donde ve por sí mismo cómo va."
         },
         {
           "metric": "4 sem",
           "label": "precio fijo, primera versión funcional",
-          "body": "Stack estándar que pongo sobre un cliente nuevo en 4 semanas por 5–8 k €. Ampliación vía Atelier."
+          "body": "Una stack estándar que pongo sobre un cliente nuevo en cuatro semanas por 5–8 k €. Después desarrollo incremental dentro de la suscripción mensual — sin facturas por horas extra."
         }
       ]
     },
-    "timelineTitle": "Trayectoria",
+    "timelineTitle": "El camino",
     "timeline": [
       {
-        "year": "2015",
+        "year": "—",
         "type": "start",
-        "body": "Primera plataforma de alquiler para casas de playa en Zelanda. No fue casualidad que fuera alquiler — ahí vi lo malas que eran las herramientas estándar."
+        "body": "Ingeniería de software. Ahí aprendí a diseñar sistemas que cuadran — que no solo funcionan, sino que dentro de dos años siguen siendo explicables."
       },
       {
-        "year": "2018",
+        "year": "—",
         "type": "pivot",
-        "body": "Especialización deliberada en sistemas a medida para pymes. Menos webs puntuales, más sistemas que duran años."
+        "body": "En la marina: comunicaciones de puente, administración de sistemas. Responsabilidad sobre cosas que tienen que seguir funcionando, también cuando va mal. De ahí viene mi instinto de 'mantenerlo en el aire'."
       },
       {
-        "year": "2022",
+        "year": "—",
+        "type": "pivot",
+        "body": "Proyectos para clientes: construir software para pymes — administraciones de alquiler, órdenes de reparación, conexiones de inventario. Los sistemas aburridos que nadie quiere construir, y que mantienen despiertos a los empresarios."
+      },
+      {
+        "year": "2026",
         "type": "move",
-        "body": "Mudanza a la Costa Brava. Primeros clientes españoles — y la constatación de que NL y ES tienen los mismos problemas, solo que en dos idiomas."
-      },
-      {
-        "year": "2024",
-        "type": "pivot",
-        "body": "Webstability como marca de estudio. La propuesta bilingüe hecha explícita: BTW e IVA, un solo estudio."
+        "body": "Desde España en adelante — el país donde crecí. Webstability como marca de estudio, con la propuesta bilingüe explícita: BTW e IVA, un solo estudio, para NL y ES."
       },
       {
         "year": "2026",
@@ -741,10 +741,10 @@
     ],
     "firstClientQuote": {
       "quote": "Me ahorra medio día a la semana. Pero la diferencia real es que ya no entro por la mañana en pánico para comprobar si hay alguna reserva duplicada.",
-      "attribution": "— Propietario · Caravanverhuur Spanje · cliente desde 2024",
+      "attribution": "— Propietario · Caravanverhuurspanje · activo desde 2024",
       "caseLabel": "Lee la historia completa"
     },
-    "ctaTitle": "Cuéntame tu situación de alquiler.",
+    "ctaTitle": "Cuéntame tu situación.",
     "ctaBody": "Envíame cómo lo haces ahora y dónde aprieta — respuesta honesta en un día. Si encaja, reservamos treinta minutos. Sin presentación comercial, sin gestor de cuenta.",
     "ctaButton": "Reserva una llamada",
     "ctaSecondary": "Primero mira el trabajo"
@@ -1402,7 +1402,7 @@
   "verhuur": {
     "eyebrow": "para empresas de alquiler",
     "title": "Software de alquiler que *sigue tu forma de trabajar*.",
-    "lede": "Especialización desde 2015: sistemas de reserva y planificación para alquiler — desde casas de playa hasta vehículos comerciales, desde bicis hasta material para eventos.",
+    "lede": "Sistemas de reserva y planificación para alquiler — desde caravanas y casas vacacionales hasta material y vehículos comerciales. Una sola agenda sobre todos tus objetos y canales, facturas y contratos automáticos, con tu marca.",
     "problemTitle": "Los problemas que encuentro",
     "problems": [
       {
@@ -2037,7 +2037,7 @@
     }
   },
   "pricing": {
-    "eyebrow": "suscripciones · desde 179 €/m",
+    "eyebrow": "suscripciones · desde 99 €/m",
     "title": "Un precio al mes. *Sin* presupuestos, sin sorpresas.",
     "lede": "Tras el lanzamiento trabajas con una cuota fija mensual — hosting, mantenimiento, desarrollo, todo lo intermedio. Entrada baja, cancelable cuando quieras. Studio es la entrada; Atelier para quien sigue creciendo activamente.",
     "discoveryCallout": {
@@ -2197,31 +2197,31 @@
       },
       "paths": {
         "title": "Rutas habituales",
-        "lede": "Tres combinaciones típicas — orientación aproximada de cuánto cuesta un proyecto.",
+        "lede": "Tres combinaciones típicas — precio fijo para la build, después una suscripción continua.",
         "headers": {
           "what": "Qué",
-          "package": "Paquete",
-          "build": "Período de construcción",
-          "after": "Después: mantenimiento"
+          "package": "Build (precio fijo)",
+          "build": "Plazo",
+          "after": "Después: suscripción"
         },
         "items": [
           {
-            "what": "Web de marketing o landing page",
-            "package": "Care + Build Light · 95 € + 349 €",
-            "build": "3 meses · ~1.050 € build",
-            "after": "95 €/m"
+            "what": "Web a medida",
+            "package": "desde 1.050 €",
+            "build": "4 semanas",
+            "after": "desde 99 €/m"
           },
           {
             "what": "Tienda online con IVA/BTW",
-            "package": "Studio + Build Standard · 179 € + 499 €",
-            "build": "3 meses · ~2.000 € build",
-            "after": "179 €/m"
+            "package": "desde 3.000 €",
+            "build": "4 semanas",
+            "after": "Studio 179 €/m"
           },
           {
-            "what": "Plataforma de alquiler o software empresarial",
-            "package": "Atelier + Build Custom · 399 € + 899 €",
-            "build": "6 meses · ~7.800 € build",
-            "after": "399 €/m"
+            "what": "Sistema de alquiler, de cliente o interno a medida",
+            "package": "5.000–8.000 €",
+            "build": "4 semanas",
+            "after": "Studio 179 €/m o Atelier 399 €/m"
           }
         ]
       }
@@ -2233,7 +2233,7 @@
   },
   "legal": {
     "avisoTitle": "Aviso legal",
-    "avisoBody": "Responsable: Laurens Bos. Dirección: Carrer Major, 17255 Begur, Girona, España. KvK: 91186307. IVA intracomunitario: NL004875371B72. NIF: en trámite. Contacto: hello@webstability.eu. Hosting: Vercel Inc., 340 S Lemon Ave #4133, Walnut CA 91789, EEUU.",
+    "avisoBody": "Responsable: Laurens Bos, empresario individual inscrito en la Cámara de Comercio de los Países Bajos (KvK). KvK: 91186307. IVA intracomunitario: NL004875371B72. NIF: en trámite. Activo desde España. Contacto: hello@webstability.eu — dirección postal a petición. Hosting: Vercel Inc., 340 S Lemon Ave #4133, Walnut CA 91789, EEUU.",
     "privacyTitle": "Privacidad",
     "privacyBody": "Webstability trata datos personales conforme al RGPD. Datos recogidos: nombre y email (login y facturación), Plausible-analytics (anonimizado, hospedado en UE), datos de facturación (Stripe/Mollie). Plazo de conservación: datos de cuenta hasta 30 días tras baja, datos fiscales 7 años según ley. Sub-procesadores: Vercel, Neon, Stripe, Mollie, Plausible, Resend, Better Stack, Sentry. Derecho de acceso, rectificación y supresión: escribe a hello@webstability.eu. Las solicitudes DSAR se atienden en 30 días conforme al art. 12 RGPD.",
     "lastUpdatedLabel": "Última actualización",
