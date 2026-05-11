@@ -9,6 +9,8 @@ import { openBillingPortal } from "@/app/actions/billing";
 import { SubmitButton } from "@/components/ui/SubmitButton";
 import { ToastForm } from "@/components/portal/ToastForm";
 import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
+import { PlanSwitchSection } from "@/components/portal/PlanSwitchSection";
+import { TIER_PRICES } from "@/lib/pricing";
 
 export default async function SettingsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -22,8 +24,17 @@ export default async function SettingsPage({ params }: { params: Promise<{ local
 
   const t = await getTranslations("portal.settings");
   const tCare = await getTranslations("pricing.care");
+  const tPlan = await getTranslations("portal.planSwitch");
   const isOwner = user.role === "owner";
   const hasStripeCustomer = Boolean(user.organization?.stripeCustomerId);
+  const currentPlan = (user.organization?.plan ?? "care") as "care" | "studio" | "atelier";
+
+  const planTiers = (["care", "studio", "atelier"] as const).map((id) => ({
+    id,
+    name: tPlan(`tiers.${id}.name`),
+    price: TIER_PRICES[id],
+    perks: tPlan.raw(`tiers.${id}.perks`) as string[],
+  }));
 
   return (
     <div className="mx-auto max-w-xl space-y-8">
@@ -74,6 +85,26 @@ export default async function SettingsPage({ params }: { params: Promise<{ local
 
         <ToastSubmitButton variant="accent">{t("save")}</ToastSubmitButton>
       </ToastForm>
+
+      {isOwner && hasStripeCustomer ? (
+        <PlanSwitchSection
+          currentPlan={currentPlan}
+          tiers={planTiers}
+          strings={{
+            title: tPlan("title"),
+            lede: tPlan("lede"),
+            currentLabel: tPlan("currentLabel"),
+            upgradeLabel: tPlan("upgradeLabel"),
+            downgradeLabel: tPlan("downgradeLabel"),
+            confirmUpgrade: tPlan("confirmUpgrade"),
+            confirmDowngrade: tPlan("confirmDowngrade"),
+            savedToast: tPlan("savedToast"),
+            scheduledToast: tPlan("scheduledToast"),
+            errorToast: tPlan("errorToast"),
+            switching: tPlan("switching"),
+          }}
+        />
+      ) : null}
 
       {isOwner && hasStripeCustomer ? (
         <form action={openBillingPortal} className="border-t border-(--color-border) pt-8">

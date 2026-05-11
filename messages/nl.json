@@ -1804,6 +1804,33 @@
       "saved": "Opgeslagen.",
       "roles": { "owner": "Eigenaar", "member": "Lid", "read_only": "Alleen lezen" }
     },
+    "planSwitch": {
+      "title": "Abonnement wijzigen",
+      "lede": "Upgraden gaat direct in (pro-rata verrekend). Downgraden gaat in op je volgende factuur — geen terugbetaling-gedoe.",
+      "currentLabel": "huidig",
+      "upgradeLabel": "Wissel naar {name} — direct",
+      "downgradeLabel": "Wissel naar {name} — per volgende factuur",
+      "confirmUpgrade": "Direct overstappen naar {name}? Het verschil wordt pro-rata verrekend op je volgende factuur.",
+      "confirmDowngrade": "Overstappen naar {name}? Dit gaat in op je volgende factuur — tot dan houd je je huidige abonnement.",
+      "savedToast": "Abonnement gewijzigd.",
+      "scheduledToast": "Wijziging ingepland — gaat in op je volgende factuur.",
+      "errorToast": "Er ging iets mis. Probeer het opnieuw of mail me.",
+      "switching": "Bezig…",
+      "tiers": {
+        "care": {
+          "name": "Care",
+          "perks": ["Onderhoud + monitoring", "Tot 3 open tickets", "Maandelijkse update"]
+        },
+        "studio": {
+          "name": "Studio",
+          "perks": ["Alles van Care", "Tot 8 open tickets", "SEO + performance-rapport"]
+        },
+        "atelier": {
+          "name": "Atelier",
+          "perks": ["Alles van Studio", "Onbeperkt tickets", "Prioriteit + mini-roadmap"]
+        }
+      }
+    },
     "nav2": {
       "monitoring": "Monitoring",
       "seo": "SEO",

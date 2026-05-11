@@ -1808,6 +1808,33 @@
       "saved": "Guardado.",
       "roles": { "owner": "Propietario", "member": "Miembro", "read_only": "Solo lectura" }
     },
+    "planSwitch": {
+      "title": "Cambiar suscripción",
+      "lede": "Subir de plan es inmediato (prorrateado). Bajar de plan se aplica en tu próxima factura — sin líos de reembolso.",
+      "currentLabel": "actual",
+      "upgradeLabel": "Cambiar a {name} — ahora",
+      "downgradeLabel": "Cambiar a {name} — próxima factura",
+      "confirmUpgrade": "¿Cambiar ahora a {name}? La diferencia se prorratea en tu próxima factura.",
+      "confirmDowngrade": "¿Cambiar a {name}? Se aplica en tu próxima factura — hasta entonces mantienes tu plan actual.",
+      "savedToast": "Suscripción cambiada.",
+      "scheduledToast": "Cambio programado — se aplica en tu próxima factura.",
+      "errorToast": "Algo salió mal. Inténtalo de nuevo o escríbeme.",
+      "switching": "Procesando…",
+      "tiers": {
+        "care": {
+          "name": "Care",
+          "perks": ["Mantenimiento + monitorización", "Hasta 3 tickets abiertos", "Informe mensual"]
+        },
+        "studio": {
+          "name": "Studio",
+          "perks": ["Todo lo de Care", "Hasta 8 tickets abiertos", "Informe SEO + rendimiento"]
+        },
+        "atelier": {
+          "name": "Atelier",
+          "perks": ["Todo lo de Studio", "Tickets ilimitados", "Prioridad + mini-roadmap"]
+        }
+      }
+    },
     "nav2": {
       "monitoring": "Monitorización",
       "seo": "SEO",

@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { users, organizations } from "@/lib/db/schema";
+import { users, organizations, subscriptions, auditLog } from "@/lib/db/schema";
 import {
   stripe,
   priceIdFor,
@@ -15,6 +15,9 @@ import {
 } from "@/lib/stripe";
 import { DemoReadonlyError } from "@/lib/demo-guard";
 import { getReferralByCode } from "@/lib/db/queries/referrals";
+import type { ActionResult } from "@/lib/action-result";
+
+const TIER_RANK: Record<CarePlanId, number> = { care: 0, studio: 1, atelier: 2 };
 
 const APP_URL = process.env.AUTH_URL ?? "http://localhost:3000";
 const REFERRAL_COUPON = process.env.STRIPE_REFERRAL_COUPON ?? "REFERRAL_250";
@@ -241,4 +244,99 @@ export async function openBillingPortal() {
     return_url: `${APP_URL}/portal/dashboard`,
   });
   redirect(session.url);
+}
+
+/**
+ * Self-serve plan-switch voor de org-owner. Upgrade (naar een hogere
+ * tier) gaat direct in met pro-rata facturering; downgrade (naar een
+ * lagere tier) gaat pas in op de huidige periode-einde zodat er geen
+ * refund-gedoe is. Geeft een ActionResult terug (geen redirect) zodat
+ * de portal-UI een toast kan tonen.
+ *
+ * Bij gelijke tier: no-op success. Vereist een actieve Stripe-sub.
+ */
+export async function changeMyPlan(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let user, org;
+  try {
+    ({ user, org } = await requireOwner());
+  } catch (e) {
+    if (e instanceof DemoReadonlyError) return { ok: true, messageKey: "demo_readonly" };
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  const planInput = String(formData.get("plan") ?? "");
+  const target = (["care", "studio", "atelier"] as const).includes(planInput as CarePlanId)
+    ? (planInput as CarePlanId)
+    : null;
+  if (!target) return { ok: false, messageKey: "missing_fields" };
+
+  const current = (org.plan ?? "care") as CarePlanId;
+  if (current === target) return { ok: true, messageKey: "saved" };
+
+  const newPriceId = priceIdFor(target);
+  if (!newPriceId) return { ok: false, messageKey: "missing_fields" };
+
+  const sub = await db.query.subscriptions.findFirst({
+    where: eq(subscriptions.organizationId, org.id),
+    orderBy: (s, { desc: d }) => [d(s.createdAt)],
+  });
+  if (!sub?.stripeSubscriptionId) return { ok: false, messageKey: "missing_fields" };
+
+  const isUpgrade = TIER_RANK[target] > TIER_RANK[current];
+
+  try {
+    const stripeSub = await stripe().subscriptions.retrieve(sub.stripeSubscriptionId);
+    const baseItem = stripeSub.items.data[0];
+    if (!baseItem) return { ok: false, messageKey: "missing_fields" };
+
+    if (isUpgrade) {
+      // Direct, met pro-rata.
+      await stripe().subscriptions.update(sub.stripeSubscriptionId, {
+        items: [{ id: baseItem.id, price: newPriceId }],
+        proration_behavior: "create_prorations",
+        metadata: { owner_plan_change: target, changed_at: String(Date.now()) },
+      });
+      // Lokale sync — webhook bevestigt later, maar de UI mag direct
+      // het nieuwe plan tonen.
+      await db
+        .update(subscriptions)
+        .set({ plan: target, status: "active" })
+        .where(eq(subscriptions.id, sub.id));
+      await db
+        .update(organizations)
+        .set({ plan: target, planStartedAt: new Date() })
+        .where(eq(organizations.id, org.id));
+    } else {
+      // Downgrade: schedule op periode-einde. We zetten de item-price
+      // niet meteen, maar plannen het via een subscription schedule —
+      // simpeler alternatief: proration_behavior 'none' + billing_cycle
+      // ongewijzigd betekent de nieuwe prijs geldt vanaf de volgende
+      // factuur (Stripe rekent de oude periode niet terug). Het plan
+      // verandert pas lokaal als de webhook de nieuwe periode bevestigt.
+      await stripe().subscriptions.update(sub.stripeSubscriptionId, {
+        items: [{ id: baseItem.id, price: newPriceId }],
+        proration_behavior: "none",
+        metadata: { owner_plan_change: target, changed_at: String(Date.now()) },
+      });
+      // Niet lokaal flippen — pas bij de volgende invoice-cyclus via
+      // de webhook. De UI toont "ingepland per volgende factuur".
+    }
+
+    await db.insert(auditLog).values({
+      organizationId: org.id,
+      userId: user.id,
+      action: "subscription.plan_changed_by_owner",
+      targetType: "subscription",
+      targetId: sub.id,
+      metadata: { from: current, to: target, immediate: isUpgrade },
+    });
+  } catch (err) {
+    console.error("[billing] owner plan change failed:", err);
+    return { ok: false, messageKey: "generic_error" };
+  }
+
+  return { ok: true, messageKey: isUpgrade ? "saved" : "scheduled" };
 }
