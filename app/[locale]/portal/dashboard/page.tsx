@@ -10,6 +10,8 @@ import {
   CheckCircle2,
   ArrowRight,
   FileText,
+  Globe,
+  Package,
 } from "lucide-react";
 import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
@@ -436,6 +438,57 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
           />
         </StatItem>
       </StatsGrid>
+
+      {/* Pakket & website — alleen voor legacy website-abonnement-klanten
+          (en/of orgs waar een website-URL is vastgelegd). */}
+      {user.organization?.legacyPackageName || user.organization?.websiteUrl ? (
+        <div className="grid gap-5 sm:grid-cols-2">
+          {user.organization?.legacyPackageName ? (
+            <div className="rounded-2xl border border-(--color-border) bg-(--color-surface) p-6">
+              <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                <Package className="h-3 w-3" strokeWidth={2.4} />
+                {t("dashboard.packageEyebrow")}
+              </p>
+              <p className="mt-2 text-[18px] font-medium text-(--color-text)">
+                {user.organization.legacyPackageName}
+              </p>
+              {user.organization.legacyPackagePriceCents != null ? (
+                <p className="mt-1 text-[13px] text-(--color-muted)">
+                  {new Intl.NumberFormat(locale, {
+                    style: "currency",
+                    currency: "EUR",
+                  }).format(user.organization.legacyPackagePriceCents / 100)}{" "}
+                  {user.organization.legacyBillingInterval === "yearly"
+                    ? t("dashboard.packagePerYear")
+                    : t("dashboard.packagePerMonth")}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+          {user.organization?.websiteUrl ? (
+            <div className="rounded-2xl border border-(--color-border) bg-(--color-surface) p-6">
+              <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                <Globe className="h-3 w-3" strokeWidth={2.4} />
+                {t("dashboard.websiteEyebrow")}
+              </p>
+              <a
+                href={user.organization.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center gap-1.5 text-[16px] font-medium text-(--color-accent) hover:underline"
+              >
+                {user.organization.websiteUrl.replace(/^https?:\/\//, "")}
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+              {user.organization.websiteNote ? (
+                <p className="mt-1.5 text-[13px] text-(--color-muted)">
+                  {user.organization.websiteNote}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
+      ) : null}
 
       {/* Tier-aware widget rij — altijd Hours + Security, Atelier voegt
           Roadmap toe. Care/Studio krijgen 2 cards in lg:grid-cols-2,

@@ -12,11 +12,11 @@ import {
   KeyboardSensor,
 } from "@dnd-kit/core";
 import { motion, AnimatePresence } from "motion/react";
-import { Bug, Sparkles, HelpCircle, AlertCircle } from "lucide-react";
+import { Bug, Sparkles, HelpCircle, AlertCircle, PencilLine, ArrowUpCircle } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 
 type Status = "open" | "in_progress" | "waiting" | "closed";
-type Category = "bug" | "feature" | "question";
+type Category = "bug" | "feature" | "question" | "change" | "upgrade";
 type Priority = "low" | "normal" | "high";
 
 export type Ticket = {
@@ -67,6 +67,18 @@ const CATEGORY_META: Record<
     bg: "bg-(--color-teal)/10",
     text: "text-(--color-teal)",
     label: () => "vraag",
+  },
+  change: {
+    icon: PencilLine,
+    bg: "bg-(--color-accent)/10",
+    text: "text-(--color-accent)",
+    label: () => "wijziging",
+  },
+  upgrade: {
+    icon: ArrowUpCircle,
+    bg: "bg-(--color-wine)/10",
+    text: "text-(--color-wine)",
+    label: () => "upgrade",
   },
 };
 

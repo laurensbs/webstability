@@ -21,7 +21,10 @@ async function requireUserOrg() {
   return { userId: user.id, orgId: user.organizationId };
 }
 
-const CATEGORIES = ["bug", "feature", "question"] as const;
+// "change" = website-wijziging/onderhoud (content aanpassen, foto vervangen,
+// pagina toevoegen) — de hoofd-aanvraag voor website-abonnement-klanten.
+// "upgrade" = pakket-upgrade / meer onderhoudsuren aanvragen.
+const CATEGORIES = ["bug", "feature", "question", "change", "upgrade"] as const;
 type Category = (typeof CATEGORIES)[number];
 
 // Tier-aware open-ticket-budget. Bij overschrijden tonen we de klant
@@ -35,8 +38,8 @@ const TIER_TICKET_LIMIT: Record<"care" | "studio" | "atelier", number> = {
 
 function categoryToPriority(c: Category): "low" | "normal" | "high" {
   if (c === "bug") return "high";
-  if (c === "feature") return "normal";
-  return "low";
+  if (c === "feature" || c === "change") return "normal";
+  return "low"; // question, upgrade
 }
 
 export async function createTicket(formData: FormData) {

@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
-import { Receipt } from "lucide-react";
+import { Receipt, Download } from "lucide-react";
 import { EmptyState } from "@/components/portal/EmptyState";
 import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
@@ -68,6 +68,17 @@ export default async function InvoicesPage({ params }: { params: Promise<{ local
                     {t(`status.${inv.status}`)}
                   </span>
                 </div>
+                {inv.pdfUrl ? (
+                  <a
+                    href={inv.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-(--color-border) px-3 py-1.5 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase transition-colors hover:border-(--color-accent) hover:text-(--color-accent)"
+                  >
+                    <Download className="h-3 w-3" />
+                    {t("download")}
+                  </a>
+                ) : null}
               </li>
             );
           })}

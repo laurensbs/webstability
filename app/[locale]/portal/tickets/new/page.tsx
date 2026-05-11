@@ -45,6 +45,7 @@ export default async function NewTicket({
 
       <form action={createTicket} className="space-y-6">
         <TicketCategoryPicker
+          defaultCategory="change"
           strings={{
             bugLabel: tCat("bugLabel"),
             bugBody: tCat("bugBody"),
@@ -52,6 +53,10 @@ export default async function NewTicket({
             featureBody: tCat("featureBody"),
             questionLabel: tCat("questionLabel"),
             questionBody: tCat("questionBody"),
+            changeLabel: tCat("changeLabel"),
+            changeBody: tCat("changeBody"),
+            upgradeLabel: tCat("upgradeLabel"),
+            upgradeBody: tCat("upgradeBody"),
           }}
         />
 

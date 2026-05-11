@@ -17,6 +17,7 @@ import {
   applyDiscountCoupon,
   isStripeConfigured,
 } from "@/lib/stripe";
+import { put } from "@vercel/blob";
 import {
   users,
   projects,
@@ -27,6 +28,8 @@ import {
   staffInvites,
   discounts,
   subscriptions,
+  invoices,
+  files,
   auditLog,
   projectUpdates,
   handoverChecklist,
@@ -1241,4 +1244,287 @@ export async function markProjectLive(
   revalidatePath(`/portal/projects/${projectId}`);
   revalidatePath(`/portal/projects/${projectId}/handover`);
   return { ok: true, messageKey: "project_live" };
+}
+
+// ===========================================================================
+// Website-abonnement-klanten — legacy-pakket, Stripe-koppeling, file/factuur
+// upload. Voor bestaande klanten met een eigen pakket (geen care/studio/
+// atelier-tier). Zie het plan in .claude/plans en lib/db/schema.ts.
+// ===========================================================================
+
+const BILLING_INTERVALS = ["monthly", "yearly"] as const;
+type BillingInterval = (typeof BILLING_INTERVALS)[number];
+
+/** Zet het legacy-pakket (vrije naam, prijs, frequentie) + website-info op
+ * een org. Lege pakketnaam = pakket-velden gewist (terug naar tier-klant).
+ * Lege website-velden worden ook gewist. */
+export async function updateOrgPackage(
+  organizationId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch (e) {
+    return handleAuthError(e);
+  }
+
+  const packageName = String(formData.get("packageName") ?? "").trim();
+  const priceEurRaw = String(formData.get("priceEur") ?? "")
+    .trim()
+    .replace(",", ".");
+  const intervalInput = String(formData.get("billingInterval") ?? "");
+  const websiteUrl = String(formData.get("websiteUrl") ?? "").trim();
+  const websiteNote = String(formData.get("websiteNote") ?? "").trim();
+
+  const interval: BillingInterval | null = (BILLING_INTERVALS as readonly string[]).includes(
+    intervalInput,
+  )
+    ? (intervalInput as BillingInterval)
+    : null;
+
+  let priceCents: number | null = null;
+  if (packageName && priceEurRaw) {
+    const n = Number.parseFloat(priceEurRaw);
+    if (!Number.isFinite(n) || n < 0) return { ok: false, messageKey: "missing_fields" };
+    priceCents = Math.round(n * 100);
+  }
+
+  await db
+    .update(organizations)
+    .set({
+      legacyPackageName: packageName || null,
+      legacyPackagePriceCents: packageName ? priceCents : null,
+      legacyBillingInterval: packageName ? interval : null,
+      websiteUrl: websiteUrl || null,
+      websiteNote: websiteNote || null,
+    })
+    .where(eq(organizations.id, organizationId));
+
+  await db.insert(auditLog).values({
+    organizationId,
+    userId,
+    action: "org.package_updated",
+    targetType: "organization",
+    targetId: organizationId,
+    metadata: {
+      packageName: packageName || null,
+      priceCents,
+      interval,
+      websiteUrl: websiteUrl || null,
+    },
+  });
+
+  revalidatePath(`/admin/orgs/${organizationId}`);
+  revalidatePath(`/portal/dashboard`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/** Koppelt een bestaande Stripe-customer + subscription aan een org. De
+ * Stripe-objecten zelf maakt Laurens in het Stripe-dashboard aan (Product +
+ * Price met het juiste interval, Customer, Subscription). Hierna haalt de
+ * Stripe-webhook (upsertInvoice → matcht op stripeCustomerId) de facturen
+ * + PDF's vanzelf binnen. `plan` mag leeg blijven voor legacy-pakketten. */
+export async function linkStripeSubscription(
+  organizationId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch (e) {
+    return handleAuthError(e);
+  }
+
+  const stripeCustomerId = String(formData.get("stripeCustomerId") ?? "").trim();
+  const stripeSubscriptionId = String(formData.get("stripeSubscriptionId") ?? "").trim();
+  const planInput = String(formData.get("plan") ?? "").trim();
+  if (!stripeCustomerId) return { ok: false, messageKey: "missing_fields" };
+
+  const plan =
+    planInput === ""
+      ? null
+      : (PLAN_VALUES as readonly string[]).includes(planInput)
+        ? (planInput as Plan)
+        : null;
+
+  await db
+    .update(organizations)
+    .set({ stripeCustomerId })
+    .where(eq(organizations.id, organizationId));
+
+  if (stripeSubscriptionId) {
+    const existing = await db.query.subscriptions.findFirst({
+      where: eq(subscriptions.stripeSubscriptionId, stripeSubscriptionId),
+      columns: { id: true },
+    });
+    if (existing) {
+      await db
+        .update(subscriptions)
+        .set({ organizationId, plan, status: "active" })
+        .where(eq(subscriptions.id, existing.id));
+    } else {
+      await db.insert(subscriptions).values({
+        organizationId,
+        plan,
+        status: "active",
+        stripeSubscriptionId,
+      });
+    }
+  }
+
+  await db.insert(auditLog).values({
+    organizationId,
+    userId,
+    action: "subscription.stripe_linked",
+    targetType: "organization",
+    targetId: organizationId,
+    metadata: { stripeCustomerId, stripeSubscriptionId: stripeSubscriptionId || null, plan },
+  });
+
+  revalidatePath(`/admin/orgs/${organizationId}`);
+  return { ok: true, messageKey: "saved" };
+}
+
+const INVOICE_UPLOAD_STATUSES = ["sent", "paid"] as const;
+type InvoiceUploadStatus = (typeof INVOICE_UPLOAD_STATUSES)[number];
+
+function eurToCents(raw: string): number | null {
+  const cleaned = raw.trim().replace(",", ".");
+  if (!cleaned) return null;
+  const n = Number.parseFloat(cleaned);
+  if (!Number.isFinite(n) || n < 0) return null;
+  return Math.round(n * 100);
+}
+
+/** Uploadt een factuur-PDF (bv. uit de boekhouder) naar Vercel Blob en
+ * maakt een invoices-row met pdfUrl gevuld. Voor klanten zonder Stripe-
+ * koppeling, of voor losse facturen. */
+export async function uploadInvoicePdf(
+  organizationId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return { ok: false, messageKey: "blob_not_configured" };
+  }
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch (e) {
+    return handleAuthError(e);
+  }
+
+  const file = formData.get("file") as File | null;
+  const number = String(formData.get("number") ?? "").trim();
+  const amountCents = eurToCents(String(formData.get("amountEur") ?? ""));
+  const vatCents = eurToCents(String(formData.get("vatEur") ?? "")) ?? 0;
+  const dateRaw = String(formData.get("invoiceDate") ?? "").trim();
+  const statusInput = String(formData.get("status") ?? "sent");
+  const status: InvoiceUploadStatus = (INVOICE_UPLOAD_STATUSES as readonly string[]).includes(
+    statusInput,
+  )
+    ? (statusInput as InvoiceUploadStatus)
+    : "sent";
+
+  if (!file || file.size === 0 || !number || amountCents === null) {
+    return { ok: false, messageKey: "missing_fields" };
+  }
+
+  const invoiceDate = dateRaw ? new Date(dateRaw) : new Date();
+  const blobPath = `org/${organizationId}/invoices/${Date.now()}-${file.name}`;
+  const blob = await put(blobPath, file, { access: "public" });
+
+  await db.insert(invoices).values({
+    organizationId,
+    number,
+    amount: amountCents,
+    vatAmount: vatCents,
+    status,
+    dueAt: invoiceDate,
+    paidAt: status === "paid" ? invoiceDate : null,
+    pdfUrl: blob.url,
+  });
+
+  await db.insert(auditLog).values({
+    organizationId,
+    userId,
+    action: "invoice.uploaded",
+    targetType: "organization",
+    targetId: organizationId,
+    metadata: { number, amountCents, status },
+  });
+
+  revalidatePath(`/admin/orgs/${organizationId}`);
+  revalidatePath(`/portal/invoices`);
+  return { ok: true, messageKey: "saved" };
+}
+
+const ORG_FILE_CATEGORIES = [
+  "contract",
+  "asset",
+  "deliverable",
+  "report",
+  "brand_kit",
+  "copy",
+  "screenshot",
+  "wireframe",
+  "final_handover",
+] as const;
+type OrgFileCategory = (typeof ORG_FILE_CATEGORIES)[number];
+
+/** Generieke admin-file-upload voor een org (los van facturen). Verschijnt
+ * meteen in het klantportaal onder /portal/files. */
+export async function uploadOrgFile(
+  organizationId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return { ok: false, messageKey: "blob_not_configured" };
+  }
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch (e) {
+    return handleAuthError(e);
+  }
+
+  const file = formData.get("file") as File | null;
+  const categoryInput = String(formData.get("category") ?? "deliverable");
+  const category: OrgFileCategory = (ORG_FILE_CATEGORIES as readonly string[]).includes(
+    categoryInput,
+  )
+    ? (categoryInput as OrgFileCategory)
+    : "deliverable";
+  const projectIdRaw = String(formData.get("projectId") ?? "").trim();
+  if (!file || file.size === 0) return { ok: false, messageKey: "missing_file" };
+
+  const blobPath = `org/${organizationId}/${Date.now()}-${file.name}`;
+  const blob = await put(blobPath, file, { access: "public" });
+
+  await db.insert(files).values({
+    organizationId,
+    projectId: projectIdRaw || null,
+    name: file.name,
+    url: blob.url,
+    blobPath: blob.pathname,
+    category,
+    uploadedBy: userId,
+  });
+
+  await db.insert(auditLog).values({
+    organizationId,
+    userId,
+    action: "file.uploaded_by_staff",
+    targetType: "organization",
+    targetId: organizationId,
+    metadata: { name: file.name, category },
+  });
+
+  revalidatePath(`/admin/orgs/${organizationId}`);
+  revalidatePath(`/portal/files`);
+  return { ok: true, messageKey: "saved" };
 }

@@ -2,7 +2,16 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Bug, Sparkles, HelpCircle, AlertCircle, Search, Keyboard } from "lucide-react";
+import {
+  Bug,
+  Sparkles,
+  HelpCircle,
+  AlertCircle,
+  Search,
+  Keyboard,
+  PencilLine,
+  ArrowUpCircle,
+} from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { Ticket } from "@/components/admin/TicketsKanban";
 
@@ -32,6 +41,8 @@ const CATEGORY_META = {
   bug: { icon: Bug, color: "text-(--color-wine)" },
   feature: { icon: Sparkles, color: "text-(--color-accent)" },
   question: { icon: HelpCircle, color: "text-(--color-teal)" },
+  change: { icon: PencilLine, color: "text-(--color-accent)" },
+  upgrade: { icon: ArrowUpCircle, color: "text-(--color-wine)" },
 } as const;
 
 /**

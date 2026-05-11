@@ -5,6 +5,7 @@ import {
   projects,
   tickets,
   invoices,
+  files,
   users,
   hoursLogged,
   staffInvites,
@@ -20,6 +21,42 @@ import {
   leads,
   intakeResponses,
 } from "@/lib/db/schema";
+
+/** Files + facturen van één org, voor de admin "Files & facturen"-tab. */
+export async function getOrgFilesAndInvoices(orgId: string) {
+  const [orgFiles, orgInvoices] = await Promise.all([
+    db
+      .select({
+        id: files.id,
+        name: files.name,
+        url: files.url,
+        category: files.category,
+        projectId: files.projectId,
+        createdAt: files.createdAt,
+      })
+      .from(files)
+      .where(eq(files.organizationId, orgId))
+      .orderBy(desc(files.createdAt)),
+    db
+      .select({
+        id: invoices.id,
+        number: invoices.number,
+        amount: invoices.amount,
+        vatAmount: invoices.vatAmount,
+        currency: invoices.currency,
+        status: invoices.status,
+        dueAt: invoices.dueAt,
+        paidAt: invoices.paidAt,
+        pdfUrl: invoices.pdfUrl,
+        stripeInvoiceId: invoices.stripeInvoiceId,
+        createdAt: invoices.createdAt,
+      })
+      .from(invoices)
+      .where(eq(invoices.organizationId, orgId))
+      .orderBy(desc(invoices.createdAt)),
+  ]);
+  return { orgFiles, orgInvoices };
+}
 
 export async function listAllOrgs() {
   // Aggregate counts per org so the index page is one query.

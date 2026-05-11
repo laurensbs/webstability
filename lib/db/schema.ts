@@ -42,7 +42,18 @@ export const ticketStatusEnum = pgEnum("ticket_status", [
   "waiting",
   "closed",
 ]);
-export const ticketCategoryEnum = pgEnum("ticket_category", ["bug", "feature", "question"]);
+export const ticketCategoryEnum = pgEnum("ticket_category", [
+  "bug",
+  "feature",
+  "question",
+  // Website-abonnement-klanten: wijziging/onderhoud aan de bestaande site,
+  // en een lichte "pakket-upgrade / meer uren"-aanvraag.
+  "change",
+  "upgrade",
+]);
+/** Factuur-frequentie voor legacy website-abonnement-pakketten (los van
+ * de care/studio/atelier-tiers). */
+export const billingIntervalEnum = pgEnum("billing_interval", ["monthly", "yearly"]);
 export const invoiceStatusEnum = pgEnum("invoice_status", [
   "draft",
   "sent",
@@ -122,6 +133,18 @@ export const organizations = pgTable("organizations", {
    * `contractSignedAt` is fase-3 en blijft nullable tot DocuSeal wired is. */
   intakeCompletedAt: timestamp("intake_completed_at", { withTimezone: true }),
   contractSignedAt: timestamp("contract_signed_at", { withTimezone: true }),
+  /** Legacy website-abonnement: bestaande klanten met een eigen pakket
+   * (geen care/studio/atelier-tier). Vrije naam, prijs per factuur-periode
+   * (cents) en frequentie. NULL op alle drie = gewone tier-klant; de
+   * portal/admin tonen dan de tier i.p.v. dit pakket. */
+  legacyPackageName: text("legacy_package_name"),
+  legacyPackagePriceCents: integer("legacy_package_price_cents"),
+  legacyBillingInterval: billingIntervalEnum("legacy_billing_interval"),
+  /** De live website van de klant + een korte technische omschrijving.
+   * Staff vult dit in op de org-detail; klant ziet het op het portal-
+   * dashboard ("jouw website"). */
+  websiteUrl: text("website_url"),
+  websiteNote: text("website_note"),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .default(sql`now()`),
@@ -321,7 +344,10 @@ export const subscriptions = pgTable("subscriptions", {
   organizationId: uuid("organization_id")
     .notNull()
     .references(() => organizations.id, { onDelete: "cascade" }),
-  plan: planEnum("plan").notNull(),
+  /** NULL voor legacy website-abonnement-klanten met een eigen pakket
+   * (zie organizations.legacyPackageName); de care/studio/atelier-klanten
+   * hebben hier wél een tier. */
+  plan: planEnum("plan"),
   status: subscriptionStatusEnum("status").notNull(),
   currentPeriodEnd: timestamp("current_period_end", { withTimezone: true }),
   stripeSubscriptionId: text("stripe_subscription_id"),
