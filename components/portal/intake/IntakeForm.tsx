@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight, Check, Calendar, Loader2, Save } from "lucide-react";
 import { toast } from "sonner";
 import { saveIntakeDraft, submitIntakeForm } from "@/app/actions/intake";
+import { ConfettiBurst } from "@/components/animate/ConfettiBurst";
 
 type StepKey =
   | "company"
@@ -92,6 +93,22 @@ export function IntakeForm({
   const totalSteps = strings.steps.length;
   const step = strings.steps[stepIndex]!;
   const progressPct = Math.round(((stepIndex + 1) / totalSteps) * 100);
+
+  // "Volgende" pas actief als de verplichte velden van déze stap ingevuld
+  // zijn (i.p.v. pas falen bij submit). Alleen 'company' (bedrijfsnaam),
+  // 'build' (type) en 'call' (datum) hebben harde velden — de rest is vrij.
+  const stepIsValid = ((): boolean => {
+    switch (step.key) {
+      case "company":
+        return Boolean(answers.company?.name?.trim());
+      case "build":
+        return Boolean(answers.build?.type);
+      case "call":
+        return Boolean(answers.call?.startsAt);
+      default:
+        return true;
+    }
+  })();
 
   const update = <K extends StepKey>(key: K, value: Answers[K]) => {
     setAnswers((prev) => ({ ...prev, [key]: { ...(prev[key] ?? {}), ...value } }));
@@ -222,7 +239,8 @@ export function IntakeForm({
           <button
             type="button"
             onClick={goNext}
-            className="inline-flex items-center gap-1.5 rounded-full bg-(--color-text) px-5 py-2.5 text-[13px] font-medium text-(--color-bg) transition-colors hover:bg-(--color-text)/90"
+            disabled={!stepIsValid}
+            className="inline-flex items-center gap-1.5 rounded-full bg-(--color-text) px-5 py-2.5 text-[13px] font-medium text-(--color-bg) transition-colors hover:bg-(--color-text)/90 disabled:opacity-40"
           >
             {strings.next}
             <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
@@ -231,7 +249,7 @@ export function IntakeForm({
           <button
             type="button"
             onClick={submit}
-            disabled={submitting}
+            disabled={submitting || !stepIsValid}
             className="inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-5 py-2.5 text-[13px] font-medium text-white shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] transition-colors hover:bg-(--color-accent)/90 disabled:opacity-60"
           >
             {submitting ? (
@@ -875,8 +893,18 @@ function CheckboxPill({
 }
 
 function SuccessScreen({ strings, dashboardHref }: { strings: Strings; dashboardHref: string }) {
+  const [fire, setFire] = React.useState(false);
+  React.useEffect(() => {
+    const t = window.setTimeout(() => setFire(true), 350);
+    const r = window.setTimeout(() => setFire(false), 2000);
+    return () => {
+      window.clearTimeout(t);
+      window.clearTimeout(r);
+    };
+  }, []);
   return (
-    <div className="mx-auto max-w-2xl text-center">
+    <div className="relative mx-auto max-w-2xl text-center">
+      <ConfettiBurst fire={fire} anchor="top" variant="success" />
       <motion.div
         initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
