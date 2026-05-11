@@ -86,6 +86,11 @@ export default async function AdminLeadsPage({ params }: { params: Promise<{ loc
                           · {r.company}
                         </span>
                       ) : null}
+                      {r.source === "configurator" ? (
+                        <span className="rounded-full bg-(--color-accent)/15 px-2 py-0.5 font-mono text-[9px] tracking-widest text-(--color-wine) uppercase">
+                          configurator
+                        </span>
+                      ) : null}
                     </p>
                     <p className="mt-1 font-mono text-[10px] tracking-wide text-(--color-muted) uppercase">
                       {r.email} · bron: {LEAD_SOURCE_LABEL_NL[r.source]}

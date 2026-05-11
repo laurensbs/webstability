@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import NextLink from "next/link";
 import { Loader2, MessageSquare, ListChecks, Building2, Send } from "lucide-react";
 import { toast } from "sonner";
 import { updateLead, addLeadNote, markLeadAsCustomer, sendLeadOutreach } from "@/app/actions/leads";
@@ -25,6 +26,21 @@ type Activity = {
   actorName: string | null;
 };
 
+export type ConfiguratorRequest = {
+  kind: "website" | "webshop";
+  pages: number;
+  paletteLabel: string;
+  customColor: string | null;
+  languages: string;
+  optionLabels: string[];
+  message: string | null;
+  lowEur: number;
+  highEur: number;
+  lines: { label: string; eur: number }[];
+  /** Prefill-querystring voor /admin/orgs/new ("?name=…&email=…&projectType=website"). */
+  newOrgQuery: string;
+};
+
 export function LeadDetail({
   leadId,
   initial,
@@ -32,6 +48,7 @@ export function LeadDetail({
   orgOptions,
   activity,
   createdAtLabel,
+  configuratorRequest,
 }: {
   leadId: string;
   initial: {
@@ -46,6 +63,7 @@ export function LeadDetail({
   orgOptions: { id: string; label: string }[];
   activity: Activity[];
   createdAtLabel: string;
+  configuratorRequest?: ConfiguratorRequest | null;
 }) {
   const [savingMain, startMain] = React.useTransition();
   const [savingNote, startNote] = React.useTransition();
@@ -120,6 +138,74 @@ export function LeadDetail({
     <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
       {/* Main: edit-form + activity */}
       <div className="space-y-8">
+        {configuratorRequest ? (
+          <section className="rounded-[14px] border border-(--color-accent)/40 bg-(--color-accent-soft)/30 p-6">
+            <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-wine) uppercase">
+              {"// configurator-aanvraag"}
+            </p>
+            <p className="mt-2 font-serif text-[20px]">
+              {configuratorRequest.kind === "webshop" ? "Webshop" : "Website"} ·{" "}
+              {configuratorRequest.pages} pagina&apos;s · richtprijs €{configuratorRequest.lowEur}–€
+              {configuratorRequest.highEur}
+            </p>
+            <dl className="mt-4 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+              {[
+                [
+                  "Look",
+                  configuratorRequest.paletteLabel +
+                    (configuratorRequest.customColor
+                      ? ` — wens: ${configuratorRequest.customColor}`
+                      : ""),
+                ],
+                ["Talen", configuratorRequest.languages],
+                [
+                  "Opties",
+                  configuratorRequest.optionLabels.length
+                    ? configuratorRequest.optionLabels.join(", ")
+                    : "—",
+                ],
+              ].map(([k, v]) => (
+                <div key={k}>
+                  <dt className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                    {k}
+                  </dt>
+                  <dd className="mt-0.5 text-[13px] text-(--color-text)">{v}</dd>
+                </div>
+              ))}
+            </dl>
+            {configuratorRequest.message ? (
+              <div className="mt-4">
+                <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                  Bericht
+                </p>
+                <p className="mt-1 text-[13px] leading-[1.55] whitespace-pre-wrap text-(--color-text)">
+                  {configuratorRequest.message}
+                </p>
+              </div>
+            ) : null}
+            <div className="mt-4 border-t border-(--color-accent)/20 pt-3">
+              <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                Prijs-opbouw
+              </p>
+              <ul className="mt-1.5 space-y-1 text-[13px]">
+                {configuratorRequest.lines.map((l, i) => (
+                  <li key={i} className="flex items-baseline justify-between gap-3">
+                    <span className="text-(--color-muted)">{l.label}</span>
+                    <span className="tabular-nums">€{l.eur}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-5">
+              <NextLink
+                href={`/admin/orgs/new?${configuratorRequest.newOrgQuery}`}
+                className="inline-flex items-center gap-1.5 rounded-full bg-(--color-text) px-4 py-2 text-[13px] font-medium text-(--color-bg) transition-opacity hover:opacity-90"
+              >
+                Maak hier een org + project van →
+              </NextLink>
+            </div>
+          </section>
+        ) : null}
         <form
           onSubmit={onSaveMain}
           className="space-y-5 rounded-[14px] border border-(--color-border) bg-(--color-surface) p-6"
