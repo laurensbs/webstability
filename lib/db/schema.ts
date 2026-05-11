@@ -761,6 +761,10 @@ export const leads = pgTable(
     linkedOrgId: uuid("linked_org_id").references(() => organizations.id, {
       onDelete: "set null",
     }),
+    /** Wanneer de automatische nurture-mail het laatst is verstuurd
+     * (cron `nurture-leads`). Null = nog nooit. Voorkomt dat dezelfde
+     * lead herhaald gemaild wordt — de cron checkt dit + een cooldown. */
+    nurturedAt: timestamp("nurtured_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .default(sql`now()`),

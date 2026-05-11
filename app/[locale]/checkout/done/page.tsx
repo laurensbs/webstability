@@ -7,6 +7,7 @@ import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users, organizations } from "@/lib/db/schema";
 import { stripe } from "@/lib/stripe";
+import { sendWelcomeEmail } from "@/lib/email/welcome";
 
 /**
  * Landing-pagina na een Stripe Checkout success. Twee scenario's:
@@ -134,6 +135,21 @@ export default async function CheckoutDone({
       isStaff: false,
       organizationId: newOrg.id,
     });
+    // De Auth.js `createUser`-event fire't hier niet (we maken de user
+    // direct via Drizzle aan), dus de welkom-mail expliciet sturen.
+    // Faalt graceful — mag de checkout-flow niet blokkeren.
+    try {
+      const baseUrl = process.env.AUTH_URL ?? "https://webstability.eu";
+      const portalUrl = `${baseUrl}/${locale === "es" ? "es/" : ""}portal/dashboard`;
+      await sendWelcomeEmail({
+        to: email.toLowerCase(),
+        name,
+        portalUrl,
+        locale: locale === "es" ? "es" : "nl",
+      });
+    } catch (err) {
+      console.error("[checkout/done] welcome email failed:", err);
+    }
   }
 
   // Klaar — stuur naar login zodat de magic-link begint.

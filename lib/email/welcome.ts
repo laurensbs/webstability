@@ -2,6 +2,62 @@
 // for the first time. Mirrors the magic-link template's structure
 // (cream + terracotta palette, inline LogoMark, pill button) so the
 // two messages feel like one conversation.
+//
+// Twee triggers:
+//  1. Auth.js `createUser` event (lib/auth.ts) — als de adapter zelf
+//     een user-rij maakt (eerste magic-link-klik voor een nieuw adres).
+//  2. De anon-checkout-done-handler (app/[locale]/checkout/done) maakt
+//     de user direct via Drizzle aan, zónder de adapter — daar fire't
+//     het event niet, dus die roept `sendWelcomeEmail` expliciet aan.
+
+import { createTransport } from "nodemailer";
+
+const SMTP_SERVER = {
+  host: process.env.EMAIL_SERVER_HOST,
+  port: Number(process.env.EMAIL_SERVER_PORT),
+  secure: Number(process.env.EMAIL_SERVER_PORT) === 465,
+  auth: {
+    user: process.env.EMAIL_SERVER_USER,
+    pass: process.env.EMAIL_SERVER_PASSWORD,
+  },
+};
+
+const MAIL_AUDIT_BCC = process.env.MAIL_AUDIT_BCC ?? "hello@webstability.eu";
+
+function welcomeAuditBcc(to: string): string | undefined {
+  if (!MAIL_AUDIT_BCC) return undefined;
+  if (to.trim().toLowerCase() === MAIL_AUDIT_BCC.toLowerCase()) return undefined;
+  return MAIL_AUDIT_BCC;
+}
+
+/**
+ * Verstuurt de welkom-mail. Faalt graceful — een flaky SMTP-delivery
+ * mag de checkout-flow of de login niet blokkeren. Caller hoort dit
+ * in een try/catch te wikkelen of het resultaat te negeren.
+ */
+export async function sendWelcomeEmail({
+  to,
+  name,
+  portalUrl,
+  locale = "nl",
+}: {
+  to: string;
+  name: string | null;
+  portalUrl: string;
+  locale?: "nl" | "es";
+}): Promise<void> {
+  if (!process.env.EMAIL_FROM) return;
+  const { subject, html, text } = renderWelcomeEmail({ name, portalUrl, locale });
+  const transport = createTransport(SMTP_SERVER);
+  await transport.sendMail({
+    to,
+    from: process.env.EMAIL_FROM,
+    bcc: welcomeAuditBcc(to),
+    subject,
+    text,
+    html,
+  });
+}
 
 const COLORS = {
   bg: "#F5F0E8",
