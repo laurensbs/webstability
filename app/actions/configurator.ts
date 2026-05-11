@@ -1,6 +1,6 @@
 "use server";
 
-import { eq } from "drizzle-orm";
+import { cookies } from "next/headers";
 import { db } from "@/lib/db";
 import { leads, leadActivity } from "@/lib/db/schema";
 import {
@@ -150,6 +150,37 @@ export async function submitProjectRequest(formData: FormData): Promise<ProjectR
     } catch (mailErr) {
       console.error("[configurator] notify mail failed:", mailErr);
       // Lead is opgeslagen; alleen de mail mislukte — niet fataal.
+    }
+
+    // Bewaar een compacte samenvatting in een cookie zodat áls deze
+    // bezoeker later via checkout klant wordt, de portal-intake al deels
+    // is voorgevuld (build-type = website/webshop, details = de keuzes).
+    // 30 dagen geldig, niet HttpOnly nodig (geen secret), sameSite=lax.
+    try {
+      const detailsLine = [
+        kind === "webshop"
+          ? "Webshop-aanvraag via de configurator"
+          : "Website-aanvraag via de configurator",
+        `${pages} pagina's`,
+        `look: ${PALETTE_LABEL[palette]}${customColor ? ` (wens: ${customColor})` : ""}`,
+        `talen: ${LANG_LABEL[language]}`,
+        options.length ? `opties: ${options.map((id) => OPTION_LABEL[id]).join(", ")}` : null,
+        message ? `\n\n${message}` : null,
+      ]
+        .filter(Boolean)
+        .join(" · ");
+      const prefill = {
+        company: { name: company || null },
+        build: { type: "webshop", details: detailsLine },
+      };
+      const jar = await cookies();
+      jar.set("wb_proj_request", JSON.stringify(prefill), {
+        maxAge: 30 * 24 * 60 * 60,
+        sameSite: "lax",
+        path: "/",
+      });
+    } catch (cookieErr) {
+      console.error("[configurator] prefill cookie failed:", cookieErr);
     }
 
     return {

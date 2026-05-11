@@ -6,10 +6,23 @@ import { Link } from "@/i18n/navigation";
 import { createOrgWithOwner } from "@/app/actions/admin";
 import { OrgWizard } from "@/components/admin/OrgWizard";
 
-export default async function NewOrgPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function NewOrgPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ name?: string; email?: string; projectType?: string }>;
+}) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+
+  const sp = await searchParams;
+  const prefill = {
+    name: typeof sp.name === "string" ? sp.name : undefined,
+    ownerName: typeof sp.name === "string" ? sp.name : undefined,
+    ownerEmail: typeof sp.email === "string" ? sp.email : undefined,
+  };
 
   const t = await getTranslations("admin.newOrg");
   const tWizard = await getTranslations("admin.wizard");
@@ -31,6 +44,7 @@ export default async function NewOrgPage({ params }: { params: Promise<{ locale:
       <div className="max-w-2xl">
         <OrgWizard
           action={createOrgWithOwner}
+          prefill={prefill}
           strings={{
             step: tWizard("step"),
             step1Heading: tWizard("step1Heading"),

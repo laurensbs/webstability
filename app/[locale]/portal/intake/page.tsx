@@ -1,6 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -57,7 +58,23 @@ export default async function IntakePage({ params }: { params: Promise<{ locale:
     where: eq(intakeResponses.organizationId, user.organizationId),
   });
 
-  const initialAnswers = (draft?.answers ?? {}) as Record<string, unknown>;
+  // Geen draft, maar wel een configurator-aanvraag-cookie? Gebruik die als
+  // start zodat de klant niet opnieuw hoeft te tikken wat 'ie net invulde.
+  let prefillFromCookie: Record<string, unknown> | null = null;
+  if (!draft) {
+    try {
+      const raw = (await cookies()).get("wb_proj_request")?.value;
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object")
+          prefillFromCookie = parsed as Record<string, unknown>;
+      }
+    } catch {
+      /* corrupte cookie — negeren */
+    }
+  }
+
+  const initialAnswers = (draft?.answers ?? prefillFromCookie ?? {}) as Record<string, unknown>;
   const initialStep = draft?.currentStep ?? 1;
 
   return (

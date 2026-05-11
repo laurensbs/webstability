@@ -43,15 +43,25 @@ type Strings = {
  * (alleen "leeg of niet leeg"); echte validatie (slug-uniek, email-format)
  * gebeurt server-side.
  */
-export function OrgWizard({ action, strings }: { action: Action; strings: Strings }) {
+export function OrgWizard({
+  action,
+  strings,
+  prefill,
+}: {
+  action: Action;
+  strings: Strings;
+  /** Voorgevulde velden — bv. vanuit een configurator-lead
+   * (/admin/orgs/new?name=…&email=…). Optioneel. */
+  prefill?: { name?: string; ownerName?: string; ownerEmail?: string };
+}) {
   const [step, setStep] = React.useState<1 | 2 | 3>(1);
   // Form-state in client-state zodat tussen stap 1→2→3 niet verloren gaat
   // bij re-render. Submit-stap renderet alle 3 sets als hidden inputs.
-  const [name, setName] = React.useState("");
+  const [name, setName] = React.useState(prefill?.name ?? "");
   const [country, setCountry] = React.useState<"NL" | "ES">("NL");
   const [vatNumber, setVatNumber] = React.useState("");
-  const [ownerName, setOwnerName] = React.useState("");
-  const [ownerEmail, setOwnerEmail] = React.useState("");
+  const [ownerName, setOwnerName] = React.useState(prefill?.ownerName ?? "");
+  const [ownerEmail, setOwnerEmail] = React.useState(prefill?.ownerEmail ?? "");
   const [plan, setPlan] = React.useState<"" | "care" | "studio" | "atelier">("");
 
   const canNext1 = name.trim().length >= 2;
