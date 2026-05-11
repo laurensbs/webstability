@@ -2,7 +2,7 @@
 title: "Webstability strategie"
 lastUpdated: "2026-05-11"
 nextReview: "2026-08-09"
-version: 2
+version: 3
 ---
 
 <Callout variant="info">
@@ -327,12 +327,140 @@ actie van mij is een prioriteit om dicht te timmeren. Daarnaast: één
 "wat staat er voor jou klaar"-overzicht in de admin zodat ik 's
 ochtends één scherm check ipv vijf.
 
+## Customer journey & gaten in de funnel
+
+<Callout variant="info">
+Toegevoegd in v3. De funnel van "lead vindt me" tot "maand-12-klant",
+fase voor fase: wat is geautomatiseerd, wat is handmatig, waar haakt
+de klant af. De **GAP**-regels zijn de prioriteiten — die timmer ik
+dicht in Blok 4.2.
+</Callout>
+
+### Fase 1 — Lead vindt me
+
+- **Automatisch**: Cal.com-booking → webhook → `leads`-tabel
+  (`status=booked`) of `bookings`-tabel als de email al een user is.
+  Demo-modal email-capture → `leads` (`status=warmed`). De reminders-
+  widget op /admin toont leads met een `nextActionAt`.
+- **Handmatig**: alle opvolging. Geen cron stuurt outreach-mails naar
+  cold/warmed leads. De `lead-outreach.ts`-templates bestaan maar
+  worden alleen verstuurd als ik handmatig op de "stuur outreach"-knop
+  klik in de lead-detail.
+- **GAP 1**: cold/warmed leads vervallen na ~2 weken als ik niet
+  reageer. → Een lichte nurture-cron (één opvolg-mail na X dagen
+  inactiviteit, met de juiste template) zou dit dichten zonder dat het
+  spammy wordt. Of minimaal: een dagelijkse "leads om op te volgen"-
+  mail naar mezelf.
+
+### Fase 2 — Boekt een call → [de call zelf, handmatig — dat blijft]
+
+- **Automatisch**: Cal.com mailt de bevestiging + reminder zelf.
+- Geen verdere automatisering nodig. De call is het moment waar ik de
+  deal maak; dat hoort handmatig.
+
+### Fase 3 — Betaalt → krijgt een account
+
+- **Automatisch**: anon-checkout → Stripe → `/checkout/done` maakt org
+  + user aan, zet `emailVerified`, stuurt door naar `/login` → magic-
+  link-mail. Stripe-webhook koppelt plan + customer-id. Referral-cookie
+  wordt verzilverd als die er is.
+- **GAP 2**: de `welcome.ts`-mail-template bestaat maar wordt **nooit
+  getriggerd**. Een nieuwe klant betaalt, krijgt een magic-link, logt
+  in, en wordt meteen naar `/portal/intake` geredirect — zonder een
+  warme "welkom, dit is wat er nu gebeurt"-mail. → De welcome-mail
+  triggeren direct na org-creatie in de checkout-done-handler.
+
+### Fase 4 — Vult het intake-form in
+
+- **Automatisch**: `submitIntakeForm` → `intakeResponses` (submitted) →
+  project aangemaakt (type build, planning, 0%) → welcome-call-booking
+  → audit-log → staff-notify-mail naar mij ("intake compleet, call op
+  [datum]").
+- **Handmatig**: ik bereid de welcome-call voor op basis van de intake-
+  antwoorden. Dat hoort handmatig — maar het zou helpen als de admin
+  de intake-antwoorden compact toont naast de booking.
+- Klein puntje: de intake-redirect-gate stuurt owners zonder
+  `intakeCompletedAt` naar `/portal/intake`. Werkt — maar test of een
+  klant die het form half invult, opslaat en later terugkomt netjes
+  verder kan.
+
+### Fase 5 — De build (4 weken)
+
+- **Automatisch**: `weekly-update`-cron (woensdag 09:00) bundelt mijn
+  project-updates van de afgelopen 7 dagen + uren + volgende mijlpaal →
+  mail naar de klant. De klant ziet alles ook op `/portal/projects/[id]`.
+- **Handmatig**: ik post de project-updates via de admin
+  (`postProjectUpdate`), zet de mijlpaal, update de progress.
+- **GAP 3**: als ik geen updates post, krijgt de klant **geen mail** —
+  stilte. Voor een klant die net €6–10k betaald heeft is stilte het
+  ergste signaal. → Failsafe: als er geen updates zijn maar er zijn wel
+  uren gelogd, stuur dan toch een korte "deze week gewerkt aan
+  [categorie], X uur, volgende mijlpaal: [...]". En de StaleProjects-
+  widget op /admin (bestaat al) waarschuwt mij als ik 7 dagen niets heb
+  gepost — checken of die werkt.
+
+### Fase 6 — Oplevering (handover)
+
+- **Automatisch**: 3 van de 6 checklist-items vinken zichzelf af
+  (deliverables-akkoord, monitoring-up, factuur-betaald). Bij alle 6 ✓
+  verschijnt de "Markeer live"-knop; klik → status=live, liveAt=now,
+  livegang-mail naar de klant, buildPhase eindigt.
+- **Handmatig**: ik vink de 3 staff-items af (domein gekoppeld,
+  inloggegevens gemaild, eerste-maand uitgelegd) en klik "Markeer live".
+- Klant ziet de checklist read-only op `/portal/projects/[id]/handover`
+  — bewust: hij ziet de voortgang, ik bepaal de livegang. Dat klopt.
+
+### Fase 7 — Live & onderhoud (maand na maand)
+
+- **Automatisch**: `monthly-report`-cron (1e van maand 06:00) →
+  maandrapport-mail + HTML-snapshot in blob (als `files`, category
+  `report`) → dashboard-banner. `nps-trigger`-cron (dagelijks 08:00) →
+  NPS-mail op liveAt+30 en liveAt+180 → `/[locale]/nps?token=`. Na 90
+  dagen verschijnt de ReferralCard op het dashboard.
+- **GAP 4**: het maandrapport gaat **alleen naar studio/atelier-orgs
+  met een live project**. Care-klanten krijgen geen maandrapport — maar
+  Care wordt sowieso gesloten voor nieuwe instroom, dus dit lost zich
+  grotendeels vanzelf op. Wel: bestaande Care-klanten zouden een
+  lichtere versie (alleen uptime + "alles draait") kunnen krijgen, of
+  een nudge om naar Studio te gaan. Lage prioriteit.
+- **GAP 5** (kleiner): het maandrapport is functioneel maar nog geen
+  verkoop-instrument — geen "wat we volgende maand willen oppakken",
+  geen upsell-hook ("je zit op 80% van je uren-budget"). → Blok 5.3.
+
+### Mail-momenten op een rij
+
+| Fase | Mail | Trigger | Status |
+|---|---|---|---|
+| Signup | magic-link | login | ✅ |
+| Na betaling | **welcome** | — | ❌ GAP 2 — niet getriggerd |
+| Intake-submit | staff-notify (naar mij) | `submitIntakeForm` | ✅ |
+| Build-week | weekly-update | cron wo 09:00 (als updates gepost) | ⚠️ GAP 3 — stil als geen updates |
+| Livegang | livegang | `markProjectLive` | ✅ |
+| Live+30/180d | nps-ask | cron dagelijks 08:00 | ✅ |
+| Maandrapport | monthly-report | cron 1e 06:00 (studio/atelier + live) | ⚠️ GAP 4 — niet voor Care |
+| Lead-opvolging | lead-outreach | handmatige knop | ⚠️ GAP 1 — geen auto-nurture |
+| Deliverable-akkoord | staff-notify (naar mij) | `approveDeliverable` | ✅ |
+
+### Prioriteit van de gaten (impact × frequentie)
+
+1. **GAP 2 — welcome-mail** — elke nieuwe klant, hoge impact (eerste
+   indruk na betaling). Klein werk: één mail-trigger toevoegen.
+2. **GAP 3 — stille build-week** — elke build, hoge impact (klant
+   voelt zich genegeerd). Middelgroot werk: failsafe-logica in de cron.
+3. **GAP 1 — lead-nurture** — elke lead, middelhoge impact (verloren
+   leads = verloren omzet). Middelgroot werk: een nurture-cron.
+4. **GAP 5 — maandrapport als verkoop-instrument** — elke klant
+   maandelijks, middelhoge impact (retentie + upsell). Blok 5.3.
+5. **GAP 4 — geen rapport voor Care** — lost zich grotendeels vanzelf
+   op (Care sluit). Lage prioriteit.
+
 ## Update-log
 
 | Datum | Versie | Wijziging |
 |-------|--------|-----------|
 | 2026-05-09 | 1 | Eerste versie. Hybride model gekozen, €150-floor, 90-dagen plan |
 | 2026-05-11 | 2 | Positionering & concurrentie-sectie toegevoegd: de positie in één zin, wat de klant écht wil, waar ik in uitblink, concurrentie-framing (naast, niet tegen), 3 kernboodschappen, prijzen-herziening (build → €6–10k, discovery-pakket, groei-tier), de self-running funnel |
+| 2026-05-11 | 3 | Customer-journey-sectie toegevoegd: 7 fasen van lead tot maand-12-klant, wat geautomatiseerd vs handmatig is, 5 GAP's geïdentificeerd en geprioriteerd (welcome-mail, stille build-week, lead-nurture, maandrapport-verkoop, geen Care-rapport) |
 
 **Volgende review: 2026-08-09.**
 
