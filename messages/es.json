@@ -303,11 +303,6 @@
       "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado, mobile-first como lo usan tus clientes. Precio fijo 5–8 k €, entrega en 4 semanas, suscripción continua desde 179 €/mes, para empresarios en Países Bajos y España."
     },
 
-    "logoStrip": {
-      "title": "Empresarios que confían en mí — Países Bajos y España",
-      "items": ["Next.js", "TypeScript", "Postgres", "Stripe", "Vercel", "Tailwind"]
-    },
-
     "howItWorks": {
       "eyebrow": "cómo funciona",
       "title": "Una acción. *Dos* lados. Totalmente integrado.",

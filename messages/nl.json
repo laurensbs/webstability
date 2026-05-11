@@ -303,11 +303,6 @@
       "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem, mobiel-first gebouwd zoals jouw klanten 't gebruiken. Vaste prijs €5–8k, 4 weken levering, doorlopend abonnement vanaf €179/maand, voor ondernemers in Nederland en Spanje."
     },
 
-    "logoStrip": {
-      "title": "Vertrouwd door ondernemers in Nederland & Spanje",
-      "items": ["Next.js", "TypeScript", "Postgres", "Stripe", "Vercel", "Tailwind"]
-    },
-
     "howItWorks": {
       "eyebrow": "hoe het werkt",
       "title": "Eén actie. *Twee* zijden. Volledig geïntegreerd.",
