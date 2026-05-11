@@ -44,6 +44,7 @@ export default async function AdminLayout({
     overview: t("nav.overview"),
     orgs: t("nav.orgs"),
     tickets: t("nav.tickets"),
+    blog: t("nav.blog"),
     team: t("nav.team"),
     collapse: t("nav.collapse"),
     brandTagline: t("nav.brandTagline"),

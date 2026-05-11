@@ -8,6 +8,7 @@ import {
   Inbox,
   Users,
   Sparkles,
+  PenLine,
   ChevronLeft,
   type LucideIcon,
 } from "lucide-react";
@@ -15,9 +16,9 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 type Item = {
-  href: "/admin" | "/admin/orgs" | "/admin/tickets" | "/admin/team";
+  href: "/admin" | "/admin/orgs" | "/admin/tickets" | "/admin/blog" | "/admin/team";
   icon: LucideIcon;
-  key: "overview" | "orgs" | "tickets" | "team";
+  key: "overview" | "orgs" | "tickets" | "blog" | "team";
   shortcut?: string;
   exact?: boolean;
 };
@@ -26,6 +27,7 @@ const ITEMS: Item[] = [
   { href: "/admin", icon: LayoutDashboard, key: "overview", shortcut: "g d", exact: true },
   { href: "/admin/orgs", icon: Building2, key: "orgs", shortcut: "g o" },
   { href: "/admin/tickets", icon: Inbox, key: "tickets", shortcut: "g t" },
+  { href: "/admin/blog", icon: PenLine, key: "blog", shortcut: "g b" },
   { href: "/admin/team", icon: Users, key: "team", shortcut: "g s" },
 ];
 
@@ -33,6 +35,7 @@ type Labels = {
   overview: string;
   orgs: string;
   tickets: string;
+  blog: string;
   team: string;
   collapse: string;
   brandTagline: string;
@@ -103,6 +106,7 @@ export function AdminSidebar({ labels, email }: { labels: Labels; email: string 
         if (e.key === "d") router.push("/admin");
         else if (e.key === "o") router.push("/admin/orgs");
         else if (e.key === "t") router.push("/admin/tickets");
+        else if (e.key === "b") router.push("/admin/blog");
         else if (e.key === "s") router.push("/admin/team");
       }
     }
