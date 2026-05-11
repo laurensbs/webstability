@@ -25,13 +25,12 @@ of een andere blog-post).
 - ✅ verhuursysteem-kiezen — "verhuursysteem kiezen", "verhuursoftware kopen"
 - ✅ mobile-first-dashboards — "mobile-first admin", "admin-systeem op maat"
 - ✅ seo-spanje — "lokale seo spanje", "google.es ranken"
-- ⚠️ avantio-alternativa-personalizada (ES) — skeleton, nog afmaken naar 1000+ woorden
+- ✅ avantio-alternativa-personalizada (ES) — "avantio alternativa", "alternativa avantio personalizada"
 - ✅ elegir-sistema-alquiler (ES) — vertaling van verhuursysteem-kiezen
 - ✅ seo-local-espana (ES) — vertaling van seo-spanje
 
 ## Te schrijven (prioriteit hoog → laag)
 1. **seo-voor-lokale-bedrijven-spanje** (ES) — uitbreiding van seo-local-espana, dieper.
-2. **avantio-alternativa-personalizada (ES)** afmaken naar 1000+ woorden (nu nog skeleton).
 
 ## Werkwijze per post
 1. Schrijf in `content/blog/nl/[slug].mdx` met volledige frontmatter.
