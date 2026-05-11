@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Check, ArrowRight } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/Button";
 import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
+import { PricingExitPopup } from "@/components/marketing/MarketingPopups";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { auth } from "@/lib/auth";
@@ -244,6 +245,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           </div>
         </RevealOnScroll>
       </section>
+      <PricingExitPopup locale={locale} />
     </main>
   );
 }

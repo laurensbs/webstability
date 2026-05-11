@@ -5,6 +5,7 @@ import { routing } from "@/i18n/routing";
 import { Navigation } from "@/components/marketing/Navigation";
 import { Footer } from "@/components/marketing/Footer";
 import { MobileStickyCta } from "@/components/marketing/MobileStickyCta";
+import { MarketingScrollPopup } from "@/components/marketing/MarketingPopups";
 import { AmbientCanvas } from "@/components/r3f/AmbientCanvas";
 import { BodyBackgroundToggle } from "@/components/r3f/BodyBackgroundToggle";
 
@@ -40,6 +41,7 @@ export default async function MarketingLayout({
       </div>
       <Footer />
       <MobileStickyCta planLabel={tNav("planCall")} whatsappLabel={tNav("whatsapp")} />
+      <MarketingScrollPopup locale={locale} />
     </>
   );
 }

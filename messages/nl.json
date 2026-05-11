@@ -4,6 +4,20 @@
     "switchToOther": "Cambiar a español",
     "skipToContent": "Direct naar inhoud"
   },
+  "popups": {
+    "scrollSpar": {
+      "eyebrow": "even sparren?",
+      "title": "Twintig minuten, geen pitch",
+      "body": "Lekker aan het rondkijken? Als je een idee hebt — verhuurplatform, portaal, een MKB-site — gooi het eruit. Geen verkooppraatje, gewoon meedenken.",
+      "cta": "Plan een gesprek"
+    },
+    "pricingExit": {
+      "eyebrow": "voor je weggaat",
+      "title": "Een vraag over de prijzen?",
+      "body": "Twijfel je tussen Care en Studio, of past het niet helemaal? Stel het even — dertig minuten, gratis, geen verplichting.",
+      "cta": "Stel je vraag"
+    }
+  },
   "nav": {
     "home": "Home",
     "services": "Diensten",

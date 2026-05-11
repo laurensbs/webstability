@@ -4,6 +4,20 @@
     "switchToOther": "Wissel naar Nederlands",
     "skipToContent": "Ir al contenido"
   },
+  "popups": {
+    "scrollSpar": {
+      "eyebrow": "¿charlamos?",
+      "title": "Veinte minutos, sin presentación comercial",
+      "body": "¿Echando un vistazo? Si tienes una idea — plataforma de alquiler, portal, web para pymes — cuéntamela. Sin venta, solo pensar juntos.",
+      "cta": "Reserva una llamada"
+    },
+    "pricingExit": {
+      "eyebrow": "antes de irte",
+      "title": "¿Una pregunta sobre los precios?",
+      "body": "¿Dudas entre Care y Studio, o no encaja del todo? Pregúntalo — treinta minutos, gratis, sin compromiso.",
+      "cta": "Haz tu pregunta"
+    }
+  },
   "nav": {
     "home": "Inicio",
     "services": "Servicios",
