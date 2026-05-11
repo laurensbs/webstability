@@ -879,6 +879,57 @@ export const npsResponses = pgTable(
   ],
 );
 
+// --- blog_drafts (content-engine — wekelijkse AI-conceptgenerator) ----
+
+export const blogDraftStatusEnum = pgEnum("blog_draft_status", [
+  "pending", // staat in de queue, nog niet gegenereerd
+  "generated", // MDX gegenereerd, wacht op review door Laurens
+  "published", // handmatig verplaatst naar content/blog/nl/ en gecommit
+  "skipped", // afgekeurd / niet gebruikt
+  "failed", // generatie mislukt (zie error)
+]);
+
+/**
+ * Queue + opslag voor de wekelijkse AI-blog-conceptgenerator. De seed-
+ * onderwerpen komen uit `lib/blog/topics.ts`; de cron `/api/cron/blog-
+ * draft` upsert die rijen (status 'pending'), pakt de oudste pending,
+ * roept de Anthropic API aan, en zet `bodyMdx` + status 'generated' +
+ * mailt Laurens. Bewust GEEN auto-publish naar productie — Vercel's FS
+ * is read-only at runtime en de merkstem wil review. Laurens kopieert de
+ * MDX uit de mail naar `content/blog/nl/[slug].mdx` en commit; daarna mag
+ * hij de rij op 'published' zetten (of een latere admin-actie doet dat).
+ *
+ * `slug` is uniek zodat een onderwerp niet twee keer gegenereerd wordt.
+ */
+export const blogDrafts = pgTable(
+  "blog_drafts",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    /** URL-slug (= bestandsnaam zonder .mdx), uniek. */
+    slug: text("slug").notNull().unique(),
+    /** Briefing voor de generator: waar gaat het over, welke keywords. */
+    title: text("title").notNull(),
+    /** Primaire zoekwoorden, komma-gescheiden, gaan in de prompt + frontmatter. */
+    targetKeywords: text("target_keywords").notNull(),
+    /** Vrije briefing-notitie: hoek, wat te benadrukken, welke interne links. */
+    brief: text("brief").notNull(),
+    /** Lager getal = eerder gegenereerd. */
+    priority: integer("priority").notNull().default(100),
+    status: blogDraftStatusEnum("status").notNull().default("pending"),
+    /** Gegenereerde volledige MDX (frontmatter + body). NULL tot generatie. */
+    bodyMdx: text("body_mdx"),
+    /** Welk model het schreef, voor traceability. */
+    model: text("model"),
+    /** Foutmelding bij status 'failed'. */
+    error: text("error"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+    generatedAt: timestamp("generated_at", { withTimezone: true }),
+  },
+  (t) => [index("blog_drafts_status_priority_idx").on(t.status, t.priority)],
+);
+
 // --- handover_checklist (sprint D — oplevering-gate) --------------------
 
 /**
