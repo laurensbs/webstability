@@ -28,9 +28,15 @@ of een andere blog-post).
 - ✅ avantio-alternativa-personalizada (ES) — "avantio alternativa", "alternativa avantio personalizada"
 - ✅ elegir-sistema-alquiler (ES) — vertaling van verhuursysteem-kiezen
 - ✅ seo-local-espana (ES) — vertaling van seo-spanje
+- ✅ seo-para-negocios-locales-espana (ES) — "seo negocios locales españa", "google business profile españa"
 
 ## Te schrijven (prioriteit hoog → laag)
-1. **seo-voor-lokale-bedrijven-spanje** (ES) — uitbreiding van seo-local-espana, dieper.
+_(Alle geplande posts zijn geschreven. Volgende ideeën — vrij in te vullen,
+~1 per week, NL-first met ES-vertaling 1-2 weken later:)_
+- **booqable-prijzen-uitgelegd** — "booqable prijs", "booqable kosten" — wat Booqable echt kost over de jaren, wanneer het te duur wordt.
+- **verhuurbedrijf-opschalen-van-10-naar-50-objecten** — "verhuurbedrijf groeien", "meer objecten verhuren" — wat er breekt bij groei, wat je systeem dan moet kunnen.
+- **online-betalingen-voor-verhuur** — "ideal verhuur", "stripe verhuursysteem" — betaalprovider kiezen, borg-autorisatie, NL+ES betaalmethodes.
+- ES-vertalingen van de nieuwe NL-posts (dubbele-boekingen-voorkomen, software-voor-caravanverhuur, reparatie-portaal-voor-werkplaatsen, admin-systeem-op-maat-vs-excel, mkb-maatwerk-software-wanneer-wel-niet, boekhouding-koppelen-aan-verhuursysteem, verhuursoftware-begrippen-woordenlijst).
 
 ## Werkwijze per post
 1. Schrijf in `content/blog/nl/[slug].mdx` met volledige frontmatter.
