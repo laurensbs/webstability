@@ -9,6 +9,8 @@ links (naar `/verhuur`, `/diensten`, `/diensten/[vertical]`, `/cases`
 of een andere blog-post).
 
 ## Gepubliceerd (volledige artikelen)
+- ✅ verhuursoftware-vergelijken-2026 — "verhuursoftware vergelijken", "beste verhuursoftware"
+- ✅ boekingssysteem-laten-bouwen-kosten — "boekingssysteem laten bouwen kosten", "verhuursoftware prijs"
 - ✅ booqable-vs-maatwerk — "booqable alternatief", "verhuursoftware vergelijken"
 - ✅ tommy-alternatief-nederlands — "tommy alternatief", "kassasysteem verhuur"
 - ✅ verhuursysteem-twee-talen — "meertalige verhuursoftware", "verhuursoftware nederland spanje"
@@ -20,32 +22,26 @@ of een andere blog-post).
 - ✅ seo-local-espana (ES) — vertaling van seo-spanje
 
 ## Te schrijven (prioriteit hoog → laag)
-1. **verhuursoftware-vergelijken-2026** — overkoepelende gids: SaaS vs maatwerk,
-   de bekende tools (Booqable/Tommy/Avantio/Icnea/Lodgify) op een rij, een
-   beslisboom. Target: "verhuursoftware vergelijken", "beste verhuursoftware".
-   Links naar de drie alternatief-artikelen + `/diensten/verhuur-boekingssysteem`.
-2. **boekingssysteem-laten-bouwen-kosten** — "wat kost een boekingssysteem op maat",
-   "boekingssysteem laten maken prijs". Diepe uitleg vaste-prijs-model, 4-weken-levering,
-   abonnement daarna, maatwerk-vs-SaaS over 3 jaar. Links naar `/prijzen` + de vertical.
-3. **klantportaal-voor-verhuurbedrijf** — "klantportaal verhuur", "klantportaal laten bouwen".
+1. **klantportaal-voor-verhuurbedrijf** — "klantportaal verhuur", "klantportaal laten bouwen".
    Concrete use-cases (gast ziet boeking/documenten/borg-status). Links naar
    `/diensten/klantportaal-laten-bouwen` + `/cases/caravanverhuurspanje`.
-4. **dubbele-boekingen-voorkomen** — "dubbele boekingen voorkomen", "airbnb booking sync".
+2. **dubbele-boekingen-voorkomen** — "dubbele boekingen voorkomen", "airbnb booking sync".
    Hoe channel-sync werkt, waarom Excel breekt, één-bron-principe.
-5. **software-voor-caravanverhuur** — branchepagina-achtig, "software caravanverhuur",
+3. **software-voor-caravanverhuur** — branchepagina-achtig, "software caravanverhuur",
    "caravanverhuur systeem". Specifiek: borg, huurcontract, weekprijzen, stacaravans.
-6. **reparatie-portaal-voor-werkplaatsen** — "reparatie portaal", "werkbon software werkplaats".
-   iPad-flow, papierloos, status-tracking. Verwijst naar VOLT/AUTO-case.
-7. **admin-systeem-op-maat-vs-excel** — "admin systeem op maat", "bedrijf draait op excel".
+4. **reparatie-portaal-voor-werkplaatsen** — "reparatie portaal", "werkbon software werkplaats".
+   iPad-flow, papierloos, status-tracking. Verwijst naar de Caravanreparatiespanje-case.
+5. **admin-systeem-op-maat-vs-excel** — "admin systeem op maat", "bedrijf draait op excel".
    Wanneer is de stap weg van Excel logisch, wat krijg je ervoor.
-8. **mkb-maatwerk-software-wanneer-wel-niet** — "maatwerk software mkb", "custom software wanneer".
+6. **mkb-maatwerk-software-wanneer-wel-niet** — "maatwerk software mkb", "custom software wanneer".
    Eerlijke afbakening: wanneer SaaS, wanneer maatwerk.
-9. **boekhouding-koppelen-aan-verhuursysteem** — "holded koppelen", "e-boekhouden integratie verhuur".
+7. **boekhouding-koppelen-aan-verhuursysteem** — "holded koppelen", "e-boekhouden integratie verhuur".
    Hoe een koppeling werkt, NL+ES dubbele boekhouding.
-10. **verhuursoftware-begrippen-woordenlijst** — glossary-post: "channel manager", "dubbele boeking",
-    "klantportaal", "multi-currency", "borg-automatisering". Long-tail traffic, interne links naar
-    alle relevante pagina's.
-11. **seo-voor-lokale-bedrijven-spanje** (ES) — uitbreiding van seo-local-espana, dieper.
+8. **verhuursoftware-begrippen-woordenlijst** — glossary-post: "channel manager", "dubbele boeking",
+   "klantportaal", "multi-currency", "borg-automatisering". Long-tail traffic, interne links naar
+   alle relevante pagina's.
+9. **seo-voor-lokale-bedrijven-spanje** (ES) — uitbreiding van seo-local-espana, dieper.
+10. **avantio-alternativa-personalizada (ES)** afmaken naar 1000+ woorden (nu nog skeleton).
 
 ## Werkwijze per post
 1. Schrijf in `content/blog/nl/[slug].mdx` met volledige frontmatter.
