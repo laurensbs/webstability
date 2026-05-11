@@ -1,0 +1,63 @@
+---
+title: "Conectar tu contabilidad con tu sistema de alquiler — Holded, e-Boekhouden y la doble administración NL/ES"
+description: "Copiar cada reserva a mano en tu contabilidad cuesta tiempo y genera errores. Una conexión entre tu sistema de alquiler y tu programa de contabilidad — Holded, e-Boekhouden, Moneybird — hace que facturas, pagos y clientes fluyan solos. Cómo funciona esa conexión, qué hay que configurar, y qué significa si llevas la contabilidad en dos países."
+date: 2026-06-22
+author: Laurens Bos
+keywords:
+  - conectar holded
+  - integración contabilidad alquiler
+  - conectar contabilidad sistema reservas
+  - software alquiler integración contable
+  - facturas automáticas contabilidad
+tags:
+  - software-alquiler
+  - integraciones
+  - guia
+---
+
+Entra una reserva, el cliente paga, sale una factura —y luego, por la noche, lo copias otra vez en tu programa de contabilidad—. Crear cliente, introducir factura, conciliar pago. Por reserva, unos minutos; con decenas de reservas al mes, unas horas, y cada vez una posibilidad de error tipográfico, de importe equivocado, de cliente duplicado. Una conexión entre tu sistema de alquiler y tu contabilidad convierte eso en un solo flujo: lo que pasa en tu sistema de alquiler aparece solo en tu contabilidad. Este artículo explica cómo funciona —para Holded, e-Boekhouden, Moneybird y programas similares— y qué hay que tener en cuenta si, como muchos arrendadores en la Costa Brava, llevas la administración en dos países.
+
+## Qué hace en concreto una conexión
+
+Una conexión contable sincroniza las cosas que viven en ambos sistemas, para que solo tengas que introducirlas una vez:
+
+- **Clientes.** Un nuevo arrendatario en tu sistema de alquiler se convierte en (o se empareja con) un contacto en tu contabilidad —con dirección, NIF, email—. Nada de doble entrada, nada de "ese cliente ya está tres veces".
+- **Facturas.** Una factura que tu sistema de alquiler genera —por el alquiler, la fianza, extras— aparece como factura de venta en tu contabilidad, con el tipo de IVA y la cuenta contable correctos.
+- **Pagos.** Cuando entra un pago (vía tu proveedor de pago, o una conexión bancaria), la factura en tu contabilidad pasa a "pagada" y el pago queda conciliado. Nada de punteo manual.
+- **Y, en su caso, abonos y correcciones.** Una reserva cancelada, una fianza parcialmente devuelta —si tu sistema lo gestiona limpiamente, el abono también puede ir solo.
+
+La idea es el mismo principio de fuente única que en todo: un dato vive en un único sitio. Tu sistema de alquiler es la fuente de "qué se ha alquilado y facturado"; tu contabilidad lo lee y hace con ello la parte contable. Tú no copias nada.
+
+## Cómo funciona técnicamente
+
+En la práctica hay dos maneras:
+
+**Vía la API del programa de contabilidad.** Holded, e-Boekhouden, Moneybird, Exact, Snelstart —prácticamente todos los programas modernos tienen una API con la que puedes crear y leer facturas, contactos y pagos—. Tu sistema de alquiler llama a esa API en el momento en que pasa algo: reserva confirmada → crear cliente + factura en la contabilidad; pago recibido → marcar factura como pagada. Esta es la forma limpia —en tiempo real, sin paso intermedio.
+
+**Vía un intermediario o exportación/importación.** Si tu programa no tiene una API usable, o quieres mantenerlo simple, puedes hacer una exportación periódica (facturas como archivo) e importarla —o poner un servicio de conexión en medio—. Menos elegante, no en tiempo real, pero funciona.
+
+Lo que hay que configurar de antemano en ambos casos:
+
+1. **Un mapeo de tipos de IVA y cuentas contables.** ¿Qué IVA se aplica al alquiler, a la fianza (que normalmente *no* es ingreso, así que tiene un tratamiento aparte), a los extras? ¿Qué cuenta contable? Eso se acuerda una vez y el sistema lo aplica luego automáticamente.
+2. **¿Qué hace tu sistema de alquiler con la fianza?** Una fianza no es ingreso —es un importe recibido en depósito temporal—. Cómo debe ir en la contabilidad (cuenta puente, no en los ingresos) se acuerda para que la conexión lo contabilice bien.
+3. **¿Cómo se emparejan los clientes?** ¿Por email, por NIF, por nombre? No quieres que el mismo cliente nazca dos veces como contacto.
+4. **¿Qué manda en caso de conflicto?** Si una factura en la contabilidad se ha modificado a mano, ¿la conexión sobrescribe eso? Normalmente no —la contabilidad manda entonces para ese registro concreto—. Ese tipo de reglas se dejan fijadas.
+
+## La doble administración NL/ES
+
+Muchos arrendadores en la Costa Brava (y similar: un emprendedor neerlandés con una actividad española) llevan dos administraciones: una neerlandesa y una española, cada una con sus reglas de IVA, su programa, su asesor. Holded es popular en España; e-Boekhouden, Moneybird o Exact en Países Bajos. Eso hace la conexión algo más compleja —pero no imposible:
+
+- **¿Qué reserva va a dónde?** Un alquiler de un objeto en España a un huésped español es una factura española (IVA español, Holded). Un alquiler vía tu entidad neerlandesa puede ser una factura neerlandesa. Tu sistema de alquiler debe saber qué entidad/país corresponde a qué objeto y a qué cliente, y enviar la factura a la contabilidad correcta.
+- **Dos conexiones, no una.** En la práctica conectas tu sistema de alquiler a ambos programas, con su propio mapeo por lado (tipos de IVA, cuentas, emparejamiento de clientes). El sistema enruta cada factura al sitio correcto.
+- **Una sola visión para ti.** Lo bueno: aunque la contabilidad esté dividida, tu visión operativa —qué se ha alquilado, qué está pagado, qué está pendiente— sigue en tu sistema de alquiler en un solo sitio. La división está solo en la parte contable, no en tu trabajo diario.
+- **Acuérdalo con tus asesores.** El mapeo de IVA y el enrutamiento por entidad son cosas que fijas junto con tu asesor neerlandés *y* tu asesor español —una vez bien, luego automático—. (Ese trabajar bilingüe, en dos países, es justo aquello para lo que está construido Webstability; ver la [página de servicios](/es/servicios).)
+
+## Qué cuesta construir una conexión
+
+Una conexión contable no suele ser un proyecto aparte sino una parte de tu [sistema de alquiler a medida](/es/servicios) —entra en el precio fijo de **5.000–8.000 €** del sistema, o lo añades más tarde dentro de la cuota continua (desde **179 €/m**, que incluye desarrollo continuo)—. Una conexión suelta a un sistema existente, con un solo programa de contabilidad, ronda típicamente los **1.000–2.500 €** según lo limpia que sea la API del programa y cuánto mapeo haga falta; dos programas (NL + ES) proporcionalmente más. Precio fijo, nada de facturar por horas.
+
+## En resumen
+
+Copiar cada reserva a mano en tu contabilidad es tiempo que no tienes por qué gastar —y una fuente de error que no tienes por qué tener—. Una conexión entre tu sistema de alquiler y tu programa de contabilidad hace que clientes, facturas y pagos fluyan solos, con el mapeo de IVA y cuentas acordado una vez. Si trabajas en dos países, simplemente conectas dos lados —mientras tu visión diaria sigue en un solo sitio.
+
+¿Quieres saber si tu programa de contabilidad conecta bien y qué cuesta en tu caso? [Cuéntame qué programa usas (NL y/o ES) y cuántas facturas haces al mes](/es/contacto) — en un día, una respuesta honesta. Sin presentación comercial. O mira la [página de servicios](/es/servicios).
