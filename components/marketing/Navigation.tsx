@@ -1,9 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { KeyRound } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { LogoMark } from "@/components/shared/LogoMark";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { NavScroll } from "@/components/marketing/NavScroll";
 import { NavLink } from "@/components/marketing/NavLink";
+import { NavLiveBadge } from "@/components/marketing/NavLiveBadge";
 import { NavMegaMenu, type MegaMenuStrings } from "@/components/marketing/NavMegaMenu";
 import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 import { MobileNav } from "@/components/marketing/MobileNav";
@@ -14,40 +16,34 @@ export async function Navigation({ locale }: { locale: string }) {
   const tRaw = await getTranslations();
   const menuStrings = tRaw.raw("nav.menu") as MegaMenuStrings;
 
-  // Diensten + Cases via NavMegaMenu, de rest via simpele NavLinks.
-  // /verhuur is de scherpe deur voor het primaire segment — directe
-  // top-level link, geen panel (Linear-patroon: speciale segmenten zijn
-  // directe links). Komt na de mega-menu's, vóór prijzen.
+  // Midden-nav (desktop): twee mega-menu's (Diensten + Werk) + twee plain
+  // links (Prijzen + Over). Verhuur zit nu als prominente eerste tegel ín
+  // het Diensten-menu (was dubbel als losse link). Vijf items i.p.v.
+  // zeven = rustiger. Contact is de secundaire actie rechts.
   const simpleLinks = [
-    { href: "/verhuur", label: t("verhuur") },
     { href: "/prijzen", label: t("pricing") },
     { href: "/over", label: t("about") },
-    { href: "/contact", label: t("contact") },
   ] as const;
 
-  // Mobile drawer toont alle routes plat — geen mega-menu op touch.
-  const allMobileLinks = [
-    { href: "/diensten", label: t("services") },
-    { href: "/cases", label: t("cases") },
-    { href: "/verhuur", label: t("verhuur") },
-    { href: "/prijzen", label: t("pricing") },
-    { href: "/over", label: t("about") },
-    { href: "/contact", label: t("contact") },
-  ] as const;
+  // Live-badge: cyclet door status + zachte schaarste. Linkt naar /status.
+  const liveMessages = [t("liveBadge"), t("liveBadgeUptime"), t("liveBadgeAvailable")];
 
   return (
     <NavScroll>
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 pt-3.5 pb-5">
-        {/* Wordmark — cream op donker, terracotta accent-punt */}
+        {/* Wordmark — LogoMark-symbool + tekst, cream op donker */}
         <Link
           href="/"
-          className="inline-flex items-center text-[18px] font-extrabold tracking-[-0.045em] text-(--color-bg) transition-opacity hover:opacity-90"
+          aria-label="Webstability — home"
+          className="group inline-flex items-center gap-2.5 text-[18px] font-extrabold tracking-[-0.045em] text-(--color-bg) transition-opacity hover:opacity-90"
         >
-          webstability<span className="text-(--color-accent)">.</span>
+          <LogoMark size={22} />
+          <span>
+            webstability<span className="text-(--color-accent)">.</span>
+          </span>
         </Link>
 
-        {/* Center nav — desktop only. Mega-menu voor diensten + cases,
-            de rest plain NavLinks. */}
+        {/* Center nav — desktop only. */}
         <div className="hidden items-center gap-7 text-[14px] font-medium md:flex">
           <NavMegaMenu
             strings={menuStrings}
@@ -63,10 +59,15 @@ export async function Navigation({ locale }: { locale: string }) {
           ))}
         </div>
 
-        {/* Right side — lang + login + CTA. Mobile: hamburger. */}
-        <div className="flex items-center gap-3">
+        {/* Right side — live badge · lang · contact · login · CTA.
+            Mobile: compacte CTA + hamburger. */}
+        <div className="flex items-center gap-2.5 md:gap-3">
+          <NavLiveBadge messages={liveMessages} />
           <span className="hidden md:inline-flex">
             <LangSwitcher variant="dark" />
+          </span>
+          <span className="hidden text-[14px] font-medium md:inline-flex">
+            <NavLink href="/contact">{t("contact")}</NavLink>
           </span>
           <Link
             href="/login"
@@ -80,12 +81,14 @@ export async function Navigation({ locale }: { locale: string }) {
               aria-hidden
             />
           </Link>
-          {/* CTA — terracotta op donker; komt nu pas tot zijn recht */}
+          {/* CTA — terracotta op donker. Desktop: vol label; mobiel:
+              compacte "Boek"-knop naast de hamburger. */}
           <CalPopupTrigger
             locale={locale}
-            className="group hidden items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:inline-flex"
+            className="group inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-3.5 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:px-4"
           >
-            {t("planCall")}
+            <span className="hidden sm:inline">{t("planCall")}</span>
+            <span className="sm:hidden">{t("planCallShort")}</span>
             <svg
               width="13"
               height="13"
@@ -100,13 +103,22 @@ export async function Navigation({ locale }: { locale: string }) {
             </svg>
           </CalPopupTrigger>
 
-          {/* Mobile hamburger — only on small */}
+          {/* Mobile hamburger */}
           <MobileNav
-            links={allMobileLinks.map((l) => ({ href: l.href, label: l.label }))}
+            servicesLabel={t("services")}
+            casesLabel={t("cases")}
+            menuStrings={menuStrings}
+            otherLinks={[
+              { href: "/prijzen", label: t("pricing") },
+              { href: "/over", label: t("about") },
+              { href: "/contact", label: t("contact") },
+            ]}
+            aanvragenLabel={menuStrings.configuratorLabel}
             ctaLabel={t("planCall")}
-            ctaHref="/contact"
+            loginLabel={t("login")}
             liveBadge={t("liveBadge")}
             tagline={tFooter("tagline")}
+            locale={locale}
           />
         </div>
       </nav>

@@ -14,13 +14,20 @@ import * as React from "react";
  * — alleen opacity + transform = compositor-only = vloeiend op elke
  * device. Linear/Vercel doen het identiek.
  *
- * Threshold: pill verschijnt pas wanneer de hero voorbij is (~70%
- * viewport-height). Bovenop de pagina blijft de header full-width
- * donker zodat de hero z'n eigen visuele claim houdt.
+ * Drempel: een vaste ~136px (zie SCROLL_THRESHOLD). Bovenaan elke pagina
+ * blijft de header full-width donker; zodra je begint te scrollen klapt
+ * hij in een pill. Consistent op pagina's mét en zónder grote hero.
  */
+// Vaste drempel: zodra je een paar honderd pixels gescrold bent klapt
+// de header in een pill. Bewust géén viewport-percentage meer — dat gaf
+// een rare ervaring op pagina's zonder grote hero (blog-detail, prijzen,
+// FAQ) waar de balk eerst eindeloos full-width donker bleef en dan plots
+// insprong. Een vaste ~136px voelt op élke pagina kort en consistent.
+const SCROLL_THRESHOLD = 136;
+
 function initialScrolled() {
   if (typeof window === "undefined") return false;
-  return window.scrollY > Math.max(280, window.innerHeight * 0.7);
+  return window.scrollY > SCROLL_THRESHOLD;
 }
 
 export function NavScroll({ children }: { children: React.ReactNode }) {
@@ -28,16 +35,13 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
 
   React.useEffect(() => {
     let ticking = false;
-    // Threshold is 70% van viewport-hoogte — pas voorbij de hero.
-    const getThreshold = () => Math.max(280, window.innerHeight * 0.7);
-    let threshold = getThreshold();
-    let lastValue = window.scrollY > threshold;
+    let lastValue = window.scrollY > SCROLL_THRESHOLD;
 
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        const next = window.scrollY > threshold;
+        const next = window.scrollY > SCROLL_THRESHOLD;
         if (next !== lastValue) {
           lastValue = next;
           setScrolled(next);
@@ -45,20 +49,8 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
         ticking = false;
       });
     };
-    const onResize = () => {
-      threshold = getThreshold();
-      const next = window.scrollY > threshold;
-      if (next !== lastValue) {
-        lastValue = next;
-        setScrolled(next);
-      }
-    };
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   // Premium expo-out, 450ms — sweet spot voor compositor-only animaties

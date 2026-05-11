@@ -2,45 +2,65 @@
 
 import * as React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, KeyRound } from "lucide-react";
 import { useReducedMotion } from "motion/react";
-import type { ComponentProps } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LogoMark } from "@/components/shared/LogoMark";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
+import type { MegaMenuStrings } from "@/components/marketing/NavMegaMenu";
 
-type Href = ComponentProps<typeof Link>["href"];
+type PlainLink = { href: string; label: string };
 
-type NavItem = {
-  href: Href;
-  label: string;
-};
+const VERTICAL_SLUGS = [
+  "verhuur-boekingssysteem",
+  "klantportaal-laten-bouwen",
+  "website-laten-maken",
+  "webshop-laten-maken",
+  "admin-systeem-op-maat",
+  "reparatie-portaal",
+] as const;
 
 /**
- * Mobile nav drawer. Hamburger right of the wordmark on mobile, opens
- * a full-height Radix Dialog with the brand panel on top, the route
- * list below it, and the primary CTA + lang switcher in the footer.
+ * Mobile nav drawer. Hamburger rechts van de wordmark op mobiel, opent
+ * een full-height Radix Dialog: brand-paneel bovenaan, tagline op donker,
+ * een prominente "vraag je website aan"-knop, dan de zes verticals als
+ * sub-lijst onder "Diensten", de twee cases, en de plain links — footer
+ * met login + lang + de Cal-popup-CTA (consistent met desktop).
  *
- * Auto-closes on route navigation by listening to pathname changes —
- * the open prop is uncontrolled but reset via a key + state hook.
+ * Auto-sluit op route-navigatie via een onClick-handler. De Cal-CTA en
+ * de verticals-links sluiten de drawer voordat ze navigeren.
  */
 export function MobileNav({
-  links,
+  servicesLabel,
+  casesLabel,
+  menuStrings,
+  otherLinks,
+  aanvragenLabel,
   ctaLabel,
-  ctaHref,
+  loginLabel,
   liveBadge,
   tagline,
+  locale,
 }: {
-  links: NavItem[];
+  servicesLabel: string;
+  casesLabel: string;
+  menuStrings: MegaMenuStrings;
+  otherLinks: PlainLink[];
+  aanvragenLabel: string;
   ctaLabel: string;
-  ctaHref: Href;
+  loginLabel: string;
   liveBadge: string;
   tagline: string;
+  locale: string;
 }) {
   const reduce = useReducedMotion();
   const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
-  const handleNavigate = React.useCallback(() => setOpen(false), []);
+  const close = React.useCallback(() => setOpen(false), []);
+
+  const isActive = (target: string) =>
+    target === "/" ? pathname === "/" : pathname.startsWith(target);
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -85,62 +105,128 @@ export function MobileNav({
             <p className="font-mono text-[10px] tracking-widest text-(--color-bg)/55 uppercase">
               {liveBadge}
             </p>
-            <p className="mt-2 text-[17px] leading-[1.4]">{tagline}</p>
+            <p className="mt-2 text-[16px] leading-[1.4]">{tagline}</p>
           </div>
 
-          {/* Route list — Radix Dialog doet zelf een slide-in op het
-              hele content-block; per-link motion.div stagger maakte op
-              iPhone het hele menu schokken. Plain links, snelle premium
-              feel (links komen meteen mee in de slide). */}
           <nav className="flex-1 overflow-y-auto px-6 py-6">
-            <ul className="space-y-1">
-              {links.map((link) => {
-                const target =
-                  typeof link.href === "string"
-                    ? link.href
-                    : ((link.href as { pathname?: string }).pathname ?? "");
-                const active = target === "/" ? pathname === "/" : pathname.startsWith(target);
-                return (
-                  <li key={target}>
-                    <Link
-                      href={link.href}
-                      onClick={handleNavigate}
-                      className={`flex items-center justify-between rounded-md px-3 py-3 font-serif text-[20px] tracking-tight transition-colors ${
-                        active
-                          ? "bg-(--color-bg-warm) text-(--color-accent)"
-                          : "text-(--color-text) hover:bg-(--color-bg-warm)"
-                      }`}
-                    >
-                      <span>{link.label}</span>
-                      <ArrowRight
-                        className={`h-4 w-4 transition-transform ${
-                          active ? "translate-x-0 text-(--color-accent)" : "text-(--color-muted)"
-                        }`}
-                        strokeWidth={2}
-                      />
-                    </Link>
-                  </li>
-                );
-              })}
+            {/* Prominente configurator-knop */}
+            <Link
+              href={{ pathname: "/aanvragen" }}
+              onClick={close}
+              className="group mb-6 flex items-center justify-between rounded-xl bg-(--color-accent) px-4 py-3 text-[15px] font-medium text-white transition-all hover:bg-(--color-accent)/90"
+            >
+              {aanvragenLabel}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+
+            {/* Diensten + de zes verticals */}
+            <p className="mb-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+              {servicesLabel}
+            </p>
+            <ul className="mb-5 space-y-0.5">
+              <li>
+                <Link
+                  href={{ pathname: "/diensten" }}
+                  onClick={close}
+                  className={`flex items-center justify-between rounded-md px-3 py-2.5 text-[15px] font-medium transition-colors ${
+                    pathname === "/diensten"
+                      ? "bg-(--color-bg-warm) text-(--color-accent)"
+                      : "text-(--color-text) hover:bg-(--color-bg-warm)"
+                  }`}
+                >
+                  {menuStrings.servicesFooter.replace(" →", "")}
+                  <ArrowRight className="h-3.5 w-3.5 text-(--color-muted)" />
+                </Link>
+              </li>
+              {VERTICAL_SLUGS.map((slug) => (
+                <li key={slug}>
+                  <Link
+                    href={{ pathname: "/diensten/[vertical]", params: { vertical: slug } }}
+                    onClick={close}
+                    className="block rounded-md py-2 pr-3 pl-6 text-[14px] text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) hover:text-(--color-text)"
+                  >
+                    {menuStrings.items[slug].title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* Werk / cases */}
+            <p className="mb-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+              {casesLabel}
+            </p>
+            <ul className="mb-5 space-y-0.5">
+              <li>
+                <Link
+                  href={{ pathname: "/cases/caravanverhuurspanje" }}
+                  onClick={close}
+                  className="block rounded-md px-3 py-2.5 text-[15px] text-(--color-text) transition-colors hover:bg-(--color-bg-warm)"
+                >
+                  {menuStrings.caseItems.caravanverhuur.title}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={{ pathname: "/cases/caravanreparatiespanje" }}
+                  onClick={close}
+                  className="block rounded-md px-3 py-2.5 text-[15px] text-(--color-text) transition-colors hover:bg-(--color-bg-warm)"
+                >
+                  {menuStrings.caseItems.caravanreparatie.title}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={{ pathname: "/cases" }}
+                  onClick={close}
+                  className="flex items-center justify-between rounded-md px-3 py-2.5 text-[14px] text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) hover:text-(--color-text)"
+                >
+                  {menuStrings.casesFooter.replace(" →", "")}
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </li>
+            </ul>
+
+            {/* Overige plain links */}
+            <ul className="space-y-0.5 border-t border-(--color-border) pt-4">
+              {otherLinks.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href as never}
+                    onClick={close}
+                    className={`flex items-center justify-between rounded-md px-3 py-2.5 text-[15px] font-medium transition-colors ${
+                      isActive(l.href)
+                        ? "bg-(--color-bg-warm) text-(--color-accent)"
+                        : "text-(--color-text) hover:bg-(--color-bg-warm)"
+                    }`}
+                  >
+                    {l.label}
+                    <ArrowRight className="h-3.5 w-3.5 text-(--color-muted)" />
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 
-          {/* Footer — lang + primary CTA */}
+          {/* Footer — login + lang + Cal-popup CTA (consistent met desktop) */}
           <div className="space-y-4 border-t border-(--color-border) px-6 py-5">
             <div className="flex items-center justify-between">
-              <span className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
-                hello@webstability.eu
-              </span>
+              <Link
+                href={{ pathname: "/login" }}
+                onClick={close}
+                className="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase transition-colors hover:text-(--color-text)"
+              >
+                <KeyRound className="h-3.5 w-3.5" strokeWidth={2} />
+                {loginLabel}
+              </Link>
               <LangSwitcher />
             </div>
-            <Link
-              href={ctaHref}
-              onClick={handleNavigate}
+            <CalPopupTrigger
+              locale={locale}
               className="group inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-3 text-[14px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)]"
             >
               {ctaLabel}
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-            </Link>
+            </CalPopupTrigger>
           </div>
         </Dialog.Content>
       </Dialog.Portal>

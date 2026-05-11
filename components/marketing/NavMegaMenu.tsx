@@ -1,56 +1,67 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import {
   ChevronDown,
-  Layers,
+  CalendarClock,
+  UserSquare,
+  Globe,
   ShoppingBag,
-  ShieldCheck,
-  TrendingUp,
+  LayoutGrid,
+  Wrench,
   ArrowRight,
+  type LucideIcon,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 
-type ServiceItem = {
-  title: string;
-  blurb: string;
-  price: string;
-};
-
-type CaseItem = {
-  title: string;
-  blurb: string;
-};
+type VerticalItem = { title: string; blurb: string };
+type CaseItem = { title: string; blurb: string };
 
 export type MegaMenuStrings = {
   servicesEyebrow: string;
   servicesTitle: string;
   servicesFooter: string;
+  configuratorLabel: string;
   items: {
-    verhuurplatform: ServiceItem;
-    platform: ServiceItem;
-    webshop: ServiceItem;
-    care: ServiceItem;
+    "verhuur-boekingssysteem": VerticalItem;
+    "klantportaal-laten-bouwen": VerticalItem;
+    "website-laten-maken": VerticalItem;
+    "webshop-laten-maken": VerticalItem;
+    "admin-systeem-op-maat": VerticalItem;
+    "reparatie-portaal": VerticalItem;
   };
   casesEyebrow: string;
   casesTitle: string;
   casesFooter: string;
   caseItems: {
-    caravan: CaseItem;
-    marbella: CaseItem;
-    voltauto: CaseItem;
+    caravanverhuur: CaseItem;
+    caravanreparatie: CaseItem;
   };
 };
 
 type Panel = "services" | "cases";
 
+type VerticalSlug = keyof MegaMenuStrings["items"];
+
+const VERTICAL_ORDER: { slug: VerticalSlug; icon: LucideIcon }[] = [
+  { slug: "verhuur-boekingssysteem", icon: CalendarClock },
+  { slug: "klantportaal-laten-bouwen", icon: UserSquare },
+  { slug: "website-laten-maken", icon: Globe },
+  { slug: "webshop-laten-maken", icon: ShoppingBag },
+  { slug: "admin-systeem-op-maat", icon: LayoutGrid },
+  { slug: "reparatie-portaal", icon: Wrench },
+];
+
 /**
  * Hover-driven mega-menu voor de marketing-nav. Eén shared panel-state
  * voor alle triggers zodat het menu blijft staan terwijl je horizontaal
- * tussen triggers swipe't (Linear-style). Sluit op pointer-leave van
- * een trigger of het panel met een 120ms grace-period zodat snelle
- * mouse-jumps niet flickeren. Sluit ook op Esc + click-outside.
+ * tussen triggers swipe't (Linear-style). Sluit op pointer-leave met
+ * een 120ms grace-period, op Esc, en op click-outside.
+ *
+ * Diensten-panel = de zes echte verticals (3×2) + "vraag je website
+ * aan"-tegel + "alle diensten". Werk-panel = de twee echte cases met
+ * mini-screen-previews + "alle cases".
  */
 export function NavMegaMenu({
   strings,
@@ -65,6 +76,7 @@ export function NavMegaMenu({
   servicesActive: boolean;
   casesActive: boolean;
 }) {
+  const reduce = useReducedMotion();
   const [open, setOpen] = React.useState<Panel | null>(null);
   const closeTimer = React.useRef<number | null>(null);
   const wrapperRef = React.useRef<HTMLDivElement>(null);
@@ -75,18 +87,15 @@ export function NavMegaMenu({
       closeTimer.current = null;
     }
   };
-
   const scheduleClose = () => {
     cancelClose();
     closeTimer.current = window.setTimeout(() => setOpen(null), 120);
   };
-
   const openPanel = (p: Panel) => {
     cancelClose();
     setOpen(p);
   };
 
-  // Esc sluit het menu
   React.useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -96,7 +105,6 @@ export function NavMegaMenu({
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // Click-outside sluit het menu
   React.useEffect(() => {
     if (!open) return;
     const onClick = (e: MouseEvent) => {
@@ -108,7 +116,7 @@ export function NavMegaMenu({
 
   return (
     <div ref={wrapperRef} className="relative" onMouseLeave={scheduleClose}>
-      <div className="flex items-center gap-8 text-[14.5px] font-medium">
+      <div className="flex items-center gap-7 text-[14.5px] font-medium">
         <Trigger
           label={servicesLabel}
           active={servicesActive}
@@ -129,24 +137,23 @@ export function NavMegaMenu({
         {open ? (
           <motion.div
             key={open}
-            initial={{ opacity: 0, y: -8 }}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
             transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
             onMouseEnter={cancelClose}
             onMouseLeave={scheduleClose}
-            className="absolute top-full left-1/2 z-40 mt-3 w-[640px] max-w-[calc(100vw-3rem)] -translate-x-1/2"
+            className={`absolute top-full left-1/2 z-40 mt-3 -translate-x-1/2 ${
+              open === "services" ? "w-[680px]" : "w-[520px]"
+            } max-w-[calc(100vw-3rem)]`}
           >
-            {/* Hover-bridge — vult de gap tussen trigger en panel zodat
-                de muis niet door 'lucht' hoeft. */}
+            {/* Hover-bridge — vult de gap tussen trigger en panel */}
             <div aria-hidden className="absolute -top-3 right-0 left-0 h-3" />
 
             <div
               className="relative overflow-hidden rounded-[18px] border border-t-2 border-(--color-bg)/15 border-t-(--color-wine) bg-(--color-text) text-(--color-bg) shadow-[0_24px_60px_-16px_rgba(31,27,22,0.45),0_8px_20px_-4px_rgba(31,27,22,0.25)]"
               role="menu"
             >
-              {/* Halo-blob top-left voor depth, zelfde sfeer als
-                  StudioStatement + footer-zone-1 */}
               <span
                 aria-hidden
                 className="wb-soft-halo pointer-events-none absolute -top-24 -left-24 h-[280px] w-[280px] rounded-full bg-(--color-wine) opacity-30 blur-3xl"
@@ -198,16 +205,9 @@ function Trigger({
 }
 
 function ServicesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSelect: () => void }) {
-  const items = [
-    { key: "verhuurplatform" as const, icon: TrendingUp, href: "/verhuur" },
-    { key: "platform" as const, icon: Layers, href: "/diensten#platform" },
-    { key: "webshop" as const, icon: ShoppingBag, href: "/diensten#webshop" },
-    { key: "care" as const, icon: ShieldCheck, href: "/diensten#care" },
-  ];
-
   return (
     <div className="relative">
-      {/* Header strip — cream/55 eyebrow op donker */}
+      {/* Header strip */}
       <div className="flex items-center justify-between border-b border-(--color-bg)/10 bg-(--color-bg)/[0.03] px-6 py-3.5">
         <div>
           <p className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
@@ -218,42 +218,49 @@ function ServicesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSele
             {strings.servicesTitle}
           </p>
         </div>
+        {/* Quick-action: configurator */}
+        <Link
+          href={{ pathname: "/aanvragen" }}
+          onClick={onSelect}
+          className="hidden items-center gap-1.5 rounded-full bg-(--color-accent)/15 px-3 py-1.5 font-mono text-[10px] tracking-wide text-(--color-accent) uppercase transition-colors hover:bg-(--color-accent) hover:text-white sm:inline-flex"
+        >
+          {strings.configuratorLabel}
+          <ArrowRight className="h-2.5 w-2.5" />
+        </Link>
       </div>
 
-      {/* 2x2 grid */}
-      <ul className="grid grid-cols-2 gap-1 p-2">
-        {items.map(({ key, icon: Icon, href }) => {
-          const item = strings.items[key];
+      {/* 3×2 grid van de zes verticals */}
+      <ul className="grid grid-cols-3 gap-1 p-2">
+        {VERTICAL_ORDER.map(({ slug, icon: Icon }) => {
+          const item = strings.items[slug];
           return (
-            <li key={key}>
+            <li key={slug}>
               <Link
-                href={href as never}
+                href={{ pathname: "/diensten/[vertical]", params: { vertical: slug } }}
                 onClick={onSelect}
                 role="menuitem"
-                className="group relative flex h-full flex-col gap-2 rounded-[12px] p-4 transition-colors hover:bg-(--color-bg)/[0.06] focus-visible:bg-(--color-bg)/[0.06] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-accent)"
+                className="group flex h-full flex-col gap-2 rounded-[12px] p-3.5 transition-colors hover:bg-(--color-bg)/[0.06] focus-visible:bg-(--color-bg)/[0.06] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-accent)"
               >
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-(--color-accent)/15 text-(--color-accent) transition-colors group-hover:bg-(--color-accent) group-hover:text-white">
-                  <Icon className="h-4 w-4" strokeWidth={2} />
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-(--color-accent)/15 text-(--color-accent) transition-colors group-hover:bg-(--color-accent) group-hover:text-white">
+                  <Icon className="h-3.5 w-3.5" strokeWidth={2} />
                 </span>
                 <div>
-                  <p className="text-[13.5px] leading-tight font-medium text-(--color-bg)">
+                  <p className="text-[13px] leading-tight font-medium text-(--color-bg)">
                     {item.title}
                   </p>
-                  <p className="mt-1 text-[12px] leading-snug text-(--color-bg)/60">{item.blurb}</p>
+                  <p className="mt-1 text-[11.5px] leading-snug text-(--color-bg)/60">
+                    {item.blurb}
+                  </p>
                 </div>
-                <span className="mt-auto inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wide text-(--color-accent) uppercase">
-                  {item.price}
-                  <ArrowRight className="h-2.5 w-2.5 transition-transform group-hover:translate-x-0.5" />
-                </span>
               </Link>
             </li>
           );
         })}
       </ul>
 
-      {/* Footer-strip met "alle diensten" link */}
+      {/* Footer-strip */}
       <Link
-        href="/diensten"
+        href={{ pathname: "/diensten" }}
         onClick={onSelect}
         className="flex items-center justify-between border-t border-(--color-bg)/10 bg-(--color-bg)/[0.03] px-6 py-3 text-[12.5px] font-medium text-(--color-bg) transition-colors hover:bg-(--color-bg)/[0.06]"
       >
@@ -266,9 +273,16 @@ function ServicesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSele
 
 function CasesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSelect: () => void }) {
   const items = [
-    { key: "caravan" as const, href: "/cases#caravanstallingspanje", color: "#C9614F" },
-    { key: "marbella" as const, href: "/cases#marbella-stays", color: "#6B1E2C" },
-    { key: "voltauto" as const, href: "/cases#voltauto", color: "#5A7A4A" },
+    {
+      key: "caravanverhuur" as const,
+      pathname: "/cases/caravanverhuurspanje" as const,
+      color: "#C9614F",
+    },
+    {
+      key: "caravanreparatie" as const,
+      pathname: "/cases/caravanreparatiespanje" as const,
+      color: "#5A7A4A",
+    },
   ];
 
   return (
@@ -281,13 +295,13 @@ function CasesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSelect:
         <p className="mt-0.5 text-[15px] font-medium text-(--color-bg)">{strings.casesTitle}</p>
       </div>
 
-      <ul className="grid grid-cols-3 gap-1 p-2">
-        {items.map(({ key, href, color }) => {
+      <ul className="grid grid-cols-2 gap-1 p-2">
+        {items.map(({ key, pathname, color }) => {
           const item = strings.caseItems[key];
           return (
             <li key={key}>
               <Link
-                href={href as never}
+                href={{ pathname }}
                 onClick={onSelect}
                 role="menuitem"
                 className="group flex h-full flex-col rounded-[12px] p-3 transition-colors hover:bg-(--color-bg)/[0.06] focus-visible:bg-(--color-bg)/[0.06] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-accent)"
@@ -307,16 +321,15 @@ function CasesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSelect:
                     <span className="h-2.5 rounded-sm" style={{ background: color }} />
                     <span className="h-2.5 rounded-sm bg-(--color-bg)/15" />
                   </div>
-                  {/* Live-dot rechtsboven */}
                   <span className="absolute top-2.5 right-2.5 flex h-1.5 w-1.5">
                     <span className="absolute inline-flex h-full w-full rounded-full bg-(--color-success) opacity-60" />
                     <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-(--color-success)" />
                   </span>
                 </div>
-                <p className="text-[12.5px] leading-tight font-medium text-(--color-bg) transition-colors group-hover:text-(--color-accent)">
+                <p className="text-[13px] leading-tight font-medium text-(--color-bg) transition-colors group-hover:text-(--color-accent)">
                   {item.title}
                 </p>
-                <p className="mt-1 font-mono text-[10px] leading-snug text-(--color-bg)/60">
+                <p className="mt-1 font-mono text-[10.5px] leading-snug text-(--color-bg)/60">
                   {item.blurb}
                 </p>
               </Link>
@@ -326,7 +339,7 @@ function CasesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSelect:
       </ul>
 
       <Link
-        href="/cases"
+        href={{ pathname: "/cases" }}
         onClick={onSelect}
         className="flex items-center justify-between border-t border-(--color-bg)/10 bg-(--color-bg)/[0.03] px-6 py-3 text-[12.5px] font-medium text-(--color-bg) transition-colors hover:bg-(--color-bg)/[0.06]"
       >

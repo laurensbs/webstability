@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Navigation } from "@/components/marketing/Navigation";
 import { Footer } from "@/components/marketing/Footer";
-import { MobileStickyCta } from "@/components/marketing/MobileStickyCta";
 import { MarketingScrollPopup } from "@/components/marketing/MarketingPopups";
 import { ConsoleWink } from "@/components/marketing/ConsoleWink";
 import { AmbientCanvas } from "@/components/r3f/AmbientCanvas";
@@ -22,7 +21,6 @@ export default async function MarketingLayout({
   setRequestLocale(locale);
 
   const t = await getTranslations("common");
-  const tNav = await getTranslations("nav");
 
   return (
     <>
@@ -41,7 +39,6 @@ export default async function MarketingLayout({
         {children}
       </div>
       <Footer />
-      <MobileStickyCta planLabel={tNav("planCall")} whatsappLabel={tNav("whatsapp")} />
       <MarketingScrollPopup locale={locale} />
       <ConsoleWink />
     </>

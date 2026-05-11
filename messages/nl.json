@@ -169,55 +169,57 @@
     "pricing": "Prijzen",
     "about": "Over",
     "blog": "Blog",
-    "cases": "Cases",
+    "cases": "Werk",
     "contact": "Contact",
     "login": "Inloggen",
     "liveBadge": "Alle systemen draaien",
-    "liveBadgeUptime": "99.98% uptime · 30d",
+    "liveBadgeUptime": "99,98% uptime · 30d",
     "liveBadgeAvailable": "Mei 2026 · 2 plekken vrij",
     "planCall": "Boek afspraak",
+    "planCallShort": "Boek",
     "whatsapp": "WhatsApp",
     "menu": {
-      "servicesEyebrow": "Vier productlijnen",
-      "servicesTitle": "Wat we voor je bouwen",
+      "servicesEyebrow": "Wat ik voor je bouw",
+      "servicesTitle": "Een systeem dat past — vaste prijs, vier weken",
       "servicesFooter": "Alle diensten →",
+      "configuratorLabel": "Vraag je website aan",
       "items": {
-        "verhuurplatform": {
-          "title": "Verhuurplatform — NL en Spanje",
-          "blurb": "Boekingen + portal + kanaalkoppelingen, 4 weken levering",
-          "price": "vaste prijs €5–8k"
+        "verhuur-boekingssysteem": {
+          "title": "Verhuur-boekingssysteem",
+          "blurb": "Boekingen, portal, channel-sync — voor verhuurbedrijven"
         },
-        "platform": {
-          "title": "Bedrijfssoftware op maat",
-          "blurb": "Reparatie-portaal, klantportaal of admin op maat",
-          "price": "vanaf €5–8k"
+        "klantportaal-laten-bouwen": {
+          "title": "Klantportaal op maat",
+          "blurb": "Je klanten loggen in en zien hun gegevens, in jouw merk"
         },
-        "webshop": {
-          "title": "Website of webshop",
-          "blurb": "Snelle, meertalige site met checkout",
-          "price": "vanaf €1.050"
+        "website-laten-maken": {
+          "title": "Website op maat",
+          "blurb": "Snel, netjes, twee talen — vanaf €1.050"
         },
-        "care": {
-          "title": "Onderhoud & doorbouwen",
-          "blurb": "Hosting, monitoring, wijzigingen — Studio voor nieuwe klanten",
-          "price": "Studio €179/m"
+        "webshop-laten-maken": {
+          "title": "Webshop op maat",
+          "blurb": "Producten, afrekenen, btw/IVA — vanaf €3.000"
+        },
+        "admin-systeem-op-maat": {
+          "title": "Admin-systeem op maat",
+          "blurb": "Weg van Excel — één overzicht over je hele bedrijf"
+        },
+        "reparatie-portaal": {
+          "title": "Reparatie-portaal",
+          "blurb": "Papierloze werkplaats — werkbonnen, iPad-flow, status"
         }
       },
-      "casesEyebrow": "Live producten",
+      "casesEyebrow": "Live producten die ik draai",
       "casesTitle": "Klantverhalen",
       "casesFooter": "Alle cases →",
       "caseItems": {
-        "caravan": {
-          "title": "Caravanstallingspanje",
-          "blurb": "Verhuurplatform · 4 maanden build · 99.98% uptime"
+        "caravanverhuur": {
+          "title": "Caravanverhuurspanje",
+          "blurb": "verhuurplatform · 4 weken · 0 dubbele boekingen"
         },
-        "marbella": {
-          "title": "Marbella Stays",
-          "blurb": "Boekingssysteem · 6 maanden build · live sinds 2024"
-        },
-        "voltauto": {
-          "title": "VOLT/AUTO",
-          "blurb": "Reparatie-portaal · 3 maanden build · 47 garages"
+        "caravanreparatie": {
+          "title": "Caravanreparatiespanje",
+          "blurb": "reparatie-portaal · iPad-flow · ~80 reparaties/maand"
         }
       }
     }

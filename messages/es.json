@@ -169,55 +169,57 @@
     "pricing": "Precios",
     "about": "Sobre",
     "blog": "Blog",
-    "cases": "Casos",
+    "cases": "Trabajo",
     "contact": "Contacto",
     "login": "Acceder",
     "liveBadge": "Todo en línea",
     "liveBadgeUptime": "99,98% uptime · 30d",
     "liveBadgeAvailable": "Mayo 2026 · 2 plazas libres",
     "planCall": "Reservar cita",
+    "planCallShort": "Reservar",
     "whatsapp": "WhatsApp",
     "menu": {
-      "servicesEyebrow": "Cuatro líneas",
-      "servicesTitle": "Qué construimos para ti",
+      "servicesEyebrow": "Qué construyo para ti",
+      "servicesTitle": "Un sistema que encaja — precio fijo, cuatro semanas",
       "servicesFooter": "Todos los servicios →",
+      "configuratorLabel": "Solicita tu web",
       "items": {
-        "verhuurplatform": {
-          "title": "Plataforma de alquiler — NL y España",
-          "blurb": "Reservas + portal + sincronización de canales, entrega en 4 semanas",
-          "price": "precio fijo 5–8 k €"
+        "verhuur-boekingssysteem": {
+          "title": "Sistema de reservas de alquiler",
+          "blurb": "Reservas, portal, sincronización de canales — para empresas de alquiler"
         },
-        "platform": {
-          "title": "Software a medida",
-          "blurb": "Portal de reparaciones, portal de cliente o admin a medida",
-          "price": "desde 5–8 k €"
+        "klantportaal-laten-bouwen": {
+          "title": "Portal de cliente a medida",
+          "blurb": "Tus clientes acceden y ven sus datos, con tu marca"
         },
-        "webshop": {
-          "title": "Web o tienda online",
-          "blurb": "Sitio rápido y multilingüe con checkout",
-          "price": "desde 1.050 €"
+        "website-laten-maken": {
+          "title": "Web a medida",
+          "blurb": "Rápida, limpia, dos idiomas — desde 1.050 €"
         },
-        "care": {
-          "title": "Mantenimiento & evolución",
-          "blurb": "Hosting, monitoring, cambios — Studio para nuevos clientes",
-          "price": "Studio 179 €/m"
+        "webshop-laten-maken": {
+          "title": "Tienda online a medida",
+          "blurb": "Productos, pago, IVA — desde 3.000 €"
+        },
+        "admin-systeem-op-maat": {
+          "title": "Sistema interno a medida",
+          "blurb": "Adiós a Excel — una sola vista de toda tu empresa"
+        },
+        "reparatie-portaal": {
+          "title": "Portal de reparaciones",
+          "blurb": "Taller sin papel — órdenes, flujo en iPad, estado"
         }
       },
-      "casesEyebrow": "Productos en vivo",
+      "casesEyebrow": "Productos en vivo que llevo",
       "casesTitle": "Casos de cliente",
       "casesFooter": "Todos los casos →",
       "caseItems": {
-        "caravan": {
-          "title": "Caravanstallingspanje",
-          "blurb": "Plataforma de alquiler · 4 meses build · 99,98% uptime"
+        "caravanverhuur": {
+          "title": "Caravanverhuurspanje",
+          "blurb": "plataforma de alquiler · 4 semanas · 0 reservas duplicadas"
         },
-        "marbella": {
-          "title": "Marbella Stays",
-          "blurb": "Sistema de reservas · 6 meses build · en vivo desde 2024"
-        },
-        "voltauto": {
-          "title": "VOLT/AUTO",
-          "blurb": "Portal de reparaciones · 3 meses build · 47 talleres"
+        "caravanreparatie": {
+          "title": "Caravanreparatiespanje",
+          "blurb": "portal de reparaciones · flujo en iPad · ~80 reparaciones/mes"
         }
       }
     }
