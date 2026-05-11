@@ -502,8 +502,9 @@
   },
   "about": {
     "eyebrow": "sobre webstability",
-    "title": "Un solo desarrollador, *diez años* de experiencia.",
-    "intro": "Soy Laurens Bos. Construyo software para pymes desde 2015 — primero desde Países Bajos, desde 2022 desde España. Lo que empezó como encargos freelance para empresas de alquiler se convirtió en Webstability: un estudio especializado en software que no deja de funcionar después de la entrega.",
+    "title": "Diez años, y sigo siendo *una sola persona*.",
+    "intro": "Las empresas de alquiler con las que hablo tienen algo en común: una plataforma que hace a medias lo que promete, y nadie a quien llamar. Soy Laurens Bos — desde 2015 construyo esos sistemas bien, desde Países Bajos y desde 2022 desde la Costa Brava. Precio fijo, tu propia marca, y después de la entrega sigo estando ahí. Prefiero relaciones largas a proyectos entregados.",
+    "langBadges": ["NL", "ES"],
     "principlesTitle": "Cuatro principios",
     "principles": [
       {
@@ -527,6 +528,7 @@
         "body": "BTW e IVA. .nl y .es. Entiendo el contexto fiscal y cultural de ambos mercados."
       }
     ],
+    "principlesToProof": "Suficientes principios — esto es lo que realmente está funcionando ahora.",
     "nowBuilding": {
       "eyebrow": "lo que construyo ahora",
       "title": "Tres cifras que *acortan* la historia.",
@@ -553,32 +555,39 @@
     "timeline": [
       {
         "year": "2015",
-        "body": "Primer encargo freelance — una plataforma de alquiler de casas de playa en Zelanda."
+        "type": "start",
+        "body": "Primera plataforma de alquiler para casas de playa en Zelanda. No fue casualidad que fuera alquiler — ahí vi lo malas que eran las herramientas estándar."
       },
       {
         "year": "2018",
-        "body": "Especialización en sistemas a medida para pymes. Clientes fijos en retail y logística."
+        "type": "pivot",
+        "body": "Especialización deliberada en sistemas a medida para pymes. Menos webs puntuales, más sistemas que duran años."
       },
       {
         "year": "2022",
-        "body": "Mudanza a la Costa Brava. Primeros clientes españoles vía emprendedores locales."
+        "type": "move",
+        "body": "Mudanza a la Costa Brava. Primeros clientes españoles — y la constatación de que NL y ES tienen los mismos problemas, solo que en dos idiomas."
       },
       {
         "year": "2024",
-        "body": "Webstability fundado como marca de estudio. Propuesta bilingüe para NL y ES."
+        "type": "pivot",
+        "body": "Webstability como marca de estudio. La propuesta bilingüe hecha explícita: BTW e IVA, un solo estudio."
       },
       {
         "year": "2026",
-        "body": "Esta web online. Roadmap pública, portal de cliente, y todo lo que entrego también visible aquí."
+        "type": "launch",
+        "body": "Esta web online — roadmap pública, portal de cliente, y todo lo que entrego también visible aquí. Nada escondido."
       }
     ],
     "firstClientQuote": {
       "quote": "Me ahorra medio día a la semana. Pero la diferencia real es que ya no entro por la mañana en pánico para comprobar si hay alguna reserva duplicada.",
-      "attribution": "— Propietario · Caravanverhuur Spanje · cliente desde 2024"
+      "attribution": "— Propietario · Caravanverhuur Spanje · cliente desde 2024",
+      "caseLabel": "Lee la historia completa"
     },
-    "ctaTitle": "Habla directamente con el desarrollador.",
-    "ctaBody": "Sin gestor de cuenta. Sin presentación comercial. Treinta minutos, gratis.",
-    "ctaButton": "Reserva una llamada"
+    "ctaTitle": "Cuéntame tu situación de alquiler.",
+    "ctaBody": "Envíame cómo lo haces ahora y dónde aprieta — respuesta honesta en un día. Si encaja, reservamos treinta minutos. Sin presentación comercial, sin gestor de cuenta.",
+    "ctaButton": "Reserva una llamada",
+    "ctaSecondary": "Primero mira el trabajo"
   },
   "verhuur": {
     "eyebrow": "para empresas de alquiler",

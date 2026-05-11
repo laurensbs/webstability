@@ -502,8 +502,9 @@
   },
   "about": {
     "eyebrow": "over webstability",
-    "title": "Eén ontwikkelaar, *tien jaar* ervaring.",
-    "intro": "Ik ben Laurens Bos. Ik bouw software voor MKB-ondernemers sinds 2015 — eerst vanuit Nederland, sinds 2022 vanuit Spanje. Wat begon als freelance opdrachten voor verhuurbedrijven werd Webstability: een studio die zich specialiseert in software die niet ophoudt met werken na de oplevering.",
+    "title": "Tien jaar, en nog steeds *één persoon*.",
+    "intro": "Verhuurders die ik spreek hebben één ding gemeen: een platform dat half doet wat het belooft, en niemand om het te bellen. Ik ben Laurens Bos — sinds 2015 bouw ik die systemen wél goed, vanuit Nederland en sinds 2022 vanaf de Costa Brava. Vaste prijs, jouw eigen merk, en na de oplevering ben ik er nog steeds. Liever lange relaties dan afgeleverde projecten.",
+    "langBadges": ["NL", "ES"],
     "principlesTitle": "Vier principes",
     "principles": [
       {
@@ -527,6 +528,7 @@
         "body": "BTW én IVA. .nl én .es. Ik snap de fiscale en culturele context van beide markten."
       }
     ],
+    "principlesToProof": "Genoeg principes — hier is wat er nu écht draait.",
     "nowBuilding": {
       "eyebrow": "wat ik nu bouw",
       "title": "Drie cijfers die het verhaal *kort* maken.",
@@ -553,32 +555,39 @@
     "timeline": [
       {
         "year": "2015",
-        "body": "Eerste freelance opdracht — een verhuurplatform voor strandhuizen in Zeeland."
+        "type": "start",
+        "body": "Eerste verhuurplatform voor strandhuizen in Zeeland. Geen toeval dat het verhuur was — daar zag ik hoe slecht de standaardtools waren."
       },
       {
         "year": "2018",
-        "body": "Specialisatie in admin-systemen voor MKB. Vaste klanten in retail en logistiek."
+        "type": "pivot",
+        "body": "Bewust gespecialiseerd in admin-systemen voor MKB. Minder eenmalige sites, meer systemen die jaren meegaan."
       },
       {
         "year": "2022",
-        "body": "Verhuisd naar de Costa Brava. Eerste Spaanse klanten via lokale ondernemers."
+        "type": "move",
+        "body": "Verhuisd naar de Costa Brava. Eerste Spaanse klanten — en het besef dat NL en ES dezelfde problemen hebben, alleen in twee talen."
       },
       {
         "year": "2024",
-        "body": "Webstability opgericht als studio-merk. Tweetalige propositie voor NL én ES."
+        "type": "pivot",
+        "body": "Webstability als studio-merk. De tweetalige propositie expliciet gemaakt: BTW én IVA, één studio."
       },
       {
         "year": "2026",
-        "body": "Deze site live. Public roadmap, klantportaal, en alles wat ik aan klanten lever ook hier laten zien."
+        "type": "launch",
+        "body": "Deze site live — public roadmap, klantportaal, en alles wat ik aan klanten lever ook hier zichtbaar. Niets verstoppen."
       }
     ],
     "firstClientQuote": {
       "quote": "Het scheelt me een halve dag per week. Maar het echte verschil is dat ik 's ochtends niet meer in paniek inlog om te checken of er een dubbele boeking tussen zit.",
-      "attribution": "— Eigenaar · Caravanverhuur Spanje · klant sinds 2024"
+      "attribution": "— Eigenaar · Caravanverhuur Spanje · klant sinds 2024",
+      "caseLabel": "Lees het hele verhaal"
     },
-    "ctaTitle": "Praat direct met de ontwikkelaar.",
-    "ctaBody": "Geen accountmanager. Geen verkoopgesprek. Dertig minuten, gratis.",
-    "ctaButton": "Plan een gesprek"
+    "ctaTitle": "Vertel me je verhuursituatie.",
+    "ctaBody": "Stuur me hoe je het nu doet en waar het knelt — binnen een dag een eerlijk antwoord. Past het, dan plannen we dertig minuten in. Geen pitch-deck, geen accountmanager.",
+    "ctaButton": "Plan een gesprek",
+    "ctaSecondary": "Bekijk eerst het werk"
   },
   "verhuur": {
     "eyebrow": "voor verhuurbedrijven",
