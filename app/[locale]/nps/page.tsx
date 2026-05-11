@@ -5,7 +5,10 @@ import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { npsResponses, projects } from "@/lib/db/schema";
 import { routing } from "@/i18n/routing";
-import { NpsForm } from "@/components/portal/NpsForm";
+import { NpsForm, PromoterBlock } from "@/components/portal/NpsForm";
+import { ensureReferralCode } from "@/lib/db/queries/referrals";
+
+const SITE_URL = process.env.AUTH_URL ?? "https://webstability.eu";
 
 /**
  * Publieke NPS-antwoord-page. Token komt mee in de mail-link en is
@@ -47,6 +50,7 @@ export default async function NpsPage({
       respondedAt: true,
       score: true,
       projectId: true,
+      organizationId: true,
     },
   });
   if (!row) {
@@ -67,6 +71,29 @@ export default async function NpsPage({
   const projectName = project?.name ?? "";
 
   const alreadyAnswered = row.respondedAt !== null;
+  const isPromoter = (row.score ?? -1) >= 9;
+
+  // Referral-link voor het promotor-blok — alleen ophalen als relevant
+  // (nieuwe respons, of al beantwoord met ≥ 9). ensureReferralCode is
+  // idempotent en maakt hooguit één rij aan.
+  let referralLink: string | null = null;
+  if (!alreadyAnswered || isPromoter) {
+    try {
+      const code = await ensureReferralCode(row.organizationId);
+      referralLink = `${SITE_URL}/${locale === "es" ? "es/" : ""}refer/${code}`;
+    } catch {
+      referralLink = null;
+    }
+  }
+
+  const promoterStrings = {
+    title: t("promoter.title"),
+    body: t("promoter.body"),
+    linkLabel: t("promoter.linkLabel"),
+    copyLabel: t("promoter.copyLabel"),
+    copiedLabel: t("promoter.copiedLabel"),
+    fallback: t("promoter.fallback"),
+  };
 
   return (
     <main className="dotted-bg flex min-h-screen items-start justify-center px-6 py-12 md:items-center">
@@ -78,9 +105,16 @@ export default async function NpsPage({
           {alreadyAnswered ? t("thanksTitle") : t("title")}
         </h1>
         {alreadyAnswered ? (
-          <p className="mt-4 text-[15px] leading-[1.6] text-(--color-muted)">
-            {t("thanksBody", { score: row.score ?? 0 })}
-          </p>
+          <>
+            <p className="mt-4 text-[15px] leading-[1.6] text-(--color-muted)">
+              {t("thanksBody", { score: row.score ?? 0 })}
+            </p>
+            {isPromoter ? (
+              <div className="mt-6">
+                <PromoterBlock strings={promoterStrings} referralLink={referralLink} />
+              </div>
+            ) : null}
+          </>
         ) : (
           <>
             <p className="mt-4 max-w-prose text-[15px] leading-[1.6] text-(--color-muted)">
@@ -99,6 +133,8 @@ export default async function NpsPage({
                 errorToast: t("errorToast"),
                 successToast: t("successToast"),
               }}
+              promoterStrings={promoterStrings}
+              referralLink={referralLink}
               locale={lang}
             />
           </>

@@ -1738,7 +1738,15 @@
     "thanksTitle": "¡Gracias!",
     "thanksBody": "Antes diste un {score}/10. Si quieres añadir algo más, escríbeme un email.",
     "invalidTitle": "Este enlace no es válido",
-    "invalidBody": "Quizá ya se ha usado o ha caducado. Sin preocupación — si hay una nueva pregunta, recibirás otro email."
+    "invalidBody": "Quizá ya se ha usado o ha caducado. Sin preocupación — si hay una nueva pregunta, recibirás otro email.",
+    "promoter": {
+      "title": "¿Conoces a alguien con el mismo problema con el que empezamos?",
+      "body": "Comparte tu enlace. Si esa persona se hace cliente, ambos recibís 250 € de descuento en la suscripción Care durante seis meses. Sin formularios, sin líos — solo reenvía tu enlace.",
+      "linkLabel": "Tu enlace para compartir",
+      "copyLabel": "Copiar enlace",
+      "copiedLabel": "¡Copiado!",
+      "fallback": "El enlace estará disponible en breve — actualiza la página."
+    }
   },
   "portal": {
     "nav": {

@@ -1728,7 +1728,15 @@
     "thanksTitle": "Bedankt!",
     "thanksBody": "Je gaf eerder een {score}/10. Mocht je nog iets willen toevoegen — stuur me een mailtje.",
     "invalidTitle": "Deze link is niet geldig",
-    "invalidBody": "Wellicht is hij al gebruikt of verlopen. Geen zorgen — als er een nieuwe vraag komt, krijg je weer een mail."
+    "invalidBody": "Wellicht is hij al gebruikt of verlopen. Geen zorgen — als er een nieuwe vraag komt, krijg je weer een mail.",
+    "promoter": {
+      "title": "Ken je iemand met hetzelfde probleem als waar wij voor jou aan begonnen?",
+      "body": "Deel je link. Wordt die persoon klant, dan krijgen jullie allebei €250 korting op het Care-abonnement, zes maanden lang. Geen formulier, geen gedoe — gewoon je link doorsturen.",
+      "linkLabel": "Jouw deelbare link",
+      "copyLabel": "Kopieer link",
+      "copiedLabel": "Gekopieerd!",
+      "fallback": "De link komt zo beschikbaar — even verversen."
+    }
   },
   "portal": {
     "nav": {
