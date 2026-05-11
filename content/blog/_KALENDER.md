@@ -36,6 +36,15 @@ of een andere blog-post).
 - ✅ software-a-medida-pymes (ES) — vertaling van mkb-maatwerk-software-wanneer-wel-niet
 - ✅ conectar-contabilidad-sistema-alquiler (ES) — vertaling van boekhouding-koppelen-aan-verhuursysteem
 - ✅ glosario-software-alquiler (ES) — vertaling van verhuursoftware-begrippen-woordenlijst
+- ✅ sistema-de-alquiler-dos-idiomas (ES) — vertaling van verhuursysteem-twee-talen
+- ✅ booqable-vs-a-medida (ES) — vertaling van booqable-vs-maatwerk
+- ✅ alternativa-tommy (ES) — vertaling van tommy-alternatief-nederlands
+- ✅ comparar-software-alquiler-2026 (ES) — vertaling van verhuursoftware-vergelijken-2026
+- ✅ cuanto-cuesta-sistema-reservas-a-medida (ES) — vertaling van boekingssysteem-laten-bouwen-kosten
+- ✅ portal-cliente-para-empresa-alquiler (ES) — vertaling van klantportaal-voor-verhuurbedrijf
+- ✅ dashboards-mobile-first (ES) — vertaling van mobile-first-dashboards
+
+**Status: alle NL-posts (16) hebben nu een ES-vertaling (16). Volledig in sync.**
 
 ## Te schrijven (prioriteit hoog → laag)
 _(Alle geplande posts + ES-vertalingen zijn geschreven. Volgende ideeën —
@@ -43,8 +52,7 @@ vrij in te vullen, ~1 per week, NL-first met ES-vertaling 1-2 weken later:)_
 - **booqable-prijzen-uitgelegd** — "booqable prijs", "booqable kosten" — wat Booqable echt kost over de jaren, wanneer het te duur wordt.
 - **verhuurbedrijf-opschalen-van-10-naar-50-objecten** — "verhuurbedrijf groeien", "meer objecten verhuren" — wat er breekt bij groei, wat je systeem dan moet kunnen.
 - **online-betalingen-voor-verhuur** — "ideal verhuur", "stripe verhuursysteem" — betaalprovider kiezen, borg-autorisatie, NL+ES betaalmethodes.
-- ES-vertaling van **verhuursysteem-twee-talen** ontbreekt nog (de NL-posts verwijzen ernaar).
-- ES-vertalingen van verhuursoftware-vergelijken-2026, boekingssysteem-laten-bouwen-kosten, klantportaal-voor-verhuurbedrijf, booqable-vs-maatwerk, tommy-alternatief-nederlands, mobile-first-dashboards.
+- **avantio-alternatief-nederlands** (NL) — er is wel een ES-versie, geen NL.
 
 ## Werkwijze per post
 1. Schrijf in `content/blog/nl/[slug].mdx` met volledige frontmatter.
