@@ -1254,6 +1254,7 @@
       "eyebrow": "plataformas que operamos",
       "title": "Líneas de producto",
       "lede": "Tres plataformas que mantenemos en marcha para el mercado NL+ES. Otras empresas reciben la misma base como punto de partida — primera versión funcional en 4 semanas a precio fijo 5–8 k €, después ampliación vía Atelier + Build Custom.",
+      "viewCaseLabel": "Ver caso completo",
       "items": [
         {
           "anchor": "caravanverhuurspanje",
@@ -1273,6 +1274,7 @@
           "anchor": "caravanreparatiespanje",
           "name": "Caravanreparatiespanje",
           "url": "https://caravanreparatiespanje.vercel.app",
+          "detailHref": "/es/cases/caravanreparatiespanje",
           "logoUrl": "https://u.cubeupload.com/laurensbos/Ontwerpzondertitel1.png",
           "tagline": "Plataforma de reparación · activa en España",
           "what": "Los clientes reportan su reparación online. La orden llega directa a iPads en el taller — sin papeles sueltos, los mecánicos ven qué hay que hacer en cada vehículo y actualizan el estado mientras trabajan.",
@@ -1424,6 +1426,80 @@
           "body": "Primera llamada gratis — treinta minutos, sin presentación comercial. Al final sabes si encaja y cuál es la ruta más corta.",
           "primary": "Reserva una llamada",
           "secondary": "Ver la página de alquiler"
+        },
+        "back": "← Ver los demás casos"
+      },
+      "caravanreparatie": {
+        "metaTitle": "Caravanreparatiespanje — portal de reparación para el taller",
+        "metaDescription": "Cómo un taller de reparación sustituyó el parte de trabajo en papel por un flujo en iPad: los clientes lo notifican online, la orden llega directa al taller, los mecánicos actualizan el estado mientras trabajan. ~80 reparaciones al mes, sin papel.",
+        "eyebrow": "caso · portal de reparación",
+        "title": "Caravanreparatiespanje — del *parte de trabajo en papel* al flujo en iPad",
+        "lede": "Un taller donde las reparaciones llegaban por teléfono, correo y notas sueltas. Los mecánicos iban y venían al mostrador para la siguiente orden, los clientes llamaban para el estado, y la administración por la noche era una pila de papel que transcribir. Ahora: el cliente lo notifica online, la orden está en los iPads del taller, el estado se actualiza mientras se trabaja.",
+        "videoUrl": null,
+        "url": "https://caravanreparatiespanje.vercel.app",
+        "metrics": [
+          { "value": "~80", "label": "reparaciones al mes procesadas" },
+          { "value": "0", "label": "partes en papel desde el lanzamiento" },
+          { "value": "4", "label": "semanas precio fijo build" }
+        ],
+        "problem": {
+          "eyebrow": "el problema",
+          "title": "El parte de trabajo era un papelito que se perdía.",
+          "lede": "Teléfono, correo, una nota en el mostrador — ahí empezaba cada reparación. Sin visión de qué había ese día, sin estado que el cliente pudiera consultar solo, y la administración después era trabajo doble.",
+          "items": [
+            {
+              "title": "Los mecánicos iban al mostrador por la siguiente orden",
+              "body": "¿Terminada una reparación? De vuelta al mostrador, mirar qué nota está encima. Sin prioridad visible, sin idea de qué más entraba."
+            },
+            {
+              "title": "Los clientes llamaban para el estado",
+              "body": "\"¿Ya está lista mi caravana?\" — una llamada que alguien del taller tenía que atender, a menudo sin saberlo con seguridad."
+            },
+            {
+              "title": "La administración era transcribir papel por la noche",
+              "body": "¿Qué se hizo, qué piezas, cuántas horas? Estaba en la nota — si no se había perdido — y luego había que pasarlo a la herramienta de facturación y a la contabilidad."
+            }
+          ]
+        },
+        "scope": {
+          "eyebrow": "qué construimos",
+          "title": "Un portal, tres caras: cliente, mostrador, taller.",
+          "lede": "Los clientes notifican su reparación online. La orden llega al mostrador y aparece en los iPads del taller. Los mecánicos ven qué hay que hacer, marcan pasos, añaden piezas y horas. El cliente sigue el estado. Al entregar, la factura está lista.",
+          "items": [
+            "Formulario público de notificación para clientes (NL + ES)",
+            "Vista de mostrador: reparaciones entrantes, prioridad, planificación",
+            "Flujo en iPad para el taller: orden, pasos, piezas, horas",
+            "Seguimiento de estado que el cliente puede consultar solo",
+            "Parte de trabajo + factura automáticos al entregar",
+            "Hosting + monitorización + mantenimiento mensual"
+          ]
+        },
+        "result": {
+          "eyebrow": "el resultado",
+          "title": "Taller sin papel, el cliente sigue el estado solo.",
+          "lede": "Desde el lanzamiento: ~80 reparaciones al mes procesadas, sin parte de trabajo en papel, sin llamadas de estado al taller. La administración no es una tarea nocturna — al entregar ya está todo. Y el portal crece: una segunda ubicación o un servicio extra va por pasos, no en un proyecto nuevo."
+        },
+        "quote": {
+          "text": "Las órdenes de reparación llegan ahora directas a los iPads del taller. Se acabaron los papeles sueltos: los mecánicos ven qué hay que hacer y actualizan el estado mientras trabajan. La administración ya no es una tarea nocturna.",
+          "name": "Propietario",
+          "role": "Caravanreparatie Spanje"
+        },
+        "stack": {
+          "eyebrow": "qué hay debajo",
+          "items": [
+            "Next.js 16",
+            "Postgres (Neon)",
+            "UI de parte en iPad",
+            "Seguimiento de estado",
+            "Notificaciones",
+            "Vercel hosting"
+          ]
+        },
+        "cta": {
+          "title": "¿Un taller o un servicio con el mismo caos?",
+          "body": "Primera llamada gratis — treinta minutos, sin presentación comercial. Al final sabes si un portal a medida encaja y cuál es la ruta más corta.",
+          "primary": "Reserva una llamada",
+          "secondary": "Ver todos los servicios"
         },
         "back": "← Ver los demás casos"
       }

@@ -40,6 +40,7 @@ export const routing = defineRouting({
     },
     "/cases": "/cases",
     "/cases/caravanverhuurspanje": "/cases/caravanverhuurspanje",
+    "/cases/caravanreparatiespanje": "/cases/caravanreparatiespanje",
     "/status": {
       nl: "/status",
       es: "/estado",

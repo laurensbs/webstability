@@ -1248,6 +1248,7 @@
       "eyebrow": "platforms die we zelf draaien",
       "title": "Productlijnen",
       "lede": "Drie platforms die we zelf in de lucht houden voor de NL+ES markt. Andere bedrijven krijgen dezelfde basis als startpunt — eerste werkende versie in 4 weken voor €5–8k vaste prijs, daarna doorbouwen via Atelier + Build Custom.",
+      "viewCaseLabel": "Bekijk volledig case",
       "items": [
         {
           "anchor": "caravanverhuurspanje",
@@ -1267,6 +1268,7 @@
           "anchor": "caravanreparatiespanje",
           "name": "Caravanreparatiespanje",
           "url": "https://caravanreparatiespanje.vercel.app",
+          "detailHref": "/cases/caravanreparatiespanje",
           "logoUrl": "https://u.cubeupload.com/laurensbos/Ontwerpzondertitel1.png",
           "tagline": "Reparatieplatform · live in Spanje",
           "what": "Klanten melden hun reparatie online. De order belandt direct op iPads in de werkplaats — geen losse papiertjes meer, monteurs zien wat er aan welk voertuig moet gebeuren en updaten de status terwijl ze werken.",
@@ -1414,6 +1416,80 @@
           "body": "Eerste gesprek is gratis — dertig minuten, geen pitch-deck. Aan het einde weet je of het bij je past en wat de kortste route is.",
           "primary": "Plan een kennismaking",
           "secondary": "Bekijk de verhuur-pagina"
+        },
+        "back": "← Bekijk de andere cases"
+      },
+      "caravanreparatie": {
+        "metaTitle": "Caravanreparatiespanje — reparatie-portaal voor de werkplaats",
+        "metaDescription": "Hoe een reparatiebedrijf de papieren werkbon vervangen heeft door een iPad-flow: klanten melden online, de order belandt direct in de werkplaats, monteurs updaten de status terwijl ze werken. ~80 reparaties per maand, papierloos.",
+        "eyebrow": "case · reparatie-portaal",
+        "title": "Caravanreparatiespanje — van *papieren werkbon* naar iPad-flow",
+        "lede": "Een werkplaats waar reparaties binnenkwamen via telefoon, mail en losse briefjes. Monteurs liepen heen en weer naar de balie voor de volgende order, klanten belden voor de status, en de administratie was 's avonds een stapel papier overtypen. Nu: klant meldt online, de order staat op de iPads in de werkplaats, status wordt geüpdatet terwijl er gewerkt wordt.",
+        "videoUrl": null,
+        "url": "https://caravanreparatiespanje.vercel.app",
+        "metrics": [
+          { "value": "~80", "label": "reparaties per maand verwerkt" },
+          { "value": "0", "label": "papieren werkbonnen sinds livegang" },
+          { "value": "4", "label": "weken vaste prijs build" }
+        ],
+        "problem": {
+          "eyebrow": "het probleem",
+          "title": "De werkbon was een papiertje dat kwijtraakte.",
+          "lede": "Telefoon, mail, een briefje op de balie — daar begon elke reparatie. Geen overzicht van wat er die dag moest, geen status die de klant zelf kon checken, en de administratie achteraf was dubbel werk.",
+          "items": [
+            {
+              "title": "Monteurs liepen voor de volgende order naar de balie",
+              "body": "Klaar met een klus? Terug naar de balie, kijken welk briefje bovenop ligt. Geen prioriteit zichtbaar, geen idee wat er nog binnenkwam."
+            },
+            {
+              "title": "Klanten belden voor de status",
+              "body": "\"Is mijn caravan al klaar?\" — een telefoontje dat iemand van de werkvloer moest beantwoorden, vaak zonder het zeker te weten."
+            },
+            {
+              "title": "Administratie was 's avonds papier overtypen",
+              "body": "Wat is er gedaan, welke onderdelen, hoeveel uur? Stond op het briefje — als het niet kwijt was — en moest dan in de facturentool en de boekhouding."
+            }
+          ]
+        },
+        "scope": {
+          "eyebrow": "wat we bouwden",
+          "title": "Eén portaal, drie kanten: klant, balie, werkvloer.",
+          "lede": "Klanten melden hun reparatie online. De order komt binnen bij de balie en verschijnt op de iPads in de werkplaats. Monteurs zien wat er moet gebeuren, vinken stappen af, voegen onderdelen en uren toe. Klant volgt de status. Bij oplevering is de factuur klaar.",
+          "items": [
+            "Publiek aanmeld-formulier voor klanten (NL + ES)",
+            "Balie-overzicht: binnenkomende reparaties, prioriteit, planning",
+            "iPad-flow voor de werkvloer: order, stappen, onderdelen, uren",
+            "Status-tracking die de klant zelf kan volgen",
+            "Automatische werkbon + factuur bij oplevering",
+            "Hosting + monitoring + maandelijks onderhoud"
+          ]
+        },
+        "result": {
+          "eyebrow": "het resultaat",
+          "title": "Papierloze werkplaats, klant volgt zelf.",
+          "lede": "Sinds livegang: ~80 reparaties per maand verwerkt, geen papieren werkbon meer, geen status-telefoontjes meer naar de werkvloer. De administratie is geen avondklus — bij oplevering staat alles er al. En het portaal groeit mee: een tweede locatie of een extra dienst gaat in stappen, niet in een nieuw project."
+        },
+        "quote": {
+          "text": "De reparatie-orders komen nu direct op de iPads in de werkplaats. Geen losse papiertjes meer, monteurs zien wat er moet gebeuren en updaten de status terwijl ze werken. De administratie is geen avondklus meer.",
+          "name": "Eigenaar",
+          "role": "Caravanreparatie Spanje"
+        },
+        "stack": {
+          "eyebrow": "wat eronder zit",
+          "items": [
+            "Next.js 16",
+            "Postgres (Neon)",
+            "iPad-first werkbon-UI",
+            "Status-tracking",
+            "Notificaties",
+            "Vercel hosting"
+          ]
+        },
+        "cta": {
+          "title": "Een werkplaats of dienstverlening met dezelfde chaos?",
+          "body": "Eerste gesprek is gratis — dertig minuten, geen pitch-deck. Aan het einde weet je of een portaal op maat bij je past en wat de kortste route is.",
+          "primary": "Plan een kennismaking",
+          "secondary": "Bekijk alle diensten"
         },
         "back": "← Bekijk de andere cases"
       }

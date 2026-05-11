@@ -9,6 +9,7 @@ type RouteKey =
   | "faq"
   | "cases"
   | "caseCaravanverhuur"
+  | "caseCaravanreparatie"
   | "over"
   | "prijzen"
   | "contact"
@@ -59,6 +60,11 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
       title: "Caravanverhuurspanje — verhuurplatform in 4 weken",
       description:
         "Hoe een Nederlandse verhuurder met 12 caravans + 4 stacaravans op de Costa Brava van Excel + dubbele boekingen naar één geïntegreerd platform ging — vaste prijs, vier weken levering.",
+    },
+    caseCaravanreparatie: {
+      title: "Caravanreparatiespanje — reparatie-portaal voor de werkplaats",
+      description:
+        "Van papieren werkbon naar iPad-flow: klanten melden online, de order belandt direct in de werkplaats, monteurs updaten de status terwijl ze werken. ~80 reparaties per maand, papierloos.",
     },
     over: {
       title: "Over Laurens",
@@ -129,6 +135,11 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
       title: "Caravanverhuurspanje — plataforma de alquiler en 4 semanas",
       description:
         "Cómo un alquilador neerlandés con 12 caravanas y 4 mobile-homes en la Costa Brava pasó de Excel + reservas duplicadas a una plataforma integrada — precio fijo, entrega en cuatro semanas.",
+    },
+    caseCaravanreparatie: {
+      title: "Caravanreparatiespanje — portal de reparación para el taller",
+      description:
+        "Del parte de trabajo en papel al flujo en iPad: los clientes lo notifican online, la orden llega directa al taller, los mecánicos actualizan el estado mientras trabajan. ~80 reparaciones al mes, sin papel.",
     },
     over: {
       title: "Sobre Laurens",
@@ -442,6 +453,10 @@ const ROUTE_PATHS: Record<RouteKey, { nl: string; es: string }> = {
   caseCaravanverhuur: {
     nl: "/cases/caravanverhuurspanje",
     es: "/es/cases/caravanverhuurspanje",
+  },
+  caseCaravanreparatie: {
+    nl: "/cases/caravanreparatiespanje",
+    es: "/es/cases/caravanreparatiespanje",
   },
   over: { nl: "/over", es: "/es/sobre" },
   prijzen: { nl: "/prijzen", es: "/es/precios" },

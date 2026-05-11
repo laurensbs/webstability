@@ -52,6 +52,7 @@ type ClientCase = {
   anchor: string;
   name: string;
   url: string;
+  detailHref?: string;
   logoUrl?: string;
   tagline: string;
   what: string;
@@ -261,14 +262,24 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                         {item.stack}
                       </p>
                     </div>
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[14px] font-medium text-(--color-accent) hover:underline"
-                    >
-                      {item.cta} <ExternalLink className="h-3.5 w-3.5" />
-                    </a>
+                    <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-6 text-[14px] font-medium">
+                      {item.detailHref ? (
+                        <Link
+                          href={{ pathname: item.detailHref as never }}
+                          className="inline-flex items-center gap-1.5 text-(--color-accent) hover:underline"
+                        >
+                          {t("productLines.viewCaseLabel")} <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      ) : null}
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-(--color-accent) hover:underline"
+                      >
+                        {item.cta} <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    </div>
                   </div>
                 </article>
               </RevealOnScroll>
@@ -373,14 +384,24 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                     <p className="mt-4 border-l-2 border-(--color-accent) pl-4 font-serif text-[17px] italic">
                       {item.result}
                     </p>
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[14px] font-medium text-(--color-accent) hover:underline"
-                    >
-                      {item.cta} <ExternalLink className="h-3.5 w-3.5" />
-                    </a>
+                    <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-6 text-[14px] font-medium">
+                      {item.detailHref ? (
+                        <Link
+                          href={{ pathname: item.detailHref as never }}
+                          className="inline-flex items-center gap-1.5 text-(--color-accent) hover:underline"
+                        >
+                          {t("productLines.viewCaseLabel")} <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      ) : null}
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-(--color-accent) hover:underline"
+                      >
+                        {item.cta} <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    </div>
                   </div>
                 </article>
               </RevealOnScroll>
