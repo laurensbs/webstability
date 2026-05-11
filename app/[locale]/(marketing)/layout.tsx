@@ -6,6 +6,7 @@ import { Navigation } from "@/components/marketing/Navigation";
 import { Footer } from "@/components/marketing/Footer";
 import { MobileStickyCta } from "@/components/marketing/MobileStickyCta";
 import { MarketingScrollPopup } from "@/components/marketing/MarketingPopups";
+import { ConsoleWink } from "@/components/marketing/ConsoleWink";
 import { AmbientCanvas } from "@/components/r3f/AmbientCanvas";
 import { BodyBackgroundToggle } from "@/components/r3f/BodyBackgroundToggle";
 
@@ -42,6 +43,7 @@ export default async function MarketingLayout({
       <Footer />
       <MobileStickyCta planLabel={tNav("planCall")} whatsappLabel={tNav("whatsapp")} />
       <MarketingScrollPopup locale={locale} />
+      <ConsoleWink />
     </>
   );
 }
