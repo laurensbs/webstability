@@ -73,6 +73,23 @@ export default function proxy(req: NextRequest) {
     return NextResponse.next();
   }
 
+  // /refer/[code] — bezoeker komt via een referral-link binnen. Zet een
+  // 30-dagen cookie met de code zodat de Stripe-checkout 'm later kan
+  // oppikken, en laat next-intl de pagina daarna serveren. Cookie wordt
+  // hier gezet (proxy = enige plek waar het kan vóór de page-render).
+  const referMatch = url.pathname.match(/^\/(?:nl\/|es\/)?refer\/([A-Za-z0-9]{4,32})$/);
+  if (referMatch) {
+    const code = referMatch[1]!;
+    const res = intlProxy(req);
+    res.cookies.set("ws_ref", code, {
+      maxAge: 30 * 24 * 60 * 60,
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+    });
+    return res;
+  }
+
   // Voeg `x-pathname` header toe voor de portal-layout die wil weten of
   // de huidige route /portal/intake is (om de gate-redirect te voorkomen).
   // Edge-runtime kan geen DB lezen, dus de daadwerkelijke gate-logica zit

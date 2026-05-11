@@ -4,6 +4,17 @@
     "switchToOther": "Wissel naar Nederlands",
     "skipToContent": "Ir al contenido"
   },
+  "refer": {
+    "eyebrow": "recomendado por un cliente",
+    "headlineNamed": "{name} recomienda Webstability",
+    "headlineGeneric": "Te han recomendado Webstability",
+    "lede": "Alguien que trabaja con nosotros pensó que valía la pena darte el nombre. Como agradecimiento: 250 € de descuento en la suscripción Care durante seis meses — para ti y para quien te recomendó.",
+    "benefit1": "Tu marca, tu dominio, tu checkout — ningún logo de plataforma",
+    "benefit2": "Precio fijo por adelantado, entrega en cuatro semanas, sin discusiones de horas extra",
+    "benefit3": "Contacto directo con el desarrollador, sin gestor de cuenta de por medio",
+    "ctaCall": "Reserva una llamada",
+    "ctaPricing": "Ver las suscripciones"
+  },
   "popups": {
     "scrollSpar": {
       "eyebrow": "¿charlamos?",

@@ -802,6 +802,41 @@ export const leadActivity = pgTable(
   (t) => [index("lead_activity_lead_time_idx").on(t.leadId, t.createdAt)],
 );
 
+// --- referrals (fase 3 — referral-tracking met Stripe-coupon) ----------
+
+/**
+ * Eén rij per klant-organisatie met een unieke share-code. De code
+ * verschijnt op /portal/dashboard (ReferralCard) als deelbare link
+ * /refer/[code]. Wie via die link checkout doet, krijgt automatisch
+ * de Stripe-coupon REFERRAL_250; `convertedOrgId` + `discountAppliedAt`
+ * worden gezet door de Stripe-webhook bij checkout.session.completed.
+ *
+ * Eén code per referrer (UNIQUE op referrerOrgId). `convertedOrgId`
+ * nullable — pending totdat iemand converteert. Bij meerdere
+ * conversies van dezelfde code: alleen de eerste wordt geregistreerd
+ * (de korting geldt per gebruik in Stripe, maar onze tracking houdt
+ * één referrer→referred-relatie bij; meer is voor later).
+ */
+export const referrals = pgTable(
+  "referrals",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    code: text("code").notNull().unique(),
+    referrerOrgId: uuid("referrer_org_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" })
+      .unique(),
+    convertedOrgId: uuid("converted_org_id").references(() => organizations.id, {
+      onDelete: "set null",
+    }),
+    discountAppliedAt: timestamp("discount_applied_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [index("referrals_code_idx").on(t.code)],
+);
+
 // --- nps_responses (sprint F — feedback na 30 + 180 dagen) -------------
 
 /**
@@ -896,6 +931,19 @@ export const organizationsRelations = relations(organizations, ({ one, many }) =
     references: [intakeResponses.organizationId],
   }),
   bookings: many(bookings),
+}));
+
+export const referralsRelations = relations(referrals, ({ one }) => ({
+  referrerOrg: one(organizations, {
+    fields: [referrals.referrerOrgId],
+    references: [organizations.id],
+    relationName: "referral_referrer",
+  }),
+  convertedOrg: one(organizations, {
+    fields: [referrals.convertedOrgId],
+    references: [organizations.id],
+    relationName: "referral_converted",
+  }),
 }));
 
 export const intakeResponsesRelations = relations(intakeResponses, ({ one }) => ({

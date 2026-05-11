@@ -4,6 +4,17 @@
     "switchToOther": "Cambiar a español",
     "skipToContent": "Direct naar inhoud"
   },
+  "refer": {
+    "eyebrow": "aanbevolen door een klant",
+    "headlineNamed": "{name} beveelt Webstability aan",
+    "headlineGeneric": "Je bent doorverwezen naar Webstability",
+    "lede": "Iemand die met ons werkt vond het de moeite waard om je naam te laten vallen. Als dank: €250 korting op het Care-abonnement, zes maanden lang — voor jou én voor degene die je doorverwees.",
+    "benefit1": "Eigen merk, eigen domein, eigen checkout — geen platform-logo",
+    "benefit2": "Vaste prijs vooraf, vier weken levering, geen meeruren-discussies",
+    "benefit3": "Direct contact met de ontwikkelaar, geen accountmanager ertussen",
+    "ctaCall": "Plan een kennismaking",
+    "ctaPricing": "Bekijk de abonnementen"
+  },
   "popups": {
     "scrollSpar": {
       "eyebrow": "even sparren?",

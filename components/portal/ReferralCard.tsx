@@ -1,12 +1,19 @@
-import { Gift, ArrowRight } from "lucide-react";
+import { Gift } from "lucide-react";
+import { getMyReferralCode } from "@/app/actions/referrals";
+import { ReferralShareButton } from "@/components/portal/ReferralShareButton";
+
+const APP_URL = process.env.AUTH_URL ?? "https://webstability.eu";
 
 /**
  * Verschijnt op /portal/dashboard zodra een klant minstens 90 dagen
- * geleden live is gegaan. Strategie: persoonlijk vragen, niet
- * automatiseren — vandaar mailto met pre-gevulde subject. Geen
- * tracking, geen formulier.
+ * geleden live is gegaan. Strategie: persoonlijk vragen op het moment
+ * dat het systeem zijn waarde heeft bewezen.
+ *
+ * Toont een deelbare /refer/[code]-link met kopieer-knop. Wie via die
+ * link checkout doet, krijgt automatisch de Stripe-coupon REFERRAL_250;
+ * de korting wordt door de Stripe-webhook geregeld.
  */
-export function ReferralCard({
+export async function ReferralCard({
   projectName,
   daysSinceLive,
   locale,
@@ -15,24 +22,29 @@ export function ReferralCard({
   daysSinceLive: number;
   locale: "nl" | "es";
 }) {
+  const code = await getMyReferralCode();
+  const link = code ? `${APP_URL}/${locale === "es" ? "es/" : ""}refer/${code}` : null;
+
   const copy =
     locale === "es"
       ? {
           eyebrow: "pequeño favor",
           title: `${projectName} lleva ${daysSinceLive} días en vivo.`,
-          body: "¿Conoces a alguien con el mismo problema con el que empezamos? Si lo recomiendas y se hace cliente, ambos recibís 250 € de descuento sobre Care durante seis meses.",
-          cta: "Recomendar a alguien",
+          body: "¿Conoces a alguien con el mismo problema con el que empezamos? Comparte tu enlace — si se hace cliente, ambos recibís 250 € de descuento sobre Care durante seis meses.",
+          linkLabel: "Tu enlace para compartir",
+          copyLabel: "Copiar enlace",
+          copiedLabel: "¡Copiado!",
+          fallback: "El enlace estará disponible en breve.",
         }
       : {
           eyebrow: "klein verzoek",
           title: `${projectName} draait al ${daysSinceLive} dagen live.`,
-          body: "Ken je iemand met hetzelfde probleem als waar wij voor jou aan begonnen? Als je 'm doorverwijst en die persoon klant wordt, krijgen jullie allebei €250 korting op Care voor zes maanden.",
-          cta: "Iemand doorverwijzen",
+          body: "Ken je iemand met hetzelfde probleem als waar wij voor jou aan begonnen? Deel je link — wordt die persoon klant, dan krijgen jullie allebei €250 korting op Care voor zes maanden.",
+          linkLabel: "Jouw deelbare link",
+          copyLabel: "Kopieer link",
+          copiedLabel: "Gekopieerd!",
+          fallback: "De link komt zo beschikbaar.",
         };
-
-  const mailto = `mailto:hello@webstability.eu?subject=${encodeURIComponent(
-    `Doorverwijzing — ${projectName}`,
-  )}`;
 
   return (
     <article className="relative overflow-hidden rounded-[16px] border border-(--color-border) bg-(--color-surface) p-6">
@@ -52,13 +64,21 @@ export function ReferralCard({
             {copy.title}
           </h3>
           <p className="mt-3 text-[14px] leading-[1.6] text-(--color-muted)">{copy.body}</p>
-          <a
-            href={mailto}
-            className="mt-4 inline-flex items-center gap-1.5 font-mono text-[11px] tracking-widest text-(--color-accent) uppercase transition-colors hover:text-(--color-wine)"
-          >
-            {copy.cta}
-            <ArrowRight className="h-3 w-3" strokeWidth={2.5} />
-          </a>
+
+          {link ? (
+            <div className="mt-4">
+              <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                {copy.linkLabel}
+              </p>
+              <ReferralShareButton
+                link={link}
+                copyLabel={copy.copyLabel}
+                copiedLabel={copy.copiedLabel}
+              />
+            </div>
+          ) : (
+            <p className="mt-4 font-mono text-[11px] text-(--color-muted)">{copy.fallback}</p>
+          )}
         </div>
       </div>
     </article>

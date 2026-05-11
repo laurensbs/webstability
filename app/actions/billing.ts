@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -13,8 +14,25 @@ import {
   type BuildExtensionId,
 } from "@/lib/stripe";
 import { DemoReadonlyError } from "@/lib/demo-guard";
+import { getReferralByCode } from "@/lib/db/queries/referrals";
 
 const APP_URL = process.env.AUTH_URL ?? "http://localhost:3000";
+const REFERRAL_COUPON = process.env.STRIPE_REFERRAL_COUPON ?? "REFERRAL_250";
+
+/**
+ * Leest de ws_ref-cookie (gezet door de proxy bij /refer/[code]) en
+ * geeft de geldige code terug — of `null` als er geen cookie is, de
+ * code niet bestaat, of de referral al geconverteerd is. Wordt door
+ * de checkout-flows gebruikt om de Stripe-coupon + metadata te zetten.
+ */
+async function activeReferralCode(): Promise<string | null> {
+  const store = await cookies();
+  const code = store.get("ws_ref")?.value?.trim();
+  if (!code) return null;
+  const referral = await getReferralByCode(code);
+  if (!referral || referral.convertedOrgId) return null;
+  return referral.code;
+}
 
 async function requireOwner() {
   const session = await auth();
@@ -65,6 +83,8 @@ export async function startAnonCheckout(formData: FormData) {
   const priceId = priceIdFor(plan);
   if (!priceId) throw new Error("price_not_configured");
 
+  const referralCode = await activeReferralCode();
+
   const session = await stripe().checkout.sessions.create({
     mode: "subscription",
     line_items: [{ price: priceId, quantity: 1 }],
@@ -73,10 +93,13 @@ export async function startAnonCheckout(formData: FormData) {
     // we 'm in de webhook kunnen koppelen aan een nieuwe org.
     customer_creation: "always",
     billing_address_collection: "auto",
+    ...(referralCode ? { discounts: [{ coupon: REFERRAL_COUPON }] } : {}),
     success_url: `${APP_URL}/checkout/done?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${APP_URL}/prijzen?checkout=cancelled`,
-    metadata: { plan, anon: "true" },
-    subscription_data: { metadata: { plan, anon: "true" } },
+    metadata: { plan, anon: "true", ...(referralCode ? { referral_code: referralCode } : {}) },
+    subscription_data: {
+      metadata: { plan, anon: "true", ...(referralCode ? { referral_code: referralCode } : {}) },
+    },
   });
 
   if (!session.url) throw new Error("no_checkout_url");
@@ -101,16 +124,28 @@ export async function startCareCheckout(formData: FormData) {
     throw e;
   }
   const customerId = await ensureStripeCustomer(org.id, org.name, user.email);
+  const referralCode = await activeReferralCode();
 
   const session = await stripe().checkout.sessions.create({
     mode: "subscription",
     customer: customerId,
     line_items: [{ price: priceId, quantity: 1 }],
+    ...(referralCode ? { discounts: [{ coupon: REFERRAL_COUPON }] } : {}),
     success_url: `${APP_URL}/portal/dashboard?checkout=success`,
     cancel_url: `${APP_URL}/portal/dashboard?checkout=cancelled`,
     locale: user.locale === "es" ? "es" : "nl",
-    metadata: { organizationId: org.id, plan },
-    subscription_data: { metadata: { organizationId: org.id, plan } },
+    metadata: {
+      organizationId: org.id,
+      plan,
+      ...(referralCode ? { referral_code: referralCode } : {}),
+    },
+    subscription_data: {
+      metadata: {
+        organizationId: org.id,
+        plan,
+        ...(referralCode ? { referral_code: referralCode } : {}),
+      },
+    },
   });
 
   if (!session.url) throw new Error("no_checkout_url");

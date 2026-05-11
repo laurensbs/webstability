@@ -3,7 +3,8 @@ import type Stripe from "stripe";
 import { eq } from "drizzle-orm";
 import { stripe } from "@/lib/stripe";
 import { db } from "@/lib/db";
-import { organizations, subscriptions, invoices } from "@/lib/db/schema";
+import { organizations, subscriptions, invoices, auditLog } from "@/lib/db/schema";
+import { markReferralConverted } from "@/lib/db/queries/referrals";
 
 export const runtime = "nodejs";
 
@@ -67,6 +68,26 @@ async function upsertSubscription(stripeSub: Stripe.Subscription) {
       .update(organizations)
       .set({ plan: planMeta, planStartedAt: new Date(stripeSub.start_date * 1000) })
       .where(eq(organizations.id, org.id));
+  }
+
+  // Referral-conversie: als de subscription-metadata een referral_code
+  // bevat, markeer 'm als geconverteerd (idempotent — markReferralConverted
+  // is no-op als al geconverteerd of self-referral). Doen we hier i.p.v.
+  // bij checkout.session.completed omdat de org-koppeling pas hier
+  // gegarandeerd bestaat (anon-checkout maakt de org aan in /checkout/done).
+  const referralCode = stripeSub.metadata?.referral_code;
+  if (referralCode && (stripeSub.status === "active" || stripeSub.status === "trialing")) {
+    const converted = await markReferralConverted(referralCode, org.id);
+    if (converted) {
+      await db.insert(auditLog).values({
+        organizationId: org.id,
+        userId: null,
+        action: "referral.converted",
+        targetType: "organization",
+        targetId: org.id,
+        metadata: { referralCode },
+      });
+    }
   }
 }
 
