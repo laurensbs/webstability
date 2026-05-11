@@ -14,6 +14,7 @@ import {
   users,
 } from "@/lib/db/schema";
 import { renderMonthlyReportHtml, sendMonthlyReportMail } from "@/lib/email/monthly-report";
+import { budgetMinutesFor } from "@/lib/plan-budget";
 
 /**
  * Maandrapport-cron — 1e van de maand 06:00. Voor elke org met
@@ -101,6 +102,7 @@ export async function GET(req: Request) {
           id: true,
           name: true,
           liveAt: true,
+          nextMilestone: true,
         },
       });
       if (!project) {
@@ -207,6 +209,8 @@ export async function GET(req: Request) {
       const portalUrl = `${process.env.AUTH_URL ?? "https://webstability.eu"}/${
         locale === "es" ? "es/" : ""
       }portal/dashboard`;
+      const planTier = (org.plan ?? null) as "care" | "studio" | "atelier" | null;
+      const hoursBudgetMinutes = planTier ? budgetMinutesFor(planTier) : null;
 
       // Eerst snapshot bouwen + uploaden, daarna mail (zo bevat de mail
       // optioneel een link naar de snapshot).
@@ -223,6 +227,9 @@ export async function GET(req: Request) {
         openItems,
         portalUrl,
         reportUrl: null,
+        nextMilestone: project.nextMilestone,
+        plan: planTier,
+        hoursBudgetMinutes,
       });
 
       let reportUrl: string | null = null;
@@ -262,6 +269,9 @@ export async function GET(req: Request) {
         openItems,
         portalUrl,
         reportUrl,
+        nextMilestone: project.nextMilestone,
+        plan: planTier,
+        hoursBudgetMinutes,
       });
 
       await db.insert(auditLog).values({
