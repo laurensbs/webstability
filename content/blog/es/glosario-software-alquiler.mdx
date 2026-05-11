@@ -1,0 +1,86 @@
+---
+title: "Glosario de software de alquiler — channel manager, portal del cliente, automatización de fianza y más"
+description: "Channel manager, sincronización iCal, multidivisa, automatización de fianza, portal del cliente — si comparas software de alquiler o encargas un sistema a medida, te topas con un montón de términos. Este glosario los explica en lenguaje llano, siempre con: qué es, por qué importa, y en qué fijarte."
+date: 2026-06-29
+author: Laurens Bos
+keywords:
+  - glosario software alquiler
+  - channel manager explicación
+  - portal del cliente alquiler
+  - automatización fianza alquiler
+  - términos software alquiler
+tags:
+  - software-alquiler
+  - glosario
+  - guia
+---
+
+Si comparas software de alquiler, ves demos o encargas un sistema a medida, tropiezas con términos —algunos de los proveedores, algunos de consultores, algunos sin más jerga—. Este glosario explica los más importantes en lenguaje llano. Por término: qué es, por qué importa para un negocio de alquiler, y —cuando viene al caso— en qué fijarte. En orden alfabético, para que lo uses como referencia.
+
+## Automatización de fianza
+
+Pedir, retener, liberar o retener parcialmente la fianza de forma automática vía tu proveedor de pago —en lugar de transferirla y devolverla a mano—. Una buena automatización de fianza autoriza la fianza al reservar o justo antes de la salida, la libera automáticamente tras la inspección, y —si hay daños— retiene solo la parte acordada, con una nota que el cliente ve en su portal. Ahorra trabajo manual y discusiones.
+
+## Canal (channel)
+
+Un sitio donde alquilas: tu propia web, Airbnb, Booking.com, Vrbo, un portal local, o el teléfono/WhatsApp. Cada canal tiene una idea de tu disponibilidad; el problema es que esas ideas no se hablan solas entre sí.
+
+## Channel manager
+
+Software (o una función dentro de tu sistema de alquiler) que mantiene todos tus canales sincronizados: si reservas un objeto en uno, eso bloquea la fecha en todos los demás —automáticamente, casi en tiempo real—. Un channel manager previene reservas duplicadas cuando tienes varios canales. En qué fijarte: con qué rapidez sincroniza (tiempo real vía API, o periódico vía iCal) y qué canales soporta. Para dos o tres canales, la **sincronización iCal** suele bastar; con más, o con objetos que rotan rápido, quieres un channel manager de verdad.
+
+## Check-in / check-out (en sentido software)
+
+No solo "el huésped llega / se va", sino los pasos asociados en tu sistema: en el check-in, las instrucciones y el contrato firmado disponibles; en el check-out, la inspección (estado del objeto, posibles daños con fotos, consecuencia para la fianza) y la liquidación final. Un software hecho para esto convierte el check-out en un paso de verdad —no en algo que haces en papel al lado del sistema.
+
+## Contrato de alquiler (digital / como guardabarrera)
+
+El acuerdo entre tú y el arrendatario. En un buen software de alquiler se genera automáticamente con los datos correctos, se firma digitalmente, y —importante— funciona como **guardabarrera**: la reserva solo está "cerrada" cuando se ha firmado. Un PDF que envías a mano y esperas que vuelva no es un sistema.
+
+## Disponibilidad (availability)
+
+Qué objetos están libres en qué fechas. Suena simple, pero es el corazón de cualquier sistema de alquiler: en cuanto tu disponibilidad vive en más de un sitio (tu web y Airbnb y un Excel), puedes tener reservas duplicadas. Un buen sistema lleva la disponibilidad en un solo sitio y deja que todos los canales lean de ahí. Ver también: **channel manager**, **sincronización iCal**, **principio de fuente única**. (Ampliado: [evitar reservas duplicadas](/es/blog/evitar-reservas-duplicadas).)
+
+## Fianza (depósito / waarborgsom)
+
+Un importe que el arrendatario deja temporalmente en depósito como garantía por daños, y que tras el alquiler vuelve (parcial o totalmente). Importante: una fianza *no* es ingreso —es una partida puente en tu contabilidad—. En qué fijarte en el software: ¿puede tratar la fianza aparte (no contabilizarla en los ingresos), y hay un flujo limpio para retenerla en caso de daño?
+
+## Lógica de precios (rate rules / pricing)
+
+Las reglas con las que se forma el precio de un alquiler: precios por semana, recargos por temporada, días de cambio fijos, duración mínima, descuentos de última hora, precio por tipo de objeto. Cuantas más reglas propias tengas, más importante que tu software las pueda hacer con exactitud —una herramienta que solo sabe "elige llegada y salida, este es el precio" te obliga a trabajo manual.
+
+## Login sin contraseña (magic link / passwordless)
+
+Entrar sin contraseña: introduces tu email, recibes un enlace, lo pulsas, y estás dentro. Nada de contraseña que recordar o resetear. Para portales del cliente, ideal —los arrendatarios entran rara vez y olvidarían su contraseña de todos modos.
+
+## Multidivisa (multi-currency)
+
+La posibilidad de trabajar en varias monedas —por ejemplo euros para tu administración pero mostrar precios en libras a huéspedes británicos, o facturas en dos divisas—. Relevante para arrendadores con huéspedes internacionales. No confundir con **multilingüismo** (eso va de idioma, no de dinero).
+
+## Multilingüismo (multilingual / i18n)
+
+Que tu sistema funcione en varios idiomas —no solo el sitio público, sino también el portal del cliente, los correos y el contrato de alquiler—. Muchas herramientas SaaS hacen esto a medias ("inglés añadido"). Para un arrendador neerlandés con huéspedes españoles, un NL + ES completo suele ser un requisito, no un extra. (Más sobre cómo trabajo NL+ES: la [página de servicios](/es/servicios).)
+
+## Objeto (unit / listing)
+
+La cosa que alquilas: una caravana, un apartamento, una furgoneta, un barco. En software, un objeto tiene un tipo (con campos y reglas propios), una lógica de precios, un calendario de disponibilidad, y —en algunos tipos— requisitos extra (comprobación de carné, peso de arrastre, tiempo de limpieza entre alquileres).
+
+## Principio de fuente única (single source of truth)
+
+El punto de partida de que cada dato vive en un único sitio, y todo lo demás lee de ahí. Tu disponibilidad no vive en Excel y en Airbnb y en tu cabeza —vive en tu sistema, y el resto mira ahí—. En cuanto ese principio está, desaparecen categorías enteras de errores (reservas duplicadas, datos que no cuadran, "cuál es la versión buena"). Es el núcleo de por qué un sistema de verdad es mejor que una hoja de cálculo.
+
+## SaaS (Software as a Service)
+
+Software que alquilas al mes y que aloja y mantiene el proveedor —Booqable, Tommy, Avantio, Lodgify son ejemplos para alquiler—. Ventaja: precio conocido, sin mantenimiento por tu parte, rápido de empezar. Desventaja: te adaptas a la herramienta, no al revés, y la parte del cliente suele ir con la marca de *ellos*. Opuesto: **a medida**. (La balanza: [software a medida para pymes, cuándo sí y cuándo no](/es/blog/software-a-medida-pymes).)
+
+## A medida (custom software)
+
+Software construido específicamente para tu negocio, alrededor de tus procesos y conceptos. El código es tuyo; el sistema hace lo que tú necesitas; va con tu marca y dominio. Lógico si ninguna herramienta SaaS encaja, si ahora pegas varias herramientas, o si el proceso es el núcleo de tu negocio. Se cobra como precio fijo para la construcción + una cuota de mantenimiento —nada de facturar por horas—. (Qué cuesta: ver la [página de servicios](/es/servicios).)
+
+## Webhook
+
+Un término técnico con el que te topas en las conexiones: un aviso que un sistema envía automáticamente a otro en cuanto pasa algo —por ejemplo tu proveedor de pago avisando a tu sistema de alquiler "pago recibido", tras lo cual tu sistema marca la factura como pagada—. No tienes que construirlo ni entenderlo tú; está bien saber que existe si alguien lo menciona.
+
+## En resumen
+
+Estos son los términos que más aparecen al comparar software de alquiler o encargarlo. El hilo conductor de casi todos: un solo sitio para tus datos, tu marca por delante, y software que puede *tus* reglas en lugar de al revés. ¿Te topas con un término que no está aquí y lo quieres explicado? [Mándamelo](/es/contacto) — en un día, una respuesta en español llano, y si viene al caso lo añado. O empieza por [cómo elegir el sistema de alquiler adecuado](/es/blog/elegir-sistema-alquiler).
