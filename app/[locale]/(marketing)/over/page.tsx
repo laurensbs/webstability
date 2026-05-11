@@ -12,7 +12,8 @@ import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, personLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 // Kleur-codes per milestone-type op de tijdlijn — accent (start/launch
 // is het hoofdverhaal), wine (pivot — een richting-verandering), success
@@ -73,6 +74,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   return (
     <main className="dotted-bg flex flex-1 flex-col">
+      <JsonLd data={personLd(locale)} />
       {/* HERO with portrait + intro side-by-side */}
       <section className="relative overflow-hidden px-6 pt-16 pb-16 md:pt-28 md:pb-32">
         <div

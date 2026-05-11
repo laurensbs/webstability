@@ -346,6 +346,44 @@ export function siteUrl(path: string): string {
 }
 
 /**
+ * Schema.org Person payload voor Laurens — emit op /over zodat Google
+ * de persoon achter het merk kent (founder, jobTitle, worksFor,
+ * knowsAbout). Versterkt de Organization/LocalBusiness-entiteit.
+ */
+export function personLd(locale: string) {
+  const isEs = locale === "es";
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Laurens Bos",
+    url: siteUrl(isEs ? "/es/sobre" : "/over"),
+    image: "https://u.cubeupload.com/laurensbos/fc7278a70fe64fb6aa6a.jpg",
+    jobTitle: isEs ? "Desarrollador & fundador" : "Developer & founder",
+    worksFor: {
+      "@type": "Organization",
+      name: "Webstability",
+      url: SITE_BASE_URL,
+    },
+    knowsLanguage: ["nl", "es", "en"],
+    knowsAbout: isEs
+      ? [
+          "Software de alquiler",
+          "Sistemas de reservas",
+          "Software a medida",
+          "Desarrollo web",
+          "Next.js",
+        ]
+      : ["Verhuursoftware", "Boekingssystemen", "Maatwerk software", "Webontwikkeling", "Next.js"],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Begur",
+      addressRegion: "Girona",
+      addressCountry: "ES",
+    },
+  };
+}
+
+/**
  * Schema.org BlogPosting payload — emit on every blog detail page so
  * the post can light up rich results (date, author, headline).
  */
