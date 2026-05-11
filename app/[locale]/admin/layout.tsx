@@ -13,6 +13,7 @@ import { Link } from "@/i18n/navigation";
 import { DemoBanner } from "@/components/portal/DemoBanner";
 import { CommandPalette } from "@/components/admin/CommandPalette";
 import { CommandKTrigger } from "@/components/admin/CommandKTrigger";
+import { RouteTransition } from "@/components/portal/RouteTransition";
 
 export default async function AdminLayout({
   children,
@@ -99,7 +100,9 @@ export default async function AdminLayout({
             </div>
           </header>
 
-          <main className="flex-1 px-6 py-8 md:px-8 md:py-10">{children}</main>
+          <main className="flex-1 px-6 py-8 md:px-8 md:py-10">
+            <RouteTransition>{children}</RouteTransition>
+          </main>
         </div>
       </div>
 

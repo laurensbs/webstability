@@ -2382,6 +2382,15 @@
       ],
       "error": "Algo salió mal. Inténtalo de nuevo."
     },
+    "checkout": {
+      "welcome": {
+        "eyebrow": "bienvenido a webstability",
+        "title": "Ya estás dentro.",
+        "body": "Hemos creado tu cuenta y te enviamos un enlace de acceso a {email}. Pulsa el botón del correo y entrarás en tu propio portal.",
+        "cta": "Ir a iniciar sesión",
+        "redirecting": "Te redirigimos automáticamente en un momento…"
+      }
+    },
     "verify": {
       "eyebrow": "revisa tu bandeja",
       "title": "Casi dentro.",

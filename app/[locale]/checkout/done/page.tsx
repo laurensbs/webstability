@@ -1,4 +1,4 @@
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
@@ -8,6 +8,7 @@ import { db } from "@/lib/db";
 import { users, organizations } from "@/lib/db/schema";
 import { stripe } from "@/lib/stripe";
 import { sendWelcomeEmail } from "@/lib/email/welcome";
+import { CheckoutWelcome } from "@/components/marketing/CheckoutWelcome";
 
 /**
  * Landing-pagina na een Stripe Checkout success. Twee scenario's:
@@ -152,6 +153,22 @@ export default async function CheckoutDone({
     }
   }
 
-  // Klaar — stuur naar login zodat de magic-link begint.
-  redirect(`/login?email=${encodeURIComponent(email)}&from=checkout`);
+  // Klaar — toon een kort "je bent binnen"-moment, dan naar /login waar de
+  // magic-link begint. (De redirect kon ook hier server-side, maar dan mist
+  // de klant de bevestiging.)
+  const loginUrl = `/login?email=${encodeURIComponent(email)}&from=checkout`;
+  const t = await getTranslations("checkout.welcome");
+  return (
+    <CheckoutWelcome
+      email={email}
+      redirectTo={loginUrl}
+      strings={{
+        eyebrow: t("eyebrow"),
+        title: t("title"),
+        body: t("body"),
+        cta: t("cta"),
+        redirecting: t("redirecting"),
+      }}
+    />
+  );
 }

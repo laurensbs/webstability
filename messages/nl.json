@@ -2371,6 +2371,15 @@
         "Facturen en abonnementsbeheer"
       ]
     },
+    "checkout": {
+      "welcome": {
+        "eyebrow": "welkom bij webstability",
+        "title": "Je bent binnen.",
+        "body": "We hebben je account aangemaakt en sturen een inloglink naar {email}. Klik op de knop in de mail en je staat in je eigen portaal.",
+        "cta": "Naar inloggen",
+        "redirecting": "Je wordt zo automatisch doorgestuurd…"
+      }
+    },
     "verify": {
       "eyebrow": "check je inbox",
       "title": "Bijna binnen.",
