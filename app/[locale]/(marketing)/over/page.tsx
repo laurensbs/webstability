@@ -170,6 +170,19 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         </div>
       </section>
 
+      {/* FIRST-CLIENT QUOTE — ingetogen, niet als testimonial-card.
+          Tone: over de transformatie bij de klant, niet over Laurens. */}
+      <section className="px-6 pb-24">
+        <RevealOnScroll className="mx-auto max-w-3xl">
+          <blockquote className="border-l-2 border-(--color-accent) pl-6 font-serif text-2xl leading-[1.5] text-(--color-text) md:text-[28px] md:leading-[1.5]">
+            {t("firstClientQuote.quote")}
+          </blockquote>
+          <p className="mt-4 pl-6 font-mono text-xs tracking-widest text-(--color-muted) uppercase">
+            {t("firstClientQuote.attribution")}
+          </p>
+        </RevealOnScroll>
+      </section>
+
       {/* CTA */}
       <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
         <RevealOnScroll className="mx-auto max-w-3xl space-y-6 text-center">

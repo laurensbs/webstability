@@ -334,7 +334,26 @@
       "eyebrow": "klanten",
       "title": "Wat klanten *na een jaar* zeggen.",
       "lede": "Niet de gladde quotes van net na livegang. Wat mensen zeggen als hun systeem inmiddels gewoon draait.",
-      "items": []
+      "items": [
+        {
+          "quote": "Drie dubbele boekingen per maand — dat was de norm. Sinds de livegang: nul. En ik ben minstens een halve dag per week kwijt minder aan administratie.",
+          "name": "Eigenaar · Caravanverhuur Spanje",
+          "role": "Verhuurplatform · live sinds 2024",
+          "initials": "CV"
+        },
+        {
+          "quote": "De reparatie-orders komen nu direct op de iPads in de werkplaats. Geen losse papiertjes meer, monteurs zien wat er moet gebeuren en updaten de status terwijl ze werken.",
+          "name": "Eigenaar · Caravanreparatie Spanje",
+          "role": "Reparatieplatform · ~80 reparaties per maand",
+          "initials": "CR"
+        },
+        {
+          "quote": "Eén systeem in plaats van vijf losse tools voor de business en de klantcommunicatie. En als ik iets wil aanpassen, mail ik gewoon — binnen de week geregeld.",
+          "name": "Thebeautifullife.nl",
+          "role": "Site + admin + klantenportaal",
+          "initials": "TB"
+        }
+      ]
     },
 
     "pricing": {
@@ -528,6 +547,10 @@
         "body": "Deze site live. Public roadmap, klantportaal, en alles wat ik aan klanten lever ook hier laten zien."
       }
     ],
+    "firstClientQuote": {
+      "quote": "Het scheelt me een halve dag per week. Maar het echte verschil is dat ik 's ochtends niet meer in paniek inlog om te checken of er een dubbele boeking tussen zit.",
+      "attribution": "— Eigenaar · Caravanverhuur Spanje · klant sinds 2024"
+    },
     "ctaTitle": "Praat direct met de ontwikkelaar.",
     "ctaBody": "Geen accountmanager. Geen verkoopgesprek. Dertig minuten, gratis.",
     "ctaButton": "Plan een gesprek"

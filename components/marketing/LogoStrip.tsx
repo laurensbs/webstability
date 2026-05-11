@@ -1,22 +1,21 @@
 import { getTranslations } from "next-intl/server";
 
 /**
- * "Trusted by" strip — alternating Fraunces serif and Inter sans logo
- * placeholders to create a varied, hand-set feel rather than a logo grid
- * (which would require real client logos we don't have yet).
+ * "Trusted by" strip — wordmark-stijl namen van échte sites die we
+ * draaien of in onderhoud houden. Mix serif (Fraunces) / sans (Inter)
+ * + italic-toggle voor een hand-gezet gevoel i.p.v. een logo-grid.
+ * Namen komen 1-op-1 overeen met de cases op /cases.
  */
 export async function LogoStrip() {
   const t = await getTranslations("home.logoStrip");
 
-  // Mix of serif (Fraunces) and sans (Inter) "logo-style" wordmarks.
-  // Italic toggle adds variety. Replace with real client logos later.
   const items: Array<{ name: string; sans?: boolean; italic?: boolean }> = [
-    { name: "Costa Caravans" },
-    { name: "Repair&Roll", sans: true },
-    { name: "Marbella Stays", italic: true },
-    { name: "VOLT/AUTO", sans: true },
-    { name: "Bakker & Zn." },
-    { name: "Mediterrana", sans: true },
+    { name: "Caravanverhuurspanje" },
+    { name: "Caravanreparatiespanje", sans: true },
+    { name: "Caravanstallingspanje", italic: true },
+    { name: "Thebeautifullife", sans: true },
+    { name: "Hoogduinonderhoud" },
+    { name: "Rietveld Hoveniers", sans: true },
   ];
 
   return (

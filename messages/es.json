@@ -334,7 +334,26 @@
       "eyebrow": "clientes",
       "title": "Lo que dicen *tras un año*.",
       "lede": "No las frases pulidas tras el lanzamiento. Lo que la gente dice cuando su sistema ya lleva tiempo funcionando.",
-      "items": []
+      "items": [
+        {
+          "quote": "Tres reservas duplicadas al mes — esa era la norma. Desde el lanzamiento: cero. Y ahorro al menos medio día a la semana en administración.",
+          "name": "Propietario · Caravanverhuur Spanje",
+          "role": "Plataforma de alquiler · activa desde 2024",
+          "initials": "CV"
+        },
+        {
+          "quote": "Las órdenes de reparación llegan directas a los iPads del taller. Se acabaron los papeles sueltos: los mecánicos ven qué hay que hacer y actualizan el estado mientras trabajan.",
+          "name": "Propietario · Caravanreparatie Spanje",
+          "role": "Plataforma de reparación · ~80 reparaciones al mes",
+          "initials": "CR"
+        },
+        {
+          "quote": "Un solo sistema en lugar de cinco herramientas sueltas para el negocio y la comunicación con clientes. Y si quiero cambiar algo, escribo un correo — resuelto en una semana.",
+          "name": "Thebeautifullife.nl",
+          "role": "Web + admin + portal de cliente",
+          "initials": "TB"
+        }
+      ]
     },
 
     "pricing": {
@@ -528,6 +547,10 @@
         "body": "Esta web online. Roadmap pública, portal de cliente, y todo lo que entrego también visible aquí."
       }
     ],
+    "firstClientQuote": {
+      "quote": "Me ahorra medio día a la semana. Pero la diferencia real es que ya no entro por la mañana en pánico para comprobar si hay alguna reserva duplicada.",
+      "attribution": "— Propietario · Caravanverhuur Spanje · cliente desde 2024"
+    },
     "ctaTitle": "Habla directamente con el desarrollador.",
     "ctaBody": "Sin gestor de cuenta. Sin presentación comercial. Treinta minutos, gratis.",
     "ctaButton": "Reserva una llamada"
