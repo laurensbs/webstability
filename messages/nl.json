@@ -1886,10 +1886,10 @@
   "errors": {
     "notFound": {
       "eyebrow": "404",
-      "title": "Deze pagina *bestaat niet*.",
-      "lede": "Verkeerde link, oude bookmark, of typfout. Geen drama — kies hieronder waar je heen wilt.",
+      "title": "Deze pagina is *offline gegaan*. Ironisch, ik weet het.",
+      "lede": "Verkeerde link, oude bookmark of typfout. Vertel het me als je dit vaker ziet — dan ligt het aan mij, niet aan jou. Kies anders gewoon hieronder waar je heen wilt.",
       "homeCta": "Terug naar home",
-      "contactCta": "Stuur Laurens een bericht"
+      "contactCta": "Vertel Laurens wat er misging"
     },
     "boundary": {
       "eyebrow": "iets brak",

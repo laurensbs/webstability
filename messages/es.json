@@ -1890,10 +1890,10 @@
   "errors": {
     "notFound": {
       "eyebrow": "404",
-      "title": "Esta página *no existe*.",
-      "lede": "Enlace incorrecto, marcador antiguo o errata. Sin drama — elige a dónde quieres ir.",
+      "title": "Esta página se *cayó*. Irónico, lo sé.",
+      "lede": "Enlace incorrecto, marcador antiguo o errata. Dímelo si lo ves a menudo — entonces es cosa mía, no tuya. Si no, elige abajo a dónde quieres ir.",
       "homeCta": "Volver al inicio",
-      "contactCta": "Escribir a Laurens"
+      "contactCta": "Cuéntale a Laurens qué pasó"
     },
     "boundary": {
       "eyebrow": "algo falló",
