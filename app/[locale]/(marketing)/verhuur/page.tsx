@@ -5,6 +5,7 @@ import { ArrowRight, Check, Calendar, FileText, CreditCard, X, Zap, Clock } from
 import { routing } from "@/i18n/routing";
 import { Button, buttonVariants } from "@/components/ui/Button";
 import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
+import { RoiCalculator } from "@/components/marketing/RoiCalculator";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { AvailabilityPill } from "@/components/animate/AvailabilityPill";
@@ -168,6 +169,30 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* ROI-CALCULATOR — maakt "scheelt je tijd" concreet in euro's */}
+      <section className="px-6 py-[100px]">
+        <div className="mx-auto max-w-[920px]">
+          <RoiCalculator
+            strings={{
+              eyebrow: t("roi.eyebrow"),
+              title: t("roi.title"),
+              lede: t("roi.lede"),
+              hoursLabel: t("roi.hoursLabel"),
+              hoursUnit: t("roi.hoursUnit"),
+              rateLabel: t("roi.rateLabel"),
+              rateUnit: t("roi.rateUnit"),
+              monthlyLabel: t("roi.monthlyLabel"),
+              yearlyLabel: t("roi.yearlyLabel"),
+              paybackLabel: t("roi.paybackLabel"),
+              paybackUnit: t("roi.paybackUnit"),
+              paybackMonthsName: t("roi.paybackUnit"),
+              disclaimer: t("roi.disclaimer"),
+              buildAmount: 8000,
+            }}
+          />
         </div>
       </section>
 

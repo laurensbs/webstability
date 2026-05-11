@@ -964,6 +964,20 @@
           "body": "Wie heeft betaald? Welke borg moet terug? Wat staat er volgend weekend leeg? Geen idee."
         }
       ],
+      "roi": {
+        "eyebrow": "even rekenen",
+        "title": "Wat kost die admin je nu eigenlijk?",
+        "lede": "Schuif de twee balkjes naar jouw situatie. Het getal rechts is wat je nu per maand kwijt bent aan dingen die een geïntegreerd systeem voor je doet — en hoe snel een typische build zichzelf terugverdient.",
+        "hoursLabel": "Uren per week aan admin, dubbele boekingen, overtypen",
+        "hoursUnit": "u/week",
+        "rateLabel": "Wat is een uur van jou waard?",
+        "rateUnit": "/uur",
+        "monthlyLabel": "bespaard per maand",
+        "yearlyLabel": "bespaard per jaar",
+        "paybackLabel": "tot een build van {build} terugverdiend is",
+        "paybackUnit": "maanden",
+        "disclaimer": "Indicatief — jouw echte situatie bepaalt het getal. De build ({build}) is een richtprijs voor een verhuur-boekingssysteem; in het eerste gesprek maken we het concreet."
+      },
       "solutionEyebrow": "de oplossing",
       "solutionTitle": "Eén dashboard. *Alles* erin.",
       "solutionLede": "Wij bouwen een verhuurplatform dat exact past op jouw proces — niet andersom. Inclusief koppelingen met de plekken waar je nu al je boekingen vandaan haalt.",

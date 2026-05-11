@@ -970,6 +970,20 @@
           "body": "¿Quién pagó? ¿Qué fianza devolver? ¿Qué queda libre el finde? Ni idea."
         }
       ],
+      "roi": {
+        "eyebrow": "echa cuentas",
+        "title": "¿Cuánto te cuesta esa administración ahora?",
+        "lede": "Mueve las dos barras a tu situación. El número de la derecha es lo que pierdes al mes en cosas que un sistema integrado hace por ti — y en cuánto tiempo se amortiza una build típica.",
+        "hoursLabel": "Horas por semana en admin, reservas duplicadas, transcribir",
+        "hoursUnit": "h/sem",
+        "rateLabel": "¿Cuánto vale una hora tuya?",
+        "rateUnit": "/hora",
+        "monthlyLabel": "ahorrado al mes",
+        "yearlyLabel": "ahorrado al año",
+        "paybackLabel": "hasta amortizar una build de {build}",
+        "paybackUnit": "meses",
+        "disclaimer": "Indicativo — tu situación real determina el número. La build ({build}) es un precio orientativo para un sistema de reservas de alquiler; en la primera llamada lo concretamos."
+      },
       "solutionEyebrow": "la solución",
       "solutionTitle": "Un dashboard. *Todo* dentro.",
       "solutionLede": "Construimos una plataforma de alquiler que encaja exactamente con tu proceso — no al revés. Incluye conexiones con los canales donde ya recibes reservas hoy.",
