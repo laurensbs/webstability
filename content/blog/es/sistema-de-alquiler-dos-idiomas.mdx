@@ -1,0 +1,62 @@
+---
+title: "Un sistema de alquiler en dos idiomas — por qué la mayoría del SaaS se rompe aquí"
+description: "Un arrendador neerlandés con clientes españoles, o un emprendedor neerlandés en la Costa Brava, tiene un problema que no aparece en ninguna página de producto: el SaaS de alquiler existente elige un mercado. Qué significa de verdad para tu flujo de trabajo, y qué cuesta atender bien los dos idiomas."
+date: 2026-05-09
+author: Laurens Bos
+keywords:
+  - software alquiler multilingüe
+  - sistema alquiler dos idiomas
+  - software alquiler neerlandés español
+  - sistema reservas bilingüe
+  - alquiler costa brava software
+tags:
+  - software-alquiler
+  - multilingüismo
+  - guia
+---
+
+La pregunta aparece cada mes: "Mis clientes son un 60% neerlandeses y un 40% españoles —o ingleses—, ¿qué sistema de alquiler elijo?" La respuesta honesta es que las herramientas SaaS conocidas lo llevan mal, y que las consecuencias de eso no aparecen en ninguna página de producto. Este artículo explica por qué, y qué cuesta hacerlo *bien*.
+
+## El problema que nadie pone en una página de producto
+
+"Multilingüe" suena a una casilla: pon la interfaz en NL o ES y listo. En la práctica, en un negocio de alquiler internacional corren **cuatro raíles de idioma en paralelo**, y los cuatro tienen que cuadrar:
+
+1. **La confirmación de reserva** — el cliente neerlandés quiere un correo en neerlandés, el español en español. No solo el texto, también el formato de fecha, el saludo, el tono.
+2. **La factura** — el cliente neerlandés recibe una factura con BTW; el español una factura con IVA, en español, con los campos fiscales correctos para la Agencia Tributaria. Dos regímenes fiscales, dos plantillas, automáticamente la correcta según el país del cliente.
+3. **El contrato de alquiler / las instrucciones de check-in** — de nuevo dos idiomas, con el texto legal que cuadra por país.
+4. **La admin** — esa la quieres *tú* en tu propia lengua materna, sin importar a qué cliente acabas de dar de alta.
+
+Cuatro raíles. En un SaaS construido para un mercado, cuadra uno —y los otros tres los haces a mano, con documentos sueltos, o directamente no—. En cada reserva, otra vez.
+
+## Dónde se rompen Tommy, Booqable y Avantio
+
+Ninguna de estas herramientas es mala. Solo están construidas con un mercado como punto de partida:
+
+- **Tommy** — herramienta de mercado neerlandés, TPV primero. Las plantillas en ES faltan en los momentos cruciales (factura, contrato). Para un camping neerlandés con un rincón de alquiler, bien; para alquiler internacional, no. (Más sobre esto: [alternativa a Tommy](/es/blog/alternativa-tommy).)
+- **Booqable** — soporta traducciones de los textos de producto, pero el flujo de checkout y las plantillas de documentos son poco configurables. Puedes traducir las palabras, no diseñar todo el recorrido del cliente por idioma. (Más sobre esto: [Booqable vs a medida](/es/blog/booqable-vs-a-medida).)
+- **Avantio** — herramienta de mercado español, fuerte a partir de ~20 unidades. NL es un añadido tardío: el cliente neerlandés y la contabilidad neerlandesa no son el caso principal. (Más sobre esto: [alternativa a Avantio](/es/blog/avantio-alternativa-personalizada).)
+
+En los tres casos puedes hacer que funcione —con apaños—. Y cada apaño es un sitio donde se tuerce en cuanto el portfolio crece o un nuevo empleado lo coge.
+
+## Qué hace distinto un sistema multilingüe a medida
+
+Un sistema de alquiler construido bilingüe desde el principio hace esto de forma fundamentalmente distinta:
+
+- **Traducción en cada cadena visible para el cliente** — incluidas las plantillas PDF de facturas y contratos, no solo los textos de la web.
+- **Idioma por cliente en la base de datos** — no "qué hay en el navegador", sino "este cliente se comunica en español" como una propiedad que se conserva. El siguiente correo ya sale bien.
+- **Dos raíles BTW/IVA en paralelo** — selección automática del régimen fiscal correcto y la plantilla de factura correcta según el país del cliente. Nada de corrección manual después.
+- **Una admin en tu lengua materna** — tú trabajas en neerlandés (o español), sin importar a qué cliente das de alta. El software se adapta a ti, no al revés.
+
+Esto no es una funcionalidad que "enciendes". Es una decisión de diseño que tomas desde la primera línea de código —y justo por eso el SaaS listo para usar lo hace tan rara vez bien.
+
+## En concreto: qué cuesta y qué aporta
+
+**Los costes.** Una primera versión funcionando de un sistema de reservas de alquiler bilingüe cuesta **5.000–8.000 € a precio fijo**, entregada en cuatro semanas. Después, una cuota continua desde **179 €/m** (para una plataforma de alquiler completa con todo, más bien hacia 179–399 €/m). Código en tu propia cuenta, así que nada de vendor lock-in.
+
+**Qué aporta.** Frente a un SaaS donde el segundo dominio lingüístico lo gestionas a mano: nada de documentos sueltos, nada de correcciones contables después, y —a menudo subestimado— nada de conversiones perdidas con clientes españoles que abandonan un formulario de reserva en neerlandés que entienden a medias. Esa última partida no aparece en ninguna factura, pero en un arrendador con un 40% de clientes internacionales es dinero real.
+
+## Dónde encaja Webstability en esto
+
+Este escenario bilingüe —un arrendador que opera en Países Bajos *y* en España— es justo en lo que me especializo. Trabajo desde la Costa Brava, construyo sistemas que tratan NL y ES como raíles equivalentes, y conozco el contexto fiscal y cultural de ambos mercados.
+
+¿Quieres saber si tu situación encaja aquí? [Cuéntame cómo lo haces ahora](/es/contacto) — en un día, una respuesta honesta. O mira la [página de alquiler](/es/alquiler) y el [caso de Caravanverhuurspanje](/es/cases/caravanverhuurspanje): un arrendador neerlandés en la Costa Brava que dio exactamente este paso.
