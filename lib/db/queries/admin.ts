@@ -18,6 +18,7 @@ import {
   projectUpdates,
   npsResponses,
   leads,
+  intakeResponses,
 } from "@/lib/db/schema";
 
 export async function listAllOrgs() {
@@ -738,4 +739,148 @@ export async function getLeadStats() {
   };
   for (const r of rows) out[r.status] = Number(r.n);
   return out;
+}
+
+/**
+ * Dagelijks "wat staat er voor jou klaar"-overzicht — bundelt alles
+ * waar Laurens actie op moet ondernemen, zodat de daily-digest-cron
+ * (en eventueel een cockpit-widget) één bron heeft i.p.v. vijf losse
+ * widgets. Bewust compact: alleen wat actie vraagt.
+ */
+export async function getDailyDigest() {
+  const now = new Date();
+  const in7Days = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+  const staleCutoff = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+  const leadDueCutoff = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+
+  // 1. Leads om vandaag/overdue op te volgen (nextActionAt <= morgen,
+  //    nog niet customer/lost).
+  const leadRows = await db
+    .select({
+      id: leads.id,
+      name: leads.name,
+      email: leads.email,
+      company: leads.company,
+      status: leads.status,
+      nextActionAt: leads.nextActionAt,
+      nextActionLabel: leads.nextActionLabel,
+    })
+    .from(leads)
+    .where(
+      and(
+        isNotNull(leads.nextActionAt),
+        lt(leads.nextActionAt, leadDueCutoff),
+        ne(leads.status, "customer"),
+        ne(leads.status, "lost"),
+      ),
+    )
+    .orderBy(asc(leads.nextActionAt));
+
+  // 2. Aankomende calls (komende 7 dagen).
+  const callRows = await db
+    .select({
+      id: bookings.id,
+      type: bookings.type,
+      startsAt: bookings.startsAt,
+      attendeeName: bookings.attendeeName,
+      attendeeEmail: bookings.attendeeEmail,
+      orgName: organizations.name,
+    })
+    .from(bookings)
+    .innerJoin(organizations, eq(organizations.id, bookings.organizationId))
+    .where(
+      and(
+        eq(bookings.status, "scheduled"),
+        gte(bookings.startsAt, now),
+        lt(bookings.startsAt, in7Days),
+      ),
+    )
+    .orderBy(asc(bookings.startsAt));
+
+  // 3. Intakes die ingevuld zijn (status submitted) — context voor de
+  //    welcome-call. Pakken de meest recente 10.
+  const intakeRows = await db
+    .select({
+      id: intakeResponses.id,
+      orgId: intakeResponses.organizationId,
+      orgName: organizations.name,
+      submittedAt: intakeResponses.submittedAt,
+    })
+    .from(intakeResponses)
+    .innerJoin(organizations, eq(organizations.id, intakeResponses.organizationId))
+    .where(eq(intakeResponses.status, "submitted"))
+    .orderBy(desc(intakeResponses.submittedAt))
+    .limit(10);
+
+  // 4. Projecten in 'review' (wachten op de handover-checklist).
+  const reviewRows = await db
+    .select({
+      id: projects.id,
+      name: projects.name,
+      orgId: projects.organizationId,
+      orgName: organizations.name,
+    })
+    .from(projects)
+    .innerJoin(organizations, eq(organizations.id, projects.organizationId))
+    .where(eq(projects.status, "review"));
+
+  // 5. Open high-priority tickets.
+  const ticketRows = await db
+    .select({
+      id: tickets.id,
+      subject: tickets.subject,
+      orgId: tickets.organizationId,
+      orgName: organizations.name,
+      createdAt: tickets.createdAt,
+    })
+    .from(tickets)
+    .innerJoin(organizations, eq(organizations.id, tickets.organizationId))
+    .where(and(eq(tickets.status, "open"), eq(tickets.priority, "high")))
+    .orderBy(desc(tickets.createdAt));
+
+  // 6. Stale build-projecten (actieve build-fase, geen update in 7 dagen).
+  const activePhases = await db
+    .select({
+      projectId: buildPhases.projectId,
+      projectName: projects.name,
+      orgName: organizations.name,
+    })
+    .from(buildPhases)
+    .innerJoin(organizations, eq(organizations.id, buildPhases.organizationId))
+    .leftJoin(projects, eq(projects.id, buildPhases.projectId))
+    .where(gt(buildPhases.endsAt, now));
+  const staleProjects: Array<{ projectId: string; projectName: string; orgName: string }> = [];
+  for (const p of activePhases) {
+    if (!p.projectId || !p.projectName) continue;
+    const last = await db
+      .select({ createdAt: projectUpdates.createdAt })
+      .from(projectUpdates)
+      .where(eq(projectUpdates.projectId, p.projectId))
+      .orderBy(desc(projectUpdates.createdAt))
+      .limit(1);
+    const lastAt = last[0]?.createdAt ?? null;
+    if (!lastAt || lastAt < staleCutoff) {
+      staleProjects.push({
+        projectId: p.projectId,
+        projectName: p.projectName,
+        orgName: p.orgName,
+      });
+    }
+  }
+
+  return {
+    leads: leadRows,
+    upcomingCalls: callRows,
+    submittedIntakes: intakeRows,
+    projectsInReview: reviewRows,
+    highPriorityTickets: ticketRows,
+    staleProjects,
+    hasAnything:
+      leadRows.length > 0 ||
+      callRows.length > 0 ||
+      intakeRows.length > 0 ||
+      reviewRows.length > 0 ||
+      ticketRows.length > 0 ||
+      staleProjects.length > 0,
+  };
 }
