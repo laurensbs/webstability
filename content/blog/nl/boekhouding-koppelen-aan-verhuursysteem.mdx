@@ -1,0 +1,63 @@
+---
+title: "Je boekhouding koppelen aan je verhuursysteem — Holded, e-Boekhouden en de NL/ES dubbele administratie"
+description: "Elke boeking handmatig overtypen in je boekhouding kost tijd en levert fouten op. Een koppeling tussen je verhuursysteem en je boekhoudpakket — Holded, e-Boekhouden, Moneybird — laat facturen, betalingen en klanten automatisch doorstromen. Hoe zo'n koppeling werkt, wat je ervoor moet regelen, en wat het betekent als je in twee landen boekhoudt."
+date: 2026-06-22
+author: Laurens Bos
+keywords:
+  - holded koppelen
+  - e-boekhouden integratie verhuur
+  - boekhouding koppelen verhuursysteem
+  - verhuursoftware boekhouding integratie
+  - facturen automatisch boekhouding
+tags:
+  - verhuursoftware
+  - integraties
+  - gids
+---
+
+Een boeking komt binnen, de klant betaalt, er gaat een factuur uit — en dan typ je dat 's avonds nog een keer over in je boekhoudpakket. Klant aanmaken, factuur invoeren, betaling matchen. Per boeking een paar minuten; bij tientallen boekingen per maand een paar uur, en elke keer een kans op een typefout, een verkeerd bedrag, een dubbele klant. Een koppeling tussen je verhuursysteem en je boekhouding maakt daar één stroom van: wat in je verhuursysteem gebeurt, verschijnt vanzelf in je boekhouding. Dit stuk legt uit hoe dat werkt — voor Holded, e-Boekhouden, Moneybird en vergelijkbare pakketten — en wat erbij komt kijken als je, zoals veel verhuurders aan de Costa Brava, in twee landen administreert.
+
+## Wat een koppeling concreet doet
+
+Een boekhoudkoppeling synchroniseert de dingen die in beide systemen leven, zodat je ze maar één keer hoeft in te voeren:
+
+- **Klanten.** Een nieuwe huurder in je verhuursysteem wordt (of matcht met) een relatie in je boekhouding — met adres, btw-nummer, e-mail. Geen dubbele invoer, geen "die klant staat er al drie keer in".
+- **Facturen.** Een factuur die je verhuursysteem aanmaakt — voor de huur, de borg, extra's — verschijnt als verkoopfactuur in je boekhouding, met de juiste btw-code en grootboekrekening.
+- **Betalingen.** Komt een betaling binnen (via je betaalprovider, of een bankkoppeling), dan wordt de factuur in je boekhouding op "betaald" gezet en de betaling eraan gematcht. Geen handmatig afpunten.
+- **Eventueel: creditfacturen en correcties.** Een geannuleerde boeking, een deels terugbetaalde borg — als je systeem dat netjes afhandelt, kan de creditfactuur ook automatisch mee.
+
+Het idee is hetzelfde één-bron-principe als overal: een gegeven hoort op één plek thuis. Je verhuursysteem is de bron van "wat is er verhuurd en gefactureerd"; je boekhouding leest dat uit en doet er de boekhoudkant mee. Jij hoeft niets over te typen.
+
+## Hoe zo'n koppeling technisch werkt
+
+In de praktijk zijn er twee manieren:
+
+**Via de API van het boekhoudpakket.** Holded, e-Boekhouden, Moneybird, Exact, Snelstart — vrijwel alle moderne pakketten hebben een API waarmee je facturen, relaties en betalingen kunt aanmaken en uitlezen. Je verhuursysteem roept die API aan op het moment dat er iets gebeurt: boeking bevestigd → klant + factuur aanmaken in de boekhouding; betaling binnen → factuur op betaald zetten. Dit is de schone manier — realtime, geen tussenstap.
+
+**Via een tussenpartij of export/import.** Heeft je pakket geen bruikbare API, of wil je het simpel houden, dan kun je periodiek een export draaien (facturen als bestand) en die importeren — of een koppel-dienst ertussen zetten. Minder elegant, niet realtime, maar werkt.
+
+Wat je in beide gevallen vooraf moet regelen:
+
+1. **Een mapping van btw-codes en grootboekrekeningen.** Welke btw geldt op de huur, op de borg (die is meestal géén omzet, dus een aparte behandeling), op extra's? Welke grootboekrekening? Dat spreek je één keer af en het systeem past het daarna automatisch toe.
+2. **Wat doet je verhuursysteem met de borg?** Een borg is geen omzet — het is een tijdelijk in bewaring genomen bedrag. Hoe dat in de boekhouding moet (tussenrekening, niet op de omzet), spreek je af zodat de koppeling het goed boekt.
+3. **Hoe matchen klanten?** Op e-mail, op btw-nummer, op naam? Je wil niet dat dezelfde klant twee keer als relatie ontstaat.
+4. **Wat is leidend bij een conflict?** Als een factuur in de boekhouding handmatig is aangepast, overschrijft de koppeling dat dan? Meestal niet — de boekhouding is dan leidend voor dat ene record. Dat soort regels leg je vast.
+
+## De NL/ES dubbele administratie
+
+Veel verhuurders aan de Costa Brava (en vergelijkbaar: een Nederlandse ondernemer met een Spaanse activiteit) houden twee administraties bij: een Nederlandse en een Spaanse, elk met eigen btw-regels, eigen pakket, eigen accountant. Holded is in Spanje populair; e-Boekhouden, Moneybird of Exact in Nederland. Dat maakt de koppeling iets ingewikkelder — maar niet onmogelijk:
+
+- **Welke boeking hoort waar?** Een verhuur van een object in Spanje aan een Spaanse gast is een Spaanse factuur (Spaanse btw, Holded). Een verhuur via je Nederlandse entiteit kan een Nederlandse factuur zijn. Je verhuursysteem moet weten welke entiteit/welk land bij welk object en welke klant hoort, en de factuur naar de juiste boekhouding sturen.
+- **Twee koppelingen, niet één.** In de praktijk koppel je je verhuursysteem aan beide pakketten, met per kant zijn eigen mapping (btw-codes, grootboek, klant-matching). Het systeem routeert elke factuur naar de juiste.
+- **Eén overzicht voor jou.** Het mooie: hoewel de boekhouding gesplitst is, blijft jouw operationele overzicht — wat is verhuurd, wat is betaald, wat staat open — in je verhuursysteem op één plek. De splitsing zit alleen aan de boekhoudkant, niet in je dagelijkse werk.
+- **Stem het af met je accountants.** De btw-mapping en de entiteit-routing zijn dingen die je samen met je Nederlandse én je Spaanse accountant vastlegt — één keer goed, daarna automatisch. (Dat tweetalige, twee-landen-werken is precies waar Webstability op gebouwd is; zie [waarom je verhuursysteem in twee talen moet werken](/blog/verhuursysteem-twee-talen).)
+
+## Wat het kost om een koppeling te bouwen
+
+Een boekhoudkoppeling is meestal geen los project maar een onderdeel van je [verhuur-boekingssysteem op maat](/diensten/verhuur-boekingssysteem) — het zit in de **€5.000–8.000** vaste prijs voor het systeem, of je bouwt het er later bij binnen het doorlopende abonnement (vanaf **€99 per maand**, waarin doorbouwen zit). Een losse koppeling aan een bestaand systeem, met één boekhoudpakket, ligt typisch rond **€1.000–2.500** afhankelijk van hoe netjes de API van het pakket is en hoeveel mapping er nodig is; twee pakketten (NL + ES) navenant meer. Vaste prijs, geen uurtje-factuurtje.
+
+## Tot slot
+
+Elke boeking handmatig overtypen in je boekhouding is tijd die je niet hoeft te besteden — en een foutbron die je niet hoeft te hebben. Een koppeling tussen je verhuursysteem en je boekhoudpakket laat klanten, facturen en betalingen vanzelf doorstromen, met de btw- en grootboek-mapping één keer afgesproken. Werk je in twee landen, dan koppel je gewoon twee kanten — terwijl je dagelijkse overzicht op één plek blijft.
+
+Wil je weten of jouw boekhoudpakket goed koppelt en wat het in jouw situatie kost? [Stuur me welk pakket je gebruikt (NL en/of ES) en hoeveel facturen je per maand draait](/contact) — binnen een dag een eerlijk antwoord. Geen pitch-deck. Of bekijk de [verhuur-boekingssysteem-pagina](/diensten/verhuur-boekingssysteem) voor de volledige uitleg.
