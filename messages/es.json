@@ -29,6 +29,51 @@
       "cta": "Haz tu pregunta"
     }
   },
+  "faqPage": {
+    "metaTitle": "Preguntas frecuentes — precios, plazos, forma de trabajar",
+    "metaDescription": "¿Cuánto cuesta un sistema de reservas a medida, cuánto tarda, qué diferencia hay con el SaaS, y cómo trabajo? Las preguntas que más recibo, respondidas de antemano.",
+    "eyebrow": "preguntas frecuentes",
+    "title": "Respuestas de antemano.",
+    "lede": "Lo que los clientes me preguntan antes de empezar — sobre precio, plazos, propiedad y cómo trabajo. ¿No está tu pregunta? Escríbeme, respuesta honesta en un día.",
+    "items": [
+      {
+        "q": "¿Cuánto cuesta un sistema de reservas o portal de cliente a medida?",
+        "a": "Una primera versión funcional cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Después, una suscripción continua desde 99 €/m para hosting, monitorización, mantenimiento y desarrollo. Sin presupuestos por cambio, sin facturas de horas extra. Una web de marketing es más barata (~1.050 € build, 95 €/m), una tienda online con BTW/IVA está en medio (~2.000 € build, 179 €/m). Se puede calcular en concreto en la página de precios."
+      },
+      {
+        "q": "¿Cuánto tarda en construirse el software a medida?",
+        "a": "Cuatro semanas de la primera llamada a una primera versión funcional para la mayoría de proyectos. Después seguimos construyendo de forma incremental según lo que de verdad uses — sin un proyecto de meses antes de ver algo. Los sistemas grandes (una plataforma de alquiler completa) se prolongan unos meses, pero desde la semana cuatro tienes algo funcional en la mano."
+      },
+      {
+        "q": "A medida vs SaaS estándar — ¿cuándo es más inteligente cada uno?",
+        "a": "El SaaS es más barato si encajas en el modelo estándar: un tipo de producto, una ubicación, una forma de facturar. Si tienes un portfolio mixto, dos ubicaciones, NL y ES, o un proceso que no cabe en un desplegable, el SaaS te obliga a concesiones cada semana. A tres años, un sistema a medida suele salir al mismo coste o menos — con mucho mejor encaje y sin que tu marca desaparezca en el logo de la plataforma."
+      },
+      {
+        "q": "¿De quién es el código y los datos?",
+        "a": "Tuyos. Código en tu GitHub, hosting en tu cuenta, base de datos a tu nombre. Yo construyo, tú posees. Al finalizar, todo sigue siendo tuyo — sin vendor lock-in, sin datos secuestrados."
+      },
+      {
+        "q": "¿Funciona en neerlandés y en español?",
+        "a": "Sí — ese es justo el punto donde la mayoría del SaaS falla. Los sistemas funcionan bilingües: interfaz NL y ES, BTW e IVA, plantillas para ambos mercados. Trabajo desde la Costa Brava y atiendo clientes en ambos países."
+      },
+      {
+        "q": "¿Por qué una suscripción y no un precio por proyecto?",
+        "a": "Los precios por proyecto incentivan a entregar rápido y desaparecer. Una suscripción me obliga a entregar cada mes de nuevo. Para ti: entrada más baja, cancelable siempre, el desarrollo va incluido. Para mí: ingresos previsibles, así no tengo que perseguir al siguiente cliente."
+      },
+      {
+        "q": "¿Y si más adelante quiero cambiar o añadir algo?",
+        "a": "Me escribes. Con una suscripción Care o de crecimiento, el mantenimiento y el desarrollo van incluidos — sin presupuesto por cambio. El sistema crece con tu empresa."
+      },
+      {
+        "q": "¿Con quién trabajo — un equipo o una persona?",
+        "a": "Una persona: yo. Sin gestor de cuenta, sin capa intermedia. Escribes o llamas al desarrollador que construye y mantiene tu sistema. Diez años de experiencia, desde 2022 desde España."
+      },
+      {
+        "q": "¿Puede sincronizar con Airbnb, Booking, mi contabilidad?",
+        "a": "Sí — la sincronización de canales (Airbnb, Booking, tu propia web) y las conexiones contables (Holded, Mollie/Stripe) son parte estándar de lo que construyo. La disponibilidad y la facturación tienen entonces una sola fuente."
+      }
+    ]
+  },
   "nav": {
     "home": "Inicio",
     "services": "Servicios",
@@ -98,6 +143,7 @@
     "guarantees": "Garantías",
     "forRentals": "Para empresas de alquiler",
     "cases": "Casos",
+    "faq": "Preguntas frecuentes",
     "cols": {
       "services": "Servicios",
       "company": "Empresa",
@@ -588,6 +634,224 @@
     "ctaBody": "Envíame cómo lo haces ahora y dónde aprieta — respuesta honesta en un día. Si encaja, reservamos treinta minutos. Sin presentación comercial, sin gestor de cuenta.",
     "ctaButton": "Reserva una llamada",
     "ctaSecondary": "Primero mira el trabajo"
+  },
+  "verticals": {
+    "verhuur-boekingssysteem": {
+      "metaTitle": "Sistema de reservas de alquiler a medida",
+      "metaDescription": "Un sistema de reservas para alquiler que sigue tu forma de trabajar — caravanas, casas vacacionales, barcos o material. Un dashboard, facturas automáticas, sin reservas duplicadas. Precio fijo, entrega en cuatro semanas.",
+      "eyebrow": "sistema de reservas de alquiler",
+      "title": "Un sistema de reservas que sigue *tu* forma de trabajar",
+      "lede": "El software de alquiler estándar te obliga a un único modelo: un tipo de producto, una ubicación, una forma de facturar. Si tu empresa de alquiler funciona algo distinto — portfolio mixto, dos ubicaciones, NL y ES, tus propias condiciones de contrato — chocas con eso cada semana. Un sistema a medida se adapta a ti, no al revés.",
+      "metrics": [
+        { "value": "4 sem", "label": "de la primera llamada a una versión funcional" },
+        { "value": "0", "label": "reservas duplicadas desde el lanzamiento en clientes" },
+        { "value": "5–8 k €", "label": "precio fijo, sin discusiones de horas extra" }
+      ],
+      "problemEyebrow": "dónde falla",
+      "problemTitle": "Por qué los alquiladores buscan un sistema de reservas *propio*",
+      "problems": [
+        {
+          "title": "Reservas duplicadas entre canales",
+          "body": "Airbnb, Booking, tu propia web y un Excel que no sincroniza. Un solapamiento al mes cuesta un huésped descontento y un reembolso — y pasa más de una vez."
+        },
+        {
+          "title": "El SaaS solo cubre un mercado",
+          "body": "Booqable es de plantilla única. Avantio es enterprise a partir de 20 unidades. Si trabajas en NL y España, o tienes un portfolio mixto, ninguno encaja sin concesiones."
+        },
+        {
+          "title": "Tu marca desaparece",
+          "body": "En la mayoría de plataformas los huéspedes ven el logo de la plataforma, no el tuyo. Tu página de reservas es su subdominio, tus correos vienen de su dirección. Un sistema propio es tu dominio, tu marca, tu checkout."
+        }
+      ],
+      "solutionEyebrow": "qué obtienes",
+      "solutionTitle": "Un sistema para *todo* lo de tu alquiler",
+      "solutionLede": "Página de reservas pública con tu marca, un admin desde el que trabaja tu equipo, y un portal de cliente para el usuario final — tres caras del mismo sistema, para que los datos nunca se lleven por duplicado.",
+      "solutions": [
+        {
+          "title": "Agenda en vivo de todos los objetos y ubicaciones",
+          "body": "Una vista: qué está reservado, qué está libre, en qué ubicación. Caravanas, casas vacacionales, barcos, material — el portfolio mixto no es problema, porque el sistema está hecho para ti."
+        },
+        {
+          "title": "Facturas y contratos automáticos",
+          "body": "¿Reserva confirmada? Se generan y envían la factura y el contrato de alquiler. BTW e IVA, plantillas NL y ES. La fianza se controla, los recordatorios salen solos."
+        },
+        {
+          "title": "Sincronización de canales donde la quieras",
+          "body": "Conexión con Airbnb, Booking y tu propia web para que la disponibilidad tenga una sola fuente. Sin copiar a mano, sin solapamientos."
+        },
+        {
+          "title": "Portal de cliente para tus huéspedes",
+          "body": "Los huéspedes ven su reserva, sus documentos, su estado de pago — con tu identidad visual. Menos llamadas de \"¿sigue libre?\" y \"¿dónde está mi contrato?\"."
+        }
+      ],
+      "forWhoEyebrow": "encaja contigo",
+      "forWhoTitle": "Para quién encaja un sistema de reservas a medida",
+      "forWho": [
+        "Tienes 5+ objetos y/o varias ubicaciones",
+        "Alquilas más de un tipo de producto (caravanas + casas + material)",
+        "Trabajas en Países Bajos y España, o atiendes clientes en ambos idiomas",
+        "Quieres tu propia marca, tu propio dominio, tu propio checkout",
+        "El SaaS existente te obliga a un proceso que no te encaja"
+      ],
+      "notFor": [
+        "Tienes un objeto, un tipo, una ubicación — entonces el SaaS estándar sale más barato",
+        "Buscas una herramienta gratis y aceptas la marca de la plataforma",
+        "Esperas software totalmente a medida en una semana"
+      ],
+      "priceEyebrow": "qué cuesta",
+      "priceTitle": "Precio fijo, entrega en cuatro semanas",
+      "priceBody": "Una primera versión funcional de tu sistema de reservas cuesta 5.000–8.000 €, entregada en cuatro semanas. Después, una suscripción Care o de crecimiento para hosting, monitorización, mantenimiento y desarrollo continuo — desde 99 €/m. Sin presupuestos por cambio, sin facturas de horas extra.",
+      "pricePoints": [
+        "Precio fijo por adelantado — sabes qué cuesta y qué obtienes",
+        "Cuatro semanas de la primera llamada a una versión funcional",
+        "Código en tu GitHub, hosting en tu cuenta — sin vendor lock-in",
+        "Primer mes de mantenimiento gratis"
+      ],
+      "faqEyebrow": "preguntas frecuentes",
+      "faqTitle": "Sistema de reservas de alquiler — las preguntas que más recibo",
+      "faq": [
+        {
+          "q": "¿Cuánto cuesta un sistema de reservas de alquiler a medida?",
+          "a": "Una primera versión funcional cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Después, una suscripción continua desde 99 €/m para hosting, mantenimiento y desarrollo. Sin facturas de horas extra."
+        },
+        {
+          "q": "¿Cuánto tarda en construirse un sistema de alquiler?",
+          "a": "Cuatro semanas de la primera llamada a una primera versión funcional. Después seguimos construyendo de forma incremental según lo que de verdad uses — sin un proyecto de meses antes de ver algo."
+        },
+        {
+          "q": "¿Puede sincronizar con Airbnb y Booking?",
+          "a": "Sí. La sincronización de canales hace que la disponibilidad tenga una sola fuente, de modo que una reserva en Booking bloquea tu propia agenda y al revés. Se acabaron las reservas duplicadas."
+        },
+        {
+          "q": "¿Funciona en neerlandés y en español?",
+          "a": "Sí — ese es justo el punto donde la mayoría del SaaS falla. El sistema funciona bilingüe: interfaz NL y ES, BTW e IVA, plantillas para ambos mercados."
+        },
+        {
+          "q": "¿Y si más adelante quiero cambiar algo?",
+          "a": "Me escribes. Con una suscripción Care o de crecimiento, el mantenimiento y el desarrollo van incluidos — sin presupuesto por cambio. El sistema crece con tu empresa."
+        }
+      ],
+      "ctaTitle": "Cuéntame cómo funciona tu alquiler ahora",
+      "ctaBody": "Envíame cómo lo haces ahora y dónde aprieta — respuesta honesta en un día sobre si un sistema de reservas a medida encaja aquí, y qué cuesta.",
+      "ctaButton": "Reserva una llamada",
+      "related": [
+        { "label": "Software para empresas de alquiler", "href": "/es/alquiler" },
+        {
+          "label": "Portal de cliente a medida",
+          "href": "/es/servicios/klantportaal-laten-bouwen"
+        },
+        { "label": "Caso: Caravanverhuurspanje", "href": "/es/cases/caravanverhuurspanje" },
+        { "label": "Elegir un sistema de alquiler", "href": "/es/blog/elegir-sistema-alquiler" }
+      ]
+    },
+    "klantportaal-laten-bouwen": {
+      "metaTitle": "Portal de cliente a medida — tu marca",
+      "metaDescription": "Un portal de cliente a medida: tus clientes entran, ven sus datos, documentos y estado — con tu identidad visual. Menos correo, menos llamadas, menos Excel. Precio fijo, entrega en cuatro semanas.",
+      "eyebrow": "portal de cliente a medida",
+      "title": "Un portal que deja a tus *clientes* resolver lo que ahora acaba en tu mesa",
+      "lede": "Cada pregunta que un cliente te envía por correo — \"¿dónde está mi factura?\", \"¿ya está listo?\", \"¿cuál es mi estado?\" — es una pregunta que un portal de cliente responde solo. Con tu identidad visual, en tu dominio, conectado a tu propio sistema. Menos correo en tu bandeja, menos teléfono, menos cosas que llevas por duplicado.",
+      "metrics": [
+        { "value": "4 sem", "label": "de la primera llamada a un portal funcional" },
+        { "value": "5", "label": "herramientas sueltas reemplazadas en un cliente medio" },
+        { "value": "5–8 k €", "label": "precio fijo, integrado con tu sistema" }
+      ],
+      "problemEyebrow": "dónde falla",
+      "problemTitle": "Por qué necesitas *un* portal de cliente — no otra herramienta",
+      "problems": [
+        {
+          "title": "La comunicación con clientes vive en tu bandeja",
+          "body": "Actualizaciones de estado, documentos, preguntas — todo correo. Buscas entre hilos antiguos, los clientes llaman porque no lo encuentran. Un portal lo pone donde ellos mismos lo encuentran."
+        },
+        {
+          "title": "Cinco herramientas que no se hablan",
+          "body": "Facturación aquí, estado del proyecto allá, documentos en una carpeta de Drive, comunicación en tu correo. Nada está conectado, todo se lleva por duplicado, y algo acaba saliendo mal."
+        },
+        {
+          "title": "Los portales estándar no parecen tuyos",
+          "body": "Un portal de cliente genérico tiene su logo, su URL, su aspecto. Para una empresa que funciona con confianza es una oportunidad perdida — tu cliente debería ver *tu* marca."
+        }
+      ],
+      "solutionEyebrow": "qué obtienes",
+      "solutionTitle": "Un lugar donde tu cliente ve *todo* por sí mismo",
+      "solutionLede": "Un portal de cliente que conecta con tu sistema existente — o que construimos junto a tu web pública y tu admin de una sola vez. Tus clientes entran y ven exactamente lo que necesitan, con tu identidad visual.",
+      "solutions": [
+        {
+          "title": "Login, estado, documentos — en una pantalla",
+          "body": "El cliente entra (magic-link, sin líos de contraseñas) y ve sus proyectos, facturas, contratos, estado. Se acabaron los correos para buscar cosas."
+        },
+        {
+          "title": "Conectado a tus datos reales",
+          "body": "El portal muestra lo que hay en tu sistema — no una copia que tengas que llevar aparte. Una sola fuente, actualizada automáticamente."
+        },
+        {
+          "title": "Tu marca, tu dominio",
+          "body": "El portal funciona en tu dominio, con tu identidad visual, los correos vienen de tu dirección. Los clientes no ven Webstability en ninguna parte — solo a ti."
+        },
+        {
+          "title": "Tickets, subidas, notificaciones",
+          "body": "El cliente hace una pregunta, sube un archivo, recibe un aviso si algo cambia. Lo que antes era un intercambio de correos de tres días, ahora es un solo lugar."
+        }
+      ],
+      "forWhoEyebrow": "encaja contigo",
+      "forWhoTitle": "Para quién encaja un portal de cliente a medida",
+      "forWho": [
+        "Tienes contacto recurrente con clientes sobre estado, documentos o facturas",
+        "Ahora usas cinco herramientas sueltas que no están conectadas",
+        "Quieres tu propia marca y dominio — sin aspecto de plataforma",
+        "Ya tienes un sistema (o construyes uno) al que el portal pueda conectarse",
+        "Los clientes te llaman o escriben por cosas que podrían encontrar solos"
+      ],
+      "notFor": [
+        "Tienes contacto puntual con clientes — entonces un portal aporta poco",
+        "Solo buscas un formulario de contacto — eso no es un portal",
+        "Lo quieres gratis y aceptas una herramienta genérica con su marca"
+      ],
+      "priceEyebrow": "qué cuesta",
+      "priceTitle": "Precio fijo, entrega en cuatro semanas",
+      "priceBody": "Un portal de cliente a medida funcional cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas — integrado con tu sistema existente o como parte de un conjunto mayor (web pública + admin + portal). Después, una suscripción Care o de crecimiento desde 99 €/m para hosting, mantenimiento y desarrollo.",
+      "pricePoints": [
+        "Precio fijo por adelantado — sabes qué cuesta y qué obtienes",
+        "Cuatro semanas de la primera llamada a un portal funcional",
+        "Conectado a tus datos reales — sin una copia aparte que llevar",
+        "Código en tu GitHub, hosting en tu cuenta — sin vendor lock-in"
+      ],
+      "faqEyebrow": "preguntas frecuentes",
+      "faqTitle": "Portal de cliente a medida — las preguntas que más recibo",
+      "faq": [
+        {
+          "q": "¿Cuánto cuesta construir un portal de cliente?",
+          "a": "Un portal a medida funcional cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas. Después, una suscripción continua desde 99 €/m para hosting, mantenimiento y desarrollo."
+        },
+        {
+          "q": "¿Puede conectarse a mi sistema existente?",
+          "a": "Sí. El portal muestra lo que hay en tu sistema — no una copia aparte que tengas que llevar. Si aún no tienes sistema, construimos web pública, admin y portal como un conjunto."
+        },
+        {
+          "q": "¿Es mi marca o la vuestra?",
+          "a": "Totalmente la tuya — tu dominio, tu identidad visual, correos de tu dirección. Webstability no aparece en ninguna parte."
+        },
+        {
+          "q": "¿Cómo entran los clientes?",
+          "a": "Magic-link: el cliente pone su correo, recibe un enlace, está dentro. Sin contraseñas que recordar o restablecer — eso te ahorra tickets de soporte."
+        },
+        {
+          "q": "¿Y si más adelante quiero añadir funciones?",
+          "a": "Me escribes. Con una suscripción Care o de crecimiento, el desarrollo va incluido — sin presupuesto por cambio. El portal crece con lo que tus clientes necesitan."
+        }
+      ],
+      "ctaTitle": "Cuéntame cómo te comunicas ahora con tus clientes",
+      "ctaBody": "Envíame cómo lo haces ahora y dónde aprieta — respuesta honesta en un día sobre si un portal de cliente a medida encaja aquí, y qué cuesta.",
+      "ctaButton": "Reserva una llamada",
+      "related": [
+        { "label": "Todos los servicios", "href": "/es/servicios" },
+        {
+          "label": "Sistema de reservas de alquiler",
+          "href": "/es/servicios/verhuur-boekingssysteem"
+        },
+        { "label": "Caso: Caravanverhuurspanje", "href": "/es/cases/caravanverhuurspanje" },
+        { "label": "Dashboards mobile-first", "href": "/es/blog/mobile-first-dashboards" }
+      ]
+    }
   },
   "verhuur": {
     "eyebrow": "para empresas de alquiler",

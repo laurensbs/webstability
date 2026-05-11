@@ -29,6 +29,51 @@
       "cta": "Stel je vraag"
     }
   },
+  "faqPage": {
+    "metaTitle": "Veelgestelde vragen — kosten, levertijd, werkwijze",
+    "metaDescription": "Wat kost een boekingssysteem op maat, hoe lang duurt het, wat is het verschil met SaaS, en hoe werk ik? De vragen die ik het meest krijg, vooraf beantwoord.",
+    "eyebrow": "veelgestelde vragen",
+    "title": "Antwoorden vooraf.",
+    "lede": "Wat klanten me vragen voordat we beginnen — over prijs, levertijd, eigendom en hoe ik werk. Staat je vraag er niet bij? Mail me, binnen een dag een eerlijk antwoord.",
+    "items": [
+      {
+        "q": "Wat kost een boekingssysteem of klantportaal op maat?",
+        "a": "Een werkende eerste versie kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een doorlopend abonnement vanaf €99/m voor hosting, monitoring, onderhoud en doorontwikkeling. Geen offertes per wijziging, geen meeruren-facturen. Een marketing-site is goedkoper (~€1.050 build, €95/m), een webshop met BTW/IVA zit ertussenin (~€2.000 build, €179/m). Concreet uitrekenen kan op de prijzen-pagina."
+      },
+      {
+        "q": "Hoe lang duurt het om software op maat te laten bouwen?",
+        "a": "Vier weken van eerste gesprek tot een werkende eerste versie voor de meeste projecten. Daarna bouwen we incrementeel door op basis van wat je echt gebruikt — geen maandenlang traject voordat je iets ziet. Grotere systemen (volledig verhuurplatform met alles erop en eraan) lopen door over een paar maanden, maar je hebt vanaf week vier iets werkends in handen."
+      },
+      {
+        "q": "Maatwerk vs kant-en-klare SaaS — wanneer is wat slimmer?",
+        "a": "SaaS is goedkoper als je in het standaardmodel past: één type product, één locatie, één manier van factureren. Heb je een gemengd portfolio, twee locaties, NL én ES, of een proces dat niet in een dropdown past, dan dwingt SaaS je elke week tot concessies. Over drie jaar gerekend zit een maatwerk-systeem vaak op dezelfde of lagere kosten — met een veel betere fit en zonder dat je merk verdwijnt in het platform-logo."
+      },
+      {
+        "q": "Van wie is de code en de data?",
+        "a": "Van jou. Code in jouw GitHub, hosting op jouw account, database in jouw naam. Ik bouw, jij bezit. Bij beëindiging blijft alles van jou — geen vendor lock-in, geen gegijzelde data."
+      },
+      {
+        "q": "Werkt het in het Nederlands én het Spaans?",
+        "a": "Ja — dat is precies waar de meeste SaaS op breekt. Systemen draaien tweetalig: NL- en ES-interface, BTW én IVA, templates voor beide markten. Ik werk vanuit de Costa Brava en bedien klanten in beide landen."
+      },
+      {
+        "q": "Waarom een abonnement, geen project-prijs?",
+        "a": "Project-prijzen prikkelen om snel te leveren en weg te zijn. Een abonnement verplicht me elke maand opnieuw te leveren. Voor jou: lagere instap, altijd opzegbaar, doorbouwen zit erbij. Voor mij: voorspelbare inkomsten, dus ik hoef niet de volgende klant na te jagen."
+      },
+      {
+        "q": "Wat als ik later iets wil aanpassen of toevoegen?",
+        "a": "Dan mail je het. Met een Care- of groei-abonnement zit onderhoud en doorbouwen erbij — geen offerte per wijziging. Het systeem groeit mee met je bedrijf."
+      },
+      {
+        "q": "Met wie werk ik — een team of één persoon?",
+        "a": "Eén persoon: ik. Geen accountmanager, geen tussenlaag. Je mailt of belt de developer die je systeem bouwt en in de lucht houdt. Tien jaar ervaring, sinds 2022 vanuit Spanje."
+      },
+      {
+        "q": "Kan het synchroniseren met Airbnb, Booking, mijn boekhouding?",
+        "a": "Ja — kanaal-sync (Airbnb, Booking, je eigen site) en boekhoudkoppelingen (Holded, e-Boekhouden, Mollie/Stripe) zijn standaard onderdeel van wat ik bouw. Beschikbaarheid en facturatie hebben dan één bron."
+      }
+    ]
+  },
   "nav": {
     "home": "Home",
     "services": "Diensten",
@@ -98,6 +143,7 @@
     "guarantees": "Garanties",
     "forRentals": "Voor verhuurbedrijven",
     "cases": "Cases",
+    "faq": "Veelgestelde vragen",
     "cols": {
       "services": "Diensten",
       "company": "Bedrijf",
@@ -588,6 +634,218 @@
     "ctaBody": "Stuur me hoe je het nu doet en waar het knelt — binnen een dag een eerlijk antwoord. Past het, dan plannen we dertig minuten in. Geen pitch-deck, geen accountmanager.",
     "ctaButton": "Plan een gesprek",
     "ctaSecondary": "Bekijk eerst het werk"
+  },
+  "verticals": {
+    "verhuur-boekingssysteem": {
+      "metaTitle": "Verhuur-boekingssysteem op maat laten bouwen",
+      "metaDescription": "Een boekingssysteem voor verhuur dat jouw werkwijze volgt — caravans, vakantiehuizen, boten of materieel. Eén dashboard, automatische facturen, geen dubbele boekingen. Vaste prijs, vier weken levering.",
+      "eyebrow": "verhuur-boekingssysteem",
+      "title": "Een boekingssysteem voor verhuur dat *jouw* werkwijze volgt",
+      "lede": "Kant-en-klare verhuursoftware dwingt je in één model: één type product, één locatie, één manier van factureren. Werkt je verhuurbedrijf net iets anders — gemengd portfolio, twee locaties, NL én ES, eigen contractvoorwaarden — dan loop je daar elke week tegenaan. Een boekingssysteem op maat past zich aan jou aan, niet andersom.",
+      "metrics": [
+        { "value": "4 wkn", "label": "van eerste gesprek tot werkende versie" },
+        { "value": "0", "label": "dubbele boekingen sinds livegang bij klanten" },
+        { "value": "€5–8k", "label": "vaste prijs, geen meeruren-discussies" }
+      ],
+      "problemEyebrow": "waar het misgaat",
+      "problemTitle": "Waarom verhuurders een *eigen* boekingssysteem zoeken",
+      "problems": [
+        {
+          "title": "Dubbele boekingen tussen kanalen",
+          "body": "Airbnb, Booking, je eigen site en een Excel-sheet die niet synchroniseert. Eén overlap per maand kost een ontevreden gast en een terugbetaling — en het gebeurt vaker dan één keer."
+        },
+        {
+          "title": "SaaS pakt één markt",
+          "body": "Tommy is kassa-software die verhuur erbij doet. Booqable is één-template. Avantio is enterprise vanaf 20 units. Werk je in NL én Spanje, of heb je een gemengd portfolio, dan past geen van drieën zonder concessies."
+        },
+        {
+          "title": "Je merk verdwijnt",
+          "body": "Bij de meeste platforms zien gasten het platform-logo, niet dat van jou. Je boekingspagina is hún subdomein, je e-mails komen van hún adres. Een eigen systeem is jouw domein, jouw merk, jouw checkout."
+        }
+      ],
+      "solutionEyebrow": "wat je krijgt",
+      "solutionTitle": "Eén systeem voor *alles* rond je verhuur",
+      "solutionLede": "Publieke boekingspagina onder je eigen merk, een admin waar je team vanaf werkt, en een klantenportaal voor de eindgebruiker — drie kanten van hetzelfde systeem, zodat data nooit dubbel bijgehouden hoeft te worden.",
+      "solutions": [
+        {
+          "title": "Live agenda over alle objecten en locaties",
+          "body": "Eén overzicht: wat is geboekt, wat is vrij, op welke locatie. Caravans, vakantiehuizen, boten, materieel — gemengd portfolio is geen probleem, want het systeem is voor jou gebouwd."
+        },
+        {
+          "title": "Automatische facturen en contracten",
+          "body": "Boeking bevestigd? Factuur en huurcontract worden gegenereerd en gemaild. BTW én IVA, NL- én ES-templates. Borg wordt bijgehouden, herinneringen gaan automatisch."
+        },
+        {
+          "title": "Kanaal-sync waar je het wil",
+          "body": "Koppeling met Airbnb, Booking en je eigen site zodat beschikbaarheid één bron heeft. Geen handmatig overtypen, geen overlap."
+        },
+        {
+          "title": "Klantenportaal voor je gasten",
+          "body": "Gasten zien hun boeking, hun documenten, hun betaalstatus — in jouw huisstijl. Minder telefoontjes voor \"is het nog vrij\" en \"waar is mijn contract\"."
+        }
+      ],
+      "forWhoEyebrow": "past dit bij jou",
+      "forWhoTitle": "Voor wie een verhuur-boekingssysteem op maat klopt",
+      "forWho": [
+        "Je hebt 5+ objecten en/of meerdere locaties",
+        "Je verhuurt meer dan één type product (caravans + vakantiehuizen + materieel)",
+        "Je werkt in Nederland én Spanje, of bedient klanten in beide talen",
+        "Je wil je eigen merk, eigen domein, eigen checkout",
+        "Bestaande SaaS dwingt je in een proces dat niet bij je past"
+      ],
+      "notFor": [
+        "Je hebt één object, één type, één locatie — dan is kant-en-klare SaaS goedkoper",
+        "Je zoekt een gratis tool en accepteert het platform-merk",
+        "Je verwacht volledig maatwerk binnen een week"
+      ],
+      "priceEyebrow": "wat kost het",
+      "priceTitle": "Vaste prijs, vier weken levering",
+      "priceBody": "Een werkende eerste versie van je verhuur-boekingssysteem kost €5.000–8.000, geleverd in vier weken. Daarna een Care- of groei-abonnement voor hosting, monitoring, onderhoud en doorbouwen — vanaf €99/m. Geen offertes per wijziging, geen meeruren-facturen.",
+      "pricePoints": [
+        "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
+        "Vier weken van eerste gesprek tot werkende versie",
+        "Code in jouw GitHub, hosting op jouw account — geen vendor lock-in",
+        "Eerste maand onderhoud gratis"
+      ],
+      "faqEyebrow": "veelgestelde vragen",
+      "faqTitle": "Verhuur-boekingssysteem — de vragen die ik het meest krijg",
+      "faq": [
+        {
+          "q": "Wat kost een boekingssysteem voor verhuur op maat?",
+          "a": "Een werkende eerste versie kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een doorlopend abonnement vanaf €99/m voor hosting, onderhoud en doorontwikkeling. Geen meeruren-facturen."
+        },
+        {
+          "q": "Hoe lang duurt het om een verhuursysteem te laten bouwen?",
+          "a": "Vier weken van eerste gesprek tot een werkende eerste versie. Daarna bouwen we incrementeel door op basis van wat je echt gebruikt — geen maandenlang traject voordat je iets ziet."
+        },
+        {
+          "q": "Kan het synchroniseren met Airbnb en Booking?",
+          "a": "Ja. Kanaal-sync zorgt dat beschikbaarheid één bron heeft, zodat een boeking op Booking je eigen agenda blokkeert en andersom. Geen dubbele reserveringen meer."
+        },
+        {
+          "q": "Werkt het in het Nederlands én het Spaans?",
+          "a": "Ja — dat is precies het gat waar de meeste SaaS op breekt. Het systeem draait tweetalig: NL- en ES-interface, BTW én IVA, templates voor beide markten."
+        },
+        {
+          "q": "Wat als ik later iets wil aanpassen?",
+          "a": "Dan mail je het. Met een Care- of groei-abonnement zit onderhoud en doorbouwen erbij — geen offerte per wijziging. Het systeem groeit mee met je bedrijf."
+        }
+      ],
+      "ctaTitle": "Vertel me hoe je verhuur nu loopt",
+      "ctaBody": "Stuur me hoe je het nu doet en waar het knelt — binnen een dag een eerlijk antwoord of een boekingssysteem op maat hier past, en wat het kost.",
+      "ctaButton": "Plan een gesprek",
+      "related": [
+        { "label": "Software voor verhuurbedrijven", "href": "/verhuur" },
+        { "label": "Klantportaal laten bouwen", "href": "/diensten/klantportaal-laten-bouwen" },
+        { "label": "Case: Caravanverhuurspanje", "href": "/cases/caravanverhuurspanje" },
+        { "label": "Verhuursysteem kiezen — vijf vragen", "href": "/blog/verhuursysteem-kiezen" }
+      ]
+    },
+    "klantportaal-laten-bouwen": {
+      "metaTitle": "Klantportaal laten bouwen — op maat, jouw merk",
+      "metaDescription": "Een klantportaal op maat: jouw klanten loggen in, zien hun gegevens, documenten en status — in jouw huisstijl. Minder mail, minder telefoon, minder Excel. Vaste prijs, vier weken levering.",
+      "eyebrow": "klantportaal laten bouwen",
+      "title": "Een klantportaal dat je *klanten* zelf laat regelen wat anders bij jou belandt",
+      "lede": "Elke vraag die een klant je mailt — \"waar staat mijn factuur\", \"is het al af\", \"wat is mijn status\" — is een vraag die een klantportaal zelf beantwoordt. In jouw huisstijl, op jouw domein, gekoppeld aan je eigen systeem. Minder mail in je inbox, minder telefoon, minder dingen die je dubbel bijhoudt.",
+      "metrics": [
+        { "value": "4 wkn", "label": "van eerste gesprek tot werkend portaal" },
+        { "value": "5", "label": "losse tools vervangen bij een gemiddelde klant" },
+        { "value": "€5–8k", "label": "vaste prijs, geïntegreerd met je systeem" }
+      ],
+      "problemEyebrow": "waar het misgaat",
+      "problemTitle": "Waarom je *een* klantportaal nodig hebt — niet nog een tool",
+      "problems": [
+        {
+          "title": "Klantcommunicatie zit in je inbox",
+          "body": "Status-updates, documenten, vragen — allemaal e-mail. Je zoekt je suf in oude threads, klanten bellen omdat ze het niet kunnen vinden. Een portaal zet het ergens waar zíj het zelf vinden."
+        },
+        {
+          "title": "Vijf tools die niet met elkaar praten",
+          "body": "Facturatie hier, projectstatus daar, documenten in een Drive-map, communicatie in je mail. Niets is gekoppeld, alles wordt dubbel bijgehouden, en er gaat onvermijdelijk iets mis."
+        },
+        {
+          "title": "Standaard-portalen zien er niet uit als jou",
+          "body": "Een generiek klantportaal heeft hún logo, hún URL, hún look. Voor een bedrijf dat op vertrouwen draait is dat een gemiste kans — je klant zou jóuw merk moeten zien."
+        }
+      ],
+      "solutionEyebrow": "wat je krijgt",
+      "solutionTitle": "Eén plek waar je klant *zelf* alles ziet",
+      "solutionLede": "Een klantportaal dat aansluit op je bestaande systeem — of dat we samen met je publieke site en admin in één keer bouwen. Jouw klanten loggen in en zien precies wat ze nodig hebben, in jouw huisstijl.",
+      "solutions": [
+        {
+          "title": "Inloggen, status, documenten — in één scherm",
+          "body": "Klant logt in (magic-link, geen wachtwoord-gedoe) en ziet zijn projecten, facturen, contracten, status. Geen mailtjes meer om dingen op te zoeken."
+        },
+        {
+          "title": "Gekoppeld aan je echte data",
+          "body": "Het portaal toont wat er in je systeem staat — niet een kopie die je apart moet bijhouden. Eén bron, automatisch up-to-date."
+        },
+        {
+          "title": "Jouw merk, jouw domein",
+          "body": "Het portaal draait op jouw domein, in jouw huisstijl, e-mails komen van jouw adres. Klanten zien Webstability nergens — alleen jou."
+        },
+        {
+          "title": "Tickets, uploads, meldingen",
+          "body": "Klant stelt een vraag, uploadt een bestand, krijgt een melding als er iets verandert. Wat anders een mailwisseling van drie dagen was, is nu één plek."
+        }
+      ],
+      "forWhoEyebrow": "past dit bij jou",
+      "forWhoTitle": "Voor wie een klantportaal op maat klopt",
+      "forWho": [
+        "Je hebt terugkerend contact met klanten over status, documenten of facturen",
+        "Je gebruikt nu vijf losse tools die niet gekoppeld zijn",
+        "Je wil je eigen merk en domein — geen platform-look",
+        "Je hebt al een systeem (of bouwt er een) waar het portaal op kan aansluiten",
+        "Klanten bellen of mailen je voor dingen die ze zelf zouden kunnen vinden"
+      ],
+      "notFor": [
+        "Je hebt eenmalig contact met klanten — dan voegt een portaal weinig toe",
+        "Je zoekt alleen een contactformulier — dat is geen portaal",
+        "Je wil het gratis en accepteert een generieke tool met hún merk"
+      ],
+      "priceEyebrow": "wat kost het",
+      "priceTitle": "Vaste prijs, vier weken levering",
+      "priceBody": "Een werkend klantportaal op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken — geïntegreerd met je bestaande systeem of als onderdeel van een groter geheel (publieke site + admin + portaal). Daarna een Care- of groei-abonnement vanaf €99/m voor hosting, onderhoud en doorbouwen.",
+      "pricePoints": [
+        "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
+        "Vier weken van eerste gesprek tot werkend portaal",
+        "Gekoppeld aan je echte data — geen losse kopie om bij te houden",
+        "Code in jouw GitHub, hosting op jouw account — geen vendor lock-in"
+      ],
+      "faqEyebrow": "veelgestelde vragen",
+      "faqTitle": "Klantportaal laten bouwen — de vragen die ik het meest krijg",
+      "faq": [
+        {
+          "q": "Wat kost het om een klantportaal te laten bouwen?",
+          "a": "Een werkend portaal op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een doorlopend abonnement vanaf €99/m voor hosting, onderhoud en doorontwikkeling."
+        },
+        {
+          "q": "Kan het aansluiten op mijn bestaande systeem?",
+          "a": "Ja. Het portaal toont wat er in je systeem staat — geen aparte kopie die je moet bijhouden. Heb je nog geen systeem, dan bouwen we publieke site, admin en portaal als één geheel."
+        },
+        {
+          "q": "Is het mijn merk of dat van jullie?",
+          "a": "Volledig het jouwe — jouw domein, jouw huisstijl, e-mails van jouw adres. Webstability staat er nergens op."
+        },
+        {
+          "q": "Hoe loggen klanten in?",
+          "a": "Magic-link: klant vult zijn e-mail in, krijgt een link, is binnen. Geen wachtwoorden om te onthouden of te resetten — dat scheelt jou support-tickets."
+        },
+        {
+          "q": "Wat als ik later functies wil toevoegen?",
+          "a": "Dan mail je het. Met een Care- of groei-abonnement zit doorbouwen erbij — geen offerte per wijziging. Het portaal groeit mee met wat je klanten nodig hebben."
+        }
+      ],
+      "ctaTitle": "Vertel me hoe je nu met klanten communiceert",
+      "ctaBody": "Stuur me hoe je het nu doet en waar het knelt — binnen een dag een eerlijk antwoord of een klantportaal op maat hier past, en wat het kost.",
+      "ctaButton": "Plan een gesprek",
+      "related": [
+        { "label": "Alle diensten", "href": "/diensten" },
+        { "label": "Verhuur-boekingssysteem", "href": "/diensten/verhuur-boekingssysteem" },
+        { "label": "Case: Caravanverhuurspanje", "href": "/cases/caravanverhuurspanje" },
+        { "label": "Mobile-first dashboards", "href": "/blog/mobile-first-dashboards" }
+      ]
+    }
   },
   "verhuur": {
     "eyebrow": "voor verhuurbedrijven",

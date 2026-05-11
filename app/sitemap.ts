@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { listPosts } from "@/lib/blog";
+import { VERTICAL_SLUGS } from "@/lib/verticals";
 
 const BASE_URL = process.env.AUTH_URL ?? "https://webstability.eu";
 
@@ -10,6 +11,7 @@ const STATIC_PATHS: Record<string, { nl: string; es: string }> = {
   "/": { nl: "/", es: "/es" },
   "/verhuur": { nl: "/verhuur", es: "/es/alquiler" },
   "/diensten": { nl: "/diensten", es: "/es/servicios" },
+  "/faq": { nl: "/faq", es: "/es/preguntas" },
   "/cases": { nl: "/cases", es: "/es/cases" },
   "/cases/caravanverhuurspanje": {
     nl: "/cases/caravanverhuurspanje",
@@ -24,6 +26,15 @@ const STATIC_PATHS: Record<string, { nl: string; es: string }> = {
   "/aviso-legal": { nl: "/aviso-legal", es: "/es/aviso-legal" },
   "/blog": { nl: "/blog", es: "/es/blog" },
 };
+
+// Verticaal-pagina's onder /diensten/[vertical] (ES: /servicios/[vertical]).
+// Slug-segment is gelijk in beide locales.
+for (const slug of VERTICAL_SLUGS) {
+  STATIC_PATHS[`/diensten/${slug}`] = {
+    nl: `/diensten/${slug}`,
+    es: `/es/servicios/${slug}`,
+  };
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [];

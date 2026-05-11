@@ -50,6 +50,7 @@ export async function Footer() {
     { href: "/over", label: tNav("about") },
     { href: "/cases", label: t("cases") },
     { href: "/blog", label: tNav("blog") },
+    { href: "/faq", label: t("faq") },
     { href: "/status", label: t("status") },
   ] as const;
 

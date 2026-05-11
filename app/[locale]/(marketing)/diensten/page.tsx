@@ -217,6 +217,66 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           </div>
         </section>
 
+        {/* VERDIEPING PER DIENST — interne links naar de verticaal-
+            pagina's. Crawlbaar voor Google + handig voor bezoekers die
+            een specifieke dienst willen uitdiepen. */}
+        <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-16">
+          <div className="mx-auto max-w-6xl">
+            <p className="mb-5 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+              {"// "}
+              {locale === "es" ? "Más en detalle" : "Per dienst, in detail"}
+            </p>
+            <ul className="flex flex-wrap gap-3">
+              <li>
+                <Link
+                  href={{
+                    pathname: "/diensten/[vertical]",
+                    params: { vertical: "verhuur-boekingssysteem" },
+                  }}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface) px-4 py-2 text-[13px] text-(--color-text) transition-colors hover:border-(--color-accent)/50"
+                >
+                  {locale === "es"
+                    ? "Sistema de reservas de alquiler"
+                    : "Verhuur-boekingssysteem op maat"}
+                  <ArrowRight className="h-3 w-3 text-(--color-muted)" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={{
+                    pathname: "/diensten/[vertical]",
+                    params: { vertical: "klantportaal-laten-bouwen" },
+                  }}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface) px-4 py-2 text-[13px] text-(--color-text) transition-colors hover:border-(--color-accent)/50"
+                >
+                  {locale === "es" ? "Portal de cliente a medida" : "Klantportaal laten bouwen"}
+                  <ArrowRight className="h-3 w-3 text-(--color-muted)" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={{ pathname: "/verhuur" }}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface) px-4 py-2 text-[13px] text-(--color-text) transition-colors hover:border-(--color-accent)/50"
+                >
+                  {locale === "es"
+                    ? "Software para empresas de alquiler"
+                    : "Software voor verhuurbedrijven"}
+                  <ArrowRight className="h-3 w-3 text-(--color-muted)" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={{ pathname: "/faq" }}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface) px-4 py-2 text-[13px] text-(--color-text) transition-colors hover:border-(--color-accent)/50"
+                >
+                  {locale === "es" ? "Preguntas frecuentes" : "Veelgestelde vragen"}
+                  <ArrowRight className="h-3 w-3 text-(--color-muted)" />
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </section>
+
         {/* EERLIJKE AFBAKENING — wanneer ben je beter af elders? */}
         <NotForSection strings={notFor} />
 
