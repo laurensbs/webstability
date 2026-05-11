@@ -46,7 +46,7 @@ export function MobileStickyCta({
       initial={{ y: 100, opacity: 0 }}
       animate={visible ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed right-0 bottom-0 left-0 z-30 flex gap-2.5 border-t border-(--color-border) bg-(--color-bg)/95 px-4 py-3 backdrop-blur-md md:hidden"
+      className="fixed right-0 bottom-0 left-0 z-30 flex gap-2.5 border-t border-(--color-border) bg-(--color-bg)/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md md:hidden"
       style={{ pointerEvents: visible ? "auto" : "none" }}
     >
       <CalPopupTrigger

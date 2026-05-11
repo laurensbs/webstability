@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Fraunces, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
@@ -35,6 +35,17 @@ export const metadata: Metadata = {
   },
   description:
     "Premium maatwerk software voor MKB-ondernemers in Nederland en Spanje. Admin-systemen, websites, webshops, SEO en care.",
+};
+
+// Expliciete viewport + theme-color zodat de browser-chrome op mobiel
+// (Safari/Chrome adresbalk) de cream-bg overneemt i.p.v. wit/zwart.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F5F0E8" },
+    { media: "(prefers-color-scheme: dark)", color: "#F5F0E8" },
+  ],
 };
 
 export function generateStaticParams() {
