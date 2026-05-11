@@ -108,6 +108,22 @@ export default async function Page({
   const idx = allPosts.findIndex((p) => p.slug === post.slug);
   const newer = idx > 0 ? allPosts[idx - 1] : null;
   const older = idx >= 0 && idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
+
+  // Related posts: andere posts die ≥1 keyword (of tag) delen met deze,
+  // gesorteerd op overlap-grootte. Max 3. Voor topical authority +
+  // langere sessies.
+  const ownTerms = new Set([...post.keywords, ...post.tags].map((s) => s.toLowerCase()));
+  const related = allPosts
+    .filter((p) => p.slug !== post.slug)
+    .map((p) => {
+      const terms = [...p.keywords, ...p.tags].map((s) => s.toLowerCase());
+      const overlap = terms.filter((tm) => ownTerms.has(tm)).length;
+      return { post: p, overlap };
+    })
+    .filter((x) => x.overlap > 0)
+    .sort((a, b) => b.overlap - a.overlap)
+    .slice(0, 3)
+    .map((x) => x.post);
   const initials = post.author
     .split(" ")
     .map((s) => s[0])
@@ -174,6 +190,32 @@ export default async function Page({
               <p className="font-mono text-xs text-(--color-muted)">{t("by")} · webstability.eu</p>
             </div>
           </div>
+
+          {/* Related — posts die keywords/tags delen */}
+          {related.length > 0 && (
+            <section className="mt-16 border-t border-(--color-border) pt-8">
+              <p className="mb-4 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                {locale === "es" ? "También relevante" : "Ook relevant"}
+              </p>
+              <ul className="grid gap-3 sm:grid-cols-3">
+                {related.map((p) => (
+                  <li key={p.slug}>
+                    <NextLink
+                      href={postHref(locale, p.slug)}
+                      className="group block h-full rounded-lg border border-(--color-border) bg-(--color-surface) p-4 transition-shadow duration-300 hover:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.12)]"
+                    >
+                      <p className="line-clamp-3 text-sm font-medium transition-colors group-hover:text-(--color-accent)">
+                        {p.title}
+                      </p>
+                      <p className="mt-2 font-mono text-[10px] tracking-wide text-(--color-muted) uppercase">
+                        {t("readingTime", { minutes: p.readingMinutes })}
+                      </p>
+                    </NextLink>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           {/* Prev / next */}
           {(newer || older) && (

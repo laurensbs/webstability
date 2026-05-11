@@ -1,6 +1,6 @@
 ---
 title: "Verhuursysteem in twee talen — waarom de meeste SaaS hier breekt"
-description: "Een Nederlandse verhuurder met Spaanse klanten of een NL-expat aan de Costa Brava heeft één probleem: bestaande SaaS pickt één markt. Wat het kost om wel beide goed te bedienen."
+description: "Een Nederlandse verhuurder met Spaanse klanten of een NL-ondernemer aan de Costa Brava heeft één probleem dat op geen enkele productpagina staat: bestaande verhuur-SaaS pickt één markt. Wat het écht betekent voor je workflow, en wat het kost om beide talen goed te bedienen."
 date: 2026-05-09
 author: Laurens Bos
 keywords:
@@ -13,40 +13,48 @@ tags:
   - meertaligheid
 ---
 
-De vraag komt elke maand voorbij: "Mijn klanten zijn voor 60% Nederlands en 40% Spaans (of Engels), welk verhuursysteem kies ik?" Het eerlijke antwoord is dat de bekende SaaS-tools dit moeilijk vinden, en wat dat in praktijk betekent voor je workflow.
+De vraag komt elke maand voorbij: "Mijn klanten zijn voor 60% Nederlands en 40% Spaans — of Engels — welk verhuursysteem kies ik?" Het eerlijke antwoord is dat de bekende SaaS-tools dit lastig vinden, en dat de gevolgen daarvan op geen enkele productpagina staan. Dit stuk legt uit waarom, en wat het kost om het wél goed te doen.
 
 ## Het probleem dat niemand op een productpagina zet
 
-{/* TODO: scenario — boekingsbevestiging in NL, factuur in ES met IVA,
-   admin in jouw taal, klantcommunicatie in hun taal. Vier
-   taal-rails die parallel moeten lopen. */}
+"Meertalig" klinkt als een vinkje: zet de interface in NL of ES en klaar. In de praktijk lopen er bij een internationaal verhuurbedrijf **vier taal-rails parallel**, en die moeten alle vier kloppen:
+
+1. **De boekingsbevestiging** — de Nederlandse klant wil een Nederlandse mail, de Spaanse een Spaanse. Niet alleen de tekst, ook de datumnotatie, de aanhef, de toon.
+2. **De factuur** — de NL-klant krijgt een factuur met BTW; de ES-klant een factuur met IVA, in het Spaans, met de juiste fiscale velden voor de Spaanse belastingdienst. Twee belastingregimes, twee templates, automatisch het juiste op basis van het land van de klant.
+3. **Het huurcontract / de check-in-instructies** — opnieuw twee talen, met de juridische tekst die per land klopt.
+4. **De admin** — die wil jíj in je eigen moedertaal, ongeacht welke klant je net inboekt.
+
+Vier rails. Bij een SaaS die voor één markt is gebouwd, klopt er één — en de andere drie doe je handmatig, met losse documenten, of helemaal niet. Bij elke boeking opnieuw.
 
 ## Waar Tommy, Booqable en Avantio breken
 
-{/* TODO: per tool, één regel:
-   - Tommy: NL-eerst, ES-template ontbreekt op cruciale momenten
-   - Booqable: ondersteunt vertalingen, maar checkout-flow is statisch
-   - Avantio: ES-eerst, NL is een afterthought */}
+Geen van deze tools is slecht. Ze zijn alleen gebouwd met één markt als uitgangspunt:
+
+- **Tommy** — Nederlandse-markt-tool, kassa-eerst. ES-templates ontbreken op de cruciale momenten (factuur, contract). Voor een NL-camping met een verhuurhoekje prima; voor internationale verhuur niet. (Meer hierover: [Tommy alternatief](/blog/tommy-alternatief-nederlands).)
+- **Booqable** — ondersteunt vertalingen van de productteksten, maar de checkout-flow en de document-templates zijn beperkt configureerbaar. Je kunt de woorden vertalen, niet de hele klantreis per taal inrichten. (Meer hierover: [Booqable vs maatwerk](/blog/booqable-vs-maatwerk).)
+- **Avantio** — Spaanse-markt-tool, sterk vanaf ~20 units. NL is een afterthought: de Nederlandse klant en de Nederlandse boekhouding zijn niet de hoofdcase. (Meer hierover, in het Spaans: [Avantio alternativa](/es/blog/avantio-alternativa-personalizada).)
+
+In alle drie de gevallen kun je het laten werken — met workarounds. En elke workaround is een plek waar het misgaat zodra het portfolio groeit of een nieuwe medewerker het overneemt.
 
 ## Wat een meertalig systeem op maat anders doet
 
-{/* TODO: 
-   - i18n on every customer-facing string (incl. PDF-templates)
-   - Locale per klant in de database, niet alleen browser-locale
-   - Twee BTW/IVA-rails parallel, automatische selectie per land
-   - Eén admin in jouw moedertaal */}
+Een verhuursysteem dat vanaf het begin tweetalig is gebouwd, doet dit fundamenteel anders:
+
+- **Vertaling op elke klant-zichtbare string** — inclusief de PDF-templates voor facturen en contracten, niet alleen de website-teksten.
+- **Locale per klant in de database** — niet "wat staat er in de browser", maar "deze klant communiceert in het Spaans" als een eigenschap die bewaard blijft. De volgende mail is meteen goed.
+- **Twee BTW/IVA-rails parallel** — automatische selectie van het juiste belastingregime en de juiste factuurtemplate op basis van het land van de klant. Geen handmatige correctie achteraf.
+- **Eén admin in jouw moedertaal** — jij werkt in het Nederlands (of Spaans), ongeacht welke klant je inboekt. De software past zich aan jou aan, niet andersom.
+
+Dit is geen feature die je "aanzet". Het is een ontwerpkeuze die je vanaf de eerste regel code maakt — en precies daarom doet kant-en-klare SaaS het zo zelden goed.
 
 ## Concreet: wat het kost en wat het oplevert
 
-{/* TODO: 
-   - Vaste prijs €5–8k voor de basis in 4 weken
-   - €179/m doorlopend onderhoud
-   - vs. SaaS: workarounds + handmatig vertalen + verloren
-     conversies bij ES-klanten die het NL-formulier niet snappen */}
+**De kosten.** Een werkende eerste versie van een tweetalig verhuur-boekingssysteem kost **€5.000–8.000 vaste prijs**, geleverd in vier weken. Daarna een doorlopend abonnement vanaf **€99/m** (voor een volwaardig verhuurplatform met alles erop eerder richting €179–399/m). Code op je eigen account, dus geen vendor lock-in.
+
+**Wat het oplevert.** Tegenover SaaS waar je het tweede taalgebied handmatig regelt: geen losse documenten meer, geen boekhoud-correcties achteraf, en — vaak onderschat — geen verloren conversies bij Spaanse klanten die afhaken op een Nederlands boekingsformulier dat ze half snappen. Die laatste post staat nergens op een factuur, maar bij een verhuurder met 40% internationale klanten is het reëel geld.
 
 ## Waar Webstability hieraan past
 
-[Bekijk de verhuur-pagina →](/verhuur)
+Dit tweetalige scenario — een verhuurder die in Nederland én Spanje opereert — is precies waar ik me op specialiseer. Ik werk vanuit de Costa Brava, bouw systemen die NL en ES als gelijkwaardige rails behandelen, en ken de fiscale en culturele context van beide markten.
 
-{/* TODO: link naar /verhuur + één-zin uitleg dat het primaire
-   segment exact dit is. */}
+Wil je weten of jouw situatie hierin past? [Stuur me hoe je het nu doet](/contact) — binnen een dag een eerlijk antwoord. Of bekijk de [verhuur-pagina](/verhuur) en de [case van Caravanverhuurspanje](/cases/caravanverhuurspanje): een Nederlandse verhuurder aan de Costa Brava die precies deze stap maakte.
