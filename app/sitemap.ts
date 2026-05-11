@@ -29,6 +29,7 @@ const STATIC_PATHS: Record<string, { nl: string; es: string }> = {
   "/privacy": { nl: "/privacy", es: "/es/privacidad" },
   "/aviso-legal": { nl: "/aviso-legal", es: "/es/aviso-legal" },
   "/blog": { nl: "/blog", es: "/es/blog" },
+  "/aanvragen": { nl: "/aanvragen", es: "/es/solicitar" },
 };
 
 // Verticaal-pagina's onder /diensten/[vertical] (ES: /servicios/[vertical]).

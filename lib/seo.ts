@@ -6,6 +6,7 @@ type RouteKey =
   | "home"
   | "verhuur"
   | "diensten"
+  | "aanvragen"
   | "faq"
   | "cases"
   | "caseCaravanverhuur"
@@ -45,6 +46,11 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
       title: "Diensten — wat we voor je bouwen",
       description:
         "Verhuur- of reparatieplatform vanaf €7.800. Webshop op maat vanaf €3.000. Care en groei-abonnementen vanaf €69/m. Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt.",
+    },
+    aanvragen: {
+      title: "Vraag je website of webshop aan",
+      description:
+        "Stel je website of webshop samen — type, aantal pagina's, stijl, talen, opties — en zie meteen de richtprijs. Daarna een kort gesprek voor de definitieve offerte. Vaste prijs, vier weken.",
     },
     faq: {
       title: "Veelgestelde vragen",
@@ -120,6 +126,11 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
       title: "Servicios — qué construimos para ti",
       description:
         "Plataforma de alquiler o reparación desde 7.800 €. Tienda online a medida desde 3.000 €. Suscripciones Care y crecimiento desde 69 €/m. Un sistema que funciona, un Laurens que lo mantiene.",
+    },
+    aanvragen: {
+      title: "Solicita tu web o tienda online",
+      description:
+        "Configura tu web o tienda online — tipo, número de páginas, estilo, idiomas, opciones — y ve el precio orientativo al instante. Después una charla breve para el presupuesto definitivo. Precio fijo, cuatro semanas.",
     },
     faq: {
       title: "Preguntas frecuentes",
@@ -448,6 +459,7 @@ const ROUTE_PATHS: Record<RouteKey, { nl: string; es: string }> = {
   home: { nl: "/", es: "/es" },
   verhuur: { nl: "/verhuur", es: "/es/alquiler" },
   diensten: { nl: "/diensten", es: "/es/servicios" },
+  aanvragen: { nl: "/aanvragen", es: "/es/solicitar" },
   faq: { nl: "/faq", es: "/es/preguntas" },
   cases: { nl: "/cases", es: "/es/cases" },
   caseCaravanverhuur: {

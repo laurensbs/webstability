@@ -8,6 +8,7 @@ export const LEAD_SOURCES = [
   "manual",
   "blog_subscribe",
   "referral",
+  "configurator",
 ] as const;
 export const LEAD_STATUSES = ["cold", "warmed", "booked", "met", "customer", "lost"] as const;
 
@@ -20,6 +21,7 @@ export const LEAD_SOURCE_LABEL_NL: Record<LeadSource, string> = {
   manual: "Handmatig",
   blog_subscribe: "Blog-aanmelding",
   referral: "Referral",
+  configurator: "Configurator",
 };
 export const LEAD_STATUS_LABEL_NL: Record<LeadStatus, string> = {
   cold: "Cold",

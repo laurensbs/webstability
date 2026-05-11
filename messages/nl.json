@@ -29,6 +29,94 @@
       "cta": "Stel je vraag"
     }
   },
+  "configurator": {
+    "eyebrow": "stel je project samen",
+    "title": "Vraag je website of webshop aan",
+    "lede": "Klik je project bij elkaar — type, omvang, stijl, talen, opties — en zie meteen een richtprijs. Daarna een kort gesprek voor de definitieve offerte. Vaste prijs, vier weken, geen meerwerk-facturen.",
+    "stepLabel": "stap {current} van {total}",
+    "back": "Terug",
+    "next": "Volgende",
+    "submit": "Stuur mijn aanvraag",
+    "submitting": "Versturen…",
+    "steps": {
+      "kind": {
+        "title": "Wat wil je laten bouwen?",
+        "lede": "Een presentatie-website, of een webshop waar mensen direct afrekenen?",
+        "website": "Website",
+        "websiteBody": "Een nette, snelle site die laat zien wat je doet. Pagina's, contact, eventueel een blog.",
+        "webshop": "Webshop",
+        "webshopBody": "Producten, winkelmandje, afrekenen via iDEAL/kaart, btw per categorie, voorraad."
+      },
+      "scope": {
+        "title": "Hoe groot wordt het?",
+        "lede": "Een richting is genoeg — we scherpen het samen aan in het gesprek.",
+        "pagesLabel": "Aantal pagina's",
+        "included": "{n} pagina's inbegrepen",
+        "perExtra": "+€{price} per extra pagina"
+      },
+      "look": {
+        "title": "Welke sfeer past bij je?",
+        "lede": "Kies een richting — de uiteindelijke vormgeving maken we samen, op jouw merk.",
+        "customLabel": "Andere kleur of sfeer in gedachten?",
+        "customPlaceholder": "Bijv. 'aardetinten met diepblauw', of een merkkleur"
+      },
+      "language": {
+        "title": "In welke talen?",
+        "lede": "Volwaardig tweetalig (NL + ES) is iets waar ik in gespecialiseerd ben — niet 'Engels erbij'."
+      },
+      "options": {
+        "title": "Wat heb je nog meer nodig?",
+        "lede": "Vink aan wat van toepassing is — elke optie zie je terug in de richtprijs.",
+        "note": "Niets aanvinken kan ook — we kijken in het gesprek wat je echt nodig hebt."
+      },
+      "details": {
+        "title": "Waar kunnen we je bereiken?",
+        "lede": "We mailen je binnen één werkdag een reactie op je aanvraag.",
+        "name": "Je naam",
+        "email": "E-mailadres",
+        "company": "Bedrijf (optioneel)",
+        "message": "Iets dat we moeten weten?",
+        "messagePlaceholder": "Vertel kort waar het over gaat, of stel een vraag."
+      }
+    },
+    "summary": {
+      "title": "Jouw configuratie",
+      "estimateLabel": "richtprijs",
+      "estimateNote": "Schatting van ±15%. De definitieve offerte krijg je na een kort gesprek — vaste prijs, geen meerwerk.",
+      "toggle": "Bekijk samenvatting"
+    },
+    "success": {
+      "title": "Aanvraag binnen — dankjewel.",
+      "body": "We hebben je configuratie ontvangen (richtprijs {low} – {high}) en mailen je binnen één werkdag. Wil je het sneller bespreken? Boek meteen een kennismaking.",
+      "cta": "Boek meteen een kennismaking",
+      "done": "Of sluit dit venster — we mailen je sowieso."
+    },
+    "palettes": {
+      "warm": "Warm & ambachtelijk",
+      "modern": "Strak & modern",
+      "dark": "Donker & premium",
+      "fresh": "Fris & licht",
+      "bold": "Stoer & contrastrijk"
+    },
+    "languages": {
+      "nl": "Alleen Nederlands",
+      "nl_es": "Nederlands + Spaans",
+      "nl_es_en": "Nederlands + Spaans + Engels"
+    },
+    "options": {
+      "multilingual": "Volwaardig meertalig",
+      "inventorySync": "Voorraad-koppeling",
+      "blog": "Blog / nieuws met CMS",
+      "customDesign": "Eigen design op maat",
+      "copywriting": "Wij schrijven de teksten",
+      "bookingForm": "Afspraak- / aanvraagformulier"
+    },
+    "lines": {
+      "baseWebsite": "Website-basis (incl. {n} pagina's)",
+      "baseWebshop": "Webshop-basis (incl. {n} pagina's)",
+      "extraPages": "{n} extra pagina's"
+    }
+  },
   "faqPage": {
     "metaTitle": "Veelgestelde vragen — kosten, levertijd, werkwijze",
     "metaDescription": "Wat kost een boekingssysteem op maat, hoe lang duurt het, wat is het verschil met SaaS, en hoe werk ik? De vragen die ik het meest krijg, vooraf beantwoord.",

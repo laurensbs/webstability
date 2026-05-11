@@ -266,6 +266,16 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               </li>
               <li>
                 <Link
+                  href={{ pathname: "/aanvragen" }}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-(--color-accent)/50 bg-(--color-accent-soft)/40 px-4 py-2 text-[13px] font-medium text-(--color-text) transition-colors hover:border-(--color-accent)"
+                >
+                  {locale === "es"
+                    ? "Solicita tu web o tienda online →"
+                    : "Vraag je website of webshop aan →"}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={{ pathname: "/faq" }}
                   className="inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface) px-4 py-2 text-[13px] text-(--color-text) transition-colors hover:border-(--color-accent)/50"
                 >

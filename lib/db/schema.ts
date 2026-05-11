@@ -89,6 +89,9 @@ export const leadSourceEnum = pgEnum("lead_source", [
   "manual",
   "blog_subscribe",
   "referral",
+  // Publieke website/webshop-configurator (/aanvragen) — warme lead met
+  // alle keuzes + richtprijs in leadActivity.metadata.
+  "configurator",
 ]);
 export const leadStatusEnum = pgEnum("lead_status", [
   "cold",

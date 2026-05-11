@@ -62,4 +62,123 @@ export const LEGACY_TIERS = new Set<TierId>(["care"]);
 export function isLegacyTier(id: TierId): boolean {
   return LEGACY_TIERS.has(id);
 }
-1;
+
+// ===========================================================================
+// Parametrisch prijsmodel voor de publieke website/webshop-configurator.
+// Geeft een *richtprijs-band* terug (low–high) — de definitieve offerte
+// volgt na een kort gesprek. Bewust apart van de tier/build-constants
+// hierboven; raakt die niet aan. Bedragen in hele euro's (de configurator-
+// UI rekent om naar weergave; submit slaat cents op).
+// ===========================================================================
+
+export type ProjectKind = "website" | "webshop";
+
+/** Basisbedrag (richt) per project-type — sluit aan op BUILD_PROJECT_FLOORS. */
+export const PROJECT_BASE: Record<ProjectKind, number> = {
+  website: BUILD_PROJECT_FLOORS.site, // 1050
+  webshop: BUILD_PROJECT_FLOORS.webshop, // 3000
+};
+
+/** Aantal pagina's dat in het basisbedrag zit. */
+export const PROJECT_PAGES_INCLUDED: Record<ProjectKind, number> = {
+  website: 5,
+  webshop: 8,
+};
+
+/** Meerprijs per pagina boven het inbegrepen aantal. */
+export const PROJECT_EXTRA_PAGE = 120;
+
+/** Maximaal aantal pagina's dat de configurator-stepper toelaat (daarboven
+ * "neem contact op" — dan is het een groter traject). */
+export const PROJECT_MAX_PAGES = 25;
+
+/** Optionele add-ons. Key = id, value = { price, labelKey }. De labelKeys
+ * verwijzen naar messages onder `configurator.options.*`. */
+export const CONFIG_OPTIONS = {
+  multilingual: { price: 600, labelKey: "multilingual" }, // NL + ES (of meer) volwaardig
+  inventorySync: { price: 500, labelKey: "inventorySync" }, // voorraad-koppeling (webshop)
+  blog: { price: 350, labelKey: "blog" }, // blog / nieuws-sectie met CMS
+  customDesign: { price: 800, labelKey: "customDesign" }, // eigen design i.p.v. template-variant
+  copywriting: { price: 450, labelKey: "copywriting" }, // wij schrijven de teksten
+  bookingForm: { price: 400, labelKey: "bookingForm" }, // afspraak-/aanvraagformulier
+} as const;
+
+export type ConfigOptionId = keyof typeof CONFIG_OPTIONS;
+
+/** Gecureerde kleur/sfeer-paletten voor de configurator (géén vrije
+ * colorpicker — premium/curated). Key = id, value = { swatch: [hex,...],
+ * labelKey }. De labelKeys verwijzen naar `configurator.palettes.*`. */
+export const CONFIG_PALETTES = {
+  warm: { labelKey: "warm", swatch: ["#F5F0E8", "#C9614F", "#6B1E2C"] },
+  modern: { labelKey: "modern", swatch: ["#FFFFFF", "#1F1B16", "#2C5F5D"] },
+  dark: { labelKey: "dark", swatch: ["#15110D", "#C9614F", "#EFE8DB"] },
+  fresh: { labelKey: "fresh", swatch: ["#FBFAF7", "#2C5F5D", "#5A7A4A"] },
+  bold: { labelKey: "bold", swatch: ["#0E0E10", "#6B1E2C", "#C9614F"] },
+} as const;
+
+export type ConfigPaletteId = keyof typeof CONFIG_PALETTES;
+
+/** Taalkeuzes in de configurator. Label-keys → `configurator.languages.*`. */
+export const CONFIG_LANGUAGE_OPTIONS = ["nl", "nl_es", "nl_es_en"] as const;
+export type ConfigLanguageId = (typeof CONFIG_LANGUAGE_OPTIONS)[number];
+
+/** ±-marge op de richtprijs — we tonen low/high zodat het eerlijk een
+ * schatting is, geen harde offerte. */
+const ESTIMATE_MARGIN = 0.15;
+
+export type PriceLine = { labelKey: string; cents: number; meta?: Record<string, unknown> };
+
+export type PriceEstimate = {
+  /** Onderkant van de band, in cents. */
+  lowCents: number;
+  /** Bovenkant van de band, in cents. */
+  highCents: number;
+  /** Middenwaarde (waar de losse regels op optellen), in cents. */
+  midCents: number;
+  /** Opbouw, in cents — voor de "wat zit erin"-samenvatting. */
+  lines: PriceLine[];
+};
+
+/**
+ * Berekent de richtprijs-band voor een website/webshop-configuratie.
+ * Pure functie — geen side effects, geen i18n (de UI vertaalt de labelKeys).
+ */
+export function estimateProjectPrice(input: {
+  kind: ProjectKind;
+  pages: number;
+  options: ConfigOptionId[];
+}): PriceEstimate {
+  const base = PROJECT_BASE[input.kind];
+  const included = PROJECT_PAGES_INCLUDED[input.kind];
+  const pages = Math.max(included, Math.min(PROJECT_MAX_PAGES, Math.round(input.pages)));
+  const extraPages = Math.max(0, pages - included);
+  const extraPagesCost = extraPages * PROJECT_EXTRA_PAGE;
+
+  const lines: PriceLine[] = [
+    {
+      labelKey: input.kind === "webshop" ? "base.webshop" : "base.website",
+      cents: base * 100,
+      meta: { includedPages: included },
+    },
+  ];
+  if (extraPages > 0) {
+    lines.push({
+      labelKey: "extraPages",
+      cents: extraPagesCost * 100,
+      meta: { count: extraPages, perPage: PROJECT_EXTRA_PAGE },
+    });
+  }
+  // Dedupe + alleen geldige option-ids meerekenen.
+  const seen = new Set<ConfigOptionId>();
+  for (const id of input.options) {
+    if (!(id in CONFIG_OPTIONS) || seen.has(id)) continue;
+    seen.add(id);
+    const opt = CONFIG_OPTIONS[id];
+    lines.push({ labelKey: `options.${opt.labelKey}`, cents: opt.price * 100, meta: { id } });
+  }
+
+  const midCents = lines.reduce((sum, l) => sum + l.cents, 0);
+  const lowCents = Math.round((midCents * (1 - ESTIMATE_MARGIN)) / 5000) * 5000; // afronden op €50
+  const highCents = Math.round((midCents * (1 + ESTIMATE_MARGIN)) / 5000) * 5000;
+  return { lowCents, highCents, midCents, lines };
+}

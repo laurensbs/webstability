@@ -29,6 +29,94 @@
       "cta": "Haz tu pregunta"
     }
   },
+  "configurator": {
+    "eyebrow": "configura tu proyecto",
+    "title": "Solicita tu web o tienda online",
+    "lede": "Configura tu proyecto — tipo, tamaño, estilo, idiomas, opciones — y ve un precio orientativo al instante. Después, una charla breve para el presupuesto definitivo. Precio fijo, cuatro semanas, sin facturas por trabajo extra.",
+    "stepLabel": "paso {current} de {total}",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "submit": "Enviar mi solicitud",
+    "submitting": "Enviando…",
+    "steps": {
+      "kind": {
+        "title": "¿Qué quieres que construyamos?",
+        "lede": "¿Una web de presentación, o una tienda online donde la gente paga directamente?",
+        "website": "Web",
+        "websiteBody": "Una web limpia y rápida que muestra lo que haces. Páginas, contacto, opcionalmente un blog.",
+        "webshop": "Tienda online",
+        "webshopBody": "Productos, carrito, pago por tarjeta/iDEAL, IVA por categoría, inventario."
+      },
+      "scope": {
+        "title": "¿Qué tamaño tendrá?",
+        "lede": "Con una orientación basta — lo afinamos juntos en la charla.",
+        "pagesLabel": "Número de páginas",
+        "included": "{n} páginas incluidas",
+        "perExtra": "+€{price} por página extra"
+      },
+      "look": {
+        "title": "¿Qué estilo encaja contigo?",
+        "lede": "Elige una dirección — el diseño final lo hacemos juntos, con tu marca.",
+        "customLabel": "¿Tienes en mente otro color o estilo?",
+        "customPlaceholder": "P. ej. 'tonos tierra con azul profundo', o un color de marca"
+      },
+      "language": {
+        "title": "¿En qué idiomas?",
+        "lede": "Bilingüe completo (NL + ES) es algo en lo que me especializo — no 'inglés añadido'."
+      },
+      "options": {
+        "title": "¿Qué más necesitas?",
+        "lede": "Marca lo que aplique — cada opción se refleja en el precio orientativo.",
+        "note": "No marcar nada también vale — vemos en la charla qué necesitas de verdad."
+      },
+      "details": {
+        "title": "¿Dónde te localizamos?",
+        "lede": "Te respondemos a tu solicitud por correo en un día laborable.",
+        "name": "Tu nombre",
+        "email": "Correo electrónico",
+        "company": "Empresa (opcional)",
+        "message": "¿Algo que debamos saber?",
+        "messagePlaceholder": "Cuéntanos brevemente de qué va, o haz una pregunta."
+      }
+    },
+    "summary": {
+      "title": "Tu configuración",
+      "estimateLabel": "precio orientativo",
+      "estimateNote": "Estimación de ±15%. El presupuesto definitivo lo recibes tras una charla breve — precio fijo, sin extras.",
+      "toggle": "Ver resumen"
+    },
+    "success": {
+      "title": "Solicitud recibida — gracias.",
+      "body": "Hemos recibido tu configuración (precio orientativo {low} – {high}) y te escribimos en un día laborable. ¿Lo quieres hablar antes? Reserva una charla ahora.",
+      "cta": "Reserva una charla ahora",
+      "done": "O cierra esta ventana — te escribimos de todos modos."
+    },
+    "palettes": {
+      "warm": "Cálido y artesanal",
+      "modern": "Limpio y moderno",
+      "dark": "Oscuro y premium",
+      "fresh": "Fresco y claro",
+      "bold": "Atrevido y contrastado"
+    },
+    "languages": {
+      "nl": "Solo neerlandés",
+      "nl_es": "Neerlandés + español",
+      "nl_es_en": "Neerlandés + español + inglés"
+    },
+    "options": {
+      "multilingual": "Multilingüe completo",
+      "inventorySync": "Conexión de inventario",
+      "blog": "Blog / noticias con CMS",
+      "customDesign": "Diseño propio a medida",
+      "copywriting": "Nosotros escribimos los textos",
+      "bookingForm": "Formulario de cita / solicitud"
+    },
+    "lines": {
+      "baseWebsite": "Base web (incl. {n} páginas)",
+      "baseWebshop": "Base tienda online (incl. {n} páginas)",
+      "extraPages": "{n} páginas extra"
+    }
+  },
   "faqPage": {
     "metaTitle": "Preguntas frecuentes — precios, plazos, forma de trabajar",
     "metaDescription": "¿Cuánto cuesta un sistema de reservas a medida, cuánto tarda, qué diferencia hay con el SaaS, y cómo trabajo? Las preguntas que más recibo, respondidas de antemano.",
