@@ -8,7 +8,19 @@
 // wisselt niet per locale, alleen het bovenliggende pad (/diensten vs
 // /servicios) doet dat via i18n/routing.ts.
 
-export const VERTICAL_SLUGS = ["verhuur-boekingssysteem", "klantportaal-laten-bouwen"] as const;
+export const VERTICAL_SLUGS = [
+  "verhuur-boekingssysteem",
+  "klantportaal-laten-bouwen",
+  "website-laten-maken",
+  "webshop-laten-maken",
+] as const;
+
+/** Verticals waarvoor de publieke project-configurator (/aanvragen)
+ * relevant is — daar tonen we een prominente "stel je project samen"-CTA. */
+export const CONFIGURABLE_VERTICALS = new Set<string>([
+  "website-laten-maken",
+  "webshop-laten-maken",
+]);
 
 export type VerticalSlug = (typeof VERTICAL_SLUGS)[number];
 

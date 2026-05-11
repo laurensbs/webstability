@@ -968,6 +968,216 @@
         { "label": "Caso: Caravanverhuurspanje", "href": "/es/cases/caravanverhuurspanje" },
         { "label": "Dashboards mobile-first", "href": "/es/blog/mobile-first-dashboards" }
       ]
+    },
+    "website-laten-maken": {
+      "metaTitle": "Diseño web a medida — precio fijo, cuatro semanas, NL y ES",
+      "metaDescription": "Una web limpia y rápida a medida — con tu identidad, dos idiomas, dominio propio. Precio fijo, sin extras. Configúrala tú mismo y ve el precio orientativo al instante.",
+      "eyebrow": "diseño web a medida",
+      "title": "Una web *rápida*, *limpia* y *tuya*",
+      "lede": "Ni un constructor de plantillas en el que tienes que pelearte tú, ni una agencia que seis semanas después sigue 'con el concepto'. Precio fijo, cuatro semanas, y una web que carga antes de que la veas — con tu identidad, en tu dominio, en uno o dos idiomas.",
+      "metrics": [
+        { "value": "4 sem", "label": "de la primera charla a online" },
+        { "value": "desde 1.050 €", "label": "precio fijo — sin extras" },
+        { "value": "NL + ES", "label": "bilingüe sin líos" }
+      ],
+      "problemEyebrow": "dónde falla",
+      "problemTitle": "Por qué un constructor o una agencia suele decepcionar",
+      "problems": [
+        {
+          "title": "El constructor de plantillas",
+          "body": "Wix, Squarespace y compañía son rápidos — pero tu web se parece a otras mil, se vuelve lenta cuando la llenas, y el multilingüismo es a medias. Pagas cada mes, y sigue siendo su plataforma."
+        },
+        {
+          "title": "La agencia que 'trabaja el concepto'",
+          "body": "Seis semanas después hay un mood-board y un presupuesto con margen 'para lo inesperado'. Si se alarga, pagas tú. No sabes de antemano qué cuesta ni cuándo está."
+        },
+        {
+          "title": "Bilingüe 'añadido'",
+          "body": "La mayoría de constructores hace el multilingüismo como plugin: los textos los traduces tú, los meta-tags y las URL cuadran a medias, Google no entiende qué versión va dónde. Para una empresa neerlandesa con clientes españoles, fricción diaria."
+        }
+      ],
+      "solutionEyebrow": "qué obtienes",
+      "solutionTitle": "Una web que *simplemente funciona* — y es tuya",
+      "solutionLede": "Construida a medida sobre tu marca, rápida, mobile-first, dos idiomas como raíles equivalentes, en tu propio dominio. Precio fijo, cuatro semanas, y después un abono de mantenimiento para que siga actualizada y online.",
+      "solutions": [
+        {
+          "title": "Rápida y estable",
+          "body": "Sin sobrecarga de plantilla — una web que carga antes de que la veas, también en móvil, también con mala conexión. Buenos Core Web Vitals de serie, no una opción extra."
+        },
+        {
+          "title": "Tu identidad, tu dominio",
+          "body": "El diseño lo hacemos juntos, sobre tu marca. La web va en tu dominio, los correos desde tu dirección. Sin 'powered by', sin logo de plataforma."
+        },
+        {
+          "title": "Dos idiomas como raíles equivalentes",
+          "body": "NL y ES (o más) completos: textos traducidos, meta-tags y hreflang correctos, URL por idioma. No 'inglés añadido' — bilingüe de verdad, en lo que me especializo."
+        },
+        {
+          "title": "Lista para crecer",
+          "body": "Un blog, un formulario de solicitud, una conexión de inventario, una página extra — eso lo añadimos dentro del abono de mantenimiento. La web crece con tu empresa."
+        }
+      ],
+      "forWhoEyebrow": "¿encaja contigo?",
+      "forWhoTitle": "Para quién encaja una web a medida",
+      "forWho": [
+        "Quieres una web limpia y rápida que no parezca una plantilla",
+        "Quieres (o ya tienes) tu propia marca y dominio por delante",
+        "Atiendes clientes en dos idiomas, o lo vas a hacer",
+        "Quieres saber de antemano qué cuesta y cuándo está",
+        "Quieres una sola parte que la construya y la mantenga"
+      ],
+      "notFor": [
+        "Necesitas mañana una web gratis de una página — coge un constructor de plantillas",
+        "Quieres poder arrastrarlo y configurarlo todo tú — entonces encaja mejor un builder",
+        "Esperas una gran plataforma a medida en una semana"
+      ],
+      "priceEyebrow": "qué cuesta",
+      "priceTitle": "Precio fijo, cuatro semanas — y la configuras tú mismo",
+      "priceBody": "Una web a medida empieza en 1.050 € (precio fijo, cuatro semanas), según el número de páginas y opciones. Configura tu proyecto tú mismo en la página de solicitud y ve el precio orientativo al instante. Después, un abono de mantenimiento desde 99 €/m para hosting, actualizaciones, pequeños cambios y desarrollo continuo.",
+      "pricePoints": [
+        "Precio fijo de antemano — sabes qué cuesta y qué obtienes",
+        "Cuatro semanas de la primera charla a online",
+        "Configúrala tú mismo y ve el precio en /es/solicitar",
+        "Código en tu cuenta, hosting a tu nombre — sin vendor lock-in"
+      ],
+      "faqEyebrow": "preguntas frecuentes",
+      "faqTitle": "Diseño web a medida — las preguntas que más recibo",
+      "faq": [
+        {
+          "q": "¿Cuánto cuesta hacer una web?",
+          "a": "Desde 1.050 €, precio fijo, entregada en cuatro semanas — según el número de páginas y opciones (multilingüe, blog, diseño propio). Configúrala en /es/solicitar y ve el precio. Después, un abono de mantenimiento desde 99 €/m."
+        },
+        {
+          "q": "¿Cuánto tarda?",
+          "a": "Cuatro semanas de la primera charla a una web online. Después desarrollamos de forma incremental dentro del abono — sin un proceso de meses antes de ver nada."
+        },
+        {
+          "q": "¿La web funciona en neerlandés y en español?",
+          "a": "Sí — bilingüe completo es algo en lo que me especializo: textos traducidos, hreflang y meta-tags correctos, URL por idioma. No 'inglés añadido'."
+        },
+        {
+          "q": "¿Puedo cambiar los textos yo mismo más adelante?",
+          "a": "Para los textos de las páginas puedes tener un CMS sencillo; los pequeños cambios los pides por correo y entran en el abono de mantenimiento. Sin presupuesto por cambio."
+        },
+        {
+          "q": "¿Y si más adelante quiero una tienda online?",
+          "a": "Entonces ampliamos la web a una tienda online — productos, carrito, pago, IVA por categoría. No empiezas de cero; la web crece."
+        }
+      ],
+      "ctaTitle": "Configura tu web — ve el precio orientativo al instante",
+      "ctaBody": "Configura tu proyecto: tipo, número de páginas, estilo, idiomas, opciones. Ves un precio orientativo de inmediato y te escribimos en un día laborable.",
+      "ctaButton": "Configura tu web",
+      "related": [
+        { "label": "Solicita tu web", "href": "/es/solicitar" },
+        { "label": "Todos los servicios", "href": "/es/servicios" },
+        { "label": "Precios claros", "href": "/es/precios" },
+        { "label": "Tienda online a medida", "href": "/es/servicios/webshop-laten-maken" }
+      ]
+    },
+    "webshop-laten-maken": {
+      "metaTitle": "Tienda online a medida — con IVA, NL y ES, precio fijo",
+      "metaDescription": "Una tienda online a medida: productos, carrito, pago por tarjeta/iDEAL, IVA por categoría, inventario. Dos idiomas, marca propia, precio fijo. Configúrala tú mismo.",
+      "eyebrow": "tienda online a medida",
+      "title": "Una tienda online que *cobra como tú vendes*",
+      "lede": "No una tienda estándar en la que tienes que meter tus productos con calzador — una tienda a medida: tu lógica de producto, tus categorías de IVA, tu checkout, tu marca. Precio fijo, cuatro semanas, y si vendes en dos países: IVA neerlandés y español, dos idiomas.",
+      "metrics": [
+        { "value": "4 sem", "label": "de la primera charla a online" },
+        { "value": "desde 3.000 €", "label": "precio fijo — sin extras" },
+        { "value": "iDEAL · tarjeta", "label": "pago vía Stripe/Mollie" }
+      ],
+      "problemEyebrow": "dónde falla",
+      "problemTitle": "Por qué una tienda estándar suele apretar",
+      "problems": [
+        {
+          "title": "Tus productos no caben en la plantilla",
+          "body": "Variantes, packs, precios por categoría, reglas de IVA que cambian por país — una tienda estándar te mete en su modelo. Trabajas alrededor, y cada pedido cuesta algo de trabajo manual."
+        },
+        {
+          "title": "IVA en dos países",
+          "body": "Si vendes vía una entidad neerlandesa y una española, o a clientes de ambos países — tienes facturas con BTW y con IVA, IVA por categoría, e idealmente conexión con ambas contabilidades. La mayoría de tiendas hace un país."
+        },
+        {
+          "title": "Tu marca desaparece en la plataforma",
+          "body": "El checkout va en su subdominio, los correos de confirmación desde su dirección, el aspecto es genérico. Para una marca que vive de la confianza es una oportunidad perdida."
+        }
+      ],
+      "solutionEyebrow": "qué obtienes",
+      "solutionTitle": "Una tienda para *todo* lo de tu venta",
+      "solutionLede": "Productos, carrito, pago, IVA, inventario, correos de confirmación — construido a medida sobre tu marca y dominio. Precio fijo, cuatro semanas, y después un abono de mantenimiento para que siga actualizada y online.",
+      "solutions": [
+        {
+          "title": "Tu lógica de producto",
+          "body": "Variantes, packs, precios por categoría, inventario — construido como tú vendes, no como quiere una plantilla. Conexión de inventario con tu sistema, opcional."
+        },
+        {
+          "title": "BTW e IVA, automático",
+          "body": "IVA por categoría, tipos neerlandeses y españoles, facturas en el idioma correcto y con los campos fiscales correctos — automático según el país del cliente. Conexión con tu contabilidad posible."
+        },
+        {
+          "title": "Pago vía iDEAL y tarjeta",
+          "body": "Checkout vía Stripe o Mollie: iDEAL, Bancontact, tarjeta. En tu dominio, con tu marca, con correos de confirmación desde tu dirección."
+        },
+        {
+          "title": "Dos idiomas como raíles equivalentes",
+          "body": "NL y ES completos: textos de producto, checkout, correos, facturas. No 'inglés añadido' — bilingüe de verdad, en lo que me especializo."
+        }
+      ],
+      "forWhoEyebrow": "¿encaja contigo?",
+      "forWhoTitle": "Para quién encaja una tienda online a medida",
+      "forWho": [
+        "Tus productos no caben bien en una tienda estándar",
+        "Vendes en dos países, o lo vas a hacer — BTW e IVA",
+        "Quieres tu propia marca, dominio y checkout por delante",
+        "Quieres conexión de inventario con tu sistema",
+        "Quieres saber de antemano qué cuesta y cuándo está"
+      ],
+      "notFor": [
+        "Vendes tres productos y quieres estar online mañana — coge una plataforma estándar",
+        "Quieres poder arrastrarlo y configurarlo todo tú — entonces encaja mejor un builder",
+        "Esperas una gran plataforma a medida en una semana"
+      ],
+      "priceEyebrow": "qué cuesta",
+      "priceTitle": "Precio fijo, cuatro semanas — y la configuras tú mismo",
+      "priceBody": "Una tienda online a medida empieza en 3.000 € (precio fijo, cuatro semanas), según el número de páginas y opciones. Configura tu proyecto tú mismo en la página de solicitud y ve el precio orientativo al instante. Después, un abono de mantenimiento desde 99 €/m para hosting, actualizaciones, pequeños cambios y desarrollo continuo.",
+      "pricePoints": [
+        "Precio fijo de antemano — sabes qué cuesta y qué obtienes",
+        "Cuatro semanas de la primera charla a online",
+        "Configúrala tú mismo y ve el precio en /es/solicitar",
+        "Código en tu cuenta, hosting a tu nombre — sin vendor lock-in"
+      ],
+      "faqEyebrow": "preguntas frecuentes",
+      "faqTitle": "Tienda online a medida — las preguntas que más recibo",
+      "faq": [
+        {
+          "q": "¿Cuánto cuesta hacer una tienda online?",
+          "a": "Desde 3.000 €, precio fijo, entregada en cuatro semanas — según el número de páginas y opciones (multilingüe, conexión de inventario, diseño propio). Configúrala en /es/solicitar y ve el precio. Después, un abono de mantenimiento desde 99 €/m."
+        },
+        {
+          "q": "¿Qué métodos de pago?",
+          "a": "Checkout vía Stripe o Mollie: iDEAL, Bancontact, tarjeta. En tu dominio, con tu marca. Qué métodos exactamente lo decidimos juntos según tus clientes."
+        },
+        {
+          "q": "¿Funciona con BTW e IVA?",
+          "a": "Sí — IVA por categoría, tipos neerlandeses y españoles, facturas en el idioma correcto con los campos fiscales correctos, automático según el país del cliente. Conexión con tu(s) contabilidad(es) posible."
+        },
+        {
+          "q": "¿Puede conectarse con mi inventario?",
+          "a": "Sí, la conexión de inventario es una opción: la tienda lee tu inventario de tu sistema, así no llevas doble registro. Cómo exactamente depende de dónde vive ahora tu inventario."
+        },
+        {
+          "q": "¿La tienda funciona en neerlandés y en español?",
+          "a": "Sí — bilingüe completo: textos de producto, checkout, correos, facturas. No 'inglés añadido'. Ese es justo el punto donde la mayoría de plataformas falla."
+        }
+      ],
+      "ctaTitle": "Configura tu tienda online — ve el precio orientativo al instante",
+      "ctaBody": "Configura tu proyecto: tipo, número de páginas, estilo, idiomas, opciones como conexión de inventario. Ves un precio orientativo de inmediato y te escribimos en un día laborable.",
+      "ctaButton": "Configura tu tienda online",
+      "related": [
+        { "label": "Solicita tu tienda online", "href": "/es/solicitar" },
+        { "label": "Todos los servicios", "href": "/es/servicios" },
+        { "label": "Precios claros", "href": "/es/precios" },
+        { "label": "Diseño web a medida", "href": "/es/servicios/website-laten-maken" }
+      ]
     }
   },
   "verhuur": {

@@ -19,7 +19,12 @@ import {
 } from "@/components/ui/Accordion";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { serviceLd, breadcrumbLd, faqPageLd, siteUrl } from "@/lib/seo";
-import { VERTICAL_SLUGS, isVerticalSlug, type VerticalSlug } from "@/lib/verticals";
+import {
+  VERTICAL_SLUGS,
+  isVerticalSlug,
+  CONFIGURABLE_VERTICALS,
+  type VerticalSlug,
+} from "@/lib/verticals";
 
 const SITE_URL = process.env.AUTH_URL ?? "https://webstability.eu";
 
@@ -379,27 +384,50 @@ export default async function VerticalPage({
         </section>
       ) : null}
 
-      {/* CTA */}
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
-        <RevealOnScroll className="mx-auto max-w-3xl space-y-6 text-center">
-          <h2 className="text-3xl md:text-5xl">{c.ctaTitle}</h2>
-          <p className="text-(--color-muted)">{c.ctaBody}</p>
-          <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
-            <CalPopupTrigger
-              locale={locale}
-              className={buttonVariants({ variant: "accent", size: "lg" })}
-            >
-              {c.ctaButton}
-            </CalPopupTrigger>
-            <Button asChild size="lg" variant="ghost">
-              <Link href={{ pathname: "/cases" }}>
-                {locale === "es" ? "Mira el trabajo" : "Bekijk het werk"}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </RevealOnScroll>
-      </section>
+      {/* CTA — voor website/webshop: configurator-CTA i.p.v. de Cal-only CTA */}
+      {CONFIGURABLE_VERTICALS.has(vertical) ? (
+        <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
+          <RevealOnScroll className="mx-auto max-w-3xl space-y-6 text-center">
+            <h2 className="text-3xl md:text-5xl">{c.ctaTitle}</h2>
+            <p className="text-(--color-muted)">{c.ctaBody}</p>
+            <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
+              <Button asChild size="lg" variant="accent">
+                <Link href={{ pathname: "/aanvragen" }}>
+                  {c.ctaButton}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <CalPopupTrigger
+                locale={locale}
+                className={buttonVariants({ variant: "ghost", size: "lg" })}
+              >
+                {locale === "es" ? "O reserva una charla" : "Of plan een gesprek"}
+              </CalPopupTrigger>
+            </div>
+          </RevealOnScroll>
+        </section>
+      ) : (
+        <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
+          <RevealOnScroll className="mx-auto max-w-3xl space-y-6 text-center">
+            <h2 className="text-3xl md:text-5xl">{c.ctaTitle}</h2>
+            <p className="text-(--color-muted)">{c.ctaBody}</p>
+            <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
+              <CalPopupTrigger
+                locale={locale}
+                className={buttonVariants({ variant: "accent", size: "lg" })}
+              >
+                {c.ctaButton}
+              </CalPopupTrigger>
+              <Button asChild size="lg" variant="ghost">
+                <Link href={{ pathname: "/cases" }}>
+                  {locale === "es" ? "Mira el trabajo" : "Bekijk het werk"}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </RevealOnScroll>
+        </section>
+      )}
     </main>
   );
 }
