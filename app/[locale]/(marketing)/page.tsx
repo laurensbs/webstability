@@ -19,6 +19,7 @@ import { LogoStrip } from "@/components/marketing/LogoStrip";
 import { HowItWorksWrapper } from "@/components/marketing/HowItWorksWrapper";
 import { StudioStatement } from "@/components/marketing/StudioStatement";
 import { Services } from "@/components/marketing/Services";
+import { HomeProblems } from "@/components/marketing/HomeProblems";
 import { Founder } from "@/components/marketing/Founder";
 import { Testimonials } from "@/components/marketing/Testimonials";
 import { Approach } from "@/components/marketing/Approach";
@@ -39,6 +40,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <HowItWorksWrapper />
       <StudioStatement />
       <Services />
+      <HomeProblems />
       <Founder />
       {/* Testimonials renders nothing until messages.home.testimonials.items has entries. */}
       <Testimonials />

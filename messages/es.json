@@ -312,6 +312,35 @@
       }
     },
 
+    "problems": {
+      "eyebrow": "qué resolvemos",
+      "title": "Tres tipos de caos. *Un* sistema.",
+      "lede": "La mayoría de pymes que me contactan se ahogan en herramientas sueltas que no se hablan entre sí. Abajo las tres situaciones que más veo — y qué hace un sistema integrado a medida al respecto.",
+      "items": [
+        {
+          "title": "Reservas duplicadas y puzzles de Excel",
+          "body": "Airbnb, Booking, tu propia web y una hoja que no sincroniza. Un solapamiento al mes cuesta un huésped descontento y un reembolso. Un sistema de reservas a medida tiene una sola agenda sobre todos tus objetos y canales — sin reservas duplicadas, facturas y contratos automáticos.",
+          "forWho": "alquiladores · caravanas · casas vacacionales · material",
+          "linkLabel": "Software de alquiler",
+          "href": "/es/alquiler"
+        },
+        {
+          "title": "Preguntas de clientes que se quedan en tu bandeja",
+          "body": "\"¿Dónde está mi factura?\", \"¿ya está listo?\", \"¿cuál es mi estado?\" — todo correo que buscas entre hilos antiguos. Un portal de cliente a medida lo pone donde tus clientes lo encuentran solos: estado, documentos, pagos — con tu identidad visual, en tu dominio.",
+          "forWho": "servicios · con contacto recurrente con clientes",
+          "linkLabel": "Portal de cliente a medida",
+          "href": "/es/servicios/klantportaal-laten-bouwen"
+        },
+        {
+          "title": "Un panel admin anticuado o cinco herramientas sueltas",
+          "body": "PHP viejo que nadie se atreve a tocar, o cinco suscripciones que funcionan por separado. Un sistema a medida — web pública, admin y portal de cliente como un conjunto — lo reemplaza, con el código en tu cuenta y mantenimiento continuo. Sin vendor lock-in.",
+          "forWho": "pymes en NL y España · BTW e IVA",
+          "linkLabel": "Ver todos los servicios",
+          "href": "/es/servicios"
+        }
+      ]
+    },
+
     "founder": {
       "eyebrow": "sobre",
       "title": "Hola, soy *Laurens*.",

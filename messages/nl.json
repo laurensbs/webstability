@@ -312,6 +312,35 @@
       }
     },
 
+    "problems": {
+      "eyebrow": "wat we oplossen",
+      "title": "Drie soorten chaos. *Eén* systeem.",
+      "lede": "De meeste MKB-bedrijven die bij me aankloppen verzuipen in losse tools die niet met elkaar praten. Hieronder de drie situaties die ik het vaakst zie — en wat een geïntegreerd systeem op maat eraan doet.",
+      "items": [
+        {
+          "title": "Dubbele boekingen en Excel-puzzels",
+          "body": "Airbnb, Booking, je eigen site en een sheet die niet synchroniseert. Eén overlap per maand kost een ontevreden gast en een terugbetaling. Een verhuur-boekingssysteem op maat heeft één agenda over al je objecten en kanalen — geen dubbele reserveringen, automatische facturen en contracten.",
+          "forWho": "verhuurders · caravans · vakantiehuizen · materieel",
+          "linkLabel": "Verhuursoftware",
+          "href": "/verhuur"
+        },
+        {
+          "title": "Klantvragen die in je inbox blijven hangen",
+          "body": "\"Waar staat mijn factuur\", \"is het al af\", \"wat is mijn status\" — allemaal e-mail die je suf zoekt in oude threads. Een klantportaal op maat zet het ergens waar je klanten het zelf vinden: status, documenten, betalingen — in jouw huisstijl, op jouw domein.",
+          "forWho": "dienstverleners · met terugkerend klantcontact",
+          "linkLabel": "Klantportaal laten bouwen",
+          "href": "/diensten/klantportaal-laten-bouwen"
+        },
+        {
+          "title": "Een verouderd admin-paneel of vijf losse tools",
+          "body": "Oude PHP die niemand meer durft aan te raken, of vijf abonnementen die los van elkaar draaien. Eén systeem op maat — publieke site, admin en klantportaal als één geheel — vervangt dat, met code op jouw account en doorlopend onderhoud. Geen vendor lock-in.",
+          "forWho": "MKB in NL én Spanje · BTW en IVA",
+          "linkLabel": "Bekijk alle diensten",
+          "href": "/diensten"
+        }
+      ]
+    },
+
     "founder": {
       "eyebrow": "over",
       "title": "Hi, ik ben *Laurens*.",
