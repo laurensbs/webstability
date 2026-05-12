@@ -74,7 +74,7 @@ export function NpsForm({
     const isPromoter = submittedScore !== null && submittedScore >= PROMOTER_THRESHOLD;
     return (
       <div className="mt-8 space-y-4">
-        <p className="rounded-[14px] border border-(--color-success)/30 bg-(--color-success)/5 px-5 py-4 text-[14px] text-(--color-text)">
+        <p className="rounded-card border border-(--color-success)/30 bg-(--color-success)/5 px-5 py-4 text-[14px] text-(--color-text)">
           {strings.successToast}
         </p>
         {isPromoter && promoterStrings ? (
@@ -171,7 +171,7 @@ export function PromoterBlock({
   };
 
   return (
-    <div className="rounded-[16px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-6">
+    <div className="rounded-card border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-6">
       <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-wine) uppercase">
         <Gift className="h-3 w-3" strokeWidth={2.2} aria-hidden />
         {`// referral`}

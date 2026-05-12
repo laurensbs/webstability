@@ -91,7 +91,7 @@ export function BlogDraftQueue({ drafts, actions }: { drafts: Draft[]; actions: 
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between gap-4 rounded-[18px] border border-(--color-border) bg-(--color-surface) p-5">
+      <div className="rounded-panel flex items-center justify-between gap-4 border border-(--color-border) bg-(--color-surface) p-5">
         <div className="min-w-0">
           <p className="text-[14px] text-(--color-text)">
             {pendingCount} onderwerp{pendingCount === 1 ? "" : "en"} in de wachtrij. De cron pakt er
@@ -119,7 +119,7 @@ export function BlogDraftQueue({ drafts, actions }: { drafts: Draft[]; actions: 
           return (
             <li
               key={d.id}
-              className="rounded-[14px] border border-(--color-border) bg-(--color-surface) p-4"
+              className="rounded-card border border-(--color-border) bg-(--color-surface) p-4"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
@@ -210,7 +210,7 @@ export function BlogDraftQueue({ drafts, actions }: { drafts: Draft[]; actions: 
           );
         })}
         {drafts.length === 0 ? (
-          <li className="rounded-[14px] border border-dashed border-(--color-border) p-8 text-center text-[13px] text-(--color-muted)">
+          <li className="rounded-card border border-dashed border-(--color-border) p-8 text-center text-[13px] text-(--color-muted)">
             Nog geen onderwerpen. Voeg er een toe in{" "}
             <code className="font-mono">lib/blog/topics.ts</code> en klik &ldquo;Genereer nu&rdquo;
             (of wacht op de maandag-cron).

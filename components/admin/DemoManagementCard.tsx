@@ -59,7 +59,7 @@ export function DemoManagementCard({
   });
 
   return (
-    <article className="relative overflow-hidden rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6">
+    <article className="rounded-panel relative overflow-hidden border border-(--color-border) bg-(--color-surface) p-6">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-wine) uppercase">

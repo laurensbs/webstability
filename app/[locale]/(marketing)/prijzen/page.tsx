@@ -110,7 +110,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           </p>
 
           {/* Discovery-pakket — de brug tussen gratis call en €6–10k build */}
-          <div className="mx-auto mt-12 max-w-3xl rounded-[18px] border border-t-2 border-(--color-border) border-t-(--color-accent) bg-(--color-surface) p-7 md:p-8">
+          <div className="rounded-panel mx-auto mt-12 max-w-3xl border border-t-2 border-(--color-border) border-t-(--color-accent) bg-(--color-surface) p-7 md:p-8">
             <p className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
               {`// ${t("discoveryCallout.eyebrow")}`}
             </p>
@@ -187,7 +187,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <h3 className="text-xl md:text-2xl">{tPaths("title")}</h3>
               <p className="text-(--color-muted)">{tPaths("lede")}</p>
             </div>
-            <div className="overflow-hidden rounded-[20px] border border-(--color-border) bg-(--color-surface)">
+            <div className="rounded-panel overflow-hidden border border-(--color-border) bg-(--color-surface)">
               <div className="hidden grid-cols-[1.4fr_1.4fr_1fr_1fr] gap-4 border-b border-(--color-border) bg-(--color-bg-warm) px-5 py-3 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase md:grid">
                 <span>{tPaths("headers.what")}</span>
                 <span>{tPaths("headers.package")}</span>

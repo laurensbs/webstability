@@ -100,7 +100,7 @@ export function HandoverChecklist({
 
   return (
     <section className="space-y-6">
-      <ul className="divide-y divide-(--color-border) overflow-hidden rounded-[18px] border border-(--color-border) bg-(--color-surface)">
+      <ul className="rounded-panel divide-y divide-(--color-border) overflow-hidden border border-(--color-border) bg-(--color-surface)">
         {items.map((item) => {
           const done = item.doneAt !== null;
           const isPending = pendingKey === item.key;

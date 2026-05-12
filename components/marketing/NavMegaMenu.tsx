@@ -151,7 +151,7 @@ export function NavMegaMenu({
             <div aria-hidden className="absolute -top-3 right-0 left-0 h-3" />
 
             <div
-              className="shadow-modal relative overflow-hidden rounded-[18px] border border-t-2 border-(--color-bg)/15 border-t-(--color-wine) bg-(--color-text) text-(--color-bg)"
+              className="shadow-modal rounded-panel relative overflow-hidden border border-t-2 border-(--color-bg)/15 border-t-(--color-wine) bg-(--color-text) text-(--color-bg)"
               role="menu"
             >
               <span
@@ -239,7 +239,7 @@ function ServicesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSele
                 href={{ pathname: "/diensten/[vertical]", params: { vertical: slug } }}
                 onClick={onSelect}
                 role="menuitem"
-                className="group flex h-full flex-col gap-2 rounded-[12px] p-3.5 transition-colors hover:bg-(--color-bg)/[0.06] focus-visible:bg-(--color-bg)/[0.06] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-accent)"
+                className="group rounded-card flex h-full flex-col gap-2 p-3.5 transition-colors hover:bg-(--color-bg)/[0.06] focus-visible:bg-(--color-bg)/[0.06] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-accent)"
               >
                 <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-(--color-accent)/15 text-(--color-accent) transition-colors group-hover:bg-(--color-accent) group-hover:text-white">
                   <Icon className="h-3.5 w-3.5" strokeWidth={2} />
@@ -304,7 +304,7 @@ function CasesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSelect:
                 href={{ pathname }}
                 onClick={onSelect}
                 role="menuitem"
-                className="group flex h-full flex-col rounded-[12px] p-3 transition-colors hover:bg-(--color-bg)/[0.06] focus-visible:bg-(--color-bg)/[0.06] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-accent)"
+                className="group rounded-card flex h-full flex-col p-3 transition-colors hover:bg-(--color-bg)/[0.06] focus-visible:bg-(--color-bg)/[0.06] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-accent)"
               >
                 {/* Mini "screen" preview met accent-strepen */}
                 <div className="relative mb-2.5 aspect-[16/10] overflow-hidden rounded-[8px] border border-(--color-bg)/10 bg-(--color-bg)/[0.05]">

@@ -84,7 +84,7 @@ export function DemoFollowUpModal({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.25 }}
-          className="fixed right-4 bottom-4 z-50 w-[min(360px,calc(100vw-2rem))] rounded-[14px] border border-(--color-border) bg-(--color-surface) p-5 shadow-xl"
+          className="rounded-card fixed right-4 bottom-4 z-50 w-[min(360px,calc(100vw-2rem))] border border-(--color-border) bg-(--color-surface) p-5 shadow-xl"
         >
           <button
             type="button"

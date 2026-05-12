@@ -49,7 +49,7 @@ export function CaseScreenshot({ url, alt, ratio = "16/10", className = "", vide
 
   return (
     <div
-      className={`relative w-full overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-bg-warm) ${className}`}
+      className={`rounded-card relative w-full overflow-hidden border border-(--color-border) bg-(--color-bg-warm) ${className}`}
       style={{ aspectRatio: ratio }}
     >
       {!loaded ? (

@@ -47,7 +47,7 @@ export default async function AdminLeadsPage({ params }: { params: Promise<{ loc
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
         {(Object.keys(LEAD_STATUS_LABEL_NL) as LeadStatus[]).map((s) => (
-          <div key={s} className={["rounded-[12px] border px-4 py-3", STATUS_TONE[s]].join(" ")}>
+          <div key={s} className={["rounded-card border px-4 py-3", STATUS_TONE[s]].join(" ")}>
             <p className="font-mono text-[10px] tracking-widest uppercase">
               {LEAD_STATUS_LABEL_NL[s]}
             </p>
@@ -56,7 +56,7 @@ export default async function AdminLeadsPage({ params }: { params: Promise<{ loc
         ))}
       </div>
 
-      <div className="overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+      <div className="rounded-card overflow-hidden border border-(--color-border) bg-(--color-surface)">
         <div className="border-b border-(--color-border) px-5 py-3 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
           {rows.length} leads
         </div>

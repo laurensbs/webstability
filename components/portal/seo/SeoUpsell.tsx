@@ -18,7 +18,7 @@ export function SeoUpsell({
   };
 }) {
   return (
-    <article className="relative overflow-hidden rounded-[18px] border border-(--color-border) bg-(--color-text) p-8 text-(--color-bg) md:p-10">
+    <article className="rounded-panel relative overflow-hidden border border-(--color-border) bg-(--color-text) p-8 text-(--color-bg) md:p-10">
       <span
         aria-hidden
         className="wb-soft-halo pointer-events-none absolute -top-32 -right-24 h-[280px] w-[280px] rounded-full bg-(--color-wine) opacity-40 blur-3xl"

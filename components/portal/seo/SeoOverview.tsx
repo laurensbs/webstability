@@ -108,7 +108,7 @@ export function SeoOverview({
             {strings.hoursEmpty}
           </p>
         ) : (
-          <ul className="divide-y divide-(--color-border) overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+          <ul className="rounded-card divide-y divide-(--color-border) overflow-hidden border border-(--color-border) bg-(--color-surface)">
             {hours.map((h, i) => (
               <li key={i} className="flex items-start justify-between gap-4 px-5 py-3.5">
                 <div className="min-w-0">
@@ -142,7 +142,7 @@ function MetricCard({
 }) {
   return (
     <article
-      className={`rounded-[14px] border border-(--color-border) bg-(--color-surface) p-5 ${
+      className={`rounded-card border border-(--color-border) bg-(--color-surface) p-5 ${
         connected ? "" : "opacity-70"
       }`}
     >

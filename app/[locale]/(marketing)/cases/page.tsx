@@ -121,7 +121,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               en interne detail-link. Past bij de "één hoofdcase, één
               detail-page"-strategie. */}
           {featureLine ? (
-            <RevealOnScroll className="group hover:shadow-floating mb-6 flex flex-col overflow-hidden rounded-[24px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) transition-all duration-300 md:grid md:grid-cols-[1.2fr_1fr] md:gap-0">
+            <RevealOnScroll className="group hover:shadow-floating rounded-modal mb-6 flex flex-col overflow-hidden border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) transition-all duration-300 md:grid md:grid-cols-[1.2fr_1fr] md:gap-0">
               <article
                 id={featureLine.anchor}
                 className="flex scroll-mt-24 flex-col p-8 md:order-2 md:p-10"
@@ -208,7 +208,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <RevealOnScroll
                 key={item.anchor}
                 delay={i * 0.06}
-                className="group hover:shadow-floating flex h-full flex-col overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface) transition-all duration-300 hover:-translate-y-1"
+                className="group hover:shadow-floating rounded-modal flex h-full flex-col overflow-hidden border border-(--color-border) bg-(--color-surface) transition-all duration-300 hover:-translate-y-1"
               >
                 <article id={item.anchor} className="flex h-full scroll-mt-24 flex-col">
                   <div className="relative">
@@ -287,7 +287,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           </div>
 
           {/* Inline CTA voor productlijnen — "wil je dit ook?" */}
-          <RevealOnScroll className="mt-10 rounded-[24px] border border-(--color-text) bg-(--color-text) p-8 text-(--color-bg) md:p-10">
+          <RevealOnScroll className="rounded-modal mt-10 border border-(--color-text) bg-(--color-text) p-8 text-(--color-bg) md:p-10">
             <div className="flex flex-col gap-4 md:grid md:grid-cols-[1.4fr_auto] md:items-center md:gap-6">
               <div className="space-y-3">
                 <h3 className="text-h2">{t("productLines.ctaTitle")}</h3>
@@ -305,7 +305,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           </RevealOnScroll>
 
           {/* Demo-callout — wijn-rood, links naar /demo/portal */}
-          <RevealOnScroll className="mt-6 rounded-[20px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-6 md:p-7">
+          <RevealOnScroll className="rounded-panel mt-6 border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-6 md:p-7">
             <div className="flex flex-col items-start gap-3 md:flex-row md:items-center md:justify-between md:gap-6">
               <div>
                 <p className="text-[11px] font-medium tracking-[0.08em] text-(--color-wine)">
@@ -342,7 +342,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <RevealOnScroll
                 key={item.anchor}
                 delay={i * 0.06}
-                className="overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface)"
+                className="rounded-modal overflow-hidden border border-(--color-border) bg-(--color-surface)"
               >
                 <article id={item.anchor} className="flex h-full scroll-mt-24 flex-col">
                   <div className="relative">
@@ -426,7 +426,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   href={p.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex h-full flex-col items-center justify-center gap-3 rounded-[14px] border border-(--color-border) bg-(--color-surface) px-4 py-6 text-center transition-colors hover:border-(--color-accent)/50"
+                  className="group rounded-card flex h-full flex-col items-center justify-center gap-3 border border-(--color-border) bg-(--color-surface) px-4 py-6 text-center transition-colors hover:border-(--color-accent)/50"
                 >
                   {p.logoUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element

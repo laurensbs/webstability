@@ -48,7 +48,7 @@ export default async function ReferPage({
   return (
     <main className="dotted-bg py-section flex flex-1 items-center px-6">
       <RevealOnScroll className="mx-auto max-w-2xl">
-        <div className="rounded-[20px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-8 md:p-10">
+        <div className="rounded-panel border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-8 md:p-10">
           <span className="grid h-12 w-12 place-items-center rounded-full bg-(--color-wine)/10 text-(--color-wine)">
             <Gift className="h-5 w-5" strokeWidth={2} aria-hidden />
           </span>

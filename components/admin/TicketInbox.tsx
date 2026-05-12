@@ -182,7 +182,7 @@ export function TicketInbox({
           ref={listRef}
           role="listbox"
           aria-label="tickets"
-          className="max-h-[70vh] divide-y divide-(--color-border) overflow-y-auto rounded-[14px] border border-(--color-border) bg-(--color-surface)"
+          className="rounded-card max-h-[70vh] divide-y divide-(--color-border) overflow-y-auto border border-(--color-border) bg-(--color-surface)"
         >
           {filtered.length === 0 ? (
             <p className="px-5 py-6 text-[14px] text-(--color-muted)">{strings.emptyList}</p>
@@ -247,7 +247,7 @@ export function TicketInbox({
       </div>
 
       {/* RIGHT: detail */}
-      <aside className="rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6">
+      <aside className="rounded-panel border border-(--color-border) bg-(--color-surface) p-6">
         {active ? (
           <ActiveTicketPanel ticket={active} strings={strings} />
         ) : (
@@ -271,7 +271,7 @@ export function TicketInbox({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 12, scale: 0.97 }}
               transition={{ duration: 0.18 }}
-              className="rounded-[18px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-6"
+              className="rounded-panel border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-6"
               onClick={(e) => e.stopPropagation()}
             >
               <h3 className="font-serif text-[20px]">{strings.shortcutsTitle}</h3>
@@ -313,7 +313,7 @@ function ActiveTicketPanel({ ticket, strings }: { ticket: Ticket; strings: Strin
           </span>
         ) : null}
       </div>
-      <div className="rounded-[12px] border border-(--color-border) bg-(--color-bg-warm) p-4">
+      <div className="rounded-card border border-(--color-border) bg-(--color-bg-warm) p-4">
         <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
           status: {strings.filters[ticket.status]} · {ticket.replyCount} replies
         </p>

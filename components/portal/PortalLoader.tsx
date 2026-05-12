@@ -27,7 +27,7 @@ export function PortalLoader() {
   const current = messages[i] ?? "";
 
   return (
-    <div className="relative isolate flex min-h-[70vh] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-(--color-text) px-6 py-20 text-(--color-bg)">
+    <div className="rounded-panel relative isolate flex min-h-[70vh] flex-col items-center justify-center overflow-hidden bg-(--color-text) px-6 py-20 text-(--color-bg)">
       {/* Halo-blobs — terracotta linksboven, wijn rechtsonder */}
       <div
         aria-hidden

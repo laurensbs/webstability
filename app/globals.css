@@ -52,6 +52,13 @@
   --shadow-floating: 0 2px 6px rgba(31, 27, 22, 0.05), 0 24px 48px -12px rgba(31, 27, 22, 0.14);
   --shadow-modal: 0 4px 12px rgba(31, 27, 22, 0.08), 0 32px 64px -16px rgba(31, 27, 22, 0.32);
   --shadow-glow: 0 8px 20px -8px rgba(201, 97, 79, 0.5);
+
+  /* Radius-schaal — drie semantische niveaus i.p.v. rounded-[12/14/16/18/20/24/
+     28px] door elkaar. Tailwind: rounded-{card,panel,modal}. De kleine radii
+     (rounded-[5/6/8/10px], pills via rounded-full) blijven los. */
+  --radius-card: 14px;
+  --radius-panel: 18px;
+  --radius-modal: 24px;
 }
 
 @layer base {

@@ -133,7 +133,7 @@ function BulkMailForm({
           return (
             <label
               key={id}
-              className={`flex cursor-pointer items-start gap-3 rounded-[12px] border p-3 transition-colors ${
+              className={`rounded-card flex cursor-pointer items-start gap-3 border p-3 transition-colors ${
                 template === id
                   ? "border-(--color-accent) bg-(--color-accent-soft)/30"
                   : "border-(--color-border) bg-(--color-bg-warm)/40 hover:border-(--color-accent)/40"

@@ -15,7 +15,7 @@ export async function Founder() {
       <div className="mx-auto grid max-w-[1200px] items-center gap-20 md:grid-cols-[1fr_1.2fr]">
         {/* Photo block — echte portretfoto met dark live-badge onderaan. */}
         <RevealOnScroll>
-          <div className="shadow-floating relative aspect-[4/5] overflow-hidden rounded-[28px]">
+          <div className="shadow-floating rounded-modal relative aspect-[4/5] overflow-hidden">
             <Image
               src={FOUNDER_PHOTO}
               alt={t("name")}
@@ -25,7 +25,7 @@ export async function Founder() {
               priority={false}
             />
             <div
-              className="absolute right-6 bottom-6 left-6 flex items-center gap-2.5 rounded-[14px] px-4 py-3.5 text-[13px] text-(--color-bg) backdrop-blur-md"
+              className="rounded-card absolute right-6 bottom-6 left-6 flex items-center gap-2.5 px-4 py-3.5 text-[13px] text-(--color-bg) backdrop-blur-md"
               style={{ background: "rgba(31, 27, 22, 0.85)" }}
             >
               <LivePulse size={2} />

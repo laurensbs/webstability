@@ -84,7 +84,7 @@ export function PlanSwitchSection({
             <article
               key={tier.id}
               className={[
-                "rounded-[14px] border p-5",
+                "rounded-card border p-5",
                 isCurrent
                   ? "border-(--color-accent) bg-(--color-accent)/5"
                   : "border-(--color-border) bg-(--color-surface)",

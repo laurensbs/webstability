@@ -25,7 +25,7 @@ type Reminder = {
 export function LeadRemindersWidget({ reminders }: { reminders: Reminder[] }) {
   if (reminders.length === 0) {
     return (
-      <section className="rounded-[14px] border border-dashed border-(--color-border) bg-(--color-bg-warm)/50 p-6">
+      <section className="rounded-card border border-dashed border-(--color-border) bg-(--color-bg-warm)/50 p-6">
         <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
           <Clock className="h-3 w-3" strokeWidth={2.4} />
           Vandaag opvolgen
@@ -44,7 +44,7 @@ export function LeadRemindersWidget({ reminders }: { reminders: Reminder[] }) {
   }
 
   return (
-    <section className="rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+    <section className="rounded-card border border-(--color-border) bg-(--color-surface)">
       <div className="border-b border-(--color-border) px-5 py-3">
         <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-text) uppercase">
           <Clock className="h-3 w-3 text-(--color-accent)" strokeWidth={2.4} />

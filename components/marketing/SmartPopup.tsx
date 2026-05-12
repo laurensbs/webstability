@@ -100,7 +100,7 @@ export function SmartPopup({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.25 }}
-          className="shadow-modal fixed right-4 bottom-[calc(env(safe-area-inset-bottom)+5rem)] z-50 w-[min(380px,calc(100vw-2rem))] rounded-[16px] border border-t-2 border-(--color-border) border-t-(--color-accent) bg-(--color-surface) p-5 md:bottom-4"
+          className="shadow-modal rounded-card fixed right-4 bottom-[calc(env(safe-area-inset-bottom)+5rem)] z-50 w-[min(380px,calc(100vw-2rem))] border border-t-2 border-(--color-border) border-t-(--color-accent) bg-(--color-surface) p-5 md:bottom-4"
         >
           <button
             type="button"

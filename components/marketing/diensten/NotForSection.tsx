@@ -32,7 +32,7 @@ export function NotForSection({
         <ul className="grid gap-4 md:grid-cols-3">
           {strings.scenarios.map((s, i) => (
             <RevealOnScroll key={s.title} delay={i * 0.05}>
-              <article className="h-full rounded-[16px] border border-(--color-border) bg-(--color-surface) p-6">
+              <article className="rounded-card h-full border border-(--color-border) bg-(--color-surface) p-6">
                 <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
                   scenario {String(i + 1).padStart(2, "0")}
                 </p>

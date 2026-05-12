@@ -83,7 +83,7 @@ export function DeliverableApprovalCard({
   }
 
   return (
-    <ul className="divide-y divide-(--color-border) overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+    <ul className="rounded-card divide-y divide-(--color-border) overflow-hidden border border-(--color-border) bg-(--color-surface)">
       {deliverables.map((d) => (
         <DeliverableRow key={d.id} item={d} strings={strings} dateFmt={dateFmt} />
       ))}

@@ -158,8 +158,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               const Icon = PROBLEM_ICONS[i] ?? X;
               return (
                 <RevealOnScroll key={p.title} delay={i * 0.08}>
-                  <article className="hover:shadow-floating h-full rounded-[20px] border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1 sm:p-9">
-                    <div className="mb-6 grid h-12 w-12 place-items-center rounded-[14px] bg-red-100 text-red-600">
+                  <article className="hover:shadow-floating rounded-panel h-full border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1 sm:p-9">
+                    <div className="rounded-card mb-6 grid h-12 w-12 place-items-center bg-red-100 text-red-600">
                       <Icon className="h-[22px] w-[22px]" strokeWidth={2} />
                     </div>
                     <h3 className="mb-3 text-[24px] leading-[1.1]">{p.title}</h3>
@@ -214,11 +214,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               return (
                 <RevealOnScroll key={s.title} delay={i * 0.08}>
                   <article
-                    className={`group hover:shadow-floating relative flex h-full flex-col rounded-[20px] border border-(--color-border) bg-(--color-surface) transition-all duration-300 hover:border-(--color-border-strong,#D8CDB6) ${
+                    className={`group hover:shadow-floating rounded-panel relative flex h-full flex-col border border-(--color-border) bg-(--color-surface) transition-all duration-300 hover:border-(--color-border-strong,#D8CDB6) ${
                       large ? "p-11 md:row-span-2" : "p-9"
                     }`}
                   >
-                    <div className="mb-6 grid h-12 w-12 place-items-center rounded-[14px] bg-(--color-accent-soft) text-(--color-accent) transition-all duration-300 group-hover:scale-105 group-hover:rotate-[-6deg] group-hover:bg-(--color-accent) group-hover:text-white">
+                    <div className="rounded-card mb-6 grid h-12 w-12 place-items-center bg-(--color-accent-soft) text-(--color-accent) transition-all duration-300 group-hover:scale-105 group-hover:rotate-[-6deg] group-hover:bg-(--color-accent) group-hover:text-white">
                       <Icon className="h-[22px] w-[22px]" strokeWidth={2} />
                     </div>
                     <h3
@@ -267,7 +267,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {competitors.map((c, i) => (
               <RevealOnScroll key={c.name} delay={i * 0.06}>
-                <article className="hover:shadow-floating flex h-full flex-col rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6 transition-all duration-300 hover:-translate-y-1">
+                <article className="hover:shadow-floating rounded-panel flex h-full flex-col border border-(--color-border) bg-(--color-surface) p-6 transition-all duration-300 hover:-translate-y-1">
                   <h3 className="mb-3 font-serif text-[22px] leading-tight">{c.name}</h3>
                   <p className="mb-4 text-[14px] leading-[1.6] text-(--color-text)">{c.dna}</p>
                   <p className="mt-auto border-t border-(--color-border) pt-4 text-[13px] leading-[1.55] text-(--color-muted)">
@@ -325,7 +325,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               return (
                 <RevealOnScroll key={plan.id} delay={i * 0.08}>
                   <article
-                    className={`relative flex h-full flex-col rounded-[28px] p-10 transition-all duration-300 ${
+                    className={`rounded-modal relative flex h-full flex-col p-10 transition-all duration-300 ${
                       featured
                         ? "hover:shadow-modal scale-[1.02] border border-(--color-text) bg-(--color-text) text-(--color-bg) hover:-translate-y-1.5 hover:scale-[1.02]"
                         : "hover:shadow-floating border border-(--color-border) bg-(--color-surface) hover:-translate-y-1.5"

@@ -67,7 +67,7 @@ export function CalPopupTrigger({
 
         <Dialog.Content
           aria-describedby={undefined}
-          className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out shadow-modal fixed top-1/2 left-1/2 z-50 flex h-[min(720px,90vh)] w-[min(960px,calc(100vw-32px))] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-[20px] border border-t-2 border-(--color-text)/20 border-t-(--color-wine) bg-(--color-text) text-(--color-bg)"
+          className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out shadow-modal rounded-panel fixed top-1/2 left-1/2 z-50 flex h-[min(720px,90vh)] w-[min(960px,calc(100vw-32px))] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden border border-t-2 border-(--color-text)/20 border-t-(--color-wine) bg-(--color-text) text-(--color-bg)"
         >
           {/* Halo-blobs voor depth — zelfde sfeer als login-panel + footer */}
           <div
@@ -100,7 +100,7 @@ export function CalPopupTrigger({
           {/* Cream-card binnen het donkere modal — Cal embed wil licht
               achter de agenda-tegels, anders zijn dagen onleesbaar */}
           <div className="relative flex-1 overflow-hidden bg-(--color-surface) p-2 md:p-3">
-            <div className="h-full w-full overflow-hidden rounded-[12px]">
+            <div className="rounded-card h-full w-full overflow-hidden">
               <Cal
                 calLink={CAL_LINK}
                 calOrigin={CAL_ORIGIN}

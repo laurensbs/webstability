@@ -93,7 +93,7 @@ export async function Footer() {
             </div>
 
             {/* Werken-met-ons card — cream surface op donker */}
-            <div className="flex flex-col justify-between gap-5 rounded-[18px] border border-t-2 border-(--color-bg)/15 border-t-(--color-accent) bg-(--color-bg)/5 p-6 backdrop-blur-sm">
+            <div className="rounded-panel flex flex-col justify-between gap-5 border border-t-2 border-(--color-bg)/15 border-t-(--color-accent) bg-(--color-bg)/5 p-6 backdrop-blur-sm">
               <div>
                 <p className="font-mono text-[10px] tracking-widest text-(--color-bg)/55 uppercase">
                   {t("responseLabel")}

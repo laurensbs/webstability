@@ -39,7 +39,7 @@ export async function HomeProblems() {
         <div className="grid gap-6 md:grid-cols-3">
           {items.map((item, i) => (
             <RevealOnScroll key={item.title} delay={i * 0.06}>
-              <article className="hover:shadow-card flex h-full flex-col rounded-[18px] border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1">
+              <article className="hover:shadow-card rounded-panel flex h-full flex-col border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1">
                 <h3 className="text-xl leading-tight font-medium">{item.title}</h3>
                 <p className="mt-3 text-[14px] leading-[1.6] text-(--color-muted)">{item.body}</p>
                 <p className="mt-4 font-mono text-[10px] tracking-wide text-(--color-muted) uppercase">

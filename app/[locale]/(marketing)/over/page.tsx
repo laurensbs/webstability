@@ -85,7 +85,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <RevealOnScroll>
             {/* Portrait — echte foto via remote pattern (cubeupload). Past
                 bij de homepage Founder-block die dezelfde URL toont. */}
-            <div className="shadow-floating relative mx-auto aspect-[4/5] w-full max-w-[220px] overflow-hidden rounded-[28px] md:mx-0 md:max-w-sm">
+            <div className="shadow-floating rounded-modal relative mx-auto aspect-[4/5] w-full max-w-[220px] overflow-hidden md:mx-0 md:max-w-sm">
               <Image
                 src="https://u.cubeupload.com/laurensbos/fc7278a70fe64fb6aa6a.jpg"
                 alt={t("title")}
@@ -186,7 +186,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               }>
             ).map((it, i) => (
               <RevealOnScroll key={it.label} delay={i * 0.06}>
-                <article className="hover:shadow-card h-full rounded-[18px] border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1">
+                <article className="hover:shadow-card rounded-panel h-full border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1">
                   <p className="font-serif text-[40px] leading-none text-(--color-wine)">
                     {it.metric}
                   </p>

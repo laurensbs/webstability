@@ -40,7 +40,7 @@ export function ContactIntakeSelector({
   ];
 
   return (
-    <div className="rounded-[18px] border border-(--color-border) bg-(--color-surface) p-5">
+    <div className="rounded-panel border border-(--color-border) bg-(--color-surface) p-5">
       <p className="mb-4 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
         {strings.title}
       </p>

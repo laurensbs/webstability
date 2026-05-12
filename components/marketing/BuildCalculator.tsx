@@ -79,7 +79,7 @@ export function BuildCalculator({
   const totalBuild = buildMonthly * months;
 
   return (
-    <div className="rounded-[28px] border border-(--color-border) bg-(--color-surface) p-8 md:p-10">
+    <div className="rounded-modal border border-(--color-border) bg-(--color-surface) p-8 md:p-10">
       {/* Build-claim — vaste prijs, 4 weken levering. Strategie-keuze:
           niet "AI-versneld" verkopen maar voorspelbaarheid. */}
       <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-(--color-wine)/20 bg-(--color-wine)/5 px-3 py-1 font-mono text-[11px] tracking-widest text-(--color-wine) uppercase">
@@ -165,7 +165,7 @@ export function BuildCalculator({
       {/* Interpretatie-zin onder de outputs — vertaalt het getal naar
           een herkenbaar projecttype zodat een leek weet wat hij koopt.
           Wijn-rode top-border claimt de "premium-insight"-status. */}
-      <div className="mt-6 flex items-start gap-3 rounded-[14px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-bg-warm) p-4 text-[14px] leading-[1.6] text-(--color-text)">
+      <div className="rounded-card mt-6 flex items-start gap-3 border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-bg-warm) p-4 text-[14px] leading-[1.6] text-(--color-text)">
         <Sparkles
           className="mt-[3px] h-4 w-4 shrink-0 text-(--color-wine)"
           strokeWidth={2}

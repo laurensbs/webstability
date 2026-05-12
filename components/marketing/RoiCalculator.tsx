@@ -50,7 +50,7 @@ export function RoiCalculator({ strings }: { strings: RoiCalculatorStrings }) {
   });
 
   return (
-    <div className="rounded-[24px] border border-t-2 border-(--color-border) border-t-(--color-accent) bg-(--color-surface) p-7 md:p-10">
+    <div className="rounded-modal border border-t-2 border-(--color-border) border-t-(--color-accent) bg-(--color-surface) p-7 md:p-10">
       <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
         <TrendingUp className="h-3 w-3" strokeWidth={2.2} aria-hidden />
         {strings.eyebrow}

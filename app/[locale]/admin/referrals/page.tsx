@@ -44,7 +44,7 @@ export default async function AdminReferralsPage({
         <StatCard label="Geconverteerd" value={String(stats.converted)} tone="converted" />
       </div>
 
-      <div className="overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+      <div className="rounded-card overflow-hidden border border-(--color-border) bg-(--color-surface)">
         <div className="border-b border-(--color-border) px-5 py-3 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
           {rows.length} referral-codes
         </div>
@@ -126,7 +126,7 @@ function StatCard({
         ? "border-(--color-border) bg-(--color-bg-warm)"
         : "border-(--color-border) bg-(--color-surface)";
   return (
-    <div className={["rounded-[12px] border p-5", toneClass].join(" ")}>
+    <div className={["rounded-card border p-5", toneClass].join(" ")}>
       <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
         {label}
       </p>

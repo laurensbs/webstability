@@ -73,7 +73,7 @@ export default async function AdminNpsPage({ params }: { params: Promise<{ local
         />
       </div>
 
-      <div className="overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+      <div className="rounded-card overflow-hidden border border-(--color-border) bg-(--color-surface)">
         <div className="border-b border-(--color-border) px-5 py-3 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
           {rows.length} responses & uitnodigingen
         </div>
@@ -157,7 +157,7 @@ function StatCard({
   icon?: React.ReactNode;
 }) {
   return (
-    <div className="rounded-[14px] border border-(--color-border) bg-(--color-surface) p-5">
+    <div className="rounded-card border border-(--color-border) bg-(--color-surface) p-5">
       <div className="flex items-center justify-between">
         <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
           {label}

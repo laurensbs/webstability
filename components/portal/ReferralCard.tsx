@@ -47,7 +47,7 @@ export async function ReferralCard({
         };
 
   return (
-    <article className="relative overflow-hidden rounded-[16px] border border-(--color-border) bg-(--color-surface) p-6">
+    <article className="rounded-card relative overflow-hidden border border-(--color-border) bg-(--color-surface) p-6">
       <span
         aria-hidden
         className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-(--color-accent-soft) opacity-60 blur-3xl"

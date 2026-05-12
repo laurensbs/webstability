@@ -77,7 +77,7 @@ export function SinceLastVisit({ activity, strings }: { activity: Activity; stri
   return (
     <section
       aria-label={strings.eyebrow}
-      className="flex flex-wrap items-center gap-2 rounded-[14px] border border-(--color-border) bg-(--color-bg-warm) px-4 py-3"
+      className="rounded-card flex flex-wrap items-center gap-2 border border-(--color-border) bg-(--color-bg-warm) px-4 py-3"
     >
       <span className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
         {strings.eyebrow}

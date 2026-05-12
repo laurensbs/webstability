@@ -637,7 +637,7 @@ function PendingDeliverablesBanner({
   return (
     <Link
       href={href}
-      className="group flex flex-wrap items-center gap-3 rounded-[14px] border border-(--color-success)/30 bg-(--color-success)/5 px-5 py-4 transition-colors hover:bg-(--color-success)/10"
+      className="group rounded-card flex flex-wrap items-center gap-3 border border-(--color-success)/30 bg-(--color-success)/5 px-5 py-4 transition-colors hover:bg-(--color-success)/10"
     >
       <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-(--color-success)/15 text-(--color-success)">
         <CheckCircle2 className="h-4 w-4" strokeWidth={2.4} />
@@ -669,7 +669,7 @@ function MonthlyReportBanner({ name, url, locale }: { name: string; url: string;
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-wrap items-center gap-3 rounded-[14px] border border-(--color-accent)/30 bg-(--color-accent)/5 px-5 py-4 transition-colors hover:bg-(--color-accent)/10"
+      className="group rounded-card flex flex-wrap items-center gap-3 border border-(--color-accent)/30 bg-(--color-accent)/5 px-5 py-4 transition-colors hover:bg-(--color-accent)/10"
     >
       <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-(--color-accent)/15 text-(--color-accent)">
         <FileText className="h-4 w-4" strokeWidth={2.4} />

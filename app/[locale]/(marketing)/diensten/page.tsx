@@ -133,7 +133,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 <RevealOnScroll key={key}>
                   <article
                     id={item.anchor}
-                    className="group hover:shadow-floating relative flex h-full flex-col rounded-[20px] border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1 hover:border-(--color-accent)/40 sm:p-9"
+                    className="group hover:shadow-floating rounded-panel relative flex h-full flex-col border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1 hover:border-(--color-accent)/40 sm:p-9"
                   >
                     <header className="space-y-3">
                       <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">

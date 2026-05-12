@@ -133,7 +133,7 @@ export function PricingCardsWithToggle({
           return (
             <article
               key={item.id}
-              className={`group relative flex h-full flex-col overflow-hidden rounded-[24px] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-(--color-accent)/40 hover:shadow-[0_2px_4px_rgba(31,27,22,0.06),0_8px_24px_-6px_rgba(201,97,79,0.16),0_24px_48px_-16px_rgba(31,27,22,0.08)] sm:p-9 ${cardClass}`}
+              className={`group rounded-modal relative flex h-full flex-col overflow-hidden p-7 transition-all duration-300 hover:-translate-y-1 hover:border-(--color-accent)/40 hover:shadow-[0_2px_4px_rgba(31,27,22,0.06),0_8px_24px_-6px_rgba(201,97,79,0.16),0_24px_48px_-16px_rgba(31,27,22,0.08)] sm:p-9 ${cardClass}`}
             >
               {/* Featured-pill (Meest gekozen) — discreet rechtsboven */}
               {featured ? (

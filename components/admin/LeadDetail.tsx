@@ -139,7 +139,7 @@ export function LeadDetail({
       {/* Main: edit-form + activity */}
       <div className="space-y-8">
         {configuratorRequest ? (
-          <section className="rounded-[14px] border border-(--color-accent)/40 bg-(--color-accent-soft)/30 p-6">
+          <section className="rounded-card border border-(--color-accent)/40 bg-(--color-accent-soft)/30 p-6">
             <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-wine) uppercase">
               {"// configurator-aanvraag"}
             </p>
@@ -208,7 +208,7 @@ export function LeadDetail({
         ) : null}
         <form
           onSubmit={onSaveMain}
-          className="space-y-5 rounded-[14px] border border-(--color-border) bg-(--color-surface) p-6"
+          className="rounded-card space-y-5 border border-(--color-border) bg-(--color-surface) p-6"
         >
           <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
             <ListChecks className="h-3 w-3" strokeWidth={2.4} />
@@ -307,7 +307,7 @@ export function LeadDetail({
         </form>
 
         {/* Outreach mailer */}
-        <section className="space-y-3 rounded-[14px] border border-(--color-border) bg-(--color-surface) p-6">
+        <section className="rounded-card space-y-3 border border-(--color-border) bg-(--color-surface) p-6">
           <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
             <Send className="h-3 w-3" strokeWidth={2.4} />
             Outreach mail
@@ -385,7 +385,7 @@ export function LeadDetail({
             Tijdlijn
           </p>
 
-          <div className="rounded-[14px] border border-(--color-border) bg-(--color-surface) p-5">
+          <div className="rounded-card border border-(--color-border) bg-(--color-surface) p-5">
             <textarea
               value={noteDraft}
               onChange={(e) => setNoteDraft(e.target.value)}
@@ -408,7 +408,7 @@ export function LeadDetail({
           </div>
 
           {activity.length === 0 ? (
-            <p className="mt-4 rounded-[14px] border border-dashed border-(--color-border) bg-(--color-bg-warm)/50 px-5 py-6 text-center text-[14px] text-(--color-muted)">
+            <p className="rounded-card mt-4 border border-dashed border-(--color-border) bg-(--color-bg-warm)/50 px-5 py-6 text-center text-[14px] text-(--color-muted)">
               Nog geen activiteit. Notitie hierboven start de tijdlijn.
             </p>
           ) : (
@@ -416,7 +416,7 @@ export function LeadDetail({
               {activity.map((a) => (
                 <li
                   key={a.id}
-                  className="rounded-[12px] border border-(--color-border) bg-(--color-surface) px-4 py-3"
+                  className="rounded-card border border-(--color-border) bg-(--color-surface) px-4 py-3"
                 >
                   <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
                     {a.createdAt}
@@ -434,7 +434,7 @@ export function LeadDetail({
 
       {/* Sidebar: metadata + convert */}
       <aside className="space-y-5">
-        <div className="rounded-[14px] border border-(--color-border) bg-(--color-bg-warm)/50 p-5">
+        <div className="rounded-card border border-(--color-border) bg-(--color-bg-warm)/50 p-5">
           <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
             Aangemaakt
           </p>
@@ -442,7 +442,7 @@ export function LeadDetail({
         </div>
 
         {!initial.linkedOrgId ? (
-          <div className="rounded-[14px] border border-(--color-border) bg-(--color-surface) p-5">
+          <div className="rounded-card border border-(--color-border) bg-(--color-surface) p-5">
             <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-text) uppercase">
               <Building2 className="h-3 w-3 text-(--color-success)" strokeWidth={2.4} />
               Markeer als klant

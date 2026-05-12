@@ -744,7 +744,7 @@ function CallStep({
   return (
     <>
       <Field label={fields.calLabel} required>
-        <div className="rounded-[14px] border border-(--color-border) bg-(--color-bg-warm) p-5">
+        <div className="rounded-card border border-(--color-border) bg-(--color-bg-warm) p-5">
           <label className="flex items-center gap-3">
             <Calendar className="h-4 w-4 text-(--color-accent)" strokeWidth={2.2} />
             <input
@@ -814,7 +814,7 @@ function RadioCard({
 }) {
   return (
     <label
-      className={`flex cursor-pointer items-center gap-3 rounded-[12px] border px-4 py-3 text-[14px] transition-colors ${
+      className={`rounded-card flex cursor-pointer items-center gap-3 border px-4 py-3 text-[14px] transition-colors ${
         checked
           ? "border-(--color-accent) bg-(--color-accent-soft)/40 text-(--color-text)"
           : "border-(--color-border) bg-(--color-surface) text-(--color-muted) hover:border-(--color-accent)/40"
@@ -846,7 +846,7 @@ function CheckboxCard({
 }) {
   return (
     <label
-      className={`flex cursor-pointer items-center gap-3 rounded-[12px] border px-4 py-3 text-[14px] transition-colors ${
+      className={`rounded-card flex cursor-pointer items-center gap-3 border px-4 py-3 text-[14px] transition-colors ${
         checked
           ? "border-(--color-accent) bg-(--color-accent-soft)/40 text-(--color-text)"
           : disabled

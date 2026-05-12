@@ -43,7 +43,7 @@ export function HeroMockupCompact() {
         initial={reduce ? false : { opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="shadow-floating relative overflow-hidden rounded-[16px] border border-(--color-border) bg-(--color-surface)"
+        className="shadow-floating rounded-card relative overflow-hidden border border-(--color-border) bg-(--color-surface)"
       >
         {/* Browser chrome — admin */}
         <div className="flex items-center gap-1.5 border-b border-(--color-border) bg-(--color-text) px-3 py-2">

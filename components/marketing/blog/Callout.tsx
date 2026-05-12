@@ -42,7 +42,7 @@ export function Callout({
   const { icon: Icon, bg, ring, fg } = META[variant];
   return (
     <aside
-      className={`my-8 flex gap-4 rounded-[14px] p-5 ring-1 ring-inset ${bg} ${ring} ${fg} [&_p]:!mt-0 [&_p]:!text-current [&_p:not(:first-child)]:mt-3`}
+      className={`rounded-card my-8 flex gap-4 p-5 ring-1 ring-inset ${bg} ${ring} ${fg} [&_p]:!mt-0 [&_p]:!text-current [&_p:not(:first-child)]:mt-3`}
     >
       <span
         className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-(--color-surface) text-(--color-accent)"

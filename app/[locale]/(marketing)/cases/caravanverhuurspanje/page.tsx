@@ -148,7 +148,7 @@ export default async function CaravanverhuurDetailPage({
           <div className="grid gap-5 md:grid-cols-3">
             {problemItems.map((p, i) => (
               <RevealOnScroll key={p.title} delay={i * 0.06}>
-                <article className="h-full rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6">
+                <article className="rounded-panel h-full border border-(--color-border) bg-(--color-surface) p-6">
                   <h3 className="text-lg leading-tight font-medium">{p.title}</h3>
                   <p className="mt-3 text-[14px] leading-[1.6] text-(--color-muted)">{p.body}</p>
                 </article>
@@ -168,7 +168,7 @@ export default async function CaravanverhuurDetailPage({
             </h2>
             <p className="text-(--color-muted)">{t("scope.lede")}</p>
           </RevealOnScroll>
-          <ul className="grid gap-3 rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6 md:grid-cols-2 md:p-8">
+          <ul className="rounded-panel grid gap-3 border border-(--color-border) bg-(--color-surface) p-6 md:grid-cols-2 md:p-8">
             {scopeItems.map((s) => (
               <li
                 key={s}

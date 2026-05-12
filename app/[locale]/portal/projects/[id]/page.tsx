@@ -101,7 +101,7 @@ export default async function ProjectDetailPage({
 
         {/* Voortgang-balk */}
         {phase ? (
-          <section className="rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6">
+          <section className="rounded-panel border border-(--color-border) bg-(--color-surface) p-6">
             <div className="flex items-center justify-between gap-4">
               <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
                 {t("progress")}
@@ -132,7 +132,7 @@ export default async function ProjectDetailPage({
               pathname: "/portal/projects/[id]/handover" as never,
               params: { id: project.id },
             }}
-            className="flex items-center justify-between gap-4 rounded-[18px] border border-(--color-accent)/30 bg-(--color-accent)/5 px-6 py-5 transition-colors hover:bg-(--color-accent)/10"
+            className="rounded-panel flex items-center justify-between gap-4 border border-(--color-accent)/30 bg-(--color-accent)/5 px-6 py-5 transition-colors hover:bg-(--color-accent)/10"
           >
             <div className="flex items-start gap-3">
               <ListChecks
@@ -154,7 +154,7 @@ export default async function ProjectDetailPage({
 
         {/* Volgende mijlpaal */}
         {project.nextMilestone ? (
-          <section className="rounded-[18px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-bg-warm) p-6">
+          <section className="rounded-panel border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-bg-warm) p-6">
             <p className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-(--color-wine) uppercase">
               <Sparkles className="h-3 w-3" strokeWidth={2.4} />
               {t("nextMilestone")}
@@ -181,7 +181,7 @@ export default async function ProjectDetailPage({
               {t("noUpdates")}
             </p>
           ) : (
-            <ul className="divide-y divide-(--color-border) overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+            <ul className="rounded-card divide-y divide-(--color-border) overflow-hidden border border-(--color-border) bg-(--color-surface)">
               {updates.map((u) => (
                 <li key={u.id} className="px-5 py-4">
                   <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
@@ -204,7 +204,7 @@ export default async function ProjectDetailPage({
               <Clock className="h-3 w-3 text-(--color-wine)" strokeWidth={2.4} />
               {t("waitingForYou")}
             </h2>
-            <ul className="divide-y divide-(--color-border) overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+            <ul className="rounded-card divide-y divide-(--color-border) overflow-hidden border border-(--color-border) bg-(--color-surface)">
               {waitingTickets.map((tk) => (
                 <li key={tk.id}>
                   <Link
@@ -335,7 +335,7 @@ function ProjectFiles({
             <FileText className="h-3 w-3 text-(--color-accent)" strokeWidth={2.4} />
             {t("recentFiles")}
           </h2>
-          <ul className="divide-y divide-(--color-border) overflow-hidden rounded-[14px] border border-(--color-border) bg-(--color-surface)">
+          <ul className="rounded-card divide-y divide-(--color-border) overflow-hidden border border-(--color-border) bg-(--color-surface)">
             {others.map((f) => (
               <li key={f.id} className="flex items-center justify-between gap-4 px-5 py-3">
                 <div className="min-w-0 flex-1">
