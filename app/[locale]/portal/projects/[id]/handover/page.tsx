@@ -10,6 +10,8 @@ import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { getUserWithOrg, getHandoverStatus } from "@/lib/db/queries/portal";
 import { HandoverChecklist } from "@/components/portal/HandoverChecklist";
+import { projects } from "@/lib/db/schema";
+import { serviceKindFromProjectType, HANDOVER_EXTRAS_BY_KIND } from "@/lib/service-kinds";
 
 /**
  * Oplevering-checklist voor één project. Klant ziet 'm read-only en
@@ -38,6 +40,15 @@ export default async function HandoverPage({
 
   const status = await getHandoverStatus(user.organizationId, id);
   if (!status) notFound();
+
+  // Dienst-type → extra opleverpunten die alleen voor staff zichtbaar zijn
+  // (puur informatief, geen persistente vinkjes — die staan in de vaste lijst).
+  const projectRow = await db.query.projects.findFirst({
+    where: eq(projects.id, id),
+    columns: { type: true },
+  });
+  const serviceKind = serviceKindFromProjectType(projectRow?.type);
+  const handoverExtras = isStaff ? HANDOVER_EXTRAS_BY_KIND[serviceKind] : [];
 
   const t = await getTranslations("portal.handover");
   const dateFmt = new Intl.DateTimeFormat(locale, {
@@ -108,6 +119,26 @@ export default async function HandoverPage({
           }}
           dateFmt={(d: Date) => dateFmt.format(d)}
         />
+
+        {handoverExtras.length > 0 ? (
+          <section className="rounded-panel border border-dashed border-(--color-border) bg-(--color-surface)/60 p-5">
+            <h2 className="font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+              {t("byKindTitle")}
+            </h2>
+            <p className="mt-1 text-[13px] text-(--color-muted)">{t("byKindHint")}</p>
+            <ul className="mt-3 space-y-1.5">
+              {handoverExtras.map((label) => (
+                <li key={label} className="flex items-start gap-2 text-[14px] text-(--color-text)">
+                  <span
+                    aria-hidden
+                    className="mt-2 h-1 w-1 shrink-0 rounded-full bg-(--color-muted)"
+                  />
+                  {label}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
       </div>
     </main>
   );

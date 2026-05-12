@@ -2811,7 +2811,9 @@
         "credentials_sent": "Inloggegevens en handleiding zijn gemaild",
         "maintenance_explained": "Eerste maand onderhoud uitgelegd",
         "invoice_paid": "Eindfactuur betaald"
-      }
+      },
+      "byKindTitle": "Extra checks voor dit dienst-type",
+      "byKindHint": "Geen vinkjes — een geheugensteun voor mezelf naast de vaste lijst."
     },
     "projects": {
       "title": "Projecten",

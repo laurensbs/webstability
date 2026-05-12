@@ -2815,7 +2815,9 @@
         "credentials_sent": "Credenciales y guía enviadas",
         "maintenance_explained": "Primer mes de mantenimiento explicado",
         "invoice_paid": "Factura final pagada"
-      }
+      },
+      "byKindTitle": "Comprobaciones extra para este tipo de servicio",
+      "byKindHint": "Sin casillas — un recordatorio para mí junto a la lista fija."
     },
     "projects": {
       "title": "Proyectos",
