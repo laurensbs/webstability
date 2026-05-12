@@ -37,7 +37,9 @@ export async function Navigation({ locale }: { locale: string }) {
           aria-label="Webstability — home"
           className="group inline-flex items-center gap-2.5 text-[18px] font-extrabold tracking-[-0.045em] text-(--color-bg) transition-opacity hover:opacity-90"
         >
-          <LogoMark size={22} />
+          <span className="hidden lg:inline-flex">
+            <LogoMark size={22} />
+          </span>
           <span>
             webstability<span className="text-(--color-accent)">.</span>
           </span>

@@ -3,9 +3,7 @@
 import * as React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Menu, X, ArrowRight, KeyRound } from "lucide-react";
-import { useReducedMotion } from "motion/react";
 import { Link, usePathname } from "@/i18n/navigation";
-import { LogoMark } from "@/components/shared/LogoMark";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import type { MegaMenuStrings } from "@/components/marketing/NavMegaMenu";
 
@@ -51,7 +49,6 @@ export function MobileNav({
   liveBadge: string;
   tagline: string;
 }) {
-  const reduce = useReducedMotion();
   const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
   const close = React.useCallback(() => setOpen(false), []);
@@ -81,11 +78,8 @@ export function MobileNav({
 
           {/* Top bar — wordmark + close */}
           <div className="flex items-center justify-between border-b border-(--color-border) px-6 py-4">
-            <span className="inline-flex items-center gap-2.5 text-[18px] font-extrabold tracking-[-0.045em] text-(--color-text)">
-              <LogoMark size={22} animate={!reduce} />
-              <span>
-                webstability<span className="text-(--color-accent)">.</span>
-              </span>
+            <span className="inline-flex items-center text-[18px] font-extrabold tracking-[-0.045em] text-(--color-text)">
+              webstability<span className="text-(--color-accent)">.</span>
             </span>
             <Dialog.Close asChild>
               <button

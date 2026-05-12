@@ -32,9 +32,14 @@ export function RevealOnScroll({
   const duration = touch ? 0.3 : 0.6;
   const effectiveDelay = touch ? 0 : delay;
 
+  // De SSR-markup krijgt de verborgen begintoestand al via inline style.
+  // Zonder dit rendert de server het blok zichtbaar, springt hydratie 'm naar
+  // opacity:0 en animeert 'ie daarna pas in — dat las als geflikker bij het
+  // inladen van secties op mobiel.
   return (
     <motion.div
       className={className}
+      style={{ opacity: 0 }}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
