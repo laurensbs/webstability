@@ -30,14 +30,14 @@ export function StatusBanner({
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-(--color-success)" />
           </>
         ) : (
-          <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-(--color-accent)" />
+          <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-(--color-wine)" />
         )}
       </span>
       <p className="flex-1 text-sm">{message}</p>
       {healthy ? (
         <CheckCircle2 className="hidden h-4 w-4 shrink-0 text-(--color-success) sm:block" />
       ) : (
-        <AlertTriangle className="hidden h-4 w-4 shrink-0 text-(--color-accent) sm:block" />
+        <AlertTriangle className="hidden h-4 w-4 shrink-0 text-(--color-wine) sm:block" />
       )}
       <Link
         href={ctaHref}

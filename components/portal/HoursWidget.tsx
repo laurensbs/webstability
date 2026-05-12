@@ -72,7 +72,7 @@ export function HoursWidget({
                 pct >= 100
                   ? "text-(--color-accent)"
                   : pct >= 80
-                    ? "text-amber-600"
+                    ? "text-(--color-wine)"
                     : "text-(--color-muted)"
               }`}
             >

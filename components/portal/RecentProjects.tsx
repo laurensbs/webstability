@@ -10,7 +10,7 @@ type Project = {
 
 const STATUS_PILL: Record<string, string> = {
   planning: "bg-(--color-bg-warm) text-(--color-muted)",
-  in_progress: "bg-amber-100 text-amber-900",
+  in_progress: "bg-(--color-accent)/12 text-(--color-accent)",
   review: "bg-(--color-teal)/15 text-(--color-teal)",
   live: "bg-(--color-success)/15 text-(--color-success)",
   done: "bg-(--color-bg-warm) text-(--color-muted)",
