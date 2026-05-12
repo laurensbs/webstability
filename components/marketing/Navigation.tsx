@@ -1,11 +1,11 @@
 import { getTranslations } from "next-intl/server";
+import { headers } from "next/headers";
 import { KeyRound } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LogoMark } from "@/components/shared/LogoMark";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { NavScroll } from "@/components/marketing/NavScroll";
 import { NavLink } from "@/components/marketing/NavLink";
-import { NavLiveBadge } from "@/components/marketing/NavLiveBadge";
 import { NavMegaMenu, type MegaMenuStrings } from "@/components/marketing/NavMegaMenu";
 import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 import { MobileNav } from "@/components/marketing/MobileNav";
@@ -16,6 +16,13 @@ export async function Navigation({ locale }: { locale: string }) {
   const tRaw = await getTranslations();
   const menuStrings = tRaw.raw("nav.menu") as MegaMenuStrings;
 
+  // Huidige pad uit de proxy-header — zo kan de server-component de mega-menu-
+  // triggers ("Diensten"/"Werk") als actief markeren wanneer je op een
+  // diensten-/cases-pagina zit (NavLink doet dit al voor de plain links).
+  const pathname = (await headers()).get("x-pathname") ?? "";
+  const onDiensten = /\/(diensten|servicios)(\/|$)/.test(pathname);
+  const onCases = /\/(cases|trabajo)(\/|$)/.test(pathname);
+
   // Midden-nav (desktop): twee mega-menu's (Diensten + Werk) + twee plain
   // links (Prijzen + Over). Verhuur zit nu als prominente eerste tegel ín
   // het Diensten-menu (was dubbel als losse link). Vijf items i.p.v.
@@ -24,9 +31,6 @@ export async function Navigation({ locale }: { locale: string }) {
     { href: "/prijzen", label: t("pricing") },
     { href: "/over", label: t("about") },
   ] as const;
-
-  // Live-badge: cyclet door status + zachte schaarste. Linkt naar /status.
-  const liveMessages = [t("liveBadge"), t("liveBadgeUptime"), t("liveBadgeAvailable")];
 
   return (
     <NavScroll>
@@ -46,13 +50,13 @@ export async function Navigation({ locale }: { locale: string }) {
         </Link>
 
         {/* Center nav — desktop only. */}
-        <div className="hidden items-center gap-7 text-[14px] font-medium md:flex">
+        <div className="hidden items-center gap-6 text-[14px] font-medium md:flex">
           <NavMegaMenu
             strings={menuStrings}
             servicesLabel={t("services")}
             casesLabel={t("cases")}
-            servicesActive={false}
-            casesActive={false}
+            servicesActive={onDiensten}
+            casesActive={onCases}
           />
           {simpleLinks.map((l) => (
             <NavLink key={l.href} href={l.href}>
@@ -61,13 +65,11 @@ export async function Navigation({ locale }: { locale: string }) {
           ))}
         </div>
 
-        {/* Right side — live badge · lang · login · CTA. "Contact" zit niet
-            meer als losse link in de rij: de CTA ("Boek een kennismaking")
-            ís de contact-actie (opent de Cal-embed direct), en /contact blijft
-            bereikbaar via de footer + de FAQ. Vier items i.p.v. vijf = rustiger.
-            Mobile: compacte CTA + hamburger. */}
-        <div className="flex items-center gap-2.5 md:gap-3">
-          <NavLiveBadge messages={liveMessages} />
+        {/* Right side — lang · login · CTA. Bewust kaal: geen uptime-/status-
+            pill (las als een fake SaaS-metric voor een one-person-studio),
+            geen losse "Contact"-link (de CTA ís de contact-actie). Drie
+            duidelijke dingen. Mobile: compacte CTA + hamburger. */}
+        <div className="flex items-center gap-3 md:gap-4">
           <span className="hidden md:inline-flex">
             <LangSwitcher variant="dark" />
           </span>
@@ -87,7 +89,7 @@ export async function Navigation({ locale }: { locale: string }) {
               compacte "Boek"-knop naast de hamburger. */}
           <CalPopupTrigger
             locale={locale}
-            className="group hover:shadow-glow inline-flex min-h-10 items-center gap-1.5 rounded-full bg-(--color-accent) px-3.5 py-2.5 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:px-4"
+            className="group hover:shadow-glow inline-flex min-h-10 items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2.5 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:px-5"
           >
             <span className="hidden sm:inline">{t("planCall")}</span>
             <span className="sm:hidden">{t("planCallShort")}</span>

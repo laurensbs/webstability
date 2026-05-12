@@ -84,17 +84,17 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
         />
       </div>
 
-      {/* Laag 3 — inner content. translate-Y + scale = compositor-only,
-          geen layout-recompute. Géén permanente will-change: dat houdt de
-          laag voor altijd op een eigen compositor-layer en geeft in Safari/
-          Chrome juist wazige/haperende tekst. transform-gpu (translateZ(0))
-          promoot 'm al tijdens de transitie — dat is genoeg. */}
+      {/* Laag 3 — inner content. Alleen translate-Y (geen scale): tekst
+          1.5% downscalen op scroll geeft sub-pixel-blur in Safari/Chrome —
+          niet de moeite waard voor zo'n klein effect. translate is schoon.
+          Géén permanente will-change (eigen compositor-layer = wazige tekst);
+          transform-gpu (translateZ(0)) promoot 'm al tijdens de transitie. */}
       <div
         className={[
           "relative transform-gpu text-(--color-bg)",
           "transition-transform",
           easing,
-          scrolled ? "translate-y-1 scale-[0.985]" : "translate-y-0 scale-100",
+          scrolled ? "translate-y-0.5" : "translate-y-0",
         ].join(" ")}
       >
         {children}
