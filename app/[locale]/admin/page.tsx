@@ -51,6 +51,13 @@ function withOverdueFlag<T extends { nextActionAt: Date | null }>(
   }));
 }
 
+// TODO (AD.2 — geplande optimalisatie): de page doet één Promise.all van ~13
+// queries vóór de eerste render. Met loading.tsx (DashboardSkeleton) is er geen
+// blanke pagina, maar de "// vandaag"-zone + stats zouden eerst kunnen renderen
+// en de analytics-helft (revenue / cross-org-uren / demo-funnel / status-strip /
+// activity-feed) daarna kunnen streamen via een aparte async <AdminAnalyticsSection>
+// in <Suspense>. Bewust nog niet gedaan — beperkt latency-effect (single-user
+// admin, queries draaien al parallel), wel reëel regressierisico.
 export default async function AdminOverview({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
