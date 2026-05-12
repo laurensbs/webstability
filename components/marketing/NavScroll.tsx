@@ -3,31 +3,32 @@
 import * as React from "react";
 
 /**
- * Sticky donkere header met transform-based pill-transitie.
+ * Sticky donkere header met een fade-transitie tussen "full-width donker"
+ * en "pill". Compositor-only (alleen opacity + border-color), nooit layout-
+ * properties — vloeiend op elke device. Linear/Vercel doen het identiek.
  *
- * Drie compositor-only lagen voor butter-smooth 60fps:
- *  1. Full-width donkere achtergrond (fade-out op scroll)
- *  2. Pill-frame binnen max-w-7xl wrapper (fade-in op scroll)
- *  3. Inner content met subtle transform (lift + krimp) op scroll
- *
- * Layout-properties (max-width, padding) zijn nooit getransitioneerd
- * — alleen opacity + transform = compositor-only = vloeiend op elke
- * device. Linear/Vercel doen het identiek.
- *
- * Drempel: een vaste ~136px (zie SCROLL_THRESHOLD). Bovenaan elke pagina
- * blijft de header full-width donker; zodra je begint te scrollen klapt
- * hij in een pill. Consistent op pagina's mét en zónder grote hero.
+ * Hysterese (zie ENTER/LEAVE): de pill klapt IN voorbij 130px en pas weer
+ * UIT onder 60px — voorkomt geflikker bij micro-scroll rond één drempel.
+ * Bovenaan elke pagina is de header full-width donker; consistent op
+ * pagina's mét en zónder grote hero.
  */
-// Vaste drempel: zodra je een paar honderd pixels gescrold bent klapt
-// de header in een pill. Bewust géén viewport-percentage meer — dat gaf
-// een rare ervaring op pagina's zonder grote hero (blog-detail, prijzen,
-// FAQ) waar de balk eerst eindeloos full-width donker bleef en dan plots
-// insprong. Een vaste ~136px voelt op élke pagina kort en consistent.
-const SCROLL_THRESHOLD = 136;
+const ENTER_THRESHOLD = 130;
+const LEAVE_THRESHOLD = 60;
+
+/** Pill-staat met hysterese: boven LEAVE → uit, boven ENTER → in, ertussen
+ * → blijf op de vorige staat. */
+function nextScrolled(y: number, prev: boolean): boolean {
+  if (y > ENTER_THRESHOLD) return true;
+  if (y < LEAVE_THRESHOLD) return false;
+  return prev;
+}
 
 function initialScrolled() {
   if (typeof window === "undefined") return false;
-  return window.scrollY > SCROLL_THRESHOLD;
+  // Direct deeplink halverwege de pagina → meteen pill-staat, geen "full-
+  // width"-flash. De SSR-markup is altijd "niet gescrold"; deze lazy
+  // useState-initializer corrigeert dat op de eerste client-render vóór paint.
+  return window.scrollY > ENTER_THRESHOLD;
 }
 
 export function NavScroll({ children }: { children: React.ReactNode }) {
@@ -35,13 +36,13 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
 
   React.useEffect(() => {
     let ticking = false;
-    let lastValue = window.scrollY > SCROLL_THRESHOLD;
+    let lastValue = window.scrollY > ENTER_THRESHOLD;
 
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        const next = window.scrollY > SCROLL_THRESHOLD;
+        const next = nextScrolled(window.scrollY, lastValue);
         if (next !== lastValue) {
           lastValue = next;
           setScrolled(next);
@@ -53,8 +54,10 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Premium expo-out, 450ms — sweet spot voor compositor-only animaties
-  const easing = "duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]";
+  // Premium expo-out, 420ms — sweet spot voor compositor-only animaties.
+  // Bij reduced motion: instant snap (geen 420ms fade).
+  const easing =
+    "duration-[420ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:duration-0";
 
   return (
     <header data-scrolled={scrolled || undefined} className="sticky top-0 z-30">
@@ -70,8 +73,8 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
       />
 
       {/* Laag 2 — pill-frame, breder dan de inner-nav (max-w-7xl, 1280px)
-          zodat de pill na de transform ruim om de content valt. Inset-x
-          op 6 voor wat marge tot de viewport-randen. */}
+          zodat de pill ruim om de content valt. Inset-x voor marge tot de
+          viewport-randen. */}
       <div className="pointer-events-none absolute inset-0 mx-auto max-w-7xl px-2">
         <span
           aria-hidden
@@ -84,21 +87,10 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
         />
       </div>
 
-      {/* Laag 3 — inner content. Alleen translate-Y (geen scale): tekst
-          1.5% downscalen op scroll geeft sub-pixel-blur in Safari/Chrome —
-          niet de moeite waard voor zo'n klein effect. translate is schoon.
-          Géén permanente will-change (eigen compositor-layer = wazige tekst);
-          transform-gpu (translateZ(0)) promoot 'm al tijdens de transitie. */}
-      <div
-        className={[
-          "relative transform-gpu text-(--color-bg)",
-          "transition-transform",
-          easing,
-          scrolled ? "translate-y-0.5" : "translate-y-0",
-        ].join(" ")}
-      >
-        {children}
-      </div>
+      {/* Laag 3 — inner content. Géén transform op deze laag: een sub-pixel
+          translate/scale tijdens de transitie geeft wazige tekst in Safari/
+          Chrome — de pill-fade alleen is genoeg "lift". */}
+      <div className="relative text-(--color-bg)">{children}</div>
     </header>
   );
 }

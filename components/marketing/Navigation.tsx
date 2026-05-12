@@ -74,10 +74,12 @@ export async function Navigation({ locale }: { locale: string }) {
           >
             <KeyRound className="h-4 w-4 transition-colors" strokeWidth={2} aria-hidden />
           </Link>
-          {/* Secundaire actie — "of plan een gesprek" (Cal-popup), alleen md+ */}
+          {/* Secundaire actie — "of plan een gesprek" (Cal-popup). Pas vanaf
+              xl zodat de rechterkant op 1024–1280px niet te druk wordt naast
+              login + de primaire CTA. */}
           <CalPopupTrigger
             locale={locale}
-            className="hidden text-[13px] font-medium text-(--color-bg)/65 underline decoration-(--color-bg)/25 underline-offset-4 transition-colors hover:text-(--color-bg) hover:decoration-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent) lg:inline-flex"
+            className="hidden text-[13px] font-medium text-(--color-bg)/65 underline decoration-(--color-bg)/25 underline-offset-4 transition-colors hover:text-(--color-bg) hover:decoration-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent) xl:inline-flex"
           >
             {t("planCallSecondary")}
           </CalPopupTrigger>

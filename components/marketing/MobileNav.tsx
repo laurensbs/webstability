@@ -6,17 +6,10 @@ import { Menu, X, ArrowRight, KeyRound } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import type { MegaMenuStrings } from "@/components/marketing/NavMegaMenu";
+import { VERTICAL_SLUGS } from "@/lib/verticals";
+import { VERTICAL_ICONS } from "@/lib/vertical-icons";
 
 type PlainLink = { href: string; label: string };
-
-const VERTICAL_SLUGS = [
-  "verhuur-boekingssysteem",
-  "klantportaal-laten-bouwen",
-  "website-laten-maken",
-  "webshop-laten-maken",
-  "admin-systeem-op-maat",
-  "reparatie-portaal",
-] as const;
 
 /**
  * Mobile nav drawer. Hamburger rechts van de wordmark op mobiel, opent
@@ -63,7 +56,7 @@ export function MobileNav({
           aria-label="Open menu"
           className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-(--color-bg)/20 bg-(--color-bg)/5 text-(--color-bg) transition-colors hover:border-(--color-bg)/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:hidden"
         >
-          <Menu className="h-5 w-5" strokeWidth={2} />
+          <Menu className="h-5 w-5" strokeWidth={2} aria-hidden />
         </button>
       </Dialog.Trigger>
 
@@ -86,7 +79,7 @@ export function MobileNav({
                 aria-label="Sluit menu"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-text) transition-colors hover:border-(--color-accent)/50"
               >
-                <X className="h-5 w-5" strokeWidth={2} />
+                <X className="h-5 w-5" strokeWidth={2} aria-hidden />
               </button>
             </Dialog.Close>
           </div>
@@ -107,7 +100,11 @@ export function MobileNav({
               className="group mb-6 flex items-center justify-between rounded-xl bg-(--color-accent) px-4 py-3 text-[15px] font-medium text-white transition-all hover:bg-(--color-accent)/90"
             >
               {aanvragenLabel}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                strokeWidth={2}
+                aria-hidden
+              />
             </Link>
 
             {/* Diensten + de zes verticals */}
@@ -126,20 +123,32 @@ export function MobileNav({
                   }`}
                 >
                   {menuStrings.servicesFooter.replace(" →", "")}
-                  <ArrowRight className="h-3.5 w-3.5 text-(--color-muted)" />
+                  <ArrowRight
+                    className="h-3.5 w-3.5 text-(--color-muted)"
+                    strokeWidth={2}
+                    aria-hidden
+                  />
                 </Link>
               </li>
-              {VERTICAL_SLUGS.map((slug) => (
-                <li key={slug}>
-                  <Link
-                    href={{ pathname: "/diensten/[vertical]", params: { vertical: slug } }}
-                    onClick={close}
-                    className="block rounded-md py-2 pr-3 pl-6 text-[14px] text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) hover:text-(--color-text)"
-                  >
-                    {menuStrings.items[slug].title}
-                  </Link>
-                </li>
-              ))}
+              {VERTICAL_SLUGS.map((slug) => {
+                const Icon = VERTICAL_ICONS[slug];
+                return (
+                  <li key={slug}>
+                    <Link
+                      href={{ pathname: "/diensten/[vertical]", params: { vertical: slug } }}
+                      onClick={close}
+                      className="group flex items-center gap-2.5 rounded-md py-2 pr-3 pl-6 text-[14px] text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) hover:text-(--color-text)"
+                    >
+                      <Icon
+                        className="h-3.5 w-3.5 shrink-0 text-(--color-accent)/70 transition-colors group-hover:text-(--color-accent)"
+                        strokeWidth={2}
+                        aria-hidden
+                      />
+                      {menuStrings.items[slug].title}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
 
             {/* Werk / cases */}
@@ -172,7 +181,7 @@ export function MobileNav({
                   className="flex items-center justify-between rounded-md px-3 py-2.5 text-[14px] text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) hover:text-(--color-text)"
                 >
                   {menuStrings.casesFooter.replace(" →", "")}
-                  <ArrowRight className="h-3.5 w-3.5" />
+                  <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
                 </Link>
               </li>
             </ul>
@@ -191,7 +200,11 @@ export function MobileNav({
                     }`}
                   >
                     {l.label}
-                    <ArrowRight className="h-3.5 w-3.5 text-(--color-muted)" />
+                    <ArrowRight
+                      className="h-3.5 w-3.5 text-(--color-muted)"
+                      strokeWidth={2}
+                      aria-hidden
+                    />
                   </Link>
                 </li>
               ))}
@@ -210,7 +223,7 @@ export function MobileNav({
                 onClick={close}
                 className="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase transition-colors hover:text-(--color-text)"
               >
-                <KeyRound className="h-3.5 w-3.5" strokeWidth={2} />
+                <KeyRound className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
                 {loginLabel}
               </Link>
               <LangSwitcher />
@@ -221,7 +234,11 @@ export function MobileNav({
               className="group hover:shadow-glow inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-3 text-[14px] font-medium text-white transition-all hover:bg-(--color-accent)/90"
             >
               {ctaLabel}
-              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight
+                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+                strokeWidth={2}
+                aria-hidden
+              />
             </Link>
           </div>
         </Dialog.Content>
