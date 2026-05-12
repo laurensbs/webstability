@@ -1,7 +1,6 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { Mail, ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { LivePulse } from "@/components/animate/LivePulse";
 import { LogoMark } from "@/components/shared/LogoMark";
 import { AmbientHalos } from "@/components/shared/AmbientHalos";
 import { MarkupText } from "@/components/animate/MarkupText";
@@ -42,6 +41,7 @@ export async function Footer() {
 
   const services = [
     { href: "/diensten", label: tNav("services") },
+    { href: "/aanvragen", label: tNav("requestCta") },
     { href: "/verhuur", label: t("forRentals") },
     { href: "/prijzen", label: tNav("pricing") },
     { href: "/garanties", label: t("guarantees") },
@@ -131,15 +131,6 @@ export async function Footer() {
                 </span>
               </Link>
               <p className="text-sm leading-relaxed text-(--color-muted)">{t("tagline")}</p>
-              <div className="flex items-center gap-2 pt-1">
-                <Link
-                  href="/status"
-                  className="inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3 py-1 text-[11px] font-medium tracking-[0.08em] text-(--color-muted) transition-colors hover:border-(--color-accent)/40 hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
-                >
-                  <LivePulse />
-                  {t("liveBadge")}
-                </Link>
-              </div>
             </div>
 
             {/* Services */}
