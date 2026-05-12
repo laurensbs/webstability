@@ -2746,6 +2746,13 @@
         "webshop": "En cuanto tu tienda esté en vivo monitorizo aquí el uptime — checkout incluido — para que lo sepas antes que tus clientes.",
         "platform": "En cuanto tu plataforma funcione monitorizo aquí el uptime del entorno y las integraciones."
       },
+      "liveStrip": {
+        "website": "Tu web está en vivo en",
+        "webshop": "Tu tienda está abierta en",
+        "platform": "Tu plataforma funciona en",
+        "other": "Tu proyecto está en vivo en",
+        "visit": "Visitar"
+      },
       "hoursTitle": "Horas de trabajo este mes",
       "hoursMonth": "Este mes",
       "hoursUsed": "usadas",

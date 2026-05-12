@@ -46,7 +46,8 @@ import {
 } from "@/components/portal/MonitoringCardAsync";
 import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/DashboardIntro";
 import { PortalWelcomeOnboarding } from "@/components/portal/PortalWelcomeOnboarding";
-import { serviceKindFromProjects } from "@/lib/service-kinds";
+import { LiveProjectStrip } from "@/components/portal/LiveProjectStrip";
+import { serviceKindFromProjects, serviceKindFromProjectType } from "@/lib/service-kinds";
 import { AuthVerifiedBeacon } from "@/components/auth/AuthVerifiedBeacon";
 import { LivegangCelebration } from "@/components/portal/LivegangCelebration";
 import { IncidentBanner } from "@/components/portal/IncidentBanner";
@@ -218,6 +219,18 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   const noProjectsEmpty = hasServiceKind
     ? t(`dashboard.noProjectsByKind.${serviceKind}` as Parameters<typeof t>[0])
     : t("dashboard.noProjects");
+
+  // Live project met een eigen URL — toont een compacte "draait op X"-balk
+  // bovenaan, behalve als er nu een livegang-feestmoment voor loopt (dat
+  // toont de URL al, prominenter). Pakt het eerste live project (orgs hebben
+  // typisch maar één live tegelijk).
+  const livegangIds = new Set(recentLivegangs.map((p) => p.id));
+  const liveProjectWithUrl = projects.find(
+    (p) =>
+      (p.status === "live" || p.status === "done") &&
+      !!p.monitoringTargetUrl &&
+      !livegangIds.has(p.id),
+  );
 
   // Build de roadmap-items uit recent projects: laatste 'live' wordt
   // 'shipped', huidige 'in_progress' wordt 'active', 'planning' wordt
@@ -419,6 +432,21 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         message={healthy ? t("banner.healthy") : t("banner.issue")}
         cta={t("banner.viewStatus")}
       />
+
+      {liveProjectWithUrl?.monitoringTargetUrl ? (
+        <LiveProjectStrip
+          url={liveProjectWithUrl.monitoringTargetUrl}
+          serviceKind={serviceKindFromProjectType(liveProjectWithUrl.type)}
+          strings={{
+            label: t(
+              `dashboard.liveStrip.${serviceKindFromProjectType(liveProjectWithUrl.type)}` as Parameters<
+                typeof t
+              >[0],
+            ),
+            visitLabel: t("dashboard.liveStrip.visit"),
+          }}
+        />
+      ) : null}
 
       {/* Delivery timeline — alleen wanneer er een actieve Build-fase is.
           Staat hoog op de pagina omdat het de meest concrete vraag van

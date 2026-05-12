@@ -2742,6 +2742,13 @@
         "webshop": "Zodra je shop live is monitor ik hier de uptime — checkout incluis — zodat je 't weet vóór je klanten 't merken.",
         "platform": "Zodra je platform draait monitor ik hier de uptime van de omgeving en de koppelingen."
       },
+      "liveStrip": {
+        "website": "Je site draait live op",
+        "webshop": "Je shop staat open op",
+        "platform": "Je platform draait op",
+        "other": "Je project draait live op",
+        "visit": "Bezoek"
+      },
       "hoursTitle": "Werk-uren deze maand",
       "hoursMonth": "Deze maand",
       "hoursUsed": "gebruikt",
