@@ -434,7 +434,20 @@ body.is-marketing #main {
     transition: none !important;
   }
 
-  /* 6. Globale motion-frame-budget cap — alle CSS transitions onder
+  /* 6. Scroll-reveal-blokken (RevealOnScroll) zijn op de telefoon meteen
+   *    zichtbaar — géén fade-on-scroll. Reden: de SSR-markup zet opacity:0
+   *    zodat er bij hydratie op desktop geen flits is, maar op een trage
+   *    4G-iPhone zou dat betekenen dat secties seconden leeg blijven tot de
+   *    JS geladen is en de in-view-observer ze pakt. Met deze CSS-override
+   *    (i.p.v. een JS-touch-check, die een hydratie-mismatch en dus alsnog
+   *    een flits geeft) rendert server én client identieke markup, en is het
+   *    blok op coarse-pointer direct in beeld. */
+  [data-reveal-on-scroll] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* 7. Globale motion-frame-budget cap — alle CSS transitions onder
    *    300ms blijven, zodat lange durations (450/550/700ms) iOS niet
    *    in een trage interpolatie gevangen houden. */
   *,

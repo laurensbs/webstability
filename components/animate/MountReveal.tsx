@@ -25,33 +25,24 @@ export function MountReveal({
   const reduce = useReducedMotion();
   const Tag = motion[as];
 
-  // Touch-detectie: verandert alléén de animatie-timing (post-mount), niet de
-  // eerste DOM-render (die is op beide opacity:0) — dus geen hydratie-mismatch.
-  const [touch] = React.useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.matchMedia("(pointer: coarse)").matches;
-  });
+  if (reduce) {
+    return <Tag className={className}>{children}</Tag>;
+  }
 
   // De SSR-markup krijgt de verborgen begintoestand al via inline style, zodat
-  // er geen flash is: zonder dit rendert de server het element zichtbaar, springt
-  // hydratie 'm naar opacity:0, en animeert 'ie daarna pas in — dat las als
-  // "tekst komt niet goed naar voor". Reduced-motion: gewoon zichtbaar laten.
-  const hiddenStyle = reduce ? undefined : { opacity: 0 };
-
-  // Op de telefoon: gestapelde delays tot 0.5s + 0.6s duur betekent dat het
-  // laatste blok pas >1s na een toch al trage hydratie verschijnt. We cappen de
-  // delay hard en korten de duur in — alles komt vrijwel tegelijk en snel.
-  const effectiveDelay = touch ? Math.min(delay, 0.12) : delay;
-  const duration = touch ? 0.35 : 0.6;
-
+  // er geen flash is bij hydratie op desktop. Op touch zet globals.css
+  // `[data-reveal-on-scroll]` meteen op opacity:1 — anders zou de hero leeg
+  // blijven tot de JS geladen is op een trage 4G-iPhone. (CSS i.p.v. JS-detectie
+  // → geen hydratie-mismatch, server en client renderen identieke markup.)
   return (
     <Tag
-      style={hiddenStyle}
-      initial={reduce ? false : { opacity: 0, y: touch ? 6 : 10 }}
+      data-reveal-on-scroll=""
+      style={{ opacity: 0 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration,
-        delay: effectiveDelay,
+        duration: 0.6,
+        delay,
         ease: [0.16, 1, 0.3, 1],
       }}
       className={className}

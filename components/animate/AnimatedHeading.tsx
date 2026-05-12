@@ -29,13 +29,6 @@ export function AnimatedHeading({
   const reduce = useReducedMotion();
   const Tag = as as "h1";
 
-  // Op touch droppen we de per-woord stagger: 30+ reveals × i*0.06 op een
-  // trage telefoon, terwijl je scrollt, leest als geschok. Eén keer per mount bepaald.
-  const [touch] = React.useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.matchMedia("(pointer: coarse)").matches;
-  });
-
   // Tokenize: keep asterisk-marked words intact as a single token so they
   // animate as one unit (an accent phrase like "*Het systeem*" stays grouped).
   const tokens = React.useMemo(() => parseAccentMarkers(children), [children]);
@@ -54,21 +47,22 @@ export function AnimatedHeading({
   }
 
   // Cap de totale stagger op ~0.22s zodat het laatste woord van een lange
-  // heading niet pas na een halve seconde binnenkomt. Op touch: alle woorden
-  // tegelijk, kortere duur.
-  const wordDelay = (i: number) => (touch ? delay : Math.min(delay + i * 0.05, delay + 0.22));
-  const dur = touch ? 0.4 : 0.6;
+  // heading niet pas na een halve seconde binnenkomt. (Op touch forceert
+  // globals.css de spans toch meteen zichtbaar — dan doet de timing er niet toe.)
+  const wordDelay = (i: number) => Math.min(delay + i * 0.05, delay + 0.22);
 
   return (
     <Tag className={className}>
       {tokens.map((tok, i) => (
         <motion.span
           key={i}
-          initial={{ opacity: 0, y: touch ? 12 : 20 }}
+          data-reveal-on-scroll=""
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: dur, delay: wordDelay(i), ease: EASE }}
-          // opacity:0 ook in de SSR-markup → geen zichtbaar→onzichtbaar-sprong bij hydratie.
+          transition={{ duration: 0.6, delay: wordDelay(i), ease: EASE }}
+          // opacity:0 ook in de SSR-markup → geen zichtbaar→onzichtbaar-sprong bij
+          // hydratie op desktop; op touch forceert globals.css 'm meteen zichtbaar.
           style={{ display: "inline-block", marginRight: "0.25em", opacity: 0 }}
         >
           {tok.accent ? <em>{tok.text}</em> : tok.text}
