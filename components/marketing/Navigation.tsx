@@ -61,15 +61,15 @@ export async function Navigation({ locale }: { locale: string }) {
           ))}
         </div>
 
-        {/* Right side — live badge · lang · contact · login · CTA.
+        {/* Right side — live badge · lang · login · CTA. "Contact" zit niet
+            meer als losse link in de rij: de CTA ("Boek een kennismaking")
+            ís de contact-actie (opent de Cal-embed direct), en /contact blijft
+            bereikbaar via de footer + de FAQ. Vier items i.p.v. vijf = rustiger.
             Mobile: compacte CTA + hamburger. */}
         <div className="flex items-center gap-2.5 md:gap-3">
           <NavLiveBadge messages={liveMessages} />
           <span className="hidden md:inline-flex">
             <LangSwitcher variant="dark" />
-          </span>
-          <span className="hidden text-[14px] font-medium md:inline-flex">
-            <NavLink href="/contact">{t("contact")}</NavLink>
           </span>
           <Link
             href="/login"
