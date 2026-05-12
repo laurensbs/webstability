@@ -15,6 +15,7 @@ import {
   type ConfigLanguageId,
 } from "@/lib/pricing";
 import { sendProjectRequestMail } from "@/lib/email/project-request";
+import { sendConfiguratorConfirmMail } from "@/lib/email/configurator-confirm";
 
 const KINDS: ProjectKind[] = ["website", "webshop"];
 const LANGS: ConfigLanguageId[] = ["nl", "nl_es", "nl_es_en"];
@@ -63,6 +64,8 @@ export async function submitProjectRequest(formData: FormData): Promise<ProjectR
     .toLowerCase();
   const company = String(formData.get("company") ?? "").trim();
   const message = String(formData.get("message") ?? "").trim();
+  const localeInput = String(formData.get("locale") ?? "nl");
+  const locale = localeInput === "es" ? "es" : "nl";
   const kindInput = String(formData.get("kind") ?? "");
   const pagesInput = Number(formData.get("pages") ?? 0);
   const paletteInput = String(formData.get("palette") ?? "");
@@ -152,6 +155,25 @@ export async function submitProjectRequest(formData: FormData): Promise<ProjectR
       // Lead is opgeslagen; alleen de mail mislukte — niet fataal.
     }
 
+    // Bevestigingsmail naar de prospect zelf — recap van de keuzes + richtprijs
+    // + "wat gebeurt er nu". Faalt graceful (lead + admin-mail zijn al rond).
+    try {
+      await sendConfiguratorConfirmMail({
+        to: email,
+        name: name || null,
+        locale,
+        kind,
+        lowCents: estimate.lowCents,
+        highCents: estimate.highCents,
+        lineSummary: estimate.lines.map((l) => ({
+          label: humanLine(l.labelKey, l.meta),
+          cents: l.cents,
+        })),
+      });
+    } catch (confirmErr) {
+      console.error("[configurator] prospect confirm mail failed:", confirmErr);
+    }
+
     // Bewaar een compacte samenvatting in een cookie zodat áls deze
     // bezoeker later via checkout klant wordt, de portal-intake al deels
     // is voorgevuld (build-type = website/webshop, details = de keuzes).
@@ -171,7 +193,7 @@ export async function submitProjectRequest(formData: FormData): Promise<ProjectR
         .join(" · ");
       const prefill = {
         company: { name: company || null },
-        build: { type: "webshop", details: detailsLine },
+        build: { type: kind, details: detailsLine },
       };
       const jar = await cookies();
       jar.set("wb_proj_request", JSON.stringify(prefill), {

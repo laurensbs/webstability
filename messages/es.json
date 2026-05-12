@@ -45,7 +45,9 @@
         "website": "Web",
         "websiteBody": "Una web limpia y rápida que muestra lo que haces. Páginas, contacto, opcionalmente un blog.",
         "webshop": "Tienda online",
-        "webshopBody": "Productos, carrito, pago por tarjeta/iDEAL, IVA por categoría, inventario."
+        "webshopBody": "Productos, carrito, pago por tarjeta/iDEAL, IVA por categoría, inventario.",
+        "tooComplexLead": "¿Algo más grande — una plataforma de alquiler, admin o reparaciones?",
+        "tooComplexLink": "Cuéntame brevemente qué necesitas"
       },
       "scope": {
         "title": "¿Qué tamaño tendrá?",

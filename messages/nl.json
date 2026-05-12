@@ -45,7 +45,9 @@
         "website": "Website",
         "websiteBody": "Een nette, snelle site die laat zien wat je doet. Pagina's, contact, eventueel een blog.",
         "webshop": "Webshop",
-        "webshopBody": "Producten, winkelmandje, afrekenen via iDEAL/kaart, btw per categorie, voorraad."
+        "webshopBody": "Producten, winkelmandje, afrekenen via iDEAL/kaart, btw per categorie, voorraad.",
+        "tooComplexLead": "Iets groters — een verhuur-, admin- of reparatie-platform?",
+        "tooComplexLink": "Vertel me kort wat je nodig hebt"
       },
       "scope": {
         "title": "Hoe groot wordt het?",

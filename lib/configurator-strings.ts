@@ -22,6 +22,8 @@ export type ConfiguratorStrings = {
   submitting: string;
   kindTitle: string;
   kindLede: string;
+  kindTooComplexLead: string;
+  kindTooComplexLink: string;
   kindWebsite: string;
   kindWebsiteBody: string;
   kindWebshop: string;
@@ -75,6 +77,8 @@ export function buildConfiguratorStrings(t: T): ConfiguratorStrings {
     submitting: t("submitting"),
     kindTitle: t("steps.kind.title"),
     kindLede: t("steps.kind.lede"),
+    kindTooComplexLead: t("steps.kind.tooComplexLead"),
+    kindTooComplexLink: t("steps.kind.tooComplexLink"),
     kindWebsite: t("steps.kind.website"),
     kindWebsiteBody: t("steps.kind.websiteBody"),
     kindWebshop: t("steps.kind.webshop"),

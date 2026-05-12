@@ -58,7 +58,11 @@ export default async function AanvragenPage({ params }: { params: Promise<{ loca
 
       <section className="px-6 pb-24">
         <div className="mx-auto max-w-5xl">
-          <ProjectConfigurator calLink={calUrl} strings={buildConfiguratorStrings(t)} />
+          <ProjectConfigurator
+            calLink={calUrl}
+            locale={locale}
+            strings={buildConfiguratorStrings(t)}
+          />
         </div>
       </section>
     </main>

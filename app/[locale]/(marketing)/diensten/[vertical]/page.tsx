@@ -385,6 +385,7 @@ export default async function VerticalPage({
             </RevealOnScroll>
             <ProjectConfigurator
               calLink={configuratorCalUrl}
+              locale={locale}
               defaultKind={configuratorKind}
               lockKind
               strings={configuratorStrings}

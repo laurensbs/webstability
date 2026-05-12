@@ -37,6 +37,8 @@ type Strings = {
   kindTitle: string;
   kindLede: string;
   kindWebsite: string;
+  kindTooComplexLead: string; // "Iets groters dan een website?"
+  kindTooComplexLink: string; // "Vertel me kort wat je nodig hebt"
   kindWebsiteBody: string;
   kindWebshop: string;
   kindWebshopBody: string;
@@ -97,6 +99,7 @@ export function ProjectConfigurator({
   calLink,
   defaultKind = "website",
   lockKind = false,
+  locale = "nl",
 }: {
   strings: Strings;
   /** Cal.com-link voor de "boek meteen"-knop op het successcherm (mag null). */
@@ -105,6 +108,8 @@ export function ProjectConfigurator({
    * gebruikt wanneer de configurator op /diensten/website of /webshop staat. */
   defaultKind?: ProjectKind;
   lockKind?: boolean;
+  /** Voor de bevestigingsmail (NL/ES) — de configurator-route is locale-prefixed. */
+  locale?: string;
 }) {
   const reduce = useReducedMotion();
   const stepOrder = React.useMemo<StepKey[]>(
@@ -166,6 +171,7 @@ export function ProjectConfigurator({
     fd.set("customColor", customColor);
     fd.set("language", language);
     fd.set("options", options.join(","));
+    fd.set("locale", locale);
     try {
       const res = await submitProjectRequest(fd);
       if (res.ok) {
@@ -335,6 +341,22 @@ export function ProjectConfigurator({
                     );
                   })}
                 </div>
+                {/* "Te complex"-uitweg — een verhuur-/admin-/reparatie-platform
+                    past niet in dit model; dan is een gesprek beter dan een
+                    richtprijs uit een formulier. */}
+                <p className="mt-5 text-[13px] text-(--color-muted)">
+                  {strings.kindTooComplexLead}{" "}
+                  <a
+                    href={
+                      locale === "es"
+                        ? "/es/contacto?ctx=configurator"
+                        : "/contact?ctx=configurator"
+                    }
+                    className="font-medium text-(--color-accent) underline decoration-(--color-accent)/40 underline-offset-2 hover:decoration-(--color-accent)"
+                  >
+                    {strings.kindTooComplexLink}
+                  </a>
+                </p>
               </StepShell>
             ) : null}
 
