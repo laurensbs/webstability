@@ -30,6 +30,8 @@ type Activity = {
 export type ConfiguratorRequest = {
   kind: "website" | "webshop";
   pages: number;
+  /** Webshop: gekozen product-staffel (label) — null bij website of 'small'. */
+  productTierLabel: string | null;
   paletteLabel: string;
   customColor: string | null;
   languages: string;
@@ -151,20 +153,23 @@ export function LeadDetail({
             </p>
             <dl className="mt-4 grid gap-x-6 gap-y-2 sm:grid-cols-2">
               {[
+                ...(configuratorRequest.productTierLabel
+                  ? [["Producten", configuratorRequest.productTierLabel] as const]
+                  : []),
                 [
                   "Look",
                   configuratorRequest.paletteLabel +
                     (configuratorRequest.customColor
                       ? ` — wens: ${configuratorRequest.customColor}`
                       : ""),
-                ],
-                ["Talen", configuratorRequest.languages],
+                ] as const,
+                ["Talen", configuratorRequest.languages] as const,
                 [
                   "Opties",
                   configuratorRequest.optionLabels.length
                     ? configuratorRequest.optionLabels.join(", ")
                     : "—",
-                ],
+                ] as const,
               ].map(([k, v]) => (
                 <div key={k}>
                   <dt className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">

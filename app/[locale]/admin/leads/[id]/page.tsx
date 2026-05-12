@@ -78,6 +78,14 @@ export default async function LeadDetailPage({
     if (labelKey === "extraPages") return `${meta?.count ?? 0} extra pagina's`;
     if (labelKey.startsWith("options."))
       return OPTION_LABEL[labelKey.slice(8)] ?? labelKey.slice(8);
+    if (labelKey.startsWith("productTier.")) {
+      const id = labelKey.slice("productTier.".length);
+      return id === "large"
+        ? "Productcatalogus (groot — import + structuur)"
+        : id === "medium"
+          ? "Productcatalogus (middelgroot)"
+          : "Productcatalogus";
+    }
     return labelKey;
   }
 
@@ -85,6 +93,7 @@ export default async function LeadDetailPage({
     type?: string;
     kind?: "website" | "webshop";
     pages?: number;
+    productTier?: "small" | "medium" | "large" | null;
     palette?: string;
     customColor?: string | null;
     language?: string;
@@ -105,6 +114,13 @@ export default async function LeadDetailPage({
       ? {
           kind: cm.kind,
           pages: cm.pages ?? 0,
+          productTierLabel: cm.productTier
+            ? cm.productTier === "large"
+              ? "~150–500 producten"
+              : cm.productTier === "medium"
+                ? "~25–150 producten"
+                : "tot ~25 producten"
+            : null,
           paletteLabel: PALETTE_LABEL[cm.palette ?? "warm"] ?? cm.palette ?? "—",
           customColor: cm.customColor ?? null,
           languages: LANG_LABEL[cm.language ?? "nl"] ?? cm.language ?? "—",
