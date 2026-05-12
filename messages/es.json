@@ -91,7 +91,18 @@
       "title": "Solicitud recibida — gracias.",
       "body": "Hemos recibido tu configuración (precio orientativo {low} – {high}) y te escribimos en un día laborable. ¿Lo quieres hablar antes? Reserva una charla ahora.",
       "cta": "Reserva una charla ahora",
-      "done": "O cierra esta ventana — te escribimos de todos modos."
+      "done": "O cierra esta ventana — te escribimos de todos modos.",
+      "nextTitle": "Qué pasa ahora",
+      "nextWebsite": [
+        "Reviso tu solicitud y te contesto en 1 día laborable.",
+        "Tenemos una breve charla para afinar los detalles.",
+        "Después recibes un presupuesto fijo + planificación, y reunimos juntos los textos y las imágenes."
+      ],
+      "nextWebshop": [
+        "Reviso tu solicitud y te contesto en 1 día laborable.",
+        "Hablamos brevemente de los productos, los métodos de pago y el IVA.",
+        "Después recibes un presupuesto fijo + planificación; tú aportas los datos de producto, yo conecto el proveedor de pago."
+      ]
     },
     "palettes": {
       "warm": "Cálido y artesanal",

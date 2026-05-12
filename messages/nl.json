@@ -91,7 +91,18 @@
       "title": "Aanvraag binnen — dankjewel.",
       "body": "We hebben je configuratie ontvangen (richtprijs {low} – {high}) en mailen je binnen één werkdag. Wil je het sneller bespreken? Boek meteen een kennismaking.",
       "cta": "Boek meteen een kennismaking",
-      "done": "Of sluit dit venster — we mailen je sowieso."
+      "done": "Of sluit dit venster — we mailen je sowieso.",
+      "nextTitle": "Wat er nu gebeurt",
+      "nextWebsite": [
+        "Ik kijk je aanvraag door en kom binnen 1 werkdag bij je terug.",
+        "We hebben een korte kennismaking om de details scherp te krijgen.",
+        "Daarna krijg je een vaste offerte + planning, en verzamelen we samen de teksten en beelden."
+      ],
+      "nextWebshop": [
+        "Ik kijk je aanvraag door en kom binnen 1 werkdag bij je terug.",
+        "We bespreken kort de producten, betaalmethodes en btw-opzet.",
+        "Daarna krijg je een vaste offerte + planning; jij levert de productdata aan, ik koppel de betaalprovider."
+      ]
     },
     "palettes": {
       "warm": "Warm & ambachtelijk",

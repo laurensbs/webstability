@@ -73,6 +73,9 @@ type Strings = {
   successBody: string; // mag {low} {high} bevatten
   successCta: string; // "Boek meteen een kennismaking"
   successDone: string; // "Of sluit dit venster — we mailen je sowieso"
+  successNextTitle: string;
+  successNextWebsite: string[];
+  successNextWebshop: string[];
   // labels (records)
   palettes: Record<string, string>;
   languages: Record<string, string>;
@@ -213,6 +216,23 @@ export function ProjectConfigurator({
             .replace("{low}", eur0(done.lowCents))
             .replace("{high}", eur0(done.highCents))}
         </p>
+        <div className="mt-8 text-left">
+          <p className="font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+            {strings.successNextTitle}
+          </p>
+          <ol className="mt-3 space-y-2">
+            {(kind === "webshop" ? strings.successNextWebshop : strings.successNextWebsite).map(
+              (s, i) => (
+                <li key={i} className="flex gap-3 text-[14px] leading-[1.55] text-(--color-text)">
+                  <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--color-accent)/12 font-mono text-[11px] text-(--color-accent)">
+                    {i + 1}
+                  </span>
+                  {s}
+                </li>
+              ),
+            )}
+          </ol>
+        </div>
         {calLink ? (
           <a
             href={calLink}

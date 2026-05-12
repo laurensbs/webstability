@@ -57,6 +57,9 @@ export type ConfiguratorStrings = {
   successBody: string;
   successCta: string;
   successDone: string;
+  successNextTitle: string;
+  successNextWebsite: string[];
+  successNextWebshop: string[];
   palettes: Record<string, string>;
   languages: Record<string, string>;
   options: Record<string, string>;
@@ -112,6 +115,9 @@ export function buildConfiguratorStrings(t: T): ConfiguratorStrings {
     successBody: rawStr(t, "success.body"),
     successCta: t("success.cta"),
     successDone: t("success.done"),
+    successNextTitle: t("success.nextTitle"),
+    successNextWebsite: t.raw("success.nextWebsite") as string[],
+    successNextWebshop: t.raw("success.nextWebshop") as string[],
     palettes: {
       warm: t("palettes.warm"),
       modern: t("palettes.modern"),
