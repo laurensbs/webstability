@@ -2,7 +2,20 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Search, Building2, Inbox, FolderKanban, ArrowRight, X } from "lucide-react";
+import {
+  Search,
+  Building2,
+  Inbox,
+  FolderKanban,
+  ArrowRight,
+  X,
+  LayoutDashboard,
+  UserPlus,
+  PlusCircle,
+  Newspaper,
+  Star,
+  Gift,
+} from "lucide-react";
 import { useRouter } from "@/i18n/navigation";
 
 type ResultKind = "org" | "ticket" | "project";
@@ -12,6 +25,23 @@ type Result = {
   title: string;
   subtitle?: string;
 };
+
+/**
+ * Snelle acties/navigatie wanneer de query leeg is — zodat Cmd+K niet alleen
+ * een zoekvak is maar ook een launcher. Hrefs als string (router.push pakt 'm).
+ */
+type QuickAction = { label: string; icon: typeof Building2; href: string };
+const QUICK_ACTIONS: QuickAction[] = [
+  { label: "Nieuwe lead", icon: UserPlus, href: "/admin/leads/new" },
+  { label: "Nieuwe klant (org)", icon: PlusCircle, href: "/admin/orgs/new" },
+  { label: "Naar dashboard", icon: LayoutDashboard, href: "/admin" },
+  { label: "Naar klanten", icon: Building2, href: "/admin/orgs" },
+  { label: "Naar tickets", icon: Inbox, href: "/admin/tickets" },
+  { label: "Naar leads", icon: UserPlus, href: "/admin/leads" },
+  { label: "Naar blog-queue", icon: Newspaper, href: "/admin/blog" },
+  { label: "Naar NPS", icon: Star, href: "/admin/nps" },
+  { label: "Naar referrals", icon: Gift, href: "/admin/referrals" },
+];
 
 type Strings = {
   placeholder: string;
@@ -98,7 +128,11 @@ export function CommandPalette({ strings }: { strings: Strings }) {
 
   // Reset results wanneer query te kort is. Niet via effect — via
   // controlled input-handler hieronder (resetIfTooShort).
-  const visibleResults = query.trim().length < 2 ? [] : results;
+  const isSearching = query.trim().length >= 2;
+  const visibleResults = isSearching ? results : [];
+  // De navigeerbare lijst: zoekresultaten als er gezocht wordt, anders de
+  // quick-actions. Eén `activeIdx` voor beide.
+  const navCount = isSearching ? visibleResults.length : QUICK_ACTIONS.length;
 
   function resetIfTooShort(value: string) {
     setQuery(value);
@@ -117,24 +151,35 @@ export function CommandPalette({ strings }: { strings: Strings }) {
       router.push("/admin/tickets");
     } else if (r.kind === "project") {
       // Geen aparte project-route in admin; ga naar de org
-      if (r.subtitle) {
-        // subtitle is org-id voor projects
-      }
       router.push("/admin/orgs");
+    }
+  }
+
+  function handleAction(a: QuickAction) {
+    closePalette();
+    router.push(a.href as never);
+  }
+
+  function activate(idx: number) {
+    if (isSearching) {
+      const r = visibleResults[idx];
+      if (r) handleSelect(r);
+    } else {
+      const a = QUICK_ACTIONS[idx];
+      if (a) handleAction(a);
     }
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      setActiveIdx((i) => Math.min(visibleResults.length - 1, i + 1));
+      setActiveIdx((i) => Math.min(navCount - 1, i + 1));
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       setActiveIdx((i) => Math.max(0, i - 1));
     } else if (e.key === "Enter") {
       e.preventDefault();
-      const r = visibleResults[activeIdx];
-      if (r) handleSelect(r);
+      activate(activeIdx);
     }
   }
 
@@ -182,13 +227,48 @@ export function CommandPalette({ strings }: { strings: Strings }) {
               </button>
             </div>
 
-            {/* Results */}
+            {/* Results — zoekresultaten als er gezocht wordt, anders quick-actions */}
             <div className="max-h-[60vh] overflow-y-auto">
-              {loading && visibleResults.length === 0 ? (
+              {!isSearching ? (
+                <>
+                  <p className="px-4 pt-3 pb-1 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                    {strings.recentTitle}
+                  </p>
+                  <ul className="divide-y divide-(--color-border)">
+                    {QUICK_ACTIONS.map((a, i) => {
+                      const Icon = a.icon;
+                      const isActive = i === activeIdx;
+                      return (
+                        <li key={a.href + a.label}>
+                          <button
+                            type="button"
+                            onClick={() => handleAction(a)}
+                            onMouseEnter={() => setActiveIdx(i)}
+                            className={`flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors ${
+                              isActive ? "bg-(--color-bg-warm)" : ""
+                            }`}
+                          >
+                            <Icon
+                              className="h-4 w-4 shrink-0 text-(--color-muted)"
+                              strokeWidth={2}
+                            />
+                            <span className="flex-1 truncate text-[14px] text-(--color-text)">
+                              {a.label}
+                            </span>
+                            {isActive ? (
+                              <ArrowRight className="h-3.5 w-3.5 text-(--color-accent)" />
+                            ) : null}
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </>
+              ) : loading && visibleResults.length === 0 ? (
                 <p className="px-4 py-8 text-center text-[13px] text-(--color-muted)">…</p>
               ) : visibleResults.length === 0 ? (
                 <p className="px-4 py-8 text-center text-[13px] text-(--color-muted)">
-                  {query.length >= 2 ? strings.empty : strings.emptyHint}
+                  {strings.empty}
                 </p>
               ) : (
                 <ul className="divide-y divide-(--color-border)">
