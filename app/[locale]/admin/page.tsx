@@ -20,6 +20,7 @@ import {
   listLeadRemindersDueToday,
   countOpenConfiguratorLeads,
   countHighPriorityOpenTickets,
+  getTicketsAwaitingStaffReply,
 } from "@/lib/db/queries/admin";
 import { triggerDemoRefresh } from "@/app/actions/admin-bulk";
 import { DemoManagementCard } from "@/components/admin/DemoManagementCard";
@@ -71,6 +72,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
     leadReminders,
     openConfiguratorLeads,
     highPriorityTickets,
+    awaitingReply,
   ] = await Promise.all([
     getStudioStats(),
     getRecentAdminActivity(8),
@@ -84,6 +86,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
     listLeadRemindersDueToday(),
     countOpenConfiguratorLeads(),
     countHighPriorityOpenTickets(),
+    getTicketsAwaitingStaffReply(6),
   ]);
   const tDemo = await getTranslations("admin.demoFunnel");
   const tDemoMgmt = await getTranslations("admin.demoManagement");
@@ -207,8 +210,13 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
           kaders. Pills rechts: open configurator-aanvragen + high-priority tickets. */}
       {(() => {
         const nothingUrgent =
-          leadReminders.length === 0 && upcomingCalls.length === 0 && staleProjects.length === 0;
+          leadReminders.length === 0 &&
+          upcomingCalls.length === 0 &&
+          staleProjects.length === 0 &&
+          awaitingReply.length === 0;
         const adminBase = `/${locale === "nl" ? "" : `${locale}/`}admin`;
+        const ticketHref = (tid: string) => `${adminBase}/tickets/${tid}`;
+        const dateFmtShort = new Intl.DateTimeFormat(locale, { day: "numeric", month: "short" });
         return (
           <section className="space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-3">
@@ -241,10 +249,43 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
             </div>
             {nothingUrgent ? (
               <p className="rounded-lg border border-dashed border-(--color-border) bg-(--color-bg-warm)/40 px-5 py-4 text-[14px] text-(--color-muted)">
-                Niks dringend — geen openstaande follow-ups, calls of stale projecten. Fijne dag.
+                Niks dringend — geen openstaande follow-ups, calls, stale projecten of
+                klant-reacties. Fijne dag.
               </p>
             ) : (
               <>
+                {/* Klant heeft net gereageerd — de bal ligt bij jou */}
+                {awaitingReply.length > 0 ? (
+                  <article className="overflow-hidden rounded-lg border border-t-2 border-(--color-border) border-t-(--color-accent) bg-(--color-surface)">
+                    <header className="border-b border-(--color-border) px-5 py-3">
+                      <h2 className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+                        {"// klant heeft gereageerd"}
+                      </h2>
+                    </header>
+                    <ul className="divide-y divide-(--color-border)">
+                      {awaitingReply.map((r) => (
+                        <li key={r.id}>
+                          <a
+                            href={ticketHref(r.id)}
+                            className="block px-5 py-3 transition-colors hover:bg-(--color-bg-warm)/40"
+                          >
+                            <div className="flex flex-wrap items-baseline justify-between gap-2">
+                              <p className="text-[14px] font-medium text-(--color-text)">
+                                {r.subject}
+                              </p>
+                              <p className="font-mono text-[10px] tracking-wide text-(--color-muted) uppercase">
+                                {r.orgName ?? "—"} · {dateFmtShort.format(r.lastReplyAt)}
+                              </p>
+                            </div>
+                            <p className="mt-1 truncate text-[13px] text-(--color-muted)">
+                              {r.replyExcerpt}
+                            </p>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                ) : null}
                 {leadReminders.length > 0 ? (
                   <LeadRemindersWidget reminders={withOverdueFlag(leadReminders)} />
                 ) : null}

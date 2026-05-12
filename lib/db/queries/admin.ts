@@ -20,6 +20,7 @@ import {
   npsResponses,
   leads,
   intakeResponses,
+  ticketReplies,
 } from "@/lib/db/schema";
 
 /** Files + facturen van één org, voor de admin "Files & facturen"-tab. */
@@ -804,6 +805,59 @@ export async function countHighPriorityOpenTickets(): Promise<number> {
     .from(tickets)
     .where(and(eq(tickets.status, "open"), eq(tickets.priority, "high")));
   return Number(row?.n ?? 0);
+}
+
+/**
+ * Tickets waarbij de klant het laatst gereageerd heeft — d.w.z. de bal ligt
+ * bij staff. Niet-gesloten tickets, waarvan de meest recente reply van een
+ * niet-staff user is. Voor de "klant heeft gereageerd"-feed op het admin-
+ * dashboard zodat je niet de tickets-pagina hoeft af te struinen.
+ */
+export async function getTicketsAwaitingStaffReply(limit = 8): Promise<
+  Array<{
+    id: string;
+    subject: string;
+    orgName: string | null;
+    orgId: string | null;
+    lastReplyAt: Date;
+    replyExcerpt: string;
+  }>
+> {
+  const rows = await db
+    .select({
+      id: tickets.id,
+      subject: tickets.subject,
+      orgName: organizations.name,
+      orgId: tickets.organizationId,
+      lastReplyAt: ticketReplies.createdAt,
+      replyBody: ticketReplies.body,
+      authorIsStaff: users.isStaff,
+    })
+    .from(ticketReplies)
+    .innerJoin(tickets, eq(tickets.id, ticketReplies.ticketId))
+    .innerJoin(users, eq(users.id, ticketReplies.userId))
+    .leftJoin(organizations, eq(organizations.id, tickets.organizationId))
+    .where(
+      and(
+        ne(tickets.status, "closed"),
+        // Alleen de laatste reply per ticket meenemen.
+        sql`${ticketReplies.createdAt} = (select max(tr2.created_at) from ${ticketReplies} tr2 where tr2.ticket_id = ${tickets.id})`,
+      ),
+    )
+    .orderBy(desc(ticketReplies.createdAt))
+    .limit(limit * 3); // ruim ophalen, dan client-side filteren op non-staff
+
+  return rows
+    .filter((r) => !r.authorIsStaff)
+    .slice(0, limit)
+    .map((r) => ({
+      id: r.id,
+      subject: r.subject,
+      orgName: r.orgName,
+      orgId: r.orgId,
+      lastReplyAt: r.lastReplyAt,
+      replyExcerpt: r.replyBody.length > 90 ? `${r.replyBody.slice(0, 90)}…` : r.replyBody,
+    }));
 }
 
 /**

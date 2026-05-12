@@ -127,6 +127,7 @@ export async function updateLead(
 
   const updates: Partial<typeof leads.$inferInsert> = { updatedAt: new Date() };
   let statusChange: { from: LeadStatus; to: LeadStatus } | null = null;
+  let plannedFollowUp: { at: Date; label: string } | null = null;
 
   if (formData.has("status")) {
     const statusInput = String(formData.get("status") ?? "");
@@ -147,6 +148,7 @@ export async function updateLead(
     const at = String(formData.get("nextActionAt") ?? "").trim();
     updates.nextActionLabel = label || null;
     updates.nextActionAt = at ? new Date(at) : null;
+    if (at) plannedFollowUp = { at: new Date(at), label: label || "Opvolgen" };
   }
   if (formData.has("ownerStaffId")) {
     const owner = String(formData.get("ownerStaffId") ?? "").trim();
@@ -162,6 +164,18 @@ export async function updateLead(
       summary: `Status: ${statusChange.from} → ${statusChange.to}`,
       actorStaffId: userId,
       metadata: statusChange,
+    });
+  }
+  if (plannedFollowUp) {
+    const when = new Intl.DateTimeFormat("nl-NL", { dateStyle: "medium" }).format(
+      plannedFollowUp.at,
+    );
+    await db.insert(leadActivity).values({
+      leadId,
+      kind: "note_added",
+      summary: `Opvolgactie gepland: ${plannedFollowUp.label} — ${when}`,
+      actorStaffId: userId,
+      metadata: { type: "follow_up_planned", at: plannedFollowUp.at.toISOString() },
     });
   }
 

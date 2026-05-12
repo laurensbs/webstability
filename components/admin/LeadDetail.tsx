@@ -266,6 +266,33 @@ export function LeadDetail({
                 defaultValue={initial.nextActionAt ? initial.nextActionAt.slice(0, 16) : ""}
                 className={`mt-2 ${FIELD}`}
               />
+              {/* Snel-prik knoppen — zetten het datetime-veld op 09:00 over X dagen */}
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {(
+                  [
+                    ["+2d", 2],
+                    ["volgende week", 7],
+                    ["+2 wkn", 14],
+                  ] as Array<[string, number]>
+                ).map(([label, days]) => (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => {
+                      const d = new Date();
+                      d.setDate(d.getDate() + days);
+                      d.setHours(9, 0, 0, 0);
+                      const pad = (n: number) => String(n).padStart(2, "0");
+                      const v = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+                      const el = document.getElementById("nextActionAt") as HTMLInputElement | null;
+                      if (el) el.value = v;
+                    }}
+                    className="rounded-full border border-(--color-border) px-2.5 py-1 font-mono text-[10px] tracking-wide text-(--color-muted) uppercase transition-colors hover:border-(--color-accent)/40 hover:text-(--color-text)"
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
             </div>
             <div>
               <label htmlFor="nextActionLabel" className={LABEL}>
