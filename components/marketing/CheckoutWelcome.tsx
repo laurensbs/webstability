@@ -62,7 +62,7 @@ export function CheckoutWelcome({
           <button
             type="button"
             onClick={() => router.replace(redirectTo)}
-            className="inline-flex items-center gap-2 rounded-full bg-(--color-text) px-5 py-2.5 text-[14px] font-medium text-(--color-bg) transition-opacity hover:opacity-90"
+            className="hover:shadow-card inline-flex items-center gap-2 rounded-full bg-(--color-text) px-5 py-2.5 text-[14px] font-medium text-(--color-bg) transition-all hover:-translate-y-0.5 hover:bg-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
           >
             {strings.cta}
           </button>

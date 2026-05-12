@@ -11,6 +11,7 @@ import { StudioParallaxHalos } from "@/components/marketing/StudioParallaxHalos"
 import { DemoChooserModal } from "@/components/marketing/DemoChooserModal";
 import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 import { HeroMockup } from "@/components/marketing/HeroMockup";
+import { HeroMockupParallax } from "@/components/marketing/HeroMockupParallax";
 import { HeroMockupCompact } from "@/components/marketing/HeroMockupCompact";
 
 /**
@@ -131,9 +132,12 @@ export async function Hero() {
           </div>
 
           {/* Rechts — admin-mockup, alleen vanaf lg. HeroMockup heeft
-              eigen entry-animatie + booking-in scripted in AdminView. */}
+              eigen entry-animatie + booking-in scripted in AdminView; de
+              parallax-wrapper laat de kaart subtiel meedrijven op scroll. */}
           <div className="hidden lg:block">
-            <HeroMockup />
+            <HeroMockupParallax>
+              <HeroMockup />
+            </HeroMockupParallax>
           </div>
         </div>
       </div>
