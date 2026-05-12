@@ -224,7 +224,10 @@
           "blurb": "portal de reparaciones · flujo en iPad · ~80 reparaciones/mes"
         }
       }
-    }
+    },
+    "requestCta": "Solicitar",
+    "requestCtaShort": "Solicitar",
+    "planCallSecondary": "o reserva una llamada"
   },
   "footer": {
     "tagline": "Un solo desarrollador. Software que sigue funcionando.",

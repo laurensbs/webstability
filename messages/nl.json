@@ -224,7 +224,10 @@
           "blurb": "reparatie-portaal · iPad-flow · ~80 reparaties/maand"
         }
       }
-    }
+    },
+    "requestCta": "Vraag aan",
+    "requestCtaShort": "Aanvraag",
+    "planCallSecondary": "of plan een gesprek"
   },
   "footer": {
     "tagline": "Eén ontwikkelaar. Software die blijft werken.",
