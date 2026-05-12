@@ -67,7 +67,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl space-y-3">
             <Eyebrow>beloftes</Eyebrow>
-            <AnimatedHeading as="h2" className="text-3xl md:text-4xl">
+            <AnimatedHeading as="h2" className="text-h2">
               {t("promisesTitle")}
             </AnimatedHeading>
           </div>

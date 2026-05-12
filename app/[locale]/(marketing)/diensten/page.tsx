@@ -341,7 +341,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         {/* FOOTER-CTA */}
         <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
           <RevealOnScroll className="mx-auto max-w-3xl space-y-5 text-center">
-            <h2 className="text-2xl md:text-4xl">{t("footerCtaTitle")}</h2>
+            <h2 className="text-h2">{t("footerCtaTitle")}</h2>
             <p className="text-(--color-muted)">{t("footerCtaBody")}</p>
             <div className="flex justify-center pt-2">
               <Button asChild variant="outline">

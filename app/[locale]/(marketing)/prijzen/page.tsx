@@ -253,7 +253,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       {/* Footer-CTA — kruislink naar /contact + /cases */}
       <section className="py-section border-t border-(--color-border) px-6">
         <RevealOnScroll className="mx-auto max-w-3xl space-y-5 text-center">
-          <h2 className="text-2xl md:text-4xl">{t("footerCtaTitle")}</h2>
+          <h2 className="text-h2">{t("footerCtaTitle")}</h2>
           <p className="text-(--color-muted)">{t("footerCtaBody")}</p>
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             <CalPopupTrigger locale={locale} className={buttonVariants({ variant: "primary" })}>

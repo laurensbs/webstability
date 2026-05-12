@@ -129,7 +129,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
                   {featureLine.tagline}
                 </p>
-                <h3 className="mt-3 text-3xl md:text-4xl">{featureLine.name}</h3>
+                <h3 className="text-h2 mt-3">{featureLine.name}</h3>
                 <p className="mt-4 text-[16px] leading-[1.65] text-(--color-muted)">
                   {featureLine.what}
                 </p>
@@ -468,7 +468,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       {/* Footer-CTA */}
       <section className="py-section border-t border-(--color-border) px-6">
         <RevealOnScroll className="mx-auto max-w-3xl space-y-5 text-center">
-          <h2 className="text-2xl md:text-4xl">{t("footerCtaTitle")}</h2>
+          <h2 className="text-h2">{t("footerCtaTitle")}</h2>
           <p className="text-(--color-muted)">{t("footerCtaBody")}</p>
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             <CalPopupTrigger locale={locale} className={buttonVariants({ variant: "primary" })}>

@@ -1,9 +1,23 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { X } from "lucide-react";
 import { usePopupDismissal } from "@/lib/use-popup-dismissal";
+
+/**
+ * Module-level "popup-budget": max één onderbreking per page-load. Reset bij
+ * een harde reload (de module wordt opnieuw geladen). Voorkomt dat op /prijzen
+ * zowel de scroll-popup als de exit-intent-popup verschijnen op één bezoek.
+ */
+const popupBudget = {
+  spent: false,
+  claim() {
+    if (this.spent) return false;
+    this.spent = true;
+    return true;
+  },
+};
 
 /**
  * Niet-blokkerende popup-card rechtsonder, getriggerd door scroll-depth
@@ -40,6 +54,7 @@ export function SmartPopup({
   children: React.ReactNode;
 }) {
   const { suppressed, markSeen } = usePopupDismissal(id, cooldownDays);
+  const reduce = useReducedMotion();
   // open: zichtbaar (incl. exit-animatie). everOpened: ooit deze sessie
   // geopend → blijf renderen ook nadat markSeen() de suppressed-flag
   // flipt. Beide gezet in dezelfde event-handler, nooit in een effect.
@@ -50,6 +65,11 @@ export function SmartPopup({
 
   const openPopup = React.useCallback(() => {
     if (firedRef.current) return;
+    // Popup-budget: als er deze page-load al een popup verscheen, deze niet meer.
+    if (!popupBudget.claim()) {
+      firedRef.current = true;
+      return;
+    }
     firedRef.current = true;
     setOpen(true);
     setEverOpened(true);
@@ -96,9 +116,9 @@ export function SmartPopup({
     <AnimatePresence>
       {open ? (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
+          exit={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.25 }}
           className="shadow-modal rounded-card fixed right-4 bottom-[calc(env(safe-area-inset-bottom)+5rem)] z-50 w-[min(380px,calc(100vw-2rem))] border border-t-2 border-(--color-border) border-t-(--color-accent) bg-(--color-surface) p-5 md:bottom-4"
         >
