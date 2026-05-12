@@ -50,6 +50,7 @@ import { PortalWelcomeOnboarding } from "@/components/portal/PortalWelcomeOnboar
 import { LiveProjectStrip } from "@/components/portal/LiveProjectStrip";
 import { ShopMetricsCard } from "@/components/portal/ShopMetricsCard";
 import { serviceKindFromProjects, serviceKindFromProjectType } from "@/lib/service-kinds";
+import { cardsForDashboard } from "@/lib/dashboard-cards";
 import { AuthVerifiedBeacon } from "@/components/auth/AuthVerifiedBeacon";
 import { LivegangCelebration } from "@/components/portal/LivegangCelebration";
 import { IncidentBanner } from "@/components/portal/IncidentBanner";
@@ -202,13 +203,14 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
     rotatingMessages.push(tRot("invoiceReady"));
   }
 
-  // Tier-aware widget visibility — Care krijgt alleen Hours + Security,
-  // Studio voegt SEO + Performance toe (al aanwezig), Atelier krijgt
-  // ook nog een mini-roadmap met active projecten.
+  // Tier-aware widget visibility — één bron (cardsForDashboard) i.p.v. losse
+  // showX-booleans. Care = kale set + upgrade-nudge, Studio = + SEO + mon,
+  // Atelier = + mini-roadmap.
   const plan = (user.organization?.plan ?? null) as TierId | null;
   const budgetMinutes = budgetMinutesFor(plan);
-  const showSeoSparkline = plan === "studio" || plan === "atelier";
-  const showRoadmap = plan === "atelier";
+  const cards = cardsForDashboard(plan);
+  const showSeoSparkline = cards.seo;
+  const showRoadmap = cards.roadmap;
 
   const buildPhaseProps = computeBuildPhaseProps(buildPhase);
 
