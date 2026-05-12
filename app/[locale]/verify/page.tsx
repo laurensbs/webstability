@@ -7,6 +7,7 @@ import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { VerifyPanel } from "@/components/auth/VerifyPanel";
 import { MarkupText } from "@/components/animate/MarkupText";
 import { LoginAmbientMount } from "@/components/r3f/LoginAmbientMount";
+import { AmbientHalos } from "@/components/shared/AmbientHalos";
 
 export default async function VerifyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -21,14 +22,7 @@ export default async function VerifyPage({ params }: { params: Promise<{ locale:
     <main className="grid min-h-screen md:grid-cols-2">
       {/* LEFT — branded panel (matches login) */}
       <section className="relative hidden overflow-hidden bg-(--color-text) p-12 text-(--color-bg) md:flex md:flex-col md:justify-between">
-        <div
-          aria-hidden
-          className="wb-soft-halo pointer-events-none absolute -top-40 -left-32 h-[420px] w-[420px] rounded-full bg-(--color-accent) opacity-40 blur-3xl"
-        />
-        <div
-          aria-hidden
-          className="wb-soft-halo pointer-events-none absolute -right-32 -bottom-40 h-[420px] w-[420px] rounded-full bg-(--color-teal) opacity-50 blur-3xl"
-        />
+        <AmbientHalos variant="accent-teal" />
 
         <LoginAmbientMount className="pointer-events-none absolute inset-0 opacity-60" />
 

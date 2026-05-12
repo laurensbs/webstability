@@ -5,6 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import dynamic from "next/dynamic";
 import { X } from "lucide-react";
 import { Spinner } from "@/components/animate/Spinner";
+import { AmbientHalos } from "@/components/shared/AmbientHalos";
 
 /**
  * Klikt op de trigger? → Radix Dialog opent met de Cal-embed direct
@@ -70,14 +71,7 @@ export function CalPopupTrigger({
           className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out shadow-modal rounded-panel fixed top-1/2 left-1/2 z-50 flex h-[min(720px,90vh)] w-[min(960px,calc(100vw-32px))] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden border border-t-2 border-(--color-text)/20 border-t-(--color-wine) bg-(--color-text) text-(--color-bg)"
         >
           {/* Halo-blobs voor depth — zelfde sfeer als login-panel + footer */}
-          <div
-            aria-hidden
-            className="wb-soft-halo pointer-events-none absolute -top-32 -left-32 h-[320px] w-[320px] rounded-full bg-(--color-accent) opacity-30 blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="wb-soft-halo pointer-events-none absolute -right-32 -bottom-32 h-[320px] w-[320px] rounded-full bg-(--color-wine) opacity-40 blur-3xl"
-          />
+          <AmbientHalos variant="accent-wine" size={320} />
 
           <Dialog.Title className="sr-only">Plan een gesprek</Dialog.Title>
 

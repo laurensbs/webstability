@@ -8,6 +8,7 @@ import { Link } from "@/i18n/navigation";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { MarkupText } from "@/components/animate/MarkupText";
+import { AmbientHalos } from "@/components/shared/AmbientHalos";
 import { MountReveal } from "@/components/animate/MountReveal";
 import { LoginAmbientMount } from "@/components/r3f/LoginAmbientMount";
 import { AdminLoginTagline } from "@/components/admin/AdminLoginTagline";
@@ -90,14 +91,7 @@ export default async function LoginPage({
       {/* LEFT — branded panel */}
       <section className="relative hidden overflow-hidden bg-(--color-text) p-12 text-(--color-bg) md:flex md:flex-col md:justify-between">
         {/* Ambient blobs */}
-        <div
-          aria-hidden
-          className="wb-soft-halo pointer-events-none absolute -top-40 -left-32 h-[420px] w-[420px] rounded-full bg-(--color-accent) opacity-40 blur-3xl"
-        />
-        <div
-          aria-hidden
-          className="wb-soft-halo pointer-events-none absolute -right-32 -bottom-40 h-[420px] w-[420px] rounded-full bg-(--color-teal) opacity-50 blur-3xl"
-        />
+        <AmbientHalos variant="accent-teal" />
 
         {/* 3D distorted blob — sits over the static blobs at low opacity
             so it adds motion without competing with the panel copy. */}

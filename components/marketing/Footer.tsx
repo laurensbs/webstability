@@ -3,6 +3,7 @@ import { Mail, ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LivePulse } from "@/components/animate/LivePulse";
 import { LogoMark } from "@/components/shared/LogoMark";
+import { AmbientHalos } from "@/components/shared/AmbientHalos";
 import { MarkupText } from "@/components/animate/MarkupText";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
@@ -68,15 +69,7 @@ export async function Footer() {
     <footer className="relative z-[1] mt-auto">
       {/* ---- Zone 1: Donker tagline-block met conic-mesh hint ---- */}
       <div className="relative isolate overflow-hidden bg-(--color-text) text-(--color-bg)">
-        {/* Halo-blobs */}
-        <div
-          aria-hidden
-          className="wb-soft-halo pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-(--color-accent) opacity-35 blur-3xl"
-        />
-        <div
-          aria-hidden
-          className="wb-soft-halo pointer-events-none absolute -right-32 -bottom-32 h-[420px] w-[420px] rounded-full bg-(--color-wine) opacity-45 blur-3xl"
-        />
+        <AmbientHalos variant="accent-wine" />
 
         <div className="md:py-section relative mx-auto max-w-6xl px-6 py-16">
           <div className="grid gap-10 md:grid-cols-[1.4fr_1fr]">
