@@ -87,7 +87,7 @@ export async function Navigation({ locale }: { locale: string }) {
               compacte "Boek"-knop naast de hamburger. */}
           <CalPopupTrigger
             locale={locale}
-            className="group hover:shadow-glow inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-3.5 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:px-4"
+            className="group hover:shadow-glow inline-flex min-h-10 items-center gap-1.5 rounded-full bg-(--color-accent) px-3.5 py-2.5 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:px-4"
           >
             <span className="hidden sm:inline">{t("planCall")}</span>
             <span className="sm:hidden">{t("planCallShort")}</span>

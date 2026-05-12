@@ -3005,6 +3005,19 @@
       "you": "jij",
       "ownerOnly": "Alleen eigenaren kunnen uitnodigen.",
       "emptyBody": "Nodig een collega uit zodat zij ook tickets kunnen openen en de status kunnen volgen."
+    },
+    "onboarding": {
+      "step": "Stap {n} van 3",
+      "step1Title": "Welkom, {firstName} — dit is je portal",
+      "step1Body": "Hier zie je in één oogopslag hoe je project ervoor staat, kun je vragen of wijzigingen doorgeven, en vind je je facturen. Alles op één plek, geen losse mailwisselingen.",
+      "step2Title": "Vraag of wijziging? Open een ticket",
+      "step2Body": "Tekst aanpassen, een melding, een idee — alles loopt via tickets. Jij ziet de status, ik hou de draad vast.",
+      "step2Cta": "Naar tickets",
+      "step3Title": "Je facturen staan altijd klaar",
+      "step3Body": "Elke factuur met PDF en betaalstatus. En via instellingen wissel je later makkelijk van pakket.",
+      "step3Cta": "Naar facturen",
+      "next": "Volgende",
+      "dismiss": "Begrepen"
     }
   },
   "stub": {

@@ -45,6 +45,7 @@ import {
   MonitoringCardSkeleton,
 } from "@/components/portal/MonitoringCardAsync";
 import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/DashboardIntro";
+import { PortalWelcomeOnboarding } from "@/components/portal/PortalWelcomeOnboarding";
 import { AuthVerifiedBeacon } from "@/components/auth/AuthVerifiedBeacon";
 import { LivegangCelebration } from "@/components/portal/LivegangCelebration";
 import { IncidentBanner } from "@/components/portal/IncidentBanner";
@@ -135,6 +136,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   const t = await getTranslations("portal");
   const tProjects = await getTranslations("portal.projects");
   const tInvoices = await getTranslations("portal.invoices");
+  const tOnboarding = await getTranslations("portal.onboarding");
   const tStatus = await getTranslations("status");
   // SinceLastVisit window: max(1d, lastLoginAt..now). Onder de drempel
   // van 24h slaan we de strip over (voorkomt herhaling). Date.now()
@@ -365,6 +367,28 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         subStatus={subStatus}
         rotatingMessages={rotatingMessages}
       />
+
+      {/* Welkom-onboarding — alleen bij de allereerste login (lastLoginAt is
+          dan nog null; wordt verderop in deze render geüpdatet) en niet voor
+          demo-users. localStorage-dismiss vangt een refresh tussendoor. */}
+      {!user.lastLoginAt && !user.isDemo ? (
+        <PortalWelcomeOnboarding
+          firstName={firstName}
+          strings={{
+            step: tOnboarding.raw("step") as string,
+            step1Title: tOnboarding("step1Title"),
+            step1Body: tOnboarding("step1Body"),
+            step2Title: tOnboarding("step2Title"),
+            step2Body: tOnboarding("step2Body"),
+            step2Cta: tOnboarding("step2Cta"),
+            step3Title: tOnboarding("step3Title"),
+            step3Body: tOnboarding("step3Body"),
+            step3Cta: tOnboarding("step3Cta"),
+            next: tOnboarding("next"),
+            dismiss: tOnboarding("dismiss"),
+          }}
+        />
+      ) : null}
 
       <StatusBanner
         healthy={healthy}

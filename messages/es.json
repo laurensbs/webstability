@@ -3009,6 +3009,19 @@
       "you": "tú",
       "ownerOnly": "Solo los propietarios pueden invitar.",
       "emptyBody": "Invita a un companero para que tambien pueda abrir tickets y seguir el estado."
+    },
+    "onboarding": {
+      "step": "Paso {n} de 3",
+      "step1Title": "Bienvenido, {firstName} — este es tu portal",
+      "step1Body": "Aqui ves de un vistazo como va tu proyecto, puedes enviar preguntas o cambios, y encuentras tus facturas. Todo en un sitio, sin cadenas de correo.",
+      "step2Title": "Una pregunta o un cambio? Abre un ticket",
+      "step2Body": "Cambiar un texto, una incidencia, una idea — todo va por tickets. Tu ves el estado, yo llevo el hilo.",
+      "step2Cta": "A los tickets",
+      "step3Title": "Tus facturas siempre disponibles",
+      "step3Body": "Cada factura con PDF y estado de pago. Y en ajustes cambias de plan facilmente mas adelante.",
+      "step3Cta": "A las facturas",
+      "next": "Siguiente",
+      "dismiss": "Entendido"
     }
   },
   "stub": {
