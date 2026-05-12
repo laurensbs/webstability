@@ -2808,7 +2808,15 @@
       },
       "stepDone": "Afgerond",
       "stepNow": "Nu",
-      "stepNext": "Volgende"
+      "stepNext": "Volgende",
+      "phaseHintEyebrow": "Wat ik nu van je nodig heb",
+      "phaseHintPlanning": {
+        "website": "Verzamel alvast je teksten en de beelden die je op de site wilt — hoe completer dat in deze fase, hoe sneller het ontwerp staat.",
+        "webshop": "Zet je producten op een rij (titels, prijzen, foto's, btw-categorie) en bedenk welke betaalmethodes je wilt — dat heb ik nodig om de shop op te bouwen.",
+        "platform": "Tijdens de discovery tekenen we samen het proces en de koppelingen uit — denk vast na over wie welke rol krijgt en met welke systemen het moet praten.",
+        "other": "Lever de inhoud en de gegevens aan die we tijdens de kennismaking hebben besproken — hoe completer, hoe sneller we door kunnen."
+      },
+      "phaseHintData": "Ik heb nu je productdata nodig (titels, prijzen, foto's, voorraad, btw per categorie) en de gegevens van je betaalprovider, zodat ik betalingen + verzending kan koppelen."
     },
     "handover": {
       "title": "Oplevering-checklist",

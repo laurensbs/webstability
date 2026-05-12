@@ -9,6 +9,7 @@ import {
   Clock,
   CheckCircle2,
   ListChecks,
+  Inbox,
 } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
@@ -107,6 +108,31 @@ export default async function ProjectDetailPage({
           serviceKind={serviceKindFromProjectType(project.type)}
           strings={{ now: t("stepNow") }}
         />
+
+        {/* Dienst-specifieke "wat ik nu van je nodig heb"-hint. In planning
+            voor alle types; voor een webshop ook tijdens de bouw (productdata
+            + betaalprovider). Verdwijnt zodra het project review/live is. */}
+        {(() => {
+          const kind = serviceKindFromProjectType(project.type);
+          const hint =
+            project.status === "planning"
+              ? t(`phaseHintPlanning.${kind}` as Parameters<typeof t>[0])
+              : project.status === "in_progress" && kind === "webshop"
+                ? t("phaseHintData")
+                : null;
+          if (!hint) return null;
+          return (
+            <section className="rounded-panel flex items-start gap-3 border border-dashed border-(--color-accent)/30 bg-(--color-accent)/5 p-5">
+              <Inbox className="mt-0.5 h-4 w-4 shrink-0 text-(--color-accent)" strokeWidth={2.2} />
+              <div>
+                <p className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+                  {t("phaseHintEyebrow")}
+                </p>
+                <p className="mt-1.5 text-[15px] leading-[1.55] text-(--color-text)">{hint}</p>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Voortgang-balk */}
         {phase ? (
