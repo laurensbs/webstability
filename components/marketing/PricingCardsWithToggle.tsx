@@ -3,7 +3,7 @@
 import * as React from "react";
 import NumberFlow from "@number-flow/react";
 import { Check } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { isLegacyTier } from "@/lib/pricing";
@@ -94,6 +94,7 @@ export function PricingCardsWithToggle({
   authMode?: AuthMode;
 }) {
   const [cycle, setCycle] = React.useState<Cycle>("monthly");
+  const reduce = useReducedMotion();
 
   return (
     <>
@@ -182,7 +183,7 @@ export function PricingCardsWithToggle({
               </div>
               <motion.span
                 key={cycle}
-                initial={{ opacity: 0, y: 4 }}
+                initial={reduce ? false : { opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
                 className="mt-1 mb-7 block text-[13px] text-(--color-muted)"

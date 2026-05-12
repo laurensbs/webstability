@@ -62,6 +62,7 @@ export function ServiceCard({
 
   return (
     <motion.article
+      data-reveal-on-scroll=""
       initial={reduce ? false : { opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}

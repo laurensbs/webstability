@@ -90,6 +90,7 @@ export function ApproachRail({ steps }: { steps: Step[] }) {
           {steps.map((step, i) => (
             <motion.li
               key={step.kicker}
+              data-reveal-on-scroll=""
               initial={reduce ? false : { opacity: 0, x: 12 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.25 }}
