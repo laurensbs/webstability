@@ -92,6 +92,22 @@ export const PROJECT_EXTRA_PAGE = 120;
  * "neem contact op" — dan is het een groter traject). */
 export const PROJECT_MAX_PAGES = 25;
 
+/** Webshop-specifiek: hoeveel producten er ongeveer in de shop komen. Een
+ * handvol producten is een ander setup-traject dan een catalogus van honderden
+ * (import-werk, categorie-structuur, filters, varianten). We rekenen een
+ * setup-opslag bovenop het webshop-basisbedrag; `small` zit in de basis.
+ * Label-keys → `configurator.steps.scope.products.*`. */
+export const WEBSHOP_PRODUCT_TIERS = {
+  small: { extra: 0, labelKey: "small" }, // ~tot 25 producten — in de basis
+  medium: { extra: 350, labelKey: "medium" }, // ~25–150
+  large: { extra: 900, labelKey: "large" }, // ~150–500 — import + structuur + filters
+} as const;
+
+export type WebshopProductTierId = keyof typeof WEBSHOP_PRODUCT_TIERS;
+export const WEBSHOP_PRODUCT_TIER_IDS = Object.keys(
+  WEBSHOP_PRODUCT_TIERS,
+) as WebshopProductTierId[];
+
 /** Optionele add-ons. Key = id, value = { price, labelKey, appliesTo }.
  * `appliesTo` bepaalt voor welke dienst-types de optie in de configurator
  * verschijnt — een website-klant ziet geen "voorraad-koppeling", een
@@ -161,6 +177,9 @@ export function estimateProjectPrice(input: {
   kind: ProjectKind;
   pages: number;
   options: ConfigOptionId[];
+  /** Alleen relevant voor een webshop — hoeveel producten er ongeveer in komen.
+   * Default `small` (zit in de basis). */
+  productTier?: WebshopProductTierId;
 }): PriceEstimate {
   const base = PROJECT_BASE[input.kind];
   const included = PROJECT_PAGES_INCLUDED[input.kind];
@@ -181,6 +200,19 @@ export function estimateProjectPrice(input: {
       cents: extraPagesCost * 100,
       meta: { count: extraPages, perPage: PROJECT_EXTRA_PAGE },
     });
+  }
+  // Webshop-product-staffel: een setup-opslag voor een grotere catalogus.
+  if (input.kind === "webshop") {
+    const tierId: WebshopProductTierId =
+      input.productTier && input.productTier in WEBSHOP_PRODUCT_TIERS ? input.productTier : "small";
+    const tier = WEBSHOP_PRODUCT_TIERS[tierId];
+    if (tier.extra > 0) {
+      lines.push({
+        labelKey: `productTier.${tier.labelKey}`,
+        cents: tier.extra * 100,
+        meta: { tier: tierId },
+      });
+    }
   }
   // Dedupe + alleen geldige option-ids meerekenen.
   const seen = new Set<ConfigOptionId>();

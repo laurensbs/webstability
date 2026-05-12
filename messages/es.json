@@ -54,7 +54,14 @@
         "lede": "Con una orientación basta — lo afinamos juntos en la charla.",
         "pagesLabel": "Número de páginas",
         "included": "{n} páginas incluidas",
-        "perExtra": "+€{price} por página extra"
+        "perExtra": "+€{price} por página extra",
+        "productsLabel": "¿Cuántos productos aproximadamente?",
+        "productsIncluded": "en la base",
+        "products": {
+          "small": "Hasta ~25 productos",
+          "medium": "~25–150 productos",
+          "large": "~150–500 productos"
+        }
       },
       "look": {
         "title": "¿Qué estilo encaja contigo?",
@@ -127,7 +134,10 @@
     "lines": {
       "baseWebsite": "Base web (incl. {n} páginas)",
       "baseWebshop": "Base tienda online (incl. {n} páginas)",
-      "extraPages": "{n} páginas extra"
+      "extraPages": "{n} páginas extra",
+      "productSmall": "Catálogo de productos",
+      "productMedium": "Catálogo de productos (mediano)",
+      "productLarge": "Catálogo de productos (grande — import + estructura)"
     }
   },
   "faqPage": {

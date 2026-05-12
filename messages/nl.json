@@ -54,7 +54,14 @@
         "lede": "Een richting is genoeg — we scherpen het samen aan in het gesprek.",
         "pagesLabel": "Aantal pagina's",
         "included": "{n} pagina's inbegrepen",
-        "perExtra": "+€{price} per extra pagina"
+        "perExtra": "+€{price} per extra pagina",
+        "productsLabel": "Hoeveel producten ongeveer?",
+        "productsIncluded": "in de basis",
+        "products": {
+          "small": "Tot ~25 producten",
+          "medium": "~25–150 producten",
+          "large": "~150–500 producten"
+        }
       },
       "look": {
         "title": "Welke sfeer past bij je?",
@@ -127,7 +134,10 @@
     "lines": {
       "baseWebsite": "Website-basis (incl. {n} pagina's)",
       "baseWebshop": "Webshop-basis (incl. {n} pagina's)",
-      "extraPages": "{n} extra pagina's"
+      "extraPages": "{n} extra pagina's",
+      "productSmall": "Productcatalogus",
+      "productMedium": "Productcatalogus (middelgroot)",
+      "productLarge": "Productcatalogus (groot — import + structuur)"
     }
   },
   "faqPage": {

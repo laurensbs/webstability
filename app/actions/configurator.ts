@@ -9,10 +9,12 @@ import {
   CONFIG_PALETTES,
   PROJECT_MAX_PAGES,
   PROJECT_PAGES_INCLUDED,
+  WEBSHOP_PRODUCT_TIERS,
   type ProjectKind,
   type ConfigOptionId,
   type ConfigPaletteId,
   type ConfigLanguageId,
+  type WebshopProductTierId,
 } from "@/lib/pricing";
 import { sendProjectRequestMail } from "@/lib/email/project-request";
 import { sendConfiguratorConfirmMail } from "@/lib/email/configurator-confirm";
@@ -90,8 +92,18 @@ export async function submitProjectRequest(formData: FormData): Promise<ProjectR
     ? (languageInput as ConfigLanguageId)
     : "nl";
   const options = optionsRaw.filter((id): id is ConfigOptionId => id in CONFIG_OPTIONS);
+  const productTierInput = String(formData.get("productTier") ?? "");
+  const productTier: WebshopProductTierId =
+    kind === "webshop" && productTierInput in WEBSHOP_PRODUCT_TIERS
+      ? (productTierInput as WebshopProductTierId)
+      : "small";
 
-  const estimate = estimateProjectPrice({ kind, pages, options });
+  const estimate = estimateProjectPrice({
+    kind,
+    pages,
+    options,
+    productTier: kind === "webshop" ? productTier : undefined,
+  });
 
   try {
     const [lead] = await db
@@ -115,6 +127,7 @@ export async function submitProjectRequest(formData: FormData): Promise<ProjectR
         type: "configurator_submit",
         kind,
         pages,
+        productTier: kind === "webshop" ? productTier : null,
         palette,
         customColor: customColor || null,
         language,
@@ -229,6 +242,14 @@ function humanLine(labelKey: string, meta?: Record<string, unknown>): string {
   if (labelKey.startsWith("options.")) {
     const id = labelKey.slice("options.".length) as ConfigOptionId;
     return OPTION_LABEL[id] ?? id;
+  }
+  if (labelKey.startsWith("productTier.")) {
+    const id = labelKey.slice("productTier.".length);
+    return id === "large"
+      ? "Productcatalogus (groot — import + structuur)"
+      : id === "medium"
+        ? "Productcatalogus (middelgroot)"
+        : "Productcatalogus";
   }
   return labelKey;
 }

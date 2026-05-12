@@ -14,10 +14,13 @@ import {
   PROJECT_PAGES_INCLUDED,
   PROJECT_MAX_PAGES,
   PROJECT_EXTRA_PAGE,
+  WEBSHOP_PRODUCT_TIERS,
+  WEBSHOP_PRODUCT_TIER_IDS,
   type ProjectKind,
   type ConfigOptionId,
   type ConfigPaletteId,
   type ConfigLanguageId,
+  type WebshopProductTierId,
 } from "@/lib/pricing";
 import { submitProjectRequest } from "@/app/actions/configurator";
 import { ConfettiBurst } from "@/components/animate/ConfettiBurst";
@@ -48,6 +51,8 @@ type Strings = {
   scopePagesLabel: string;
   scopeIncluded: string; // "{n} pagina's inbegrepen"
   scopePerExtra: string; // "+€{price} per extra pagina"
+  scopeProductsLabel: string; // "Hoeveel producten ongeveer?"
+  scopeProductsIncluded: string; // "in de basis"
   lookTitle: string;
   lookLede: string;
   lookCustomLabel: string;
@@ -81,6 +86,8 @@ type Strings = {
   palettes: Record<string, string>;
   languages: Record<string, string>;
   options: Record<string, string>;
+  productTiers: Record<string, string>; // keuze-labels in de scope-stap
+  productTierLines: Record<string, string>; // korte labels in de prijs-opbouw
   lineBaseWebsite: string; // "Website-basis (incl. {n} pagina's)"
   lineBaseWebshop: string;
   lineExtraPages: string; // "{n} extra pagina's"
@@ -127,6 +134,7 @@ export function ProjectConfigurator({
   const [customColor, setCustomColor] = React.useState("");
   const [language, setLanguage] = React.useState<ConfigLanguageId>("nl");
   const [options, setOptions] = React.useState<ConfigOptionId[]>([]);
+  const [productTier, setProductTier] = React.useState<WebshopProductTierId>("small");
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [company, setCompany] = React.useState("");
@@ -151,8 +159,14 @@ export function ProjectConfigurator({
   );
 
   const estimate = React.useMemo(
-    () => estimateProjectPrice({ kind, pages: pagesClamped, options: effectiveOptions }),
-    [kind, pagesClamped, effectiveOptions],
+    () =>
+      estimateProjectPrice({
+        kind,
+        pages: pagesClamped,
+        options: effectiveOptions,
+        productTier: kind === "webshop" ? productTier : undefined,
+      }),
+    [kind, pagesClamped, effectiveOptions, productTier],
   );
 
   const step = stepOrder[stepIdx]!;
@@ -184,6 +198,7 @@ export function ProjectConfigurator({
     fd.set("customColor", customColor);
     fd.set("language", language);
     fd.set("options", effectiveOptions.join(","));
+    if (kind === "webshop") fd.set("productTier", productTier);
     fd.set("locale", locale);
     try {
       const res = await submitProjectRequest(fd);
@@ -272,6 +287,10 @@ export function ProjectConfigurator({
     if (labelKey.startsWith("options.")) {
       const id = labelKey.slice("options.".length);
       return strings.options[id] ?? id;
+    }
+    if (labelKey.startsWith("productTier.")) {
+      const id = labelKey.slice("productTier.".length);
+      return strings.productTierLines[id] ?? strings.productTiers[id] ?? id;
     }
     return labelKey;
   };
@@ -412,6 +431,42 @@ export function ProjectConfigurator({
                     </span>
                   </div>
                 </label>
+
+                {kind === "webshop" ? (
+                  <div className="mt-7">
+                    <span className="mb-3 block font-mono text-[11px] tracking-widest text-(--color-text) uppercase">
+                      {strings.scopeProductsLabel}
+                    </span>
+                    <div className="grid gap-2 sm:grid-cols-3">
+                      {WEBSHOP_PRODUCT_TIER_IDS.map((id) => {
+                        const active = productTier === id;
+                        const extra = WEBSHOP_PRODUCT_TIERS[id].extra;
+                        return (
+                          <button
+                            key={id}
+                            type="button"
+                            onClick={() => setProductTier(id)}
+                            aria-pressed={active}
+                            className={`flex flex-col gap-1 rounded-xl border px-4 py-3 text-left transition-colors ${
+                              active
+                                ? "border-(--color-accent) bg-(--color-accent-soft)/40"
+                                : "border-(--color-border) bg-(--color-surface) hover:border-(--color-accent)/40"
+                            }`}
+                          >
+                            <span
+                              className={`text-[14px] ${active ? "font-medium" : "text-(--color-muted)"}`}
+                            >
+                              {strings.productTiers[id] ?? id}
+                            </span>
+                            <span className="font-mono text-[11px] text-(--color-muted)">
+                              {extra > 0 ? `+€${extra}` : strings.scopeProductsIncluded}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ) : null}
               </StepShell>
             ) : null}
 

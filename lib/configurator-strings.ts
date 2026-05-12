@@ -33,6 +33,8 @@ export type ConfiguratorStrings = {
   scopePagesLabel: string;
   scopeIncluded: string;
   scopePerExtra: string;
+  scopeProductsLabel: string;
+  scopeProductsIncluded: string;
   lookTitle: string;
   lookLede: string;
   lookCustomLabel: string;
@@ -63,6 +65,8 @@ export type ConfiguratorStrings = {
   palettes: Record<string, string>;
   languages: Record<string, string>;
   options: Record<string, string>;
+  productTiers: Record<string, string>;
+  productTierLines: Record<string, string>;
   lineBaseWebsite: string;
   lineBaseWebshop: string;
   lineExtraPages: string;
@@ -91,6 +95,8 @@ export function buildConfiguratorStrings(t: T): ConfiguratorStrings {
     scopePagesLabel: t("steps.scope.pagesLabel"),
     scopeIncluded: rawStr(t, "steps.scope.included"),
     scopePerExtra: rawStr(t, "steps.scope.perExtra"),
+    scopeProductsLabel: t("steps.scope.productsLabel"),
+    scopeProductsIncluded: t("steps.scope.productsIncluded"),
     lookTitle: t("steps.look.title"),
     lookLede: t("steps.look.lede"),
     lookCustomLabel: t("steps.look.customLabel"),
@@ -137,6 +143,16 @@ export function buildConfiguratorStrings(t: T): ConfiguratorStrings {
       customDesign: t("options.customDesign"),
       copywriting: t("options.copywriting"),
       bookingForm: t("options.bookingForm"),
+    },
+    productTiers: {
+      small: t("steps.scope.products.small"),
+      medium: t("steps.scope.products.medium"),
+      large: t("steps.scope.products.large"),
+    },
+    productTierLines: {
+      small: t("lines.productSmall"),
+      medium: t("lines.productMedium"),
+      large: t("lines.productLarge"),
     },
     lineBaseWebsite: rawStr(t, "lines.baseWebsite"),
     lineBaseWebshop: rawStr(t, "lines.baseWebshop"),
