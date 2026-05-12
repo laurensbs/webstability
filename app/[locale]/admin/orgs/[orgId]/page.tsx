@@ -33,10 +33,18 @@ import {
 import { ToastForm } from "@/components/portal/ToastForm";
 import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
 import { OrgDetailTabs, type TabKey } from "@/components/admin/OrgDetailTabs";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { OrgQuickActions } from "@/components/admin/OrgQuickActions";
 import { SubscriptionTab } from "@/components/admin/SubscriptionTab";
 import { budgetMinutesFor } from "@/lib/plan-budget";
 
+// TODO (geplande refactor — C.1): deze page bouwt alle 6 tab-panels server-side
+// op (overview/subscription/projects/files/hours/activity) en geeft ze door aan
+// OrgDetailTabs, dat alleen de actieve toont. Beter: per-tab route-segmenten
+// (/admin/orgs/[orgId]/subscription, …) of @parallel-slots, zodat elk tab z'n
+// eigen data-fetch + <Suspense> heeft en het wisselen niet alles tegelijk laadt.
+// Bewust nog niet gedaan — het is een grotere migratie van een billing-kritieke
+// pagina, geen ad-hoc edit.
 export default async function OrgDetail({
   params,
 }: {
@@ -954,45 +962,52 @@ export default async function OrgDetail({
         ← {t("back")}
       </NextLink>
 
-      <header className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <div className="flex flex-wrap items-baseline gap-3">
-            <h1 className="text-3xl md:text-5xl">{org.name}</h1>
+      <AdminPageHeader
+        title={
+          <span className="inline-flex flex-wrap items-baseline gap-3">
+            {org.name}
             {org.isVip ? (
-              <span className="inline-flex items-center gap-1 rounded-full bg-(--color-wine)/10 px-2.5 py-1 text-[11px] font-medium text-(--color-wine)">
+              <span className="inline-flex items-center gap-1 rounded-full bg-(--color-wine)/10 px-2.5 py-1 align-middle text-[11px] font-medium text-(--color-wine)">
                 <Star className="h-3 w-3" fill="currentColor" />
                 VIP
               </span>
             ) : null}
-          </div>
-          <p className="mt-2 font-mono text-xs text-(--color-muted)">
+          </span>
+        }
+        subtitle={
+          <>
             {org.country} · {org.plan ?? "no plan"} · created {dateFmt.format(org.createdAt)}
-          </p>
-          {linkedLead ? (
-            <NextLink
-              href={`/admin/leads/${linkedLead.id}`}
-              className="mt-2 inline-flex items-center gap-1.5 font-mono text-[11px] tracking-wide text-(--color-accent) underline decoration-(--color-accent)/40 underline-offset-2 hover:decoration-(--color-accent)"
-            >
-              {linkedLead.source === "configurator"
-                ? "↗ Oorspronkelijke configurator-aanvraag"
-                : "↗ Gekoppelde lead"}
-            </NextLink>
-          ) : null}
-        </div>
-        <OrgQuickActions
-          orgName={org.name}
-          ownerEmail={ownerEmail}
-          stripeCustomerId={org.stripeCustomerId}
-          isVip={org.isVip}
-          toggleVipAction={toggleVipAction}
-          strings={{
-            mailLabel: tQuick("mail"),
-            stripeLabel: tQuick("stripe"),
-            vipLabel: tQuick("vip"),
-            vipActive: tQuick("vipActive"),
-          }}
-        />
-      </header>
+            {linkedLead ? (
+              <>
+                {" — "}
+                <NextLink
+                  href={`/admin/leads/${linkedLead.id}`}
+                  className="text-(--color-accent) underline decoration-(--color-accent)/40 underline-offset-2 hover:decoration-(--color-accent)"
+                >
+                  {linkedLead.source === "configurator"
+                    ? "↗ oorspronkelijke configurator-aanvraag"
+                    : "↗ gekoppelde lead"}
+                </NextLink>
+              </>
+            ) : null}
+          </>
+        }
+        action={
+          <OrgQuickActions
+            orgName={org.name}
+            ownerEmail={ownerEmail}
+            stripeCustomerId={org.stripeCustomerId}
+            isVip={org.isVip}
+            toggleVipAction={toggleVipAction}
+            strings={{
+              mailLabel: tQuick("mail"),
+              stripeLabel: tQuick("stripe"),
+              vipLabel: tQuick("vip"),
+              vipActive: tQuick("vipActive"),
+            }}
+          />
+        }
+      />
 
       <OrgDetailTabs
         tabs={tabs}

@@ -7,6 +7,7 @@ import { listAllTicketsForKanban } from "@/lib/db/queries/admin";
 import { changeTicketStatusDirect } from "@/app/actions/admin";
 import { TicketsKanban, type Ticket } from "@/components/admin/TicketsKanban";
 import { TicketInbox } from "@/components/admin/TicketInbox";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { formatAgeLabel } from "@/lib/format-age";
 
 export default async function AdminTicketsPage({
@@ -49,35 +50,35 @@ export default async function AdminTicketsPage({
 
   return (
     <div className="space-y-8">
-      <header className="flex flex-wrap items-end justify-between gap-4">
-        <div className="space-y-2">
-          <h1 className="text-3xl md:text-4xl">{t("title")}</h1>
-          <p className="text-(--color-muted)">{t("subtitle")}</p>
-        </div>
-        {/* View-toggle: kanban (drag-drop status) vs inbox (sneltoetsen) */}
-        <div className="inline-flex rounded-full border border-(--color-border) bg-(--color-surface) p-1 font-mono text-[11px] tracking-wide">
-          <Link
-            href={{ pathname: "/admin/tickets" }}
-            className={`rounded-full px-3 py-1 transition-colors ${
-              !inboxMode
-                ? "bg-(--color-text) text-(--color-bg)"
-                : "text-(--color-muted) hover:text-(--color-text)"
-            }`}
-          >
-            {tInbox("viewKanban")}
-          </Link>
-          <Link
-            href={{ pathname: "/admin/tickets", query: { view: "inbox" } }}
-            className={`rounded-full px-3 py-1 transition-colors ${
-              inboxMode
-                ? "bg-(--color-text) text-(--color-bg)"
-                : "text-(--color-muted) hover:text-(--color-text)"
-            }`}
-          >
-            {tInbox("viewInbox")}
-          </Link>
-        </div>
-      </header>
+      <AdminPageHeader
+        title={t("title")}
+        subtitle={t("subtitle")}
+        action={
+          /* View-toggle: kanban (drag-drop) vs inbox (sneltoetsen) */
+          <div className="inline-flex rounded-full border border-(--color-border) bg-(--color-surface) p-1 font-mono text-[11px] tracking-wide">
+            <Link
+              href={{ pathname: "/admin/tickets" }}
+              className={`rounded-full px-3 py-1 transition-colors ${
+                !inboxMode
+                  ? "bg-(--color-text) text-(--color-bg)"
+                  : "text-(--color-muted) hover:text-(--color-text)"
+              }`}
+            >
+              {tInbox("viewKanban")}
+            </Link>
+            <Link
+              href={{ pathname: "/admin/tickets", query: { view: "inbox" } }}
+              className={`rounded-full px-3 py-1 transition-colors ${
+                inboxMode
+                  ? "bg-(--color-text) text-(--color-bg)"
+                  : "text-(--color-muted) hover:text-(--color-text)"
+              }`}
+            >
+              {tInbox("viewInbox")}
+            </Link>
+          </div>
+        }
+      />
 
       {inboxMode ? (
         <TicketInbox
