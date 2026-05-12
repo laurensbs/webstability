@@ -297,6 +297,8 @@ export async function getTicketWithReplies(orgId: string, ticketId: string) {
     where: and(eq(tickets.id, ticketId), eq(tickets.organizationId, orgId)),
     with: {
       replies: {
+        // Interne staff-notities nooit aan de klant tonen.
+        where: (r, { eq: e }) => e(r.internal, false),
         orderBy: (r, { asc }) => [asc(r.createdAt)],
         with: { user: { columns: { id: true, name: true, email: true, isStaff: true } } },
       },

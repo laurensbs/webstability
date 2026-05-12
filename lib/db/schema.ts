@@ -306,6 +306,10 @@ export const ticketReplies = pgTable(
       .notNull()
       .references(() => users.id, { onDelete: "restrict" }),
     body: text("body").notNull(),
+    /** Interne staff-notitie? Zo ja, nooit aan de klant getoond (niet in het
+     * portal, niet in de /api/tickets/[id]/replies-endpoint). Alleen in de
+     * admin-ticket-detailpagina zichtbaar. */
+    internal: boolean("internal").notNull().default(false),
     attachments: jsonb("attachments").$type<{ name: string; url: string; size: number }[]>(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()

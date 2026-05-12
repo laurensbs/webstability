@@ -161,12 +161,14 @@ export default async function AdminTicketDetail({
         </p>
       </article>
 
-      {/* Reply-thread (live polling — gedeeld met het portal) */}
+      {/* Reply-thread (live polling — gedeeld met het portal). Interne notities
+          worden hier wél getoond (staff ziet alles); de klant ziet ze nooit. */}
       <TicketRepliesLive
         ticketId={ticket.id}
         initialReplies={ticket.replies.map((r) => ({
           id: r.id,
           body: r.body,
+          internal: r.internal,
           createdAt: r.createdAt.toISOString(),
           author: {
             id: r.user.id,
@@ -176,10 +178,14 @@ export default async function AdminTicketDetail({
           },
         }))}
         locale={locale}
-        strings={{ noReplies: t("noReplies"), staffBadge: t("staffBadge") }}
+        strings={{
+          noReplies: t("noReplies"),
+          staffBadge: t("staffBadge"),
+          internalBadge: t("internalBadge"),
+        }}
       />
 
-      {/* Staff-antwoord */}
+      {/* Staff-antwoord aan de klant */}
       <ToastForm action={replyAction} resetOnSuccess className="space-y-3">
         <label className="block">
           <span className="mb-2 block font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
@@ -194,6 +200,24 @@ export default async function AdminTicketDetail({
           />
         </label>
         <ToastSubmitButton variant="primary">{t("send")}</ToastSubmitButton>
+      </ToastForm>
+
+      {/* Interne notitie — alleen voor het studio-team, klant ziet 'm nooit */}
+      <ToastForm action={replyAction} resetOnSuccess className="space-y-3">
+        <input type="hidden" name="internal" value="1" />
+        <label className="block">
+          <span className="mb-2 block font-mono text-[10px] tracking-widest text-(--color-wine) uppercase">
+            {t("internalNoteLabel")}
+          </span>
+          <textarea
+            name="body"
+            rows={3}
+            required
+            placeholder={t("internalNotePlaceholder")}
+            className="w-full rounded-md border border-dashed border-(--color-wine)/40 bg-(--color-wine)/[0.03] px-3 py-2.5 text-[14px] outline-none focus:border-(--color-wine)/60"
+          />
+        </label>
+        <ToastSubmitButton variant="ghost">{t("internalNoteSend")}</ToastSubmitButton>
       </ToastForm>
     </div>
   );

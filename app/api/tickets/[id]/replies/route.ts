@@ -38,7 +38,10 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
   }
 
   const replies = await db.query.ticketReplies.findMany({
-    where: and(eq(ticketReplies.ticketId, id)),
+    // Interne notities alleen meesturen aan staff — een klant ziet ze nooit.
+    where: me.isStaff
+      ? eq(ticketReplies.ticketId, id)
+      : and(eq(ticketReplies.ticketId, id), eq(ticketReplies.internal, false)),
     orderBy: [asc(ticketReplies.createdAt)],
     with: {
       user: { columns: { id: true, name: true, email: true, isStaff: true } },
@@ -49,6 +52,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
     replies: replies.map((r) => ({
       id: r.id,
       body: r.body,
+      internal: r.internal,
       createdAt: r.createdAt.toISOString(),
       author: {
         id: r.user.id,

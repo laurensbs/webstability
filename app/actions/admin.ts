@@ -1100,6 +1100,8 @@ export async function staffReplyToTicket(
   }
   const body = String(formData.get("body") ?? "").trim();
   if (!body) return { ok: false, messageKey: "missing_fields" };
+  // `internal=1` → staff-notitie die de klant nooit ziet (geen statuswissel).
+  const internal = formData.get("internal") === "1";
 
   const ticket = await db.query.tickets.findFirst({
     where: eq(tickets.id, ticketId),
@@ -1107,8 +1109,8 @@ export async function staffReplyToTicket(
   });
   if (!ticket) return { ok: false, messageKey: "missing_fields" };
 
-  await db.insert(ticketReplies).values({ ticketId, userId, body });
-  if (ticket.status === "open") {
+  await db.insert(ticketReplies).values({ ticketId, userId, body, internal });
+  if (!internal && ticket.status === "open") {
     await db.update(tickets).set({ status: "in_progress" }).where(eq(tickets.id, ticketId));
   }
   revalidatePath(`/admin/tickets/${ticketId}`);

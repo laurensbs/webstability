@@ -3543,7 +3543,11 @@
       "priorityLabel": "Prioridad",
       "setLow": "baja",
       "setNormal": "normal",
-      "setHigh": "alta"
+      "setHigh": "alta",
+      "internalBadge": "nota interna",
+      "internalNoteLabel": "Nota interna (el cliente no la ve)",
+      "internalNotePlaceholder": "Apunte breve para ti — contexto, pendiente, lo que el cliente no necesita ver…",
+      "internalNoteSend": "Guardar nota"
     }
   },
   "demo": {

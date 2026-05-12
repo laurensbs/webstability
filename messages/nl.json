@@ -3539,7 +3539,11 @@
       "priorityLabel": "Prioriteit",
       "setLow": "laag",
       "setNormal": "normaal",
-      "setHigh": "hoog"
+      "setHigh": "hoog",
+      "internalBadge": "interne notitie",
+      "internalNoteLabel": "Interne notitie (klant ziet dit niet)",
+      "internalNotePlaceholder": "Korte aantekening voor jezelf — context, te-doen, wat de klant niet hoeft te zien…",
+      "internalNoteSend": "Notitie opslaan"
     }
   },
   "demo": {

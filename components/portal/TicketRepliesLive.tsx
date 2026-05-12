@@ -8,12 +8,17 @@ type Reply = {
   id: string;
   body: string;
   createdAt: string; // ISO
+  /** Interne staff-notitie — wordt nooit aan een klant getoond (de API/queries
+   * filteren 'm voor non-staff), en hier visueel apart gemarkeerd voor staff. */
+  internal?: boolean;
   author: { id: string; name: string | null; email: string; isStaff: boolean };
 };
 
 type Strings = {
   noReplies: string;
   staffBadge: string;
+  /** "interne notitie · alleen voor het studio-team" — alleen relevant in de admin. */
+  internalBadge?: string;
 };
 
 const POLL_MS = 10_000;
@@ -129,15 +134,21 @@ export function TicketRepliesLive({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className={`rounded-xl border p-4 ${
-                  r.author.isStaff
-                    ? "border-(--color-accent)/30 bg-(--color-accent-soft)/40"
-                    : "border-(--color-border) bg-(--color-surface)"
+                  r.internal
+                    ? "border-dashed border-(--color-wine)/40 bg-(--color-wine)/[0.04]"
+                    : r.author.isStaff
+                      ? "border-(--color-accent)/30 bg-(--color-accent-soft)/40"
+                      : "border-(--color-border) bg-(--color-surface)"
                 }`}
               >
                 <header className="mb-2 flex items-center justify-between gap-3 text-[12px]">
                   <p className="font-medium text-(--color-text)">
                     {r.author.name ?? r.author.email}
-                    {r.author.isStaff ? (
+                    {r.internal ? (
+                      <span className="ml-2 inline-flex items-center rounded-full bg-(--color-wine)/15 px-1.5 py-0.5 font-mono text-[9px] tracking-wide text-(--color-wine) uppercase">
+                        {strings.internalBadge ?? "interne notitie"}
+                      </span>
+                    ) : r.author.isStaff ? (
                       <span className="ml-2 inline-flex items-center rounded-full bg-(--color-wine)/10 px-1.5 py-0.5 text-[10px] font-medium text-(--color-wine)">
                         {strings.staffBadge}
                       </span>
