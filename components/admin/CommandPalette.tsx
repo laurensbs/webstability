@@ -15,8 +15,11 @@ import {
   Newspaper,
   Star,
   Gift,
+  Receipt,
+  CreditCard,
+  Clock,
 } from "lucide-react";
-import { useRouter } from "@/i18n/navigation";
+import { useRouter, usePathname } from "@/i18n/navigation";
 
 type ResultKind = "org" | "ticket" | "project";
 type Result = {
@@ -69,12 +72,42 @@ const KIND_META: Record<ResultKind, { icon: typeof Building2; label: string; col
  */
 export function CommandPalette({ strings }: { strings: Strings }) {
   const router = useRouter();
+  const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const [results, setResults] = React.useState<Result[]>([]);
   const [loading, setLoading] = React.useState(false);
   const [activeIdx, setActiveIdx] = React.useState(0);
   const inputRef = React.useRef<HTMLInputElement>(null);
+
+  // Contextuele acties — afhankelijk van waar je bent. Op een org-detailpagina
+  // krijg je sneltoetsen naar de tabs van die klant; anders alleen QUICK_ACTIONS.
+  const actions = React.useMemo<QuickAction[]>(() => {
+    const m = pathname.match(/^\/admin\/orgs\/([^/?]+)/);
+    if (m && m[1] && m[1] !== "new") {
+      const orgId = m[1];
+      return [
+        {
+          label: "Projecten van deze klant",
+          icon: FolderKanban,
+          href: `/admin/orgs/${orgId}?tab=projects`,
+        },
+        { label: "Facturen & bestanden", icon: Receipt, href: `/admin/orgs/${orgId}?tab=files` },
+        {
+          label: "Abonnement van deze klant",
+          icon: CreditCard,
+          href: `/admin/orgs/${orgId}?tab=subscription`,
+        },
+        {
+          label: "Uren loggen voor deze klant",
+          icon: Clock,
+          href: `/admin/orgs/${orgId}?tab=hours`,
+        },
+        ...QUICK_ACTIONS,
+      ];
+    }
+    return QUICK_ACTIONS;
+  }, [pathname]);
 
   // Helper om state samen te resetten — wordt gebruikt door alle close-paths.
   const closePalette = React.useCallback(() => {
@@ -132,7 +165,7 @@ export function CommandPalette({ strings }: { strings: Strings }) {
   const visibleResults = isSearching ? results : [];
   // De navigeerbare lijst: zoekresultaten als er gezocht wordt, anders de
   // quick-actions. Eén `activeIdx` voor beide.
-  const navCount = isSearching ? visibleResults.length : QUICK_ACTIONS.length;
+  const navCount = isSearching ? visibleResults.length : actions.length;
 
   function resetIfTooShort(value: string) {
     setQuery(value);
@@ -165,7 +198,7 @@ export function CommandPalette({ strings }: { strings: Strings }) {
       const r = visibleResults[idx];
       if (r) handleSelect(r);
     } else {
-      const a = QUICK_ACTIONS[idx];
+      const a = actions[idx];
       if (a) handleAction(a);
     }
   }
@@ -235,7 +268,7 @@ export function CommandPalette({ strings }: { strings: Strings }) {
                     {strings.recentTitle}
                   </p>
                   <ul className="divide-y divide-(--color-border)">
-                    {QUICK_ACTIONS.map((a, i) => {
+                    {actions.map((a, i) => {
                       const Icon = a.icon;
                       const isActive = i === activeIdx;
                       return (
