@@ -4,7 +4,6 @@ import { Link } from "@/i18n/navigation";
 import { buttonVariants } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/animate/MagneticButton";
 import { MarkupText } from "@/components/animate/MarkupText";
-import { ScrambleText } from "@/components/animate/ScrambleText";
 import { MountReveal } from "@/components/animate/MountReveal";
 import { LoginAmbientMount } from "@/components/r3f/LoginAmbientMount";
 import { StudioParallaxHalos } from "@/components/marketing/StudioParallaxHalos";
@@ -58,29 +57,23 @@ export async function Hero() {
           {/* Links — moneyshot + sub + CTA + tertiaire links */}
           <div>
             <MountReveal delay={0}>
-              <p className="font-mono text-[11px] tracking-widest text-(--color-bg)/55 uppercase">
-                <ScrambleText text={`// ${tHero("eyebrow")}`} duration={900} />
-              </p>
-            </MountReveal>
-
-            <MountReveal delay={0.15}>
-              <h1 className="mt-5 max-w-[18ch] font-serif text-[clamp(40px,6vw,76px)] leading-[1.05] tracking-[-0.02em] text-(--color-bg)">
+              <h1 className="max-w-[18ch] font-serif text-[clamp(40px,6vw,76px)] leading-[1.05] tracking-[-0.02em] text-(--color-bg)">
                 <MarkupText>{tHero("title")}</MarkupText>
               </h1>
             </MountReveal>
 
-            <MountReveal delay={0.28}>
+            <MountReveal delay={0.12}>
               <p className="mt-6 max-w-[54ch] text-[17px] leading-[1.6] text-(--color-bg)/70">
                 {tHero("lede")}
               </p>
             </MountReveal>
 
-            <MountReveal delay={0.4}>
+            <MountReveal delay={0.24}>
               <div className="mt-9">
                 <MagneticButton>
                   <CalPopupTrigger
                     locale={locale}
-                    className={`${buttonVariants({ variant: "primary", size: "lg" })} group w-full sm:w-auto`}
+                    className={`${buttonVariants({ variant: "accent", size: "lg" })} group w-full sm:w-auto`}
                   >
                     {t("ctaPrimary")}
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -90,7 +83,7 @@ export async function Hero() {
             </MountReveal>
 
             {/* Tertiaire link-rij — cases · demo · login */}
-            <MountReveal delay={0.5}>
+            <MountReveal delay={0.34}>
               <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] text-(--color-bg)/65">
                 <Link
                   href="/cases"
