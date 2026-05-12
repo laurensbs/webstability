@@ -103,7 +103,13 @@ export function TicketsKanban({
   const [tickets, setTickets] = React.useState(initialTickets);
   const [filterCategory, setFilterCategory] = React.useState<"all" | Category>("all");
   const [filterPriority, setFilterPriority] = React.useState<"all" | Priority>("all");
-  const sensors = useSensors(useSensor(PointerSensor), useSensor(KeyboardSensor));
+  // Activation-constraint: een drag start pas na 8px verplaatsing (muis) of
+  // 200ms+8px ingedrukt (touch) — anders kaapt elke tik-en-veeg op de telefoon
+  // het scrollen en kun je de kolommen niet meer doorscrollen.
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { delay: 200, tolerance: 8 } }),
+    useSensor(KeyboardSensor),
+  );
 
   const filtered = React.useMemo(() => {
     return tickets.filter((t) => {
@@ -146,6 +152,8 @@ export function TicketsKanban({
           <option value="bug">bug</option>
           <option value="feature">feature</option>
           <option value="question">vraag</option>
+          <option value="change">wijziging</option>
+          <option value="upgrade">upgrade</option>
         </select>
         <select
           value={filterPriority}

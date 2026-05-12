@@ -107,11 +107,9 @@ export function TicketInbox({
       }
       if (inField) return;
 
-      if (e.key === "?") {
-        e.preventDefault();
-        setShowCheatsheet((s) => !s);
-        return;
-      }
+      // `?` opent niet langer dit lokale cheatsheet via toetsenbord — dat botst
+      // met de globale ShortcutsOverlay in de admin-layout (ook op `?`). De
+      // cheatsheet-knop in de filterbalk blijft; Esc sluit 'm nog wel.
       if (e.key === "Escape") {
         if (showCheatsheet) setShowCheatsheet(false);
         return;
