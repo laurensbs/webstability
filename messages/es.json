@@ -258,7 +258,6 @@
     "tagline": "Un sistema que funciona, un Laurens que lo construye y mantiene. Precio fijo desde 1.050 €, entrega en cuatro semanas, suscripción continua desde 99 € al mes — construir y mantener en una sola cuota.",
     "ctaPrimary": "Reservar primera llamada",
     "ctaSecondary": "Ver casos",
-
     "hero": {
       "eyebrow": "el estudio · costa brava",
       "title": "Un sistema bajo tu *negocio*. Construido y mantenido por un único desarrollador.",
@@ -285,9 +284,18 @@
         "Un sistema en lugar de cinco herramientas"
       ],
       "proposition": [
-        { "icon": "layers", "text": "Un solo sistema." },
-        { "icon": "zap", "text": "Reservas en vivo." },
-        { "icon": "sparkles", "text": "Sincronizado en tiempo real." }
+        {
+          "icon": "layers",
+          "text": "Un solo sistema."
+        },
+        {
+          "icon": "zap",
+          "text": "Reservas en vivo."
+        },
+        {
+          "icon": "sparkles",
+          "text": "Sincronizado en tiempo real."
+        }
       ],
       "metaYearsLabel": "años de experiencia",
       "metaUptimeLabel": "uptime · 30d",
@@ -304,7 +312,6 @@
       ],
       "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado, mobile-first como lo usan tus clientes. Precio fijo, entrega en cuatro semanas, suscripción continua desde 99 €/mes, para empresarios en Países Bajos y España."
     },
-
     "howItWorks": {
       "eyebrow": "cómo funciona",
       "title": "Una acción. *Dos* lados. Totalmente integrado.",
@@ -344,7 +351,6 @@
         "monthLabel": "Julio 2026"
       }
     },
-
     "studioStatement": {
       "eyebrow": "el estudio",
       "title": "Un solo desarrollador. *Software* que sigue funcionando después de la entrega.",
@@ -363,7 +369,6 @@
       "ctaSecondary": "Cómo trabajo →",
       "ctaSecondaryHref": "/sobre"
     },
-
     "services": {
       "eyebrow": "servicios",
       "title": "Cuatro direcciones. *Una* forma de trabajar.",
@@ -396,7 +401,6 @@
         }
       }
     },
-
     "problems": {
       "eyebrow": "qué resolvemos",
       "title": "Tres tipos de caos. *Un* sistema.",
@@ -425,7 +429,6 @@
         }
       ]
     },
-
     "founder": {
       "eyebrow": "sobre",
       "title": "Hola, soy *Laurens*.",
@@ -438,7 +441,6 @@
       "timelineLabel": "construyendo cada año",
       "cta": "Lee la historia completa"
     },
-
     "approach": {
       "eyebrow": "método",
       "title": "De la primera llamada al sistema en vivo.",
@@ -470,7 +472,6 @@
         }
       }
     },
-
     "audience": {
       "eyebrow": "para quién",
       "title": "Para pymes que no quieren *subcontratar*, sino *colaborar*.",
@@ -479,7 +480,6 @@
       "esLabel": "España",
       "tzLabel": "ahora en la Costa Brava"
     },
-
     "faq": {
       "eyebrow": "preguntas frecuentes",
       "title": "Respuestas por adelantado.",
@@ -514,7 +514,6 @@
         }
       ]
     },
-
     "testimonials": {
       "eyebrow": "clientes",
       "title": "Lo que dicen *tras un año*.",
@@ -540,7 +539,6 @@
         }
       ]
     },
-
     "pricing": {
       "eyebrow": "suscripciones",
       "title": "Precios claros, *sin* sorpresas.",
@@ -554,7 +552,6 @@
         "A medida desde 5–8 k € · web desde 1.050 €"
       ]
     },
-
     "cta": {
       "eyebrow": "hablemos",
       "title": "¿Listo para un sistema que *crece contigo*?",
@@ -757,9 +754,18 @@
       "title": "Un sistema de reservas que sigue *tu* forma de trabajar",
       "lede": "El software de alquiler estándar te obliga a un único modelo: un tipo de producto, una ubicación, una forma de facturar. Si tu empresa de alquiler funciona algo distinto — portfolio mixto, dos ubicaciones, NL y ES, tus propias condiciones de contrato — chocas con eso cada semana. Un sistema a medida se adapta a ti, no al revés.",
       "metrics": [
-        { "value": "4 sem", "label": "de la primera llamada a una versión funcional" },
-        { "value": "0", "label": "reservas duplicadas desde el lanzamiento en clientes" },
-        { "value": "5–8 k €", "label": "precio fijo, sin discusiones de horas extra" }
+        {
+          "value": "4 sem",
+          "label": "de la primera llamada a una versión funcional"
+        },
+        {
+          "value": "0",
+          "label": "reservas duplicadas desde el lanzamiento en clientes"
+        },
+        {
+          "value": "5–8 k €",
+          "label": "precio fijo, sin discusiones de horas extra"
+        }
       ],
       "problemEyebrow": "dónde falla",
       "problemTitle": "Por qué los alquiladores buscan un sistema de reservas *propio*",
@@ -849,13 +855,22 @@
       "ctaBody": "Envíame cómo lo haces ahora y dónde aprieta — respuesta honesta en un día sobre si un sistema de reservas a medida encaja aquí, y qué cuesta.",
       "ctaButton": "Reserva una llamada",
       "related": [
-        { "label": "Software para empresas de alquiler", "href": "/es/alquiler" },
+        {
+          "label": "Software para empresas de alquiler",
+          "href": "/es/alquiler"
+        },
         {
           "label": "Portal de cliente a medida",
           "href": "/es/servicios/klantportaal-laten-bouwen"
         },
-        { "label": "Caso: Caravanverhuurspanje", "href": "/es/cases/caravanverhuurspanje" },
-        { "label": "Elegir un sistema de alquiler", "href": "/es/blog/elegir-sistema-alquiler" }
+        {
+          "label": "Caso: Caravanverhuurspanje",
+          "href": "/es/cases/caravanverhuurspanje"
+        },
+        {
+          "label": "Elegir un sistema de alquiler",
+          "href": "/es/blog/elegir-sistema-alquiler"
+        }
       ]
     },
     "klantportaal-laten-bouwen": {
@@ -865,9 +880,18 @@
       "title": "Un portal que deja a tus *clientes* resolver lo que ahora acaba en tu mesa",
       "lede": "Cada pregunta que un cliente te envía por correo — \"¿dónde está mi factura?\", \"¿ya está listo?\", \"¿cuál es mi estado?\" — es una pregunta que un portal de cliente responde solo. Con tu identidad visual, en tu dominio, conectado a tu propio sistema. Menos correo en tu bandeja, menos teléfono, menos cosas que llevas por duplicado.",
       "metrics": [
-        { "value": "4 sem", "label": "de la primera llamada a un portal funcional" },
-        { "value": "5", "label": "herramientas sueltas reemplazadas en un cliente medio" },
-        { "value": "5–8 k €", "label": "precio fijo, integrado con tu sistema" }
+        {
+          "value": "4 sem",
+          "label": "de la primera llamada a un portal funcional"
+        },
+        {
+          "value": "5",
+          "label": "herramientas sueltas reemplazadas en un cliente medio"
+        },
+        {
+          "value": "5–8 k €",
+          "label": "precio fijo, integrado con tu sistema"
+        }
       ],
       "problemEyebrow": "dónde falla",
       "problemTitle": "Por qué necesitas *un* portal de cliente — no otra herramienta",
@@ -957,13 +981,22 @@
       "ctaBody": "Envíame cómo lo haces ahora y dónde aprieta — respuesta honesta en un día sobre si un portal de cliente a medida encaja aquí, y qué cuesta.",
       "ctaButton": "Reserva una llamada",
       "related": [
-        { "label": "Todos los servicios", "href": "/es/servicios" },
+        {
+          "label": "Todos los servicios",
+          "href": "/es/servicios"
+        },
         {
           "label": "Sistema de reservas de alquiler",
           "href": "/es/servicios/verhuur-boekingssysteem"
         },
-        { "label": "Caso: Caravanverhuurspanje", "href": "/es/cases/caravanverhuurspanje" },
-        { "label": "Dashboards mobile-first", "href": "/es/blog/mobile-first-dashboards" }
+        {
+          "label": "Caso: Caravanverhuurspanje",
+          "href": "/es/cases/caravanverhuurspanje"
+        },
+        {
+          "label": "Dashboards mobile-first",
+          "href": "/es/blog/mobile-first-dashboards"
+        }
       ]
     },
     "website-laten-maken": {
@@ -973,9 +1006,18 @@
       "title": "Una web *rápida*, *limpia* y *tuya*",
       "lede": "Ni un constructor de plantillas en el que tienes que pelearte tú, ni una agencia que seis semanas después sigue 'con el concepto'. Precio fijo, cuatro semanas, y una web que carga antes de que la veas — con tu identidad, en tu dominio, en uno o dos idiomas.",
       "metrics": [
-        { "value": "4 sem", "label": "de la primera charla a online" },
-        { "value": "desde 1.050 €", "label": "precio fijo — sin extras" },
-        { "value": "NL + ES", "label": "bilingüe sin líos" }
+        {
+          "value": "4 sem",
+          "label": "de la primera charla a online"
+        },
+        {
+          "value": "desde 1.050 €",
+          "label": "precio fijo — sin extras"
+        },
+        {
+          "value": "NL + ES",
+          "label": "bilingüe sin líos"
+        }
       ],
       "problemEyebrow": "dónde falla",
       "problemTitle": "Por qué un constructor o una agencia suele decepcionar",
@@ -1065,10 +1107,22 @@
       "ctaBody": "Configura tu proyecto: tipo, número de páginas, estilo, idiomas, opciones. Ves un precio orientativo de inmediato y te escribimos en un día laborable.",
       "ctaButton": "Configura tu web",
       "related": [
-        { "label": "Solicita tu web", "href": "/es/solicitar" },
-        { "label": "Todos los servicios", "href": "/es/servicios" },
-        { "label": "Precios claros", "href": "/es/precios" },
-        { "label": "Tienda online a medida", "href": "/es/servicios/webshop-laten-maken" }
+        {
+          "label": "Solicita tu web",
+          "href": "/es/solicitar"
+        },
+        {
+          "label": "Todos los servicios",
+          "href": "/es/servicios"
+        },
+        {
+          "label": "Precios claros",
+          "href": "/es/precios"
+        },
+        {
+          "label": "Tienda online a medida",
+          "href": "/es/servicios/webshop-laten-maken"
+        }
       ]
     },
     "webshop-laten-maken": {
@@ -1078,9 +1132,18 @@
       "title": "Una tienda online que *cobra como tú vendes*",
       "lede": "No una tienda estándar en la que tienes que meter tus productos con calzador — una tienda a medida: tu lógica de producto, tus categorías de IVA, tu checkout, tu marca. Precio fijo, cuatro semanas, y si vendes en dos países: IVA neerlandés y español, dos idiomas.",
       "metrics": [
-        { "value": "4 sem", "label": "de la primera charla a online" },
-        { "value": "desde 3.000 €", "label": "precio fijo — sin extras" },
-        { "value": "iDEAL · tarjeta", "label": "pago vía Stripe/Mollie" }
+        {
+          "value": "4 sem",
+          "label": "de la primera charla a online"
+        },
+        {
+          "value": "desde 3.000 €",
+          "label": "precio fijo — sin extras"
+        },
+        {
+          "value": "iDEAL · tarjeta",
+          "label": "pago vía Stripe/Mollie"
+        }
       ],
       "problemEyebrow": "dónde falla",
       "problemTitle": "Por qué una tienda estándar suele apretar",
@@ -1170,10 +1233,22 @@
       "ctaBody": "Configura tu proyecto: tipo, número de páginas, estilo, idiomas, opciones como conexión de inventario. Ves un precio orientativo de inmediato y te escribimos en un día laborable.",
       "ctaButton": "Configura tu tienda online",
       "related": [
-        { "label": "Solicita tu tienda online", "href": "/es/solicitar" },
-        { "label": "Todos los servicios", "href": "/es/servicios" },
-        { "label": "Precios claros", "href": "/es/precios" },
-        { "label": "Diseño web a medida", "href": "/es/servicios/website-laten-maken" }
+        {
+          "label": "Solicita tu tienda online",
+          "href": "/es/solicitar"
+        },
+        {
+          "label": "Todos los servicios",
+          "href": "/es/servicios"
+        },
+        {
+          "label": "Precios claros",
+          "href": "/es/precios"
+        },
+        {
+          "label": "Diseño web a medida",
+          "href": "/es/servicios/website-laten-maken"
+        }
       ]
     },
     "admin-systeem-op-maat": {
@@ -1183,9 +1258,18 @@
       "title": "Un sistema para *todo lo que tu empresa registra*",
       "lede": "Excel funciona — hasta que tu empresa funciona sobre él y cruje: una sola persona entiende el archivo, los mismos datos están en tres sitios, un error sale a la luz semanas después. Un sistema interno a medida está construido alrededor de lo que tu empresa realmente hace: tus conceptos, tu flujo, barreras incorporadas.",
       "metrics": [
-        { "value": "4 sem", "label": "de la primera charla al núcleo funcionando" },
-        { "value": "5–8k €", "label": "precio fijo del núcleo, sin extras" },
-        { "value": "1 pantalla", "label": "en lugar de cinco herramientas sueltas" }
+        {
+          "value": "4 sem",
+          "label": "de la primera charla al núcleo funcionando"
+        },
+        {
+          "value": "5–8k €",
+          "label": "precio fijo del núcleo, sin extras"
+        },
+        {
+          "value": "1 pantalla",
+          "label": "en lugar de cinco herramientas sueltas"
+        }
       ],
       "problemEyebrow": "dónde falla",
       "problemTitle": "Por qué las empresas quieren *salir* de Excel",
@@ -1287,7 +1371,10 @@
           "label": "Portal de reparaciones para talleres",
           "href": "/es/servicios/reparatie-portaal"
         },
-        { "label": "Todos los servicios", "href": "/es/servicios" }
+        {
+          "label": "Todos los servicios",
+          "href": "/es/servicios"
+        }
       ]
     },
     "reparatie-portaal": {
@@ -1297,9 +1384,18 @@
       "title": "Un taller *sin flujo de papel* — y sin \"¿ya está?\"",
       "lede": "Las órdenes de trabajo en papel se pierden, el estado está en la cabeza de alguien, y el cliente llama para preguntar si ya está. Un portal de reparaciones convierte ese flujo de papel en un solo sistema: el mecánico trabaja en un iPad, el estado avanza solo, el cliente lo sigue por su cuenta — con tu identidad.",
       "metrics": [
-        { "value": "4 sem", "label": "de la primera charla a la versión funcionando" },
-        { "value": "5–8k €", "label": "precio fijo, sin extras" },
-        { "value": "0", "label": "órdenes de trabajo perdidas" }
+        {
+          "value": "4 sem",
+          "label": "de la primera charla a la versión funcionando"
+        },
+        {
+          "value": "5–8k €",
+          "label": "precio fijo, sin extras"
+        },
+        {
+          "value": "0",
+          "label": "órdenes de trabajo perdidas"
+        }
       ],
       "problemEyebrow": "dónde falla",
       "problemTitle": "Por qué los talleres buscan un portal *propio*",
@@ -1393,9 +1489,18 @@
           "label": "Portal de reparaciones para talleres",
           "href": "/es/blog/portal-reparaciones-para-talleres"
         },
-        { "label": "Caso: Caravanreparatiespanje", "href": "/es/cases/caravanreparatiespanje" },
-        { "label": "Sistema interno a medida", "href": "/es/servicios/admin-systeem-op-maat" },
-        { "label": "Todos los servicios", "href": "/es/servicios" }
+        {
+          "label": "Caso: Caravanreparatiespanje",
+          "href": "/es/cases/caravanreparatiespanje"
+        },
+        {
+          "label": "Sistema interno a medida",
+          "href": "/es/servicios/admin-systeem-op-maat"
+        },
+        {
+          "label": "Todos los servicios",
+          "href": "/es/servicios"
+        }
       ]
     }
   },
@@ -1465,10 +1570,22 @@
       "ctaSecondary": "Pide presupuesto",
       "liveDemo": "O abre una demo en vivo sin cuenta",
       "metaItems": [
-        { "num": "8h", "label": "Ahorradas por semana (media)" },
-        { "num": "0", "label": "Reservas duplicadas tras lanzamiento" },
-        { "num": "3-6sem", "label": "Plazo del sistema base" },
-        { "num": "15+", "label": "Empresas de alquiler activas" }
+        {
+          "num": "8h",
+          "label": "Ahorradas por semana (media)"
+        },
+        {
+          "num": "0",
+          "label": "Reservas duplicadas tras lanzamiento"
+        },
+        {
+          "num": "3-6sem",
+          "label": "Plazo del sistema base"
+        },
+        {
+          "num": "15+",
+          "label": "Empresas de alquiler activas"
+        }
       ],
       "problemEyebrow": "el problema",
       "problemTitle": "La mayoría usa *cinco* herramientas que no se hablan.",
@@ -1615,9 +1732,18 @@
     "title": "Lo que *construimos* y *mantenemos* para ti.",
     "lede": "Cuatro paquetes concretos — precio fijo, alcance fijo, y una suscripción continua para que el sistema siga creciendo contigo.",
     "heroMetrics": [
-      { "value": "3", "label": "plataformas de alquiler en producción" },
-      { "value": "47", "label": "talleres en una sola plataforma" },
-      { "value": "4 sem", "label": "precio fijo, primera versión" }
+      {
+        "value": "3",
+        "label": "plataformas de alquiler en producción"
+      },
+      {
+        "value": "47",
+        "label": "talleres en una sola plataforma"
+      },
+      {
+        "value": "4 sem",
+        "label": "precio fijo, primera versión"
+      }
     ],
     "timeline": {
       "eyebrow": "cómo va una build de 4 semanas",
@@ -1895,9 +2021,18 @@
         "lede": "Un alquilador neerlandés en la Costa Brava con 12 caravanas y 4 mobile-homes. Las reservas llegaban por Booking, Airbnb, web propia y WhatsApp — tres reservas duplicadas al mes, medio día de admin por semana. Una plataforma integrada después: cero reservas duplicadas desde el lanzamiento.",
         "videoUrl": "https://vimeo.com/1190126706/dae28da598",
         "metrics": [
-          { "value": "1.200", "label": "reservas procesadas" },
-          { "value": "0", "label": "reservas duplicadas desde 2024" },
-          { "value": "4", "label": "semanas a precio fijo" }
+          {
+            "value": "1.200",
+            "label": "reservas procesadas"
+          },
+          {
+            "value": "0",
+            "label": "reservas duplicadas desde 2024"
+          },
+          {
+            "value": "4",
+            "label": "semanas a precio fijo"
+          }
         ],
         "problem": {
           "eyebrow": "el problema",
@@ -1969,9 +2104,18 @@
         "videoUrl": null,
         "url": "https://caravanreparatiespanje.vercel.app",
         "metrics": [
-          { "value": "~80", "label": "reparaciones al mes procesadas" },
-          { "value": "0", "label": "partes en papel desde el lanzamiento" },
-          { "value": "4", "label": "semanas precio fijo build" }
+          {
+            "value": "~80",
+            "label": "reparaciones al mes procesadas"
+          },
+          {
+            "value": "0",
+            "label": "partes en papel desde el lanzamiento"
+          },
+          {
+            "value": "4",
+            "label": "semanas precio fijo build"
+          }
         ],
         "problem": {
           "eyebrow": "el problema",
@@ -2702,7 +2846,11 @@
         "upgradeLabel": "Subir de paquete / más horas",
         "upgradeBody": "Quiero un paquete mayor o necesito más horas de mantenimiento."
       },
-      "priority": { "low": "baja", "normal": "normal", "high": "alta" },
+      "priority": {
+        "low": "baja",
+        "normal": "normal",
+        "high": "alta"
+      },
       "status": {
         "open": "abierto",
         "in_progress": "en curso",
@@ -2738,7 +2886,11 @@
       "role": "Rol",
       "save": "Guardar",
       "saved": "Guardado.",
-      "roles": { "owner": "Propietario", "member": "Miembro", "read_only": "Solo lectura" }
+      "roles": {
+        "owner": "Propietario",
+        "member": "Miembro",
+        "read_only": "Solo lectura"
+      }
     },
     "planSwitch": {
       "title": "Cambiar suscripción",
@@ -2871,6 +3023,20 @@
       "lede": "Sentry ya avisó a Laurens. Prueba de nuevo — si sigue fallando, mándale un correo.",
       "retry": "Reintentar",
       "homeCta": "Volver al inicio"
+    },
+    "portalBoundary": {
+      "eyebrow": "algo falló",
+      "title": "Algo *salió mal* en tu portal.",
+      "lede": "Sentry ya avisó a Laurens. Inténtalo de nuevo — si sigue fallando, escríbenos sin problema.",
+      "retry": "Reintentar",
+      "homeCta": "Volver al panel"
+    },
+    "adminBoundary": {
+      "eyebrow": "algo falló",
+      "title": "Algo *salió mal* en el admin.",
+      "lede": "Sentry envió un aviso. Inténtalo de nuevo — si sigue fallando, revisa los logs.",
+      "retry": "Reintentar",
+      "homeCta": "Volver al admin"
     }
   },
   "auth": {
@@ -2896,8 +3062,7 @@
         "Progreso de proyectos en tiempo real",
         "Tickets y archivos compartidos con Laurens",
         "Facturas y gestión de la suscripción"
-      ],
-      "error": "Algo salió mal. Inténtalo de nuevo."
+      ]
     },
     "checkout": {
       "welcome": {
@@ -3279,12 +3444,30 @@
         "resolved": "Resuelto",
         "reopened": "Reabierto",
         "shortcuts": [
-          { "keys": "j / k", "label": "Siguiente / anterior ticket" },
-          { "keys": "e", "label": "Cambiar estado (abierto → en curso → cerrado)" },
-          { "keys": "c", "label": "Cerrar ticket" },
-          { "keys": "/", "label": "Enfocar buscador" },
-          { "keys": "?", "label": "Mostrar / ocultar atajos" },
-          { "keys": "Esc", "label": "Cerrar overlay" }
+          {
+            "keys": "j / k",
+            "label": "Siguiente / anterior ticket"
+          },
+          {
+            "keys": "e",
+            "label": "Cambiar estado (abierto → en curso → cerrado)"
+          },
+          {
+            "keys": "c",
+            "label": "Cerrar ticket"
+          },
+          {
+            "keys": "/",
+            "label": "Enfocar buscador"
+          },
+          {
+            "keys": "?",
+            "label": "Mostrar / ocultar atajos"
+          },
+          {
+            "keys": "Esc",
+            "label": "Cerrar overlay"
+          }
         ]
       }
     },

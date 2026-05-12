@@ -258,7 +258,6 @@
     "tagline": "Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt. Vaste prijs vanaf €1.050, vier weken levering, doorlopend abonnement vanaf €99 per maand — bouwen én onderhouden in één.",
     "ctaPrimary": "Plan een kennismaking",
     "ctaSecondary": "Bekijk klantverhalen",
-
     "hero": {
       "eyebrow": "het studio · costa brava",
       "title": "Eén systeem onder je *bedrijf*. Door één ontwikkelaar gebouwd en onderhouden.",
@@ -285,9 +284,18 @@
         "Eén systeem ipv vijf losse tools"
       ],
       "proposition": [
-        { "icon": "layers", "text": "Eén systeem." },
-        { "icon": "zap", "text": "Live boekingen." },
-        { "icon": "sparkles", "text": "Realtime synchroon." }
+        {
+          "icon": "layers",
+          "text": "Eén systeem."
+        },
+        {
+          "icon": "zap",
+          "text": "Live boekingen."
+        },
+        {
+          "icon": "sparkles",
+          "text": "Realtime synchroon."
+        }
       ],
       "metaYearsLabel": "jaar ervaring",
       "metaUptimeLabel": "uptime · 30d",
@@ -304,7 +312,6 @@
       ],
       "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem, mobiel-first gebouwd zoals jouw klanten 't gebruiken. Vaste prijs, vier weken levering, doorlopend abonnement vanaf €99/maand, voor ondernemers in Nederland en Spanje."
     },
-
     "howItWorks": {
       "eyebrow": "hoe het werkt",
       "title": "Eén actie. *Twee* zijden. Volledig geïntegreerd.",
@@ -344,7 +351,6 @@
         "monthLabel": "Juli 2026"
       }
     },
-
     "studioStatement": {
       "eyebrow": "de studio",
       "title": "Eén ontwikkelaar. *Software* die blijft werken nadat 'ie is opgeleverd.",
@@ -363,7 +369,6 @@
       "ctaSecondary": "Hoe ik werk →",
       "ctaSecondaryHref": "/over"
     },
-
     "services": {
       "eyebrow": "diensten",
       "title": "Vier richtingen. *Eén* manier van werken.",
@@ -396,7 +401,6 @@
         }
       }
     },
-
     "problems": {
       "eyebrow": "wat we oplossen",
       "title": "Drie soorten chaos. *Eén* systeem.",
@@ -425,7 +429,6 @@
         }
       ]
     },
-
     "founder": {
       "eyebrow": "over",
       "title": "Hi, ik ben *Laurens*.",
@@ -438,7 +441,6 @@
       "timelineLabel": "elk jaar bouwend",
       "cta": "Lees het hele verhaal"
     },
-
     "approach": {
       "eyebrow": "werkwijze",
       "title": "Van eerste gesprek tot live systeem.",
@@ -470,7 +472,6 @@
         }
       }
     },
-
     "audience": {
       "eyebrow": "voor wie",
       "title": "Voor MKB die niet wil *uitbesteden*, maar *samenwerken*.",
@@ -479,7 +480,6 @@
       "esLabel": "España",
       "tzLabel": "nu op de Costa Brava"
     },
-
     "faq": {
       "eyebrow": "veelgestelde vragen",
       "title": "Antwoorden vooraf.",
@@ -514,7 +514,6 @@
         }
       ]
     },
-
     "testimonials": {
       "eyebrow": "klanten",
       "title": "Wat klanten *na een jaar* zeggen.",
@@ -540,7 +539,6 @@
         }
       ]
     },
-
     "pricing": {
       "eyebrow": "abonnementen",
       "title": "Heldere prijzen, *geen* verrassingen.",
@@ -554,7 +552,6 @@
         "Maatwerk vanaf €5–8k · website vanaf €1.050"
       ]
     },
-
     "cta": {
       "eyebrow": "laten we praten",
       "title": "Klaar voor een systeem dat *met je meegroeit*?",
@@ -757,9 +754,18 @@
       "title": "Een boekingssysteem voor verhuur dat *jouw* werkwijze volgt",
       "lede": "Kant-en-klare verhuursoftware dwingt je in één model: één type product, één locatie, één manier van factureren. Werkt je verhuurbedrijf net iets anders — gemengd portfolio, twee locaties, NL én ES, eigen contractvoorwaarden — dan loop je daar elke week tegenaan. Een boekingssysteem op maat past zich aan jou aan, niet andersom.",
       "metrics": [
-        { "value": "4 wkn", "label": "van eerste gesprek tot werkende versie" },
-        { "value": "0", "label": "dubbele boekingen sinds livegang bij klanten" },
-        { "value": "€5–8k", "label": "vaste prijs, geen meeruren-discussies" }
+        {
+          "value": "4 wkn",
+          "label": "van eerste gesprek tot werkende versie"
+        },
+        {
+          "value": "0",
+          "label": "dubbele boekingen sinds livegang bij klanten"
+        },
+        {
+          "value": "€5–8k",
+          "label": "vaste prijs, geen meeruren-discussies"
+        }
       ],
       "problemEyebrow": "waar het misgaat",
       "problemTitle": "Waarom verhuurders een *eigen* boekingssysteem zoeken",
@@ -849,10 +855,22 @@
       "ctaBody": "Stuur me hoe je het nu doet en waar het knelt — binnen een dag een eerlijk antwoord of een boekingssysteem op maat hier past, en wat het kost.",
       "ctaButton": "Plan een gesprek",
       "related": [
-        { "label": "Software voor verhuurbedrijven", "href": "/verhuur" },
-        { "label": "Klantportaal laten bouwen", "href": "/diensten/klantportaal-laten-bouwen" },
-        { "label": "Case: Caravanverhuurspanje", "href": "/cases/caravanverhuurspanje" },
-        { "label": "Verhuursysteem kiezen — vijf vragen", "href": "/blog/verhuursysteem-kiezen" }
+        {
+          "label": "Software voor verhuurbedrijven",
+          "href": "/verhuur"
+        },
+        {
+          "label": "Klantportaal laten bouwen",
+          "href": "/diensten/klantportaal-laten-bouwen"
+        },
+        {
+          "label": "Case: Caravanverhuurspanje",
+          "href": "/cases/caravanverhuurspanje"
+        },
+        {
+          "label": "Verhuursysteem kiezen — vijf vragen",
+          "href": "/blog/verhuursysteem-kiezen"
+        }
       ]
     },
     "klantportaal-laten-bouwen": {
@@ -862,9 +880,18 @@
       "title": "Een klantportaal dat je *klanten* zelf laat regelen wat anders bij jou belandt",
       "lede": "Elke vraag die een klant je mailt — \"waar staat mijn factuur\", \"is het al af\", \"wat is mijn status\" — is een vraag die een klantportaal zelf beantwoordt. In jouw huisstijl, op jouw domein, gekoppeld aan je eigen systeem. Minder mail in je inbox, minder telefoon, minder dingen die je dubbel bijhoudt.",
       "metrics": [
-        { "value": "4 wkn", "label": "van eerste gesprek tot werkend portaal" },
-        { "value": "5", "label": "losse tools vervangen bij een gemiddelde klant" },
-        { "value": "€5–8k", "label": "vaste prijs, geïntegreerd met je systeem" }
+        {
+          "value": "4 wkn",
+          "label": "van eerste gesprek tot werkend portaal"
+        },
+        {
+          "value": "5",
+          "label": "losse tools vervangen bij een gemiddelde klant"
+        },
+        {
+          "value": "€5–8k",
+          "label": "vaste prijs, geïntegreerd met je systeem"
+        }
       ],
       "problemEyebrow": "waar het misgaat",
       "problemTitle": "Waarom je *een* klantportaal nodig hebt — niet nog een tool",
@@ -954,10 +981,22 @@
       "ctaBody": "Stuur me hoe je het nu doet en waar het knelt — binnen een dag een eerlijk antwoord of een klantportaal op maat hier past, en wat het kost.",
       "ctaButton": "Plan een gesprek",
       "related": [
-        { "label": "Alle diensten", "href": "/diensten" },
-        { "label": "Verhuur-boekingssysteem", "href": "/diensten/verhuur-boekingssysteem" },
-        { "label": "Case: Caravanverhuurspanje", "href": "/cases/caravanverhuurspanje" },
-        { "label": "Mobile-first dashboards", "href": "/blog/mobile-first-dashboards" }
+        {
+          "label": "Alle diensten",
+          "href": "/diensten"
+        },
+        {
+          "label": "Verhuur-boekingssysteem",
+          "href": "/diensten/verhuur-boekingssysteem"
+        },
+        {
+          "label": "Case: Caravanverhuurspanje",
+          "href": "/cases/caravanverhuurspanje"
+        },
+        {
+          "label": "Mobile-first dashboards",
+          "href": "/blog/mobile-first-dashboards"
+        }
       ]
     },
     "website-laten-maken": {
@@ -967,9 +1006,18 @@
       "title": "Een website die *snel*, *netjes* en *van jou* is",
       "lede": "Geen template-bouwer waar je zelf in mag puzzelen, en geen bureau dat na zes weken nog 'aan het concept' werkt. Een vaste prijs, vier weken, en een site die laadt voordat je 'm ziet — in jouw huisstijl, op jouw domein, in één of twee talen.",
       "metrics": [
-        { "value": "4 wkn", "label": "van eerste gesprek tot live" },
-        { "value": "vanaf €1.050", "label": "vaste prijs — geen meeruren" },
-        { "value": "NL + ES", "label": "tweetalig zonder gedoe" }
+        {
+          "value": "4 wkn",
+          "label": "van eerste gesprek tot live"
+        },
+        {
+          "value": "vanaf €1.050",
+          "label": "vaste prijs — geen meeruren"
+        },
+        {
+          "value": "NL + ES",
+          "label": "tweetalig zonder gedoe"
+        }
       ],
       "problemEyebrow": "waar het misgaat",
       "problemTitle": "Waarom een website-bouwer of bureau vaak tegenvalt",
@@ -1059,10 +1107,22 @@
       "ctaBody": "Klik je project bij elkaar: type, aantal pagina's, stijl, talen, opties. Je ziet direct een richtprijs en wij mailen je binnen een werkdag.",
       "ctaButton": "Stel je website samen",
       "related": [
-        { "label": "Vraag je website aan", "href": "/aanvragen" },
-        { "label": "Alle diensten", "href": "/diensten" },
-        { "label": "Heldere prijzen", "href": "/prijzen" },
-        { "label": "Webshop laten maken", "href": "/diensten/webshop-laten-maken" }
+        {
+          "label": "Vraag je website aan",
+          "href": "/aanvragen"
+        },
+        {
+          "label": "Alle diensten",
+          "href": "/diensten"
+        },
+        {
+          "label": "Heldere prijzen",
+          "href": "/prijzen"
+        },
+        {
+          "label": "Webshop laten maken",
+          "href": "/diensten/webshop-laten-maken"
+        }
       ]
     },
     "webshop-laten-maken": {
@@ -1072,9 +1132,18 @@
       "title": "Een webshop die *afrekent zoals jij verkoopt*",
       "lede": "Niet een standaard-shop waar je je producten in moet wringen — een webshop op maat: jouw productlogica, jouw btw-categorieën, jouw checkout, jouw merk. Vaste prijs, vier weken, en als je in twee landen verkoopt: NL- én ES-btw, twee talen.",
       "metrics": [
-        { "value": "4 wkn", "label": "van eerste gesprek tot live" },
-        { "value": "vanaf €3.000", "label": "vaste prijs — geen meeruren" },
-        { "value": "iDEAL · kaart", "label": "afrekenen via Stripe/Mollie" }
+        {
+          "value": "4 wkn",
+          "label": "van eerste gesprek tot live"
+        },
+        {
+          "value": "vanaf €3.000",
+          "label": "vaste prijs — geen meeruren"
+        },
+        {
+          "value": "iDEAL · kaart",
+          "label": "afrekenen via Stripe/Mollie"
+        }
       ],
       "problemEyebrow": "waar het misgaat",
       "problemTitle": "Waarom een standaard-shop vaak knelt",
@@ -1164,10 +1233,22 @@
       "ctaBody": "Klik je project bij elkaar: type, aantal pagina's, stijl, talen, opties als voorraad-koppeling. Je ziet direct een richtprijs en wij mailen je binnen een werkdag.",
       "ctaButton": "Stel je webshop samen",
       "related": [
-        { "label": "Vraag je webshop aan", "href": "/aanvragen" },
-        { "label": "Alle diensten", "href": "/diensten" },
-        { "label": "Heldere prijzen", "href": "/prijzen" },
-        { "label": "Website laten maken", "href": "/diensten/website-laten-maken" }
+        {
+          "label": "Vraag je webshop aan",
+          "href": "/aanvragen"
+        },
+        {
+          "label": "Alle diensten",
+          "href": "/diensten"
+        },
+        {
+          "label": "Heldere prijzen",
+          "href": "/prijzen"
+        },
+        {
+          "label": "Website laten maken",
+          "href": "/diensten/website-laten-maken"
+        }
       ]
     },
     "admin-systeem-op-maat": {
@@ -1177,9 +1258,18 @@
       "title": "Eén systeem voor *alles wat je bedrijf bijhoudt*",
       "lede": "Excel werkt — tot je bedrijf erop draait en het kraakt: één persoon snapt het bestand nog, dezelfde gegevens staan op drie plekken, een fout valt pas weken later op. Een admin-systeem op maat is gebouwd rond wat jouw bedrijf écht doet: jouw begrippen, jouw workflow, vangrails ingebouwd.",
       "metrics": [
-        { "value": "4 wkn", "label": "van eerste gesprek tot werkende kern" },
-        { "value": "€5–8k", "label": "vaste prijs voor de kern, geen meeruren" },
-        { "value": "1 scherm", "label": "i.p.v. vijf losse tools" }
+        {
+          "value": "4 wkn",
+          "label": "van eerste gesprek tot werkende kern"
+        },
+        {
+          "value": "€5–8k",
+          "label": "vaste prijs voor de kern, geen meeruren"
+        },
+        {
+          "value": "1 scherm",
+          "label": "i.p.v. vijf losse tools"
+        }
       ],
       "problemEyebrow": "waar het misgaat",
       "problemTitle": "Waarom bedrijven *weg* willen van Excel",
@@ -1277,8 +1367,14 @@
           "label": "MKB maatwerk — wanneer wel/niet",
           "href": "/blog/mkb-maatwerk-software-wanneer-wel-niet"
         },
-        { "label": "Reparatie-portaal voor werkplaatsen", "href": "/diensten/reparatie-portaal" },
-        { "label": "Alle diensten", "href": "/diensten" }
+        {
+          "label": "Reparatie-portaal voor werkplaatsen",
+          "href": "/diensten/reparatie-portaal"
+        },
+        {
+          "label": "Alle diensten",
+          "href": "/diensten"
+        }
       ]
     },
     "reparatie-portaal": {
@@ -1288,9 +1384,18 @@
       "title": "Een werkplaats *zonder papierstroom* — en zonder \"is het al klaar?\"",
       "lede": "Werkbonnen op papier raken kwijt, de status zit in iemands hoofd, en de klant belt om te vragen of het al klaar is. Een reparatie-portaal maakt van die papierstroom één systeem: de monteur werkt op een iPad, de status loopt automatisch mee, de klant volgt het zelf — in jouw huisstijl.",
       "metrics": [
-        { "value": "4 wkn", "label": "van eerste gesprek tot werkende versie" },
-        { "value": "€5–8k", "label": "vaste prijs, geen meeruren" },
-        { "value": "0", "label": "kwijtgeraakte werkbonnen" }
+        {
+          "value": "4 wkn",
+          "label": "van eerste gesprek tot werkende versie"
+        },
+        {
+          "value": "€5–8k",
+          "label": "vaste prijs, geen meeruren"
+        },
+        {
+          "value": "0",
+          "label": "kwijtgeraakte werkbonnen"
+        }
       ],
       "problemEyebrow": "waar het misgaat",
       "problemTitle": "Waarom werkplaatsen een *eigen* portaal zoeken",
@@ -1384,9 +1489,18 @@
           "label": "Reparatie-portaal voor werkplaatsen",
           "href": "/blog/reparatie-portaal-voor-werkplaatsen"
         },
-        { "label": "Case: Caravanreparatiespanje", "href": "/cases/caravanreparatiespanje" },
-        { "label": "Admin-systeem op maat", "href": "/diensten/admin-systeem-op-maat" },
-        { "label": "Alle diensten", "href": "/diensten" }
+        {
+          "label": "Case: Caravanreparatiespanje",
+          "href": "/cases/caravanreparatiespanje"
+        },
+        {
+          "label": "Admin-systeem op maat",
+          "href": "/diensten/admin-systeem-op-maat"
+        },
+        {
+          "label": "Alle diensten",
+          "href": "/diensten"
+        }
       ]
     }
   },
@@ -1456,10 +1570,22 @@
       "ctaSecondary": "Vraag offerte aan",
       "liveDemo": "Of open een live demo zonder account",
       "metaItems": [
-        { "num": "8u", "label": "Bespaard per week (gemiddeld)" },
-        { "num": "0", "label": "Dubbele boekingen na livegang" },
-        { "num": "3-6w", "label": "Doorlooptijd basis-systeem" },
-        { "num": "15+", "label": "Verhuurders aan boord" }
+        {
+          "num": "8u",
+          "label": "Bespaard per week (gemiddeld)"
+        },
+        {
+          "num": "0",
+          "label": "Dubbele boekingen na livegang"
+        },
+        {
+          "num": "3-6w",
+          "label": "Doorlooptijd basis-systeem"
+        },
+        {
+          "num": "15+",
+          "label": "Verhuurders aan boord"
+        }
       ],
       "problemEyebrow": "het probleem",
       "problemTitle": "De meeste verhuurders draaien op *vijf* tools die niet met elkaar praten.",
@@ -1606,9 +1732,18 @@
     "title": "Wat we voor je *bouwen* en *onderhouden*.",
     "lede": "Vier concrete pakketten — vaste prijs, vaste scope, en een lopend abonnement zodat je systeem mee blijft groeien.",
     "heroMetrics": [
-      { "value": "3", "label": "verhuurplatforms productioneel" },
-      { "value": "47", "label": "werkplaatsen op één platform" },
-      { "value": "4 wkn", "label": "vaste prijs, eerste versie" }
+      {
+        "value": "3",
+        "label": "verhuurplatforms productioneel"
+      },
+      {
+        "value": "47",
+        "label": "werkplaatsen op één platform"
+      },
+      {
+        "value": "4 wkn",
+        "label": "vaste prijs, eerste versie"
+      }
     ],
     "timeline": {
       "eyebrow": "hoe een 4-weken build verloopt",
@@ -1882,9 +2017,18 @@
         "lede": "Een Nederlandse verhuurder op de Costa Brava met 12 caravans en 4 stacaravans. Boekingen kwamen binnen via Booking, Airbnb, eigen site en WhatsApp — drie dubbele boekingen per maand, halve dag administratie per week. Eén geïntegreerd platform later: nul dubbele boekingen sinds livegang.",
         "videoUrl": "https://vimeo.com/1190126706/dae28da598",
         "metrics": [
-          { "value": "1.200", "label": "boekingen verwerkt" },
-          { "value": "0", "label": "dubbele boekingen sinds 2024" },
-          { "value": "4", "label": "weken vaste prijs build" }
+          {
+            "value": "1.200",
+            "label": "boekingen verwerkt"
+          },
+          {
+            "value": "0",
+            "label": "dubbele boekingen sinds 2024"
+          },
+          {
+            "value": "4",
+            "label": "weken vaste prijs build"
+          }
         ],
         "problem": {
           "eyebrow": "het probleem",
@@ -1956,9 +2100,18 @@
         "videoUrl": null,
         "url": "https://caravanreparatiespanje.vercel.app",
         "metrics": [
-          { "value": "~80", "label": "reparaties per maand verwerkt" },
-          { "value": "0", "label": "papieren werkbonnen sinds livegang" },
-          { "value": "4", "label": "weken vaste prijs build" }
+          {
+            "value": "~80",
+            "label": "reparaties per maand verwerkt"
+          },
+          {
+            "value": "0",
+            "label": "papieren werkbonnen sinds livegang"
+          },
+          {
+            "value": "4",
+            "label": "weken vaste prijs build"
+          }
         ],
         "problem": {
           "eyebrow": "het probleem",
@@ -2689,7 +2842,11 @@
         "upgradeLabel": "Pakket-upgrade / meer uren",
         "upgradeBody": "Ik wil naar een groter pakket of heb meer onderhoudsuren nodig."
       },
-      "priority": { "low": "laag", "normal": "normaal", "high": "hoog" },
+      "priority": {
+        "low": "laag",
+        "normal": "normaal",
+        "high": "hoog"
+      },
       "status": {
         "open": "open",
         "in_progress": "in behandeling",
@@ -2725,7 +2882,11 @@
       "role": "Rol",
       "save": "Opslaan",
       "saved": "Opgeslagen.",
-      "roles": { "owner": "Eigenaar", "member": "Lid", "read_only": "Alleen lezen" }
+      "roles": {
+        "owner": "Eigenaar",
+        "member": "Lid",
+        "read_only": "Alleen lezen"
+      }
     },
     "planSwitch": {
       "title": "Abonnement wijzigen",
@@ -2858,6 +3019,20 @@
       "lede": "Sentry heeft Laurens al een melding gestuurd. Probeer het opnieuw — werkt het nog niet, mail dan gerust.",
       "retry": "Opnieuw proberen",
       "homeCta": "Terug naar home"
+    },
+    "portalBoundary": {
+      "eyebrow": "iets brak",
+      "title": "Er ging *iets mis* in je portal.",
+      "lede": "Sentry heeft Laurens al een melding gestuurd. Probeer het opnieuw — blijft het haperen, mail dan gerust.",
+      "retry": "Opnieuw proberen",
+      "homeCta": "Terug naar dashboard"
+    },
+    "adminBoundary": {
+      "eyebrow": "iets brak",
+      "title": "Er ging *iets mis* in de admin.",
+      "lede": "Sentry heeft een melding gestuurd. Probeer het opnieuw — werkt het nog niet, kijk dan in de logs.",
+      "retry": "Opnieuw proberen",
+      "homeCta": "Terug naar admin"
     }
   },
   "auth": {
@@ -3265,12 +3440,30 @@
         "resolved": "Opgelost",
         "reopened": "Heropend",
         "shortcuts": [
-          { "keys": "j / k", "label": "Volgende / vorige ticket" },
-          { "keys": "e", "label": "Cycle status (open → in behandeling → gesloten)" },
-          { "keys": "c", "label": "Sluit ticket" },
-          { "keys": "/", "label": "Focus zoekveld" },
-          { "keys": "?", "label": "Toon / verberg sneltoetsen" },
-          { "keys": "Esc", "label": "Sluit overlay" }
+          {
+            "keys": "j / k",
+            "label": "Volgende / vorige ticket"
+          },
+          {
+            "keys": "e",
+            "label": "Cycle status (open → in behandeling → gesloten)"
+          },
+          {
+            "keys": "c",
+            "label": "Sluit ticket"
+          },
+          {
+            "keys": "/",
+            "label": "Focus zoekveld"
+          },
+          {
+            "keys": "?",
+            "label": "Toon / verberg sneltoetsen"
+          },
+          {
+            "keys": "Esc",
+            "label": "Sluit overlay"
+          }
         ]
       }
     },
