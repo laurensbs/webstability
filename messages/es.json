@@ -3033,6 +3033,15 @@
       "step3Cta": "A las facturas",
       "next": "Siguiente",
       "dismiss": "Entendido"
+    },
+    "cmdK": {
+      "placeholder": "Ir a… (Cmd+K)",
+      "empty": "Sin resultados.",
+      "newTicket": "Nuevo ticket",
+      "hintEnter": "abrir",
+      "hintArrows": "navegar",
+      "hintEsc": "cerrar",
+      "closeLabel": "Cerrar"
     }
   },
   "stub": {

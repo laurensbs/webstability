@@ -9,6 +9,7 @@ import { Toaster } from "sonner";
 import { Sidebar } from "@/components/portal/Sidebar";
 import { Topbar } from "@/components/portal/Topbar";
 import { RouteTransition } from "@/components/portal/RouteTransition";
+import { PortalCommandPalette } from "@/components/portal/PortalCommandPalette";
 import { DemoBanner } from "@/components/portal/DemoBanner";
 import { DemoFollowUpModal } from "@/components/demo/DemoFollowUpModal";
 import { MobileBottomNav } from "@/components/portal/MobileBottomNav";
@@ -103,6 +104,26 @@ export default async function PortalLayout({
           tickets: navLabels.tickets,
           invoices: navLabels.invoices,
           monitoring: navLabels.monitoring,
+        }}
+      />
+      <PortalCommandPalette
+        labels={{
+          dashboard: navLabels.dashboard,
+          projects: navLabels.projects,
+          tickets: navLabels.tickets,
+          invoices: navLabels.invoices,
+          files: navLabels.files,
+          monitoring: navLabels.monitoring,
+          seo: navLabels.seo,
+          team: navLabels.team,
+          settings: navLabels.settings,
+          newTicket: t("cmdK.newTicket"),
+          placeholder: t("cmdK.placeholder"),
+          empty: t("cmdK.empty"),
+          hintEnter: t("cmdK.hintEnter"),
+          hintArrows: t("cmdK.hintArrows"),
+          hintEsc: t("cmdK.hintEsc"),
+          closeLabel: t("cmdK.closeLabel"),
         }}
       />
       <Toaster

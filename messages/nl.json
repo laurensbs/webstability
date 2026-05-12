@@ -3029,6 +3029,15 @@
       "step3Cta": "Naar facturen",
       "next": "Volgende",
       "dismiss": "Begrepen"
+    },
+    "cmdK": {
+      "placeholder": "Spring naar… (Cmd+K)",
+      "empty": "Niks gevonden.",
+      "newTicket": "Nieuw ticket",
+      "hintEnter": "open",
+      "hintArrows": "navigeer",
+      "hintEsc": "sluit",
+      "closeLabel": "Sluit"
     }
   },
   "stub": {
