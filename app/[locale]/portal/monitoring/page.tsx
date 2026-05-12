@@ -9,12 +9,14 @@ import { serviceKindFromProjects } from "@/lib/service-kinds";
 
 export const revalidate = 60;
 
+// Down = wijn-rood (alarm), niet terracotta (dat is de CTA-kleur). Onderhoud
+// is geen alarm — neutraal. Operationeel = groen, de rest gedimd.
 const dotMap: Record<Monitor["status"], string> = {
   up: "bg-(--color-success)",
-  down: "bg-(--color-accent)",
+  down: "bg-(--color-wine)",
   paused: "bg-(--color-muted)",
   pending: "bg-(--color-muted)",
-  maintenance: "bg-(--color-wine)",
+  maintenance: "bg-(--color-muted)",
   validating: "bg-(--color-muted)",
 };
 
