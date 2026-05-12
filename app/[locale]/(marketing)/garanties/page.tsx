@@ -53,8 +53,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-md border border-(--color-border) bg-(--color-bg-warm) text-(--color-accent)">
                 <Shield className="h-5 w-5" />
               </span>
-              <div>
-                <h2 className="text-2xl">{t("ndaTitle")}</h2>
+              <div className="min-w-0">
+                <h2 className="text-2xl break-words">{t("ndaTitle")}</h2>
                 <p className="mt-3 leading-relaxed text-(--color-muted)">{t("ndaBody")}</p>
               </div>
             </div>

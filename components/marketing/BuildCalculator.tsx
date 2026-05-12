@@ -172,9 +172,9 @@ export function BuildCalculator({
           aria-hidden
         />
         {build === "none" ? (
-          <p className="text-(--color-muted)">{strings.interpretationNone}</p>
+          <p className="min-w-0 break-words text-(--color-muted)">{strings.interpretationNone}</p>
         ) : (
-          <p>
+          <p className="min-w-0 break-words">
             {strings.interpretationTemplate.replace(
               "{project}",
               strings.interpretationLabels[build] ?? "",
