@@ -3,6 +3,7 @@
 // felicitatie + link naar portal én naar de live URL.
 
 import { createTransport } from "nodemailer";
+import type { ServiceKind } from "@/lib/service-kinds";
 
 const COLORS = {
   bg: "#F5F0E8",
@@ -26,7 +27,11 @@ const COPY: Record<
     preheader: string;
     eyebrow: string;
     headingLive: string;
-    intro: (project: string) => string;
+    /** Dienst-specifieke openingsalinea — wat "live" concreet betekent. */
+    intro: Record<ServiceKind, (project: string) => string>;
+    firstStepsTitle: string;
+    /** "Wat nu" — een paar concrete acties, dienst-specifiek. */
+    firstSteps: Record<ServiceKind, string[]>;
     visitButton: string;
     portalButton: string;
     signoff: string;
@@ -41,8 +46,37 @@ const COPY: Record<
     preheader: "Je portaal staat live. Tijd voor een rondje.",
     eyebrow: "// livegang",
     headingLive: "Live.",
-    intro: (p) =>
-      `${p} draait. Vanaf nu zien klanten je nieuwe site, kun je direct boekingen of contactaanvragen ontvangen, en houden we monitoring + uptime in de gaten.`,
+    intro: {
+      website: (p) =>
+        `${p} staat online. Bezoekers zien vanaf nu je nieuwe site, contactaanvragen komen direct binnen, en ik hou uptime + monitoring in de gaten.`,
+      webshop: (p) =>
+        `${p} staat open. Bestellingen komen vanaf nu binnen, betalingen worden verwerkt, en ik monitor de checkout — zodat ik 't weet vóór je klanten 't merken.`,
+      platform: (p) =>
+        `${p} draait. De koppelingen lopen live, gebruikers kunnen aan de slag, en ik monitor de omgeving + de integraties.`,
+      other: (p) => `${p} draait. Vanaf nu is alles live; ik hou monitoring + uptime in de gaten.`,
+    },
+    firstStepsTitle: "Wat nu",
+    firstSteps: {
+      website: [
+        "Klik 'm rond op je telefoon — zie je iets dat niet klopt, ééntje ticket en ik fix 't.",
+        "Deel de link met je netwerk; de eerste bezoekers zijn de leukste.",
+        "Tekst of foto die je later wilt wisselen? Loopt allemaal via tickets.",
+      ],
+      webshop: [
+        "Doe één testbestelling met een echte betaling — dan weet je dat de flow rond is.",
+        "Check je e-mailbevestigingen (order + verzending) bij jezelf.",
+        "Nieuwe producten, prijzen of verzendregels: via een ticket, ik regel het.",
+      ],
+      platform: [
+        "Log in als een echte gebruiker en loop de belangrijkste flow één keer door.",
+        "Controleer of de koppelingen de data tonen die je verwacht.",
+        "Extra integratie of aanpassing aan de flow? Via een ticket, met status die jij volgt.",
+      ],
+      other: [
+        "Klik 'm rond — zie je iets dat niet klopt, ééntje ticket en ik fix 't.",
+        "Vraag of wijziging? Alles loopt via tickets, jij ziet de status.",
+      ],
+    },
     visitButton: "Open de live site",
     portalButton: "Bekijk in je portaal",
     signoff: "Veel succes,",
@@ -57,8 +91,38 @@ const COPY: Record<
     preheader: "Tu portal está en vivo. Hora de echar un vistazo.",
     eyebrow: "// lanzamiento",
     headingLive: "En vivo.",
-    intro: (p) =>
-      `${p} está funcionando. Desde ahora los clientes ven tu nuevo site, puedes recibir reservas o consultas directamente, y nosotros vigilamos monitoring + uptime.`,
+    intro: {
+      website: (p) =>
+        `${p} está online. Los visitantes ya ven tu nuevo site, las consultas llegan directamente, y yo vigilo uptime + monitoring.`,
+      webshop: (p) =>
+        `${p} está abierta. Los pedidos ya entran, los pagos se procesan, y monitorizo el checkout — para saberlo antes que tus clientes.`,
+      platform: (p) =>
+        `${p} está funcionando. Las integraciones corren en vivo, los usuarios pueden empezar, y monitorizo el entorno + las integraciones.`,
+      other: (p) =>
+        `${p} está funcionando. Desde ahora todo está en vivo; vigilo monitoring + uptime.`,
+    },
+    firstStepsTitle: "Qué hacer ahora",
+    firstSteps: {
+      website: [
+        "Pruébalo en tu móvil — si ves algo raro, un ticket y lo arreglo.",
+        "Comparte el enlace con tu red; los primeros visitantes son los mejores.",
+        "¿Texto o foto que quieras cambiar luego? Todo va por tickets.",
+      ],
+      webshop: [
+        "Haz un pedido de prueba con un pago real — así sabes que el flujo está cerrado.",
+        "Revisa tus correos de confirmación (pedido + envío) en tu propia bandeja.",
+        "Nuevos productos, precios o reglas de envío: por un ticket, yo lo hago.",
+      ],
+      platform: [
+        "Entra como un usuario real y recorre una vez el flujo principal.",
+        "Comprueba que las integraciones muestran los datos que esperas.",
+        "¿Integración extra o cambio en el flujo? Por un ticket, con estado que sigues.",
+      ],
+      other: [
+        "Pruébalo — si ves algo raro, un ticket y lo arreglo.",
+        "¿Duda o cambio? Todo va por tickets, tú ves el estado.",
+      ],
+    },
     visitButton: "Abre el sitio en vivo",
     portalButton: "Ver en tu portal",
     signoff: "¡Mucho éxito,",
@@ -103,18 +167,23 @@ export async function sendLivegangMail({
   projectName,
   projectUrl,
   locale = "nl",
+  kind = "other",
 }: {
   to: string;
   name: string | null;
   projectName: string;
   projectUrl: string | null;
   locale?: Locale;
+  /** Dienst-type — stuurt de openingsalinea + de 'wat nu'-stappen. */
+  kind?: ServiceKind;
 }) {
   if (!process.env.EMAIL_FROM) {
     throw new Error("EMAIL_FROM not configured");
   }
 
   const t = COPY[locale];
+  const intro = t.intro[kind](projectName);
+  const firstSteps = t.firstSteps[kind];
   const firstName = (name ?? "").split(" ")[0]?.trim() || (locale === "es" ? "amigo" : "vriend");
   const portalUrl = `${process.env.AUTH_URL ?? "https://webstability.eu"}/${locale}/portal/dashboard`;
   const subject = t.subject(projectName);
@@ -164,8 +233,27 @@ export async function sendLivegangMail({
                   ${escapeHtml(projectName)} <em style="font-style:italic;color:${COLORS.wine};font-weight:300;">${escapeHtml(t.headingLive)}</em>
                 </h1>
                 <p style="margin:0 0 24px 0;font-size:15px;line-height:1.6;color:${COLORS.muted};">
-                  ${escapeHtml(`${firstName}, `)}${escapeHtml(t.intro(projectName))}
+                  ${escapeHtml(`${firstName}, `)}${escapeHtml(intro)}
                 </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:0 32px 24px 32px;">
+                <p style="margin:0 0 10px 0;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:${COLORS.muted};">
+                  ${escapeHtml(t.firstStepsTitle)}
+                </p>
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                  ${firstSteps
+                    .map(
+                      (s, i) =>
+                        `<tr>
+                          <td valign="top" style="padding:0 10px 8px 0;font-family:ui-monospace,monospace;font-size:12px;color:${COLORS.accent};">${i + 1}.</td>
+                          <td valign="top" style="padding:0 0 8px 0;font-size:14px;line-height:1.55;color:${COLORS.text};">${escapeHtml(s)}</td>
+                        </tr>`,
+                    )
+                    .join("")}
+                </table>
               </td>
             </tr>
 
@@ -239,7 +327,10 @@ export async function sendLivegangMail({
   const text = [
     `${projectName} ${t.headingLive}`,
     "",
-    t.intro(projectName),
+    intro,
+    "",
+    `${t.firstStepsTitle}:`,
+    ...firstSteps.map((s, i) => `${i + 1}. ${s}`),
     "",
     projectUrl ? `${t.visitButton}: ${projectUrl}` : "",
     `${t.portalButton}: ${portalUrl}`,

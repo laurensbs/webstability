@@ -39,6 +39,7 @@ import {
   ticketReplies,
 } from "@/lib/db/schema";
 import { getHandoverStatus } from "@/lib/db/queries/portal";
+import { serviceKindFromProjectType } from "@/lib/service-kinds";
 import type { ActionResult } from "@/lib/action-result";
 
 // Per-request cached lookup — voorkomt dat een server-action die meerdere
@@ -112,6 +113,7 @@ export async function updateProject(
       liveAt: true,
       organizationId: true,
       name: true,
+      type: true,
       monitoringTargetUrl: true,
     },
   });
@@ -153,6 +155,7 @@ export async function updateProject(
           projectName: current.name,
           projectUrl: urlInput || current.monitoringTargetUrl || null,
           locale: owner.locale === "es" ? "es" : "nl",
+          kind: serviceKindFromProjectType(current.type),
         });
       }
     } catch (err) {
@@ -1309,6 +1312,7 @@ export async function markProjectLive(
       name: true,
       status: true,
       liveAt: true,
+      type: true,
       monitoringTargetUrl: true,
     },
   });
@@ -1352,6 +1356,7 @@ export async function markProjectLive(
         projectName: project.name,
         projectUrl: project.monitoringTargetUrl ?? null,
         locale: owner.locale === "es" ? "es" : "nl",
+        kind: serviceKindFromProjectType(project.type),
       });
     }
   } catch (err) {
