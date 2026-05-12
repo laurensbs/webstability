@@ -118,7 +118,6 @@ export async function Navigation({ locale }: { locale: string }) {
             loginLabel={t("login")}
             liveBadge={t("liveBadge")}
             tagline={tFooter("tagline")}
-            locale={locale}
           />
         </div>
       </nav>

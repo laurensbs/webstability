@@ -7,7 +7,6 @@ import { useReducedMotion } from "motion/react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LogoMark } from "@/components/shared/LogoMark";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
-import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 import type { MegaMenuStrings } from "@/components/marketing/NavMegaMenu";
 
 type PlainLink = { href: string; label: string };
@@ -41,7 +40,6 @@ export function MobileNav({
   loginLabel,
   liveBadge,
   tagline,
-  locale,
 }: {
   servicesLabel: string;
   casesLabel: string;
@@ -52,7 +50,6 @@ export function MobileNav({
   loginLabel: string;
   liveBadge: string;
   tagline: string;
-  locale: string;
 }) {
   const reduce = useReducedMotion();
   const [open, setOpen] = React.useState(false);
@@ -207,7 +204,11 @@ export function MobileNav({
             </ul>
           </nav>
 
-          {/* Footer — login + lang + Cal-popup CTA (consistent met desktop) */}
+          {/* Footer — login + lang + CTA. De CTA is hier bewust een gewone
+              link naar /contact (waar de Cal-embed leeft), géén CalPopupTrigger:
+              die opent een Radix Dialog ín deze al-open Radix Dialog, en twee
+              gestapelde dialogs geven focus-trap- en scroll-lock-conflicten op
+              mobiel. Op desktop blijft de popup-CTA wél staan. */}
           <div className="space-y-4 border-t border-(--color-border) px-6 py-5">
             <div className="flex items-center justify-between">
               <Link
@@ -220,13 +221,14 @@ export function MobileNav({
               </Link>
               <LangSwitcher />
             </div>
-            <CalPopupTrigger
-              locale={locale}
+            <Link
+              href={{ pathname: "/contact" }}
+              onClick={close}
               className="group inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-3 text-[14px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)]"
             >
               {ctaLabel}
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-            </CalPopupTrigger>
+            </Link>
           </div>
         </Dialog.Content>
       </Dialog.Portal>

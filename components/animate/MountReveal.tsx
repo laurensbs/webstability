@@ -25,8 +25,15 @@ export function MountReveal({
   const reduce = useReducedMotion();
   const Tag = motion[as];
 
+  // De SSR-markup krijgt de verborgen begintoestand al via inline style, zodat
+  // er geen flash is: zonder dit rendert de server het element zichtbaar, springt
+  // hydratie 'm naar opacity:0, en animeert 'ie daarna pas in — dat las als
+  // "tekst komt niet goed naar voor". Reduced-motion: gewoon zichtbaar laten.
+  const hiddenStyle = reduce ? undefined : { opacity: 0 };
+
   return (
     <Tag
+      style={hiddenStyle}
       initial={reduce ? false : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
