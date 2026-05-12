@@ -469,6 +469,13 @@ body.is-marketing #main {
     opacity: 0 !important;
     transition: none !important;
   }
+  /* Achtergrond-laag (1) ALTIJD zichtbaar op mobile. Zonder dit fadet 'ie op
+     scroll naar opacity-0 (de pill zou 'm op desktop overnemen, maar die is
+     hier uitgezet) → transparante header, tekst zweeft over de pagina. */
+  header > span[class*="bg-(--color-text)"] {
+    opacity: 1 !important;
+    transition: none !important;
+  }
 
   /* 6. Scroll-reveal-blokken (RevealOnScroll) zijn op de telefoon meteen
    *    zichtbaar — géén fade-on-scroll. Reden: de SSR-markup zet opacity:0
