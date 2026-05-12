@@ -7,7 +7,7 @@ const START_YEAR = 2016;
 
 export function FounderTimeline({ label }: { label: string }) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, amount: 0.4 });
   const reduce = useReducedMotion();
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: currentYear - START_YEAR + 1 }, (_, i) => START_YEAR + i);

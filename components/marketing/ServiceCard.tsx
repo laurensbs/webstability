@@ -64,7 +64,7 @@ export function ServiceCard({
     <motion.article
       initial={reduce ? false : { opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       whileHover={reduce ? undefined : { y: -4 }}
       className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-(--color-bg)/15 bg-(--color-text) p-7 text-(--color-bg) shadow-[0_1px_2px_rgba(31,27,22,0.04),0_8px_24px_-8px_rgba(31,27,22,0.18)] transition-all duration-300 hover:shadow-[0_2px_4px_rgba(31,27,22,0.08),0_24px_48px_-12px_rgba(107,30,44,0.32)] sm:p-9"

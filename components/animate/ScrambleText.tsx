@@ -20,7 +20,7 @@ export function ScrambleText({
   className?: string;
 }) {
   const ref = React.useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, amount: 0.4 });
   const reduce = useReducedMotion();
   const [display, setDisplay] = React.useState(() => (reduce ? text : " ".repeat(text.length)));
 

@@ -41,7 +41,7 @@ export function StudioStats({ stats }: { stats: StatItem[] }) {
           vectorEffect="non-scaling-stroke"
           initial={reduce ? false : { pathLength: 0 }}
           whileInView={{ pathLength: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
         />
       </motion.svg>
@@ -52,7 +52,7 @@ export function StudioStats({ stats }: { stats: StatItem[] }) {
             key={s.label}
             initial={reduce ? false : { opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{
               duration: 0.5,
               delay: 0.15 + i * 0.1,

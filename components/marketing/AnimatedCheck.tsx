@@ -32,7 +32,7 @@ export function AnimatedCheck({
         d="M 3 8.5 L 6.5 12 L 13 4.5"
         initial={reduce ? false : { pathLength: 0 }}
         whileInView={{ pathLength: 1 }}
-        viewport={{ once: true, margin: "-30px" }}
+        viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
       />
     </svg>

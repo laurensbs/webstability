@@ -47,7 +47,7 @@ export function SystemWireframe() {
             strokeWidth={1.2}
             initial={reduce ? false : { pathLength: 0, opacity: 0 }}
             whileInView={{ pathLength: 1, opacity: 1 }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 1.2, delay: 0.2 + i * 0.15, ease: [0.22, 1, 0.36, 1] }}
           />
         ))}
@@ -58,7 +58,7 @@ export function SystemWireframe() {
             key={`sat-${i}`}
             initial={reduce ? false : { scale: 0, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{
               duration: 0.4,
               delay: 1.2 + i * 0.1,
@@ -96,7 +96,7 @@ export function SystemWireframe() {
         <motion.g
           initial={reduce ? false : { scale: 0, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.5, delay: 1.6, ease: [0.34, 1.56, 0.64, 1] }}
           style={{ transformOrigin: `${hub.x}px ${hub.y}px` }}
         >
@@ -136,7 +136,7 @@ export function SystemWireframe() {
           letterSpacing="1.5"
           initial={reduce ? false : { opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.4, delay: 1.9 }}
         >
           ÉÉN SYSTEEM

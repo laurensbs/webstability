@@ -39,7 +39,7 @@ export function ApproachRail({ steps }: { steps: Step[] }) {
             vectorEffect="non-scaling-stroke"
             initial={reduce ? false : { pathLength: 0 }}
             whileInView={{ pathLength: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
           />
         </svg>
@@ -50,7 +50,7 @@ export function ApproachRail({ steps }: { steps: Step[] }) {
               key={step.kicker}
               initial={reduce ? false : { opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true, amount: 0.25 }}
               transition={{
                 duration: 0.5,
                 delay: 0.3 + i * 0.18,
@@ -81,7 +81,7 @@ export function ApproachRail({ steps }: { steps: Step[] }) {
             vectorEffect="non-scaling-stroke"
             initial={reduce ? false : { pathLength: 0 }}
             whileInView={{ pathLength: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
           />
         </svg>
@@ -92,7 +92,7 @@ export function ApproachRail({ steps }: { steps: Step[] }) {
               key={step.kicker}
               initial={reduce ? false : { opacity: 0, x: 12 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true, amount: 0.25 }}
               transition={{
                 duration: 0.5,
                 delay: 0.3 + i * 0.15,

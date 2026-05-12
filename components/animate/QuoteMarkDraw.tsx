@@ -23,7 +23,7 @@ export function QuoteMarkDraw({ size = 64, className }: { size?: number; classNa
         fill="var(--color-accent)"
         initial={reduce ? { opacity: 0.6 } : { pathLength: 0, opacity: 0 }}
         whileInView={{ pathLength: 1, opacity: 0.6 }}
-        viewport={{ once: true, margin: "-80px" }}
+        viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 1.1, ease: "easeOut" }}
       />
     </svg>
