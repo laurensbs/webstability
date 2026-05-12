@@ -3536,7 +3536,11 @@
       "setInProgress": "En curso",
       "setWaiting": "Esperando al cliente",
       "setClosed": "Cerrar",
-      "reopen": "Reabrir"
+      "reopen": "Reabrir",
+      "priorityLabel": "Prioridad",
+      "setLow": "baja",
+      "setNormal": "normal",
+      "setHigh": "alta"
     }
   },
   "demo": {

@@ -5,7 +5,11 @@ import NextLink from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { routing } from "@/i18n/routing";
 import { getAdminTicketDetail } from "@/lib/db/queries/admin";
-import { staffReplyToTicket, changeTicketStatusDirect } from "@/app/actions/admin";
+import {
+  staffReplyToTicket,
+  changeTicketStatusDirect,
+  changeTicketPriority,
+} from "@/app/actions/admin";
 import { ToastForm } from "@/components/portal/ToastForm";
 import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
 import { TicketRepliesLive } from "@/components/portal/TicketRepliesLive";
@@ -82,36 +86,69 @@ export default async function AdminTicketDetail({
         </p>
       </header>
 
-      {/* Status-controls */}
-      <div className="flex flex-wrap items-center gap-2 border-y border-(--color-border) py-3">
-        <span className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
-          {t("statusLabel")}:
-        </span>
-        {(
-          [
-            ["in_progress", t("setInProgress")],
-            ["waiting", t("setWaiting")],
-            ["closed", ticket.status === "closed" ? t("reopen") : t("setClosed")],
-          ] as Array<[Status | "reopen", string]>
-        ).map(([key, label]) => {
-          const target: Status = key === "reopen" ? "open" : (key as Status);
-          const active = ticket.status === target;
-          return (
-            <form key={key} action={changeTicketStatusDirect.bind(null, ticket.id, target)}>
-              <button
-                type="submit"
-                disabled={active}
-                className={`rounded-full border px-3 py-1 font-mono text-[11px] tracking-wide uppercase transition-colors ${
-                  active
-                    ? "border-(--color-accent) bg-(--color-accent)/10 text-(--color-accent)"
-                    : "border-(--color-border) text-(--color-muted) hover:border-(--color-accent)/40 hover:text-(--color-text)"
-                }`}
-              >
-                {label}
-              </button>
-            </form>
-          );
-        })}
+      {/* Status- + prioriteit-controls */}
+      <div className="space-y-3 border-y border-(--color-border) py-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="w-16 shrink-0 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+            {t("statusLabel")}
+          </span>
+          {(
+            [
+              ["in_progress", t("setInProgress")],
+              ["waiting", t("setWaiting")],
+              ["closed", ticket.status === "closed" ? t("reopen") : t("setClosed")],
+            ] as Array<[Status | "reopen", string]>
+          ).map(([key, label]) => {
+            const target: Status = key === "reopen" ? "open" : (key as Status);
+            const active = ticket.status === target;
+            return (
+              <form key={key} action={changeTicketStatusDirect.bind(null, ticket.id, target)}>
+                <button
+                  type="submit"
+                  disabled={active}
+                  className={`rounded-full border px-3 py-1 font-mono text-[11px] tracking-wide uppercase transition-colors ${
+                    active
+                      ? "border-(--color-accent) bg-(--color-accent)/10 text-(--color-accent)"
+                      : "border-(--color-border) text-(--color-muted) hover:border-(--color-accent)/40 hover:text-(--color-text)"
+                  }`}
+                >
+                  {label}
+                </button>
+              </form>
+            );
+          })}
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="w-16 shrink-0 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+            {t("priorityLabel")}
+          </span>
+          {(
+            [
+              ["low", t("setLow")],
+              ["normal", t("setNormal")],
+              ["high", t("setHigh")],
+            ] as Array<["low" | "normal" | "high", string]>
+          ).map(([key, label]) => {
+            const active = ticket.priority === key;
+            return (
+              <form key={key} action={changeTicketPriority.bind(null, ticket.id, key)}>
+                <button
+                  type="submit"
+                  disabled={active}
+                  className={`rounded-full border px-3 py-1 font-mono text-[11px] tracking-wide uppercase transition-colors ${
+                    active
+                      ? key === "high"
+                        ? "border-(--color-wine) bg-(--color-wine)/10 text-(--color-wine)"
+                        : "border-(--color-accent) bg-(--color-accent)/10 text-(--color-accent)"
+                      : "border-(--color-border) text-(--color-muted) hover:border-(--color-accent)/40 hover:text-(--color-text)"
+                  }`}
+                >
+                  {label}
+                </button>
+              </form>
+            );
+          })}
+        </div>
       </div>
 
       {/* Oorspronkelijk bericht */}

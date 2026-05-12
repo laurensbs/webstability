@@ -1070,6 +1070,17 @@ export async function changeTicketStatusDirect(
   revalidatePath(`/admin/tickets/${ticketId}`);
 }
 
+/** Prioriteit van een ticket wijzigen — vanuit de admin-ticket-detailpagina. */
+export async function changeTicketPriority(
+  ticketId: string,
+  priority: "low" | "normal" | "high",
+): Promise<void> {
+  await requireStaff();
+  await db.update(tickets).set({ priority }).where(eq(tickets.id, ticketId));
+  revalidatePath(`/admin/tickets`);
+  revalidatePath(`/admin/tickets/${ticketId}`);
+}
+
 /**
  * Staff-antwoord op een ticket vanuit de admin-ticket-detailpagina. Post de
  * reply als de ingelogde staff-user; als het ticket nog 'open' was → naar

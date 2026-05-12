@@ -3532,7 +3532,11 @@
       "setInProgress": "In behandeling",
       "setWaiting": "Wachtend op klant",
       "setClosed": "Sluiten",
-      "reopen": "Heropenen"
+      "reopen": "Heropenen",
+      "priorityLabel": "Prioriteit",
+      "setLow": "laag",
+      "setNormal": "normaal",
+      "setHigh": "hoog"
     }
   },
   "demo": {
