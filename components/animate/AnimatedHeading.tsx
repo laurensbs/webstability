@@ -68,7 +68,8 @@ export function AnimatedHeading({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: dur, delay: wordDelay(i), ease: EASE }}
-          style={{ display: "inline-block", marginRight: "0.25em" }}
+          // opacity:0 ook in de SSR-markup → geen zichtbaar→onzichtbaar-sprong bij hydratie.
+          style={{ display: "inline-block", marginRight: "0.25em", opacity: 0 }}
         >
           {tok.accent ? <em>{tok.text}</em> : tok.text}
         </motion.span>
