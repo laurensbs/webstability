@@ -7,7 +7,7 @@ import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users, organizations } from "@/lib/db/schema";
 import { stripe } from "@/lib/stripe";
-import { sendWelcomeEmail } from "@/lib/email/welcome";
+import { provisionAccountForCheckout } from "@/app/actions/auth";
 import { CheckoutWelcome } from "@/components/marketing/CheckoutWelcome";
 
 /**
@@ -18,9 +18,9 @@ import { CheckoutWelcome } from "@/components/marketing/CheckoutWelcome";
  *    aan de juiste org.
  *
  * 2. Bezoeker was anoniem → we hebben een session_id queryparam, halen
- *    daar email + naam uit, maken een nieuwe user + org aan en sturen
- *    de bezoeker naar /login zodat hij zijn magic-link ontvangt.
- *    Daarna zit hij in z'n eigen klant-portaal.
+ *    daar email + naam uit, maken een nieuwe user + org aan en mailen
+ *    een "stel je wachtwoord in"-link. Na het instellen logt de klant
+ *    gewoon in met e-mail + wachtwoord — geen magic-link nodig.
  *
  * De Stripe webhook hangt al de subscription aan de org via
  * stripeCustomerId — wij hoeven hier alleen de user + org te zaaien.
@@ -120,42 +120,32 @@ export default async function CheckoutDone({
     })
     .returning({ id: organizations.id });
 
-  const userIfExists = existingUser;
-  if (userIfExists) {
+  if (existingUser) {
+    // Bestaande user die nog geen org had — koppel 'm als owner.
     await db
       .update(users)
       .set({ organizationId: newOrg.id, role: "owner" })
-      .where(eq(users.id, userIfExists.id));
-  } else {
-    await db.insert(users).values({
+      .where(eq(users.id, existingUser.id));
+  }
+  // Maak (indien nodig) de user aan + mail een "stel je wachtwoord in"-link.
+  // Werkt ook als de user al bestond (dan: alleen een nieuwe set-link).
+  // Faalt graceful — mag de checkout-flow niet blokkeren.
+  try {
+    await provisionAccountForCheckout({
       email: email.toLowerCase(),
       name,
-      emailVerified: new Date(),
-      locale: locale === "es" ? "es" : "nl",
-      role: "owner",
-      isStaff: false,
       organizationId: newOrg.id,
+      locale: locale === "es" ? "es" : "nl",
     });
-    // De Auth.js `createUser`-event fire't hier niet (we maken de user
-    // direct via Drizzle aan), dus de welkom-mail expliciet sturen.
-    // Faalt graceful — mag de checkout-flow niet blokkeren.
-    try {
-      const baseUrl = process.env.AUTH_URL ?? "https://webstability.eu";
-      const portalUrl = `${baseUrl}/${locale === "es" ? "es/" : ""}portal/dashboard`;
-      await sendWelcomeEmail({
-        to: email.toLowerCase(),
-        name,
-        portalUrl,
-        locale: locale === "es" ? "es" : "nl",
-      });
-    } catch (err) {
-      console.error("[checkout/done] welcome email failed:", err);
+    if (existingUser) {
+      // provisionAccountForCheckout zet role niet — zorg dat hij owner is.
+      await db.update(users).set({ role: "owner" }).where(eq(users.id, existingUser.id));
     }
+  } catch (err) {
+    console.error("[checkout/done] account provisioning failed:", err);
   }
 
-  // Klaar — toon een kort "je bent binnen"-moment, dan naar /login waar de
-  // magic-link begint. (De redirect kon ook hier server-side, maar dan mist
-  // de klant de bevestiging.)
+  // Klaar — toon een kort "je bent binnen"-moment, dan naar /login.
   const loginUrl = `/login?email=${encodeURIComponent(email)}&from=checkout`;
   const t = await getTranslations("checkout.welcome");
   return (

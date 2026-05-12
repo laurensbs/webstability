@@ -171,6 +171,14 @@ export const users = pgTable("users", {
     onDelete: "set null",
   }),
   twoFactorSecret: text("two_factor_secret"),
+  /** bcrypt-hash van het wachtwoord. Null = nog geen wachtwoord ingesteld
+   * (kan altijd nog via magic-link inloggen of via een set-password-token). */
+  passwordHash: text("password_hash"),
+  /** Eenmalige token om een wachtwoord in te stellen of te resetten —
+   * gemaild als knop. Verloopt via passwordSetupExpires. Null als er geen
+   * openstaande set/reset is. */
+  passwordSetupToken: text("password_setup_token"),
+  passwordSetupExpires: timestamp("password_setup_expires", { withTimezone: true }),
   // Studio-side staff flag — orthogonal to org `role`. Studio staff can see
   // the cross-org /admin views; clients cannot, regardless of their own role.
   isStaff: boolean("is_staff").notNull().default(false),

@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { headers, cookies } from "next/headers";
+import { headers } from "next/headers";
 import { Check } from "lucide-react";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
@@ -13,7 +13,6 @@ import { MountReveal } from "@/components/animate/MountReveal";
 import { LoginAmbientMount } from "@/components/r3f/LoginAmbientMount";
 import { AdminLoginTagline } from "@/components/admin/AdminLoginTagline";
 import { getStudioStats, getRevenueStats } from "@/lib/db/queries/admin";
-import { getOrgLoginStatLine, getAnonymousLoginStatLine } from "@/lib/login-stats";
 
 export default async function LoginPage({
   params,
@@ -47,22 +46,6 @@ export default async function LoginPage({
   // Op de admin-host fetchen we live studio-stats voor de rotating
   // tagline boven de login-form. Gracefully fallback naar één statisch
   // bericht als de DB faalt — login mag nooit blokkeren door telemetry.
-  // Klant-stat-line voor de apex-variant: óf "Costa Caravans · 99.97%
-  // uptime · 412 dagen live" (cookie last_org aanwezig en valide), óf
-  // een geanonimiseerde studio-staat ("X klanten actief · Y platforms
-  // live"). Geen sales-pitch — alleen "het draait, je betaalt niet voor
-  // lucht". Errors zijn no-op: login mag nooit blokkeren door telemetry.
-  let customerStatLines: string[] = [];
-  if (!isAdminHost) {
-    try {
-      const lastOrgCookie = (await cookies()).get("last_org")?.value;
-      const lines = lastOrgCookie ? await getOrgLoginStatLine(lastOrgCookie) : null;
-      customerStatLines = lines ?? (await getAnonymousLoginStatLine());
-    } catch {
-      customerStatLines = [];
-    }
-  }
-
   let adminTaglineMessages: string[] = ["studio online"];
   if (isAdminHost) {
     try {
@@ -204,22 +187,12 @@ export default async function LoginPage({
               </div>
             </MountReveal>
           ) : null}
-          {!isAdminHost && customerStatLines.length > 0 ? (
-            <MountReveal delay={0.4}>
-              <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) px-3 py-1.5 font-mono text-[11px] tracking-wide text-(--color-muted)">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-(--color-success) opacity-60" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-(--color-success)" />
-                </span>
-                {customerStatLines.join(" · ")}
-              </p>
-            </MountReveal>
-          ) : null}
           <MountReveal delay={0.45}>
             <div className="mt-8">
               <LoginForm
                 variant={isAdminHost ? "dark" : "light"}
                 defaultEmail={emailParam ?? ""}
+                redirectTo={isAdminHost ? "/admin" : "/portal/dashboard"}
                 stateCopy={
                   isAdminHost
                     ? undefined
