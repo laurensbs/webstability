@@ -2778,7 +2778,16 @@
       "download": "Abrir",
       "handoverBannerEyebrow": "Casi en vivo",
       "handoverBannerTitle": "Abre la lista de entrega para ver qué falta.",
-      "handoverBannerCta": "Ver lista"
+      "handoverBannerCta": "Ver lista",
+      "statusSteps": {
+        "planning": "Planificación",
+        "in_progress": "En desarrollo",
+        "review": "Revisión",
+        "live": "En vivo"
+      },
+      "stepDone": "Hecho",
+      "stepNow": "Ahora",
+      "stepNext": "Siguiente"
     },
     "handover": {
       "title": "Lista de entrega",

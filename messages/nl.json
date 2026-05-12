@@ -2774,7 +2774,16 @@
       "download": "Open",
       "handoverBannerEyebrow": "Bijna live",
       "handoverBannerTitle": "Open de oplevering-checklist om te zien wat er nog moet gebeuren.",
-      "handoverBannerCta": "Bekijk checklist"
+      "handoverBannerCta": "Bekijk checklist",
+      "statusSteps": {
+        "planning": "Planning",
+        "in_progress": "In ontwikkeling",
+        "review": "Review",
+        "live": "Live"
+      },
+      "stepDone": "Afgerond",
+      "stepNow": "Nu",
+      "stepNext": "Volgende"
     },
     "handover": {
       "title": "Oplevering-checklist",
