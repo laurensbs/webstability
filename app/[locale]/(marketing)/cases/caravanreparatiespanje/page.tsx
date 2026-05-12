@@ -133,7 +133,7 @@ export default async function CaravanreparatieDetailPage({
       </section>
 
       {/* PROBLEEM */}
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-20 md:py-24">
+      <section className="py-section md:py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
         <div className="mx-auto max-w-5xl">
           <RevealOnScroll className="mb-10 max-w-2xl space-y-3">
             <Eyebrow>{t("problem.eyebrow")}</Eyebrow>
@@ -156,7 +156,7 @@ export default async function CaravanreparatieDetailPage({
       </section>
 
       {/* SCOPE */}
-      <section className="border-t border-(--color-border) px-6 py-20 md:py-24">
+      <section className="py-section md:py-section border-t border-(--color-border) px-6">
         <div className="mx-auto max-w-5xl">
           <RevealOnScroll className="mb-10 max-w-2xl space-y-3">
             <Eyebrow>{t("scope.eyebrow")}</Eyebrow>
@@ -186,7 +186,7 @@ export default async function CaravanreparatieDetailPage({
       <BuildTimeline strings={timelineStrings} />
 
       {/* RESULTAAT */}
-      <section className="border-t border-(--color-border) px-6 py-20 md:py-24">
+      <section className="py-section md:py-section border-t border-(--color-border) px-6">
         <div className="mx-auto max-w-3xl space-y-3 text-center">
           <Eyebrow className="text-center">{t("result.eyebrow")}</Eyebrow>
           <h2 className="text-3xl leading-tight md:text-5xl">
@@ -197,7 +197,7 @@ export default async function CaravanreparatieDetailPage({
       </section>
 
       {/* QUOTE */}
-      <section className="bg-(--color-text) px-6 py-20 text-(--color-bg) md:py-24">
+      <section className="py-section md:py-section bg-(--color-text) px-6 text-(--color-bg)">
         <RevealOnScroll className="mx-auto max-w-3xl text-center">
           <blockquote className="font-serif text-[clamp(24px,3vw,32px)] leading-[1.3] font-light">
             &ldquo;{quote.text}&rdquo;
@@ -210,7 +210,7 @@ export default async function CaravanreparatieDetailPage({
       </section>
 
       {/* STACK */}
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-16 md:py-20">
+      <section className="md:py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-16">
         <div className="mx-auto max-w-5xl">
           <p className="mb-5 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
             {t("stack.eyebrow")}
@@ -229,7 +229,7 @@ export default async function CaravanreparatieDetailPage({
       </section>
 
       {/* CTA */}
-      <section className="border-t border-(--color-border) px-6 py-24">
+      <section className="py-section border-t border-(--color-border) px-6">
         <RevealOnScroll className="mx-auto max-w-3xl space-y-5 text-center">
           <h2 className="text-2xl leading-tight md:text-4xl">{t("cta.title")}</h2>
           <p className="text-(--color-muted)">{t("cta.body")}</p>

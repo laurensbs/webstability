@@ -113,7 +113,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <div className="mx-auto max-w-6xl">
           <RevealOnScroll className="mb-10 max-w-3xl space-y-3">
             <Eyebrow>{t("productLines.eyebrow")}</Eyebrow>
-            <h2 className="text-3xl md:text-5xl">{t("productLines.title")}</h2>
+            <h2 className="text-h2">{t("productLines.title")}</h2>
             <p className="text-(--color-muted)">{t("productLines.lede")}</p>
           </RevealOnScroll>
 
@@ -233,7 +233,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                     <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
                       {item.tagline}
                     </p>
-                    <h3 className="mt-3 text-2xl md:text-3xl">{item.name}</h3>
+                    <h3 className="text-h2 mt-3">{item.name}</h3>
                     <p className="mt-4 text-[15px] leading-[1.65] text-(--color-muted)">
                       {item.what}
                     </p>
@@ -290,7 +290,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <RevealOnScroll className="mt-10 rounded-[24px] border border-(--color-text) bg-(--color-text) p-8 text-(--color-bg) md:p-10">
             <div className="flex flex-col gap-4 md:grid md:grid-cols-[1.4fr_auto] md:items-center md:gap-6">
               <div className="space-y-3">
-                <h3 className="text-2xl md:text-3xl">{t("productLines.ctaTitle")}</h3>
+                <h3 className="text-h2">{t("productLines.ctaTitle")}</h3>
                 <p className="text-[15px] leading-[1.6] text-(--color-bg)/75">
                   {t("productLines.ctaBody")}
                 </p>
@@ -329,11 +329,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* SECTIE B — Klantcases */}
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-20">
+      <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
         <div className="mx-auto max-w-6xl">
           <RevealOnScroll className="mb-10 max-w-3xl space-y-3">
             <Eyebrow>{t("clientCases.eyebrow")}</Eyebrow>
-            <h2 className="text-3xl md:text-5xl">{t("clientCases.title")}</h2>
+            <h2 className="text-h2">{t("clientCases.title")}</h2>
             <p className="text-(--color-muted)">{t("clientCases.lede")}</p>
           </RevealOnScroll>
 
@@ -363,7 +363,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                     <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
                       {item.tagline}
                     </p>
-                    <h3 className="mt-3 text-2xl md:text-3xl">{item.name}</h3>
+                    <h3 className="text-h2 mt-3">{item.name}</h3>
                     <p className="mt-4 text-[15px] leading-[1.65] text-(--color-muted)">
                       {item.what}
                     </p>
@@ -411,11 +411,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* SECTIE C — Sites in productie */}
-      <section className="border-t border-(--color-border) px-6 py-20">
+      <section className="py-section border-t border-(--color-border) px-6">
         <div className="mx-auto max-w-6xl">
           <RevealOnScroll className="mb-8 max-w-3xl space-y-3">
             <Eyebrow>{t("production.eyebrow")}</Eyebrow>
-            <h2 className="text-2xl md:text-3xl">{t("production.title")}</h2>
+            <h2 className="text-h2">{t("production.title")}</h2>
             <p className="text-(--color-muted)">{t("production.lede")}</p>
           </RevealOnScroll>
 
@@ -466,7 +466,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <NotForSection strings={notForStrings} />
 
       {/* Footer-CTA */}
-      <section className="border-t border-(--color-border) px-6 py-24">
+      <section className="py-section border-t border-(--color-border) px-6">
         <RevealOnScroll className="mx-auto max-w-3xl space-y-5 text-center">
           <h2 className="text-2xl md:text-4xl">{t("footerCtaTitle")}</h2>
           <p className="text-(--color-muted)">{t("footerCtaBody")}</p>

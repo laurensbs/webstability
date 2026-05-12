@@ -33,7 +33,7 @@ export async function Services() {
   const t = await getTranslations("home.services");
 
   return (
-    <section id="diensten" className="px-6 py-[100px]">
+    <section id="diensten" className="py-section px-6">
       <div className="mx-auto max-w-[1200px]">
         <div className="mb-14 max-w-[760px]">
           <Eyebrow className="mb-[18px]">{t("eyebrow")}</Eyebrow>

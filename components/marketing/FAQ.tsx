@@ -22,7 +22,7 @@ export async function FAQ({ messagesKey = "home.faq" }: { messagesKey?: string }
   const items = tRaw.raw(`${messagesKey}.items`) as Array<{ q: string; a: string }>;
 
   return (
-    <section className="px-6 py-[100px]">
+    <section className="py-section px-6">
       <JsonLd data={faqPageLd(items, locale)} />
       <div className="mx-auto max-w-[1200px]">
         <div className="mx-auto mb-14 max-w-[720px] text-center">

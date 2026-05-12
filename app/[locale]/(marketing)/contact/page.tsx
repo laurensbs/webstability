@@ -60,7 +60,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">
                 {"// "}stappen
               </p>
-              <h2 className="mt-2 text-2xl md:text-3xl">{t("afterTitle")}</h2>
+              <h2 className="text-h2 mt-2">{t("afterTitle")}</h2>
             </div>
             <ol className="space-y-5">
               {after.map((step) => (

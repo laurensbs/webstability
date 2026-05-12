@@ -18,7 +18,7 @@ export async function Approach() {
   );
 
   return (
-    <section className="relative isolate overflow-hidden bg-(--color-text) px-6 py-[100px] text-(--color-bg)">
+    <section className="py-section relative isolate overflow-hidden bg-(--color-text) px-6 text-(--color-bg)">
       {/* Wijn-rode halo rechtsboven voor depth — geen volle conic-mesh,
           de rail moet de visuele dominant blijven. Halos alleen md+; op
           mobile één rustige gradient zonder blur-3xl. */}

@@ -49,7 +49,7 @@ export function HowItWorks({ strings }: { strings: Strings }) {
   const [view, setView] = React.useState<View>("client");
 
   return (
-    <section className="px-6 py-[100px]">
+    <section className="py-section px-6">
       <div className="mx-auto max-w-[1200px]">
         {/* Heading */}
         <div className="mx-auto mb-12 max-w-[720px] text-center">

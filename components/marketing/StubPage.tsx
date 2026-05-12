@@ -17,7 +17,7 @@ export async function StubPage({ titleKey }: { titleKey: string }) {
   };
 
   return (
-    <main className="dotted-bg flex flex-1 items-center justify-center px-6 py-32">
+    <main className="dotted-bg py-section flex flex-1 items-center justify-center px-6">
       <div className="max-w-xl space-y-6 text-center">
         <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">fase 2</p>
         <h1 className="text-4xl md:text-6xl">{titles[titleKey] ?? titleKey}</h1>

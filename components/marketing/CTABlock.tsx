@@ -12,7 +12,7 @@ export async function CTABlock() {
   const t = await getTranslations("home.cta");
   const locale = await getLocale();
   return (
-    <section id="contact" className="relative overflow-hidden px-6 py-[120px]">
+    <section id="contact" className="py-section relative overflow-hidden px-6">
       {/* Ambient terracotta blob — op mobile flatten naar pure gradient
           zonder blur-filter (iPhone GPU-pijn). md+ behoudt blur-[80px]. */}
       <div

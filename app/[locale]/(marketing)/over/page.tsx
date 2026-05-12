@@ -130,7 +130,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* PRINCIPLES */}
-      <section className="relative overflow-hidden border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
+      <section className="py-section relative overflow-hidden border-t border-(--color-border) bg-(--color-bg-warm) px-6">
         <div
           aria-hidden
           className="wb-soft-halo pointer-events-none absolute -bottom-32 -left-32 h-[420px] w-[420px] rounded-full bg-(--color-accent-soft) opacity-40 blur-3xl"
@@ -138,7 +138,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <div className="relative mx-auto max-w-6xl">
           <div className="max-w-2xl space-y-3">
             <Eyebrow>principes</Eyebrow>
-            <AnimatedHeading as="h2" className="text-3xl md:text-5xl">
+            <AnimatedHeading as="h2" className="text-h2">
               {t("principlesTitle")}
             </AnimatedHeading>
           </div>
@@ -166,11 +166,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       {/* NOW BUILDING — verhuur-credentials zichtbaar maken. Strategie:
           MKB-prospects + verhuur-prospects landen allebei op /over;
           deze drie regels laten ze zien wat de huidige realiteit is. */}
-      <section className="border-t-2 border-(--color-wine)/40 px-6 py-24">
+      <section className="py-section border-t-2 border-(--color-wine)/40 px-6">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl space-y-3">
             <Eyebrow>{t("nowBuilding.eyebrow")}</Eyebrow>
-            <AnimatedHeading as="h2" className="text-3xl md:text-5xl">
+            <AnimatedHeading as="h2" className="text-h2">
               {t("nowBuilding.title")}
             </AnimatedHeading>
             <p className="max-w-[56ch] text-[17px] leading-[1.65] text-(--color-muted)">
@@ -202,11 +202,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* TIMELINE */}
-      <section className="px-6 py-24">
+      <section className="py-section px-6">
         <div className="mx-auto max-w-3xl">
           <div className="space-y-3">
             <Eyebrow>tijdlijn</Eyebrow>
-            <AnimatedHeading as="h2" className="text-3xl md:text-5xl">
+            <AnimatedHeading as="h2" className="text-h2">
               {t("timelineTitle")}
             </AnimatedHeading>
           </div>
@@ -257,9 +257,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* CTA */}
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
+      <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
         <RevealOnScroll className="mx-auto max-w-3xl space-y-6 text-center">
-          <h2 className="text-3xl md:text-5xl">{t("ctaTitle")}</h2>
+          <h2 className="text-h2">{t("ctaTitle")}</h2>
           <p className="text-(--color-muted)">{t("ctaBody")}</p>
           <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
             <CalPopupTrigger

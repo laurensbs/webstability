@@ -143,7 +143,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </header>
 
       {/* PROBLEM */}
-      <section className="bg-(--color-bg-warm) px-6 py-[100px]">
+      <section className="py-section bg-(--color-bg-warm) px-6">
         <div className="mx-auto max-w-[1200px]">
           <RevealOnScroll className="mb-14 max-w-[720px]">
             <Eyebrow className="mb-[18px]">{t("problemEyebrow")}</Eyebrow>
@@ -173,7 +173,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* ROI-CALCULATOR — maakt "scheelt je tijd" concreet in euro's */}
-      <section className="px-6 py-[100px]">
+      <section className="py-section px-6">
         <div className="mx-auto max-w-[920px]">
           <RoiCalculator
             strings={{
@@ -197,7 +197,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* SOLUTION */}
-      <section id="solution" className="px-6 py-[100px]">
+      <section id="solution" className="py-section px-6">
         <div className="mx-auto max-w-[1200px]">
           <RevealOnScroll className="mb-14 max-w-[720px]">
             <Eyebrow className="mb-[18px]">{t("solutionEyebrow")}</Eyebrow>
@@ -254,7 +254,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* COMPETITORS — wanneer SaaS niet meer past */}
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-[100px]">
+      <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
         <div className="mx-auto max-w-[1200px]">
           <RevealOnScroll className="mb-14 max-w-[720px]">
             <Eyebrow className="mb-[18px]">{t("competitorsEyebrow")}</Eyebrow>
@@ -311,7 +311,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* PRICING */}
-      <section className="px-6 py-[100px]">
+      <section className="py-section px-6">
         <div className="mx-auto max-w-[1200px]">
           <RevealOnScroll className="mb-14 max-w-[720px]">
             <Eyebrow className="mb-[18px]">{t("pricingEyebrow")}</Eyebrow>
@@ -400,7 +400,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       {/* CTA */}
       <section
         id="contact"
-        className="relative overflow-hidden bg-(--color-bg-warm) px-6 py-[120px]"
+        className="py-section relative overflow-hidden bg-(--color-bg-warm) px-6"
       >
         <div
           aria-hidden

@@ -63,7 +63,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* Promises grid */}
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
+      <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl space-y-3">
             <Eyebrow>beloftes</Eyebrow>

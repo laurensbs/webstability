@@ -6,7 +6,7 @@ import { MarkupText } from "@/components/animate/MarkupText";
 export async function Audience() {
   const t = await getTranslations("home.audience");
   return (
-    <section className="px-6 py-24">
+    <section className="py-section px-6">
       <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1.4fr_1fr] md:items-center">
         <RevealOnScroll className="space-y-6">
           <p className="font-mono text-xs tracking-widest text-(--color-muted) uppercase">

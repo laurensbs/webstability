@@ -26,11 +26,11 @@ export async function HomeProblems() {
   }>;
 
   return (
-    <section className="border-t border-(--color-border) px-6 py-24 md:py-28">
+    <section className="py-section md:py-section border-t border-(--color-border) px-6">
       <div className="mx-auto max-w-6xl">
         <RevealOnScroll className="mb-12 max-w-2xl space-y-3">
           <Eyebrow>{t("eyebrow")}</Eyebrow>
-          <h2 className="text-3xl md:text-5xl">
+          <h2 className="text-h2">
             <MarkupText>{t("title")}</MarkupText>
           </h2>
           <p className="text-[17px] leading-[1.65] text-(--color-muted)">{t("lede")}</p>

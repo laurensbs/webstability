@@ -65,9 +65,9 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
       <FAQ messagesKey="faqPage" />
 
       {/* CTA */}
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
+      <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
         <RevealOnScroll className="mx-auto max-w-3xl space-y-6 text-center">
-          <h2 className="text-3xl md:text-5xl">
+          <h2 className="text-h2">
             {locale === "es" ? "¿No está tu pregunta?" : "Staat je vraag er niet bij?"}
           </h2>
           <p className="text-(--color-muted)">

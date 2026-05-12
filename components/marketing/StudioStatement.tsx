@@ -44,7 +44,7 @@ export async function StudioStatement() {
       {/* Conic-mesh — langzaam roterend ambient */}
       <LoginAmbientMount className="pointer-events-none absolute inset-0 -z-10 opacity-60" />
 
-      <div className="relative mx-auto max-w-[960px] px-6 py-24 md:py-32">
+      <div className="py-section relative mx-auto max-w-[960px] px-6">
         <RevealOnScroll>
           <p className="font-mono text-[11px] tracking-widest text-(--color-bg)/55 uppercase">
             <ScrambleText text={`// ${t("eyebrow")}`} duration={900} />

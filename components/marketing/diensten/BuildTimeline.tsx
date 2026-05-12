@@ -22,7 +22,7 @@ export function BuildTimeline({
   strings: { eyebrow: string; title: string; lede: string; steps: Step[] };
 }) {
   return (
-    <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-20 md:py-28">
+    <section className="py-section md:py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
       <div className="mx-auto max-w-6xl">
         <RevealOnScroll className="mb-12 max-w-2xl space-y-3">
           <Eyebrow>{strings.eyebrow}</Eyebrow>

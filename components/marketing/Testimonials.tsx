@@ -20,11 +20,11 @@ export async function Testimonials() {
   if (!items.length) return null;
 
   return (
-    <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
+    <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
       <div className="mx-auto max-w-6xl">
         <RevealOnScroll className="max-w-2xl space-y-4">
           <Eyebrow>{t("eyebrow")}</Eyebrow>
-          <h2 className="text-3xl md:text-5xl">
+          <h2 className="text-h2">
             <MarkupText>{t("title")}</MarkupText>
           </h2>
           <p className="text-(--color-muted)">{t("lede")}</p>

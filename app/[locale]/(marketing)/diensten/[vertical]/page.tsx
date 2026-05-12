@@ -225,7 +225,7 @@ export default async function VerticalPage({
       </header>
 
       {/* PROBLEEM */}
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-20 md:py-24">
+      <section className="py-section md:py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
         <div className="mx-auto max-w-5xl">
           <RevealOnScroll className="mb-10 max-w-2xl space-y-3">
             <Eyebrow>{c.problemEyebrow}</Eyebrow>
@@ -247,7 +247,7 @@ export default async function VerticalPage({
       </section>
 
       {/* OPLOSSING */}
-      <section className="border-t border-(--color-border) px-6 py-20 md:py-24">
+      <section className="py-section md:py-section border-t border-(--color-border) px-6">
         <div className="mx-auto max-w-5xl">
           <RevealOnScroll className="mb-10 max-w-2xl space-y-3">
             <Eyebrow>{c.solutionEyebrow}</Eyebrow>
@@ -270,7 +270,7 @@ export default async function VerticalPage({
       </section>
 
       {/* VOOR WIE / NIET VOOR */}
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-20 md:py-24">
+      <section className="py-section md:py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
         <div className="mx-auto max-w-5xl">
           <RevealOnScroll className="mb-10 max-w-2xl space-y-3">
             <Eyebrow>{c.forWhoEyebrow}</Eyebrow>
@@ -324,7 +324,7 @@ export default async function VerticalPage({
       </section>
 
       {/* WAT KOST HET */}
-      <section className="border-t border-(--color-border) px-6 py-20 md:py-24">
+      <section className="py-section md:py-section border-t border-(--color-border) px-6">
         <div className="mx-auto max-w-3xl">
           <RevealOnScroll className="space-y-4">
             <Eyebrow>{c.priceEyebrow}</Eyebrow>
@@ -358,7 +358,7 @@ export default async function VerticalPage({
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-20 md:py-24">
+      <section className="py-section md:py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
         <div className="mx-auto max-w-3xl">
           <RevealOnScroll className="mb-10 space-y-3 text-center">
             <Eyebrow className="inline-block">{c.faqEyebrow}</Eyebrow>
@@ -377,7 +377,7 @@ export default async function VerticalPage({
 
       {/* CONFIGURATOR — embed inline op website/webshop-verticals */}
       {isConfigurable && configuratorStrings ? (
-        <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-20 md:py-24">
+        <section className="py-section md:py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
           <div className="mx-auto max-w-5xl">
             <RevealOnScroll className="mb-10 space-y-3 text-center">
               <h2 className="text-3xl leading-tight md:text-5xl">{c.ctaTitle}</h2>
@@ -436,9 +436,9 @@ export default async function VerticalPage({
           </RevealOnScroll>
         </section>
       ) : (
-        <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
+        <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
           <RevealOnScroll className="mx-auto max-w-3xl space-y-6 text-center">
-            <h2 className="text-3xl md:text-5xl">{c.ctaTitle}</h2>
+            <h2 className="text-h2">{c.ctaTitle}</h2>
             <p className="text-(--color-muted)">{c.ctaBody}</p>
             <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
               <CalPopupTrigger

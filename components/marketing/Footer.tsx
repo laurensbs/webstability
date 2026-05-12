@@ -78,7 +78,7 @@ export async function Footer() {
           className="wb-soft-halo pointer-events-none absolute -right-32 -bottom-32 h-[420px] w-[420px] rounded-full bg-(--color-wine) opacity-45 blur-3xl"
         />
 
-        <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <div className="md:py-section relative mx-auto max-w-6xl px-6 py-16">
           <div className="grid gap-10 md:grid-cols-[1.4fr_1fr]">
             <div className="space-y-4">
               <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">

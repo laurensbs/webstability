@@ -11,7 +11,7 @@ const FOUNDER_PHOTO = "https://u.cubeupload.com/laurensbos/fc7278a70fe64fb6aa6a.
 export async function Founder() {
   const t = await getTranslations("home.founder");
   return (
-    <section className="bg-(--color-bg-warm) px-6 py-[120px]">
+    <section className="py-section bg-(--color-bg-warm) px-6">
       <div className="mx-auto grid max-w-[1200px] items-center gap-20 md:grid-cols-[1fr_1.2fr]">
         {/* Photo block — echte portretfoto met dark live-badge onderaan. */}
         <RevealOnScroll>

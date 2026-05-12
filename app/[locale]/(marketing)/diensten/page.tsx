@@ -88,7 +88,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           className="wb-soft-halo pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-(--color-accent) opacity-30 blur-3xl"
         />
 
-        <div className="relative mx-auto grid max-w-6xl gap-12 px-6 py-24 md:py-32 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+        <div className="py-section relative mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1.2fr_1fr] lg:items-center">
           <div className="space-y-6">
             <p className="font-mono text-[11px] tracking-widest text-(--color-wine) uppercase">
               {"// "}
@@ -124,7 +124,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
       {/* PRODUCTLIJNEN — cream cards, terracotta accent, één prijs per kaart */}
       <div className="dotted-bg flex flex-1 flex-col">
-        <section className="px-6 py-20 md:py-28">
+        <section className="py-section md:py-section px-6">
           <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
             {SOLUTION_KEYS.map((key) => {
               const item = tRaw.raw(`servicesPage.items.${key}`) as ProductItem;
@@ -339,7 +339,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <NotForSection strings={notFor} />
 
         {/* FOOTER-CTA */}
-        <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-24">
+        <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
           <RevealOnScroll className="mx-auto max-w-3xl space-y-5 text-center">
             <h2 className="text-2xl md:text-4xl">{t("footerCtaTitle")}</h2>
             <p className="text-(--color-muted)">{t("footerCtaBody")}</p>

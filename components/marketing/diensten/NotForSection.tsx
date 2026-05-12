@@ -19,7 +19,7 @@ export function NotForSection({
   strings: { eyebrow: string; title: string; lede: string; scenarios: Scenario[] };
 }) {
   return (
-    <section className="border-t border-(--color-border) px-6 py-20 md:py-24">
+    <section className="py-section md:py-section border-t border-(--color-border) px-6">
       <div className="mx-auto max-w-5xl">
         <RevealOnScroll className="mb-12 max-w-2xl space-y-3">
           <Eyebrow>{strings.eyebrow}</Eyebrow>

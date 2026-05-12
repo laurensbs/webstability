@@ -46,7 +46,7 @@ export default async function ReferPage({
   const benefits = [t("benefit1"), t("benefit2"), t("benefit3")];
 
   return (
-    <main className="dotted-bg flex flex-1 items-center px-6 py-24">
+    <main className="dotted-bg py-section flex flex-1 items-center px-6">
       <RevealOnScroll className="mx-auto max-w-2xl">
         <div className="rounded-[20px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-8 md:p-10">
           <span className="grid h-12 w-12 place-items-center rounded-full bg-(--color-wine)/10 text-(--color-wine)">

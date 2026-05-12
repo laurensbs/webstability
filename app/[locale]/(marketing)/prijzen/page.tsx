@@ -133,10 +133,10 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* Build extensions + calculator */}
-      <section className="border-t border-(--color-border) px-6 py-24">
+      <section className="py-section border-t border-(--color-border) px-6">
         <div className="mx-auto max-w-5xl">
           <RevealOnScroll className="mb-10 max-w-3xl space-y-3">
-            <h2 className="text-2xl md:text-3xl">{tBuild("title")}</h2>
+            <h2 className="text-h2">{tBuild("title")}</h2>
             <p className="leading-relaxed text-(--color-muted)">{tBuild("lede")}</p>
           </RevealOnScroll>
           <BuildCalculator
@@ -213,7 +213,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* Reassurance + add-ons — gecombineerde strip onder calculator */}
-      <section className="border-t border-(--color-border) bg-(--color-bg-warm) px-6 py-20">
+      <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
         <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-2">
           <div>
             <h2 className="mb-6 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
@@ -251,7 +251,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* Footer-CTA — kruislink naar /contact + /cases */}
-      <section className="border-t border-(--color-border) px-6 py-24">
+      <section className="py-section border-t border-(--color-border) px-6">
         <RevealOnScroll className="mx-auto max-w-3xl space-y-5 text-center">
           <h2 className="text-2xl md:text-4xl">{t("footerCtaTitle")}</h2>
           <p className="text-(--color-muted)">{t("footerCtaBody")}</p>

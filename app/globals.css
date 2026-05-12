@@ -29,6 +29,20 @@
   --text-mono-micro: 11px;
   --text-mono-sm: 12px;
   --text-mono-eyebrow: 13px;
+
+  /* Responsieve heading-schaal — vloeiende clamp i.p.v. de text-3xl→md:text-5xl
+     sprong (las op tablet gedrongen). Gebruik:
+       text-display  hero-h1            (40→72px)
+       text-h2       sectie-h2          (28→44px)
+       text-h3       subsectie-h3       (20→26px)
+     Mono-eyebrow + body blijven los. Tailwind genereert text-{display,h2,h3}. */
+  --text-display: clamp(40px, 5.5vw, 72px);
+  --text-h2: clamp(28px, 4vw, 44px);
+  --text-h3: clamp(20px, 2.4vw, 26px);
+
+  /* Sectie-spacing — één verticale rem voor marketing-secties i.p.v.
+     py-24/py-20/py-[100px]/py-[120px] door elkaar. Tailwind: py-section. */
+  --spacing-section: clamp(64px, 9vw, 112px);
 }
 
 @layer base {
