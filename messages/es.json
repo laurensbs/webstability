@@ -2761,6 +2761,15 @@
         "empty": "En cuanto tu tienda lleve un mes funcionando pondré aquí las cifras.",
         "vsPrev": "vs. {month}"
       },
+      "upgrade": {
+        "eyebrow": "más visibilidad",
+        "title": "¿Quieres ver más?",
+        "body": "Studio añade monitorización de uptime, tu tendencia SEO y un informe mensual — para que sepas no solo que funciona, sino lo bien que funciona.",
+        "bulletSeo": "Tendencia SEO y visibilidad",
+        "bulletMonitoring": "Monitorización de uptime con alertas",
+        "bulletReport": "Informe mensual en tu portal",
+        "cta": "Ver Studio"
+      },
       "hoursTitle": "Horas de trabajo este mes",
       "hoursMonth": "Este mes",
       "hoursUsed": "usadas",

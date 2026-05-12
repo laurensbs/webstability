@@ -51,6 +51,7 @@ import { LiveProjectStrip } from "@/components/portal/LiveProjectStrip";
 import { ShopMetricsCard } from "@/components/portal/ShopMetricsCard";
 import { serviceKindFromProjects, serviceKindFromProjectType } from "@/lib/service-kinds";
 import { cardsForDashboard } from "@/lib/dashboard-cards";
+import { DashboardUpgradeNudge } from "@/components/portal/DashboardUpgradeNudge";
 import { AuthVerifiedBeacon } from "@/components/auth/AuthVerifiedBeacon";
 import { LivegangCelebration } from "@/components/portal/LivegangCelebration";
 import { IncidentBanner } from "@/components/portal/IncidentBanner";
@@ -688,6 +689,24 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
           />
         </Suspense>
       </div>
+
+      {/* Care: eerlijke nudge naar Studio i.p.v. de SEO/monitoring-kaarten
+          gewoon weglaten — laat zien wat je mist. */}
+      {cards.upgradeNudge && !user.isDemo ? (
+        <DashboardUpgradeNudge
+          strings={{
+            eyebrow: t("dashboard.upgrade.eyebrow"),
+            title: t("dashboard.upgrade.title"),
+            body: t("dashboard.upgrade.body"),
+            bullets: {
+              seo: t("dashboard.upgrade.bulletSeo"),
+              monitoring: t("dashboard.upgrade.bulletMonitoring"),
+              report: t("dashboard.upgrade.bulletReport"),
+            },
+            cta: t("dashboard.upgrade.cta"),
+          }}
+        />
+      ) : null}
 
       <RecentInvoices
         invoices={invoices.map((inv) => ({

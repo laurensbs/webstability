@@ -2757,6 +2757,15 @@
         "empty": "Zodra je shop een maand draait zet ik hier de cijfers neer.",
         "vsPrev": "vs. {month}"
       },
+      "upgrade": {
+        "eyebrow": "meer inzicht",
+        "title": "Wil je meer zien?",
+        "body": "Studio voegt uptime-monitoring, je SEO-trend en een maandrapport toe — zodat je niet alleen weet dát het draait, maar ook hoe goed.",
+        "bulletSeo": "SEO-trend & gevonden worden",
+        "bulletMonitoring": "Uptime-monitoring met alerts",
+        "bulletReport": "Maandrapport in je portaal",
+        "cta": "Bekijk Studio"
+      },
       "hoursTitle": "Werk-uren deze maand",
       "hoursMonth": "Deze maand",
       "hoursUsed": "gebruikt",
