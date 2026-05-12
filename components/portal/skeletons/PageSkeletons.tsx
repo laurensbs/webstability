@@ -73,3 +73,109 @@ export function ListRowsSkeleton({
     </div>
   );
 }
+
+/** Eén card-blok (header + een paar regels). Bouwsteen voor andere skeletons. */
+function CardBlockSkeleton({ lines = 3 }: { lines?: number }) {
+  return (
+    <div className="rounded-lg border border-(--color-border) bg-(--color-surface) p-6">
+      <div className="flex items-center justify-between gap-4">
+        <Shimmer width={140} height={16} />
+        <Shimmer width={48} height={10} />
+      </div>
+      <div className="mt-4 space-y-2.5">
+        {Array.from({ length: lines }).map((_, i) => (
+          <Shimmer key={i} width={i === lines - 1 ? "60%" : "100%"} height={12} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** Dashboard: 4 stat-cards bovenaan + een 2-koloms grid van content-cards. */
+export function DashboardSkeleton() {
+  return (
+    <div className="space-y-8">
+      <header className="space-y-2">
+        <Shimmer width={200} height={30} rounded="md" />
+        <Shimmer width={320} height={14} />
+      </header>
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div
+            key={i}
+            className="rounded-lg border border-(--color-border) bg-(--color-surface) p-5"
+          >
+            <Shimmer width={64} height={10} />
+            <Shimmer className="mt-3" width={56} height={28} />
+          </div>
+        ))}
+      </div>
+      <div className="grid gap-4 lg:grid-cols-2">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <CardBlockSkeleton key={i} lines={i % 2 ? 4 : 3} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** Detail-pagina (ticket-thread, project-detail): header + grote card + zijblok. */
+export function DetailSkeleton() {
+  return (
+    <div className="space-y-8">
+      <header className="space-y-2">
+        <Shimmer width={120} height={12} />
+        <Shimmer width="60%" height={30} rounded="md" />
+      </header>
+      <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+        <div className="space-y-4">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <CardBlockSkeleton key={i} lines={4} />
+          ))}
+        </div>
+        <div className="space-y-4">
+          <CardBlockSkeleton lines={2} />
+          <CardBlockSkeleton lines={3} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Formulier-pagina (nieuwe ticket, instellingen): header + gestapelde velden. */
+export function FormSkeleton({ fields = 5 }: { fields?: number }) {
+  return (
+    <div className="mx-auto max-w-2xl space-y-8">
+      <header className="space-y-2">
+        <Shimmer width={200} height={30} rounded="md" />
+        <Shimmer width="80%" height={14} />
+      </header>
+      <div className="space-y-5 rounded-lg border border-(--color-border) bg-(--color-surface) p-6 md:p-8">
+        {Array.from({ length: fields }).map((_, i) => (
+          <div key={i} className="space-y-2">
+            <Shimmer width={120} height={11} />
+            <Shimmer height={i === fields - 1 ? 96 : 40} rounded="md" />
+          </div>
+        ))}
+        <Shimmer width={140} height={40} rounded="md" />
+      </div>
+    </div>
+  );
+}
+
+/** Generieke kaarten-pagina (monitoring / seo): header + losse content-cards. */
+export function CardsPageSkeleton({ cards = 3 }: { cards?: number }) {
+  return (
+    <div className="space-y-8">
+      <header className="space-y-2">
+        <Shimmer width={200} height={30} rounded="md" />
+        <Shimmer width={300} height={14} />
+      </header>
+      <div className="space-y-4">
+        {Array.from({ length: cards }).map((_, i) => (
+          <CardBlockSkeleton key={i} lines={4} />
+        ))}
+      </div>
+    </div>
+  );
+}
