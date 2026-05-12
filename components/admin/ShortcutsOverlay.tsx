@@ -17,6 +17,7 @@ const GROUPS: Array<{ title: string; rows: Array<{ keys: string[]; label: string
       { keys: ["⌘", "K"], label: "Zoeken (klanten · tickets · projecten)" },
       { keys: ["g", "d"], label: "Naar dashboard" },
       { keys: ["g", "o"], label: "Naar klanten" },
+      { keys: ["g", "l"], label: "Naar leads" },
       { keys: ["g", "t"], label: "Naar tickets" },
       { keys: ["g", "b"], label: "Naar blog-queue" },
       { keys: ["g", "s"], label: "Naar team" },

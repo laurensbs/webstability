@@ -45,8 +45,11 @@ export default async function AdminLayout({
   const sidebarLabels = {
     overview: t("nav.overview"),
     orgs: t("nav.orgs"),
+    leads: t("nav.leads"),
     tickets: t("nav.tickets"),
     blog: t("nav.blog"),
+    nps: t("nav.nps"),
+    referrals: t("nav.referrals"),
     team: t("nav.team"),
     collapse: t("nav.collapse"),
     brandTagline: t("nav.brandTagline"),
@@ -94,7 +97,11 @@ export default async function AdminLayout({
                 labels={{
                   overview: t("nav.overview"),
                   orgs: t("nav.orgs"),
+                  leads: t("nav.leads"),
                   tickets: t("nav.tickets"),
+                  blog: t("nav.blog"),
+                  nps: t("nav.nps"),
+                  referrals: t("nav.referrals"),
                   team: t("nav.team"),
                 }}
               />

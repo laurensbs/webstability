@@ -3163,7 +3163,10 @@
       "team": "Team",
       "collapse": "Inklappen",
       "brandTagline": "studio",
-      "portalLink": "↗ portal"
+      "portalLink": "↗ portal",
+      "leads": "Leads",
+      "nps": "NPS",
+      "referrals": "Referrals"
     },
     "cmdK": {
       "placeholder": "Zoek klant, ticket, project…",

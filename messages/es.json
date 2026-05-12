@@ -3167,7 +3167,10 @@
       "team": "Equipo",
       "collapse": "Colapsar",
       "brandTagline": "studio",
-      "portalLink": "↗ portal"
+      "portalLink": "↗ portal",
+      "leads": "Leads",
+      "nps": "NPS",
+      "referrals": "Referidos"
     },
     "cmdK": {
       "placeholder": "Busca cliente, ticket, proyecto…",

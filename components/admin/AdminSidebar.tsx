@@ -9,16 +9,29 @@ import {
   Users,
   Sparkles,
   PenLine,
+  UserPlus,
+  Star,
+  Gift,
   ChevronLeft,
   type LucideIcon,
 } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
+type ItemKey = "overview" | "orgs" | "leads" | "tickets" | "blog" | "nps" | "referrals" | "team";
+
 type Item = {
-  href: "/admin" | "/admin/orgs" | "/admin/tickets" | "/admin/blog" | "/admin/team";
+  href:
+    | "/admin"
+    | "/admin/orgs"
+    | "/admin/leads"
+    | "/admin/tickets"
+    | "/admin/blog"
+    | "/admin/nps"
+    | "/admin/referrals"
+    | "/admin/team";
   icon: LucideIcon;
-  key: "overview" | "orgs" | "tickets" | "blog" | "team";
+  key: ItemKey;
   shortcut?: string;
   exact?: boolean;
 };
@@ -26,17 +39,15 @@ type Item = {
 const ITEMS: Item[] = [
   { href: "/admin", icon: LayoutDashboard, key: "overview", shortcut: "g d", exact: true },
   { href: "/admin/orgs", icon: Building2, key: "orgs", shortcut: "g o" },
+  { href: "/admin/leads", icon: UserPlus, key: "leads", shortcut: "g l" },
   { href: "/admin/tickets", icon: Inbox, key: "tickets", shortcut: "g t" },
   { href: "/admin/blog", icon: PenLine, key: "blog", shortcut: "g b" },
+  { href: "/admin/nps", icon: Star, key: "nps" },
+  { href: "/admin/referrals", icon: Gift, key: "referrals" },
   { href: "/admin/team", icon: Users, key: "team", shortcut: "g s" },
 ];
 
-type Labels = {
-  overview: string;
-  orgs: string;
-  tickets: string;
-  blog: string;
-  team: string;
+type Labels = Record<ItemKey, string> & {
   collapse: string;
   brandTagline: string;
   portalLink: string;
@@ -105,6 +116,7 @@ export function AdminSidebar({ labels, email }: { labels: Labels; email: string 
         if (timer) window.clearTimeout(timer);
         if (e.key === "d") router.push("/admin");
         else if (e.key === "o") router.push("/admin/orgs");
+        else if (e.key === "l") router.push("/admin/leads");
         else if (e.key === "t") router.push("/admin/tickets");
         else if (e.key === "b") router.push("/admin/blog");
         else if (e.key === "s") router.push("/admin/team");

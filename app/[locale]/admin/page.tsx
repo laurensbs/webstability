@@ -33,6 +33,7 @@ import { FlashCounter } from "@/components/animate/FlashCounter";
 import { AdminWelcomeOnboarding } from "@/components/admin/AdminWelcomeOnboarding";
 import { StudioStatusStrip } from "@/components/admin/StudioStatusStrip";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { SetupChecklist } from "@/components/admin/SetupChecklist";
 import { DemoTourOverlay } from "@/components/demo/DemoTourOverlay";
 import { DemoAnalyticsBeacon } from "@/components/demo/DemoAnalyticsBeacon";
 
@@ -308,6 +309,10 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
           </section>
         );
       })()}
+
+      {/* Setup-checklist — éénmalige "nog regelen"-items (API-keys, webhooks,
+          Search Console…). Verdwijnt zodra alles is afgevinkt. Niet voor demo-staff. */}
+      {!isDemoStaff ? <SetupChecklist /> : null}
 
       {/* Demo-management — laatste cron-run + week-counts + handmatige
           refresh-knop. Niet-demo-staff alleen (anders triggert demo-staff
