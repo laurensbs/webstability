@@ -4,7 +4,11 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-all focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 border border-transparent",
+  // Eén micro-interactie-set: hover (subtiele lift waar passend), active
+  // (lift terug = "indrukken"), focus-visible (accent-ring met offset, overal
+  // gelijk), disabled (50% opacity, geen pointer). Reduced motion → geen
+  // transform, geen transitie.
+  "inline-flex items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-all active:translate-y-0 focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:ring-offset-1 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 border border-transparent motion-reduce:transition-none motion-reduce:hover:transform-none",
   {
     variants: {
       variant: {

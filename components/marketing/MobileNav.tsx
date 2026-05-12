@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
+import { motion, useReducedMotion } from "motion/react";
 import { Menu, X, ArrowRight, KeyRound } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
@@ -44,10 +45,19 @@ export function MobileNav({
 }) {
   const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
+  const reduce = useReducedMotion() ?? false;
   const close = React.useCallback(() => setOpen(false), []);
 
   const isActive = (target: string) =>
     target === "/" ? pathname === "/" : pathname.startsWith(target);
+
+  // Eén gestaggerde drawer-sectie: ~50ms na de vorige, vanaf 80ms nadat het
+  // paneel binnenschuift. Reduced motion → meteen zichtbaar, geen y-offset.
+  const sectionAnim = (index: number) => ({
+    initial: reduce ? false : ({ opacity: 0, y: 10 } as const),
+    animate: { opacity: 1, y: 0 },
+    transition: { delay: 0.08 + index * 0.05, duration: 0.3, ease: [0.22, 1, 0.36, 1] as const },
+  });
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -94,112 +104,38 @@ export function MobileNav({
 
           <nav className="flex-1 overflow-y-auto px-6 py-6">
             {/* Prominente configurator-knop */}
-            <Link
-              href={{ pathname: "/aanvragen" }}
-              onClick={close}
-              className="group mb-6 flex items-center justify-between rounded-xl bg-(--color-accent) px-4 py-3 text-[15px] font-medium text-white transition-all hover:bg-(--color-accent)/90"
-            >
-              {aanvragenLabel}
-              <ArrowRight
-                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                strokeWidth={2}
-                aria-hidden
-              />
-            </Link>
+            <motion.div {...sectionAnim(0)}>
+              <Link
+                href={{ pathname: "/aanvragen" }}
+                onClick={close}
+                className="group mb-6 flex items-center justify-between rounded-xl bg-(--color-accent) px-4 py-3 text-[15px] font-medium text-white transition-all hover:bg-(--color-accent)/90"
+              >
+                {aanvragenLabel}
+                <ArrowRight
+                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                  strokeWidth={2}
+                  aria-hidden
+                />
+              </Link>
+            </motion.div>
 
             {/* Diensten + de zes verticals */}
-            <p className="mb-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
-              {servicesLabel}
-            </p>
-            <ul className="mb-5 space-y-0.5">
-              <li>
-                <Link
-                  href={{ pathname: "/diensten" }}
-                  onClick={close}
-                  className={`flex items-center justify-between rounded-md px-3 py-2.5 text-[15px] font-medium transition-colors ${
-                    pathname === "/diensten"
-                      ? "bg-(--color-bg-warm) text-(--color-accent)"
-                      : "text-(--color-text) hover:bg-(--color-bg-warm)"
-                  }`}
-                >
-                  {menuStrings.servicesFooter.replace(" →", "")}
-                  <ArrowRight
-                    className="h-3.5 w-3.5 text-(--color-muted)"
-                    strokeWidth={2}
-                    aria-hidden
-                  />
-                </Link>
-              </li>
-              {VERTICAL_SLUGS.map((slug) => {
-                const Icon = VERTICAL_ICONS[slug];
-                return (
-                  <li key={slug}>
-                    <Link
-                      href={{ pathname: "/diensten/[vertical]", params: { vertical: slug } }}
-                      onClick={close}
-                      className="group flex items-center gap-2.5 rounded-md py-2 pr-3 pl-6 text-[14px] text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) hover:text-(--color-text)"
-                    >
-                      <Icon
-                        className="h-3.5 w-3.5 shrink-0 text-(--color-accent)/70 transition-colors group-hover:text-(--color-accent)"
-                        strokeWidth={2}
-                        aria-hidden
-                      />
-                      {menuStrings.items[slug].title}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-
-            {/* Werk / cases */}
-            <p className="mb-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
-              {casesLabel}
-            </p>
-            <ul className="mb-5 space-y-0.5">
-              <li>
-                <Link
-                  href={{ pathname: "/cases/caravanverhuurspanje" }}
-                  onClick={close}
-                  className="block rounded-md px-3 py-2.5 text-[15px] text-(--color-text) transition-colors hover:bg-(--color-bg-warm)"
-                >
-                  {menuStrings.caseItems.caravanverhuur.title}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={{ pathname: "/cases/caravanreparatiespanje" }}
-                  onClick={close}
-                  className="block rounded-md px-3 py-2.5 text-[15px] text-(--color-text) transition-colors hover:bg-(--color-bg-warm)"
-                >
-                  {menuStrings.caseItems.caravanreparatie.title}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={{ pathname: "/cases" }}
-                  onClick={close}
-                  className="flex items-center justify-between rounded-md px-3 py-2.5 text-[14px] text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) hover:text-(--color-text)"
-                >
-                  {menuStrings.casesFooter.replace(" →", "")}
-                  <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
-                </Link>
-              </li>
-            </ul>
-
-            {/* Overige plain links */}
-            <ul className="space-y-0.5 border-t border-(--color-border) pt-4">
-              {otherLinks.map((l) => (
-                <li key={l.href}>
+            <motion.div {...sectionAnim(1)}>
+              <p className="mb-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                {servicesLabel}
+              </p>
+              <ul className="mb-5 space-y-0.5">
+                <li>
                   <Link
-                    href={l.href as never}
+                    href={{ pathname: "/diensten" }}
                     onClick={close}
                     className={`flex items-center justify-between rounded-md px-3 py-2.5 text-[15px] font-medium transition-colors ${
-                      isActive(l.href)
+                      pathname === "/diensten"
                         ? "bg-(--color-bg-warm) text-(--color-accent)"
                         : "text-(--color-text) hover:bg-(--color-bg-warm)"
                     }`}
                   >
-                    {l.label}
+                    {menuStrings.servicesFooter.replace(" →", "")}
                     <ArrowRight
                       className="h-3.5 w-3.5 text-(--color-muted)"
                       strokeWidth={2}
@@ -207,8 +143,90 @@ export function MobileNav({
                     />
                   </Link>
                 </li>
-              ))}
-            </ul>
+                {VERTICAL_SLUGS.map((slug) => {
+                  const Icon = VERTICAL_ICONS[slug];
+                  return (
+                    <li key={slug}>
+                      <Link
+                        href={{ pathname: "/diensten/[vertical]", params: { vertical: slug } }}
+                        onClick={close}
+                        className="group flex items-center gap-2.5 rounded-md py-2 pr-3 pl-6 text-[14px] text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) hover:text-(--color-text)"
+                      >
+                        <Icon
+                          className="h-3.5 w-3.5 shrink-0 text-(--color-accent)/70 transition-colors group-hover:text-(--color-accent)"
+                          strokeWidth={2}
+                          aria-hidden
+                        />
+                        {menuStrings.items[slug].title}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </motion.div>
+
+            {/* Werk / cases */}
+            <motion.div {...sectionAnim(2)}>
+              <p className="mb-2 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                {casesLabel}
+              </p>
+              <ul className="mb-5 space-y-0.5">
+                <li>
+                  <Link
+                    href={{ pathname: "/cases/caravanverhuurspanje" }}
+                    onClick={close}
+                    className="block rounded-md px-3 py-2.5 text-[15px] text-(--color-text) transition-colors hover:bg-(--color-bg-warm)"
+                  >
+                    {menuStrings.caseItems.caravanverhuur.title}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={{ pathname: "/cases/caravanreparatiespanje" }}
+                    onClick={close}
+                    className="block rounded-md px-3 py-2.5 text-[15px] text-(--color-text) transition-colors hover:bg-(--color-bg-warm)"
+                  >
+                    {menuStrings.caseItems.caravanreparatie.title}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={{ pathname: "/cases" }}
+                    onClick={close}
+                    className="flex items-center justify-between rounded-md px-3 py-2.5 text-[14px] text-(--color-muted) transition-colors hover:bg-(--color-bg-warm) hover:text-(--color-text)"
+                  >
+                    {menuStrings.casesFooter.replace(" →", "")}
+                    <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
+                  </Link>
+                </li>
+              </ul>
+            </motion.div>
+
+            {/* Overige plain links */}
+            <motion.div {...sectionAnim(3)}>
+              <ul className="space-y-0.5 border-t border-(--color-border) pt-4">
+                {otherLinks.map((l) => (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href as never}
+                      onClick={close}
+                      className={`flex items-center justify-between rounded-md px-3 py-2.5 text-[15px] font-medium transition-colors ${
+                        isActive(l.href)
+                          ? "bg-(--color-bg-warm) text-(--color-accent)"
+                          : "text-(--color-text) hover:bg-(--color-bg-warm)"
+                      }`}
+                    >
+                      {l.label}
+                      <ArrowRight
+                        className="h-3.5 w-3.5 text-(--color-muted)"
+                        strokeWidth={2}
+                        aria-hidden
+                      />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </nav>
 
           {/* Footer — login + lang + CTA. De CTA is hier bewust een gewone
