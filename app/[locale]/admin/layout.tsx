@@ -13,6 +13,7 @@ import { Link } from "@/i18n/navigation";
 import { DemoBanner } from "@/components/portal/DemoBanner";
 import { CommandPalette } from "@/components/admin/CommandPalette";
 import { CommandKTrigger } from "@/components/admin/CommandKTrigger";
+import { ShortcutsOverlay } from "@/components/admin/ShortcutsOverlay";
 import { RouteTransition } from "@/components/portal/RouteTransition";
 
 export default async function AdminLayout({
@@ -118,6 +119,7 @@ export default async function AdminLayout({
           closeLabel: tCmdK("closeLabel"),
         }}
       />
+      <ShortcutsOverlay />
     </div>
   );
 }
