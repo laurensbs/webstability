@@ -3191,6 +3191,10 @@
       "noAccount": "¿Aún no tienes cuenta?",
       "contactCta": "Contacta",
       "checkoutWelcome": "¡Gracias por tu pedido! Te hemos enviado un correo para establecer tu contraseña — luego entras aquí normalmente.",
+      "checkoutEyebrow": "pedido recibido",
+      "checkoutTitle": "Revisa tu *bandeja*.",
+      "checkoutAlready": "¿Ya estableciste tu contraseña?",
+      "checkoutLoginLink": "Ir a iniciar sesión",
       "stateReturning": "Bienvenido de nuevo — tu enlace mágico llegará en cuanto hagas clic abajo.",
       "stateNew": "¿Primera vez? Crearemos tu cuenta enseguida. Añade tu nombre para un saludo personal.",
       "panelTitle": "Un solo lugar para *todo tu sistema*.",
@@ -3200,7 +3204,42 @@
         "Progreso de proyectos en tiempo real",
         "Tickets y archivos compartidos con Laurens",
         "Facturas y gestión de la suscripción"
-      ]
+      ],
+      "byPlan": {
+        "studio": {
+          "eyebrow": "bienvenido a Studio",
+          "panelTitle": "Studio — *construido y vigilado*.",
+          "panelBullets": [
+            "Monitorización de uptime + informe mensual",
+            "Tendencia SEO y las horas que le dedico",
+            "Progreso de proyectos y actualizaciones semanales",
+            "Tickets, archivos y facturas en un solo lugar"
+          ],
+          "checkoutWelcome": "Gracias — ya eres cliente Studio. Te hemos enviado un correo para establecer tu contraseña; luego entras aquí."
+        },
+        "atelier": {
+          "eyebrow": "bienvenido a Atelier",
+          "panelTitle": "Atelier — *prioridad y roadmap*.",
+          "panelBullets": [
+            "Roadmap: qué se lanzó, qué va en curso, qué viene",
+            "Prioridad en tickets y plazos",
+            "Monitorización de uptime + informe mensual",
+            "Tendencia SEO, progreso de proyectos, facturas"
+          ],
+          "checkoutWelcome": "Gracias — ya eres cliente Atelier. Te hemos enviado un correo para establecer tu contraseña; luego entras aquí."
+        },
+        "care": {
+          "eyebrow": "bienvenido a Care",
+          "panelTitle": "Un solo lugar para tu *sistema*.",
+          "panelBullets": [
+            "Estado en vivo de tu site y servicios",
+            "Progreso de proyectos y actualizaciones",
+            "Tickets y archivos compartidos con Laurens",
+            "Facturas en un solo lugar"
+          ],
+          "checkoutWelcome": "¡Gracias por tu pedido! Te hemos enviado un correo para establecer tu contraseña — luego entras aquí."
+        }
+      }
     },
     "setPassword": {
       "eyebrow": "contraseña",

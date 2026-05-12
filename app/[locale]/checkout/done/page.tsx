@@ -80,7 +80,9 @@ export default async function CheckoutDone({
   if (existingUser?.organizationId) {
     // User + org bestaan al — de webhook koppelt de subscription. Stuur
     // 'm naar login zodat hij in z'n eigen portal land.
-    redirect(`/login?email=${encodeURIComponent(email)}&from=checkout`);
+    redirect(
+      `/login?email=${encodeURIComponent(email)}&from=checkout${plan ? `&plan=${plan}` : ""}`,
+    );
   }
 
   // Anders: nieuwe org + user aanmaken. Slug afgeleid uit naam, dedupe
@@ -146,7 +148,7 @@ export default async function CheckoutDone({
   }
 
   // Klaar — toon een kort "je bent binnen"-moment, dan naar /login.
-  const loginUrl = `/login?email=${encodeURIComponent(email)}&from=checkout`;
+  const loginUrl = `/login?email=${encodeURIComponent(email)}&from=checkout${plan ? `&plan=${plan}` : ""}`;
   const t = await getTranslations("checkout.welcome");
   return (
     <CheckoutWelcome

@@ -3187,6 +3187,10 @@
       "noAccount": "Nog geen account?",
       "contactCta": "Neem contact op",
       "checkoutWelcome": "Bedankt voor je bestelling! We hebben je een e-mail gestuurd om je wachtwoord in te stellen — daarna log je hier gewoon in.",
+      "checkoutEyebrow": "bestelling ontvangen",
+      "checkoutTitle": "Check je *inbox*.",
+      "checkoutAlready": "Wachtwoord al ingesteld?",
+      "checkoutLoginLink": "Ga naar inloggen",
       "stateReturning": "Welkom terug — je magic-link komt eraan zodra je hieronder klikt.",
       "stateNew": "Nieuw hier? We maken zo je account aan. Vul je naam in voor een persoonlijke begroeting.",
       "panelTitle": "Eén plek voor je *hele systeem*.",
@@ -3196,7 +3200,42 @@
         "Projectvoortgang in real-time",
         "Tickets en bestanden delen met Laurens",
         "Facturen en abonnementsbeheer"
-      ]
+      ],
+      "byPlan": {
+        "studio": {
+          "eyebrow": "welkom bij Studio",
+          "panelTitle": "Studio — *gebouwd én bewaakt*.",
+          "panelBullets": [
+            "Uptime-monitoring + maandrapport",
+            "SEO-trend en de uren die ik eraan besteed",
+            "Projectvoortgang en wekelijkse updates",
+            "Tickets, bestanden en facturen op één plek"
+          ],
+          "checkoutWelcome": "Bedankt — je bent nu een Studio-klant. We hebben je een e-mail gestuurd om je wachtwoord in te stellen; daarna log je hier in."
+        },
+        "atelier": {
+          "eyebrow": "welkom bij Atelier",
+          "panelTitle": "Atelier — *prioriteit en roadmap*.",
+          "panelBullets": [
+            "Roadmap: wat shipte, wat loopt, wat komt",
+            "Prioriteit op tickets en doorlooptijd",
+            "Uptime-monitoring + maandrapport",
+            "SEO-trend, projectvoortgang, facturen"
+          ],
+          "checkoutWelcome": "Bedankt — je bent nu een Atelier-klant. We hebben je een e-mail gestuurd om je wachtwoord in te stellen; daarna log je hier in."
+        },
+        "care": {
+          "eyebrow": "welkom bij Care",
+          "panelTitle": "Eén plek voor je *systeem*.",
+          "panelBullets": [
+            "Live status van je site en services",
+            "Projectvoortgang en updates",
+            "Tickets en bestanden delen met Laurens",
+            "Facturen op één plek"
+          ],
+          "checkoutWelcome": "Bedankt voor je bestelling! We hebben je een e-mail gestuurd om je wachtwoord in te stellen — daarna log je hier in."
+        }
+      }
     },
     "setPassword": {
       "eyebrow": "wachtwoord",
