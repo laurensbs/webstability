@@ -2703,6 +2703,11 @@
       "recentInvoices": "Recente facturen",
       "viewAll": "Bekijk alles",
       "noProjects": "Nog geen projecten gekoppeld.",
+      "noProjectsByKind": {
+        "website": "Je website-project verschijnt hier zodra ik 'm heb aangemaakt — meestal na onze kennismaking.",
+        "webshop": "Je webshop-project verschijnt hier zodra ik 'm heb aangemaakt — meestal na onze kennismaking.",
+        "platform": "Je platform-project verschijnt hier zodra ik 'm heb aangemaakt — meestal na de discovery-call."
+      },
       "noTickets": "Geen tickets — alles loopt.",
       "noInvoices": "Nog geen facturen.",
       "seoTitle": "SEO trend",
@@ -2710,6 +2715,11 @@
       "seoDelta": "groei sinds vorig kwartaal",
       "monitoringTitle": "Live monitoring",
       "monitoringEmpty": "Geen monitors geconfigureerd.",
+      "monitoringEmptyByKind": {
+        "website": "Zodra je site live is komt hier de uptime en de live-URL te staan.",
+        "webshop": "Zodra je shop live is monitor ik hier de uptime — checkout incluis — zodat je 't weet vóór je klanten 't merken.",
+        "platform": "Zodra je platform draait monitor ik hier de uptime van de omgeving en de koppelingen."
+      },
       "hoursTitle": "Werk-uren deze maand",
       "hoursMonth": "Deze maand",
       "hoursUsed": "gebruikt",

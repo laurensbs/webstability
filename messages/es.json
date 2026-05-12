@@ -2707,6 +2707,11 @@
       "recentInvoices": "Facturas recientes",
       "viewAll": "Ver todo",
       "noProjects": "Aún sin proyectos.",
+      "noProjectsByKind": {
+        "website": "Tu proyecto de web aparece aquí en cuanto lo cree — normalmente tras nuestra primera llamada.",
+        "webshop": "Tu proyecto de tienda online aparece aquí en cuanto lo cree — normalmente tras nuestra primera llamada.",
+        "platform": "Tu proyecto de plataforma aparece aquí en cuanto lo cree — normalmente tras la llamada de discovery."
+      },
       "noTickets": "Sin tickets — todo va bien.",
       "noInvoices": "Aún sin facturas.",
       "seoTitle": "Tendencia SEO",
@@ -2714,6 +2719,11 @@
       "seoDelta": "crecimiento desde el último trimestre",
       "monitoringTitle": "Monitorización en vivo",
       "monitoringEmpty": "Sin monitors configurados.",
+      "monitoringEmptyByKind": {
+        "website": "En cuanto tu web esté en vivo verás aquí el uptime y la URL en vivo.",
+        "webshop": "En cuanto tu tienda esté en vivo monitorizo aquí el uptime — checkout incluido — para que lo sepas antes que tus clientes.",
+        "platform": "En cuanto tu plataforma funcione monitorizo aquí el uptime del entorno y las integraciones."
+      },
       "hoursTitle": "Horas de trabajo este mes",
       "hoursMonth": "Este mes",
       "hoursUsed": "usadas",

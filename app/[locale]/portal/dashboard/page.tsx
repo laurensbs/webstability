@@ -207,6 +207,18 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
 
   const buildPhaseProps = computeBuildPhaseProps(buildPhase);
 
+  // Dienst-type van deze klant — stuurt de "nog leeg"-teksten (een webshop
+  // wacht op bestellingen, een website op de live-URL, een platform op de
+  // koppelingen). 'other' valt terug op de generieke tekst.
+  const serviceKind = serviceKindFromProjects(projects);
+  const hasServiceKind = serviceKind !== "other";
+  const monitoringEmpty = hasServiceKind
+    ? t(`dashboard.monitoringEmptyByKind.${serviceKind}` as Parameters<typeof t>[0])
+    : t("dashboard.monitoringEmpty");
+  const noProjectsEmpty = hasServiceKind
+    ? t(`dashboard.noProjectsByKind.${serviceKind}` as Parameters<typeof t>[0])
+    : t("dashboard.noProjects");
+
   // Build de roadmap-items uit recent projects: laatste 'live' wordt
   // 'shipped', huidige 'in_progress' wordt 'active', 'planning' wordt
   // 'next'. Max 4 items.
@@ -376,8 +388,8 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
           een refresh tussendoor. */}
       {!user.lastLoginAt && !user.isDemo
         ? (() => {
-            const kind = serviceKindFromProjects(projects);
-            const hasKind = kind !== "other";
+            const kind = serviceKind;
+            const hasKind = hasServiceKind;
             const kp = (suffix: string) => tOnboarding(`byKind.${kind}.${suffix}`);
             return (
               <PortalWelcomeOnboarding
@@ -586,7 +598,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
             progress: p.progress,
           }))}
           title={t("dashboard.recentProjects")}
-          empty={t("dashboard.noProjects")}
+          empty={noProjectsEmpty}
           viewAll={t("dashboard.viewAll")}
           statusLabel={(s: string) => tProjects(`status.${s}`)}
         />
@@ -618,7 +630,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         <Suspense fallback={<MonitoringCardSkeleton title={t("dashboard.monitoringTitle")} />}>
           <MonitoringCardAsync
             title={t("dashboard.monitoringTitle")}
-            empty={t("dashboard.monitoringEmpty")}
+            empty={monitoringEmpty}
             viewLabel={t("dashboard.viewAll")}
             statusLabels={monitorStatusLabels}
           />
