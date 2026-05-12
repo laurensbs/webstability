@@ -67,7 +67,7 @@ export function CalPopupTrigger({
 
         <Dialog.Content
           aria-describedby={undefined}
-          className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out fixed top-1/2 left-1/2 z-50 flex h-[min(720px,90vh)] w-[min(960px,calc(100vw-32px))] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-[20px] border border-t-2 border-(--color-text)/20 border-t-(--color-wine) bg-(--color-text) text-(--color-bg) shadow-[0_24px_60px_-12px_rgba(31,27,22,0.5)]"
+          className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out shadow-modal fixed top-1/2 left-1/2 z-50 flex h-[min(720px,90vh)] w-[min(960px,calc(100vw-32px))] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-[20px] border border-t-2 border-(--color-text)/20 border-t-(--color-wine) bg-(--color-text) text-(--color-bg)"
         >
           {/* Halo-blobs voor depth — zelfde sfeer als login-panel + footer */}
           <div

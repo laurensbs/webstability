@@ -158,7 +158,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               const Icon = PROBLEM_ICONS[i] ?? X;
               return (
                 <RevealOnScroll key={p.title} delay={i * 0.08}>
-                  <article className="h-full rounded-[20px] border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)] sm:p-9">
+                  <article className="hover:shadow-floating h-full rounded-[20px] border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1 sm:p-9">
                     <div className="mb-6 grid h-12 w-12 place-items-center rounded-[14px] bg-red-100 text-red-600">
                       <Icon className="h-[22px] w-[22px]" strokeWidth={2} />
                     </div>
@@ -214,7 +214,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               return (
                 <RevealOnScroll key={s.title} delay={i * 0.08}>
                   <article
-                    className={`group relative flex h-full flex-col rounded-[20px] border border-(--color-border) bg-(--color-surface) transition-all duration-300 hover:border-(--color-border-strong,#D8CDB6) hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)] ${
+                    className={`group hover:shadow-floating relative flex h-full flex-col rounded-[20px] border border-(--color-border) bg-(--color-surface) transition-all duration-300 hover:border-(--color-border-strong,#D8CDB6) ${
                       large ? "p-11 md:row-span-2" : "p-9"
                     }`}
                   >
@@ -267,7 +267,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {competitors.map((c, i) => (
               <RevealOnScroll key={c.name} delay={i * 0.06}>
-                <article className="flex h-full flex-col rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.1)]">
+                <article className="hover:shadow-floating flex h-full flex-col rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6 transition-all duration-300 hover:-translate-y-1">
                   <h3 className="mb-3 font-serif text-[22px] leading-tight">{c.name}</h3>
                   <p className="mb-4 text-[14px] leading-[1.6] text-(--color-text)">{c.dna}</p>
                   <p className="mt-auto border-t border-(--color-border) pt-4 text-[13px] leading-[1.55] text-(--color-muted)">
@@ -327,8 +327,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   <article
                     className={`relative flex h-full flex-col rounded-[28px] p-10 transition-all duration-300 ${
                       featured
-                        ? "scale-[1.02] border border-(--color-text) bg-(--color-text) text-(--color-bg) hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.3)]"
-                        : "border border-(--color-border) bg-(--color-surface) hover:-translate-y-1.5 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]"
+                        ? "hover:shadow-modal scale-[1.02] border border-(--color-text) bg-(--color-text) text-(--color-bg) hover:-translate-y-1.5 hover:scale-[1.02]"
+                        : "hover:shadow-floating border border-(--color-border) bg-(--color-surface) hover:-translate-y-1.5"
                     }`}
                   >
                     {featured ? (

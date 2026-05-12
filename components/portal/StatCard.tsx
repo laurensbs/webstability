@@ -29,7 +29,7 @@ export function StatCard({
 
   return (
     <div
-      className={`group rounded-lg border bg-(--color-surface) p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.12)] ${
+      className={`group hover:shadow-card rounded-lg border bg-(--color-surface) p-5 transition-all duration-300 hover:-translate-y-0.5 ${
         accent ? "border-(--color-accent)/40" : "border-(--color-border)"
       }`}
     >

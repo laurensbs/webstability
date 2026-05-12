@@ -43,7 +43,7 @@ export function HeroMockupCompact() {
         initial={reduce ? false : { opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="relative overflow-hidden rounded-[16px] border border-(--color-border) bg-(--color-surface) shadow-[0_16px_36px_-8px_rgba(31,27,22,0.14),0_4px_10px_-2px_rgba(31,27,22,0.06)]"
+        className="shadow-floating relative overflow-hidden rounded-[16px] border border-(--color-border) bg-(--color-surface)"
       >
         {/* Browser chrome — admin */}
         <div className="flex items-center gap-1.5 border-b border-(--color-border) bg-(--color-text) px-3 py-2">
@@ -130,7 +130,7 @@ export function HeroMockupCompact() {
         initial={reduce ? false : { opacity: 0, scale: 0.85, y: -4 }}
         animate={bookingIn ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.85, y: -4 }}
         transition={{ duration: 0.4, delay: 0.05, ease: [0.34, 1.56, 0.64, 1] }}
-        className="absolute -top-2 right-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface) px-2 py-0.5 shadow-[0_4px_12px_-2px_rgba(31,27,22,0.12)]"
+        className="shadow-card absolute -top-2 right-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface) px-2 py-0.5"
       >
         <span className="relative flex h-1.5 w-1.5">
           <span

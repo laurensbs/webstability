@@ -218,7 +218,7 @@ export function MobileNav({
             <Link
               href={{ pathname: "/contact" }}
               onClick={close}
-              className="group inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-3 text-[14px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)]"
+              className="group hover:shadow-glow inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-3 text-[14px] font-medium text-white transition-all hover:bg-(--color-accent)/90"
             >
               {ctaLabel}
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />

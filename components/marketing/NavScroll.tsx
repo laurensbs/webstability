@@ -76,7 +76,7 @@ export function NavScroll({ children }: { children: React.ReactNode }) {
         <span
           aria-hidden
           className={[
-            "absolute inset-y-1.5 right-2 left-2 transform-gpu rounded-full border bg-(--color-text) shadow-[0_12px_32px_-12px_rgba(31,27,22,0.45)]",
+            "shadow-modal absolute inset-y-1.5 right-2 left-2 transform-gpu rounded-full border bg-(--color-text)",
             "transition-[opacity,border-color]",
             easing,
             scrolled ? "border-(--color-bg)/15 opacity-100" : "border-transparent opacity-0",

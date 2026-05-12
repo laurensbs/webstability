@@ -19,7 +19,7 @@ export function ProductFrame({
   accentColor?: string;
 }) {
   return (
-    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[16px] border border-(--color-text)/10 bg-(--color-text) shadow-[0_24px_48px_-12px_rgba(31,27,22,0.18),0_8px_16px_-4px_rgba(31,27,22,0.08)]">
+    <div className="shadow-floating relative aspect-[16/10] w-full overflow-hidden rounded-[16px] border border-(--color-text)/10 bg-(--color-text)">
       {/* Browser chrome */}
       <div className="flex items-center gap-1.5 border-b border-(--color-bg)/10 bg-(--color-text) px-3.5 py-2.5">
         <span className="h-2 w-2 rounded-full bg-(--color-bg)/15" />

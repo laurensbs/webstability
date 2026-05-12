@@ -47,7 +47,7 @@ export function SeoUpsell({
 
         <Link
           href="/prijzen"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-(--color-accent) px-5 py-2.5 text-[14px] font-medium text-white shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] transition-colors hover:bg-(--color-accent)/90"
+          className="shadow-glow mt-8 inline-flex items-center gap-2 rounded-full bg-(--color-accent) px-5 py-2.5 text-[14px] font-medium text-white transition-colors hover:bg-(--color-accent)/90"
         >
           {strings.cta}
           <ArrowRight className="h-3.5 w-3.5" />

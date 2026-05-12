@@ -175,7 +175,7 @@ function BulkMailForm({
         <button
           type="submit"
           disabled={submitting || orgIds.length === 0}
-          className="inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] transition-colors hover:bg-(--color-accent)/90 disabled:opacity-60"
+          className="shadow-glow inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-colors hover:bg-(--color-accent)/90 disabled:opacity-60"
         >
           {submitting ? (
             <>

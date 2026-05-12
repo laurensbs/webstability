@@ -53,7 +53,7 @@ function AdminView({ reduce }: { reduce: boolean }) {
       initial={reduce ? false : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="relative overflow-hidden rounded-[20px] border border-(--color-border) bg-(--color-surface) shadow-[0_32px_64px_-16px_rgba(31,27,22,0.5),0_8px_24px_-6px_rgba(31,27,22,0.3)] ring-1 ring-(--color-bg)/10"
+      className="shadow-modal relative overflow-hidden rounded-[20px] border border-(--color-border) bg-(--color-surface) ring-1 ring-(--color-bg)/10"
     >
       {/* Browser chrome — admin dark */}
       <div className="flex items-center gap-1.5 border-b border-(--color-border) bg-(--color-text) px-3.5 py-2.5">

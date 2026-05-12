@@ -76,7 +76,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               const Icon = ICONS[i] ?? Shield;
               return (
                 <RevealOnScroll key={p.title} delay={i * 0.06}>
-                  <article className="group relative h-full overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-7 transition-shadow duration-300 hover:shadow-[0_12px_32px_-16px_rgba(31,27,22,0.16)]">
+                  <article className="group hover:shadow-floating relative h-full overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-7 transition-shadow duration-300">
                     <div
                       aria-hidden
                       className="wb-soft-halo pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-(--color-accent-soft) opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-70"

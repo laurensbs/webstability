@@ -568,7 +568,7 @@ export function ProjectConfigurator({
               type="button"
               onClick={submit}
               disabled={submitting || !stepValid}
-              className="inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-5 py-2.5 text-[13px] font-medium text-white shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] transition-colors hover:bg-(--color-accent)/90 disabled:opacity-50"
+              className="shadow-glow inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-5 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-(--color-accent)/90 disabled:opacity-50"
             >
               {submitting ? (
                 <>

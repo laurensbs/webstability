@@ -151,7 +151,7 @@ export function NavMegaMenu({
             <div aria-hidden className="absolute -top-3 right-0 left-0 h-3" />
 
             <div
-              className="relative overflow-hidden rounded-[18px] border border-t-2 border-(--color-bg)/15 border-t-(--color-wine) bg-(--color-text) text-(--color-bg) shadow-[0_24px_60px_-16px_rgba(31,27,22,0.45),0_8px_20px_-4px_rgba(31,27,22,0.25)]"
+              className="shadow-modal relative overflow-hidden rounded-[18px] border border-t-2 border-(--color-bg)/15 border-t-(--color-wine) bg-(--color-text) text-(--color-bg)"
               role="menu"
             >
               <span

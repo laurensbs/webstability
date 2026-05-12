@@ -113,7 +113,7 @@ export default async function CaravanverhuurDetailPage({
               alt="Caravanverhuurspanje — verhuurplatform"
               videoUrl={t("videoUrl")}
               ratio="16/10"
-              className="shadow-[0_24px_48px_-12px_rgba(31,27,22,0.18)]"
+              className="shadow-floating"
             />
           </RevealOnScroll>
 

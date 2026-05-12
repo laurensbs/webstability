@@ -159,7 +159,7 @@ export function CommandPalette({ strings }: { strings: Strings }) {
             role="dialog"
             aria-modal="true"
             aria-label={strings.placeholder}
-            className="relative w-full max-w-xl overflow-hidden rounded-xl border border-(--color-border) bg-(--color-surface) shadow-[0_20px_48px_-12px_rgba(31,27,22,0.3)]"
+            className="shadow-modal relative w-full max-w-xl overflow-hidden rounded-xl border border-(--color-border) bg-(--color-surface)"
           >
             <div className="flex items-center gap-3 border-b border-(--color-border) px-4 py-3">
               <Search className="h-4 w-4 shrink-0 text-(--color-muted)" />

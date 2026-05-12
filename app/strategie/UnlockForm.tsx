@@ -43,7 +43,7 @@ export function UnlockForm({ error }: { error?: boolean }) {
       <button
         type="submit"
         disabled={submitting}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-(--color-accent) px-6 py-3 text-sm font-medium text-white shadow-[0_8px_24px_-8px_rgba(201,97,79,0.55)] transition-all duration-300 hover:bg-(--color-accent)/90 hover:shadow-[0_12px_28px_-8px_rgba(201,97,79,0.65)] disabled:opacity-60"
+        className="shadow-glow hover:shadow-glow inline-flex w-full items-center justify-center gap-2 rounded-full bg-(--color-accent) px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:bg-(--color-accent)/90 disabled:opacity-60"
       >
         {submitting ? (
           <>

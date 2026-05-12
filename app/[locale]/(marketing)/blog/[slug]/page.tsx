@@ -202,7 +202,7 @@ export default async function Page({
                   <li key={p.slug}>
                     <NextLink
                       href={postHref(locale, p.slug)}
-                      className="group block h-full rounded-lg border border-(--color-border) bg-(--color-surface) p-4 transition-shadow duration-300 hover:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.12)]"
+                      className="group hover:shadow-card block h-full rounded-lg border border-(--color-border) bg-(--color-surface) p-4 transition-shadow duration-300"
                     >
                       <p className="line-clamp-3 text-sm font-medium transition-colors group-hover:text-(--color-accent)">
                         {p.title}
@@ -255,7 +255,7 @@ function NeighbourLink({
   return (
     <NextLink
       href={postHref(locale, post.slug)}
-      className={`group relative overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-5 transition-shadow duration-300 hover:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.12)] ${
+      className={`group hover:shadow-card relative overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-5 transition-shadow duration-300 ${
         direction === "next" ? "" : "sm:text-right"
       }`}
     >

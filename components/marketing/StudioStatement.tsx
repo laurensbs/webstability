@@ -76,7 +76,7 @@ export async function StudioStatement() {
           <div className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-3">
             <CalPopupTrigger
               locale={locale}
-              className="group inline-flex items-center gap-2 rounded-full bg-(--color-accent) px-5 py-2.5 text-[14px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+              className="group hover:shadow-glow inline-flex items-center gap-2 rounded-full bg-(--color-accent) px-5 py-2.5 text-[14px] font-medium text-white transition-all hover:bg-(--color-accent)/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
             >
               {t("ctaPrimary")}
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />

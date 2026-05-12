@@ -15,7 +15,7 @@ export async function Founder() {
       <div className="mx-auto grid max-w-[1200px] items-center gap-20 md:grid-cols-[1fr_1.2fr]">
         {/* Photo block — echte portretfoto met dark live-badge onderaan. */}
         <RevealOnScroll>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]">
+          <div className="shadow-floating relative aspect-[4/5] overflow-hidden rounded-[28px]">
             <Image
               src={FOUNDER_PHOTO}
               alt={t("name")}

@@ -68,7 +68,7 @@ export function ServiceCard({
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       whileHover={reduce ? undefined : { y: -4 }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-(--color-bg)/15 bg-(--color-text) p-7 text-(--color-bg) shadow-[0_1px_2px_rgba(31,27,22,0.04),0_8px_24px_-8px_rgba(31,27,22,0.18)] transition-all duration-300 hover:shadow-[0_2px_4px_rgba(31,27,22,0.08),0_24px_48px_-12px_rgba(107,30,44,0.32)] sm:p-9"
+      className="group shadow-card relative flex h-full flex-col overflow-hidden rounded-[20px] border border-(--color-bg)/15 bg-(--color-text) p-7 text-(--color-bg) transition-all duration-300 hover:shadow-[0_2px_4px_rgba(31,27,22,0.08),0_24px_48px_-12px_rgba(107,30,44,0.32)] sm:p-9"
     >
       {/* Wijn-rode halo top-right voor depth — fade'd in op hover */}
       <span
@@ -77,7 +77,7 @@ export function ServiceCard({
       />
 
       {/* Icon-tegel */}
-      <div className="relative mb-6 grid h-12 w-12 place-items-center rounded-[14px] bg-(--color-accent)/15 text-(--color-accent) transition-all duration-300 group-hover:rotate-[-6deg] group-hover:bg-(--color-accent) group-hover:text-white group-hover:shadow-[0_8px_20px_-4px_rgba(201,97,79,0.5)]">
+      <div className="group-hover:shadow-glow relative mb-6 grid h-12 w-12 place-items-center rounded-[14px] bg-(--color-accent)/15 text-(--color-accent) transition-all duration-300 group-hover:rotate-[-6deg] group-hover:bg-(--color-accent) group-hover:text-white">
         <Icon className="h-[22px] w-[22px]" strokeWidth={2} />
       </div>
 

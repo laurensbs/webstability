@@ -236,7 +236,7 @@ export default async function VerticalPage({
           <div className="grid gap-5 md:grid-cols-3">
             {c.problems.map((p, i) => (
               <RevealOnScroll key={p.title} delay={i * 0.06}>
-                <article className="h-full rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.12)]">
+                <article className="hover:shadow-card h-full rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6 transition-all duration-300 hover:-translate-y-1">
                   <h3 className="text-lg leading-tight font-medium">{p.title}</h3>
                   <p className="mt-3 text-[14px] leading-[1.6] text-(--color-muted)">{p.body}</p>
                 </article>
@@ -259,7 +259,7 @@ export default async function VerticalPage({
           <div className="grid gap-5 md:grid-cols-2">
             {c.solutions.map((s, i) => (
               <RevealOnScroll key={s.title} delay={i * 0.06}>
-                <article className="h-full rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.12)]">
+                <article className="hover:shadow-card h-full rounded-[18px] border border-(--color-border) bg-(--color-surface) p-6 transition-all duration-300 hover:-translate-y-1">
                   <h3 className="text-lg leading-tight font-medium">{s.title}</h3>
                   <p className="mt-3 text-[14px] leading-[1.6] text-(--color-muted)">{s.body}</p>
                 </article>

@@ -145,7 +145,7 @@ function ToggleButton({
 /* -------- CLIENT-VIEW: a public booking page mockup -------- */
 function ClientMockup({ strings }: { strings: Strings["client"] }) {
   return (
-    <div className="overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface) shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]">
+    <div className="shadow-floating overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface)">
       {/* Browser chrome */}
       <div className="flex items-center gap-1.5 border-b border-(--color-border) bg-(--color-bg-warm)/60 px-4 py-3">
         <span className="h-2.5 w-2.5 rounded-full bg-(--color-border)" />
@@ -203,7 +203,7 @@ function ClientMockup({ strings }: { strings: Strings["client"] }) {
 /* -------- OWNER-VIEW: an admin dashboard mockup of the same booking -------- */
 function OwnerMockup({ strings, flowSteps }: { strings: Strings["owner"]; flowSteps: string[] }) {
   return (
-    <div className="overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface) shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)]">
+    <div className="shadow-floating overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface)">
       {/* Browser chrome — admin */}
       <div className="flex items-center gap-1.5 border-b border-(--color-border) bg-(--color-text) px-4 py-3 text-(--color-bg)">
         <span className="h-2.5 w-2.5 rounded-full bg-(--color-bg)/30" />

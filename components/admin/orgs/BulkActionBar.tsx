@@ -22,7 +22,7 @@ export function BulkActionBar({
   if (selectedCount === 0) return null;
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-6 z-30 flex justify-center px-4">
-      <div className="pointer-events-auto inline-flex items-center gap-3 rounded-full border border-(--color-border) bg-(--color-text) px-4 py-2 text-(--color-bg) shadow-[0_16px_40px_-12px_rgba(31,27,22,0.4)]">
+      <div className="shadow-modal pointer-events-auto inline-flex items-center gap-3 rounded-full border border-(--color-border) bg-(--color-text) px-4 py-2 text-(--color-bg)">
         <span className="font-mono text-[11px] tracking-widest text-(--color-bg)/60 uppercase">
           {strings.selected.replace("{n}", String(selectedCount))}
         </span>

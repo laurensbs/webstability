@@ -54,7 +54,7 @@ export function ContactIntakeSelector({
               onClick={() => pick(id)}
               className={`flex items-center gap-2.5 rounded-full border px-4 py-2.5 text-left text-[13px] transition-all duration-200 ${
                 isActive
-                  ? "border-(--color-accent) bg-(--color-accent) text-white shadow-[0_8px_20px_-6px_rgba(201,97,79,0.4)]"
+                  ? "shadow-glow border-(--color-accent) bg-(--color-accent) text-white"
                   : "border-(--color-border) bg-(--color-bg-warm) text-(--color-text) hover:border-(--color-accent)/50 hover:bg-(--color-accent-soft)/40"
               }`}
               aria-pressed={isActive}

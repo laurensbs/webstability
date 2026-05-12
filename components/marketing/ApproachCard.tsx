@@ -23,7 +23,7 @@ export function ApproachCard({
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       whileHover={reduce ? undefined : { y: -4 }}
-      className="group relative overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-7 transition-shadow duration-300 hover:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.12)]"
+      className="group hover:shadow-card relative overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-7 transition-shadow duration-300"
     >
       {/* Numbered dot — sits on the connecting rail behind the cards. */}
       <span

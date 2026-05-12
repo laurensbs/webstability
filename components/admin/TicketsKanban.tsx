@@ -246,9 +246,7 @@ function TicketCard({ ticket, strings }: { ticket: Ticket; strings: Strings }) {
       {...listeners}
       {...attributes}
       className={`cursor-grab rounded-xl border bg-(--color-surface) p-3 shadow-sm transition-shadow active:cursor-grabbing ${
-        isDragging
-          ? "border-(--color-accent) shadow-[0_8px_24px_-12px_rgba(31,27,22,0.24)]"
-          : "border-(--color-border)"
+        isDragging ? "shadow-card border-(--color-accent)" : "border-(--color-border)"
       } ${ticket.priority === "high" ? "border-l-2 border-l-(--color-wine)" : ""}`}
     >
       <header className="flex items-start justify-between gap-2">

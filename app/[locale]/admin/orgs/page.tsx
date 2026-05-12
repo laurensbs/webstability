@@ -37,7 +37,7 @@ export default async function OrgsPage({ params }: { params: Promise<{ locale: s
         <h1 className="text-3xl md:text-4xl">{t("title")}</h1>
         <Link
           href="/admin/orgs/new"
-          className="inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 hover:shadow-[0_8px_20px_-8px_rgba(201,97,79,0.5)]"
+          className="hover:shadow-glow inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90"
         >
           + {t("newOrg")}
           <ArrowRight className="h-3.5 w-3.5" />

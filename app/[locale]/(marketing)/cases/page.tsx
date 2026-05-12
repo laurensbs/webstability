@@ -121,7 +121,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               en interne detail-link. Past bij de "één hoofdcase, één
               detail-page"-strategie. */}
           {featureLine ? (
-            <RevealOnScroll className="group mb-6 flex flex-col overflow-hidden rounded-[24px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) transition-all duration-300 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12)] md:grid md:grid-cols-[1.2fr_1fr] md:gap-0">
+            <RevealOnScroll className="group hover:shadow-floating mb-6 flex flex-col overflow-hidden rounded-[24px] border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) transition-all duration-300 md:grid md:grid-cols-[1.2fr_1fr] md:gap-0">
               <article
                 id={featureLine.anchor}
                 className="flex scroll-mt-24 flex-col p-8 md:order-2 md:p-10"
@@ -188,7 +188,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   className="rounded-none border-0 md:h-full"
                 />
                 {featureLine.logoUrl ? (
-                  <div className="absolute top-3 right-3 flex h-11 w-11 items-center justify-center rounded-[10px] bg-white/95 p-1.5 shadow-[0_4px_12px_rgba(31,27,22,0.12)] backdrop-blur">
+                  <div className="shadow-card absolute top-3 right-3 flex h-11 w-11 items-center justify-center rounded-[10px] bg-white/95 p-1.5 backdrop-blur">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={featureLine.logoUrl}
@@ -208,7 +208,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <RevealOnScroll
                 key={item.anchor}
                 delay={i * 0.06}
-                className="group flex h-full flex-col overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface) transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12)]"
+                className="group hover:shadow-floating flex h-full flex-col overflow-hidden rounded-[24px] border border-(--color-border) bg-(--color-surface) transition-all duration-300 hover:-translate-y-1"
               >
                 <article id={item.anchor} className="flex h-full scroll-mt-24 flex-col">
                   <div className="relative">
@@ -218,7 +218,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                       videoUrl={item.videoUrl}
                     />
                     {item.logoUrl ? (
-                      <div className="absolute top-3 right-3 flex h-11 w-11 items-center justify-center rounded-[10px] bg-white/95 p-1.5 shadow-[0_4px_12px_rgba(31,27,22,0.12)] backdrop-blur">
+                      <div className="shadow-card absolute top-3 right-3 flex h-11 w-11 items-center justify-center rounded-[10px] bg-white/95 p-1.5 backdrop-blur">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={item.logoUrl}
@@ -348,7 +348,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   <div className="relative">
                     <CaseScreenshot url={item.url} alt={`${item.name} screenshot`} />
                     {item.logoUrl ? (
-                      <div className="absolute top-3 left-3 flex h-11 items-center rounded-[10px] bg-white/95 px-2.5 py-1.5 shadow-[0_4px_12px_rgba(31,27,22,0.12)] backdrop-blur">
+                      <div className="shadow-card absolute top-3 left-3 flex h-11 items-center rounded-[10px] bg-white/95 px-2.5 py-1.5 backdrop-blur">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={item.logoUrl}

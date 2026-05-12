@@ -102,7 +102,7 @@ function FeaturedCard({
   return (
     <NextLink
       href={postHref(locale, post.slug)}
-      className="group relative block overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-8 transition-shadow duration-300 hover:shadow-[0_16px_40px_-20px_rgba(31,27,22,0.18)] md:p-12"
+      className="group hover:shadow-floating relative block overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-8 transition-shadow duration-300 md:p-12"
     >
       <div
         aria-hidden
@@ -141,7 +141,7 @@ function PostCard({
   return (
     <NextLink
       href={postHref(locale, post.slug)}
-      className="group relative block h-full overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-7 transition-shadow duration-300 hover:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.12)]"
+      className="group hover:shadow-card relative block h-full overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface) p-7 transition-shadow duration-300"
     >
       <span
         aria-hidden

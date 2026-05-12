@@ -46,7 +46,7 @@ export const AccordionTrigger = React.forwardRef<
           fill in open-state met lichte glow. */}
       <span
         aria-hidden
-        className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-(--color-border-strong,#D8CDB6) text-(--color-muted) transition-all duration-400 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] group-hover/trigger:border-(--color-accent)/50 group-hover/trigger:text-(--color-accent) group-data-[state=open]/trigger:rotate-[225deg] group-data-[state=open]/trigger:border-(--color-accent) group-data-[state=open]/trigger:bg-(--color-accent) group-data-[state=open]/trigger:text-white group-data-[state=open]/trigger:shadow-[0_4px_16px_-2px_rgba(201,97,79,0.45)]"
+        className="group-data-[state=open]/trigger:shadow-glow grid h-9 w-9 shrink-0 place-items-center rounded-full border border-(--color-border-strong,#D8CDB6) text-(--color-muted) transition-all duration-400 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] group-hover/trigger:border-(--color-accent)/50 group-hover/trigger:text-(--color-accent) group-data-[state=open]/trigger:rotate-[225deg] group-data-[state=open]/trigger:border-(--color-accent) group-data-[state=open]/trigger:bg-(--color-accent) group-data-[state=open]/trigger:text-white"
       >
         <Plus className="h-4 w-4" strokeWidth={2.2} />
       </span>

@@ -128,7 +128,7 @@ export function PricingCardsWithToggle({
             ? "border border-(--color-border) bg-(--color-surface) opacity-75 saturate-[0.7]"
             : featured
               ? "border border-(--color-border) border-t-2 border-t-(--color-wine) bg-(--color-surface) shadow-[0_2px_4px_rgba(31,27,22,0.04),0_8px_24px_-8px_rgba(107,30,44,0.12),0_24px_48px_-16px_rgba(31,27,22,0.06)]"
-              : "border border-(--color-border) bg-(--color-surface) shadow-[0_1px_2px_rgba(31,27,22,0.04),0_4px_12px_-4px_rgba(31,27,22,0.06)]";
+              : "border border-(--color-border) bg-(--color-surface) shadow-card";
 
           return (
             <article

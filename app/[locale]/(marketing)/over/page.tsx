@@ -85,7 +85,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <RevealOnScroll>
             {/* Portrait — echte foto via remote pattern (cubeupload). Past
                 bij de homepage Founder-block die dezelfde URL toont. */}
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-[220px] overflow-hidden rounded-[28px] shadow-[0_24px_48px_-12px_rgba(31,27,22,0.12),0_8px_16px_-4px_rgba(31,27,22,0.06)] md:mx-0 md:max-w-sm">
+            <div className="shadow-floating relative mx-auto aspect-[4/5] w-full max-w-[220px] overflow-hidden rounded-[28px] md:mx-0 md:max-w-sm">
               <Image
                 src="https://u.cubeupload.com/laurensbos/fc7278a70fe64fb6aa6a.jpg"
                 alt={t("title")}
@@ -145,7 +145,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             {principles.map((p, i) => (
               <RevealOnScroll key={p.title} delay={i * 0.06}>
-                <article className="group h-full rounded-lg border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.12)]">
+                <article className="group hover:shadow-card h-full rounded-lg border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1">
                   <p className="font-mono text-xs tracking-widest text-(--color-accent) uppercase">
                     {p.kicker}
                   </p>
@@ -186,7 +186,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               }>
             ).map((it, i) => (
               <RevealOnScroll key={it.label} delay={i * 0.06}>
-                <article className="h-full rounded-[18px] border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_-12px_rgba(31,27,22,0.12)]">
+                <article className="hover:shadow-card h-full rounded-[18px] border border-(--color-border) bg-(--color-surface) p-7 transition-all duration-300 hover:-translate-y-1">
                   <p className="font-serif text-[40px] leading-none text-(--color-wine)">
                     {it.metric}
                   </p>
