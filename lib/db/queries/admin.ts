@@ -797,6 +797,15 @@ export async function countOpenConfiguratorLeads(): Promise<number> {
   return Number(row?.n ?? 0);
 }
 
+/** Aantal open tickets met prioriteit 'high' — voor de admin-"// vandaag"-zone. */
+export async function countHighPriorityOpenTickets(): Promise<number> {
+  const [row] = await db
+    .select({ n: count() })
+    .from(tickets)
+    .where(and(eq(tickets.status, "open"), eq(tickets.priority, "high")));
+  return Number(row?.n ?? 0);
+}
+
 /**
  * Lijst alle staff-users voor de "owner"-dropdown op lead-detail.
  */

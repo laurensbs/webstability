@@ -19,6 +19,7 @@ import {
   getStaleProjects,
   listLeadRemindersDueToday,
   countOpenConfiguratorLeads,
+  countHighPriorityOpenTickets,
 } from "@/lib/db/queries/admin";
 import { triggerDemoRefresh } from "@/app/actions/admin-bulk";
 import { DemoManagementCard } from "@/components/admin/DemoManagementCard";
@@ -69,6 +70,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
     staleProjects,
     leadReminders,
     openConfiguratorLeads,
+    highPriorityTickets,
   ] = await Promise.all([
     getStudioStats(),
     getRecentAdminActivity(8),
@@ -81,6 +83,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
     getStaleProjects(7),
     listLeadRemindersDueToday(),
     countOpenConfiguratorLeads(),
+    countHighPriorityOpenTickets(),
   ]);
   const tDemo = await getTranslations("admin.demoFunnel");
   const tDemoMgmt = await getTranslations("admin.demoManagement");
@@ -199,31 +202,71 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
         />
       </section>
 
-      {/* "Vandaag"-zone — alles wat staff bij het ochtend-openen direct moet
-          zien: leads die follow-up nodig hebben (warmst), calls vandaag, en
-          klanten zonder update. Eronder pas de reference/analytics-widgets. */}
-      <section className="space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="font-mono text-[10px] tracking-[0.18em] text-(--color-muted) uppercase">
-            {"// "}
-            {t("todayEyebrow")}
-          </p>
-          {openConfiguratorLeads > 0 ? (
-            <a
-              href={`/${locale === "nl" ? "" : `${locale}/`}admin/leads`}
-              className="inline-flex items-center gap-1.5 rounded-full bg-(--color-accent)/10 px-3 py-1 font-mono text-[10px] tracking-wide text-(--color-wine) uppercase transition-colors hover:bg-(--color-accent)/20"
-            >
-              {openConfiguratorLeads}{" "}
-              {openConfiguratorLeads === 1 ? "configurator-aanvraag" : "configurator-aanvragen"}
-            </a>
-          ) : null}
-        </div>
-        <LeadRemindersWidget reminders={withOverdueFlag(leadReminders)} />
-        <div className="grid gap-4 md:grid-cols-2">
-          <UpcomingCallsWidget calls={upcomingCalls} locale={locale} />
-          <StaleProjectsWidget projects={staleProjects} locale={locale} />
-        </div>
-      </section>
+      {/* "Vandaag"-zone — alleen wat er echt is. Lege sub-blokken vallen weg;
+          is er niks dringend, dan een korte rustgevende regel i.p.v. drie lege
+          kaders. Pills rechts: open configurator-aanvragen + high-priority tickets. */}
+      {(() => {
+        const nothingUrgent =
+          leadReminders.length === 0 && upcomingCalls.length === 0 && staleProjects.length === 0;
+        const adminBase = `/${locale === "nl" ? "" : `${locale}/`}admin`;
+        return (
+          <section className="space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="font-mono text-[10px] tracking-[0.18em] text-(--color-muted) uppercase">
+                {"// "}
+                {t("todayEyebrow")}
+              </p>
+              <div className="flex flex-wrap items-center gap-2">
+                {highPriorityTickets > 0 ? (
+                  <a
+                    href={`${adminBase}/tickets`}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-(--color-wine)/10 px-3 py-1 font-mono text-[10px] tracking-wide text-(--color-wine) uppercase transition-colors hover:bg-(--color-wine)/20"
+                  >
+                    {highPriorityTickets} high-priority{" "}
+                    {highPriorityTickets === 1 ? "ticket" : "tickets"}
+                  </a>
+                ) : null}
+                {openConfiguratorLeads > 0 ? (
+                  <a
+                    href={`${adminBase}/leads`}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-(--color-accent)/10 px-3 py-1 font-mono text-[10px] tracking-wide text-(--color-wine) uppercase transition-colors hover:bg-(--color-accent)/20"
+                  >
+                    {openConfiguratorLeads}{" "}
+                    {openConfiguratorLeads === 1
+                      ? "configurator-aanvraag"
+                      : "configurator-aanvragen"}
+                  </a>
+                ) : null}
+              </div>
+            </div>
+            {nothingUrgent ? (
+              <p className="rounded-lg border border-dashed border-(--color-border) bg-(--color-bg-warm)/40 px-5 py-4 text-[14px] text-(--color-muted)">
+                Niks dringend — geen openstaande follow-ups, calls of stale projecten. Fijne dag.
+              </p>
+            ) : (
+              <>
+                {leadReminders.length > 0 ? (
+                  <LeadRemindersWidget reminders={withOverdueFlag(leadReminders)} />
+                ) : null}
+                {upcomingCalls.length > 0 || staleProjects.length > 0 ? (
+                  <div
+                    className={`grid gap-4 ${
+                      upcomingCalls.length > 0 && staleProjects.length > 0 ? "md:grid-cols-2" : ""
+                    }`}
+                  >
+                    {upcomingCalls.length > 0 ? (
+                      <UpcomingCallsWidget calls={upcomingCalls} locale={locale} />
+                    ) : null}
+                    {staleProjects.length > 0 ? (
+                      <StaleProjectsWidget projects={staleProjects} locale={locale} />
+                    ) : null}
+                  </div>
+                ) : null}
+              </>
+            )}
+          </section>
+        );
+      })()}
 
       {/* Demo-management — laatste cron-run + week-counts + handmatige
           refresh-knop. Niet-demo-staff alleen (anders triggert demo-staff

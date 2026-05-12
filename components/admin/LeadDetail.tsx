@@ -13,6 +13,7 @@ import {
   type LeadStatus,
   type OutreachTemplate,
 } from "@/lib/leads";
+import { LeadActivityTimeline } from "@/components/admin/LeadActivityTimeline";
 
 const FIELD =
   "block w-full rounded-md border border-(--color-border) bg-(--color-surface) px-3 py-2 text-[14px] focus:border-(--color-accent)/60 focus:outline-none";
@@ -407,28 +408,7 @@ export function LeadDetail({
             </div>
           </div>
 
-          {activity.length === 0 ? (
-            <p className="rounded-card mt-4 border border-dashed border-(--color-border) bg-(--color-bg-warm)/50 px-5 py-6 text-center text-[14px] text-(--color-muted)">
-              Nog geen activiteit. Notitie hierboven start de tijdlijn.
-            </p>
-          ) : (
-            <ol className="mt-4 space-y-3">
-              {activity.map((a) => (
-                <li
-                  key={a.id}
-                  className="rounded-card border border-(--color-border) bg-(--color-surface) px-4 py-3"
-                >
-                  <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
-                    {a.createdAt}
-                    {a.actorName ? ` · ${a.actorName}` : ""} · {a.kind}
-                  </p>
-                  <p className="mt-2 text-[13px] leading-[1.55] whitespace-pre-wrap text-(--color-text)">
-                    {a.summary}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          )}
+          <LeadActivityTimeline activity={activity} />
         </section>
       </div>
 
