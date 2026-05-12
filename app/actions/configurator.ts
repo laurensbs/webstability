@@ -193,7 +193,10 @@ export async function submitProjectRequest(formData: FormData): Promise<ProjectR
         .join(" · ");
       const prefill = {
         company: { name: company || null },
-        build: { type: kind, details: detailsLine },
+        // De intake-stap "type systeem" kent: verhuurplatform | reparatie |
+        // webshop ("website of webshop") | anders. De configurator produceert
+        // alleen website/webshop → beide vallen onder de intake-optie "webshop".
+        build: { type: "webshop", details: detailsLine },
       };
       const jar = await cookies();
       jar.set("wb_proj_request", JSON.stringify(prefill), {
