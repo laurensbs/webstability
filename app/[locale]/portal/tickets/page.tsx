@@ -51,7 +51,19 @@ export default async function TicketsPage({ params }: { params: Promise<{ locale
       </header>
 
       {list.length === 0 ? (
-        <EmptyState icon={MessageSquare} title={t("empty")} />
+        <EmptyState
+          icon={MessageSquare}
+          title={t("empty")}
+          body={t("emptyBody")}
+          action={
+            <Button asChild variant="accent">
+              <NextLink href={newHref} className="inline-flex items-center gap-2">
+                <Plus className="h-4 w-4" />
+                {t("emptyCta")}
+              </NextLink>
+            </Button>
+          }
+        />
       ) : (
         <ul className="divide-y divide-(--color-border) overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)">
           {list.map((tk) => {

@@ -2805,7 +2805,7 @@
     },
     "projects": {
       "title": "Proyectos",
-      "empty": "Aún no hay proyectos.",
+      "empty": "Aun no hay proyectos vinculados.",
       "status": {
         "planning": "en planificación",
         "in_progress": "en desarrollo",
@@ -2821,12 +2821,13 @@
         "system": "Sistema",
         "seo": "SEO"
       },
-      "progress": "Progreso"
+      "progress": "Progreso",
+      "emptyBody": "En cuanto empecemos algo aparecera aqui, con progreso y planificacion. Nada acordado todavia? Reserva una primera llamada."
     },
     "tickets": {
       "title": "Tickets",
       "new": "Nuevo ticket",
-      "empty": "Aún no hay tickets.",
+      "empty": "Aun no hay tickets.",
       "subjectLabel": "Asunto",
       "bodyLabel": "Mensaje",
       "priorityLabel": "Prioridad",
@@ -2861,11 +2862,13 @@
       "back": "Todos los tickets",
       "reply": "Responder",
       "noReplies": "Sin respuestas aún.",
-      "staffBadge": "studio"
+      "staffBadge": "studio",
+      "emptyBody": "Una pregunta, un cambio, una incidencia? Un ticket lo mantiene todo en un sitio — tu ves el estado, yo llevo el hilo.",
+      "emptyCta": "Nuevo ticket"
     },
     "invoices": {
       "title": "Facturas",
-      "empty": "Aún no hay facturas.",
+      "empty": "Aun no hay facturas.",
       "number": "Número",
       "amount": "Importe",
       "due": "Vencimiento",
@@ -2876,7 +2879,8 @@
         "paid": "pagada",
         "overdue": "vencida",
         "cancelled": "cancelada"
-      }
+      },
+      "emptyBody": "En cuanto haya una factura lista aparecera aqui — con PDF y estado de pago."
     },
     "settings": {
       "title": "Ajustes",
@@ -2978,7 +2982,7 @@
     },
     "files": {
       "title": "Archivos",
-      "empty": "Aún no hay archivos.",
+      "empty": "Aun no hay archivos subidos.",
       "upload": "Subir archivo",
       "uploadHint": "Máximo 10MB por archivo.",
       "category": {
@@ -2990,11 +2994,12 @@
       "categoryLabel": "Categoría",
       "uploadedAt": "Subido {when}",
       "download": "Descargar",
-      "notConfigured": "El almacenamiento no está configurado. Define BLOB_READ_WRITE_TOKEN para activar las subidas."
+      "notConfigured": "El almacenamiento no está configurado. Define BLOB_READ_WRITE_TOKEN para activar las subidas.",
+      "emptyBody": "Disenos, exports, documentos — todo lo que compartimos aparece aqui."
     },
     "team": {
       "title": "Equipo",
-      "empty": "Sin miembros.",
+      "empty": "No hay miembros del equipo.",
       "invite": "Invitar",
       "inviteEmailLabel": "Email",
       "inviteRoleLabel": "Rol",
@@ -3002,7 +3007,8 @@
       "inviteHint": "El receptor recibe un enlace mágico para activarse.",
       "memberSince": "Miembro desde {when}",
       "you": "tú",
-      "ownerOnly": "Solo los propietarios pueden invitar."
+      "ownerOnly": "Solo los propietarios pueden invitar.",
+      "emptyBody": "Invita a un companero para que tambien pueda abrir tickets y seguir el estado."
     }
   },
   "stub": {

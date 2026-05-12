@@ -35,7 +35,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
       </header>
 
       {list.length === 0 ? (
-        <EmptyState icon={FolderKanban} title={t("empty")} />
+        <EmptyState icon={FolderKanban} title={t("empty")} body={t("emptyBody")} />
       ) : (
         <ul className="grid gap-4 md:grid-cols-2">
           {list.map((p) => {

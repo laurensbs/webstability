@@ -80,7 +80,7 @@ export default async function FilesPage({ params }: { params: Promise<{ locale: 
       )}
 
       {list.length === 0 ? (
-        <EmptyState title={t("empty")} />
+        <EmptyState title={t("empty")} body={t("emptyBody")} />
       ) : (
         <ul className="divide-y divide-(--color-border) overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)">
           {list.map((f) => {

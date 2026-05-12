@@ -7,6 +7,8 @@ import { getUserWithOrg, listOrgMembers } from "@/lib/db/queries/portal";
 import { inviteMember } from "@/app/actions/team";
 import { ToastForm } from "@/components/portal/ToastForm";
 import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
+import { EmptyState } from "@/components/portal/EmptyState";
+import { Users } from "lucide-react";
 
 export default async function TeamPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -77,7 +79,7 @@ export default async function TeamPage({ params }: { params: Promise<{ locale: s
       )}
 
       {members.length === 0 ? (
-        <p className="text-(--color-muted)">{t("empty")}</p>
+        <EmptyState icon={Users} title={t("empty")} body={t("emptyBody")} />
       ) : (
         <ul className="divide-y divide-(--color-border) overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)">
           {members.map((m) => (

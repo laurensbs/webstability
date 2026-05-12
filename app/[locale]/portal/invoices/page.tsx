@@ -37,7 +37,7 @@ export default async function InvoicesPage({ params }: { params: Promise<{ local
       </header>
 
       {list.length === 0 ? (
-        <EmptyState icon={Receipt} title={t("empty")} />
+        <EmptyState icon={Receipt} title={t("empty")} body={t("emptyBody")} />
       ) : (
         <ul className="divide-y divide-(--color-border) overflow-hidden rounded-lg border border-(--color-border) bg-(--color-surface)">
           {list.map((inv) => {

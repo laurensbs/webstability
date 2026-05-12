@@ -2817,7 +2817,8 @@
         "system": "Admin-systeem",
         "seo": "SEO"
       },
-      "progress": "Voortgang"
+      "progress": "Voortgang",
+      "emptyBody": "Zodra we aan iets beginnen verschijnt het hier, met voortgang en planning. Nog niks afgesproken? Boek een kennismaking."
     },
     "tickets": {
       "title": "Tickets",
@@ -2857,7 +2858,9 @@
       "back": "Alle tickets",
       "reply": "Antwoorden",
       "noReplies": "Nog geen antwoorden.",
-      "staffBadge": "studio"
+      "staffBadge": "studio",
+      "emptyBody": "Vraag, wijziging of melding? Een ticket houdt alles op een plek — jij ziet de status, ik hou de draad vast.",
+      "emptyCta": "Nieuw ticket"
     },
     "invoices": {
       "title": "Facturen",
@@ -2872,7 +2875,8 @@
         "paid": "betaald",
         "overdue": "te laat",
         "cancelled": "geannuleerd"
-      }
+      },
+      "emptyBody": "Zodra er een factuur klaarstaat verschijnt die hier — met PDF en betaalstatus."
     },
     "settings": {
       "title": "Instellingen",
@@ -2986,7 +2990,8 @@
       "categoryLabel": "Categorie",
       "uploadedAt": "Geüpload {when}",
       "download": "Download",
-      "notConfigured": "Bestandsopslag is niet geconfigureerd. Stel BLOB_READ_WRITE_TOKEN in om uploads te activeren."
+      "notConfigured": "Bestandsopslag is niet geconfigureerd. Stel BLOB_READ_WRITE_TOKEN in om uploads te activeren.",
+      "emptyBody": "Designs, exports, documenten — alles wat we delen komt hier te staan."
     },
     "team": {
       "title": "Team",
@@ -2998,7 +3003,8 @@
       "inviteHint": "De ontvanger krijgt een magic-link om te activeren.",
       "memberSince": "Lid sinds {when}",
       "you": "jij",
-      "ownerOnly": "Alleen eigenaren kunnen uitnodigen."
+      "ownerOnly": "Alleen eigenaren kunnen uitnodigen.",
+      "emptyBody": "Nodig een collega uit zodat zij ook tickets kunnen openen en de status kunnen volgen."
     }
   },
   "stub": {
