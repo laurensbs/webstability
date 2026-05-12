@@ -324,7 +324,7 @@
         "dates": "Disponible 14 — 21 julio (7 noches)",
         "total": "Total",
         "deposit": "Anticipo",
-        "cta": "Reservar — anticipo €420"
+        "cta": "Reservar primera llamada"
       },
       "owner": {
         "badge": "Reservas · live",
@@ -390,7 +390,7 @@
         "webshop": {
           "title": "Web o tienda online",
           "body": "Una web rápida y multilingüe que no parece una plantilla, o una tienda online completa con IVA por categoría y conexión de inventario. Configúrala tú mismo — tipo, páginas, estilo, opciones — y ve el precio orientativo al instante.",
-          "pricePill": "desde 1.050 € · configúrala tú mismo",
+          "pricePill": "desde 3.000 € · configuralo tu mismo",
           "cta": "Solicita tu web →"
         },
         "care": {
@@ -1831,7 +1831,7 @@
         "eyebrow": "línea de producto 03",
         "title": "Web o tienda online",
         "dnaLine": "Web de marketing rápida y multilingüe, o tienda con BTW/IVA y stock. Lighthouse 95+ en móvil.",
-        "pricePill": "1–2 k € build · 2–3 meses",
+        "pricePill": "desde 3.000 € · 4 semanas",
         "solvesTitle": "Qué resuelve",
         "solves": [
           "Una web multilingüe que funciona tanto en NL como en ES",

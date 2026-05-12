@@ -324,7 +324,7 @@
         "dates": "Beschikbaar 14 — 21 juli (7 nachten)",
         "total": "Totaal",
         "deposit": "Aanbetaling",
-        "cta": "Boek nu — €420 aanbetaling"
+        "cta": "Boek een kennismaking"
       },
       "owner": {
         "badge": "Boekingen · live",
@@ -390,7 +390,7 @@
         "webshop": {
           "title": "Website of webshop",
           "body": "Een snelle, meertalige site die niet op een template lijkt, of een volledige webshop met btw/IVA per categorie en voorraad-koppeling. Stel 'm zelf samen — type, pagina's, stijl, opties — en zie meteen de richtprijs.",
-          "pricePill": "vanaf €1.050 · stel 'm zelf samen",
+          "pricePill": "vanaf €3.000 · stel zelf samen",
           "cta": "Vraag je website aan →"
         },
         "care": {
@@ -1831,7 +1831,7 @@
         "eyebrow": "productlijn 03",
         "title": "Website of webshop",
         "dnaLine": "Snelle, meertalige marketing-site of webshop met BTW/IVA en voorraadkoppeling. Lighthouse 95+ op mobiel.",
-        "pricePill": "€1k–€2k build · 2–3 mnd",
+        "pricePill": "vanaf €3.000 · 4 weken",
         "solvesTitle": "Wat het oplost",
         "solves": [
           "Eén meertalige site die werkt voor zowel NL als ES",
