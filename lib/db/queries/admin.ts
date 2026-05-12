@@ -675,25 +675,33 @@ export async function getNpsStats() {
  * activity-count. Geen pagination — tot ~500 leads is dit prima.
  */
 export async function listAllLeads() {
-  return db
-    .select({
-      id: leads.id,
-      email: leads.email,
-      name: leads.name,
-      company: leads.company,
-      source: leads.source,
-      status: leads.status,
-      nextActionAt: leads.nextActionAt,
-      nextActionLabel: leads.nextActionLabel,
-      ownerStaffId: leads.ownerStaffId,
-      ownerName: users.name,
-      linkedOrgId: leads.linkedOrgId,
-      createdAt: leads.createdAt,
-      updatedAt: leads.updatedAt,
-    })
-    .from(leads)
-    .leftJoin(users, eq(users.id, leads.ownerStaffId))
-    .orderBy(desc(leads.updatedAt));
+  return (
+    db
+      .select({
+        id: leads.id,
+        email: leads.email,
+        name: leads.name,
+        company: leads.company,
+        source: leads.source,
+        status: leads.status,
+        nextActionAt: leads.nextActionAt,
+        nextActionLabel: leads.nextActionLabel,
+        ownerStaffId: leads.ownerStaffId,
+        ownerName: users.name,
+        linkedOrgId: leads.linkedOrgId,
+        createdAt: leads.createdAt,
+        updatedAt: leads.updatedAt,
+      })
+      .from(leads)
+      .leftJoin(users, eq(users.id, leads.ownerStaffId))
+      // Leads met een geplande follow-up bovenaan, soonest first (overdue/vandaag
+      // eerst), daarna de rest op recentheid — zo zie je in één scan wat er nu moet.
+      .orderBy(
+        sql`case when ${leads.nextActionAt} is null then 1 else 0 end`,
+        asc(leads.nextActionAt),
+        desc(leads.updatedAt),
+      )
+  );
 }
 
 /**
