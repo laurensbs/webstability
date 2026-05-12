@@ -2999,6 +2999,11 @@
       "errorTitle": "No disponible",
       "errorBody": "Better Stack no está accesible ahora mismo.",
       "lastChecked": "Última comprobación: {when}",
+      "watch": {
+        "website": "Compruebo tu web cada minuto — si carga lenta o se cae, recibo un aviso al instante y lo soluciono antes de que tú o tus visitantes lo notéis.",
+        "webshop": "Compruebo tu tienda y el checkout cada minuto — si fallar el pago o el cobro, lo sé al momento e intervengo antes de que pierdas un pedido.",
+        "platform": "Compruebo tu plataforma y las integraciones cada minuto — si se cae una integración o el entorno va lento, recibo una alerta y lo arreglo."
+      },
       "label": {
         "up": "operativo",
         "down": "caído",

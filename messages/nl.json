@@ -2995,6 +2995,11 @@
       "errorTitle": "Niet beschikbaar",
       "errorBody": "Better Stack is tijdelijk niet bereikbaar.",
       "lastChecked": "Laatst gecontroleerd: {when}",
+      "watch": {
+        "website": "Ik check je site elke minuut — laadt 'ie traag of valt 'ie weg, dan krijg ik meteen een seintje en pak ik 't op vóór jij of je bezoekers het merken.",
+        "webshop": "Ik check je shop én de checkout elke minuut — als afrekenen of betalen hapert, weet ik 't direct en grijp ik in voordat je een bestelling misloopt.",
+        "platform": "Ik check je platform en de koppelingen elke minuut — valt een integratie weg of wordt de omgeving traag, dan krijg ik meteen een alert en los ik 't op."
+      },
       "label": {
         "up": "operationeel",
         "down": "down",

@@ -4,6 +4,8 @@ import { notFound, redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { routing } from "@/i18n/routing";
 import { listMonitors, type Monitor } from "@/lib/better-stack";
+import { getUserWithOrg, listOrgProjects } from "@/lib/db/queries/portal";
+import { serviceKindFromProjects } from "@/lib/service-kinds";
 
 export const revalidate = 60;
 
@@ -12,7 +14,7 @@ const dotMap: Record<Monitor["status"], string> = {
   down: "bg-(--color-accent)",
   paused: "bg-(--color-muted)",
   pending: "bg-(--color-muted)",
-  maintenance: "bg-amber-500",
+  maintenance: "bg-(--color-wine)",
   validating: "bg-(--color-muted)",
 };
 
@@ -25,6 +27,14 @@ export default async function MonitoringPage({ params }: { params: Promise<{ loc
   if (!session?.user?.id) redirect("/login");
 
   const t = await getTranslations("portal.monitoring");
+
+  // Dienst-type van deze klant — bepaalt de "wat ik voor je in de gaten
+  // houd"-intro (een webshop-klant wil weten dat de checkout meeloopt).
+  const user = await getUserWithOrg(session.user.id);
+  const projects = user?.organizationId ? await listOrgProjects(user.organizationId) : [];
+  const serviceKind = serviceKindFromProjects(projects);
+  const watchLine =
+    serviceKind === "other" ? null : t(`watch.${serviceKind}` as Parameters<typeof t>[0]);
 
   let monitors: Monitor[] = [];
   let fetchError = false;
@@ -44,6 +54,11 @@ export default async function MonitoringPage({ params }: { params: Promise<{ loc
       <header className="space-y-2">
         <h1 className="text-3xl md:text-4xl">{t("title")}</h1>
         <p className="text-(--color-muted)">{fetchError ? t("errorBody") : t("summary")}</p>
+        {!fetchError && watchLine ? (
+          <p className="rounded-lg border border-dashed border-(--color-border) bg-(--color-bg-warm)/50 px-4 py-3 text-sm text-(--color-text)">
+            {watchLine}
+          </p>
+        ) : null}
       </header>
 
       {fetchError ? null : monitors.length === 0 ? (
