@@ -8,6 +8,7 @@ import {
   getOrgFullView,
   getOrgHoursThisMonth,
   getOrgFilesAndInvoices,
+  getLinkedLeadForOrg,
 } from "@/lib/db/queries/admin";
 import { getActiveBuildPhase } from "@/lib/db/queries/portal";
 import { getActiveStripeSubscription } from "@/lib/stripe";
@@ -49,10 +50,11 @@ export default async function OrgDetail({
   if (!fullView) notFound();
   const { org, latestSub, recentDiscounts, recentAuditEvents } = fullView;
 
-  const [hours, activeBuild, filesAndInvoices] = await Promise.all([
+  const [hours, activeBuild, filesAndInvoices, linkedLead] = await Promise.all([
     getOrgHoursThisMonth(orgId),
     getActiveBuildPhase(orgId),
     getOrgFilesAndInvoices(orgId),
+    getLinkedLeadForOrg(orgId),
   ]);
   const { orgFiles, orgInvoices } = filesAndInvoices;
   const budgetMinutes = budgetMinutesFor(org.plan);
@@ -966,6 +968,16 @@ export default async function OrgDetail({
           <p className="mt-2 font-mono text-xs text-(--color-muted)">
             {org.country} · {org.plan ?? "no plan"} · created {dateFmt.format(org.createdAt)}
           </p>
+          {linkedLead ? (
+            <NextLink
+              href={`/admin/leads/${linkedLead.id}`}
+              className="mt-2 inline-flex items-center gap-1.5 font-mono text-[11px] tracking-wide text-(--color-accent) underline decoration-(--color-accent)/40 underline-offset-2 hover:decoration-(--color-accent)"
+            >
+              {linkedLead.source === "configurator"
+                ? "↗ Oorspronkelijke configurator-aanvraag"
+                : "↗ Gekoppelde lead"}
+            </NextLink>
+          ) : null}
         </div>
         <OrgQuickActions
           orgName={org.name}

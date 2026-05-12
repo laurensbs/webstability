@@ -8,6 +8,7 @@ import { randomUUID } from "node:crypto";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { sendStaffInvite } from "@/lib/email/staff-invite";
+import { sendWelcomeEmail } from "@/lib/email/welcome";
 import { DemoReadonlyError } from "@/lib/demo-guard";
 import {
   changeSubscriptionPlan,
@@ -33,6 +34,8 @@ import {
   auditLog,
   projectUpdates,
   handoverChecklist,
+  leads,
+  leadActivity,
 } from "@/lib/db/schema";
 import { getHandoverStatus } from "@/lib/db/queries/portal";
 import type { ActionResult } from "@/lib/action-result";
@@ -912,6 +915,11 @@ export async function createOrgWithOwner(
   const ownerEmail = String(formData.get("ownerEmail") ?? "")
     .trim()
     .toLowerCase();
+  // Optioneel — meegestuurd vanuit een configurator-lead (/admin/orgs/new?…).
+  const projectTypeInput = String(formData.get("projectType") ?? "");
+  const projectType: "website" | "webshop" | null =
+    projectTypeInput === "website" || projectTypeInput === "webshop" ? projectTypeInput : null;
+  const leadId = String(formData.get("leadId") ?? "").trim() || null;
 
   const country = (COUNTRY_VALUES as readonly string[]).includes(countryInput)
     ? (countryInput as Country)
@@ -946,6 +954,7 @@ export async function createOrgWithOwner(
 
   // Owner-user: maak alleen aan als email opgegeven. Naam mag leeg —
   // klant kan 'm later zelf zetten via portal/settings.
+  let createdNewUser = false;
   if (ownerEmail && ownerEmail.includes("@")) {
     const existingUser = await db.query.users.findFirst({
       where: eq(users.email, ownerEmail),
@@ -971,11 +980,71 @@ export async function createOrgWithOwner(
         organizationId: org.id,
         role: "owner",
       });
+      createdNewUser = true;
+    }
+  }
+
+  // Vanuit een configurator-lead: meteen een project aanmaken zodat staff
+  // niet handmatig hoeft. Naam = "Nieuwe website/webshop · {org}", type uit
+  // de configurator-keuze, status 'planning'. De gedetailleerde configurator-
+  // keuzes staan al in leadActivity en blijven op de leaddetail-pagina.
+  if (projectType) {
+    await db.insert(projects).values({
+      organizationId: org.id,
+      name: `${projectType === "webshop" ? "Nieuwe webshop" : "Nieuwe website"} · ${name}`,
+      type: projectType,
+      status: "planning",
+      nextMilestone: "Configurator-aanvraag — scope & design afstemmen in de kennismaking",
+    });
+  }
+
+  // Lead koppelen + op 'customer' zetten zodat de pipeline klopt.
+  if (leadId) {
+    try {
+      await db
+        .update(leads)
+        .set({
+          linkedOrgId: org.id,
+          status: "customer",
+          nextActionAt: null,
+          nextActionLabel: null,
+        })
+        .where(eq(leads.id, leadId));
+      await db.insert(leadActivity).values({
+        leadId,
+        kind: "status_changed",
+        summary: `Org aangemaakt (${name}) — lead → customer${projectType ? `, project (${projectType}) aangemaakt` : ""}`,
+        metadata: { type: "converted_to_org", orgId: org.id, projectType },
+      });
+    } catch (err) {
+      console.error("[createOrgWithOwner] lead link failed:", err);
+      // Org + project zijn rond; de lead-koppeling is best-effort.
+    }
+  }
+
+  // Welkom/inlog-mail naar een nét aangemaakte owner — zelfde patroon als de
+  // checkout-done-handler (de Drizzle-insert hierboven triggert het auth.js
+  // createUser-event niet). Faalt graceful.
+  if (createdNewUser && ownerEmail) {
+    try {
+      const baseUrl = process.env.AUTH_URL ?? "https://webstability.eu";
+      await sendWelcomeEmail({
+        to: ownerEmail,
+        name: ownerName || null,
+        portalUrl: `${baseUrl}/portal/dashboard`,
+        locale: "nl",
+      });
+    } catch (err) {
+      console.error("[createOrgWithOwner] welcome email failed:", err);
     }
   }
 
   revalidatePath(`/admin`);
   revalidatePath(`/admin/orgs`);
+  if (leadId) {
+    revalidatePath(`/admin/leads`);
+    revalidatePath(`/admin/leads/${leadId}`);
+  }
   redirect(`/admin/orgs/${org.id}`);
 }
 

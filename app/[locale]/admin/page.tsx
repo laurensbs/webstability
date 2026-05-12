@@ -18,6 +18,7 @@ import {
   getUpcomingCalls,
   getStaleProjects,
   listLeadRemindersDueToday,
+  countOpenConfiguratorLeads,
 } from "@/lib/db/queries/admin";
 import { triggerDemoRefresh } from "@/app/actions/admin-bulk";
 import { DemoManagementCard } from "@/components/admin/DemoManagementCard";
@@ -66,6 +67,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
     upcomingCalls,
     staleProjects,
     leadReminders,
+    openConfiguratorLeads,
   ] = await Promise.all([
     getStudioStats(),
     getRecentAdminActivity(8),
@@ -77,6 +79,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
     getUpcomingCalls(5),
     getStaleProjects(7),
     listLeadRemindersDueToday(),
+    countOpenConfiguratorLeads(),
   ]);
   const tDemo = await getTranslations("admin.demoFunnel");
   const tDemoMgmt = await getTranslations("admin.demoManagement");
@@ -202,10 +205,21 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
           zien: leads die follow-up nodig hebben (warmst), calls vandaag, en
           klanten zonder update. Eronder pas de reference/analytics-widgets. */}
       <section className="space-y-4">
-        <p className="font-mono text-[10px] tracking-[0.18em] text-(--color-muted) uppercase">
-          {"// "}
-          {t("todayEyebrow")}
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="font-mono text-[10px] tracking-[0.18em] text-(--color-muted) uppercase">
+            {"// "}
+            {t("todayEyebrow")}
+          </p>
+          {openConfiguratorLeads > 0 ? (
+            <a
+              href={`/${locale === "nl" ? "" : `${locale}/`}admin/leads`}
+              className="inline-flex items-center gap-1.5 rounded-full bg-(--color-accent)/10 px-3 py-1 font-mono text-[10px] tracking-wide text-(--color-wine) uppercase transition-colors hover:bg-(--color-accent)/20"
+            >
+              {openConfiguratorLeads}{" "}
+              {openConfiguratorLeads === 1 ? "configurator-aanvraag" : "configurator-aanvragen"}
+            </a>
+          ) : null}
+        </div>
         <LeadRemindersWidget reminders={withOverdueFlag(leadReminders)} />
         <div className="grid gap-4 md:grid-cols-2">
           <UpcomingCallsWidget calls={upcomingCalls} locale={locale} />

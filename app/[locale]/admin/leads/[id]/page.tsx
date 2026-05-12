@@ -119,7 +119,9 @@ export default async function LeadDetailPage({
           newOrgQuery: new URLSearchParams({
             name: lead.company ?? lead.name ?? "",
             email: lead.email,
+            ownerName: lead.name ?? "",
             projectType: cm.kind === "webshop" ? "webshop" : "website",
+            leadId: lead.id,
           }).toString(),
         }
       : null;

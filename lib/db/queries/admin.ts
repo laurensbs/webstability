@@ -704,6 +704,19 @@ export async function listAllLeads() {
   );
 }
 
+/** De aan een org gekoppelde lead (indien er een is) — voor de "oorspronkelijke
+ * aanvraag"-link op de org-detailpagina. Geeft id + source terug zodat de UI
+ * alleen bij een configurator-lead linkt. */
+export async function getLinkedLeadForOrg(
+  orgId: string,
+): Promise<{ id: string; source: string } | null> {
+  const row = await db.query.leads.findFirst({
+    where: eq(leads.linkedOrgId, orgId),
+    columns: { id: true, source: true },
+  });
+  return row ?? null;
+}
+
 /**
  * Detail-page voor één lead — lead + activity-tijdlijn + owner-staff
  * + (indien gekoppeld) linked-org-naam.
@@ -753,6 +766,18 @@ export async function listLeadRemindersDueToday() {
       ),
     )
     .orderBy(asc(leads.nextActionAt));
+}
+
+/** Aantal open configurator-aanvragen (source=configurator, status nog niet
+ * customer/lost) — voor een teller in de admin-"// vandaag"-zone. */
+export async function countOpenConfiguratorLeads(): Promise<number> {
+  const [row] = await db
+    .select({ n: count() })
+    .from(leads)
+    .where(
+      and(eq(leads.source, "configurator"), ne(leads.status, "customer"), ne(leads.status, "lost")),
+    );
+  return Number(row?.n ?? 0);
 }
 
 /**

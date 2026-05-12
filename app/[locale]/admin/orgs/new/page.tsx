@@ -11,7 +11,13 @@ export default async function NewOrgPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ name?: string; email?: string; projectType?: string }>;
+  searchParams: Promise<{
+    name?: string;
+    email?: string;
+    ownerName?: string;
+    projectType?: string;
+    leadId?: string;
+  }>;
 }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
@@ -20,9 +26,21 @@ export default async function NewOrgPage({
   const sp = await searchParams;
   const prefill = {
     name: typeof sp.name === "string" ? sp.name : undefined,
-    ownerName: typeof sp.name === "string" ? sp.name : undefined,
+    ownerName:
+      typeof sp.ownerName === "string"
+        ? sp.ownerName
+        : typeof sp.name === "string"
+          ? sp.name
+          : undefined,
     ownerEmail: typeof sp.email === "string" ? sp.email : undefined,
   };
+  // Vanuit een configurator-lead: project-type + lead-id worden als verborgen
+  // velden meegestuurd zodat createOrgWithOwner meteen het project aanmaakt en
+  // de lead op 'customer' zet + koppelt.
+  const hidden: Record<string, string> = {};
+  if (sp.projectType === "website" || sp.projectType === "webshop")
+    hidden.projectType = sp.projectType;
+  if (typeof sp.leadId === "string" && sp.leadId) hidden.leadId = sp.leadId;
 
   const t = await getTranslations("admin.newOrg");
   const tWizard = await getTranslations("admin.wizard");
@@ -45,6 +63,7 @@ export default async function NewOrgPage({
         <OrgWizard
           action={createOrgWithOwner}
           prefill={prefill}
+          hidden={hidden}
           strings={{
             step: tWizard("step"),
             step1Heading: tWizard("step1Heading"),

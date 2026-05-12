@@ -47,12 +47,16 @@ export function OrgWizard({
   action,
   strings,
   prefill,
+  hidden,
 }: {
   action: Action;
   strings: Strings;
   /** Voorgevulde velden — bv. vanuit een configurator-lead
    * (/admin/orgs/new?name=…&email=…). Optioneel. */
   prefill?: { name?: string; ownerName?: string; ownerEmail?: string };
+  /** Extra verborgen velden die ongewijzigd naar de server-action gaan —
+   * bv. `projectType` + `leadId` vanuit een configurator-lead. */
+  hidden?: Record<string, string>;
 }) {
   const [step, setStep] = React.useState<1 | 2 | 3>(1);
   // Form-state in client-state zodat tussen stap 1→2→3 niet verloren gaat
@@ -158,6 +162,11 @@ export function OrgWizard({
             <input type="hidden" name="ownerName" value={ownerName} />
             <input type="hidden" name="ownerEmail" value={ownerEmail} />
             <input type="hidden" name="plan" value={plan} />
+            {hidden
+              ? Object.entries(hidden).map(([k, v]) => (
+                  <input key={k} type="hidden" name={k} value={v} />
+                ))
+              : null}
             <ToastSubmitButton variant="primary">
               {strings.submit}
               <ArrowRight className="h-3.5 w-3.5" />
