@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import {
   estimateProjectPrice,
   CONFIG_OPTIONS,
+  configOptionsForKind,
   CONFIG_PALETTES,
   CONFIG_LANGUAGE_OPTIONS,
   PROJECT_PAGES_INCLUDED,
@@ -140,9 +141,18 @@ export function ProjectConfigurator({
   // 'pages' nooit onder het inbegrepen aantal van dat type.
   const pagesClamped = Math.max(included, Math.min(PROJECT_MAX_PAGES, pages));
 
+  // Welke add-ons hoorden bij dit dienst-type, en — afgeleid — alleen de
+  // aangevinkte die daar ook bij passen (wisselt het type, dan vallen de
+  // niet-meer-relevante automatisch weg, zonder effect).
+  const visibleOptions = React.useMemo(() => configOptionsForKind(kind), [kind]);
+  const effectiveOptions = React.useMemo(
+    () => options.filter((id) => visibleOptions.includes(id)),
+    [options, visibleOptions],
+  );
+
   const estimate = React.useMemo(
-    () => estimateProjectPrice({ kind, pages: pagesClamped, options }),
-    [kind, pagesClamped, options],
+    () => estimateProjectPrice({ kind, pages: pagesClamped, options: effectiveOptions }),
+    [kind, pagesClamped, effectiveOptions],
   );
 
   const step = stepOrder[stepIdx]!;
@@ -173,7 +183,7 @@ export function ProjectConfigurator({
     fd.set("palette", palette);
     fd.set("customColor", customColor);
     fd.set("language", language);
-    fd.set("options", options.join(","));
+    fd.set("options", effectiveOptions.join(","));
     fd.set("locale", locale);
     try {
       const res = await submitProjectRequest(fd);
@@ -485,8 +495,8 @@ export function ProjectConfigurator({
             {step === "options" ? (
               <StepShell title={strings.optionsTitle} lede={strings.optionsLede}>
                 <div className="grid gap-2 sm:grid-cols-2">
-                  {(Object.keys(CONFIG_OPTIONS) as ConfigOptionId[]).map((id) => {
-                    const active = options.includes(id);
+                  {visibleOptions.map((id) => {
+                    const active = effectiveOptions.includes(id);
                     return (
                       <button
                         key={id}

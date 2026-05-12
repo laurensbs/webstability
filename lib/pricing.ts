@@ -92,18 +92,32 @@ export const PROJECT_EXTRA_PAGE = 120;
  * "neem contact op" — dan is het een groter traject). */
 export const PROJECT_MAX_PAGES = 25;
 
-/** Optionele add-ons. Key = id, value = { price, labelKey }. De labelKeys
- * verwijzen naar messages onder `configurator.options.*`. */
+/** Optionele add-ons. Key = id, value = { price, labelKey, appliesTo }.
+ * `appliesTo` bepaalt voor welke dienst-types de optie in de configurator
+ * verschijnt — een website-klant ziet geen "voorraad-koppeling", een
+ * webshop-klant geen los "aanvraagformulier" (zit al in de checkout-flow).
+ * De labelKeys verwijzen naar messages onder `configurator.options.*`. */
 export const CONFIG_OPTIONS = {
-  multilingual: { price: 600, labelKey: "multilingual" }, // NL + ES (of meer) volwaardig
-  inventorySync: { price: 500, labelKey: "inventorySync" }, // voorraad-koppeling (webshop)
-  blog: { price: 350, labelKey: "blog" }, // blog / nieuws-sectie met CMS
-  customDesign: { price: 800, labelKey: "customDesign" }, // eigen design i.p.v. template-variant
-  copywriting: { price: 450, labelKey: "copywriting" }, // wij schrijven de teksten
-  bookingForm: { price: 400, labelKey: "bookingForm" }, // afspraak-/aanvraagformulier
-} as const;
+  multilingual: { price: 600, labelKey: "multilingual", appliesTo: ["website", "webshop"] }, // NL + ES (of meer) volwaardig
+  inventorySync: { price: 500, labelKey: "inventorySync", appliesTo: ["webshop"] }, // voorraad-koppeling (webshop)
+  blog: { price: 350, labelKey: "blog", appliesTo: ["website", "webshop"] }, // blog / nieuws-sectie met CMS
+  customDesign: { price: 800, labelKey: "customDesign", appliesTo: ["website", "webshop"] }, // eigen design i.p.v. template-variant
+  copywriting: { price: 450, labelKey: "copywriting", appliesTo: ["website", "webshop"] }, // wij schrijven de teksten
+  bookingForm: { price: 400, labelKey: "bookingForm", appliesTo: ["website"] }, // afspraak-/aanvraagformulier
+} as const satisfies Record<
+  string,
+  { price: number; labelKey: string; appliesTo: readonly ProjectKind[] }
+>;
 
 export type ConfigOptionId = keyof typeof CONFIG_OPTIONS;
+
+/** De option-ids die voor een gegeven dienst-type relevant zijn, in vaste
+ * volgorde (zoals gedefinieerd in CONFIG_OPTIONS). */
+export function configOptionsForKind(kind: ProjectKind): ConfigOptionId[] {
+  return (Object.keys(CONFIG_OPTIONS) as ConfigOptionId[]).filter((id) =>
+    (CONFIG_OPTIONS[id].appliesTo as readonly ProjectKind[]).includes(kind),
+  );
+}
 
 /** Gecureerde kleur/sfeer-paletten voor de configurator (géén vrije
  * colorpicker — premium/curated). Key = id, value = { swatch: [hex,...],
