@@ -117,8 +117,10 @@ export function ApproachRail({ steps }: { steps: Step[] }) {
 }
 
 function Node({ step, isLast, reduce }: { step: Step; isLast: boolean; reduce: boolean }) {
+  // Gecentreerd in z'n grid-kolom zodat de cirkel exact onder de connector-
+  // lijn zit (lijn loopt van kolom-1-midden naar kolom-4-midden = 12.5%↔87.5%).
   return (
-    <div>
+    <div className="flex flex-col items-center text-center">
       <NodeCircle kicker={step.kicker} isLast={isLast} reduce={reduce} />
       <div className="mt-6">
         <NodeContent step={step} />
