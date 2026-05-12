@@ -3481,7 +3481,8 @@
     "activity": {
       "title": "Actividad reciente",
       "empty": "Aún sin movimientos."
-    }
+    },
+    "todayEyebrow": "hoy"
   },
   "demo": {
     "banner": {

@@ -198,15 +198,20 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
         />
       </section>
 
-      {/* Aankomende calls + klanten-zonder-update — beide dagelijks
-          relevant voor staff. Naast elkaar op desktop, gestapeld op
-          mobile. Stale-widget kleurt wijn-rood als er actie nodig is. */}
-      <div className="grid gap-4 md:grid-cols-2">
-        <UpcomingCallsWidget calls={upcomingCalls} locale={locale} />
-        <StaleProjectsWidget projects={staleProjects} locale={locale} />
-      </div>
-
-      <LeadRemindersWidget reminders={withOverdueFlag(leadReminders)} />
+      {/* "Vandaag"-zone — alles wat staff bij het ochtend-openen direct moet
+          zien: leads die follow-up nodig hebben (warmst), calls vandaag, en
+          klanten zonder update. Eronder pas de reference/analytics-widgets. */}
+      <section className="space-y-4">
+        <p className="font-mono text-[10px] tracking-[0.18em] text-(--color-muted) uppercase">
+          {"// "}
+          {t("todayEyebrow")}
+        </p>
+        <LeadRemindersWidget reminders={withOverdueFlag(leadReminders)} />
+        <div className="grid gap-4 md:grid-cols-2">
+          <UpcomingCallsWidget calls={upcomingCalls} locale={locale} />
+          <StaleProjectsWidget projects={staleProjects} locale={locale} />
+        </div>
+      </section>
 
       {/* Demo-management — laatste cron-run + week-counts + handmatige
           refresh-knop. Niet-demo-staff alleen (anders triggert demo-staff

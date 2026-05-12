@@ -3477,7 +3477,8 @@
     "activity": {
       "title": "Recente activiteit",
       "empty": "Nog niets gebeurd."
-    }
+    },
+    "todayEyebrow": "vandaag"
   },
   "demo": {
     "banner": {
