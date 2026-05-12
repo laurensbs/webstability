@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { Loader2, X } from "lucide-react";
 import { toast } from "sonner";
 
@@ -37,6 +37,7 @@ export function DemoFollowUpModal({
   const [open, setOpen] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [pending, setPending] = React.useState(false);
+  const reduce = useReducedMotion();
 
   React.useEffect(() => {
     if (typeof window === "undefined") return;
@@ -80,10 +81,10 @@ export function DemoFollowUpModal({
     <AnimatePresence>
       {open ? (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.25 }}
+          exit={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="rounded-card fixed right-4 bottom-4 z-50 w-[min(360px,calc(100vw-2rem))] border border-(--color-border) bg-(--color-surface) p-5 shadow-xl"
         >
           <button

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { AlertTriangle } from "lucide-react";
 
 type Strings = {
@@ -28,12 +28,13 @@ export function IncidentBanner({
    * serializable van server- naar client-component (Next 16). */
   startedAtLabel: string;
 }) {
+  const reduce = useReducedMotion();
   return (
     <motion.a
       href={href}
-      initial={{ opacity: 0, y: -8 }}
+      initial={reduce ? false : { opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
       className="block rounded-xl border border-(--color-wine)/40 bg-(--color-wine)/5 p-4 transition-colors hover:bg-(--color-wine)/10"
     >
       <div className="flex items-start gap-3">

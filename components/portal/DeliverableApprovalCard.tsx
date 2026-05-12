@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Check, MessageSquare, ExternalLink, Loader2 } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
 import { approveDeliverable, requestRevision } from "@/app/actions/files";
 
@@ -100,6 +100,7 @@ function DeliverableRow({
   strings: Strings;
   dateFmt: Intl.DateTimeFormat;
 }) {
+  const reduce = useReducedMotion();
   const [pending, startTransition] = React.useTransition();
   const [showRevise, setShowRevise] = React.useState(false);
   const [reviseNote, setReviseNote] = React.useState("");
@@ -226,10 +227,10 @@ function DeliverableRow({
       <AnimatePresence>
         {showRevise ? (
           <motion.form
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, height: 0 }}
+            animate={reduce ? { opacity: 1 } : { opacity: 1, height: "auto" }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             onSubmit={onRevise}
             className="mt-3 overflow-hidden"
           >
