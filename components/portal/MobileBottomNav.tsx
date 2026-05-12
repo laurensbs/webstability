@@ -40,7 +40,15 @@ export function MobileBottomNav({ labels }: { labels: Labels }) {
           const active = pathname.startsWith(href);
           const label = labels[key as keyof Labels];
           return (
-            <li key={href} className="flex-1">
+            <li key={href} className="relative flex-1">
+              {/* Actief-indicator — 2px terracotta-balk bovenaan de tab, zodat de
+                  actieve sectie ook zonder enkel kleurverschil meteen leesbaar is. */}
+              {active ? (
+                <span
+                  aria-hidden
+                  className="absolute inset-x-3 top-0 h-0.5 rounded-full bg-(--color-accent)"
+                />
+              ) : null}
               <Link
                 href={href}
                 aria-current={active ? "page" : undefined}

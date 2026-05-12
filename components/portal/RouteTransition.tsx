@@ -1,10 +1,18 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { usePathname } from "@/i18n/navigation";
 
+/**
+ * Lichte fade+lift op route-change binnen portal/admin. Reduced-motion →
+ * geen animatie, gewoon de content. `key={pathname}` zorgt dat motion remount
+ * op navigatie zodat de in-animatie opnieuw speelt.
+ */
 export function RouteTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const reduce = useReducedMotion();
+
+  if (reduce) return <div key={pathname}>{children}</div>;
 
   return (
     <motion.div
