@@ -11,6 +11,7 @@ import { listPendingStaffInvites, listStudioStaff } from "@/lib/db/queries/admin
 import { inviteStaff, revokeStaffInvite } from "@/app/actions/admin";
 import { ToastForm } from "@/components/portal/ToastForm";
 import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 
 export default async function AdminTeamPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -31,10 +32,7 @@ export default async function AdminTeamPage({ params }: { params: Promise<{ loca
 
   return (
     <div className="space-y-12">
-      <header className="space-y-2">
-        <h1 className="text-3xl md:text-5xl">{t("title")}</h1>
-        <p className="max-w-2xl text-(--color-muted)">{t("subtitle")}</p>
-      </header>
+      <AdminPageHeader title={t("title")} subtitle={t("subtitle")} />
 
       {/* Invite-form */}
       <section className="rounded-2xl border border-(--color-border) bg-(--color-surface) p-6 md:p-8">

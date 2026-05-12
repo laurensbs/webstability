@@ -30,6 +30,7 @@ import { AdminActivityFeed } from "@/components/admin/AdminActivityFeed";
 import { FlashCounter } from "@/components/animate/FlashCounter";
 import { AdminWelcomeOnboarding } from "@/components/admin/AdminWelcomeOnboarding";
 import { StudioStatusStrip } from "@/components/admin/StudioStatusStrip";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { DemoTourOverlay } from "@/components/demo/DemoTourOverlay";
 import { DemoAnalyticsBeacon } from "@/components/demo/DemoAnalyticsBeacon";
 
@@ -169,10 +170,7 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
         />
       ) : null}
 
-      <header className="space-y-2">
-        <h1 className="text-3xl md:text-5xl">{t("title")}</h1>
-        <p className="text-(--color-muted)">{t("subtitle")}</p>
-      </header>
+      <AdminPageHeader title={t("title")} subtitle={t("subtitle")} />
 
       {/* Operationele stats — FlashCounter voor de getallen, knipoog
           bij elke fresh paint. Honoreert prefers-reduced-motion intern. */}

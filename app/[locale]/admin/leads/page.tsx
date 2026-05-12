@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { listAllLeads, getLeadStats } from "@/lib/db/queries/admin";
 import { LEAD_SOURCE_LABEL_NL, LEAD_STATUS_LABEL_NL, type LeadStatus } from "@/lib/leads";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 
 const STATUS_TONE: Record<LeadStatus, string> = {
   cold: "border-(--color-border) bg-(--color-bg-warm) text-(--color-muted)",
@@ -29,21 +30,19 @@ export default async function AdminLeadsPage({ params }: { params: Promise<{ loc
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <h1 className="font-serif text-[clamp(28px,4vw,38px)] leading-tight">Leads</h1>
-          <p className="mt-2 max-w-prose text-[14px] text-(--color-muted)">
-            Outreach-pipeline. Houd vijf actieve gesprekken per week — kwaliteit boven volume.
-          </p>
-        </div>
-        <Link
-          href={{ pathname: "/admin/leads/new" as never }}
-          className="inline-flex items-center gap-2 rounded-full bg-(--color-text) px-4 py-2 text-[13px] font-medium text-(--color-bg) transition-colors hover:bg-(--color-text)/90"
-        >
-          <Plus className="h-3.5 w-3.5" strokeWidth={2.4} />
-          Nieuwe lead
-        </Link>
-      </div>
+      <AdminPageHeader
+        title="Leads"
+        subtitle="Outreach-pipeline. Houd vijf actieve gesprekken per week — kwaliteit boven volume."
+        action={
+          <Link
+            href={{ pathname: "/admin/leads/new" as never }}
+            className="inline-flex items-center gap-2 rounded-full bg-(--color-text) px-4 py-2 text-[13px] font-medium text-(--color-bg) transition-colors hover:bg-(--color-text)/90"
+          >
+            <Plus className="h-3.5 w-3.5" strokeWidth={2.4} />
+            Nieuwe lead
+          </Link>
+        }
+      />
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
         {(Object.keys(LEAD_STATUS_LABEL_NL) as LeadStatus[]).map((s) => (

@@ -8,6 +8,7 @@ import { listAllOrgs } from "@/lib/db/queries/admin";
 import { type OrgRow } from "@/components/admin/OrgTable";
 import { OrgListWithBulk } from "@/components/admin/orgs/OrgListWithBulk";
 import { bulkMailOrgs } from "@/app/actions/admin-bulk";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 
 export default async function OrgsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -33,16 +34,18 @@ export default async function OrgsPage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between gap-4">
-        <h1 className="text-3xl md:text-4xl">{t("title")}</h1>
-        <Link
-          href="/admin/orgs/new"
-          className="hover:shadow-glow inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90"
-        >
-          + {t("newOrg")}
-          <ArrowRight className="h-3.5 w-3.5" />
-        </Link>
-      </div>
+      <AdminPageHeader
+        title={t("title")}
+        action={
+          <Link
+            href="/admin/orgs/new"
+            className="hover:shadow-glow inline-flex items-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90"
+          >
+            + {t("newOrg")}
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        }
+      />
 
       <OrgListWithBulk
         orgs={rows}
