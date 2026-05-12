@@ -3,7 +3,13 @@
 // zowel /aanvragen als de website/webshop-vertical-embed dezelfde labels
 // gebruiken zonder de ~70-regels-mapping te dupliceren.
 
-type T = (key: string) => string;
+// Een next-intl-translator: `t(key)` voor gewone strings, `t.raw(key)` voor
+// strings die nog onvervulde {placeholders} bevatten (de component vult die
+// client-side in via .replace — als we ze door t() halen ziet next-intl ze als
+// ICU-argumenten en geeft bij ontbreken de key terug).
+type T = ((key: string) => string) & { raw: (key: string) => unknown };
+
+const rawStr = (t: T, key: string) => String(t.raw(key));
 
 export type ConfiguratorStrings = {
   eyebrow: string;
@@ -62,7 +68,7 @@ export function buildConfiguratorStrings(t: T): ConfiguratorStrings {
     eyebrow: t("eyebrow"),
     title: t("title"),
     lede: t("lede"),
-    stepLabel: t("stepLabel"),
+    stepLabel: rawStr(t, "stepLabel"),
     back: t("back"),
     next: t("next"),
     submit: t("submit"),
@@ -76,8 +82,8 @@ export function buildConfiguratorStrings(t: T): ConfiguratorStrings {
     scopeTitle: t("steps.scope.title"),
     scopeLede: t("steps.scope.lede"),
     scopePagesLabel: t("steps.scope.pagesLabel"),
-    scopeIncluded: t("steps.scope.included"),
-    scopePerExtra: t("steps.scope.perExtra"),
+    scopeIncluded: rawStr(t, "steps.scope.included"),
+    scopePerExtra: rawStr(t, "steps.scope.perExtra"),
     lookTitle: t("steps.look.title"),
     lookLede: t("steps.look.lede"),
     lookCustomLabel: t("steps.look.customLabel"),
@@ -99,7 +105,7 @@ export function buildConfiguratorStrings(t: T): ConfiguratorStrings {
     estimateNote: t("summary.estimateNote"),
     summaryToggle: t("summary.toggle"),
     successTitle: t("success.title"),
-    successBody: t("success.body"),
+    successBody: rawStr(t, "success.body"),
     successCta: t("success.cta"),
     successDone: t("success.done"),
     palettes: {
@@ -122,8 +128,8 @@ export function buildConfiguratorStrings(t: T): ConfiguratorStrings {
       copywriting: t("options.copywriting"),
       bookingForm: t("options.bookingForm"),
     },
-    lineBaseWebsite: t("lines.baseWebsite"),
-    lineBaseWebshop: t("lines.baseWebshop"),
-    lineExtraPages: t("lines.extraPages"),
+    lineBaseWebsite: rawStr(t, "lines.baseWebsite"),
+    lineBaseWebshop: rawStr(t, "lines.baseWebshop"),
+    lineExtraPages: rawStr(t, "lines.extraPages"),
   };
 }

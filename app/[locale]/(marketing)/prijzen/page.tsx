@@ -150,7 +150,10 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               ctaAuthenticated: tCalc("ctaAuthenticated"),
               ctaAnonymous: tCalc("ctaAnonymous"),
               perMonth: tCare("perMonth"),
-              interpretationTemplate: tCalc("interpretationTemplate"),
+              // .raw() omdat deze strings nog onvervulde {project}/{months}-
+              // placeholders bevatten — t() ziet die als ICU-argumenten en geeft
+              // bij ontbreken de key terug. De component vult ze client-side in.
+              interpretationTemplate: tCalc.raw("interpretationTemplate") as string,
               interpretationNone: tCalc("interpretationNone"),
               interpretationLabels: {
                 none: tCalc("interpretationLabels.none"),
@@ -158,7 +161,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 standard: tCalc("interpretationLabels.standard"),
                 custom: tCalc("interpretationLabels.custom"),
               },
-              timelineDuring: tCalc("timelineDuring"),
+              timelineDuring: tCalc.raw("timelineDuring") as string,
               timelineAfter: tCalc("timelineAfter"),
               fixedPriceClaim: tCalc("fixedPriceClaim"),
               tierOptions: [
