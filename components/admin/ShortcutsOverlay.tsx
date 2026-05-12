@@ -71,6 +71,7 @@ export function ShortcutsOverlay() {
             onClick={(e) => e.stopPropagation()}
             className="shadow-modal rounded-panel relative w-full max-w-md overflow-hidden border border-(--color-border) bg-(--color-surface)"
             role="dialog"
+            aria-modal="true"
             aria-label="Sneltoetsen"
           >
             <header className="flex items-center justify-between border-b border-(--color-border) px-5 py-3">
