@@ -16,6 +16,7 @@ import { Link } from "@/i18n/navigation";
 import { getUserWithOrg, getOrgProjectDetail } from "@/lib/db/queries/portal";
 import { DeliverableApprovalCard } from "@/components/portal/DeliverableApprovalCard";
 import { ProjectStatusStepper } from "@/components/portal/ProjectStatusStepper";
+import { serviceKindFromProjectType } from "@/lib/service-kinds";
 
 const STATUS_LABEL = {
   planning: { nl: "Planning", es: "Planificación" },
@@ -100,19 +101,11 @@ export default async function ProjectDetailPage({
           </p>
         </div>
 
-        {/* Fase-stepper — planning → in ontwikkeling → review → live */}
+        {/* Fase-stepper — dienst-specifieke fasen (website/webshop/platform) */}
         <ProjectStatusStepper
           status={project.status}
-          strings={{
-            steps: {
-              planning: t("statusSteps.planning"),
-              in_progress: t("statusSteps.in_progress"),
-              review: t("statusSteps.review"),
-              live: t("statusSteps.live"),
-            },
-            done: t("stepDone"),
-            now: t("stepNow"),
-          }}
+          serviceKind={serviceKindFromProjectType(project.type)}
+          strings={{ now: t("stepNow") }}
         />
 
         {/* Voortgang-balk */}

@@ -3035,7 +3035,33 @@
       "step3Body": "Cada factura con PDF y estado de pago. Y en ajustes cambias de plan facilmente mas adelante.",
       "step3Cta": "A las facturas",
       "next": "Siguiente",
-      "dismiss": "Entendido"
+      "dismiss": "Entendido",
+      "byKind": {
+        "website": {
+          "step2Title": "Aquí ves el progreso de tu web",
+          "step2Body": "La barra de progreso + las actualizaciones semanales muestran dónde estamos. En cuanto tu web esté en vivo aquí verás también tu URL y el uptime.",
+          "step2Cta": "Al estado",
+          "step3Title": "¿Una pregunta o un cambio? Abre un ticket",
+          "step3Body": "Cambiar un texto, sustituir una foto, añadir una página — todo va por tickets. Tú ves el estado, yo llevo el hilo.",
+          "step3Cta": "A los tickets"
+        },
+        "webshop": {
+          "step2Title": "Aquí verás tus pedidos e ingresos",
+          "step2Body": "En cuanto tu tienda esté en vivo mostramos aquí el volumen de pedidos, los ingresos y la conversión. Durante la construcción ves el progreso y la planificación.",
+          "step2Cta": "Al estado",
+          "step3Title": "Productos, pagos, envíos — avísame",
+          "step3Body": "Los cambios en tu tienda (nuevos productos, precios, IVA, reglas de envío) van por ticket. Yo lo gestiono y te respondo.",
+          "step3Cta": "A los tickets"
+        },
+        "platform": {
+          "step2Title": "Aquí ves el estado de tu plataforma",
+          "step2Body": "Progreso de la construcción, preguntas pendientes para ti y — en cuanto funcione — la monitorización de las integraciones y el entorno en vivo.",
+          "step2Cta": "Al estado",
+          "step3Title": "¿Un cambio o una nueva integración? Abre un ticket",
+          "step3Body": "Una integración extra, un ajuste en el flujo, un nuevo usuario — todo por ticket, con un estado que puedes seguir.",
+          "step3Cta": "A los tickets"
+        }
+      }
     },
     "cmdK": {
       "placeholder": "Ir a… (Cmd+K)",

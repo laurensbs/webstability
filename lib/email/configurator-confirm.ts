@@ -60,6 +60,7 @@ const COPY: Record<
     estimateNote: string;
     nextTitle: string;
     nextItems: string[];
+    nextItemsWebshop: string[];
     ctaLine: string;
     ctaButton: string;
     signoff: string;
@@ -81,7 +82,12 @@ const COPY: Record<
     nextItems: [
       "Ik kijk je aanvraag door en kom binnen 1 werkdag bij je terug — per mail of telefonisch.",
       "We hebben een korte kennismaking (15–20 min) om de details scherp te krijgen.",
-      "Daarna krijg je een vaste offerte en een planning. Geen verrassingen achteraf.",
+      "Daarna krijg je een vaste offerte en een planning, en verzamelen we samen de teksten en beelden.",
+    ],
+    nextItemsWebshop: [
+      "Ik kijk je aanvraag door en kom binnen 1 werkdag bij je terug — per mail of telefonisch.",
+      "We bespreken kort de producten, betaalmethodes en de btw-opzet.",
+      "Daarna krijg je een vaste offerte en een planning; jij levert de productdata aan, ik koppel de betaalprovider.",
     ],
     ctaLine: "Liever meteen een moment prikken? Dat kan hier:",
     ctaButton: "Boek een kennismaking",
@@ -104,7 +110,12 @@ const COPY: Record<
     nextItems: [
       "Reviso tu solicitud y te contesto en 1 día laborable — por correo o por teléfono.",
       "Tenemos una breve llamada (15–20 min) para afinar los detalles.",
-      "Después recibes un presupuesto fijo y una planificación. Sin sorpresas.",
+      "Después recibes un presupuesto fijo y una planificación, y reunimos juntos los textos y las imágenes.",
+    ],
+    nextItemsWebshop: [
+      "Reviso tu solicitud y te contesto en 1 día laborable — por correo o por teléfono.",
+      "Hablamos brevemente de los productos, los métodos de pago y la configuración del IVA.",
+      "Después recibes un presupuesto fijo y una planificación; tú aportas los datos de producto, yo conecto el proveedor de pago.",
     ],
     ctaLine: "¿Prefieres reservar un momento ya? Aquí:",
     ctaButton: "Reservar primera llamada",
@@ -145,7 +156,8 @@ export async function sendConfiguratorConfirmMail(input: {
     )
     .join("");
 
-  const nextList = t.nextItems
+  const nextItems = input.kind === "webshop" ? t.nextItemsWebshop : t.nextItems;
+  const nextList = nextItems
     .map(
       (s) =>
         `<li style="margin:0 0 8px;color:${COLORS.text};font-size:14px;line-height:1.6">${escapeHtml(s)}</li>`,
@@ -197,6 +209,6 @@ export async function sendConfiguratorConfirmMail(input: {
     to: input.to,
     subject: t.subject,
     html,
-    text: `${t.heading}\n\nHoi ${first},\n\n${t.intro(kindWord)}\n\n${t.estimateLabel}: ${eur(input.lowCents)} – ${eur(input.highCents)}\n${t.estimateNote}\n\n${t.nextTitle}:\n${t.nextItems.map((s, i) => `${i + 1}. ${s}`).join("\n")}\n\n${t.ctaLine}\n${SITE_URL}${calPath}\n\n${t.signoff}\n${t.senderName} — ${t.senderRole}`,
+    text: `${t.heading}\n\nHoi ${first},\n\n${t.intro(kindWord)}\n\n${t.estimateLabel}: ${eur(input.lowCents)} – ${eur(input.highCents)}\n${t.estimateNote}\n\n${t.nextTitle}:\n${nextItems.map((s, i) => `${i + 1}. ${s}`).join("\n")}\n\n${t.ctaLine}\n${SITE_URL}${calPath}\n\n${t.signoff}\n${t.senderName} — ${t.senderRole}`,
   });
 }

@@ -3031,7 +3031,33 @@
       "step3Body": "Elke factuur met PDF en betaalstatus. En via instellingen wissel je later makkelijk van pakket.",
       "step3Cta": "Naar facturen",
       "next": "Volgende",
-      "dismiss": "Begrepen"
+      "dismiss": "Begrepen",
+      "byKind": {
+        "website": {
+          "step2Title": "Hier zie je de voortgang van je site",
+          "step2Body": "De voortgangsbalk + wekelijkse updates laten zien waar we staan. Zodra je site live is komen hier ook je live-URL en de uptime te staan.",
+          "step2Cta": "Naar status",
+          "step3Title": "Vraag of wijziging? Open een ticket",
+          "step3Body": "Tekst aanpassen, een foto vervangen, een pagina erbij — alles loopt via tickets. Jij ziet de status, ik hou de draad vast.",
+          "step3Cta": "Naar tickets"
+        },
+        "webshop": {
+          "step2Title": "Hier zie je straks je bestellingen & omzet",
+          "step2Body": "Zodra je shop live staat tonen we hier ordervolume, omzet en de conversie. Tijdens de bouw zie je de voortgang en de planning.",
+          "step2Cta": "Naar status",
+          "step3Title": "Producten, betalingen, verzending — laat het weten",
+          "step3Body": "Aanpassingen aan je shop (nieuwe producten, prijzen, btw, verzendregels) doe je via een ticket. Ik regel het en koppel terug.",
+          "step3Cta": "Naar tickets"
+        },
+        "platform": {
+          "step2Title": "Hier zie je de status van je platform",
+          "step2Body": "Bouw-voortgang, openstaande vragen voor jou, en — zodra het draait — de monitoring van de koppelingen en de live-omgeving.",
+          "step2Cta": "Naar status",
+          "step3Title": "Wijziging of nieuwe koppeling? Open een ticket",
+          "step3Body": "Een extra integratie, een aanpassing aan de flow, een nieuwe gebruiker — alles via tickets, met status die jij kunt volgen.",
+          "step3Cta": "Naar tickets"
+        }
+      }
     },
     "cmdK": {
       "placeholder": "Spring naar… (Cmd+K)",

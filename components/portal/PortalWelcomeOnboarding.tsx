@@ -7,6 +7,8 @@ import { Link } from "@/i18n/navigation";
 
 const STORAGE_KEY = "wb:portal-onboarded";
 
+type StepHref = "/portal/tickets" | "/portal/invoices" | "/portal/monitoring";
+
 type Strings = {
   step: string; // "Stap {n} van 3"
   step1Title: string; // "Welkom, {firstName} — dit is je portal"
@@ -14,9 +16,11 @@ type Strings = {
   step2Title: string;
   step2Body: string;
   step2Cta: string;
+  step2Href: StepHref;
   step3Title: string;
   step3Body: string;
   step3Cta: string;
+  step3Href: StepHref;
   next: string;
   dismiss: string;
 };
@@ -63,20 +67,20 @@ export function PortalWelcomeOnboarding({
       return {
         title: strings.step1Title.replace("{firstName}", firstName),
         body: strings.step1Body,
-        cta: null as { label: string; href: "/portal/tickets" | "/portal/invoices" } | null,
+        cta: null as { label: string; href: StepHref } | null,
       };
     }
     if (step === 2) {
       return {
         title: strings.step2Title,
         body: strings.step2Body,
-        cta: { label: strings.step2Cta, href: "/portal/tickets" as const },
+        cta: { label: strings.step2Cta, href: strings.step2Href },
       };
     }
     return {
       title: strings.step3Title,
       body: strings.step3Body,
-      cta: { label: strings.step3Cta, href: "/portal/invoices" as const },
+      cta: { label: strings.step3Cta, href: strings.step3Href },
     };
   })();
 
