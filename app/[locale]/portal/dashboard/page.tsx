@@ -33,6 +33,7 @@ import {
   getPendingDeliverables,
   getActivitySince,
   getLatestMonthlyReport,
+  getRecentShopMetrics,
 } from "@/lib/db/queries/portal";
 import { StatCard } from "@/components/portal/StatCard";
 import { StatusBanner } from "@/components/portal/StatusBanner";
@@ -47,6 +48,7 @@ import {
 import { DashboardIntro, StatsGrid, StatItem } from "@/components/portal/DashboardIntro";
 import { PortalWelcomeOnboarding } from "@/components/portal/PortalWelcomeOnboarding";
 import { LiveProjectStrip } from "@/components/portal/LiveProjectStrip";
+import { ShopMetricsCard } from "@/components/portal/ShopMetricsCard";
 import { serviceKindFromProjects, serviceKindFromProjectType } from "@/lib/service-kinds";
 import { AuthVerifiedBeacon } from "@/components/auth/AuthVerifiedBeacon";
 import { LivegangCelebration } from "@/components/portal/LivegangCelebration";
@@ -158,6 +160,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
     activity,
     pendingDeliverables,
     latestMonthlyReport,
+    shopMetrics,
   ] = await Promise.all([
     getDashboardStats(user.organizationId),
     listOrgProjects(user.organizationId),
@@ -171,6 +174,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
     getActivitySince(user.organizationId, since),
     getPendingDeliverables(user.organizationId),
     getLatestMonthlyReport(user.organizationId),
+    getRecentShopMetrics(user.organizationId),
   ]);
   const tLivegang = await getTranslations("portal.livegang");
   const tIncident = await getTranslations("portal.incident");
@@ -444,6 +448,24 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
               >[0],
             ),
             visitLabel: t("dashboard.liveStrip.visit"),
+          }}
+        />
+      ) : null}
+
+      {/* Webshop: bestellingen & omzet — alleen voor webshop-klanten, en
+          alleen als staff al cijfers heeft ingevoerd. Geen live order-feed;
+          een rustige maandstand. */}
+      {serviceKind === "webshop" && shopMetrics.length > 0 ? (
+        <ShopMetricsCard
+          metrics={shopMetrics}
+          locale={locale}
+          strings={{
+            title: t("dashboard.shop.title"),
+            ordersLabel: t("dashboard.shop.orders"),
+            revenueLabel: t("dashboard.shop.revenue"),
+            conversionLabel: t("dashboard.shop.conversion"),
+            empty: t("dashboard.shop.empty"),
+            vsPrev: t("dashboard.shop.vsPrev"),
           }}
         />
       ) : null}

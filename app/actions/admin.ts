@@ -37,6 +37,7 @@ import {
   leads,
   leadActivity,
   ticketReplies,
+  shopMetrics,
 } from "@/lib/db/schema";
 import { getHandoverStatus } from "@/lib/db/queries/portal";
 import { serviceKindFromProjectType } from "@/lib/service-kinds";
@@ -1169,6 +1170,96 @@ export async function postProjectUpdate(
   revalidatePath(`/portal/projects/${projectId}`);
   revalidatePath(`/portal/dashboard`);
   return { ok: true, messageKey: "update_posted" };
+}
+
+/**
+ * Voeg maand-cijfers toe voor een webshop-klant (of overschrijf de bestaande
+ * rij van die maand). Toont op het portal-dashboard in de "Bestellingen &
+ * omzet"-kaart. `month` = "YYYY-MM"; we normaliseren naar de eerste van de
+ * maand. Conversie optioneel, als percentage (bv. "12,34" of "12.34").
+ */
+export async function upsertShopMetric(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch (e) {
+    return handleAuthError(e);
+  }
+
+  const organizationId = String(formData.get("organizationId") ?? "").trim();
+  const projectId = String(formData.get("projectId") ?? "").trim() || null;
+  const monthRaw = String(formData.get("month") ?? "").trim(); // "YYYY-MM"
+  const orders = Math.max(0, Math.round(Number(formData.get("orders") ?? 0)) || 0);
+  const revenueEur = Math.max(0, Number(formData.get("revenueEur") ?? 0) || 0);
+  const currency = (String(formData.get("currency") ?? "EUR").trim() || "EUR")
+    .slice(0, 3)
+    .toUpperCase();
+  const note = String(formData.get("note") ?? "").trim() || null;
+  const conversionRaw = String(formData.get("conversionPct") ?? "")
+    .trim()
+    .replace(",", ".");
+  const conversionPct = conversionRaw ? Number(conversionRaw) : NaN;
+
+  if (!organizationId || !/^\d{4}-\d{2}$/.test(monthRaw)) {
+    return { ok: false, messageKey: "missing_fields" };
+  }
+  const [y, m] = monthRaw.split("-").map(Number);
+  if (!y || !m || m < 1 || m > 12) return { ok: false, messageKey: "missing_fields" };
+  const periodMonth = new Date(Date.UTC(y, m - 1, 1));
+  const revenueCents = Math.round(revenueEur * 100);
+  const conversionBps =
+    Number.isFinite(conversionPct) && conversionPct >= 0 ? Math.round(conversionPct * 100) : null;
+
+  const existing = await db.query.shopMetrics.findFirst({
+    where: and(
+      eq(shopMetrics.organizationId, organizationId),
+      eq(shopMetrics.periodMonth, periodMonth),
+    ),
+    columns: { id: true },
+  });
+  if (existing) {
+    await db
+      .update(shopMetrics)
+      .set({
+        projectId,
+        orders,
+        revenueCents,
+        currency,
+        conversionBps,
+        note,
+        updatedAt: new Date(),
+      })
+      .where(eq(shopMetrics.id, existing.id));
+  } else {
+    await db
+      .insert(shopMetrics)
+      .values({
+        organizationId,
+        projectId,
+        periodMonth,
+        orders,
+        revenueCents,
+        currency,
+        conversionBps,
+        note,
+      });
+  }
+
+  await db.insert(auditLog).values({
+    organizationId,
+    userId,
+    action: "shop_metric.upsert",
+    targetType: "organization",
+    targetId: organizationId,
+    metadata: { month: monthRaw, orders, revenueCents, currency },
+  });
+
+  revalidatePath(`/admin/orgs/${organizationId}`);
+  revalidatePath(`/portal/dashboard`);
+  return { ok: true, messageKey: "saved" };
 }
 
 /**

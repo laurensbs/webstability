@@ -459,6 +459,38 @@ export const seoReports = pgTable("seo_reports", {
     .default(sql`now()`),
 });
 
+// --- shop_metrics --------------------------------------------------------
+//
+// Maand-cijfers voor een webshop-klant (bestellingen, omzet, optioneel
+// conversie). Staff vult dit handmatig in admin — er is bewust géén
+// directe webshop-/payment-koppeling; dit is een rustige stand-van-zaken,
+// geen live order-feed. Een rij per org per maand. Toont op het portal-
+// dashboard alleen voor klanten met een webshop-project. Patroon parallel
+// aan seo_reports.
+export const shopMetrics = pgTable(
+  "shop_metrics",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    projectId: uuid("project_id").references(() => projects.id, { onDelete: "set null" }),
+    // Eerste dag van de maand waar deze cijfers over gaan.
+    periodMonth: timestamp("period_month", { withTimezone: true }).notNull(),
+    orders: integer("orders").notNull().default(0),
+    revenueCents: integer("revenue_cents").notNull().default(0),
+    currency: varchar("currency", { length: 3 }).notNull().default("EUR"),
+    // Conversie in basispunten (1234 = 12,34%) zodat we geen floats opslaan;
+    // null = niet ingevuld.
+    conversionBps: integer("conversion_bps"),
+    note: text("note"),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => [index("shop_metrics_org_month_idx").on(t.organizationId, t.periodMonth)],
+);
+
 // --- build_phases --------------------------------------------------------
 //
 // Een actieve Build-extension (Light/Standard/Custom) per organisatie.

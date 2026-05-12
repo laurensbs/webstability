@@ -12,6 +12,7 @@ import {
   incidents,
   projectUpdates,
   handoverChecklist,
+  shopMetrics,
 } from "@/lib/db/schema";
 
 export async function listOrgMembers(orgId: string) {
@@ -276,6 +277,20 @@ export async function getHandoverStatus(orgId: string, projectId: string) {
  * dashboard als banner "Maandrapport [maand] is klaar →" met
  * download-link. Sprint E.
  */
+/**
+ * De twee meest recente maand-cijfers van een webshop-klant (huidige +
+ * vorige maand, voor de ↑/↓-vergelijking). Staff vult deze in admin.
+ * Lege array = nog geen cijfers ingevoerd.
+ */
+export async function getRecentShopMetrics(orgId: string) {
+  return db
+    .select()
+    .from(shopMetrics)
+    .where(eq(shopMetrics.organizationId, orgId))
+    .orderBy(desc(shopMetrics.periodMonth))
+    .limit(2);
+}
+
 export async function getLatestMonthlyReport(orgId: string) {
   return db.query.files.findFirst({
     where: and(eq(files.organizationId, orgId), eq(files.category, "report")),

@@ -10,7 +10,7 @@ import {
   getOrgFilesAndInvoices,
   getLinkedLeadForOrg,
 } from "@/lib/db/queries/admin";
-import { getActiveBuildPhase } from "@/lib/db/queries/portal";
+import { getActiveBuildPhase, getRecentShopMetrics } from "@/lib/db/queries/portal";
 import { getActiveStripeSubscription } from "@/lib/stripe";
 import { dateInDays } from "@/lib/format-age";
 import {
@@ -29,6 +29,7 @@ import {
   linkStripeSubscription,
   uploadInvoicePdf,
   uploadOrgFile,
+  upsertShopMetric,
 } from "@/app/actions/admin";
 import { ToastForm } from "@/components/portal/ToastForm";
 import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
@@ -59,12 +60,14 @@ export default async function OrgDetail({
   if (!fullView) notFound();
   const { org, latestSub, recentDiscounts, recentAuditEvents } = fullView;
 
-  const [hours, activeBuild, filesAndInvoices, linkedLead] = await Promise.all([
+  const [hours, activeBuild, filesAndInvoices, linkedLead, recentShopMetrics] = await Promise.all([
     getOrgHoursThisMonth(orgId),
     getActiveBuildPhase(orgId),
     getOrgFilesAndInvoices(orgId),
     getLinkedLeadForOrg(orgId),
+    getRecentShopMetrics(orgId),
   ]);
+  const lastShopMetric = recentShopMetrics[0] ?? null;
   const { orgFiles, orgInvoices } = filesAndInvoices;
   const budgetMinutes = budgetMinutesFor(org.plan);
   const usedMinutes = hours.minutesUsed;
@@ -677,6 +680,93 @@ export default async function OrgDetail({
                     {t("saveProject")}
                   </ToastSubmitButton>
                 </ToastForm>
+
+                {p.type === "webshop" ? (
+                  <div className="mt-5 border-t border-(--color-border) pt-5">
+                    <h4 className="mb-1 text-sm font-medium">{t("shopMetricsTitle")}</h4>
+                    <p className="mb-3 text-xs text-(--color-muted)">
+                      {t("shopMetricsHint")}
+                      {lastShopMetric
+                        ? ` ${t("shopMetricsLast", {
+                            month: new Intl.DateTimeFormat(locale, {
+                              month: "long",
+                              year: "numeric",
+                            }).format(new Date(lastShopMetric.periodMonth)),
+                          })}`
+                        : ""}
+                    </p>
+                    <ToastForm
+                      action={upsertShopMetric}
+                      className="grid gap-3 sm:grid-cols-[120px_110px_120px_110px_auto] sm:items-end"
+                    >
+                      <input type="hidden" name="organizationId" value={org.id} />
+                      <input type="hidden" name="projectId" value={p.id} />
+                      <label className="space-y-1">
+                        <span className="block text-xs font-medium">{t("shopMetricsMonth")}</span>
+                        <input
+                          type="month"
+                          name="month"
+                          defaultValue={new Date().toISOString().slice(0, 7)}
+                          className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
+                        />
+                      </label>
+                      <label className="space-y-1">
+                        <span className="block text-xs font-medium">{t("shopMetricsOrders")}</span>
+                        <input
+                          type="number"
+                          name="orders"
+                          min={0}
+                          defaultValue={lastShopMetric?.orders ?? 0}
+                          className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
+                        />
+                      </label>
+                      <label className="space-y-1">
+                        <span className="block text-xs font-medium">
+                          {t("shopMetricsRevenue")} €
+                        </span>
+                        <input
+                          type="number"
+                          name="revenueEur"
+                          min={0}
+                          step="0.01"
+                          defaultValue={lastShopMetric ? lastShopMetric.revenueCents / 100 : 0}
+                          className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
+                        />
+                      </label>
+                      <label className="space-y-1">
+                        <span className="block text-xs font-medium">
+                          {t("shopMetricsConversion")} %
+                        </span>
+                        <input
+                          type="number"
+                          name="conversionPct"
+                          min={0}
+                          step="0.01"
+                          defaultValue={
+                            lastShopMetric?.conversionBps != null
+                              ? lastShopMetric.conversionBps / 100
+                              : ""
+                          }
+                          placeholder="—"
+                          className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
+                        />
+                      </label>
+                      <ToastSubmitButton variant="accent" size="md">
+                        {t("shopMetricsSave")}
+                      </ToastSubmitButton>
+                      <label className="space-y-1 sm:col-span-5">
+                        <span className="block text-xs font-medium">{t("shopMetricsNote")}</span>
+                        <input
+                          type="text"
+                          name="note"
+                          defaultValue={lastShopMetric?.note ?? ""}
+                          placeholder={t("shopMetricsNotePlaceholder")}
+                          className="w-full rounded-md border border-(--color-border) bg-(--color-bg) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
+                        />
+                      </label>
+                    </ToastForm>
+                  </div>
+                ) : null}
               </li>
             );
           })}
