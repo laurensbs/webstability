@@ -195,7 +195,11 @@ export default async function LoginPage({
           </MountReveal>
           {fromCheckout ? (
             <MountReveal delay={0.4}>
-              <div className="mt-5 rounded-lg border border-(--color-success)/40 bg-(--color-success)/10 px-4 py-3 text-[14px] text-(--color-text)">
+              <div
+                className={`mt-5 rounded-lg border border-(--color-success)/40 bg-(--color-success)/10 px-4 py-3 text-[14px] ${
+                  isAdminHost ? "text-(--color-bg)" : "text-(--color-text)"
+                }`}
+              >
                 {tCustomer("checkoutWelcome")}
               </div>
             </MountReveal>

@@ -64,6 +64,12 @@
 @layer base {
   html,
   body {
+    /* De hele app is een licht (cream) ontwerp. Zonder dit forceert een
+       browser/OS in dark mode automatisch dark-styling op form-controls
+       (input/select/textarea) en sommige UI — dan wordt donkere tekst op
+       een door de browser gedonkerde achtergrond onleesbaar. Pin 'm op
+       'only light' zodat de cream-tokens altijd kloppen. */
+    color-scheme: only light;
     background-color: var(--color-bg);
     color: var(--color-text);
     font-family: var(--font-sans);

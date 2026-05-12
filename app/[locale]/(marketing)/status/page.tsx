@@ -25,10 +25,10 @@ export const revalidate = 60;
 function statusDot(status: Monitor["status"]) {
   const map: Record<Monitor["status"], string> = {
     up: "bg-(--color-success)",
-    down: "bg-(--color-accent)",
+    down: "bg-(--color-wine)",
     paused: "bg-(--color-muted)",
     pending: "bg-(--color-muted)",
-    maintenance: "bg-amber-500",
+    maintenance: "bg-(--color-muted)",
     validating: "bg-(--color-muted)",
   };
   return map[status] ?? "bg-(--color-muted)";

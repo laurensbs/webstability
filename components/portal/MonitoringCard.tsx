@@ -7,7 +7,7 @@ const DOT_COLOR: Record<Monitor["status"], string> = {
   down: "bg-(--color-wine)",
   paused: "bg-(--color-muted)",
   pending: "bg-(--color-muted)",
-  maintenance: "bg-(--color-accent)",
+  maintenance: "bg-(--color-muted)",
   validating: "bg-(--color-muted)",
 };
 
