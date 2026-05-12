@@ -37,6 +37,7 @@ import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { OrgQuickActions } from "@/components/admin/OrgQuickActions";
 import { SubscriptionTab } from "@/components/admin/SubscriptionTab";
 import { budgetMinutesFor } from "@/lib/plan-budget";
+import { serviceKindFromProjects } from "@/lib/service-kinds";
 
 // TODO (geplande refactor — C.1): deze page bouwt alle 6 tab-panels server-side
 // op (overview/subscription/projects/files/hours/activity) en geeft ze door aan
@@ -972,6 +973,16 @@ export default async function OrgDetail({
                 VIP
               </span>
             ) : null}
+            {(() => {
+              const kind = serviceKindFromProjects(org.projects);
+              if (kind === "other") return null;
+              const label = { website: "Website", webshop: "Webshop", platform: "Platform" }[kind];
+              return (
+                <span className="rounded-full bg-(--color-accent)/10 px-2.5 py-1 align-middle font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+                  {label}
+                </span>
+              );
+            })()}
           </span>
         }
         subtitle={
