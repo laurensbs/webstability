@@ -23,7 +23,11 @@ export function ContactIntakeSelector({
   const [active, setActive] = React.useState<Ctx | null>(() => {
     if (typeof window === "undefined") return null;
     const ctx = new URLSearchParams(window.location.search).get("ctx");
-    return ctx === "verhuur" || ctx === "reparatie" || ctx === "other" ? ctx : null;
+    if (ctx === "verhuur" || ctx === "reparatie" || ctx === "other") return ctx;
+    // Vanuit de configurator ("iets groters") landt iemand hier — dat is een
+    // 'other'-gesprek, dus vink 'm alvast aan.
+    if (ctx === "configurator") return "other";
+    return null;
   });
 
   const pick = (next: Ctx) => {

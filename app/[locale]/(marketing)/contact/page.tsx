@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { MapPin } from "lucide-react";
+import { MapPin, Wand2 } from "lucide-react";
 import { routing } from "@/i18n/routing";
 import { CalEmbed } from "@/components/marketing/CalEmbed";
 import { ContactIntakeSelector } from "@/components/marketing/ContactIntakeSelector";
@@ -22,10 +22,19 @@ export async function generateMetadata({
 
 type AfterStep = { kicker: string; title: string; body: string };
 
-export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ ctx?: string }>;
+}) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+
+  const { ctx } = await searchParams;
+  const fromConfigurator = ctx === "configurator";
 
   const t = await getTranslations("contact");
   const tRaw = await getTranslations();
@@ -48,6 +57,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             {<MarkupText>{t("title")}</MarkupText>}
           </h1>
           <p className="max-w-2xl text-lg text-(--color-muted)">{t("lede")}</p>
+          {fromConfigurator ? (
+            <div className="rounded-panel flex max-w-2xl items-start gap-3 border border-(--color-accent)/30 bg-(--color-accent-soft)/40 p-4">
+              <Wand2 className="mt-0.5 h-4 w-4 shrink-0 text-(--color-accent)" strokeWidth={2.2} />
+              <p className="text-sm leading-relaxed text-(--color-text)">{t("fromConfigurator")}</p>
+            </div>
+          ) : null}
         </div>
       </section>
 
