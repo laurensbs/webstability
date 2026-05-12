@@ -2,6 +2,14 @@
   "name": "webstability",
   "version": "0.1.0",
   "private": true,
+  "browserslist": [
+    "Chrome >= 109",
+    "Edge >= 109",
+    "Firefox >= 102",
+    "Safari >= 15.6",
+    "iOS >= 15.6",
+    "not dead"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
