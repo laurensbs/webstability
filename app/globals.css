@@ -41,6 +41,12 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /* Harde rem tegen horizontale overflow: één element dat een paar px te
+       breed is (shadow, off-screen drawer, 100vw, lange URL in een heading)
+       maakt de hele pagina anders horizontaal scrollbaar / uit te zoomen op
+       mobiel. `clip` i.p.v. `hidden` zodat `position: sticky` (de header)
+       blijft werken. */
+    overflow-x: clip;
   }
 
   ::selection {
