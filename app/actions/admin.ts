@@ -36,6 +36,7 @@ import {
   handoverChecklist,
   leads,
   leadActivity,
+  ticketReplies,
 } from "@/lib/db/schema";
 import { getHandoverStatus } from "@/lib/db/queries/portal";
 import type { ActionResult } from "@/lib/action-result";
@@ -1066,6 +1067,42 @@ export async function changeTicketStatusDirect(
     })
     .where(eq(tickets.id, ticketId));
   revalidatePath(`/admin/tickets`);
+  revalidatePath(`/admin/tickets/${ticketId}`);
+}
+
+/**
+ * Staff-antwoord op een ticket vanuit de admin-ticket-detailpagina. Post de
+ * reply als de ingelogde staff-user; als het ticket nog 'open' was → naar
+ * 'in_progress' (staff heeft 'm opgepakt). Klant ziet de reply in z'n portal
+ * (TicketRepliesLive polling) + zou later een notificatie kunnen krijgen.
+ */
+export async function staffReplyToTicket(
+  ticketId: string,
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch (e) {
+    return handleAuthError(e);
+  }
+  const body = String(formData.get("body") ?? "").trim();
+  if (!body) return { ok: false, messageKey: "missing_fields" };
+
+  const ticket = await db.query.tickets.findFirst({
+    where: eq(tickets.id, ticketId),
+    columns: { id: true, status: true },
+  });
+  if (!ticket) return { ok: false, messageKey: "missing_fields" };
+
+  await db.insert(ticketReplies).values({ ticketId, userId, body });
+  if (ticket.status === "open") {
+    await db.update(tickets).set({ status: "in_progress" }).where(eq(tickets.id, ticketId));
+  }
+  revalidatePath(`/admin/tickets/${ticketId}`);
+  revalidatePath(`/admin/tickets`);
+  return { ok: true };
 }
 
 /**

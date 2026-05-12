@@ -275,9 +275,13 @@ function TicketCard({ ticket, strings }: { ticket: Ticket; strings: Strings }) {
       >
         {ticket.organization.name || strings.noOrg}
       </Link>
-      <p className="mt-1 line-clamp-2 text-[13px] font-medium text-(--color-text)">
+      <Link
+        href={{ pathname: "/admin/tickets/[id]", params: { id: ticket.id } }}
+        onPointerDown={(e) => e.stopPropagation()}
+        className="mt-1 line-clamp-2 block text-[13px] font-medium text-(--color-text) hover:text-(--color-accent)"
+      >
         {ticket.subject}
-      </p>
+      </Link>
       <footer className="mt-2 flex items-center justify-between text-[11px] text-(--color-muted)">
         <span className="font-mono">{ticket.ageLabel}</span>
         {ticket.replyCount > 0 ? <span className="font-mono">{ticket.replyCount} ↩</span> : null}

@@ -377,6 +377,23 @@ export async function getOrgFullView(orgId: string) {
  * met reply-count per ticket en org/user-relations. Limiet zit op 200
  * meest-recente tickets — snel genoeg en de UI wordt niet onleesbaar.
  */
+/** Eén ticket met z'n volledige reply-thread, org en aanvrager — voor de
+ * admin-ticket-detailpagina. Geen org-scoping: staff ziet alles. */
+export async function getAdminTicketDetail(ticketId: string) {
+  return db.query.tickets.findFirst({
+    where: eq(tickets.id, ticketId),
+    with: {
+      replies: {
+        orderBy: (r, { asc: a }) => [a(r.createdAt)],
+        with: { user: { columns: { id: true, name: true, email: true, isStaff: true } } },
+      },
+      user: { columns: { id: true, name: true, email: true, isStaff: true } },
+      organization: { columns: { id: true, name: true, slug: true } },
+      project: { columns: { id: true, name: true } },
+    },
+  });
+}
+
 export async function listAllTicketsForKanban() {
   const all = await db.query.tickets.findMany({
     orderBy: [desc(tickets.createdAt)],

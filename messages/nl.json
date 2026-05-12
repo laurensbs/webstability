@@ -3514,7 +3514,26 @@
       "title": "Recente activiteit",
       "empty": "Nog niets gebeurd."
     },
-    "todayEyebrow": "vandaag"
+    "todayEyebrow": "vandaag",
+    "ticketDetail": {
+      "back": "Alle tickets",
+      "createdBy": "Aangemaakt door",
+      "createdAt": "Aangemaakt {when}",
+      "org": "Klant",
+      "project": "Project",
+      "originalMessage": "Bericht van de klant",
+      "replyLabel": "Antwoord",
+      "replyPlaceholder": "Schrijf je antwoord aan de klant…",
+      "send": "Verstuur antwoord",
+      "sent": "Antwoord verstuurd.",
+      "statusLabel": "Status",
+      "noReplies": "Nog geen antwoorden.",
+      "staffBadge": "studio",
+      "setInProgress": "In behandeling",
+      "setWaiting": "Wachtend op klant",
+      "setClosed": "Sluiten",
+      "reopen": "Heropenen"
+    }
   },
   "demo": {
     "banner": {

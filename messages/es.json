@@ -3518,7 +3518,26 @@
       "title": "Actividad reciente",
       "empty": "Aún sin movimientos."
     },
-    "todayEyebrow": "hoy"
+    "todayEyebrow": "hoy",
+    "ticketDetail": {
+      "back": "Todos los tickets",
+      "createdBy": "Creado por",
+      "createdAt": "Creado {when}",
+      "org": "Cliente",
+      "project": "Proyecto",
+      "originalMessage": "Mensaje del cliente",
+      "replyLabel": "Respuesta",
+      "replyPlaceholder": "Escribe tu respuesta al cliente…",
+      "send": "Enviar respuesta",
+      "sent": "Respuesta enviada.",
+      "statusLabel": "Estado",
+      "noReplies": "Aún sin respuestas.",
+      "staffBadge": "estudio",
+      "setInProgress": "En curso",
+      "setWaiting": "Esperando al cliente",
+      "setClosed": "Cerrar",
+      "reopen": "Reabrir"
+    }
   },
   "demo": {
     "banner": {
