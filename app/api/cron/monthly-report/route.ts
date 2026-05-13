@@ -214,7 +214,7 @@ export async function GET(req: Request) {
 
       // Eerst snapshot bouwen + uploaden, daarna mail (zo bevat de mail
       // optioneel een link naar de snapshot).
-      const { snapshotHtml } = renderMonthlyReportHtml({
+      const { snapshotHtml, snapshotName } = renderMonthlyReportHtml({
         to: owner.email,
         ownerName: owner.name,
         projectName: project.name,
@@ -230,6 +230,7 @@ export async function GET(req: Request) {
         nextMilestone: project.nextMilestone,
         plan: planTier,
         hoursBudgetMinutes,
+        locale,
       });
 
       let reportUrl: string | null = null;
@@ -248,7 +249,7 @@ export async function GET(req: Request) {
         await db.insert(files).values({
           organizationId: org.orgId,
           projectId: project.id,
-          name: `Maandrapport ${monthLabel}`,
+          name: snapshotName,
           url: reportUrl,
           blobPath,
           category: "report",
@@ -272,6 +273,7 @@ export async function GET(req: Request) {
         nextMilestone: project.nextMilestone,
         plan: planTier,
         hoursBudgetMinutes,
+        locale,
       });
 
       await db.insert(auditLog).values({
