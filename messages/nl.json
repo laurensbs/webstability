@@ -2959,7 +2959,7 @@
         "overdue": "te laat",
         "cancelled": "geannuleerd"
       },
-      "emptyBody": "Zodra er een factuur klaarstaat verschijnt die hier — met PDF en betaalstatus."
+      "emptyBody": "Eerste factuur volgt vlak na livegang. Daarna maandelijks rond dezelfde dag — automatisch via je portaal, met PDF en directe betaal-link. Vragen over een bedrag? Open een ticket."
     },
     "settings": {
       "title": "Instellingen",
@@ -3011,7 +3011,7 @@
     "monitoring": {
       "title": "Monitoring",
       "summary": "Live status van Webstability-monitoring. Ververst elke minuut.",
-      "noMonitors": "Geen monitors geconfigureerd.",
+      "noMonitors": "Zodra je systeem live staat begin ik 'm te monitoren — checks elke minuut, uptime-statistieken vanaf dag één. Hier verschijnen ze dan.",
       "errorTitle": "Niet beschikbaar",
       "errorBody": "Monitoring is tijdelijk niet bereikbaar.",
       "lastChecked": "Laatst gecontroleerd: {when}",
@@ -3092,7 +3092,7 @@
       "memberSince": "Lid sinds {when}",
       "you": "jij",
       "ownerOnly": "Alleen eigenaren kunnen uitnodigen.",
-      "emptyBody": "Nodig een collega uit zodat zij ook tickets kunnen openen en de status kunnen volgen."
+      "emptyBody": "Een collega, je boekhouder, of een partner die ook mee moet kijken? Nodig 'm uit — die krijgt z'n eigen login en kan tickets openen, facturen bekijken en de voortgang volgen. Jij blijft eigenaar."
     },
     "onboarding": {
       "step": "Stap {n} van 3",

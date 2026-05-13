@@ -2963,7 +2963,7 @@
         "overdue": "vencida",
         "cancelled": "cancelada"
       },
-      "emptyBody": "En cuanto haya una factura lista aparecera aqui — con PDF y estado de pago."
+      "emptyBody": "La primera factura llega justo tras el lanzamiento. Despues mensualmente en la misma fecha — automaticamente en tu portal, con PDF y enlace de pago directo. ¿Dudas sobre un importe? Abre un ticket."
     },
     "settings": {
       "title": "Ajustes",
@@ -3015,7 +3015,7 @@
     "monitoring": {
       "title": "Monitorización",
       "summary": "Estado en vivo de Webstability-monitoring. Se actualiza cada minuto.",
-      "noMonitors": "Sin monitores configurados.",
+      "noMonitors": "En cuanto tu sistema esté en vivo empiezo a monitorizarlo — checks cada minuto, estadísticas de uptime desde el día uno. Aparecen aquí cuando empiezan.",
       "errorTitle": "No disponible",
       "errorBody": "La monitorización no está disponible ahora.",
       "lastChecked": "Última comprobación: {when}",
@@ -3096,7 +3096,7 @@
       "memberSince": "Miembro desde {when}",
       "you": "tú",
       "ownerOnly": "Solo los propietarios pueden invitar.",
-      "emptyBody": "Invita a un companero para que tambien pueda abrir tickets y seguir el estado."
+      "emptyBody": "¿Un colega, tu contable o un socio que también debe mirar? Invítalo — tendrá su propio acceso para abrir tickets, ver facturas y seguir el progreso. Tú sigues siendo propietario."
     },
     "onboarding": {
       "step": "Paso {n} de 3",
