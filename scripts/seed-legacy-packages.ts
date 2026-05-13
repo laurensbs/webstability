@@ -7,9 +7,9 @@
 // uptime-monitoring. Geen wijzigings-tickets, geen uren-budget, geen
 // maand-/week-rapport.
 //
-// Hoogduin Onderhoud — geen onderhouds-pakket; site-build-klant zonder
-// abo. Krijgt alleen portaal-toegang (referentie + tickets bij
-// problemen). websiteUrl mag jij later via /admin invullen.
+// Hoogduin Onderhoud (Bram Hoogduin) — zelfde Web Starter als Lissers,
+// €30,25 incl btw/mnd = €25,00 excl. Zelfde gereduceerde tarief, zelfde
+// passieve infra (hosting + backups + security-updates + uptime).
 //
 // Run: pnpm tsx --env-file=.env.local scripts/seed-legacy-packages.ts
 
@@ -48,21 +48,25 @@ async function main() {
     .where(eq(organizations.id, lissers.id));
   console.log(`✓ Lissers (${lissers.id}) bijgewerkt — Web Starter €25,00 excl/mnd`);
 
-  // ---- Hoogduin Onderhoud — geen legacy-pakket ----
-  // Laat alles op null. Hij ziet z'n portaal voor referentie + tickets.
-  // websiteUrl: vul handmatig in via /admin als bekend. Niets te doen
-  // hier; we zetten alleen even een sanity-check.
+  // ---- Hoogduin Onderhoud — zelfde Web Starter ----
   const hoogduin = await db.query.organizations.findFirst({
     where: eq(organizations.slug, "hoogduin-onderhoud"),
-    columns: { id: true, legacyPackageName: true },
+    columns: { id: true, websiteUrl: true },
   });
   if (!hoogduin) {
     console.error("Hoogduin org niet gevonden — run eerst pnpm db:seed-clients.");
     process.exit(1);
   }
-  console.log(
-    `· Hoogduin (${hoogduin.id}) — geen legacy-pakket-config (terecht; site-build-klant zonder abo)`,
-  );
+  await db
+    .update(organizations)
+    .set({
+      legacyPackageName: "Web Starter",
+      legacyPackagePriceCents: 2500,
+      legacyBillingInterval: "monthly",
+      websiteUrl: hoogduin.websiteUrl ?? "https://hoogduinonderhoud.nl",
+    })
+    .where(eq(organizations.id, hoogduin.id));
+  console.log(`✓ Hoogduin (${hoogduin.id}) bijgewerkt — Web Starter €25,00 excl/mnd`);
 
   console.log("\nKlaar.");
 }

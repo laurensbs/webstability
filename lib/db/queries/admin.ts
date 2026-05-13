@@ -61,6 +61,18 @@ export async function getOrgFilesAndInvoices(orgId: string) {
 
 export async function listAllOrgs() {
   // Aggregate counts per org so the index page is one query.
+  //
+  // De subqueries gebruiken `organizations.id` als correlated outer
+  // reference. Drizzle interpoleert `${organizations.id}` naar de kale
+  // kolomnaam `"id"`, en Postgres lost die *binnen* de subquery op naar
+  // de inner-table-kolom (bv. users.id = text). Dat geeft uuid=text en
+  // de query faalt.
+  //
+  // Fix: gebruik sql.raw met de volledig gekwalificeerde outer-naam
+  // (`"organizations"."id"`) zodat Postgres 'm altijd correleert naar
+  // de outer org-rij. Géén Drizzle-table-interpolatie hier; die rendert
+  // niet quoted/prefixed genoeg.
+  const orgIdRef = sql.raw(`"organizations"."id"`);
   const rows = await db
     .select({
       id: organizations.id,
@@ -70,15 +82,9 @@ export async function listAllOrgs() {
       plan: organizations.plan,
       isVip: organizations.isVip,
       createdAt: organizations.createdAt,
-      // Subqueries gebruiken expliciete table-aliassen (u/p/t) zodat
-      // Postgres niet de inner kolom-resolutie pakt voor "id". Zonder
-      // alias resolved Postgres "id" naar de subquery's eigen tabel
-      // (bv. users.id, dat is een text-PK), wat een uuid=text type-mismatch
-      // geeft. Met expliciete alias + organizations.id als outer ref
-      // krijgt de planner het juiste type.
-      memberCount: sql<number>`(select count(*) from ${users} u where u.organization_id = ${organizations.id})`,
-      projectCount: sql<number>`(select count(*) from ${projects} p where p.organization_id = ${organizations.id})`,
-      openTicketCount: sql<number>`(select count(*) from ${tickets} t where t.organization_id = ${organizations.id} and t.status = 'open')`,
+      memberCount: sql<number>`(select count(*) from ${users} u where u.organization_id = ${orgIdRef})`,
+      projectCount: sql<number>`(select count(*) from ${projects} p where p.organization_id = ${orgIdRef})`,
+      openTicketCount: sql<number>`(select count(*) from ${tickets} t where t.organization_id = ${orgIdRef} and t.status = 'open')`,
     })
     .from(organizations)
     .orderBy(desc(organizations.createdAt));
