@@ -57,6 +57,7 @@ export async function bulkMailOrgs(formData: FormData): Promise<ActionResult> {
       orgId: users.organizationId,
       userEmail: users.email,
       userName: users.name,
+      userLocale: users.locale,
       orgName: organizations.name,
     })
     .from(users)
@@ -76,6 +77,7 @@ export async function bulkMailOrgs(formData: FormData): Promise<ActionResult> {
         to: row.userEmail,
         recipientName: row.userName,
         template,
+        locale: row.userLocale,
       });
       sent.push({ orgId: row.orgId, to: row.userEmail });
     } catch (err) {

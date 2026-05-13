@@ -9,6 +9,8 @@ import { createTransport } from "nodemailer";
  * Strategie: bulk-mail is een tijdsbesparende tool, niet een
  * marketing-campagne. Houd content kort, persoonlijke data minimaal,
  * één duidelijke CTA per template.
+ *
+ * NL + ES — per-recipient locale (uit users.locale).
  */
 
 const COLORS = {
@@ -23,6 +25,7 @@ const COLORS = {
 };
 
 export type BulkTemplateId = "short_update" | "invoice_reminder" | "quarterly_report";
+type Locale = "nl" | "es";
 
 type TemplateCopy = {
   subject: string;
@@ -34,34 +37,75 @@ type TemplateCopy = {
   ctaUrl: string;
 };
 
-const TEMPLATES: Record<BulkTemplateId, TemplateCopy> = {
-  short_update: {
-    subject: "Even bijgepraat",
-    preheader: "Een snelle stand-van-zaken voor je portaal en abonnement.",
-    eyebrow: "// korte update",
-    heading: "Even bijgepraat.",
-    body: "Een snelle stand-van-zaken: je portaal draait, monitoring stabiel, geen openstaande punten van mijn kant. Mocht er iets zijn waar je vragen over hebt, mail terug — ik antwoord binnen één werkdag.",
-    ctaLabel: "Open je portaal",
-    ctaUrl: "https://webstability.eu/portal/dashboard",
+const TEMPLATES: Record<Locale, Record<BulkTemplateId, TemplateCopy>> = {
+  nl: {
+    short_update: {
+      subject: "Even bijgepraat",
+      preheader: "Een snelle stand-van-zaken voor je portaal en abonnement.",
+      eyebrow: "// korte update",
+      heading: "Even bijgepraat.",
+      body: "Een snelle stand-van-zaken: je portaal draait, monitoring stabiel, geen openstaande punten van mijn kant. Mocht er iets zijn waar je vragen over hebt, mail terug — ik antwoord binnen één werkdag.",
+      ctaLabel: "Open je portaal",
+      ctaUrl: "https://webstability.eu/portal/dashboard",
+    },
+    invoice_reminder: {
+      subject: "Klein geheugensteuntje — er staat een factuur open",
+      preheader: "Er staat nog een factuur open in je portaal.",
+      eyebrow: "// factuur",
+      heading: "Klein geheugensteuntje.",
+      body: "Er staat nog een factuur open in je portaal. Geen druk — als er iets onduidelijk is, mail terug. Anders kun je 'm via je portaal direct betalen.",
+      ctaLabel: "Bekijk factuur",
+      ctaUrl: "https://webstability.eu/portal/invoices",
+    },
+    quarterly_report: {
+      subject: "Je kwartaal-rapport staat klaar",
+      preheader: "Wat er is gebeurd, wat er volgend kwartaal komt.",
+      eyebrow: "// kwartaal-rapport",
+      heading: "Drie maanden samengevat.",
+      body: "Het kwartaal-rapport voor je portaal staat klaar — wat er is gebeurd, hoeveel uur er is besteed, en wat de planning is voor het volgend kwartaal. Bekijk 'm in je portaal.",
+      ctaLabel: "Open rapport",
+      ctaUrl: "https://webstability.eu/portal/dashboard",
+    },
   },
-  invoice_reminder: {
-    subject: "Klein geheugensteuntje — er staat een factuur open",
-    preheader: "Er staat nog een factuur open in je portaal.",
-    eyebrow: "// factuur",
-    heading: "Klein geheugensteuntje.",
-    body: "Er staat nog een factuur open in je portaal. Geen druk — als er iets onduidelijk is, mail terug. Anders kun je 'm via je portaal direct betalen.",
-    ctaLabel: "Bekijk factuur",
-    ctaUrl: "https://webstability.eu/portal/invoices",
+  es: {
+    short_update: {
+      subject: "Un breve avance",
+      preheader: "Un estado rápido de tu portal y suscripción.",
+      eyebrow: "// breve avance",
+      heading: "Un breve avance.",
+      body: "Un estado rápido: tu portal funciona, la monitorización estable, sin puntos pendientes por mi parte. Si tienes alguna pregunta, responde a este correo — contesto en un día laborable.",
+      ctaLabel: "Abrir tu portal",
+      ctaUrl: "https://webstability.eu/es/portal/dashboard",
+    },
+    invoice_reminder: {
+      subject: "Pequeño recordatorio — hay una factura abierta",
+      preheader: "Tienes una factura pendiente en tu portal.",
+      eyebrow: "// factura",
+      heading: "Pequeño recordatorio.",
+      body: "Tienes una factura pendiente en tu portal. Sin prisa — si algo no queda claro, responde a este correo. Si no, puedes pagarla directamente desde el portal.",
+      ctaLabel: "Ver factura",
+      ctaUrl: "https://webstability.eu/es/portal/invoices",
+    },
+    quarterly_report: {
+      subject: "Tu informe trimestral está listo",
+      preheader: "Lo que ha pasado y lo que viene el próximo trimestre.",
+      eyebrow: "// informe trimestral",
+      heading: "Tres meses en resumen.",
+      body: "El informe trimestral de tu portal está listo — lo que ha pasado, cuántas horas se han dedicado, y la planificación para el próximo trimestre. Míralo en tu portal.",
+      ctaLabel: "Abrir informe",
+      ctaUrl: "https://webstability.eu/es/portal/dashboard",
+    },
   },
-  quarterly_report: {
-    subject: "Je kwartaal-rapport staat klaar",
-    preheader: "Wat er is gebeurd, wat er volgend kwartaal komt.",
-    eyebrow: "// kwartaal-rapport",
-    heading: "Drie maanden samengevat.",
-    body: "Het kwartaal-rapport voor je portaal staat klaar — wat er is gebeurd, hoeveel uur er is besteed, en wat de planning is voor het volgend kwartaal. Bekijk 'm in je portaal.",
-    ctaLabel: "Open rapport",
-    ctaUrl: "https://webstability.eu/portal/dashboard",
-  },
+};
+
+const GREETING: Record<Locale, (first: string) => string> = {
+  nl: (f) => `Hoi ${f},`,
+  es: (f) => `Hola ${f},`,
+};
+
+const SIGNOFF: Record<Locale, { line: string; role: string; fallbackFirst: string }> = {
+  nl: { line: "Hartelijke groet,", role: "Founder · Webstability", fallbackFirst: "vriend" },
+  es: { line: "Un saludo,", role: "Founder · Webstability", fallbackFirst: "amigo" },
 };
 
 function escapeHtml(s: string): string {
@@ -95,20 +139,25 @@ export async function sendBulkMail({
   to,
   recipientName,
   template,
+  locale: localeInput,
 }: {
   to: string;
   recipientName: string | null;
   template: BulkTemplateId;
+  locale?: string;
 }) {
   if (!process.env.EMAIL_FROM) {
     throw new Error("EMAIL_FROM not configured");
   }
 
-  const t = TEMPLATES[template];
-  const firstName = (recipientName ?? "").split(" ")[0]?.trim() || "vriend";
+  const locale: Locale = localeInput === "es" ? "es" : "nl";
+  const t = TEMPLATES[locale][template];
+  const sign = SIGNOFF[locale];
+  const greet = GREETING[locale];
+  const firstName = (recipientName ?? "").split(" ")[0]?.trim() || sign.fallbackFirst;
 
   const html = `<!doctype html>
-<html lang="nl">
+<html lang="${locale}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -132,7 +181,7 @@ export async function sendBulkMail({
               <td style="padding:24px 32px 8px 32px;">
                 <p style="margin:0 0 12px 0;font-family:ui-monospace,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:${COLORS.wine};">${escapeHtml(t.eyebrow)}</p>
                 <h1 style="margin:0 0 16px 0;font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:32px;line-height:1.1;color:${COLORS.text};">${escapeHtml(t.heading)}</h1>
-                <p style="margin:0 0 16px 0;font-size:15px;line-height:1.6;color:${COLORS.muted};">Hoi ${escapeHtml(firstName)},</p>
+                <p style="margin:0 0 16px 0;font-size:15px;line-height:1.6;color:${COLORS.muted};">${escapeHtml(greet(firstName))}</p>
                 <p style="margin:0 0 24px 0;font-size:15px;line-height:1.6;color:${COLORS.muted};">${escapeHtml(t.body)}</p>
               </td>
             </tr>
@@ -143,9 +192,9 @@ export async function sendBulkMail({
             </tr>
             <tr>
               <td style="padding:0 32px 28px 32px;">
-                <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:16px;color:${COLORS.text};">Hartelijke groet,</p>
+                <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:16px;color:${COLORS.text};">${escapeHtml(sign.line)}</p>
                 <p style="margin:0;font-size:13px;color:${COLORS.text};font-weight:500;">Laurens Bos</p>
-                <p style="margin:0;font-family:ui-monospace,monospace;font-size:11px;letter-spacing:0.06em;color:${COLORS.muted};">Founder · Webstability</p>
+                <p style="margin:0;font-family:ui-monospace,monospace;font-size:11px;letter-spacing:0.06em;color:${COLORS.muted};">${escapeHtml(sign.role)}</p>
               </td>
             </tr>
           </table>
@@ -158,15 +207,15 @@ export async function sendBulkMail({
   const text = [
     t.heading,
     "",
-    `Hoi ${firstName},`,
+    greet(firstName),
     "",
     t.body,
     "",
     `${t.ctaLabel}: ${t.ctaUrl}`,
     "",
-    "Hartelijke groet,",
+    sign.line,
     "Laurens Bos",
-    "Founder · Webstability",
+    sign.role,
   ].join("\n");
 
   const transport = createTransport(SMTP_SERVER);
