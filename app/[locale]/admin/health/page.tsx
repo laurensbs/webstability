@@ -2,7 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { eq, desc, sql, count, and, gte, lt, isNull, or } from "drizzle-orm";
+import { eq, desc, count, and, gte, lt, isNull, or } from "drizzle-orm";
 import {
   Activity,
   AlertTriangle,
