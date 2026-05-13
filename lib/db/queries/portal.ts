@@ -505,6 +505,39 @@ export async function getRecentLivegangs(orgId: string, days = 7) {
 }
 
 /**
+ * Compacte uptime-samenvatting per project voor de laatste N dagen.
+ * Verwerkt alle monitoring_checks voor het project in één query en
+ * returnt percentage + sinds-wanneer. Voor de LiveProjectStrip op het
+ * dashboard zodat de klant niet alleen "draait op X" ziet maar "draait
+ * op X met Y% uptime laatste 30 dagen". Geen extra round-trip per
+ * status-rij; gewone count-aggregatie.
+ *
+ * Vereist orgId zodat een geknutselde projectId van een andere org
+ * geen monitoring-data lekt.
+ */
+export async function getProjectUptimeSummary(
+  orgId: string,
+  projectId: string,
+  days = 30,
+): Promise<{ uptimePct: number | null; sampleCount: number } | null> {
+  const project = await db.query.projects.findFirst({
+    where: and(eq(projects.id, projectId), eq(projects.organizationId, orgId)),
+    columns: { id: true },
+  });
+  if (!project) return null;
+
+  const cutoff = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  const rows = await db
+    .select({ status: monitoringChecks.status })
+    .from(monitoringChecks)
+    .where(and(eq(monitoringChecks.projectId, projectId), gte(monitoringChecks.checkedAt, cutoff)));
+  if (rows.length === 0) return { uptimePct: null, sampleCount: 0 };
+  const up = rows.filter((r) => r.status === "up").length;
+  const pct = (up / rows.length) * 100;
+  return { uptimePct: Math.round(pct * 100) / 100, sampleCount: rows.length };
+}
+
+/**
  * Per-project uptime-data voor de laatste N dagen. Voor de sparkline
  * op portal-monitoring én voor een binnenkort komende admin-overview.
  *

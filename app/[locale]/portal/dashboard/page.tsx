@@ -34,6 +34,7 @@ import {
   getActivitySince,
   getLatestMonthlyReport,
   getRecentShopMetrics,
+  getProjectUptimeSummary,
 } from "@/lib/db/queries/portal";
 import { StatCard } from "@/components/portal/StatCard";
 import { StatusBanner } from "@/components/portal/StatusBanner";
@@ -238,6 +239,11 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
       !!p.monitoringTargetUrl &&
       !livegangIds.has(p.id),
   );
+  // 30d-uptime voor het live project — getal i.p.v. blind "vertrouw me".
+  // Alleen ophalen als er ook echt een live project is met URL.
+  const liveProjectUptime = liveProjectWithUrl
+    ? await getProjectUptimeSummary(user.organizationId, liveProjectWithUrl.id, 30)
+    : null;
 
   // Build de roadmap-items uit recent projects: laatste 'live' wordt
   // 'shipped', huidige 'in_progress' wordt 'active', 'planning' wordt
@@ -444,6 +450,11 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         <LiveProjectStrip
           url={liveProjectWithUrl.monitoringTargetUrl}
           serviceKind={serviceKindFromProjectType(liveProjectWithUrl.type)}
+          uptime={
+            liveProjectUptime && liveProjectUptime.uptimePct !== null
+              ? { pct: liveProjectUptime.uptimePct, days: 30 }
+              : null
+          }
           strings={{
             label: t(
               `dashboard.liveStrip.${serviceKindFromProjectType(liveProjectWithUrl.type)}` as Parameters<
@@ -451,6 +462,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
               >[0],
             ),
             visitLabel: t("dashboard.liveStrip.visit"),
+            uptimeLabel: t("dashboard.liveStrip.uptime"),
           }}
         />
       ) : null}

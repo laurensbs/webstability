@@ -2753,7 +2753,8 @@
         "webshop": "Tu tienda está abierta en",
         "platform": "Tu plataforma funciona en",
         "other": "Tu proyecto está en vivo en",
-        "visit": "Visitar"
+        "visit": "Visitar",
+        "uptime": "{days}d uptime"
       },
       "shop": {
         "title": "Pedidos e ingresos",
