@@ -29,6 +29,7 @@
     "db:promote-staff": "tsx --env-file=.env.local scripts/promote-staff.ts",
     "db:seed-clients": "tsx --env-file=.env.local scripts/seed-clients.ts",
     "//db:seed-clients-help": "Run met: SEED_CLIENT_PASSWORD=<pw> pnpm db:seed-clients",
+    "db:seed-legacy": "tsx --env-file=.env.local scripts/seed-legacy-packages.ts",
     "prepare": "husky"
   },
   "dependencies": {
