@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
-import { KeyRound, ArrowRight } from "lucide-react";
+import { KeyRound, ArrowRight, CalendarClock } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { NavScroll } from "@/components/marketing/NavScroll";
@@ -66,21 +66,26 @@ export async function Navigation({ locale }: { locale: string }) {
           <span className="hidden md:inline-flex">
             <LangSwitcher variant="dark" />
           </span>
+          {/* Login — op md/lg een icon-only knopje; vanaf xl ook met label
+              zodat een bezoeker zonder te hoveren weet dat dit "inloggen" is. */}
           <Link
             href="/login"
             aria-label={t("login")}
             title={t("login")}
-            className="group hidden h-10 w-10 items-center justify-center rounded-full border border-(--color-bg)/25 text-(--color-bg)/75 transition-colors hover:border-(--color-bg)/55 hover:text-(--color-bg) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:inline-flex"
+            className="group hidden h-10 items-center justify-center rounded-full border border-(--color-bg)/25 text-(--color-bg)/75 transition-colors hover:border-(--color-bg)/55 hover:text-(--color-bg) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:inline-flex md:w-10 md:px-0 xl:w-auto xl:gap-1.5 xl:px-3.5"
           >
             <KeyRound className="h-4 w-4 transition-colors" strokeWidth={2} aria-hidden />
+            <span className="hidden text-[13px] font-medium xl:inline">{t("login")}</span>
           </Link>
-          {/* Secundaire actie — "of plan een gesprek" (Cal-popup). Pas vanaf
-              xl zodat de rechterkant op 1024–1280px niet te druk wordt naast
-              login + de primaire CTA. */}
+          {/* Secundaire actie — "plan een gesprek" (Cal-popup) als outline-knop
+              met icoon vanaf xl. Onder xl zit-ie in de mobiele drawer. Bewust
+              outline (niet gevuld) zodat de primaire "Vraag aan"-CTA z'n
+              prioriteit houdt. */}
           <CalPopupTrigger
             locale={locale}
-            className="hidden text-[13px] font-medium text-(--color-bg)/65 underline decoration-(--color-bg)/25 underline-offset-4 transition-colors hover:text-(--color-bg) hover:decoration-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent) xl:inline-flex"
+            className="group hidden h-10 items-center gap-1.5 rounded-full border border-(--color-bg)/25 px-3.5 text-[13px] font-medium text-(--color-bg)/85 transition-colors hover:border-(--color-bg)/55 hover:text-(--color-bg) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) xl:inline-flex"
           >
+            <CalendarClock className="h-4 w-4 text-(--color-accent)" strokeWidth={2} aria-hidden />
             {t("planCallSecondary")}
           </CalPopupTrigger>
           {/* Primaire CTA — terracotta, → /aanvragen. */}

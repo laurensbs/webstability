@@ -64,7 +64,7 @@ export function MobileNav({
       <Dialog.Trigger asChild>
         <button
           aria-label="Open menu"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-(--color-bg)/20 bg-(--color-bg)/5 text-(--color-bg) transition-colors hover:border-(--color-bg)/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-(--color-bg)/40 bg-(--color-bg)/10 text-(--color-bg) transition-colors hover:border-(--color-bg)/70 hover:bg-(--color-bg)/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) md:hidden"
         >
           <Menu className="h-5 w-5" strokeWidth={2} aria-hidden />
         </button>
