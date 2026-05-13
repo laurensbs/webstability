@@ -10,7 +10,15 @@ export const LEAD_SOURCES = [
   "referral",
   "configurator",
 ] as const;
-export const LEAD_STATUSES = ["cold", "warmed", "booked", "met", "customer", "lost"] as const;
+export const LEAD_STATUSES = [
+  "cold",
+  "warmed",
+  "booked",
+  "met",
+  "quote_sent",
+  "customer",
+  "lost",
+] as const;
 
 export type LeadSource = (typeof LEAD_SOURCES)[number];
 export type LeadStatus = (typeof LEAD_STATUSES)[number];
@@ -28,6 +36,7 @@ export const LEAD_STATUS_LABEL_NL: Record<LeadStatus, string> = {
   warmed: "Warmed",
   booked: "Booked",
   met: "Gesproken",
+  quote_sent: "Offerte verstuurd",
   customer: "Klant",
   lost: "Verloren",
 };

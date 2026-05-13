@@ -16,6 +16,7 @@ const STATUS_TONE: Record<LeadStatus, string> = {
   warmed: "border-(--color-accent)/30 bg-(--color-accent)/5 text-(--color-accent)",
   booked: "border-(--color-accent)/40 bg-(--color-accent)/10 text-(--color-accent)",
   met: "border-(--color-wine)/30 bg-(--color-wine)/5 text-(--color-wine)",
+  quote_sent: "border-(--color-wine)/40 bg-(--color-wine)/10 text-(--color-wine)",
   customer: "border-(--color-success)/30 bg-(--color-success)/5 text-(--color-success)",
   lost: "border-(--color-border) bg-(--color-bg) text-(--color-muted)",
 };

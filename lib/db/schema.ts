@@ -98,6 +98,7 @@ export const leadStatusEnum = pgEnum("lead_status", [
   "warmed",
   "booked",
   "met",
+  "quote_sent",
   "customer",
   "lost",
 ]);

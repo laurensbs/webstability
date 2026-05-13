@@ -80,6 +80,8 @@ export default async function AdminHealthPage({ params }: { params: Promise<{ lo
   const threeDaysAgo = new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000);
   const fortyDaysAgo = new Date(now.getTime() - 40 * 24 * 60 * 60 * 1000);
 
+  const sevenDaysAgoForQuotes = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+
   const [
     lastWeekly,
     lastMonthly,
@@ -87,6 +89,7 @@ export default async function AdminHealthPage({ params }: { params: Promise<{ lo
     openTickets,
     staleTickets,
     untouchedLeads,
+    staleQuotes,
     totalOrgs,
     recentLogins,
   ] = await Promise.all([
@@ -111,6 +114,11 @@ export default async function AdminHealthPage({ params }: { params: Promise<{ lo
           gte(leads.createdAt, fortyDaysAgo),
         ),
       ),
+    // Leads op 'offerte verstuurd' > 7 dagen — vergeten follow-up.
+    db
+      .select({ c: count() })
+      .from(leads)
+      .where(and(eq(leads.status, "quote_sent"), lt(leads.updatedAt, sevenDaysAgoForQuotes))),
     db.select({ c: count() }).from(organizations),
     db
       .select({ c: count() })
@@ -191,6 +199,17 @@ export default async function AdminHealthPage({ params }: { params: Promise<{ lo
       hint:
         (untouchedLeads[0]?.c ?? 0) > 0
           ? "nextActionAt is null of in het verleden. Zet een opvolg-datum op /admin/leads."
+          : undefined,
+    },
+    {
+      icon: Mail,
+      title: "Offertes >7d zonder reactie",
+      value: String(staleQuotes[0]?.c ?? 0),
+      status:
+        (staleQuotes[0]?.c ?? 0) > 0 ? ((staleQuotes[0]?.c ?? 0) > 2 ? "alarm" : "warn") : "ok",
+      hint:
+        (staleQuotes[0]?.c ?? 0) > 0
+          ? "Leads op status 'offerte verstuurd' die al >7d niet zijn aangeraakt. Even bellen of een nudge-mail sturen."
           : undefined,
     },
     {
