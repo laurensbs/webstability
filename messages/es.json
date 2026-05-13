@@ -2779,6 +2779,27 @@
       "hoursBudget": "budget",
       "hoursRecentTitle": "Trabajo reciente",
       "hoursEmpty": "Nada registrado este mes — te avisamos si pasa algo.",
+      "hoursAlwaysOnTitle": "Lo que sigue corriendo igualmente",
+      "hoursAlwaysOn": {
+        "care": [
+          "Hosting en EU-edge, backups automáticos",
+          "Actualizaciones de seguridad y renovación SSL",
+          "Monitorización de uptime con alerta directa"
+        ],
+        "studio": [
+          "Hosting en EU-edge, backups automáticos",
+          "Actualizaciones de seguridad y renovación SSL",
+          "Monitorización de uptime con alerta directa",
+          "Informe mensual + tendencia SEO"
+        ],
+        "atelier": [
+          "Hosting en EU-edge, backups automáticos",
+          "Actualizaciones de seguridad y renovación SSL",
+          "Monitorización de uptime con alerta directa",
+          "Informe mensual + tendencia SEO",
+          "Prioridad en tickets y roadmap activa"
+        ]
+      },
       "securityTitle": "Seguridad & backups",
       "securityStatus": "Estado",
       "securityStatusValue": "Todo al día",

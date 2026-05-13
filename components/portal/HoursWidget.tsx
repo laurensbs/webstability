@@ -20,6 +20,7 @@ export function HoursWidget({
   budget,
   recent,
   strings,
+  alwaysOnItems,
 }: {
   /** Total minutes used this month. */
   used: number;
@@ -35,7 +36,12 @@ export function HoursWidget({
     recentTitle: string;
     empty: string;
     viewAll: string;
+    alwaysOnTitle?: string;
   };
+  /** Verschijnt onder de empty-state: korte lijst van wat er *altijd* loopt
+   * (monitoring, security-updates, backups) — zodat 'niets gelogd' niet
+   * leest als 'niets gebeurt'. Geen banner, geen sales — alleen reminder. */
+  alwaysOnItems?: string[];
 }) {
   const pct = budget > 0 ? Math.min(100, Math.round((used / budget) * 100)) : 0;
   const usedHours = (used / 60).toFixed(1);
@@ -95,7 +101,32 @@ export function HoursWidget({
             {strings.recentTitle}
           </h3>
           {recent.length === 0 ? (
-            <p className="text-[13px] text-(--color-muted)">{strings.empty}</p>
+            <div className="space-y-3">
+              <p className="text-[13px] text-(--color-muted)">{strings.empty}</p>
+              {alwaysOnItems && alwaysOnItems.length > 0 ? (
+                <div className="border-t border-(--color-border) pt-3">
+                  {strings.alwaysOnTitle ? (
+                    <p className="mb-1.5 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
+                      {strings.alwaysOnTitle}
+                    </p>
+                  ) : null}
+                  <ul className="space-y-1">
+                    {alwaysOnItems.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2 text-[12px] text-(--color-text)/80"
+                      >
+                        <span
+                          aria-hidden
+                          className="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-(--color-success)"
+                        />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
           ) : (
             <ul className="space-y-1.5">
               {recent.slice(0, 3).map((e) => (

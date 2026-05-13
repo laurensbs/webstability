@@ -616,6 +616,16 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
             minutes: r.minutes,
             workedOn: r.workedOn,
           }))}
+          alwaysOnItems={
+            // Bij empty: subtiele reminder van wat er álsnog loopt deze maand
+            // (uptime-monitoring, backups, security-updates). Voorkomt dat
+            // 'niets gelogd' leest als 'niets gebeurt'. Per pakket andere set.
+            plan === "atelier"
+              ? (t.raw("dashboard.hoursAlwaysOn.atelier") as string[])
+              : plan === "studio"
+                ? (t.raw("dashboard.hoursAlwaysOn.studio") as string[])
+                : (t.raw("dashboard.hoursAlwaysOn.care") as string[])
+          }
           strings={{
             title: t("dashboard.hoursTitle"),
             monthLabel: t("dashboard.hoursMonth"),
@@ -624,6 +634,7 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
             recentTitle: t("dashboard.hoursRecentTitle"),
             empty: t("dashboard.hoursEmpty"),
             viewAll: t("dashboard.viewAll"),
+            alwaysOnTitle: t("dashboard.hoursAlwaysOnTitle"),
           }}
         />
         <SecurityCard

@@ -2775,6 +2775,27 @@
       "hoursBudget": "budget",
       "hoursRecentTitle": "Recent gewerkt",
       "hoursEmpty": "Nog niets gelogd deze maand — wij melden ons als er iets gebeurd is.",
+      "hoursAlwaysOnTitle": "Wat er hoe dan ook loopt",
+      "hoursAlwaysOn": {
+        "care": [
+          "Hosting op EU-edge, automatische backups",
+          "Security-updates en SSL-vernieuwing",
+          "Uptime-monitoring met directe alert"
+        ],
+        "studio": [
+          "Hosting op EU-edge, automatische backups",
+          "Security-updates en SSL-vernieuwing",
+          "Uptime-monitoring met directe alert",
+          "Maandelijks rapport + SEO-trend"
+        ],
+        "atelier": [
+          "Hosting op EU-edge, automatische backups",
+          "Security-updates en SSL-vernieuwing",
+          "Uptime-monitoring met directe alert",
+          "Maandelijks rapport + SEO-trend",
+          "Prioriteit op tickets en roadmap-doorbouw"
+        ]
+      },
       "securityTitle": "Veiligheid & backups",
       "securityStatus": "Status",
       "securityStatusValue": "Alles up-to-date",
