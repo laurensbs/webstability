@@ -1,10 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
 import type Stripe from "stripe";
-import { eq } from "drizzle-orm";
+import { eq, and, desc } from "drizzle-orm";
 import { stripe } from "@/lib/stripe";
 import { db } from "@/lib/db";
-import { organizations, subscriptions, invoices, auditLog } from "@/lib/db/schema";
+import { organizations, subscriptions, invoices, auditLog, users } from "@/lib/db/schema";
 import { markReferralConverted } from "@/lib/db/queries/referrals";
+import { sendExitSurveyMail } from "@/lib/email/exit-survey";
 
 export const runtime = "nodejs";
 
@@ -56,10 +57,75 @@ async function upsertSubscription(stripeSub: Stripe.Subscription) {
     cancelAt: stripeSub.cancel_at ? new Date(stripeSub.cancel_at * 1000) : null,
   };
 
+  // Cancel-transitie detecteren *vóór* de update: existing.cancelAt
+  // null → nieuwe waarde gezet = klant heeft net opgezegd. Self-cancel
+  // via Stripe Customer Portal (admin-cancel logt z'n eigen audit-entry
+  // en gaat ook door deze webhook). We onderscheiden de twee via een
+  // audit-log lookup verderop.
+  const wasCancelled = Boolean(existing?.cancelAt);
+  const becomingCancelled = Boolean(stripeSub.cancel_at) && !wasCancelled;
+
   if (existing) {
     await db.update(subscriptions).set(values).where(eq(subscriptions.id, existing.id));
   } else {
     await db.insert(subscriptions).values(values);
+  }
+
+  // Exit-survey mail bij self-cancel (KX13). Voorwaarden:
+  // - net pas cancel-at-period-end gezet
+  // - geen recent 'subscription.cancelled' audit-entry van *admin*
+  //   (anders is dit een door Laurens uitgevoerde cancel — geen
+  //   survey, want het is al een persoonlijk gesprek geweest)
+  // - nog geen eerdere exit-survey verstuurd voor deze sub-cycle
+  if (becomingCancelled) {
+    try {
+      // Idempotency + admin-cancel exclude — beide via auditLog.
+      const recentAudit = await db.query.auditLog.findMany({
+        where: and(eq(auditLog.organizationId, org.id), eq(auditLog.targetType, "subscription")),
+        orderBy: [desc(auditLog.createdAt)],
+        limit: 10,
+      });
+      const alreadySent = recentAudit.some(
+        (a) =>
+          a.action === "subscription.exit_survey_sent" &&
+          // metadata.subId match — anders een eerdere cycle
+          (a.metadata as { subId?: string } | null)?.subId === stripeSub.id,
+      );
+      const adminCancelled = recentAudit.some(
+        (a) =>
+          a.action === "subscription.cancelled" &&
+          a.targetId === existing?.id &&
+          // binnen 5 minuten = admin-actie die dezelfde webhook triggerde
+          Date.now() - a.createdAt.getTime() < 5 * 60 * 1000,
+      );
+
+      if (!alreadySent && !adminCancelled) {
+        const owner = await db.query.users.findFirst({
+          where: and(eq(users.organizationId, org.id), eq(users.role, "owner")),
+          columns: { email: true, name: true, locale: true },
+        });
+        if (owner?.email) {
+          await sendExitSurveyMail({
+            to: owner.email,
+            name: owner.name,
+            orgName: org.name,
+            locale: owner.locale,
+          });
+          await db.insert(auditLog).values({
+            organizationId: org.id,
+            userId: null,
+            action: "subscription.exit_survey_sent",
+            targetType: "subscription",
+            targetId: existing?.id ?? null,
+            metadata: { subId: stripeSub.id, to: owner.email },
+          });
+        }
+      }
+    } catch (err) {
+      // Mail-failure mag de webhook niet kapot maken — Stripe gaat anders
+      // retry'en en we krijgen dubbele mails als de mail dán wél lukt.
+      console.error("[stripe webhook] exit-survey mail failed:", err);
+    }
   }
 
   // Reflect plan on org for fast reads.
