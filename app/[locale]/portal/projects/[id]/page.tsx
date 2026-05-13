@@ -109,18 +109,28 @@ export default async function ProjectDetailPage({
           strings={{ now: t("stepNow") }}
         />
 
-        {/* Dienst-specifieke "wat ik nu van je nodig heb"-hint. In planning
-            voor alle types; voor een webshop ook tijdens de bouw (productdata
-            + betaalprovider). Verdwijnt zodra het project review/live is. */}
+        {/* Dienst-specifieke "wat gebeurt er nu / wat verwacht ik van jou"-
+            hint per project-status × ServiceKind. Verdwijnt bij `done`
+            (project is afgerond) en bij `live` voor de generieke `other`
+            (LiveProjectStrip op het dashboard doet daar het werk al). */}
         {(() => {
           const kind = serviceKindFromProjectType(project.type);
-          const hint =
+          const key =
             project.status === "planning"
-              ? t(`phaseHintPlanning.${kind}` as Parameters<typeof t>[0])
-              : project.status === "in_progress" && kind === "webshop"
-                ? t("phaseHintData")
-                : null;
-          if (!hint) return null;
+              ? "phaseHintPlanning"
+              : project.status === "in_progress"
+                ? "phaseHintInProgress"
+                : project.status === "review"
+                  ? "phaseHintReview"
+                  : project.status === "live"
+                    ? "phaseHintLive"
+                    : null;
+          if (!key) return null;
+          const hint = t(`${key}.${kind}` as Parameters<typeof t>[0]);
+          // Webshop tijdens bouw: extra regel met de concrete data-vraag
+          // (productdata + betaalprovider) bovenop de generieke in_progress-hint.
+          const extra =
+            project.status === "in_progress" && kind === "webshop" ? t("phaseHintData") : null;
           return (
             <section className="rounded-panel flex items-start gap-3 border border-dashed border-(--color-accent)/30 bg-(--color-accent)/5 p-5">
               <Inbox className="mt-0.5 h-4 w-4 shrink-0 text-(--color-accent)" strokeWidth={2.2} />
@@ -129,6 +139,9 @@ export default async function ProjectDetailPage({
                   {t("phaseHintEyebrow")}
                 </p>
                 <p className="mt-1.5 text-[15px] leading-[1.55] text-(--color-text)">{hint}</p>
+                {extra ? (
+                  <p className="mt-2 text-[14px] leading-[1.55] text-(--color-text)/85">{extra}</p>
+                ) : null}
               </div>
             </section>
           );

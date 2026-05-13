@@ -2871,14 +2871,32 @@
       "stepDone": "Hecho",
       "stepNow": "Ahora",
       "stepNext": "Siguiente",
-      "phaseHintEyebrow": "Qué necesito de ti ahora",
+      "phaseHintEyebrow": "Qué pasa ahora",
       "phaseHintPlanning": {
         "website": "Ve reuniendo tus textos y las imágenes que quieras en el site — cuanto más completo en esta fase, antes está el diseño.",
         "webshop": "Pon tus productos en orden (títulos, precios, fotos, categoría de IVA) y piensa qué métodos de pago quieres — lo necesito para montar la tienda.",
         "platform": "Durante el discovery dibujamos juntos el proceso y las integraciones — ve pensando quién tiene cada rol y con qué sistemas debe hablar.",
         "other": "Aporta el contenido y los datos que hablamos en la llamada — cuanto más completo, antes avanzamos."
       },
-      "phaseHintData": "Ahora necesito tus datos de producto (títulos, precios, fotos, stock, IVA por categoría) y los datos de tu proveedor de pago, para conectar pagos + envíos."
+      "phaseHintData": "Ahora necesito tus datos de producto (títulos, precios, fotos, stock, IVA por categoría) y los datos de tu proveedor de pago, para conectar pagos + envíos.",
+      "phaseHintInProgress": {
+        "website": "Estoy construyendo el site. Cada semana un breve aviso del progreso; mientras tanto no tienes que hacer nada salvo que te pregunte.",
+        "webshop": "Estoy construyendo tu tienda: productos, pagos, IVA, envíos. Aviso semanal; mientras tanto espero datos de producto o confirmación del proveedor de pago si los necesito.",
+        "platform": "Trabajo en la arquitectura y las integraciones. Aviso semanal; en decisiones grandes te presento dos opciones para que decidas rápido.",
+        "other": "Estoy construyendo. Aviso semanal; mientras tanto no tienes que hacer nada salvo que te pregunte."
+      },
+      "phaseHintReview": {
+        "website": "El diseño está listo para tu visto bueno. Revísalo con calma, pide cambios por tickets, y en cuanto todo esté ✓ lanzamos.",
+        "webshop": "Hora de pedidos de prueba — con pagos reales — para confirmar que todo el flujo funciona antes del lanzamiento. Y: revisa tú mismo los productos por erratas.",
+        "platform": "Probamos todas las integraciones con datos reales y recorremos los flujos principales. Cambios por tickets.",
+        "other": "Hora de tu visto bueno. Revísalo, pide cambios por tickets, y en cuanto esté ✓ lanzamos."
+      },
+      "phaseHintLive": {
+        "website": "Tu web está en vivo. La monitorización funciona, recibo aviso si algo falla. ¿Dudas o cambios? Abre un ticket.",
+        "webshop": "Tu tienda está abierta. Monitorizo el checkout y los pagos — si fallan, lo sé al momento. Nuevos productos, precios o reglas de envío por tickets.",
+        "platform": "Tu plataforma funciona. Las integraciones corren en vivo, monitorizo el entorno. ¿Integración extra o cambio en el flujo? Por un ticket.",
+        "other": "Tu proyecto está en vivo. Monitorización activa, dudas o cambios por tickets."
+      }
     },
     "handover": {
       "title": "Lista de entrega",
