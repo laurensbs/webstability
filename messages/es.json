@@ -3331,9 +3331,22 @@
       "welcome": {
         "eyebrow": "bienvenido a webstability",
         "title": "Ya estás dentro.",
-        "body": "Hemos creado tu cuenta y te enviamos un correo para establecer tu contraseña ({email}). Pulsa el botón del correo, elige una contraseña, y entrarás en tu propio portal.",
+        "body": "Me alegro de que estés aquí — desde ahora vigilo tu sitio y soy tu contacto directo. Aquí abajo ves exactamente qué va a pasar.",
+        "planLineCare": "Has elegido **Care** — €95/mes, cancelable mes a mes.",
+        "planLineStudio": "Has elegido **Studio** — €179/mes, con 3 horas de mantenimiento al mes.",
+        "planLineAtelier": "Has elegido **Atelier** — €399/mes, con 8 horas de mantenimiento y soporte prioritario.",
+        "stepsTitle": "Qué pasa ahora",
+        "step1Title": "Establece tu contraseña",
+        "step1Body": "Recibirás un correo en {email} en menos de 1 minuto. Pulsa el enlace y elige una contraseña.",
+        "step2Title": "Entra en tu portal",
+        "step2Body": "Allí verás tus proyectos, presupuesto de horas, tickets y facturas — todo en un solo sitio.",
+        "step3Title": "Te contacto personalmente",
+        "step3Body": "En un día laborable te escribo personalmente para presentarme y hablar de los primeros pasos.",
+        "noteEyebrow": "personal",
+        "note": "Si ya tienes alguna pregunta — simplemente responde al correo de confirmación de tu bandeja. Llega directamente a mí.",
+        "noteSig": "— Laurens",
         "cta": "Ir a iniciar sesión",
-        "redirecting": "Te redirigimos automáticamente en un momento…"
+        "ctaHint": "Sin prisa — el correo llega enseguida. También puedes cerrar esta página."
       }
     },
     "verify": {

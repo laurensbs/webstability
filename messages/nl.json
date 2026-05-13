@@ -3327,9 +3327,22 @@
       "welcome": {
         "eyebrow": "welkom bij webstability",
         "title": "Je bent binnen.",
-        "body": "We hebben je account aangemaakt en je een e-mail gestuurd om je wachtwoord in te stellen ({email}). Klik op de knop in de mail, kies een wachtwoord, en je staat in je eigen portaal.",
+        "body": "Fijn dat je er bent — vanaf nu hou ik je site in de gaten en ben ik je vaste aanspreekpunt. Hieronder zie je precies wat er gaat gebeuren.",
+        "planLineCare": "Je hebt **Care** gekozen — €95/maand, opzegbaar per maand.",
+        "planLineStudio": "Je hebt **Studio** gekozen — €179/maand, met 3 onderhoudsuren per maand.",
+        "planLineAtelier": "Je hebt **Atelier** gekozen — €399/maand, met 8 onderhoudsuren en prioritaire support.",
+        "stepsTitle": "Wat er nu gebeurt",
+        "step1Title": "Stel je wachtwoord in",
+        "step1Body": "Je krijgt binnen 1 minuut een mail op {email}. Klik op de link, kies een wachtwoord.",
+        "step2Title": "Log in op je portaal",
+        "step2Body": "Daar zie je je projecten, uren-budget, tickets en facturen — alles op één plek.",
+        "step3Title": "Ik neem contact op",
+        "step3Body": "Binnen 1 werkdag stuur ik je persoonlijk een mail om kort kennis te maken en de eerste stappen te bespreken.",
+        "noteEyebrow": "persoonlijk",
+        "note": "Mocht je nu al een vraag hebben — beantwoord gewoon de bevestigingsmail die in je inbox ligt. Die komt rechtstreeks bij mij binnen.",
+        "noteSig": "— Laurens",
         "cta": "Naar inloggen",
-        "redirecting": "Je wordt zo automatisch doorgestuurd…"
+        "ctaHint": "Geen haast — de mail komt zo binnen. Je kunt deze pagina ook gewoon sluiten."
       }
     },
     "verify": {

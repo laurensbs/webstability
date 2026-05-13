@@ -148,18 +148,36 @@ export default async function CheckoutDone({
   }
 
   // Klaar — toon een kort "je bent binnen"-moment, dan naar /login.
-  const loginUrl = `/login?email=${encodeURIComponent(email)}&from=checkout${plan ? `&plan=${plan}` : ""}`;
+  // Locale-prefixed zodat een ES-checkout op /es/login landt, niet op
+  // /login (anders redirect middleware nog eens en wisselen we van origin).
+  // localePrefix: "as-needed" — NL is default (geen prefix), ES krijgt /es.
+  const loginPath = locale === "es" ? "/es/login" : "/login";
+  const loginUrl = `${loginPath}?email=${encodeURIComponent(email)}&from=checkout${plan ? `&plan=${plan}` : ""}`;
   const t = await getTranslations("checkout.welcome");
   return (
     <CheckoutWelcome
       email={email}
       redirectTo={loginUrl}
+      plan={plan}
       strings={{
         eyebrow: t("eyebrow"),
         title: t("title"),
         body: t("body"),
+        planLineCare: t("planLineCare"),
+        planLineStudio: t("planLineStudio"),
+        planLineAtelier: t("planLineAtelier"),
+        stepsTitle: t("stepsTitle"),
+        step1Title: t("step1Title"),
+        step1Body: t("step1Body"),
+        step2Title: t("step2Title"),
+        step2Body: t("step2Body"),
+        step3Title: t("step3Title"),
+        step3Body: t("step3Body"),
+        noteEyebrow: t("noteEyebrow"),
+        note: t("note"),
+        noteSig: t("noteSig"),
         cta: t("cta"),
-        redirecting: t("redirecting"),
+        ctaHint: t("ctaHint"),
       }}
     />
   );
