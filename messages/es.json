@@ -2781,6 +2781,11 @@
       "hoursEmpty": "Nada registrado este mes — te avisamos si pasa algo.",
       "hoursAlwaysOnTitle": "Lo que sigue corriendo igualmente",
       "hoursAlwaysOn": {
+        "webStarter": [
+          "Hosting + backups diarios automáticos",
+          "Actualizaciones de seguridad y renovación SSL",
+          "Monitorización de uptime — yo vigilo si cae"
+        ],
         "care": [
           "Hosting en EU-edge, backups automáticos",
           "Actualizaciones de seguridad y renovación SSL",

@@ -624,11 +624,22 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
             // Bij empty: subtiele reminder van wat er álsnog loopt deze maand
             // (uptime-monitoring, backups, security-updates). Voorkomt dat
             // 'niets gelogd' leest als 'niets gebeurt'. Per pakket andere set.
-            plan === "atelier"
-              ? (t.raw("dashboard.hoursAlwaysOn.atelier") as string[])
-              : plan === "studio"
-                ? (t.raw("dashboard.hoursAlwaysOn.studio") as string[])
-                : (t.raw("dashboard.hoursAlwaysOn.care") as string[])
+            //
+            // Legacy "Web Starter"-klanten (geen tier, eigen gereduceerd
+            // tarief van vóór Webstability) krijgen de korte 3-regelige
+            // set zonder rapport/SEO/prioriteit — passend bij wat ze betalen.
+            user.organization?.legacyPackageName === "Web Starter"
+              ? (t.raw("dashboard.hoursAlwaysOn.webStarter") as string[])
+              : plan === "atelier"
+                ? (t.raw("dashboard.hoursAlwaysOn.atelier") as string[])
+                : plan === "studio"
+                  ? (t.raw("dashboard.hoursAlwaysOn.studio") as string[])
+                  : plan === "care"
+                    ? (t.raw("dashboard.hoursAlwaysOn.care") as string[])
+                    : // Geen plan en geen Web Starter → geen reminder; lege
+                      // empty-state. Bewust: anders suggereren we dingen
+                      // die we niet daadwerkelijk leveren.
+                      undefined
           }
           strings={{
             title: t("dashboard.hoursTitle"),

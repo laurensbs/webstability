@@ -2777,6 +2777,11 @@
       "hoursEmpty": "Nog niets gelogd deze maand — wij melden ons als er iets gebeurd is.",
       "hoursAlwaysOnTitle": "Wat er hoe dan ook loopt",
       "hoursAlwaysOn": {
+        "webStarter": [
+          "Hosting + automatische dagelijkse backups",
+          "Security-updates en SSL-vernieuwing",
+          "Uptime-monitoring — ik kijk mee bij uitval"
+        ],
         "care": [
           "Hosting op EU-edge, automatische backups",
           "Security-updates en SSL-vernieuwing",
