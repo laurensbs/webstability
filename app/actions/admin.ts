@@ -1109,7 +1109,7 @@ export async function staffReplyToTicket(
 
   const ticket = await db.query.tickets.findFirst({
     where: eq(tickets.id, ticketId),
-    columns: { id: true, status: true },
+    columns: { id: true, status: true, subject: true, userId: true },
   });
   if (!ticket) return { ok: false, messageKey: "missing_fields" };
 
@@ -1117,8 +1117,34 @@ export async function staffReplyToTicket(
   if (!internal && ticket.status === "open") {
     await db.update(tickets).set({ status: "in_progress" }).where(eq(tickets.id, ticketId));
   }
+
+  // Mail-notify naar klant — alleen bij publieke replies (interne notities
+  // blijven onzichtbaar). Faalt graceful; de reply staat al in de DB.
+  if (!internal) {
+    try {
+      const client = await db.query.users.findFirst({
+        where: eq(users.id, ticket.userId),
+        columns: { email: true, name: true, locale: true, isDemo: true },
+      });
+      if (client?.email && !client.isDemo) {
+        const { sendTicketReplyToClient } = await import("@/lib/email/ticket-reply");
+        await sendTicketReplyToClient({
+          to: client.email,
+          clientName: client.name ?? null,
+          ticketSubject: ticket.subject,
+          ticketId,
+          bodySnippet: body,
+          locale: client.locale === "es" ? "es" : "nl",
+        });
+      }
+    } catch (err) {
+      console.error("[tickets] staff-reply mail to client failed:", err);
+    }
+  }
+
   revalidatePath(`/admin/tickets/${ticketId}`);
   revalidatePath(`/admin/tickets`);
+  revalidatePath(`/portal/tickets/${ticketId}`);
   return { ok: true };
 }
 

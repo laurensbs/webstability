@@ -129,7 +129,7 @@ export async function replyToTicket(
 
   const ticket = await db.query.tickets.findFirst({
     where: and(eq(tickets.id, ticketId), eq(tickets.organizationId, orgId)),
-    columns: { id: true },
+    columns: { id: true, subject: true },
   });
   if (!ticket) return { ok: false, messageKey: "not_found" };
 
@@ -137,6 +137,36 @@ export async function replyToTicket(
   if (!body) return { ok: false, messageKey: "missing_body" };
 
   await db.insert(ticketReplies).values({ ticketId, userId, body });
+
+  // Mail-notify naar staff — anders moet jij /admin openen om te zien dat
+  // de klant gereageerd heeft. Faalt graceful.
+  try {
+    const [me, org] = await Promise.all([
+      db.query.users.findFirst({
+        where: eq(users.id, userId),
+        columns: { name: true, email: true },
+      }),
+      db.query.organizations.findFirst({
+        where: eq(organizations.id, orgId),
+        columns: { name: true },
+      }),
+    ]);
+    if (me?.email) {
+      const { sendTicketReplyToStaff } = await import("@/lib/email/ticket-reply");
+      await sendTicketReplyToStaff({
+        ticketSubject: ticket.subject,
+        ticketId,
+        clientName: me.name ?? null,
+        clientEmail: me.email,
+        orgName: org?.name ?? "—",
+        bodySnippet: body,
+      });
+    }
+  } catch (err) {
+    console.error("[tickets] client-reply mail to staff failed:", err);
+  }
+
   revalidatePath(`/portal/tickets/${ticketId}`);
+  revalidatePath(`/admin/tickets/${ticketId}`);
   return { ok: true, messageKey: "reply_sent" };
 }
