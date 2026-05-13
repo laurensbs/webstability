@@ -86,6 +86,7 @@ export const routing = defineRouting({
     "/admin/nps": "/admin/nps",
     "/admin/referrals": "/admin/referrals",
     "/admin/team": "/admin/team",
+    "/admin/health": "/admin/health",
     "/demo/portal": "/demo/portal",
     "/demo/admin": "/demo/admin",
     "/demo/limited": "/demo/limited",

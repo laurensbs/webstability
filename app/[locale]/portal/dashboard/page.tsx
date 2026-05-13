@@ -678,6 +678,8 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
             subtitle={t("dashboard.seoSubtitle")}
             delta={t("dashboard.seoDelta")}
             viewLabel={t("dashboard.viewAll")}
+            connected={false}
+            demoOverlayLabel={t("dashboard.seoDemoOverlay")}
           />
         ) : null}
         <Suspense fallback={<MonitoringCardSkeleton title={t("dashboard.monitoringTitle")} />}>

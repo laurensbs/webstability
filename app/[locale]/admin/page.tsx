@@ -1,8 +1,17 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
+import { Link } from "@/i18n/navigation";
 import { eq } from "drizzle-orm";
-import { Building2, MessageSquare, FolderKanban, Receipt, Coins, Clock } from "lucide-react";
+import {
+  Building2,
+  MessageSquare,
+  FolderKanban,
+  Receipt,
+  Coins,
+  Clock,
+  Activity,
+} from "lucide-react";
 import { routing } from "@/i18n/routing";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -186,7 +195,19 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
         />
       ) : null}
 
-      <AdminPageHeader title={t("title")} subtitle={t("subtitle")} />
+      <AdminPageHeader
+        title={t("title")}
+        subtitle={t("subtitle")}
+        action={
+          <Link
+            href={{ pathname: "/admin/health" }}
+            className="inline-flex items-center gap-1.5 rounded-full border border-(--color-border) px-3 py-1.5 font-mono text-[11px] tracking-wide text-(--color-muted) uppercase transition-colors hover:border-(--color-accent)/40 hover:text-(--color-text)"
+          >
+            <Activity className="h-3 w-3" strokeWidth={2.2} aria-hidden />
+            health
+          </Link>
+        }
+      />
 
       {/* Operationele stats — FlashCounter voor de getallen, knipoog
           bij elke fresh paint. Honoreert prefers-reduced-motion intern. */}

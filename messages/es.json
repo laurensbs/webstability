@@ -2740,6 +2740,7 @@
       "seoTitle": "Tendencia SEO",
       "seoSubtitle": "Clics · 12 meses",
       "seoDelta": "crecimiento desde el último trimestre",
+      "seoDemoOverlay": "Demo · conecta Search Console",
       "monitoringTitle": "Monitorización en vivo",
       "monitoringEmpty": "Sin monitors configurados.",
       "monitoringEmptyByKind": {

@@ -2736,6 +2736,7 @@
       "seoTitle": "SEO trend",
       "seoSubtitle": "Klikken · 12 maanden",
       "seoDelta": "groei sinds vorig kwartaal",
+      "seoDemoOverlay": "Demo · koppel Search Console",
       "monitoringTitle": "Live monitoring",
       "monitoringEmpty": "Geen monitors geconfigureerd.",
       "monitoringEmptyByKind": {

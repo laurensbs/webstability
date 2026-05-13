@@ -1,14 +1,14 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { TrendingUp } from "lucide-react";
+import { TrendingUp, Plug } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 
 /**
- * Mini bar chart sparkline with deterministic dummy data — until the
- * Search Console integration is wired up the chart shows a "growing
- * trend" visual placeholder so the dashboard feels complete. Replace
- * the `bars` prop with real GSC data once the integration lands.
+ * Mini bar chart sparkline op het portal-dashboard. Zolang Search Console
+ * niet wired is (`connected=false`, default), tonen we een gedimde
+ * "richting"-demo + een eerlijke "demo-data · koppel Search Console"-pill.
+ * Zodra GSC echt draait: geef `bars`/`delta` echte data en `connected=true`.
  */
 const DEMO_BARS = [12, 18, 15, 22, 24, 28, 31, 27, 33, 38, 41, 45];
 
@@ -17,12 +17,18 @@ export function SeoSparkline({
   subtitle,
   delta,
   viewLabel,
+  connected = false,
+  demoOverlayLabel,
   bars = DEMO_BARS,
 }: {
   title: string;
   subtitle: string;
   delta: string;
   viewLabel: string;
+  /** Is er een live Search Console-koppeling? Default false (demo-data). */
+  connected?: boolean;
+  /** Label voor de demo-overlay bij `connected=false`. */
+  demoOverlayLabel?: string;
   bars?: number[];
 }) {
   const reduce = useReducedMotion();
@@ -40,8 +46,11 @@ export function SeoSparkline({
         </Link>
       </header>
 
-      <div className="px-5 py-4">
-        <div className="flex items-end gap-1.5" style={{ height: 64 }}>
+      <div className="relative px-5 py-4">
+        <div
+          className={`flex items-end gap-1.5 ${connected ? "" : "opacity-40"}`}
+          style={{ height: 64 }}
+        >
           {bars.map((v, i) => {
             const h = Math.max(8, (v / max) * 60);
             return (
@@ -61,15 +70,27 @@ export function SeoSparkline({
             );
           })}
         </div>
+        {!connected && demoOverlayLabel ? (
+          <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <span className="shadow-card inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface)/95 px-3 py-1.5 font-mono text-[10px] tracking-wide text-(--color-muted) uppercase backdrop-blur-sm">
+              <Plug className="h-3 w-3" strokeWidth={2.2} aria-hidden />
+              {demoOverlayLabel}
+            </span>
+          </span>
+        ) : null}
       </div>
 
       <div className="flex items-center justify-between border-t border-(--color-border) px-5 py-3.5">
-        <span className="font-serif text-2xl tabular-nums">
-          +{bars[bars.length - 1]! - bars[0]!}%
+        <span
+          className={`font-serif text-2xl tabular-nums ${connected ? "" : "text-(--color-muted)/60"}`}
+        >
+          {connected ? `+${bars[bars.length - 1]! - bars[0]!}%` : "—"}
         </span>
-        <span className="inline-flex items-center gap-1.5 text-[12px] text-(--color-success)">
+        <span
+          className={`inline-flex items-center gap-1.5 text-[12px] ${connected ? "text-(--color-success)" : "text-(--color-muted)/60"}`}
+        >
           <TrendingUp className="h-3 w-3" strokeWidth={2.5} />
-          {delta}
+          {connected ? delta : ""}
         </span>
       </div>
     </section>
