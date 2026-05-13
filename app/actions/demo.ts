@@ -6,6 +6,7 @@ import { eq, and } from "drizzle-orm";
 import { randomUUID } from "node:crypto";
 import { db } from "@/lib/db";
 import { users, sessions, organizations } from "@/lib/db/schema";
+import { rateLimit, clientIpFromHeaders } from "@/lib/rate-limit";
 
 /**
  * Demo-login flow zonder magic-link. Gebruikt of de bestaande seed-users
@@ -25,27 +26,18 @@ const PORTAL_EMAIL = "demo-portal@webstability.eu";
 const ADMIN_EMAIL = "demo-admin@webstability.eu";
 const PORTAL_ORG_SLUG = "demo-portal-org";
 
-// In-memory rate-limit per IP. 10 demo-logins per uur.
-type Bucket = { count: number; resetAt: number };
-const rateLimit = new Map<string, Bucket>();
+// Rate-limit: 10 demo-logins per uur per IP. Shared util — caveat
+// (in-memory, per node-instance) gedocumenteerd in lib/rate-limit.ts.
 const RATE_LIMIT_MAX = 10;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 
 function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const bucket = rateLimit.get(ip);
-  if (!bucket || bucket.resetAt < now) {
-    rateLimit.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    return true;
-  }
-  if (bucket.count >= RATE_LIMIT_MAX) return false;
-  bucket.count += 1;
-  return true;
+  return rateLimit({ key: `demo:ip:${ip}`, max: RATE_LIMIT_MAX, windowMs: RATE_LIMIT_WINDOW_MS })
+    .ok;
 }
 
 async function getClientIp(): Promise<string> {
-  const h = await headers();
-  return h.get("x-forwarded-for")?.split(",")[0]?.trim() ?? h.get("x-real-ip") ?? "unknown";
+  return clientIpFromHeaders(await headers());
 }
 
 /**

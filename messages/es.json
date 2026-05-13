@@ -3395,7 +3395,11 @@
       "activeOrgs": "activos",
       "hoursTitle": "Horas registradas",
       "thisMonth": "Este mes",
-      "hoursLede": "Cross-org · todos los clientes"
+      "hoursLede": "Cross-org · todos los clientes",
+      "newLabel": "Nuevos este mes",
+      "churnLabel": "Bajas este mes",
+      "atRiskLabel": "MRR al final de período",
+      "atRiskHint": "Subscripciones con cancel_at definido — se cierran al final del período."
     },
     "nav": {
       "overview": "Resumen",

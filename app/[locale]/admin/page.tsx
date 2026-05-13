@@ -487,6 +487,37 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
               </p>
             </div>
           </div>
+
+          {/* Movement strip — new/churn/at-risk. Niets verbergen als 0;
+              dat is óók informatie (rustige maand). */}
+          <div className="mt-5 grid grid-cols-3 gap-3 border-t border-(--color-border) pt-4">
+            <div>
+              <p className="font-mono text-[10px] tracking-widest text-(--color-success) uppercase">
+                +{revenue.newThisMonth}
+              </p>
+              <p className="mt-0.5 text-[11px] text-(--color-muted)">{t("revenue.newLabel")}</p>
+            </div>
+            <div>
+              <p
+                className={`font-mono text-[10px] tracking-widest uppercase ${
+                  revenue.churnThisMonth > 0 ? "text-(--color-wine)" : "text-(--color-muted)"
+                }`}
+              >
+                −{revenue.churnThisMonth}
+              </p>
+              <p className="mt-0.5 text-[11px] text-(--color-muted)">{t("revenue.churnLabel")}</p>
+            </div>
+            <div title={t("revenue.atRiskHint")}>
+              <p
+                className={`font-mono text-[10px] tracking-widest uppercase ${
+                  revenue.atRiskMrr > 0 ? "text-(--color-wine)" : "text-(--color-muted)"
+                }`}
+              >
+                {eurFmt.format(revenue.atRiskMrr)}
+              </p>
+              <p className="mt-0.5 text-[11px] text-(--color-muted)">{t("revenue.atRiskLabel")}</p>
+            </div>
+          </div>
         </article>
 
         <article className="rounded-lg border border-(--color-border) bg-(--color-surface) p-6">

@@ -238,30 +238,95 @@ export async function getStudioStats() {
  * pricing.ts CARE_PLANS map (zelfde getallen als de pricing page).
  */
 export async function getRevenueStats() {
-  const rows = await db
-    .select({
-      plan: organizations.plan,
-      n: count(),
-    })
-    .from(organizations)
-    .groupBy(organizations.plan);
-
   // Pricing per plan in EUR/m, parallel aan lib/stripe.ts CARE_PLANS.
   const PRICE: Record<string, number> = { care: 95, studio: 179, atelier: 399 };
 
+  // Active = écht betalend nu. We tellen distinct *organizations* met
+  // een actieve of trial subscription, niet alle subscription-rijen
+  // (anders dubbel-tellen we als een org ooit upgrade-de en de oude
+  // sub als 'cancelled' is blijven staan).
+  const activeRows = await db
+    .select({
+      orgId: subscriptions.organizationId,
+      plan: subscriptions.plan,
+      cancelAt: subscriptions.cancelAt,
+    })
+    .from(subscriptions)
+    .where(sql`${subscriptions.status} in ('active','trialing')`);
+
+  // Dedupe op orgId — pak de meest 'premium' plan-rij als één org meerdere
+  // actieve subs zou hebben (mag in theorie niet, maar defensief).
+  const rankOf: Record<string, number> = { atelier: 3, studio: 2, care: 1 };
+  const perOrg = new Map<string, { plan: string | null; atRisk: boolean }>();
+  for (const r of activeRows) {
+    const existing = perOrg.get(r.orgId);
+    const rank = rankOf[r.plan ?? ""] ?? 0;
+    const existingRank = rankOf[existing?.plan ?? ""] ?? -1;
+    if (!existing || rank > existingRank) {
+      perOrg.set(r.orgId, { plan: r.plan, atRisk: Boolean(r.cancelAt) });
+    }
+  }
+
   const distribution = { care: 0, studio: 0, atelier: 0, unassigned: 0 };
   let mrr = 0;
-  for (const row of rows) {
-    const plan = row.plan ?? "unassigned";
-    const n = Number(row.n);
-    if (plan in distribution) distribution[plan as keyof typeof distribution] = n;
-    if (plan in PRICE) mrr += PRICE[plan]! * n;
+  let atRiskMrr = 0;
+  for (const { plan, atRisk } of perOrg.values()) {
+    const key = plan ?? "unassigned";
+    if (key in distribution) distribution[key as keyof typeof distribution] += 1;
+    if (plan && plan in PRICE) {
+      mrr += PRICE[plan];
+      if (atRisk) atRiskMrr += PRICE[plan];
+    }
   }
+
+  // New + churn deze kalendermaand — via audit_log. Stripe-webhook log
+  // schrijft 'subscription.cancelled' niet zelf (alleen admin-cancel-
+  // action doet dat), maar wij hebben in de webhook nu wél de
+  // 'subscription.exit_survey_sent'-entry die 1:1 een self-cancel
+  // markeert. Tel beide voor totale churn.
+  const now = new Date();
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+  const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+
+  const [churnRow] = await db
+    .select({ n: count() })
+    .from(auditLog)
+    .where(
+      and(
+        sql`${auditLog.action} in ('subscription.cancelled','subscription.exit_survey_sent')`,
+        gte(auditLog.createdAt, monthStart),
+        lt(auditLog.createdAt, monthEnd),
+      ),
+    );
+  const churnThisMonth = Number(churnRow?.n ?? 0);
+
+  // New: subs die deze maand zijn aangemaakt in de DB. Geen audit-log-
+  // entry; createdAt op subscriptions is de bron (zet door webhook).
+  const [newRow] = await db
+    .select({ n: count() })
+    .from(subscriptions)
+    .where(
+      and(
+        sql`${subscriptions.status} in ('active','trialing')`,
+        gte(subscriptions.createdAt, monthStart),
+        lt(subscriptions.createdAt, monthEnd),
+      ),
+    );
+  const newThisMonth = Number(newRow?.n ?? 0);
 
   return {
     distribution,
     mrr,
     arr: mrr * 12,
+    /** MRR uit subscriptions met cancel_at gezet — vertrekt aan periode-eind. */
+    atRiskMrr,
+    /** Aantal cancel-events deze kalendermaand (admin-cancel + self-cancel). */
+    churnThisMonth,
+    /** Aantal actieve/trial subs aangemaakt deze kalendermaand. */
+    newThisMonth,
+    /** Totaal écht betalende orgs (excl. unassigned, excl. lost). */
+    activeOrgs:
+      distribution.care + distribution.studio + distribution.atelier + distribution.unassigned,
   };
 }
 

@@ -3391,7 +3391,11 @@
       "activeOrgs": "actief",
       "hoursTitle": "Verzette uren",
       "thisMonth": "Deze maand",
-      "hoursLede": "Cross-org · alle klanten samen"
+      "hoursLede": "Cross-org · alle klanten samen",
+      "newLabel": "Nieuw deze maand",
+      "churnLabel": "Opgezegd deze maand",
+      "atRiskLabel": "MRR aan einde periode",
+      "atRiskHint": "Subscriptions met cancel_at gezet — lopen af op periode-einde."
     },
     "nav": {
       "overview": "Overzicht",
