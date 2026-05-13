@@ -507,8 +507,21 @@ export async function getRecentLivegangs(orgId: string, days = 7) {
 /**
  * Per-project uptime-data voor de laatste N dagen. Voor de sparkline
  * op portal-monitoring én voor een binnenkort komende admin-overview.
+ *
+ * Vereist orgId zodat een geknutselde projectId van een andere org geen
+ * monitoring-data lekt — defensive ook al is `monitoringChecks` indirect
+ * via project gekoppeld. Caller moet de orgId uit de session halen, niet
+ * uit een URL-param.
  */
-export async function getProjectUptime(projectId: string, days = 30) {
+export async function getProjectUptime(orgId: string, projectId: string, days = 30) {
+  // Verifieer eerst dat het project bij deze org hoort. Eén round-trip;
+  // index hit op (id, organizationId).
+  const project = await db.query.projects.findFirst({
+    where: and(eq(projects.id, projectId), eq(projects.organizationId, orgId)),
+    columns: { id: true },
+  });
+  if (!project) return [];
+
   const cutoff = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
   const rows = await db
     .select({

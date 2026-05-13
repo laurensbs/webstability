@@ -4,7 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { ArrowLeft, ListChecks } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { users } from "@/lib/db/schema";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
@@ -43,8 +43,10 @@ export default async function HandoverPage({
 
   // Dienst-type → extra opleverpunten die alleen voor staff zichtbaar zijn
   // (puur informatief, geen persistente vinkjes — die staan in de vaste lijst).
+  // Defensive: ook hier expliciet organizationId-filter, ook al heeft de
+  // getHandoverStatus-call hierboven het project al naar deze org gescoped.
   const projectRow = await db.query.projects.findFirst({
-    where: eq(projects.id, id),
+    where: and(eq(projects.id, id), eq(projects.organizationId, user.organizationId)),
     columns: { type: true },
   });
   const serviceKind = serviceKindFromProjectType(projectRow?.type);

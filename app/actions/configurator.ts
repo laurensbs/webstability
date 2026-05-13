@@ -58,6 +58,11 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  * entry met alle keuzes + de server-side herberekende richtprijs, en
  * mailt Laurens. De prijs wordt server-side opnieuw berekend zodat een
  * gemanipuleerde client geen onzin-bedrag kan injecteren.
+ *
+ * TODO (S-rate-limit): geen IP/email-throttling — bot kan dit ratelen
+ * en de leads-tabel + Laurens' inbox vullen. Toevoegen in een aparte
+ * commit met Upstash of Vercel KV: 1 per minuut per email, 10 per uur
+ * per IP. Plus optioneel een honeypot-veld.
  */
 export async function submitProjectRequest(formData: FormData): Promise<ProjectRequestResult> {
   const name = String(formData.get("name") ?? "").trim();
