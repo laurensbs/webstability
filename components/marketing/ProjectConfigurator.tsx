@@ -143,6 +143,11 @@ export function ProjectConfigurator({
   const [done, setDone] = React.useState<{ lowCents: number; highCents: number } | null>(null);
   const [fire, setFire] = React.useState(false);
   const [mobileSummaryOpen, setMobileSummaryOpen] = React.useState(false);
+  // Honeypot — onzichtbaar voor mensen, bots vullen 'm in op naam.
+  // Bij submit lezen we 'm uit en sturen we 'm mee; server retourneert
+  // dan `spam` en doet niks. Tabindex/-1 + aria-hidden zodat screen-
+  // readers en keyboard-users 'm overslaan.
+  const honeypotRef = React.useRef<HTMLInputElement>(null);
 
   const included = PROJECT_PAGES_INCLUDED[kind];
   // Clamp afgeleid bij render (geen effect) — als het type wisselt zakt
@@ -200,12 +205,26 @@ export function ProjectConfigurator({
     fd.set("options", effectiveOptions.join(","));
     if (kind === "webshop") fd.set("productTier", productTier);
     fd.set("locale", locale);
+    // Honeypot meegeven — leeg voor mensen. Bots vullen 'm in op `name`
+    // attribuut zonder de hidden-styling te respecteren.
+    fd.set("website_url", honeypotRef.current?.value ?? "");
     try {
       const res = await submitProjectRequest(fd);
       if (res.ok) {
         setDone({ lowCents: res.lowCents, highCents: res.highCents });
         window.setTimeout(() => setFire(true), 300);
         window.setTimeout(() => setFire(false), 2000);
+      } else if (res.error === "spam") {
+        // Bot heeft de honeypot ingevuld — fake een success-state zodat
+        // de bot doorloopt. Geen confetti (zonde van de cycles), maar
+        // wel de done-view.
+        setDone({ lowCents: 0, highCents: 0 });
+      } else if (res.error === "rate_limited") {
+        toast.error(
+          locale === "es"
+            ? "Acabas de enviar una solicitud — espera un momento antes de intentarlo de nuevo."
+            : "Je hebt net al een aanvraag verstuurd — wacht even voor je 't opnieuw probeert.",
+        );
       } else if (res.error === "invalid_email") {
         toast.error("Vul een geldig e-mailadres in.");
       } else if (res.error === "missing_fields") {
@@ -330,6 +349,26 @@ export function ProjectConfigurator({
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-start">
+      {/* Honeypot — onzichtbaar voor mensen. Niet `display:none` of
+          `visibility:hidden` (bots negeren die soms); wel uit het tab-
+          order + aria-hidden + buiten viewport. Naam "website_url"
+          omdat bots juist op URL-velden mikken. */}
+      <input
+        ref={honeypotRef}
+        type="text"
+        name="website_url"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          top: "auto",
+          width: "1px",
+          height: "1px",
+          overflow: "hidden",
+        }}
+      />
       {/* Wizard kolom */}
       <div className="min-w-0">
         {/* Voortgang */}

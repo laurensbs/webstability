@@ -1,8 +1,9 @@
 "use server";
 
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { db } from "@/lib/db";
 import { leads, leadActivity } from "@/lib/db/schema";
+import { rateLimit, clientIpFromHeaders } from "@/lib/rate-limit";
 import {
   estimateProjectPrice,
   CONFIG_OPTIONS,
@@ -47,9 +48,20 @@ const OPTION_LABEL: Record<ConfigOptionId, string> = {
 
 export type ProjectRequestResult =
   | { ok: true; leadId: string; lowCents: number; highCents: number }
-  | { ok: false; error: "missing_fields" | "invalid_email" | "failed" };
+  | {
+      ok: false;
+      error: "missing_fields" | "invalid_email" | "rate_limited" | "spam" | "failed";
+    };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Rate-limit knobs. In-memory; zie lib/rate-limit.ts voor de caveat
+// (geen cross-instance sync). De honeypot vangt feitelijk de scripted
+// bots; deze grenzen vangen amateurs + dubbele submits.
+const EMAIL_LIMIT_MAX = 1; // 1 submit per email per minuut
+const EMAIL_LIMIT_WINDOW_MS = 60 * 1000;
+const IP_LIMIT_MAX = 10; // 10 per uur per IP
+const IP_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 
 /**
  * Verwerkt een aanvraag uit de publieke website/webshop-configurator.
@@ -59,12 +71,22 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  * mailt Laurens. De prijs wordt server-side opnieuw berekend zodat een
  * gemanipuleerde client geen onzin-bedrag kan injecteren.
  *
- * TODO (S-rate-limit): geen IP/email-throttling — bot kan dit ratelen
- * en de leads-tabel + Laurens' inbox vullen. Toevoegen in een aparte
- * commit met Upstash of Vercel KV: 1 per minuut per email, 10 per uur
- * per IP. Plus optioneel een honeypot-veld.
+ * Anti-spam:
+ * - Honeypot-veld `website_url`: hidden voor mensen, ingevuld door bots.
+ *   Bij niet-leeg → stilletjes "ok" liegen (return `spam`) zonder DB-write
+ *   of mail. Heel kostbaar voor de bot, geen overlast voor jou.
+ * - Per-email throttle: 1 submit / minuut (voorkomt double-click + spam).
+ * - Per-IP throttle: 10 submits / uur (voorkomt formulier-leegtrekken).
  */
 export async function submitProjectRequest(formData: FormData): Promise<ProjectRequestResult> {
+  // Honeypot eerst — voorkomt dat we überhaupt iets aanraken voor bots.
+  const honeypot = String(formData.get("website_url") ?? "").trim();
+  if (honeypot.length > 0) {
+    // We retourneren `spam` — UI behandelt 'm als "ok" (lege success-state)
+    // zodat de bot denkt 't werkte en geen tweede strategie probeert.
+    return { ok: false, error: "spam" };
+  }
+
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "")
     .trim()
@@ -86,6 +108,24 @@ export async function submitProjectRequest(formData: FormData): Promise<ProjectR
 
   if (!name || !email) return { ok: false, error: "missing_fields" };
   if (!EMAIL_RE.test(email)) return { ok: false, error: "invalid_email" };
+
+  // Rate-limit checks — email-bucket eerst (specifieker + sneller dan
+  // IP-lookup). Beide buckets worden alleen geprobeerd als email-check
+  // door is, anders kunnen we het IP-budget niet leegspelen met
+  // ongeldige emails.
+  const ip = clientIpFromHeaders(await headers());
+  const emailGate = rateLimit({
+    key: `cfg:email:${email}`,
+    max: EMAIL_LIMIT_MAX,
+    windowMs: EMAIL_LIMIT_WINDOW_MS,
+  });
+  if (!emailGate.ok) return { ok: false, error: "rate_limited" };
+  const ipGate = rateLimit({
+    key: `cfg:ip:${ip}`,
+    max: IP_LIMIT_MAX,
+    windowMs: IP_LIMIT_WINDOW_MS,
+  });
+  if (!ipGate.ok) return { ok: false, error: "rate_limited" };
 
   const kind = (KINDS as readonly string[]).includes(kindInput)
     ? (kindInput as ProjectKind)
