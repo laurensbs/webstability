@@ -7,6 +7,9 @@ import { routing } from "@/i18n/routing";
 import { getLeadDetail, listStaffUsersForLeadOwner, listAllOrgs } from "@/lib/db/queries/admin";
 import { LeadDetail } from "@/components/admin/LeadDetail";
 import { LEAD_SOURCE_LABEL_NL, LEAD_STATUS_LABEL_NL, type LeadStatus } from "@/lib/leads";
+import { ToastForm } from "@/components/portal/ToastForm";
+import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
+import { acknowledgeLead } from "@/app/actions/leads";
 
 const STATUS_TONE: Record<LeadStatus, string> = {
   cold: "border-(--color-border) bg-(--color-bg-warm) text-(--color-muted)",
@@ -162,14 +165,35 @@ export default async function LeadDetailPage({
               {lead.company ? ` · ${lead.company}` : ""} · bron: {LEAD_SOURCE_LABEL_NL[lead.source]}
             </p>
           </div>
-          <span
-            className={[
-              "inline-flex items-center rounded-full border px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase",
-              STATUS_TONE[lead.status],
-            ].join(" ")}
-          >
-            {LEAD_STATUS_LABEL_NL[lead.status]}
-          </span>
+          <div className="flex items-center gap-2">
+            {/* Acknowledge-knop — alleen tonen als de lead nog geen acknowledge-
+                mail heeft gehad EN net binnen is (cold/warmed). Voor klanten/
+                verloren leads heeft 't geen zin. Eén-shot via leadActivity. */}
+            {(() => {
+              const acked = lead.activity.some((a) => {
+                const m = a.metadata as { type?: string } | null;
+                return m?.type === "acknowledge_sent";
+              });
+              const showAck = !acked && (lead.status === "cold" || lead.status === "warmed");
+              if (!showAck) return null;
+              return (
+                <ToastForm action={acknowledgeLead}>
+                  <input type="hidden" name="leadId" value={lead.id} />
+                  <ToastSubmitButton variant="ghost" size="sm">
+                    Stuur ‘gezien’-mail
+                  </ToastSubmitButton>
+                </ToastForm>
+              );
+            })()}
+            <span
+              className={[
+                "inline-flex items-center rounded-full border px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase",
+                STATUS_TONE[lead.status],
+              ].join(" ")}
+            >
+              {LEAD_STATUS_LABEL_NL[lead.status]}
+            </span>
+          </div>
         </div>
         {lead.linkedOrg ? (
           <Link

@@ -405,3 +405,71 @@ export async function deleteLead(leadId: string): Promise<void> {
   revalidatePath("/admin/leads");
   redirect("/admin/leads");
 }
+
+/**
+ * Korte "ik heb je aanvraag gezien"-mail naar een lead. Niet automatisch —
+ * staff drukt op de knop op /admin/leads/[id]. Dempt het stille gat tussen
+ * submit en jouw echte reactie. Eén-shot per lead: als de leadActivity al
+ * een `acknowledge_sent`-entry heeft, return success-no-op (geen dubbele
+ * mail). Maakt geen status-mutatie — alleen activity-log.
+ */
+export async function acknowledgeLead(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch (e) {
+    if (e instanceof DemoReadonlyError) return { ok: true, messageKey: "demo_readonly" };
+    return { ok: false, messageKey: "forbidden" };
+  }
+
+  const leadId = String(formData.get("leadId") ?? "").trim();
+  if (!leadId) return { ok: false, messageKey: "missing_fields" };
+
+  const lead = await db.query.leads.findFirst({
+    where: eq(leads.id, leadId),
+    columns: { id: true, email: true, name: true },
+    with: {
+      activity: {
+        columns: { id: true, metadata: true },
+      },
+    },
+  });
+  if (!lead) return { ok: false, messageKey: "not_found" };
+
+  // Eén-shot — als 'ie al verstuurd is, no-op (idempotent).
+  const alreadySent = lead.activity.some((a) => {
+    const m = a.metadata as { type?: string } | null;
+    return m?.type === "acknowledge_sent";
+  });
+  if (alreadySent) return { ok: true, messageKey: "saved" };
+
+  // Locale uit eventuele bestaande configurator-submit-metadata, anders nl
+  const cfg = lead.activity.find((a) => {
+    const m = a.metadata as { type?: string; locale?: string } | null;
+    return m?.type === "configurator_submit";
+  });
+  const cfgLocale = (cfg?.metadata as { locale?: string } | null)?.locale;
+  const locale: "nl" | "es" = cfgLocale === "es" ? "es" : "nl";
+
+  try {
+    const { sendLeadAcknowledgeMail } = await import("@/lib/email/lead-acknowledge");
+    await sendLeadAcknowledgeMail({ to: lead.email, name: lead.name, locale });
+  } catch (err) {
+    console.error("[leads] acknowledge mail failed:", err);
+    return { ok: false, messageKey: "failed" };
+  }
+
+  await db.insert(leadActivity).values({
+    leadId,
+    kind: "mail_sent",
+    summary: "Acknowledge-mail verstuurd — 'gezien, kom binnen 1 werkdag terug'",
+    actorStaffId: userId,
+    metadata: { type: "acknowledge_sent", locale },
+  });
+
+  revalidatePath(`/admin/leads/${leadId}`);
+  return { ok: true, messageKey: "saved" };
+}
