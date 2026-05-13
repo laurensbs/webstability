@@ -39,25 +39,33 @@ export function AdminNav({ labels }: { labels: Labels }) {
   const pathname = usePathname();
 
   return (
-    <nav className="flex flex-wrap items-center gap-1 rounded-md border border-(--color-border) bg-(--color-surface) p-1">
-      {items.map(({ href, icon: Icon, key, exact }) => {
-        const active = exact ? pathname === href : pathname.startsWith(href);
-        return (
-          <Link
-            key={href}
-            href={href}
-            className={cn(
-              "flex items-center gap-2 rounded-sm px-3 py-1.5 text-sm transition-colors",
-              active
-                ? "bg-(--color-text) text-(--color-bg) shadow-[inset_0_-2px_0_var(--color-wine)]"
-                : "text-(--color-muted) hover:text-(--color-text)",
-            )}
-          >
-            <Icon className="h-4 w-4" />
-            {labels[key]}
-          </Link>
-        );
-      })}
+    // Horizontaal scrollbaar op mobiel i.p.v. wrappen — 8 items in 2-3 rijen
+    // neemt te veel verticale ruimte op 375px. Touch-doelen min-h 44px conform
+    // mobile-richtlijn. Scrollbar verborgen om druk visueel rustig te houden;
+    // de inhoud is duidelijk genoeg dat 'ie horizontaal scrollt (active item
+    // schuift mee in beeld via scroll-snap).
+    <nav className="-mx-1 overflow-x-auto rounded-md border border-(--color-border) bg-(--color-surface) p-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex items-center gap-1">
+        {items.map(({ href, icon: Icon, key, exact }) => {
+          const active = exact ? pathname === href : pathname.startsWith(href);
+          return (
+            <Link
+              key={href}
+              href={href}
+              className={cn(
+                "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-sm px-3 text-sm whitespace-nowrap transition-colors",
+                active
+                  ? "bg-(--color-text) text-(--color-bg) shadow-[inset_0_-2px_0_var(--color-wine)]"
+                  : "text-(--color-muted) hover:text-(--color-text)",
+              )}
+              aria-current={active ? "page" : undefined}
+            >
+              <Icon className="h-4 w-4" aria-hidden />
+              {labels[key]}
+            </Link>
+          );
+        })}
+      </div>
     </nav>
   );
 }

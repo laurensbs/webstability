@@ -158,9 +158,9 @@ export function PortalCommandPalette({
                 type="button"
                 onClick={close}
                 aria-label={labels.closeLabel}
-                className="inline-flex h-6 w-6 items-center justify-center rounded text-(--color-muted) hover:bg-(--color-bg-warm)"
+                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded text-(--color-muted) hover:bg-(--color-bg-warm) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
               >
-                <X className="h-3.5 w-3.5" />
+                <X className="h-4 w-4" strokeWidth={2} aria-hidden />
               </button>
             </div>
             <div className="max-h-[55vh] overflow-y-auto py-1">

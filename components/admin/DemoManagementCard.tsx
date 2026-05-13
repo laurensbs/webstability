@@ -80,7 +80,7 @@ export function DemoManagementCard({
         </button>
       </div>
 
-      <dl className="mt-5 grid grid-cols-3 gap-4 border-t border-(--color-border) pt-4">
+      <dl className="mt-5 grid grid-cols-1 gap-4 border-t border-(--color-border) pt-4 sm:grid-cols-3">
         <div>
           <dt className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
             {strings.metric.lastRun}
