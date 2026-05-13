@@ -89,8 +89,7 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
     },
     status: {
       title: "Live status",
-      description:
-        "Live uptime van Webstability-services. Realtime data uit Better Stack, ververst elke minuut.",
+      description: "Live uptime van Webstability-services. Realtime-data, ververst elke minuut.",
     },
     garanties: {
       title: "Garanties",
@@ -170,7 +169,7 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
     status: {
       title: "Estado en vivo",
       description:
-        "Uptime en vivo de los servicios de Webstability. Datos en tiempo real de Better Stack, actualizados cada minuto.",
+        "Uptime en vivo de los servicios de Webstability. Datos en tiempo real, actualizados cada minuto.",
     },
     garanties: {
       title: "Garantías",

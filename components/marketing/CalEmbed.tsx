@@ -1,10 +1,13 @@
 "use client";
 
+import * as React from "react";
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
+import { getCalApi } from "@calcom/embed-react";
 import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Spinner } from "@/components/animate/Spinner";
+import { applyWebstabilityCalBranding } from "@/lib/cal-branding";
 
 // Cal.com embed wordt direct geladen — eerder zat er een opt-in
 // klikknop op zodat de runtime pas binnenkwam na expliciete toestemming,
@@ -30,6 +33,24 @@ const CAL_EMBED_JS = CAL_ORIGIN ? `${CAL_ORIGIN}/embed/embed.js` : undefined;
 
 export function CalEmbed({ locale }: { locale: string }) {
   const t = useTranslations("contact");
+
+  // Webstability-branding op de Cal-iframe (terracotta accent + cream-fond).
+  // Eén keer toepassen zodra de Cal-api beschikbaar is; faalt graceful.
+  React.useEffect(() => {
+    if (!CAL_LINK) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const cal = await getCalApi({ embedJsUrl: CAL_EMBED_JS });
+        if (!cancelled) applyWebstabilityCalBranding(cal);
+      } catch {
+        // default-styling als fallback
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // No Cal.com link configured yet — fall back to a polished mailto card so
   // visitors aren't dumped on a 404. Set NEXT_PUBLIC_CAL_LINK="<slug>" to enable.

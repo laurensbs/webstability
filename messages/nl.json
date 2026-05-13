@@ -632,7 +632,7 @@
     "title": "Alles draait *zoals het moet*.",
     "titleDegraded": "Eén of meer diensten zijn *verstoord*.",
     "titleDown": "Er is een *storing*.",
-    "summary": "Live data uit Better Stack. Ververst elke minuut.",
+    "summary": "Live status van Webstability-monitoring. Ververst elke minuut.",
     "labelOperational": "operationeel",
     "labelDegraded": "verstoord",
     "labelDown": "down",
@@ -641,7 +641,7 @@
     "lastChecked": "Laatst gecontroleerd: {when}",
     "noMonitors": "Geen monitors geconfigureerd.",
     "errorTitle": "Status niet beschikbaar",
-    "errorBody": "Better Stack is tijdelijk niet bereikbaar. Probeer het later opnieuw.",
+    "errorBody": "Monitoring is tijdelijk niet bereikbaar. Probeer het later opnieuw.",
     "statsServices": "Diensten gemonitord",
     "statsOperational": "Operationeel",
     "statsIssue": "Met issue"
@@ -3009,10 +3009,10 @@
     },
     "monitoring": {
       "title": "Monitoring",
-      "summary": "Live data uit Better Stack. Ververst elke minuut.",
+      "summary": "Live status van Webstability-monitoring. Ververst elke minuut.",
       "noMonitors": "Geen monitors geconfigureerd.",
       "errorTitle": "Niet beschikbaar",
-      "errorBody": "Better Stack is tijdelijk niet bereikbaar.",
+      "errorBody": "Monitoring is tijdelijk niet bereikbaar.",
       "lastChecked": "Laatst gecontroleerd: {when}",
       "watch": {
         "website": "Ik check je site elke minuut — laadt 'ie traag of valt 'ie weg, dan krijg ik meteen een seintje en pak ik 't op vóór jij of je bezoekers het merken.",

@@ -3,9 +3,11 @@
 import * as React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import dynamic from "next/dynamic";
+import { getCalApi } from "@calcom/embed-react";
 import { X } from "lucide-react";
 import { Spinner } from "@/components/animate/Spinner";
 import { AmbientHalos } from "@/components/shared/AmbientHalos";
+import { applyWebstabilityCalBranding } from "@/lib/cal-branding";
 
 /**
  * Klikt op de trigger? → Radix Dialog opent met de Cal-embed direct
@@ -44,6 +46,25 @@ export function CalPopupTrigger({
   className?: string;
 }) {
   const [open, setOpen] = React.useState(false);
+
+  // Brand-styling (cal-brand → terracotta, achtergrond → cream) toepassen
+  // zodra de Cal-bundle in de pagina staat. Eén keer per mount; faalt
+  // graceful als de api nog niet beschikbaar is.
+  React.useEffect(() => {
+    if (!open) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const cal = await getCalApi({ embedJsUrl: CAL_EMBED_JS });
+        if (!cancelled) applyWebstabilityCalBranding(cal);
+      } catch {
+        // niets — Cal valt graceful terug op default-styling
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [open]);
 
   // Geen Cal-link in env? Trigger wordt een mailto-fallback. Voorkomt
   // dat klikkers een leeg dialog krijgen.
