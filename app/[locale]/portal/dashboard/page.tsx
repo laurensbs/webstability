@@ -399,19 +399,15 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
         />
       ) : null}
 
-      <DashboardIntro
-        greeting={greeting}
-        firstName={firstName}
-        status={status}
-        subStatus={subStatus}
-        rotatingMessages={rotatingMessages}
-      />
-
       {/* Welkom-onboarding — alleen bij de allereerste login (lastLoginAt is
           dan nog null; wordt verderop in deze render geüpdatet) en niet voor
           demo-users. Stap 2/3 zijn dienst-specifiek (website/webshop/platform);
           'other' valt terug op de generieke teksten. localStorage-dismiss vangt
-          een refresh tussendoor. */}
+          een refresh tussendoor.
+
+          Staat boven DashboardIntro: bij allereerste login moet de onboarding
+          het eerste zijn wat de klant ziet, niet een rotating-status-bericht
+          met cijfers die nog geen betekenis hebben. */}
       {!user.lastLoginAt && !user.isDemo
         ? (() => {
             const kind = serviceKind;
@@ -439,6 +435,14 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
             );
           })()
         : null}
+
+      <DashboardIntro
+        greeting={greeting}
+        firstName={firstName}
+        status={status}
+        subStatus={subStatus}
+        rotatingMessages={rotatingMessages}
+      />
 
       <StatusBanner
         healthy={healthy}
