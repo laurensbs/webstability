@@ -37,7 +37,7 @@ export function LiveProjectStrip({
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 font-mono text-[13px] text-(--color-success) underline decoration-(--color-success)/40 underline-offset-2 hover:decoration-(--color-success)"
+        className="inline-flex items-center gap-1.5 rounded-sm font-mono text-[13px] text-(--color-success) underline decoration-(--color-success)/40 underline-offset-2 transition-colors hover:decoration-(--color-success) active:bg-(--color-success)/10"
       >
         {display}
         <ExternalLink className="h-3 w-3" strokeWidth={2.4} />

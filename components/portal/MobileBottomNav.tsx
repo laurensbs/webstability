@@ -53,7 +53,7 @@ export function MobileBottomNav({ labels }: { labels: Labels }) {
                 href={href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "flex min-h-14 flex-col items-center justify-center gap-1 px-2 py-2 transition-colors",
+                  "flex min-h-14 flex-col items-center justify-center gap-1 px-2 py-2 transition-colors active:bg-(--color-bg-warm)/70",
                   active
                     ? "text-(--color-accent)"
                     : "text-(--color-muted) hover:text-(--color-text)",

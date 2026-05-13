@@ -53,7 +53,7 @@ export function RecentTickets({
                       ? `/portal/tickets/${tk.id}`
                       : `/${locale}/portal/tickets/${tk.id}`
                   }
-                  className="flex items-start gap-3 px-5 py-4 transition-colors hover:bg-(--color-bg-warm)/40"
+                  className="flex items-start gap-3 px-5 py-4 transition-colors hover:bg-(--color-bg-warm)/40 active:bg-(--color-bg-warm)/60"
                 >
                   <span className={`mt-1 h-8 w-[3px] shrink-0 rounded-full ${bar}`} aria-hidden />
                   <div className="min-w-0 flex-1">

@@ -54,7 +54,7 @@ export function DashboardUpgradeNudge({
         </ul>
         <Link
           href="/prijzen"
-          className="group mt-5 inline-flex items-center gap-2 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-colors hover:bg-(--color-accent)/90"
+          className="group mt-5 inline-flex items-center gap-2 rounded-full bg-(--color-accent) px-4 py-2 text-[13px] font-medium text-white transition-all hover:bg-(--color-accent)/90 active:scale-[0.97] motion-reduce:active:scale-100"
         >
           {strings.cta}
           <ArrowRight

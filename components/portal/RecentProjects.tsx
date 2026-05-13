@@ -51,7 +51,7 @@ export function RecentProjects({
                     pathname: "/portal/projects/[id]" as never,
                     params: { id: p.id },
                   }}
-                  className="block px-5 py-4 transition-colors hover:bg-(--color-bg-warm)/40"
+                  className="block px-5 py-4 transition-colors hover:bg-(--color-bg-warm)/40 active:bg-(--color-bg-warm)/60"
                 >
                   <div className="flex items-center justify-between gap-4">
                     <p className="min-w-0 flex-1 truncate text-sm font-medium">{p.name}</p>
