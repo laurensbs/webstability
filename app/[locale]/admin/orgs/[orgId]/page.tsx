@@ -30,6 +30,7 @@ import {
   uploadInvoicePdf,
   uploadOrgFile,
   upsertShopMetric,
+  staffResendSetPasswordMail,
 } from "@/app/actions/admin";
 import { ToastForm } from "@/components/portal/ToastForm";
 import { ToastSubmitButton } from "@/components/portal/ToastSubmitButton";
@@ -306,9 +307,17 @@ export default async function OrgDetail({
                     )}
                   </p>
                 </div>
-                <span className="rounded-md border border-(--color-border) px-2 py-0.5 font-mono text-xs tracking-widest uppercase">
-                  {tSettings(`roles.${m.role}`)}
-                </span>
+                <div className="flex shrink-0 items-center gap-2">
+                  <ToastForm action={staffResendSetPasswordMail}>
+                    <input type="hidden" name="userId" value={m.id} />
+                    <ToastSubmitButton variant="ghost" size="sm">
+                      {t("resendSetPassword")}
+                    </ToastSubmitButton>
+                  </ToastForm>
+                  <span className="rounded-md border border-(--color-border) px-2 py-0.5 font-mono text-xs tracking-widest uppercase">
+                    {tSettings(`roles.${m.role}`)}
+                  </span>
+                </div>
               </li>
             ))}
           </ul>

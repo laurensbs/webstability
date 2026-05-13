@@ -149,7 +149,7 @@
     "items": [
       {
         "q": "¿Cuánto cuesta un sistema de reservas o portal de cliente a medida?",
-        "a": "Una primera versión funcional cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Después, una suscripción continua desde 99 €/m para hosting, monitorización, mantenimiento y desarrollo. Sin presupuestos por cambio, sin facturas de horas extra. Una web de marketing es más barata (~1.050 € build, 95 €/m), una tienda online con BTW/IVA está en medio (~2.000 € build, 179 €/m). Se puede calcular en concreto en la página de precios."
+        "a": "Una primera versión funcional cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Después, una suscripción continua desde 179 €/m para hosting, monitorización, mantenimiento y desarrollo. Sin presupuestos por cambio, sin facturas de horas extra. Una web de marketing es más barata (~1.250 € build, 95 €/m), una tienda online con BTW/IVA está en medio (~2.000 € build, 179 €/m). Se puede calcular en concreto en la página de precios."
       },
       {
         "q": "¿Cuánto tarda en construirse el software a medida?",
@@ -217,11 +217,11 @@
         },
         "website-laten-maken": {
           "title": "Web a medida",
-          "blurb": "Rápida, limpia, dos idiomas — desde 1.050 €"
+          "blurb": "Rápida, limpia, dos idiomas — desde 1.250 €"
         },
         "webshop-laten-maken": {
           "title": "Tienda online a medida",
-          "blurb": "Productos, pago, IVA — desde 3.000 €"
+          "blurb": "Productos, pago, IVA — desde 3.500 €"
         },
         "admin-systeem-op-maat": {
           "title": "Sistema interno a medida",
@@ -281,7 +281,7 @@
   "home": {
     "eyebrow": "costa brava · españa",
     "headline": "Sin puzzles de Excel. *Sin* reservas duplicadas. Sin cinco herramientas sueltas.",
-    "tagline": "Un sistema que funciona, un Laurens que lo construye y mantiene. Precio fijo desde 1.050 €, entrega en cuatro semanas, suscripción continua desde 99 € al mes — construir y mantener en una sola cuota.",
+    "tagline": "Un sistema que funciona, un Laurens que lo construye y mantiene. Precio fijo desde 1.250 €, entrega en cuatro semanas, suscripción continua desde 179 € al mes — construir y mantener en una sola cuota.",
     "ctaPrimary": "Reservar primera llamada",
     "ctaSecondary": "Ver casos",
     "hero": {
@@ -336,7 +336,7 @@
         "plataformas de reservas",
         "tiendas online"
       ],
-      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado, mobile-first como lo usan tus clientes. Precio fijo, entrega en cuatro semanas, suscripción continua desde 99 €/mes, para empresarios en Países Bajos y España."
+      "taglineSuffix": "— web pública y panel de admin como un solo sistema integrado, mobile-first como lo usan tus clientes. Precio fijo, entrega en cuatro semanas, suscripción continua desde 179 €/mes, para empresarios en Países Bajos y España."
     },
     "howItWorks": {
       "eyebrow": "cómo funciona",
@@ -416,13 +416,13 @@
         "webshop": {
           "title": "Web o tienda online",
           "body": "Una web rápida y multilingüe que no parece una plantilla, o una tienda online completa con IVA por categoría y conexión de inventario. Configúrala tú mismo — tipo, páginas, estilo, opciones — y ve el precio orientativo al instante.",
-          "pricePill": "desde 3.000 € · configuralo tu mismo",
+          "pricePill": "desde 3.500 € · configuralo tu mismo",
           "cta": "Solicita tu web →"
         },
         "care": {
           "title": "Mantenimiento & evolución",
-          "body": "La suscripción continua: hosting, monitoring, actualizaciones de seguridad, pequeños cambios y desarrollo de lo que de verdad necesitas. Desde 99 €/m; Studio (179 €/m) es la entrada para nuevos clientes — con horas de mantenimiento y SEO local incluidos.",
-          "pricePill": "desde 99 €/m · continuo",
+          "body": "La suscripción continua: hosting, monitoring, actualizaciones de seguridad, pequeños cambios y desarrollo de lo que de verdad necesitas. Desde 179 €/m; Studio (179 €/m) es la entrada para nuevos clientes — con horas de mantenimiento y SEO local incluidos.",
+          "pricePill": "desde 179 €/m · continuo",
           "cta": "Ver los precios →"
         }
       }
@@ -494,7 +494,7 @@
           "kicker": "04",
           "title": "Live & mantenimiento",
           "body": "Tras el lanzamiento, tu sistema corre bajo un care-plan. Tú sigues construyendo tu empresa.",
-          "meta": "continuo · desde €99/m"
+          "meta": "continuo · desde €179/m"
         }
       }
     },
@@ -512,7 +512,7 @@
       "items": [
         {
           "q": "¿Cuánto cuesta un proyecto típico?",
-          "a": "Precio fijo, entrega en cuatro semanas. Una web a medida: desde 1.050 €. Una tienda online con IVA/BTW y conexión de inventario: desde 3.000 €. Un sistema de reservas de alquiler, portal de cliente, sistema interno o portal de reparaciones a medida: 5.000–8.000 € (un conjunto mayor — web pública + admin + portal — más bien 6.000–10.000 €). Después, una suscripción continua desde 99 €/m para hosting, mantenimiento y desarrollo. Configura una web o tienda tú mismo en /es/solicitar y ve el precio orientativo al instante."
+          "a": "Precio fijo, entrega en cuatro semanas. Una web a medida: desde 1.250 €. Una tienda online con IVA/BTW y conexión de inventario: desde 3.500 €. Un sistema de reservas de alquiler, portal de cliente, sistema interno o portal de reparaciones a medida: 5.000–8.000 € (un conjunto mayor — web pública + admin + portal — más bien 6.000–10.000 €). Después, una suscripción continua desde 179 €/m para hosting, mantenimiento y desarrollo. Configura una web o tienda tú mismo en /es/solicitar y ve el precio orientativo al instante."
         },
         {
           "q": "¿Por qué precio fijo y no presupuesto por horas?",
@@ -524,7 +524,7 @@
         },
         {
           "q": "¿Qué incluye la suscripción mensual?",
-          "a": "Desde 99 €/m: hosting premium (NL/EU edge), monitorización, backups diarios, updates de seguridad y margen para pequeños cambios — suficiente para mantener tu sistema estable desde el día uno. Studio (179 €/m) es la entrada para nuevos clientes: más horas de mantenimiento, SEO local e informe mensual. Atelier (399 €/m) si quieres seguir construyendo mes a mes. Care (95 €/m) sigue como ancla para clientes existentes."
+          "a": "Desde 179 €/m: hosting premium (NL/EU edge), monitorización, backups diarios, updates de seguridad y margen para pequeños cambios — suficiente para mantener tu sistema estable desde el día uno. Studio (179 €/m) es la entrada para nuevos clientes: más horas de mantenimiento, SEO local e informe mensual. Atelier (3179 €/m) si quieres seguir construyendo mes a mes. Care (95 €/m) sigue como ancla para clientes existentes."
         },
         {
           "q": "¿Y si quiero subir o bajar de tier entre medias?",
@@ -575,7 +575,7 @@
         "Primer mes gratis",
         "Cancelable mensualmente",
         "15% de descuento con pago anual",
-        "A medida desde 5–8 k € · web desde 1.050 €"
+        "A medida desde 5–8 k € · web desde 1.250 €"
       ]
     },
     "cta": {
@@ -583,7 +583,7 @@
       "title": "¿Listo para un sistema que *crece contigo*?",
       "body": "Una llamada de 30 minutos sin compromiso. Sin presentación comercial — un consejo honesto sobre si, y cómo, podemos ayudarnos.",
       "button": "Planificar en agenda",
-      "pricingHint": "A medida desde 5–8 k €, web desde 1.050 € — precio fijo, cuatro semanas. Después una suscripción continua desde 99 €/m. Primer mes gratis.",
+      "pricingHint": "A medida desde 5–8 k €, web desde 1.250 € — precio fijo, cuatro semanas. Después una suscripción continua desde 179 €/m. Primer mes gratis.",
       "pricingHintLink": "Ver comparativa de tiers"
     }
   },
@@ -847,7 +847,7 @@
       ],
       "priceEyebrow": "qué cuesta",
       "priceTitle": "Precio fijo, entrega en cuatro semanas",
-      "priceBody": "Una primera versión funcional de tu sistema de reservas cuesta 5.000–8.000 €, entregada en cuatro semanas. Después, una suscripción Care o de crecimiento para hosting, monitorización, mantenimiento y desarrollo continuo — desde 99 €/m. Sin presupuestos por cambio, sin facturas de horas extra.",
+      "priceBody": "Una primera versión funcional de tu sistema de reservas cuesta 5.000–8.000 €, entregada en cuatro semanas. Después, una suscripción Care o de crecimiento para hosting, monitorización, mantenimiento y desarrollo continuo — desde 179 €/m. Sin presupuestos por cambio, sin facturas de horas extra.",
       "pricePoints": [
         "Precio fijo por adelantado — sabes qué cuesta y qué obtienes",
         "Cuatro semanas de la primera llamada a una versión funcional",
@@ -859,7 +859,7 @@
       "faq": [
         {
           "q": "¿Cuánto cuesta un sistema de reservas de alquiler a medida?",
-          "a": "Una primera versión funcional cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Después, una suscripción continua desde 99 €/m para hosting, mantenimiento y desarrollo. Sin facturas de horas extra."
+          "a": "Una primera versión funcional cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Después, una suscripción continua desde 179 €/m para hosting, mantenimiento y desarrollo. Sin facturas de horas extra."
         },
         {
           "q": "¿Cuánto tarda en construirse un sistema de alquiler?",
@@ -973,7 +973,7 @@
       ],
       "priceEyebrow": "qué cuesta",
       "priceTitle": "Precio fijo, entrega en cuatro semanas",
-      "priceBody": "Un portal de cliente a medida funcional cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas — integrado con tu sistema existente o como parte de un conjunto mayor (web pública + admin + portal). Después, una suscripción Care o de crecimiento desde 99 €/m para hosting, mantenimiento y desarrollo.",
+      "priceBody": "Un portal de cliente a medida funcional cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas — integrado con tu sistema existente o como parte de un conjunto mayor (web pública + admin + portal). Después, una suscripción Care o de crecimiento desde 179 €/m para hosting, mantenimiento y desarrollo.",
       "pricePoints": [
         "Precio fijo por adelantado — sabes qué cuesta y qué obtienes",
         "Cuatro semanas de la primera llamada a un portal funcional",
@@ -985,7 +985,7 @@
       "faq": [
         {
           "q": "¿Cuánto cuesta construir un portal de cliente?",
-          "a": "Un portal a medida funcional cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas. Después, una suscripción continua desde 99 €/m para hosting, mantenimiento y desarrollo."
+          "a": "Un portal a medida funcional cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas. Después, una suscripción continua desde 179 €/m para hosting, mantenimiento y desarrollo."
         },
         {
           "q": "¿Puede conectarse a mi sistema existente?",
@@ -1038,7 +1038,7 @@
           "label": "de la primera charla a online"
         },
         {
-          "value": "desde 1.050 €",
+          "value": "desde 1.250 €",
           "label": "precio fijo — sin extras"
         },
         {
@@ -1099,7 +1099,7 @@
       ],
       "priceEyebrow": "qué cuesta",
       "priceTitle": "Precio fijo, cuatro semanas — y la configuras tú mismo",
-      "priceBody": "Una web a medida empieza en 1.050 € (precio fijo, cuatro semanas), según el número de páginas y opciones. Configura tu proyecto tú mismo en la página de solicitud y ve el precio orientativo al instante. Después, un abono de mantenimiento desde 99 €/m para hosting, actualizaciones, pequeños cambios y desarrollo continuo.",
+      "priceBody": "Una web a medida empieza en 1.250 € (precio fijo, cuatro semanas), según el número de páginas y opciones. Configura tu proyecto tú mismo en la página de solicitud y ve el precio orientativo al instante. Después, un abono de mantenimiento desde 179 €/m para hosting, actualizaciones, pequeños cambios y desarrollo continuo.",
       "pricePoints": [
         "Precio fijo de antemano — sabes qué cuesta y qué obtienes",
         "Cuatro semanas de la primera charla a online",
@@ -1111,7 +1111,7 @@
       "faq": [
         {
           "q": "¿Cuánto cuesta hacer una web?",
-          "a": "Desde 1.050 €, precio fijo, entregada en cuatro semanas — según el número de páginas y opciones (multilingüe, blog, diseño propio). Configúrala en /es/solicitar y ve el precio. Después, un abono de mantenimiento desde 99 €/m."
+          "a": "Desde 1.250 €, precio fijo, entregada en cuatro semanas — según el número de páginas y opciones (multilingüe, blog, diseño propio). Configúrala en /es/solicitar y ve el precio. Después, un abono de mantenimiento desde 179 €/m."
         },
         {
           "q": "¿Cuánto tarda?",
@@ -1164,7 +1164,7 @@
           "label": "de la primera charla a online"
         },
         {
-          "value": "desde 3.000 €",
+          "value": "desde 3.500 €",
           "label": "precio fijo — sin extras"
         },
         {
@@ -1225,7 +1225,7 @@
       ],
       "priceEyebrow": "qué cuesta",
       "priceTitle": "Precio fijo, cuatro semanas — y la configuras tú mismo",
-      "priceBody": "Una tienda online a medida empieza en 3.000 € (precio fijo, cuatro semanas), según el número de páginas y opciones. Configura tu proyecto tú mismo en la página de solicitud y ve el precio orientativo al instante. Después, un abono de mantenimiento desde 99 €/m para hosting, actualizaciones, pequeños cambios y desarrollo continuo.",
+      "priceBody": "Una tienda online a medida empieza en 3.500 € (precio fijo, cuatro semanas), según el número de páginas y opciones. Configura tu proyecto tú mismo en la página de solicitud y ve el precio orientativo al instante. Después, un abono de mantenimiento desde 179 €/m para hosting, actualizaciones, pequeños cambios y desarrollo continuo.",
       "pricePoints": [
         "Precio fijo de antemano — sabes qué cuesta y qué obtienes",
         "Cuatro semanas de la primera charla a online",
@@ -1237,7 +1237,7 @@
       "faq": [
         {
           "q": "¿Cuánto cuesta hacer una tienda online?",
-          "a": "Desde 3.000 €, precio fijo, entregada en cuatro semanas — según el número de páginas y opciones (multilingüe, conexión de inventario, diseño propio). Configúrala en /es/solicitar y ve el precio. Después, un abono de mantenimiento desde 99 €/m."
+          "a": "Desde 3.500 €, precio fijo, entregada en cuatro semanas — según el número de páginas y opciones (multilingüe, conexión de inventario, diseño propio). Configúrala en /es/solicitar y ve el precio. Después, un abono de mantenimiento desde 179 €/m."
         },
         {
           "q": "¿Qué métodos de pago?",
@@ -1351,7 +1351,7 @@
       ],
       "priceEyebrow": "qué cuesta",
       "priceTitle": "Precio fijo del núcleo, cuatro semanas",
-      "priceBody": "Un sistema interno a medida que funciona cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas — no 'toda la empresa digitalizada', sino el núcleo: las pocas cosas que ahora más duelen, bien construidas. Después, un abono continuo desde 99 €/m para hosting, mantenimiento y desarrollo continuo. No tienes que dejar Excel de golpe.",
+      "priceBody": "Un sistema interno a medida que funciona cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas — no 'toda la empresa digitalizada', sino el núcleo: las pocas cosas que ahora más duelen, bien construidas. Después, un abono continuo desde 179 €/m para hosting, mantenimiento y desarrollo continuo. No tienes que dejar Excel de golpe.",
       "pricePoints": [
         "Precio fijo de antemano — sabes qué cuesta y qué obtienes",
         "Cuatro semanas de la primera charla al núcleo funcionando",
@@ -1363,7 +1363,7 @@
       "faq": [
         {
           "q": "¿Cuánto cuesta un sistema interno a medida?",
-          "a": "Una primera versión funcionando (el núcleo) cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Después, un abono desde 99 €/m para hosting, mantenimiento y desarrollo. Sin facturas por trabajo extra."
+          "a": "Una primera versión funcionando (el núcleo) cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Después, un abono desde 179 €/m para hosting, mantenimiento y desarrollo. Sin facturas por trabajo extra."
         },
         {
           "q": "¿Tengo que dejar Excel de golpe?",
@@ -1477,7 +1477,7 @@
       ],
       "priceEyebrow": "qué cuesta",
       "priceTitle": "Precio fijo, cuatro semanas",
-      "priceBody": "Un portal de reparaciones a medida que funciona cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas — como parte de un conjunto mayor (sitio público + admin de taller + parte del cliente) más bien 6.000–10.000 €. Después, un abono continuo desde 99 €/m para hosting, mantenimiento y desarrollo continuo.",
+      "priceBody": "Un portal de reparaciones a medida que funciona cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas — como parte de un conjunto mayor (sitio público + admin de taller + parte del cliente) más bien 6.000–10.000 €. Después, un abono continuo desde 179 €/m para hosting, mantenimiento y desarrollo continuo.",
       "pricePoints": [
         "Precio fijo de antemano — sabes qué cuesta y qué obtienes",
         "Cuatro semanas de la primera charla a la versión funcionando",
@@ -1489,7 +1489,7 @@
       "faq": [
         {
           "q": "¿Cuánto cuesta un portal de reparaciones a medida?",
-          "a": "Una primera versión funcionando cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Como parte de un conjunto mayor más bien 6.000–10.000 €. Después, un abono desde 99 €/m para hosting, mantenimiento y desarrollo."
+          "a": "Una primera versión funcionando cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Como parte de un conjunto mayor más bien 6.000–10.000 €. Después, un abono desde 179 €/m para hosting, mantenimiento y desarrollo."
         },
         {
           "q": "¿Funciona en un iPad en el taller?",
@@ -1743,7 +1743,7 @@
             "Multi-ubicación + multi-divisa",
             "Integración contable a medida (Holded/e-Boekhouden)",
             "Acceso multi-usuario para tu equipo",
-            "Después Atelier (399 €/m) mantenimiento + ampliación"
+            "Después Atelier (3179 €/m) mantenimiento + ampliación"
           ],
           "cta": "Reunión estratégica"
         }
@@ -1858,7 +1858,7 @@
         "eyebrow": "línea de producto 03",
         "title": "Web o tienda online",
         "dnaLine": "Web de marketing rápida y multilingüe, o tienda con BTW/IVA y stock. Lighthouse 95+ en móvil.",
-        "pricePill": "desde 3.000 € · 4 semanas",
+        "pricePill": "desde 3.500 € · 4 semanas",
         "solvesTitle": "Qué resuelve",
         "solves": [
           "Una web multilingüe que funciona tanto en NL como en ES",
@@ -2208,7 +2208,7 @@
     }
   },
   "pricing": {
-    "eyebrow": "suscripciones · desde 99 €/m",
+    "eyebrow": "suscripciones · Studio 179 €/m · Atelier 3179 €/m",
     "title": "Un precio al mes. *Sin* presupuestos, sin sorpresas.",
     "lede": "Tras el lanzamiento trabajas con una cuota fija mensual — hosting, mantenimiento, desarrollo, todo lo intermedio. Entrada baja, cancelable cuando quieras. Studio es la entrada; Atelier para quien sigue creciendo activamente.",
     "discoveryCallout": {
@@ -2274,7 +2274,7 @@
           "humanLabel": "seguir construyendo",
           "subEyebrow": "Quiero seguir construyendo, en modo dev-partner.",
           "orderIndicator": "3 de 3 · para escala",
-          "price": "399 €/mes",
+          "price": "3179 €/mes",
           "monthly": 399,
           "annual": 339,
           "body": "Un dev-partner fijo que sigue construyendo tu site y panel admin mes a mes — features, integraciones, A/B tests.",
@@ -2298,6 +2298,7 @@
       "perMonth": "/m",
       "perMonthBilledAnnually": "/m, facturado anualmente",
       "subscribe": "Suscribirse",
+      "featuredLabel": "Más elegido",
       "talk": "Reserva una llamada",
       "manageBilling": "Gestionar suscripción",
       "currentPlan": "Plan actual",
@@ -2378,13 +2379,13 @@
         "items": [
           {
             "what": "Web a medida",
-            "package": "desde 1.050 €",
+            "package": "desde 1.250 €",
             "build": "4 semanas",
-            "after": "desde 99 €/m"
+            "after": "desde 179 €/m"
           },
           {
             "what": "Tienda online con IVA/BTW",
-            "package": "desde 3.000 €",
+            "package": "desde 3.500 €",
             "build": "4 semanas",
             "after": "Studio 179 €/m"
           },
@@ -2392,7 +2393,7 @@
             "what": "Sistema de alquiler, de cliente o interno a medida",
             "package": "5.000–8.000 €",
             "build": "4 semanas",
-            "after": "Studio 179 €/m o Atelier 399 €/m"
+            "after": "Studio 179 €/m o Atelier 3179 €/m"
           }
         ]
       }
@@ -3204,6 +3205,8 @@
       "checkoutTitle": "Revisa tu *bandeja*.",
       "checkoutAlready": "¿Ya estableciste tu contraseña?",
       "checkoutLoginLink": "Ir a iniciar sesión",
+      "checkoutNoMail": "¿No te llegó el correo? Mira en spam, o",
+      "checkoutResendCta": "reenvía el enlace de contraseña",
       "stateReturning": "Bienvenido de nuevo — tu enlace mágico llegará en cuanto hagas clic abajo.",
       "stateNew": "¿Primera vez? Crearemos tu cuenta enseguida. Añade tu nombre para un saludo personal.",
       "panelTitle": "Un solo lugar para *todo tu sistema*.",
@@ -3606,6 +3609,7 @@
       "hoursNone": "Aún no hay horas este mes.",
       "lastLoginPrefix": "Último acceso:",
       "neverLoggedIn": "Nunca ha accedido",
+      "resendSetPassword": "Enviar correo de contraseña",
       "packageTitle": "Paquete y web",
       "packageHint": "Para clientes existentes con su propio abono de mantenimiento web (sin Care/Studio/Atelier). Déjalo vacío para un cliente de tier normal.",
       "packageNameLabel": "Nombre del paquete",

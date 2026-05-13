@@ -78,7 +78,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <PricingCardsWithToggle
             items={careItems}
             strings={{
-              featuredLabel: tCare("subscribe"),
+              featuredLabel: tCare("featuredLabel"),
               monthlyLabel: tCare("billingMonthly"),
               annualLabel: tCare("billingAnnual"),
               annualHint: tCare("billingAnnualHint"),

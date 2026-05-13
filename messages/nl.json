@@ -149,7 +149,7 @@
     "items": [
       {
         "q": "Wat kost een boekingssysteem of klantportaal op maat?",
-        "a": "Een werkende eerste versie kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een doorlopend abonnement vanaf €99/m voor hosting, monitoring, onderhoud en doorontwikkeling. Geen offertes per wijziging, geen meeruren-facturen. Een marketing-site is goedkoper (~€1.050 build, €95/m), een webshop met BTW/IVA zit ertussenin (~€2.000 build, €179/m). Concreet uitrekenen kan op de prijzen-pagina."
+        "a": "Een werkende eerste versie kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een doorlopend abonnement vanaf €179/m voor hosting, monitoring, onderhoud en doorontwikkeling. Geen offertes per wijziging, geen meeruren-facturen. Een marketing-site is goedkoper (~€1.250 build, €95/m), een webshop met BTW/IVA zit ertussenin (~€2.000 build, €179/m). Concreet uitrekenen kan op de prijzen-pagina."
       },
       {
         "q": "Hoe lang duurt het om software op maat te laten bouwen?",
@@ -217,11 +217,11 @@
         },
         "website-laten-maken": {
           "title": "Website op maat",
-          "blurb": "Snel, netjes, twee talen — vanaf €1.050"
+          "blurb": "Snel, netjes, twee talen — vanaf €1.250"
         },
         "webshop-laten-maken": {
           "title": "Webshop op maat",
-          "blurb": "Producten, afrekenen, btw/IVA — vanaf €3.000"
+          "blurb": "Producten, afrekenen, btw/IVA — vanaf €3.500"
         },
         "admin-systeem-op-maat": {
           "title": "Admin-systeem op maat",
@@ -281,7 +281,7 @@
   "home": {
     "eyebrow": "costa brava · spanje",
     "headline": "Geen Excel-puzzels meer. *Geen* dubbele boekingen. Geen vijf losse tools.",
-    "tagline": "Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt. Vaste prijs vanaf €1.050, vier weken levering, doorlopend abonnement vanaf €99 per maand — bouwen én onderhouden in één.",
+    "tagline": "Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt. Vaste prijs vanaf €1.250, vier weken levering, doorlopend abonnement vanaf €179 per maand — bouwen én onderhouden in één.",
     "ctaPrimary": "Plan een kennismaking",
     "ctaSecondary": "Bekijk klantverhalen",
     "hero": {
@@ -336,7 +336,7 @@
         "boekingsplatformen",
         "webshops"
       ],
-      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem, mobiel-first gebouwd zoals jouw klanten 't gebruiken. Vaste prijs, vier weken levering, doorlopend abonnement vanaf €99/maand, voor ondernemers in Nederland en Spanje."
+      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem, mobiel-first gebouwd zoals jouw klanten 't gebruiken. Vaste prijs, vier weken levering, doorlopend abonnement vanaf €179/maand, voor ondernemers in Nederland en Spanje."
     },
     "howItWorks": {
       "eyebrow": "hoe het werkt",
@@ -416,13 +416,13 @@
         "webshop": {
           "title": "Website of webshop",
           "body": "Een snelle, meertalige site die niet op een template lijkt, of een volledige webshop met btw/IVA per categorie en voorraad-koppeling. Stel 'm zelf samen — type, pagina's, stijl, opties — en zie meteen de richtprijs.",
-          "pricePill": "vanaf €3.000 · stel zelf samen",
+          "pricePill": "vanaf €3.500 · stel zelf samen",
           "cta": "Vraag je website aan →"
         },
         "care": {
           "title": "Onderhoud & doorbouwen",
-          "body": "Het doorlopende abonnement: hosting, monitoring, security-updates, kleine wijzigingen en doorbouwen op wat je echt nodig hebt. Vanaf €99/m; Studio (€179/m) is de instap voor nieuwe klanten — met onderhoudsuren en lokale SEO erin.",
-          "pricePill": "vanaf €99/m · doorlopend",
+          "body": "Het doorlopende abonnement: hosting, monitoring, security-updates, kleine wijzigingen en doorbouwen op wat je echt nodig hebt. Vanaf €179/m; Studio (€179/m) is de instap voor nieuwe klanten — met onderhoudsuren en lokale SEO erin.",
+          "pricePill": "vanaf €179/m · doorlopend",
           "cta": "Bekijk de prijzen →"
         }
       }
@@ -494,7 +494,7 @@
           "kicker": "04",
           "title": "Live & onderhoud",
           "body": "Na livegang draait je systeem onder een care-plan. Jij blijft bouwen aan je bedrijf.",
-          "meta": "doorlopend · vanaf €99/m"
+          "meta": "doorlopend · vanaf €179/m"
         }
       }
     },
@@ -512,7 +512,7 @@
       "items": [
         {
           "q": "Wat kost een typisch project?",
-          "a": "Vaste prijs, vier weken levering. Een website op maat: vanaf €1.050. Een webshop met BTW/IVA en voorraad-koppeling: vanaf €3.000. Een verhuur-boekingssysteem, klantportaal, admin-systeem of reparatie-portaal op maat: €5.000–8.000 (een groter geheel — publieke site + admin + portaal — eerder €6.000–10.000). Daarna een doorlopend abonnement vanaf €99/m voor hosting, onderhoud en doorbouwen. Stel een website of webshop zelf samen op /aanvragen en zie meteen de richtprijs."
+          "a": "Vaste prijs, vier weken levering. Een website op maat: vanaf €1.250. Een webshop met BTW/IVA en voorraad-koppeling: vanaf €3.500. Een verhuur-boekingssysteem, klantportaal, admin-systeem of reparatie-portaal op maat: €5.000–8.000 (een groter geheel — publieke site + admin + portaal — eerder €6.000–10.000). Daarna een doorlopend abonnement vanaf €179/m voor hosting, onderhoud en doorbouwen. Stel een website of webshop zelf samen op /aanvragen en zie meteen de richtprijs."
         },
         {
           "q": "Waarom een vaste prijs en geen offerte-per-uur?",
@@ -524,7 +524,7 @@
         },
         {
           "q": "Wat zit er in het maandabonnement?",
-          "a": "Vanaf €99/m: premium hosting (NL/EU edge), monitoring, dagelijkse backups, security-updates en ruimte voor kleine wijzigingen — genoeg om je systeem stabiel te houden vanaf dag één. Studio (€179/m) is de instap voor nieuwe klanten: meer onderhoudsuren, lokale SEO en maandelijkse rapportage. Atelier (€399/m) als je maand na maand wil doorbouwen. Care (€95/m) blijft als anker draaien voor bestaande klanten."
+          "a": "Vanaf €179/m: premium hosting (NL/EU edge), monitoring, dagelijkse backups, security-updates en ruimte voor kleine wijzigingen — genoeg om je systeem stabiel te houden vanaf dag één. Studio (€179/m) is de instap voor nieuwe klanten: meer onderhoudsuren, lokale SEO en maandelijkse rapportage. Atelier (€399/m) als je maand na maand wil doorbouwen. Care (€95/m) blijft als anker draaien voor bestaande klanten."
         },
         {
           "q": "Wat als ik tussentijds wil upgraden of downgraden?",
@@ -575,7 +575,7 @@
         "Eerste maand gratis",
         "Maandelijks opzegbaar",
         "15% korting bij jaarbetaling",
-        "Maatwerk vanaf €5–8k · website vanaf €1.050"
+        "Maatwerk vanaf €5–8k · website vanaf €1.250"
       ]
     },
     "cta": {
@@ -583,7 +583,7 @@
       "title": "Klaar voor een systeem dat *met je meegroeit*?",
       "body": "Een vrijblijvend gesprek van 30 minuten. Geen verkooppraat — wel een eerlijk advies of, en hoe, we elkaar kunnen helpen.",
       "button": "Plan in agenda",
-      "pricingHint": "Maatwerk vanaf €5–8k, website vanaf €1.050 — vaste prijs, vier weken. Daarna een doorlopend abonnement vanaf €99/m. Eerste maand gratis.",
+      "pricingHint": "Maatwerk vanaf €5–8k, website vanaf €1.250 — vaste prijs, vier weken. Daarna een doorlopend abonnement vanaf €179/m. Eerste maand gratis.",
       "pricingHintLink": "Bekijk de tier-vergelijking"
     }
   },
@@ -847,7 +847,7 @@
       ],
       "priceEyebrow": "wat kost het",
       "priceTitle": "Vaste prijs, vier weken levering",
-      "priceBody": "Een werkende eerste versie van je verhuur-boekingssysteem kost €5.000–8.000, geleverd in vier weken. Daarna een Care- of groei-abonnement voor hosting, monitoring, onderhoud en doorbouwen — vanaf €99/m. Geen offertes per wijziging, geen meeruren-facturen.",
+      "priceBody": "Een werkende eerste versie van je verhuur-boekingssysteem kost €5.000–8.000, geleverd in vier weken. Daarna een Care- of groei-abonnement voor hosting, monitoring, onderhoud en doorbouwen — vanaf €179/m. Geen offertes per wijziging, geen meeruren-facturen.",
       "pricePoints": [
         "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
         "Vier weken van eerste gesprek tot werkende versie",
@@ -859,7 +859,7 @@
       "faq": [
         {
           "q": "Wat kost een boekingssysteem voor verhuur op maat?",
-          "a": "Een werkende eerste versie kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een doorlopend abonnement vanaf €99/m voor hosting, onderhoud en doorontwikkeling. Geen meeruren-facturen."
+          "a": "Een werkende eerste versie kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een doorlopend abonnement vanaf €179/m voor hosting, onderhoud en doorontwikkeling. Geen meeruren-facturen."
         },
         {
           "q": "Hoe lang duurt het om een verhuursysteem te laten bouwen?",
@@ -973,7 +973,7 @@
       ],
       "priceEyebrow": "wat kost het",
       "priceTitle": "Vaste prijs, vier weken levering",
-      "priceBody": "Een werkend klantportaal op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken — geïntegreerd met je bestaande systeem of als onderdeel van een groter geheel (publieke site + admin + portaal). Daarna een Care- of groei-abonnement vanaf €99/m voor hosting, onderhoud en doorbouwen.",
+      "priceBody": "Een werkend klantportaal op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken — geïntegreerd met je bestaande systeem of als onderdeel van een groter geheel (publieke site + admin + portaal). Daarna een Care- of groei-abonnement vanaf €179/m voor hosting, onderhoud en doorbouwen.",
       "pricePoints": [
         "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
         "Vier weken van eerste gesprek tot werkend portaal",
@@ -985,7 +985,7 @@
       "faq": [
         {
           "q": "Wat kost het om een klantportaal te laten bouwen?",
-          "a": "Een werkend portaal op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een doorlopend abonnement vanaf €99/m voor hosting, onderhoud en doorontwikkeling."
+          "a": "Een werkend portaal op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een doorlopend abonnement vanaf €179/m voor hosting, onderhoud en doorontwikkeling."
         },
         {
           "q": "Kan het aansluiten op mijn bestaande systeem?",
@@ -1038,7 +1038,7 @@
           "label": "van eerste gesprek tot live"
         },
         {
-          "value": "vanaf €1.050",
+          "value": "vanaf €1.250",
           "label": "vaste prijs — geen meeruren"
         },
         {
@@ -1099,7 +1099,7 @@
       ],
       "priceEyebrow": "wat kost het",
       "priceTitle": "Vaste prijs, vier weken — en je ziet 'm zelf samengesteld",
-      "priceBody": "Een website op maat begint bij €1.050 (vaste prijs, vier weken), afhankelijk van aantal pagina's en opties. Stel je project zelf samen op de aanvraagpagina en zie meteen de richtprijs. Daarna een onderhoudsabonnement vanaf €99/m voor hosting, updates, kleine wijzigingen en doorbouwen.",
+      "priceBody": "Een website op maat begint bij €1.250 (vaste prijs, vier weken), afhankelijk van aantal pagina's en opties. Stel je project zelf samen op de aanvraagpagina en zie meteen de richtprijs. Daarna een onderhoudsabonnement vanaf €179/m voor hosting, updates, kleine wijzigingen en doorbouwen.",
       "pricePoints": [
         "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
         "Vier weken van eerste gesprek tot live",
@@ -1111,7 +1111,7 @@
       "faq": [
         {
           "q": "Wat kost het om een website te laten maken?",
-          "a": "Vanaf €1.050, vaste prijs, geleverd in vier weken — afhankelijk van aantal pagina's en opties (meertalig, blog, eigen design). Stel 'm zelf samen op /aanvragen en zie de richtprijs. Daarna een onderhoudsabonnement vanaf €99/m."
+          "a": "Vanaf €1.250, vaste prijs, geleverd in vier weken — afhankelijk van aantal pagina's en opties (meertalig, blog, eigen design). Stel 'm zelf samen op /aanvragen en zie de richtprijs. Daarna een onderhoudsabonnement vanaf €179/m."
         },
         {
           "q": "Hoe lang duurt het?",
@@ -1164,7 +1164,7 @@
           "label": "van eerste gesprek tot live"
         },
         {
-          "value": "vanaf €3.000",
+          "value": "vanaf €3.500",
           "label": "vaste prijs — geen meeruren"
         },
         {
@@ -1225,7 +1225,7 @@
       ],
       "priceEyebrow": "wat kost het",
       "priceTitle": "Vaste prijs, vier weken — en je ziet 'm zelf samengesteld",
-      "priceBody": "Een webshop op maat begint bij €3.000 (vaste prijs, vier weken), afhankelijk van aantal pagina's en opties. Stel je project zelf samen op de aanvraagpagina en zie meteen de richtprijs. Daarna een onderhoudsabonnement vanaf €99/m voor hosting, updates, kleine wijzigingen en doorbouwen.",
+      "priceBody": "Een webshop op maat begint bij €3.500 (vaste prijs, vier weken), afhankelijk van aantal pagina's en opties. Stel je project zelf samen op de aanvraagpagina en zie meteen de richtprijs. Daarna een onderhoudsabonnement vanaf €179/m voor hosting, updates, kleine wijzigingen en doorbouwen.",
       "pricePoints": [
         "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
         "Vier weken van eerste gesprek tot live",
@@ -1237,7 +1237,7 @@
       "faq": [
         {
           "q": "Wat kost het om een webshop te laten maken?",
-          "a": "Vanaf €3.000, vaste prijs, geleverd in vier weken — afhankelijk van aantal pagina's en opties (meertalig, voorraad-koppeling, eigen design). Stel 'm zelf samen op /aanvragen en zie de richtprijs. Daarna een onderhoudsabonnement vanaf €99/m."
+          "a": "Vanaf €3.500, vaste prijs, geleverd in vier weken — afhankelijk van aantal pagina's en opties (meertalig, voorraad-koppeling, eigen design). Stel 'm zelf samen op /aanvragen en zie de richtprijs. Daarna een onderhoudsabonnement vanaf €179/m."
         },
         {
           "q": "Welke betaalmethodes?",
@@ -1351,7 +1351,7 @@
       ],
       "priceEyebrow": "wat kost het",
       "priceTitle": "Vaste prijs voor de kern, vier weken",
-      "priceBody": "Een werkend admin-systeem op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken — niet 'het hele bedrijf gedigitaliseerd', maar de kern: de paar dingen die nu het meeste pijn doen, goed gebouwd. Daarna een doorlopend abonnement vanaf €99/m voor hosting, onderhoud en doorbouwen. Je hoeft niet in één keer van Excel af.",
+      "priceBody": "Een werkend admin-systeem op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken — niet 'het hele bedrijf gedigitaliseerd', maar de kern: de paar dingen die nu het meeste pijn doen, goed gebouwd. Daarna een doorlopend abonnement vanaf €179/m voor hosting, onderhoud en doorbouwen. Je hoeft niet in één keer van Excel af.",
       "pricePoints": [
         "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
         "Vier weken van eerste gesprek tot werkende kern",
@@ -1363,7 +1363,7 @@
       "faq": [
         {
           "q": "Wat kost een admin-systeem op maat?",
-          "a": "Een werkende eerste versie (de kern) kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een abonnement vanaf €99/m voor hosting, onderhoud en doorbouwen. Geen meeruren-facturen."
+          "a": "Een werkende eerste versie (de kern) kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een abonnement vanaf €179/m voor hosting, onderhoud en doorbouwen. Geen meeruren-facturen."
         },
         {
           "q": "Moet ik in één keer van Excel af?",
@@ -1477,7 +1477,7 @@
       ],
       "priceEyebrow": "wat kost het",
       "priceTitle": "Vaste prijs, vier weken levering",
-      "priceBody": "Een werkend reparatie-portaal op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken — als onderdeel van een groter geheel (publieke site + werkplaats-admin + klantgedeelte) eerder €6.000–10.000. Daarna een doorlopend abonnement vanaf €99/m voor hosting, onderhoud en doorbouwen.",
+      "priceBody": "Een werkend reparatie-portaal op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken — als onderdeel van een groter geheel (publieke site + werkplaats-admin + klantgedeelte) eerder €6.000–10.000. Daarna een doorlopend abonnement vanaf €179/m voor hosting, onderhoud en doorbouwen.",
       "pricePoints": [
         "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
         "Vier weken van eerste gesprek tot werkende versie",
@@ -1489,7 +1489,7 @@
       "faq": [
         {
           "q": "Wat kost een reparatie-portaal op maat?",
-          "a": "Een werkende eerste versie kost €5.000–8.000, vaste prijs, geleverd in vier weken. Als onderdeel van een groter geheel eerder €6.000–10.000. Daarna een abonnement vanaf €99/m voor hosting, onderhoud en doorbouwen."
+          "a": "Een werkende eerste versie kost €5.000–8.000, vaste prijs, geleverd in vier weken. Als onderdeel van een groter geheel eerder €6.000–10.000. Daarna een abonnement vanaf €179/m voor hosting, onderhoud en doorbouwen."
         },
         {
           "q": "Werkt het op een iPad in de werkplaats?",
@@ -1858,7 +1858,7 @@
         "eyebrow": "productlijn 03",
         "title": "Website of webshop",
         "dnaLine": "Snelle, meertalige marketing-site of webshop met BTW/IVA en voorraadkoppeling. Lighthouse 95+ op mobiel.",
-        "pricePill": "vanaf €3.000 · 4 weken",
+        "pricePill": "vanaf €3.500 · 4 weken",
         "solvesTitle": "Wat het oplost",
         "solves": [
           "Eén meertalige site die werkt voor zowel NL als ES",
@@ -2204,7 +2204,7 @@
     }
   },
   "pricing": {
-    "eyebrow": "abonnementen · vanaf €99/m",
+    "eyebrow": "abonnementen · Studio €179/m · Atelier €399/m",
     "title": "Eén prijs per maand. *Geen* offertes, geen verrassingen.",
     "lede": "Na livegang werk je op een vast maandabonnement — hosting, onderhoud, doorbouwen, alles ertussen. Lage instap, opzegbaar wanneer je wil. Studio is de instap; Atelier voor wie actief blijft doorgroeien.",
     "discoveryCallout": {
@@ -2294,6 +2294,7 @@
       "perMonth": "/m",
       "perMonthBilledAnnually": "/m, jaarlijks gefactureerd",
       "subscribe": "Abonneer",
+      "featuredLabel": "Meest gekozen",
       "talk": "Plan een kennismaking",
       "manageBilling": "Beheer abonnement",
       "currentPlan": "Huidig plan",
@@ -2374,13 +2375,13 @@
         "items": [
           {
             "what": "Website op maat",
-            "package": "vanaf €1.050",
+            "package": "vanaf €1.250",
             "build": "4 weken",
-            "after": "vanaf €99/m"
+            "after": "vanaf €179/m"
           },
           {
             "what": "Webshop met BTW/IVA",
-            "package": "vanaf €3.000",
+            "package": "vanaf €3.500",
             "build": "4 weken",
             "after": "Studio €179/m"
           },
@@ -3200,6 +3201,8 @@
       "checkoutTitle": "Check je *inbox*.",
       "checkoutAlready": "Wachtwoord al ingesteld?",
       "checkoutLoginLink": "Ga naar inloggen",
+      "checkoutNoMail": "Geen e-mail ontvangen? Check je spam, of",
+      "checkoutResendCta": "stuur de wachtwoord-link opnieuw",
       "stateReturning": "Welkom terug — je magic-link komt eraan zodra je hieronder klikt.",
       "stateNew": "Nieuw hier? We maken zo je account aan. Vul je naam in voor een persoonlijke begroeting.",
       "panelTitle": "Eén plek voor je *hele systeem*.",
@@ -3602,6 +3605,7 @@
       "hoursNone": "Nog geen uren deze maand.",
       "lastLoginPrefix": "Laatst ingelogd:",
       "neverLoggedIn": "Nog nooit ingelogd",
+      "resendSetPassword": "Stuur wachtwoord-mail",
       "packageTitle": "Pakket & website",
       "packageHint": "Voor bestaande klanten met een eigen website-abonnement (geen Care/Studio/Atelier). Laat leeg voor een gewone tier-klant.",
       "packageNameLabel": "Pakketnaam",

@@ -132,6 +132,7 @@ export async function GET(req: Request) {
         hoursThisWeek,
         nextMilestone: project.nextMilestone,
         portalUrl,
+        locale: owner.locale === "es" ? "es" : "nl",
       });
 
       await db.insert(auditLog).values({

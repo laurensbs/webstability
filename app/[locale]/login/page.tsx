@@ -200,15 +200,29 @@ export default async function LoginPage({
                 </div>
               </MountReveal>
               <MountReveal delay={0.4}>
-                <p className="mt-6 text-[13px] text-(--color-muted)">
-                  {tCustomer("checkoutAlready")}{" "}
-                  <Link
-                    href="/login"
-                    className="text-(--color-text) underline decoration-(--color-border) underline-offset-2 hover:decoration-(--color-accent)"
-                  >
-                    {tCustomer("checkoutLoginLink")}
-                  </Link>
-                </p>
+                <div className="mt-6 space-y-2 text-[13px] text-(--color-muted)">
+                  <p>
+                    {tCustomer("checkoutNoMail")}{" "}
+                    <Link
+                      href={{
+                        pathname: "/forgot-password",
+                        query: emailParam ? { email: emailParam } : undefined,
+                      }}
+                      className="text-(--color-text) underline decoration-(--color-border) underline-offset-2 hover:decoration-(--color-accent)"
+                    >
+                      {tCustomer("checkoutResendCta")}
+                    </Link>
+                  </p>
+                  <p>
+                    {tCustomer("checkoutAlready")}{" "}
+                    <Link
+                      href="/login"
+                      className="text-(--color-text) underline decoration-(--color-border) underline-offset-2 hover:decoration-(--color-accent)"
+                    >
+                      {tCustomer("checkoutLoginLink")}
+                    </Link>
+                  </p>
+                </div>
               </MountReveal>
             </>
           ) : (

@@ -1234,18 +1234,16 @@ export async function upsertShopMetric(
       })
       .where(eq(shopMetrics.id, existing.id));
   } else {
-    await db
-      .insert(shopMetrics)
-      .values({
-        organizationId,
-        projectId,
-        periodMonth,
-        orders,
-        revenueCents,
-        currency,
-        conversionBps,
-        note,
-      });
+    await db.insert(shopMetrics).values({
+      organizationId,
+      projectId,
+      periodMonth,
+      orders,
+      revenueCents,
+      currency,
+      conversionBps,
+      note,
+    });
   }
 
   await db.insert(auditLog).values({
@@ -1741,5 +1739,73 @@ export async function uploadOrgFile(
 
   revalidatePath(`/admin/orgs/${organizationId}`);
   revalidatePath(`/portal/files`);
+  return { ok: true, messageKey: "saved" };
+}
+
+/**
+ * Stuur de "stel je wachtwoord in"-mail opnieuw naar een member van een org.
+ * Aangeroepen vanuit de admin org-detail page (members-tab) wanneer een klant
+ * meldt dat-ie de mail niet binnen heeft, of bij eerste-keer-onboarding na
+ * een handmatige user-create. Faalt graceful — geen gevoelige informatie in
+ * de toast.
+ */
+export async function staffResendSetPasswordMail(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  let userId: string;
+  try {
+    ({ userId } = await requireStaff());
+  } catch (e) {
+    return handleAuthError(e);
+  }
+
+  const targetUserId = String(formData.get("userId") ?? "").trim();
+  if (!targetUserId) return { ok: false, messageKey: "missing_fields" };
+
+  const target = await db.query.users.findFirst({
+    where: eq(users.id, targetUserId),
+    columns: { id: true, email: true, name: true, locale: true, organizationId: true },
+  });
+  if (!target?.email) return { ok: false, messageKey: "not_found" };
+
+  // Genereer een nieuwe set-password-token + verstuur de mail via dezelfde
+  // helper als provisionAccountForCheckout. Bewust niet via Auth.js — die
+  // wil een nieuwe magic-link sturen, niet een wachtwoord-set-link.
+  const { randomBytes } = await import("node:crypto");
+  const token = randomBytes(32).toString("base64url");
+  const expires = new Date(Date.now() + 1000 * 60 * 60 * 24 * 3); // 3 dagen
+  await db
+    .update(users)
+    .set({ passwordSetupToken: token, passwordSetupExpires: expires })
+    .where(eq(users.id, target.id));
+
+  try {
+    const { sendSetPasswordMail } = await import("@/lib/email/set-password");
+    const baseUrl = process.env.AUTH_URL ?? "https://webstability.eu";
+    const locale: "nl" | "es" = target.locale === "es" ? "es" : "nl";
+    const url = `${baseUrl}/${locale}/set-password?token=${encodeURIComponent(token)}`;
+    await sendSetPasswordMail({
+      to: target.email,
+      name: target.name ?? null,
+      url,
+      locale,
+      adminHost: false,
+      isReset: false,
+    });
+  } catch (err) {
+    console.error("[admin] resend set-password mail failed:", err);
+    return { ok: false, messageKey: "failed" };
+  }
+
+  await db.insert(auditLog).values({
+    organizationId: target.organizationId,
+    userId,
+    action: "user.resend_set_password",
+    targetType: "user",
+    targetId: target.id,
+    metadata: { email: target.email },
+  });
+
   return { ok: true, messageKey: "saved" };
 }

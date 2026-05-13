@@ -34,8 +34,8 @@ export const BUILD_PRICES: Record<BuildId, number> = {
  *   De €5k-instap blijft voor kleine verhuur (1–5 objecten).
  */
 export const BUILD_PROJECT_FLOORS = {
-  site: 1050,
-  webshop: 3000,
+  site: 1250,
+  webshop: 3500,
   rentalSystemMin: 6000,
   rentalSystemMax: 10000,
   rentalSmall: 5000,
@@ -99,8 +99,8 @@ export const PROJECT_MAX_PAGES = 25;
  * Label-keys → `configurator.steps.scope.products.*`. */
 export const WEBSHOP_PRODUCT_TIERS = {
   small: { extra: 0, labelKey: "small" }, // ~tot 25 producten — in de basis
-  medium: { extra: 350, labelKey: "medium" }, // ~25–150
-  large: { extra: 900, labelKey: "large" }, // ~150–500 — import + structuur + filters
+  medium: { extra: 500, labelKey: "medium" }, // ~25–150 producten
+  large: { extra: 1300, labelKey: "large" }, // ~150–500 — import + structuur + filters
 } as const;
 
 export type WebshopProductTierId = keyof typeof WEBSHOP_PRODUCT_TIERS;
@@ -117,8 +117,8 @@ export const CONFIG_OPTIONS = {
   multilingual: { price: 600, labelKey: "multilingual", appliesTo: ["website", "webshop"] }, // NL + ES (of meer) volwaardig
   inventorySync: { price: 500, labelKey: "inventorySync", appliesTo: ["webshop"] }, // voorraad-koppeling (webshop)
   blog: { price: 350, labelKey: "blog", appliesTo: ["website", "webshop"] }, // blog / nieuws-sectie met CMS
-  customDesign: { price: 800, labelKey: "customDesign", appliesTo: ["website", "webshop"] }, // eigen design i.p.v. template-variant
-  copywriting: { price: 450, labelKey: "copywriting", appliesTo: ["website", "webshop"] }, // wij schrijven de teksten
+  customDesign: { price: 1250, labelKey: "customDesign", appliesTo: ["website", "webshop"] }, // eigen design i.p.v. template-variant
+  copywriting: { price: 750, labelKey: "copywriting", appliesTo: ["website", "webshop"] }, // wij schrijven de teksten (6–10 uur)
   bookingForm: { price: 400, labelKey: "bookingForm", appliesTo: ["website"] }, // afspraak-/aanvraagformulier
 } as const satisfies Record<
   string,
