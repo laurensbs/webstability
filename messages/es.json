@@ -3131,11 +3131,15 @@
       "inviteEmailLabel": "Email",
       "inviteRoleLabel": "Rol",
       "inviteSubmit": "Enviar invitación",
-      "inviteHint": "El receptor recibe un enlace mágico para activarse.",
+      "inviteHint": "El receptor recibe un correo de invitación con enlace directo.",
       "memberSince": "Miembro desde {when}",
       "you": "tú",
       "ownerOnly": "Solo los propietarios pueden invitar.",
-      "emptyBody": "¿Un colega, tu contable o un socio que también debe mirar? Invítalo — tendrá su propio acceso para abrir tickets, ver facturas y seguir el progreso. Tú sigues siendo propietario."
+      "emptyBody": "¿Un colega, tu contable o un socio que también debe mirar? Invítalo — tendrá su propio acceso para abrir tickets, ver facturas y seguir el progreso. Tú sigues siendo propietario.",
+      "accountantTip": "¿Para tu contable o gestor? Elige el rol \"Solo lectura\" — ve tus facturas e informes pero no puede modificar nada ni abrir tickets.",
+      "remove": "Eliminar",
+      "confirmRemove": "¿Revocar el acceso de este miembro? Puedes invitarlo otra vez más tarde.",
+      "selfDemoteBlocked": "No puedes quitarte el rol de propietario — promueve antes a otra persona."
     },
     "onboarding": {
       "step": "Paso {n} de 3",

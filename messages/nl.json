@@ -3127,11 +3127,15 @@
       "inviteEmailLabel": "E-mailadres",
       "inviteRoleLabel": "Rol",
       "inviteSubmit": "Stuur uitnodiging",
-      "inviteHint": "De ontvanger krijgt een magic-link om te activeren.",
+      "inviteHint": "De ontvanger krijgt een uitnodigingsmail met een directe inlog-link.",
       "memberSince": "Lid sinds {when}",
       "you": "jij",
       "ownerOnly": "Alleen eigenaren kunnen uitnodigen.",
-      "emptyBody": "Een collega, je boekhouder, of een partner die ook mee moet kijken? Nodig 'm uit — die krijgt z'n eigen login en kan tickets openen, facturen bekijken en de voortgang volgen. Jij blijft eigenaar."
+      "emptyBody": "Een collega, je boekhouder, of een partner die ook mee moet kijken? Nodig 'm uit — die krijgt z'n eigen login en kan tickets openen, facturen bekijken en de voortgang volgen. Jij blijft eigenaar.",
+      "accountantTip": "Voor je boekhouder of accountant? Kies de rol \"Alleen-lezen\" — die ziet wel je facturen en rapportages, maar kan niets wijzigen of een ticket openen.",
+      "remove": "Verwijderen",
+      "confirmRemove": "Toegang van dit teamlid intrekken? Je kunt 'm later opnieuw uitnodigen.",
+      "selfDemoteBlocked": "Je kunt jezelf niet demoteren — promote eerst iemand anders tot eigenaar."
     },
     "onboarding": {
       "step": "Stap {n} van 3",

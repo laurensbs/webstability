@@ -32,6 +32,11 @@ async function requireUserOrg() {
   return { userId: user.id, orgId: user.organizationId, role: user.role };
 }
 
+/** read_only mag bestanden zien, niet uploaden/verwijderen/approven. */
+function assertCanMutateFiles(role: string): void {
+  if (role === "read_only") throw new Error("read_only");
+}
+
 export async function uploadFile(
   _prev: ActionResult | null,
   formData: FormData,
@@ -44,6 +49,7 @@ export async function uploadFile(
   let orgId: string;
   try {
     const u = await requireUserOrg();
+    assertCanMutateFiles(u.role);
     userId = u.userId;
     orgId = u.orgId;
   } catch (err) {
@@ -110,7 +116,8 @@ export async function uploadFile(
 }
 
 export async function deleteFile(fileId: string) {
-  const { orgId } = await requireUserOrg();
+  const { orgId, role } = await requireUserOrg();
+  assertCanMutateFiles(role);
 
   const file = await db.query.files.findFirst({
     where: and(eq(files.id, fileId), eq(files.organizationId, orgId)),
@@ -138,6 +145,7 @@ export async function approveDeliverable(fileId: string): Promise<ActionResult> 
   let orgId: string;
   try {
     const u = await requireUserOrg();
+    assertCanMutateFiles(u.role);
     userId = u.userId;
     orgId = u.orgId;
   } catch (err) {
@@ -214,6 +222,7 @@ export async function requestRevision(formData: FormData): Promise<ActionResult>
   let orgId: string;
   try {
     const u = await requireUserOrg();
+    assertCanMutateFiles(u.role);
     userId = u.userId;
     orgId = u.orgId;
   } catch (err) {

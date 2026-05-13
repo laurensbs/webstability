@@ -14,10 +14,14 @@ async function requireUserOrg() {
   if (!session?.user?.id) throw new Error("unauthorized");
   const user = await db.query.users.findFirst({
     where: eq(users.id, session.user.id),
-    columns: { id: true, organizationId: true, isDemo: true },
+    columns: { id: true, organizationId: true, isDemo: true, role: true },
   });
   if (!user?.organizationId) throw new Error("no_org");
   if (user.isDemo) throw new DemoReadonlyError();
+  // read_only users (typisch een boekhouder) zien tickets wel, maar
+  // mogen er geen openen of in reageren. UI verbergt de knoppen al;
+  // dit is de server-side gate.
+  if (user.role === "read_only") throw new Error("read_only");
   return { userId: user.id, orgId: user.organizationId };
 }
 
