@@ -34,6 +34,8 @@ import { AdminWelcomeOnboarding } from "@/components/admin/AdminWelcomeOnboardin
 import { StudioStatusStrip } from "@/components/admin/StudioStatusStrip";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { SetupChecklist } from "@/components/admin/SetupChecklist";
+import { StripePriceSyncBanner } from "@/components/admin/StripePriceSyncBanner";
+import { Suspense } from "react";
 import { DemoTourOverlay } from "@/components/demo/DemoTourOverlay";
 import { DemoAnalyticsBeacon } from "@/components/demo/DemoAnalyticsBeacon";
 
@@ -316,6 +318,15 @@ export default async function AdminOverview({ params }: { params: Promise<{ loca
           </section>
         );
       })()}
+
+      {/* Stripe-prijs-drift — verschijnt alleen als code-prijzen en Stripe-
+          prijzen niet meer matchen. Stille no-op bij correcte sync of
+          Stripe-API-error. */}
+      {!isDemoStaff ? (
+        <Suspense fallback={null}>
+          <StripePriceSyncBanner />
+        </Suspense>
+      ) : null}
 
       {/* Setup-checklist — éénmalige "nog regelen"-items (API-keys, webhooks,
           Search Console…). Verdwijnt zodra alles is afgevinkt. Niet voor demo-staff. */}
