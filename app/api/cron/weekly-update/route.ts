@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { and, eq, gt, gte, sum, desc } from "drizzle-orm";
+import { and, eq, gt, gte, sum, desc, isNotNull } from "drizzle-orm";
 import { db } from "@/lib/db";
 import {
   projects,
@@ -9,7 +9,7 @@ import {
   users,
   auditLog,
 } from "@/lib/db/schema";
-import { sendWeeklyUpdateMail } from "@/lib/email/weekly-update";
+import { sendWeeklyUpdateMail, sendPostLaunchWeekMail } from "@/lib/email/weekly-update";
 
 /**
  * Wekelijkse update-cron — runt woensdag 09:00 (Vercel cron-config).
@@ -156,11 +156,88 @@ export async function GET(req: Request) {
     }
   }
 
+  // ===== Tweede ronde: post-launch "eerste week"-mail =====
+  // Voor projecten die in de laatste 14 dagen live zijn gegaan en nog
+  // geen post_launch_week_sent in audit_log hebben. Eén-shot per project.
+  const fourteenDaysAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
+  const postLaunchSent: string[] = [];
+  const postLaunchSkipped: string[] = [];
+
+  try {
+    const recentLive = await db
+      .select({
+        id: projects.id,
+        name: projects.name,
+        organizationId: projects.organizationId,
+        liveAt: projects.liveAt,
+      })
+      .from(projects)
+      .where(and(isNotNull(projects.liveAt), gte(projects.liveAt, fourteenDaysAgo)));
+
+    for (const project of recentLive) {
+      try {
+        // Al verstuurd? → skip (idempotent).
+        const already = await db.query.auditLog.findFirst({
+          where: and(
+            eq(auditLog.action, "post_launch_week_sent"),
+            eq(auditLog.targetType, "project"),
+            eq(auditLog.targetId, project.id),
+          ),
+          columns: { id: true },
+        });
+        if (already) {
+          postLaunchSkipped.push(`${project.id}:already-sent`);
+          continue;
+        }
+
+        const owner = await db.query.users.findFirst({
+          where: and(eq(users.organizationId, project.organizationId), eq(users.role, "owner")),
+          columns: { email: true, name: true, locale: true, isDemo: true },
+        });
+        if (!owner?.email || owner.isDemo) {
+          postLaunchSkipped.push(`${project.id}:no-owner-or-demo`);
+          continue;
+        }
+
+        const portalUrl = `${process.env.AUTH_URL ?? "https://webstability.eu"}/${
+          owner.locale === "es" ? "es/" : ""
+        }portal/projects/${project.id}`;
+
+        await sendPostLaunchWeekMail({
+          to: owner.email,
+          ownerName: owner.name,
+          projectName: project.name,
+          portalUrl,
+          locale: owner.locale === "es" ? "es" : "nl",
+        });
+
+        await db.insert(auditLog).values({
+          organizationId: project.organizationId,
+          userId: null,
+          action: "post_launch_week_sent",
+          targetType: "project",
+          targetId: project.id,
+          metadata: { liveAt: project.liveAt?.toISOString() ?? null },
+        });
+
+        postLaunchSent.push(project.id);
+      } catch (err) {
+        console.error(`[post-launch-week] project ${project.id} failed:`, err);
+        postLaunchSkipped.push(`${project.id}:error`);
+      }
+    }
+  } catch (err) {
+    console.error("[post-launch-week] outer failure:", err);
+  }
+
   return NextResponse.json({
     ok: true,
     sentCount: sent.length,
     skippedCount: skipped.length,
     sent,
     skipped,
+    postLaunchSentCount: postLaunchSent.length,
+    postLaunchSent,
+    postLaunchSkipped,
   });
 }

@@ -194,3 +194,164 @@ ${
     html,
   });
 }
+
+// ===========================================================================
+// Post-launch "eerste week"-mail. Verstuurd één keer per project op de
+// eerste cron-run na livegang. Andere toon dan de wekelijkse build-update:
+// project ís klaar, de bouwfase is voorbij. Doel: het stille gat dempen
+// tussen de livegang-mail (dag 0) en de eerstvolgende echte aanleiding
+// voor contact (eerste ticket, maandrapport).
+// ===========================================================================
+
+const POST_LAUNCH_COPY: Record<
+  Locale,
+  {
+    subject: (p: string) => string;
+    eyebrow: string;
+    heading: string;
+    greeting: (name: string) => string;
+    intro: string;
+    checkTitle: string;
+    checkItems: string[];
+    closeTitle: string;
+    closeBody: string;
+    openInPortal: string;
+    signoff: string;
+    senderName: string;
+    senderRole: string;
+    hi: string;
+  }
+> = {
+  nl: {
+    subject: (p) => `${p} — een week later`,
+    eyebrow: "// week 1 na livegang",
+    heading: "Een week verder.",
+    greeting: (name) => `Hoi ${name},`,
+    intro:
+      "Je site/shop/platform draait nu een week. Geen vuurwerk meer — wel een rustig moment om even samen te checken of alles loopt zoals je wil.",
+    checkTitle: "Wat ik je vraag te checken",
+    checkItems: [
+      "Klik 'm rond op je telefoon — zie je iets dat niet klopt, open een ticket en ik fix 't.",
+      "Heb je je bestaande inhoud (links, social, e-mailhandtekening) bijgewerkt naar de nieuwe URL?",
+      "Krijgen je collega's / boekhouder de toegang die ze nodig hebben?",
+    ],
+    closeTitle: "Wat ik doe",
+    closeBody:
+      "Monitoring draait, ik krijg een seintje als er iets hapert. Nieuwe vragen of wijzigingen lopen vanaf nu via tickets — je hoeft mij niet te bellen voor 'kun je dit even aanpassen', dat doen we netjes in je portaal.",
+    openInPortal: "Open je portaal",
+    signoff: "Praat snel,",
+    senderName: "Laurens Bos",
+    senderRole: "Founder · Webstability",
+    hi: "vriend",
+  },
+  es: {
+    subject: (p) => `${p} — una semana después`,
+    eyebrow: "// semana 1 tras lanzamiento",
+    heading: "Una semana después.",
+    greeting: (name) => `Hola ${name},`,
+    intro:
+      "Tu site/tienda/plataforma lleva una semana en vivo. Sin fuegos artificiales — solo un momento tranquilo para comprobar juntos que todo va como quieres.",
+    checkTitle: "Qué te pido revisar",
+    checkItems: [
+      "Pruébalo en tu móvil — si ves algo raro, abre un ticket y lo arreglo.",
+      "¿Has actualizado tu contenido existente (enlaces, redes, firma de email) a la nueva URL?",
+      "¿Tienen tus colegas / contable el acceso que necesitan?",
+    ],
+    closeTitle: "Qué hago yo",
+    closeBody:
+      "La monitorización funciona, recibo un aviso si algo falla. Las dudas o cambios nuevos van por tickets desde ahora — no hace falta llamarme para '¿puedes cambiar esto?', lo hacemos ordenado en tu portal.",
+    openInPortal: "Abrir tu portal",
+    signoff: "Hablamos pronto,",
+    senderName: "Laurens Bos",
+    senderRole: "Founder · Webstability",
+    hi: "amigo",
+  },
+};
+
+export type PostLaunchMailInput = {
+  to: string;
+  ownerName: string | null;
+  projectName: string;
+  portalUrl: string;
+  locale?: Locale;
+};
+
+export async function sendPostLaunchWeekMail({
+  to,
+  ownerName,
+  projectName,
+  portalUrl,
+  locale = "nl",
+}: PostLaunchMailInput): Promise<void> {
+  if (!process.env.EMAIL_FROM) throw new Error("EMAIL_FROM not configured");
+
+  const t = POST_LAUNCH_COPY[locale];
+  const firstName = (ownerName ?? "").split(" ")[0]?.trim() || t.hi;
+  const subject = t.subject(projectName);
+
+  const checkItemsHtml = t.checkItems
+    .map(
+      (item, i) =>
+        `<tr><td valign="top" style="padding:0 10px 8px 0;font-family:ui-monospace,monospace;font-size:12px;color:${COLORS.accent};">${i + 1}.</td><td valign="top" style="padding:0 0 8px 0;font-size:14px;line-height:1.55;color:${COLORS.text};">${escapeHtml(item)}</td></tr>`,
+    )
+    .join("");
+
+  const html = `<!doctype html>
+<html lang="${locale}">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="color-scheme" content="light only"/><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:${COLORS.bg};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:${COLORS.text};-webkit-font-smoothing:antialiased;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${COLORS.bg};"><tr><td align="center" style="padding:48px 16px;">
+<table role="presentation" width="540" cellpadding="0" cellspacing="0" border="0" style="max-width:540px;background:${COLORS.surface};border:1px solid ${COLORS.border};border-radius:12px;overflow:hidden;border-top:2px solid ${COLORS.wine};">
+<tr><td style="padding:28px 32px 0 32px;">
+<p style="margin:0 0 12px 0;font-family:ui-monospace,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:${COLORS.wine};">${escapeHtml(t.eyebrow)}</p>
+<h1 style="margin:0 0 12px 0;font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:28px;line-height:1.2;color:${COLORS.text};">${escapeHtml(t.heading)}</h1>
+<p style="margin:0;font-size:15px;line-height:1.6;color:${COLORS.muted};">${escapeHtml(t.greeting(firstName))}</p>
+<p style="margin:14px 0 0;font-size:15px;line-height:1.6;color:${COLORS.muted};">${escapeHtml(t.intro)}</p>
+</td></tr>
+<tr><td style="padding:18px 32px 0 32px;">
+<p style="margin:0 0 10px;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:${COLORS.muted};">${escapeHtml(t.checkTitle)}</p>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">${checkItemsHtml}</table>
+</td></tr>
+<tr><td style="padding:18px 32px 0 32px;">
+<p style="margin:0 0 6px;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:${COLORS.accent};">${escapeHtml(t.closeTitle)}</p>
+<p style="margin:0;font-size:14px;line-height:1.55;color:${COLORS.text};">${escapeHtml(t.closeBody)}</p>
+</td></tr>
+<tr><td style="padding:18px 32px 28px 32px;">
+<a href="${escapeHtml(portalUrl)}" target="_blank" style="display:inline-block;background:${COLORS.text};color:${COLORS.bg};padding:11px 22px;font-size:14px;font-weight:500;text-decoration:none;border-radius:999px;">${escapeHtml(t.openInPortal)} →</a>
+</td></tr>
+<tr><td style="padding:0 32px 28px 32px;">
+<p style="margin:0 0 4px 0;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:16px;color:${COLORS.text};">${escapeHtml(t.signoff)}</p>
+<p style="margin:0;font-size:13px;color:${COLORS.text};font-weight:500;">${escapeHtml(t.senderName)}</p>
+<p style="margin:0;font-family:ui-monospace,monospace;font-size:11px;letter-spacing:0.06em;color:${COLORS.muted};">${escapeHtml(t.senderRole)}</p>
+</td></tr>
+</table></td></tr></table></body></html>`;
+
+  const text = [
+    `${projectName} — ${t.eyebrow.replace("// ", "")}`,
+    "",
+    t.greeting(firstName),
+    "",
+    t.intro,
+    "",
+    `${t.checkTitle}:`,
+    ...t.checkItems.map((item, i) => `${i + 1}. ${item}`),
+    "",
+    `${t.closeTitle}:`,
+    t.closeBody,
+    "",
+    `${t.openInPortal}: ${portalUrl}`,
+    "",
+    t.signoff,
+    `${t.senderName} — ${t.senderRole}`,
+  ].join("\n");
+
+  const transport = createTransport(SMTP_SERVER);
+  await transport.sendMail({
+    to,
+    from: process.env.EMAIL_FROM,
+    bcc: auditBcc(to),
+    subject,
+    text,
+    html,
+  });
+}
