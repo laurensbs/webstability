@@ -130,6 +130,9 @@ export async function submitProjectRequest(formData: FormData): Promise<ProjectR
       summary: `Configurator-aanvraag: ${kind === "webshop" ? "webshop" : "website"}, ${pages} pagina's — richtprijs €${Math.round(estimate.lowCents / 100)}–€${Math.round(estimate.highCents / 100)}`,
       metadata: {
         type: "configurator_submit",
+        // Locale van het submit-moment — gebruikt door de warm-reminder
+        // cron om de juiste taal-variant te kiezen.
+        locale,
         kind,
         pages,
         productTier: kind === "webshop" ? productTier : null,
