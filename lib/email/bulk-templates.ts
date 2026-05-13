@@ -36,7 +36,7 @@ type TemplateCopy = {
 
 const TEMPLATES: Record<BulkTemplateId, TemplateCopy> = {
   short_update: {
-    subject: "Korte update van Webstability",
+    subject: "Even bijgepraat",
     preheader: "Een snelle stand-van-zaken voor je portaal en abonnement.",
     eyebrow: "// korte update",
     heading: "Even bijgepraat.",
@@ -45,7 +45,7 @@ const TEMPLATES: Record<BulkTemplateId, TemplateCopy> = {
     ctaUrl: "https://webstability.eu/portal/dashboard",
   },
   invoice_reminder: {
-    subject: "Vriendelijke factuur-herinnering",
+    subject: "Klein geheugensteuntje — er staat een factuur open",
     preheader: "Er staat nog een factuur open in je portaal.",
     eyebrow: "// factuur",
     heading: "Klein geheugensteuntje.",

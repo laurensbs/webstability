@@ -80,7 +80,11 @@ export function renderMonthlyReportHtml(input: MonthlyReportInput): {
   subject: string;
 } {
   const firstName = (input.ownerName ?? "").split(" ")[0]?.trim() || "vriend";
-  const subject = `Maandrapport — ${input.projectName} (${input.monthLabel})`;
+  // Persoonlijker dan "Maandrapport — X (april 2026)" — past bij de toon
+  // van de mail-inhoud (eerste-persoon "Hoi {name} — terugblik op {month}").
+  // TODO (i18n): hele mail is NL-only; ES-klanten krijgen dus Nederlands.
+  // Dezelfde locale-split als weekly-update.ts heeft. Aparte commit waard.
+  const subject = `Wat ik in ${input.monthLabel} voor je deed — ${input.projectName}`;
   const uptimeLabel = `${input.uptimePct.toFixed(2)}%`;
   const hoursLabel =
     input.hoursMinutes === 0
