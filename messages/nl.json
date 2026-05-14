@@ -30,41 +30,32 @@
     }
   },
   "aanvragen": {
-    "eyebrow": "stel je project samen",
-    "title": "Wat zoek je?",
-    "lede": "Kies een dienst — een website of webshop met richtprijs in vier weken, of een maatwerk-traject (verhuur, klantportaal, reparatie, admin) waar we eerst kort kennismaken.",
+    "eyebrow": "vraag een paneel aan",
+    "title": "Welk paneel past bij jouw bedrijf?",
+    "lede": "Vier complete panelen op abonnement — verhuur, klantportaal, reparatie of admin. Vaste maandprijs, alles inbegrepen. Kies een paneel, vertel kort wat je nodig hebt, dan plannen we een korte kennismaking.",
     "picker": {
-      "configFlowEyebrow": "Vaste prijs · 4 weken",
-      "customFlowEyebrow": "Maatwerk · eerst kennismaken",
+      "panelsEyebrow": "Vier panelen · vaste maandprijs",
       "options": {
-        "website": {
-          "label": "Website laten maken",
-          "body": "Marketing-site met richtprijs in 4 weken. All-inclusive abonnement vanaf €65/mnd."
-        },
-        "webshop": {
-          "label": "Webshop laten maken",
-          "body": "E-commerce platform met betalingen, voorraad en bestelbeheer. Richtprijs vooraf."
-        },
         "verhuur": {
-          "label": "Verhuur boekingssysteem",
-          "body": "Boekingsplatform met klantlogin en admin voor live boekingen, betalingen, kanaal-syncs."
+          "label": "Verhuurpaneel",
+          "body": "Boekingen, klantportaal en admin voor live boekingen, betalingen en channel-syncs. Voor verhuurbedrijven."
         },
         "klantportaal": {
-          "label": "Klantportaal laten bouwen",
-          "body": "Eigen portaal voor je klanten — inloggen, documenten, facturen, berichten."
+          "label": "Klantportaal",
+          "body": "Eigen portaal voor je klanten — inloggen, documenten, facturen, berichten. Onder jouw merk."
         },
         "reparatie": {
-          "label": "Reparatie portaal",
-          "body": "Werkbon-systeem voor garages of werkplaatsen. iPad-flow voor monteurs, status live voor klanten."
+          "label": "Reparatiepaneel",
+          "body": "Werkbon-systeem voor garages en werkplaatsen. iPad-flow voor monteurs, status live voor klanten."
         },
         "admin": {
-          "label": "Admin systeem op maat",
-          "body": "Intern paneel voor je team. Dashboards, planning, klanten, facturatie — geheel op maat."
+          "label": "Adminpaneel op maat",
+          "body": "Intern paneel voor je team. Dashboards, planning, klanten, facturatie — volledig op maat."
         }
       }
     },
     "custom": {
-      "kindLede": "Maatwerk-trajecten beginnen bij een gesprek — een richtprijs uit een formulier helpt niemand. Vertel kort wat je nodig hebt; we plannen een korte kennismaking en jij krijgt binnen een paar dagen een eerlijke aanpak.",
+      "kindLede": "Vertel kort wat je bedrijf doet en welk paneel je voor ogen hebt. We plannen binnen een paar dagen een korte kennismaking en delen dan een transparante maandprijs en aanpak — geen verrassingen achteraf.",
       "form": {
         "name": "Naam",
         "namePlaceholder": "Voor- en achternaam",
@@ -264,34 +255,26 @@
     "planCallShort": "Boek",
     "whatsapp": "WhatsApp",
     "menu": {
-      "servicesEyebrow": "Wat ik voor je bouw",
-      "servicesTitle": "Een systeem dat past — vaste prijs, vier weken",
-      "servicesFooter": "Alle diensten →",
-      "configuratorLabel": "Vraag je website aan",
+      "servicesEyebrow": "Vier panelen op abonnement",
+      "servicesTitle": "Compleet bedrijfssysteem voor vaste maandprijs",
+      "servicesFooter": "Bekijk alle panelen →",
+      "configuratorLabel": "Vraag een paneel aan",
       "items": {
         "verhuur-boekingssysteem": {
-          "title": "Verhuur-boekingssysteem",
-          "blurb": "Boekingen, portal, channel-sync — voor verhuurbedrijven"
+          "title": "Verhuurpaneel",
+          "blurb": "Boekingen, klantportal, channel-sync — €495/mnd"
         },
         "klantportaal-laten-bouwen": {
-          "title": "Klantportaal op maat",
-          "blurb": "Je klanten loggen in en zien hun gegevens, in jouw merk"
-        },
-        "website-laten-maken": {
-          "title": "Website op maat",
-          "blurb": "Snel, netjes, twee talen — vanaf €1.250"
-        },
-        "webshop-laten-maken": {
-          "title": "Webshop op maat",
-          "blurb": "Producten, afrekenen, btw/IVA — vanaf €3.500"
+          "title": "Klantportaal",
+          "blurb": "Je klanten loggen in en zien hun gegevens — €245/mnd"
         },
         "admin-systeem-op-maat": {
-          "title": "Admin-systeem op maat",
-          "blurb": "Weg van Excel — één overzicht over je hele bedrijf"
+          "title": "Adminpaneel op maat",
+          "blurb": "Eén overzicht over je hele bedrijf — €545/mnd"
         },
         "reparatie-portaal": {
-          "title": "Reparatie-portaal",
-          "blurb": "Papierloze werkplaats — werkbonnen, iPad-flow, status"
+          "title": "Reparatiepaneel",
+          "blurb": "Papierloze werkplaats — werkbonnen, iPad, status — €395/mnd"
         }
       },
       "casesEyebrow": "Live producten die ik draai",
@@ -341,15 +324,15 @@
     "switchToEs": "Español"
   },
   "home": {
-    "eyebrow": "costa brava · spanje",
-    "headline": "Geen Excel-puzzels meer. *Geen* dubbele boekingen. Geen vijf losse tools.",
-    "tagline": "Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt. Vaste prijs vanaf €1.250, vier weken levering, doorlopend abonnement vanaf €179 per maand — bouwen én onderhouden in één.",
+    "eyebrow": "panelen op abonnement · NL + ES",
+    "headline": "Een compleet *bedrijfspaneel* op abonnement. Eén vaste maandprijs.",
+    "tagline": "Webstability bouwt en draait complete bedrijfspanelen — verhuur, reparatie, klantportaal, admin — als doorlopend abonnement vanaf €245 per maand. Geen losse projectfacturen, geen verrassingen. Eén systeem dat blijft mee groeien.",
     "ctaPrimary": "Plan een kennismaking",
     "ctaSecondary": "Bekijk klantverhalen",
     "hero": {
-      "eyebrow": "het studio · costa brava",
-      "title": "Eén systeem onder je *bedrijf*. Door één ontwikkelaar gebouwd en onderhouden.",
-      "lede": "Webstability bouwt en onderhoudt klant-software voor MKB-ondernemers in Nederland en Spanje. Publieke site en admin-paneel als één geïntegreerd systeem.",
+      "eyebrow": "vier panelen · vaste maandprijs",
+      "title": "Een *paneel* dat draait, voor een vast bedrag per maand.",
+      "lede": "Webstability bouwt en onderhoudt complete bedrijfspanelen voor MKB-ondernemers in NL en Spanje. Verhuur, reparatie, klantportaal of admin op maat — vanaf €245/mnd, alles inclusief.",
       "years": "jaar bouwen",
       "since": "sinds",
       "live": "live nu",
@@ -379,13 +362,13 @@
         }
       ],
       "demoCancel": "Sluit",
-      "availability": "Beschikbaar voor 2 nieuwe projecten — mei 2026",
+      "availability": "Beschikbaar voor 2 nieuwe abonnementen — mei 2026",
       "eyebrowMessages": [
-        "Beschikbaar voor 2 nieuwe projecten — mei 2026",
-        "Vaste prijs · 4 weken levering",
-        "Voor verhuur in NL en Spanje",
+        "Beschikbaar voor 2 nieuwe abonnementen — mei 2026",
+        "Vier panelen · vaste maandprijs",
+        "Voor MKB in NL en Spanje",
         "Mobiel-first · 95+ Lighthouse op iPhone",
-        "Eén systeem ipv vijf losse tools"
+        "Eén paneel ipv vijf losse tools"
       ],
       "proposition": [
         {

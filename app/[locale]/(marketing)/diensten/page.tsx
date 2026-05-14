@@ -257,30 +257,6 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 <Link
                   href={{
                     pathname: "/diensten/[vertical]",
-                    params: { vertical: "website-laten-maken" },
-                  }}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface) px-4 py-2 text-[13px] text-(--color-text) transition-colors hover:border-(--color-accent)/50"
-                >
-                  {locale === "es" ? "Diseño web a medida" : "Website laten maken"}
-                  <ArrowRight className="h-3 w-3 text-(--color-muted)" />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={{
-                    pathname: "/diensten/[vertical]",
-                    params: { vertical: "webshop-laten-maken" },
-                  }}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface) px-4 py-2 text-[13px] text-(--color-text) transition-colors hover:border-(--color-accent)/50"
-                >
-                  {locale === "es" ? "Tienda online a medida" : "Webshop laten maken"}
-                  <ArrowRight className="h-3 w-3 text-(--color-muted)" />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={{
-                    pathname: "/diensten/[vertical]",
                     params: { vertical: "admin-systeem-op-maat" },
                   }}
                   className="inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface) px-4 py-2 text-[13px] text-(--color-text) transition-colors hover:border-(--color-accent)/50"

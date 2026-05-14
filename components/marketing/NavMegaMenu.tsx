@@ -18,8 +18,6 @@ export type MegaMenuStrings = {
   items: {
     "verhuur-boekingssysteem": VerticalItem;
     "klantportaal-laten-bouwen": VerticalItem;
-    "website-laten-maken": VerticalItem;
-    "webshop-laten-maken": VerticalItem;
     "admin-systeem-op-maat": VerticalItem;
     "reparatie-portaal": VerticalItem;
   };

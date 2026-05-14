@@ -10,7 +10,7 @@ import type { CustomServiceIntakeStrings } from "@/components/marketing/CustomSe
 import type { CustomServiceKind } from "@/app/actions/custom-intake";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata, breadcrumbLd, siteUrl } from "@/lib/seo";
-import { buildConfiguratorStrings } from "@/lib/configurator-strings";
+import { PANEL_MONTHLY_PRICE } from "@/lib/verticals";
 
 export async function generateMetadata({
   params,
@@ -23,50 +23,54 @@ export async function generateMetadata({
 
 const CUSTOM_KINDS: CustomServiceKind[] = ["verhuur", "klantportaal", "reparatie", "admin"];
 
+// Mapping van picker-keys naar VERTICAL_SLUGS — voor de prijslabels
+// in de cards. Eén plek aan te passen mocht slug-naming wijzigen.
+const KIND_TO_SLUG: Record<CustomServiceKind, keyof typeof PANEL_MONTHLY_PRICE> = {
+  verhuur: "verhuur-boekingssysteem",
+  klantportaal: "klantportaal-laten-bouwen",
+  reparatie: "reparatie-portaal",
+  admin: "admin-systeem-op-maat",
+};
+
+function priceLabel(kind: CustomServiceKind, locale: string): string {
+  const price = PANEL_MONTHLY_PRICE[KIND_TO_SLUG[kind]];
+  return locale === "es" ? `desde €${price}/mes` : `vanaf €${price}/mnd`;
+}
+
 export default async function AanvragenPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
-  // Header-strings komen uit `aanvragen.*` (nieuwe blok); de configurator
-  // wizard zelf gebruikt nog z'n eigen `configurator.*`-namespace.
   const t = await getTranslations("aanvragen");
-  const tConfig = await getTranslations("configurator");
   const path = locale === "es" ? "/es/solicitar" : "/aanvragen";
-  const calLink = process.env.NEXT_PUBLIC_CAL_LINK ?? null;
-  const calUrl = calLink ? `https://cal.com/${calLink}?ctx=configurator` : null;
 
-  // ServicePicker strings
+  // ServicePicker strings — vier panelen met prijslabel.
   const pickerStrings: ServicePickerStrings = {
     eyebrow: t("eyebrow"),
     title: t("title"),
     lede: t("lede"),
-    configFlowEyebrow: t("picker.configFlowEyebrow"),
-    customFlowEyebrow: t("picker.customFlowEyebrow"),
+    panelsEyebrow: t("picker.panelsEyebrow"),
     options: {
-      website: {
-        label: t("picker.options.website.label"),
-        body: t("picker.options.website.body"),
-      },
-      webshop: {
-        label: t("picker.options.webshop.label"),
-        body: t("picker.options.webshop.body"),
-      },
       verhuur: {
         label: t("picker.options.verhuur.label"),
         body: t("picker.options.verhuur.body"),
+        price: priceLabel("verhuur", locale),
       },
       klantportaal: {
         label: t("picker.options.klantportaal.label"),
         body: t("picker.options.klantportaal.body"),
+        price: priceLabel("klantportaal", locale),
       },
       reparatie: {
         label: t("picker.options.reparatie.label"),
         body: t("picker.options.reparatie.body"),
+        price: priceLabel("reparatie", locale),
       },
       admin: {
         label: t("picker.options.admin.label"),
         body: t("picker.options.admin.body"),
+        price: priceLabel("admin", locale),
       },
     },
   };
@@ -133,8 +137,6 @@ export default async function AanvragenPage({ params }: { params: Promise<{ loca
         <div className="mx-auto max-w-5xl">
           <AanvragenWizard
             locale={locale}
-            calLink={calUrl}
-            configuratorStrings={buildConfiguratorStrings(tConfig)}
             pickerStrings={pickerStrings}
             customStrings={customStrings}
           />

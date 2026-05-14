@@ -7,34 +7,46 @@
 // De slug is per definitie hetzelfde in NL en ES — de route-segment
 // wisselt niet per locale, alleen het bovenliggende pad (/diensten vs
 // /servicios) doet dat via i18n/routing.ts.
+//
+// Sinds de positionering verschoven is naar "complete panelen op
+// abonnement" zijn de losse website/webshop verticals verwijderd uit
+// deze lijst — die worden niet meer als dienst aangeboden.
+// /diensten/website-laten-maken en /diensten/webshop-laten-maken
+// redirecten naar /diensten via Next's permanentRedirect (zie de
+// pagina's; oude SEO-juice blijft behouden).
+//
+// Slugs zijn uit historische reden URL-vriendelijke versies van het
+// product (bv. "verhuur-boekingssysteem"); de UI-label leeft in de
+// messages bundle en is "Verhuurpaneel" — past bij de nieuwe
+// abonnement-positionering zonder dat we URLs hoeven te breken.
 
 export const VERTICAL_SLUGS = [
   "verhuur-boekingssysteem",
-  "klantportaal-laten-bouwen",
-  "website-laten-maken",
-  "webshop-laten-maken",
-  "admin-systeem-op-maat",
   "reparatie-portaal",
+  "klantportaal-laten-bouwen",
+  "admin-systeem-op-maat",
 ] as const;
 
-/** Verticals waarvoor de publieke project-configurator (/aanvragen)
- * relevant is — daar tonen we een prominente "stel je project samen"-CTA. */
-export const CONFIGURABLE_VERTICALS = new Set<string>([
-  "website-laten-maken",
-  "webshop-laten-maken",
-]);
+/** Maandelijkse abonnementsprijs per paneel in EUR (excl. BTW).
+ * Centraal gedefinieerd zodat /prijzen, /diensten/[slug] en de
+ * picker dezelfde getallen tonen. Pas hier 1 plek aan en de hele
+ * site volgt. Indicatief — bevestiging in offerte na intake. */
+export const PANEL_MONTHLY_PRICE: Record<VerticalSlug, number> = {
+  "klantportaal-laten-bouwen": 245,
+  "reparatie-portaal": 395,
+  "verhuur-boekingssysteem": 495,
+  "admin-systeem-op-maat": 545,
+};
 
-/** Mapping van vertical-slug naar de interne demo-pagina die het meest
- * representatief is voor die dienst. Gebruikt op de vertical-pagina om
- * naast de "plan een gesprek"-CTA een "open live demo"-knop te tonen.
- * Interne paden i.p.v. externe URL's — geen Vercel-deploy of DNS nodig.
+/** Mapping van paneel-slug naar de interne demo-pagina die het paneel
+ * representeert. Gebruikt op de detail-pagina voor de "open live demo"-knop.
  *
- * Niet elke vertical heeft een demo — website/webshop zijn pure
- * marketing-cases zonder portaal of admin om te demonstreren. */
-export const VERTICAL_DEMO_URLS: Record<string, string> = {
+ * Stalling-demo werkt voor zowel klantportaal als adminpaneel omdat het
+ * platform beide kanten laat zien (klantlogin + studio admin). */
+export const VERTICAL_DEMO_URLS: Record<VerticalSlug, string> = {
   "verhuur-boekingssysteem": "/demo/verhuur",
   "reparatie-portaal": "/demo/reparatie",
-  "klantportaal-laten-bouwen": "/demo/stalling",
+  "klantportaal-laten-bouwen": "/demo/stalling/portaal",
   "admin-systeem-op-maat": "/demo/stalling",
 };
 

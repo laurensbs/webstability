@@ -2,110 +2,65 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
-import { Globe, ShoppingBag, KeyRound, Wrench, Users, Settings } from "lucide-react";
+import { CalendarClock, LayoutDashboard, Wrench, LayoutGrid } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 /**
- * Pre-step op /aanvragen: bezoeker kiest één van zes diensten.
+ * Pre-step op /aanvragen: bezoeker kiest één van vier panelen.
  *
- * - website / webshop → opent de bestaande ProjectConfigurator (vaste-prijs
- *   richt-budget in 4 weken). Deze twee hebben een prijsmodel dat in een
- *   formulier past.
- * - verhuur / klantportaal / reparatie / admin → opent een eenvoudig
- *   intake-formulier (CustomServiceIntake). Maatwerk-trajecten: een
- *   richtprijs uit een formulier helpt niemand, dus we vragen kort waar
- *   het om gaat en plannen daarna een gesprek.
+ * Alle vier de panelen (verhuur, klantportaal, reparatie, admin) worden
+ * als abonnement aangeboden — vaste maandprijs, geen losse projectkosten.
+ * Na keuze opent CustomServiceIntake voor een korte intake + Cal-popup.
  *
- * Welke vorm getoond wordt is aan de parent — deze component meldt alleen
- * de keuze via onPick.
+ * Het oude website/webshop pad is verwijderd: die diensten bieden we
+ * niet meer aan. Volledige positionering ligt nu op complete panelen
+ * op abonnement.
  */
 
-export type ServiceKind =
-  | "website"
-  | "webshop"
-  | "verhuur"
-  | "klantportaal"
-  | "reparatie"
-  | "admin";
+export type ServiceKind = "verhuur" | "klantportaal" | "reparatie" | "admin";
 
 export type ServicePickerStrings = {
   eyebrow: string;
   title: string;
   lede: string;
-  configFlowEyebrow: string; // boven website+webshop blok
-  customFlowEyebrow: string; // boven de 4 maatwerk-diensten
-  options: Record<ServiceKind, { label: string; body: string }>;
+  /** Header boven de paneelkaarten — vaak iets als "Vier panelen op abonnement". */
+  panelsEyebrow: string;
+  options: Record<ServiceKind, { label: string; body: string; price: string }>;
 };
 
 const ICONS: Record<ServiceKind, LucideIcon> = {
-  website: Globe,
-  webshop: ShoppingBag,
-  verhuur: KeyRound,
-  klantportaal: Users,
+  verhuur: CalendarClock,
+  klantportaal: LayoutDashboard,
   reparatie: Wrench,
-  admin: Settings,
+  admin: LayoutGrid,
 };
 
-// Welke flow elke service opent. Configurable houdt de bestaande
-// ProjectConfigurator; custom routes naar het intake-formulier.
-const FLOW: Record<ServiceKind, "configurable" | "custom"> = {
-  website: "configurable",
-  webshop: "configurable",
-  verhuur: "custom",
-  klantportaal: "custom",
-  reparatie: "custom",
-  admin: "custom",
-};
-
-const CONFIGURABLE: ServiceKind[] = ["website", "webshop"];
-const CUSTOM: ServiceKind[] = ["verhuur", "klantportaal", "reparatie", "admin"];
+const PANELS: ServiceKind[] = ["verhuur", "klantportaal", "reparatie", "admin"];
 
 export function ServicePicker({
   strings,
   onPick,
 }: {
   strings: ServicePickerStrings;
-  onPick: (kind: ServiceKind, flow: "configurable" | "custom") => void;
+  onPick: (kind: ServiceKind) => void;
 }) {
   return (
-    <div className="space-y-10">
-      {/* Configurable verticals — vaste-prijs */}
-      <div>
-        <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
-          {strings.configFlowEyebrow}
-        </p>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          {CONFIGURABLE.map((kind, i) => (
-            <ServiceCard
-              key={kind}
-              kind={kind}
-              strings={strings.options[kind]}
-              flow="configurable"
-              index={i}
-              onPick={onPick}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Custom verticals — maatwerk via intake + gesprek */}
+    <div className="space-y-6">
       <div>
         <p className="font-mono text-[11px] tracking-widest text-(--color-wine) uppercase">
-          {strings.customFlowEyebrow}
+          {strings.panelsEyebrow}
         </p>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {CUSTOM.map((kind, i) => (
-            <ServiceCard
-              key={kind}
-              kind={kind}
-              strings={strings.options[kind]}
-              flow="custom"
-              index={i + 2}
-              onPick={onPick}
-              compact
-            />
-          ))}
-        </div>
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        {PANELS.map((kind, i) => (
+          <ServiceCard
+            key={kind}
+            kind={kind}
+            strings={strings.options[kind]}
+            index={i}
+            onPick={onPick}
+          />
+        ))}
       </div>
     </div>
   );
@@ -114,20 +69,15 @@ export function ServicePicker({
 function ServiceCard({
   kind,
   strings,
-  flow,
   index,
   onPick,
-  compact = false,
 }: {
   kind: ServiceKind;
-  strings: { label: string; body: string };
-  flow: "configurable" | "custom";
+  strings: { label: string; body: string; price: string };
   index: number;
-  onPick: (kind: ServiceKind, flow: "configurable" | "custom") => void;
-  compact?: boolean;
+  onPick: (kind: ServiceKind) => void;
 }) {
   const Icon = ICONS[kind];
-  const isCustom = flow === "custom";
   return (
     <motion.button
       type="button"
@@ -135,30 +85,19 @@ function ServiceCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.05 + index * 0.04, duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -3 }}
-      onClick={() => onPick(kind, flow)}
-      className={`rounded-modal group flex flex-col items-start gap-3 border border-t-2 border-(--color-border) text-left transition-shadow hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) ${
-        isCustom
-          ? "border-t-(--color-wine) bg-(--color-bg-warm)/40 p-5 hover:bg-(--color-wine)/5"
-          : "border-t-(--color-accent) bg-(--color-surface) p-6 hover:bg-(--color-accent-soft)/30"
-      }`}
+      onClick={() => onPick(kind)}
+      className="rounded-modal group flex flex-col items-start gap-3 border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-6 text-left transition-shadow hover:bg-(--color-wine)/5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
     >
-      <span
-        className={`inline-flex items-center justify-center rounded-full ${
-          isCustom
-            ? "h-9 w-9 bg-(--color-wine)/10 text-(--color-wine)"
-            : "h-11 w-11 bg-(--color-accent)/10 text-(--color-accent)"
-        }`}
-      >
-        <Icon className={isCustom ? "h-4 w-4" : "h-5 w-5"} />
+      <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-(--color-wine)/10 text-(--color-wine)">
+        <Icon className="h-5 w-5" />
       </span>
-      <p className={`font-medium text-(--color-text) ${compact ? "text-[14.5px]" : "text-[17px]"}`}>
-        {strings.label}
-      </p>
-      <p
-        className={`text-(--color-muted) ${compact ? "text-[12.5px] leading-snug" : "text-[14px] leading-snug"}`}
-      >
-        {strings.body}
-      </p>
+      <div className="flex w-full items-baseline justify-between gap-3">
+        <p className="text-[17px] font-medium text-(--color-text)">{strings.label}</p>
+        <p className="font-mono text-[11px] tracking-widest whitespace-nowrap text-(--color-wine) uppercase">
+          {strings.price}
+        </p>
+      </div>
+      <p className="text-[14px] leading-snug text-(--color-muted)">{strings.body}</p>
     </motion.button>
   );
 }

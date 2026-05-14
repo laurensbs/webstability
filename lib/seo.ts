@@ -43,14 +43,14 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
         "Stop met dubbele boekingen tussen Airbnb, Booking en je Excel. Eén dashboard, automatische facturen, contracten in één klik. Maatwerk verhuursoftware voor caravans, boten, vakantiehuizen.",
     },
     diensten: {
-      title: "Diensten — wat we voor je bouwen",
+      title: "Diensten — vier panelen op abonnement",
       description:
-        "Verhuur- of reparatieplatform vanaf €7.800. Webshop op maat vanaf €3.000. Care en groei-abonnementen vanaf €69/m. Eén systeem dat draait, één Laurens die het bouwt en in de lucht houdt.",
+        "Verhuurpaneel, reparatiepaneel, klantportaal of admin op maat. Vaste maandprijs vanaf €245/mnd, geen losse projectfacturen. Eén systeem dat draait, één Laurens die het bouwt en bijhoudt.",
     },
     aanvragen: {
-      title: "Vraag je website of webshop aan",
+      title: "Vraag een paneel aan",
       description:
-        "Stel je website of webshop samen — type, aantal pagina's, stijl, talen, opties — en zie meteen de richtprijs. Daarna een kort gesprek voor de definitieve offerte. Vaste prijs, vier weken.",
+        "Vier complete bedrijfspanelen op abonnement: verhuur, reparatie, klantportaal en admin. Vertel kort wat je nodig hebt, dan plannen we een korte kennismaking.",
     },
     faq: {
       title: "Veelgestelde vragen",

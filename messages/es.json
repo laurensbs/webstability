@@ -30,41 +30,32 @@
     }
   },
   "aanvragen": {
-    "eyebrow": "configura tu proyecto",
-    "title": "¿Qué buscas?",
-    "lede": "Elige un servicio — una web o tienda online con precio orientativo en cuatro semanas, o un proyecto a medida (alquiler, portal de cliente, reparación, admin) donde primero hacemos una llamada.",
+    "eyebrow": "solicita un panel",
+    "title": "¿Qué panel encaja en tu negocio?",
+    "lede": "Cuatro paneles completos por suscripción — alquiler, portal de cliente, reparación o admin. Cuota mensual fija, todo incluido. Elige un panel, cuéntanos brevemente qué necesitas y planificamos una breve presentación.",
     "picker": {
-      "configFlowEyebrow": "Precio fijo · 4 semanas",
-      "customFlowEyebrow": "A medida · primero hablamos",
+      "panelsEyebrow": "Cuatro paneles · cuota fija",
       "options": {
-        "website": {
-          "label": "Crear sitio web",
-          "body": "Sitio de marketing con precio orientativo en 4 semanas. Suscripción todo incluido desde 65 €/mes."
-        },
-        "webshop": {
-          "label": "Crear tienda online",
-          "body": "Plataforma e-commerce con pagos, stock y gestión de pedidos. Precio orientativo de antemano."
-        },
         "verhuur": {
-          "label": "Sistema de reservas alquiler",
-          "body": "Plataforma de reservas con login de cliente y admin para reservas, pagos y syncs de canales."
+          "label": "Panel de alquiler",
+          "body": "Reservas, portal de cliente y admin para reservas en vivo, pagos y sync de canales. Para empresas de alquiler."
         },
         "klantportaal": {
           "label": "Portal de cliente",
-          "body": "Portal propio para tus clientes — login, documentos, facturas, mensajes."
+          "body": "Portal propio para tus clientes — acceso, documentos, facturas, mensajes. Bajo tu marca."
         },
         "reparatie": {
-          "label": "Portal de reparación",
+          "label": "Panel de reparaciones",
           "body": "Sistema de partes para talleres. Flujo iPad para mecánicos, estado en vivo para clientes."
         },
         "admin": {
-          "label": "Sistema admin a medida",
+          "label": "Panel admin a medida",
           "body": "Panel interno para tu equipo. Dashboards, planning, clientes, facturación — totalmente a medida."
         }
       }
     },
     "custom": {
-      "kindLede": "Los proyectos a medida empiezan con una llamada — un precio orientativo desde un formulario no ayuda. Cuéntanos brevemente qué necesitas; planificamos una breve presentación y recibirás un enfoque honesto en pocos días.",
+      "kindLede": "Cuéntanos brevemente qué hace tu empresa y qué panel tienes en mente. Planificamos una breve llamada en pocos días y compartimos una cuota mensual transparente y un enfoque — sin sorpresas después.",
       "form": {
         "name": "Nombre",
         "namePlaceholder": "Nombre y apellido",
@@ -264,34 +255,26 @@
     "planCallShort": "Reservar",
     "whatsapp": "WhatsApp",
     "menu": {
-      "servicesEyebrow": "Qué construyo para ti",
-      "servicesTitle": "Un sistema que encaja — precio fijo, cuatro semanas",
-      "servicesFooter": "Todos los servicios →",
-      "configuratorLabel": "Solicita tu web",
+      "servicesEyebrow": "Cuatro paneles por suscripción",
+      "servicesTitle": "Sistema empresarial completo por cuota fija mensual",
+      "servicesFooter": "Ver todos los paneles →",
+      "configuratorLabel": "Solicita un panel",
       "items": {
         "verhuur-boekingssysteem": {
-          "title": "Sistema de reservas de alquiler",
-          "blurb": "Reservas, portal, sincronización de canales — para empresas de alquiler"
+          "title": "Panel de alquiler",
+          "blurb": "Reservas, portal de cliente, sync de canales — 495 €/mes"
         },
         "klantportaal-laten-bouwen": {
-          "title": "Portal de cliente a medida",
-          "blurb": "Tus clientes acceden y ven sus datos, con tu marca"
-        },
-        "website-laten-maken": {
-          "title": "Web a medida",
-          "blurb": "Rápida, limpia, dos idiomas — desde 1.250 €"
-        },
-        "webshop-laten-maken": {
-          "title": "Tienda online a medida",
-          "blurb": "Productos, pago, IVA — desde 3.500 €"
+          "title": "Portal de cliente",
+          "blurb": "Tus clientes acceden y ven sus datos — 245 €/mes"
         },
         "admin-systeem-op-maat": {
-          "title": "Sistema interno a medida",
-          "blurb": "Adiós a Excel — una sola vista de toda tu empresa"
+          "title": "Panel admin a medida",
+          "blurb": "Una sola vista de toda tu empresa — 545 €/mes"
         },
         "reparatie-portaal": {
-          "title": "Portal de reparaciones",
-          "blurb": "Taller sin papel — órdenes, flujo en iPad, estado"
+          "title": "Panel de reparaciones",
+          "blurb": "Taller sin papel — órdenes, iPad, estado — 395 €/mes"
         }
       },
       "casesEyebrow": "Productos en vivo que llevo",
@@ -341,15 +324,15 @@
     "switchToEs": "Nederlands"
   },
   "home": {
-    "eyebrow": "costa brava · españa",
-    "headline": "Sin puzzles de Excel. *Sin* reservas duplicadas. Sin cinco herramientas sueltas.",
-    "tagline": "Un sistema que funciona, un Laurens que lo construye y mantiene. Precio fijo desde 1.250 €, entrega en cuatro semanas, suscripción continua desde 179 € al mes — construir y mantener en una sola cuota.",
+    "eyebrow": "paneles por suscripción · NL + ES",
+    "headline": "Un *panel empresarial* completo por suscripción. Una cuota mensual fija.",
+    "tagline": "Webstability construye y opera paneles empresariales completos — alquiler, reparación, portal de cliente, admin — como suscripción continua desde 245 € al mes. Sin facturas sueltas de proyecto, sin sorpresas. Un sistema que crece contigo.",
     "ctaPrimary": "Reservar primera llamada",
     "ctaSecondary": "Ver casos",
     "hero": {
-      "eyebrow": "el estudio · costa brava",
-      "title": "Un sistema bajo tu *negocio*. Construido y mantenido por un único desarrollador.",
-      "lede": "Webstability construye y mantiene software a medida para pymes en Países Bajos y España. Web pública y panel de admin como un sistema integrado.",
+      "eyebrow": "cuatro paneles · cuota fija",
+      "title": "Un *panel* que funciona, por una cuota fija al mes.",
+      "lede": "Webstability construye y mantiene paneles empresariales completos para pymes en NL y España. Alquiler, reparación, portal de cliente o admin a medida — desde 245 €/mes, todo incluido.",
       "years": "años construyendo",
       "since": "desde",
       "live": "en línea",
@@ -379,13 +362,13 @@
         }
       ],
       "demoCancel": "Cerrar",
-      "availability": "Disponible para 2 nuevos proyectos — mayo 2026",
+      "availability": "Disponible para 2 nuevas suscripciones — mayo 2026",
       "eyebrowMessages": [
-        "Disponible para 2 nuevos proyectos — mayo 2026",
-        "Precio fijo · entrega en 4 semanas",
-        "Para alquiler en NL y España",
+        "Disponible para 2 nuevas suscripciones — mayo 2026",
+        "Cuatro paneles · cuota fija",
+        "Para pymes en NL y España",
         "Mobile-first · Lighthouse 95+ en iPhone",
-        "Un sistema en lugar de cinco herramientas"
+        "Un panel en lugar de cinco herramientas"
       ],
       "proposition": [
         {

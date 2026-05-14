@@ -18,14 +18,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/Accordion";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ProjectConfigurator } from "@/components/marketing/ProjectConfigurator";
-import { buildConfiguratorStrings } from "@/lib/configurator-strings";
 import { serviceLd, breadcrumbLd, faqPageLd, siteUrl } from "@/lib/seo";
 import {
   VERTICAL_SLUGS,
   isVerticalSlug,
-  CONFIGURABLE_VERTICALS,
   VERTICAL_DEMO_URLS,
+  PANEL_MONTHLY_PRICE,
   type VerticalSlug,
 } from "@/lib/verticals";
 import { ExternalLink } from "lucide-react";
@@ -138,19 +136,7 @@ export default async function VerticalPage({
   const c = getVerticalContent(tRaw, vertical);
   if (!c) notFound();
 
-  // Configureerbare verticals (website/webshop) embedden de project-
-  // configurator inline — type vast, type-stap overgeslagen.
-  const isConfigurable = CONFIGURABLE_VERTICALS.has(vertical);
-  const configuratorKind = vertical === "webshop-laten-maken" ? "webshop" : "website";
-  let configuratorStrings: ReturnType<typeof buildConfiguratorStrings> | null = null;
-  let configuratorCalUrl: string | null = null;
-  if (isConfigurable) {
-    const tCfg = await getTranslations("configurator");
-    configuratorStrings = buildConfiguratorStrings(tCfg);
-    const calLink = process.env.NEXT_PUBLIC_CAL_LINK ?? null;
-    configuratorCalUrl = calLink ? `https://cal.com/${calLink}?ctx=configurator` : null;
-  }
-
+  const monthlyPrice = PANEL_MONTHLY_PRICE[vertical];
   const dienstenPath = locale === "es" ? "/es/servicios" : "/diensten";
   const detailPath = locale === "es" ? `/es/servicios/${vertical}` : `/diensten/${vertical}`;
 
@@ -392,25 +378,6 @@ export default async function VerticalPage({
         </div>
       </section>
 
-      {/* CONFIGURATOR — embed inline op website/webshop-verticals */}
-      {isConfigurable && configuratorStrings ? (
-        <section className="py-section md:py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
-          <div className="mx-auto max-w-5xl">
-            <RevealOnScroll className="mb-10 space-y-3 text-center">
-              <h2 className="text-3xl leading-tight md:text-5xl">{c.ctaTitle}</h2>
-              <p className="mx-auto max-w-prose text-(--color-muted)">{c.ctaBody}</p>
-            </RevealOnScroll>
-            <ProjectConfigurator
-              calLink={configuratorCalUrl}
-              locale={locale}
-              defaultKind={configuratorKind}
-              lockKind
-              strings={configuratorStrings}
-            />
-          </div>
-        </section>
-      ) : null}
-
       {/* INTERNE LINKS — gerelateerde pagina's */}
       {c.related.length > 0 ? (
         <section className="border-t border-(--color-border) px-6 py-16">
@@ -435,46 +402,33 @@ export default async function VerticalPage({
         </section>
       ) : null}
 
-      {/* CTA — voor website/webshop houden we 'm kort (de configurator hierboven
-          is de primaire actie); voor de andere verticals de volle Cal-CTA. */}
-      {isConfigurable ? (
-        <section className="border-t border-(--color-border) px-6 py-16 text-center">
-          <RevealOnScroll className="mx-auto max-w-2xl space-y-4">
-            <p className="text-[15px] text-(--color-muted)">
-              {locale === "es"
-                ? "¿Prefieres hablarlo primero? Reserva una charla de 30 minutos — sin presentación comercial."
-                : "Liever eerst even bellen? Plan een gesprek van 30 minuten — geen pitch-deck."}
-            </p>
+      {/* CTA — alle panelen krijgen dezelfde volle Cal-CTA met
+          maandprijs-vermelding. Aanbod is uniform op abonnement. */}
+      <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
+        <RevealOnScroll className="mx-auto max-w-3xl space-y-6 text-center">
+          <h2 className="text-h2">{c.ctaTitle}</h2>
+          <p className="text-(--color-muted)">{c.ctaBody}</p>
+          <p className="font-mono text-[12px] tracking-widest text-(--color-accent) uppercase">
+            {locale === "es"
+              ? `Suscripción · desde €${monthlyPrice}/mes`
+              : `Abonnement · vanaf €${monthlyPrice}/mnd`}
+          </p>
+          <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
             <CalPopupTrigger
               locale={locale}
-              className={buttonVariants({ variant: "ghost", size: "lg" })}
+              className={buttonVariants({ variant: "accent", size: "lg" })}
             >
-              {locale === "es" ? "Reserva una charla" : "Plan een gesprek"}
+              {c.ctaButton}
             </CalPopupTrigger>
-          </RevealOnScroll>
-        </section>
-      ) : (
-        <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
-          <RevealOnScroll className="mx-auto max-w-3xl space-y-6 text-center">
-            <h2 className="text-h2">{c.ctaTitle}</h2>
-            <p className="text-(--color-muted)">{c.ctaBody}</p>
-            <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
-              <CalPopupTrigger
-                locale={locale}
-                className={buttonVariants({ variant: "accent", size: "lg" })}
-              >
-                {c.ctaButton}
-              </CalPopupTrigger>
-              <Button asChild size="lg" variant="ghost">
-                <Link href={{ pathname: "/cases" }}>
-                  {locale === "es" ? "Mira el trabajo" : "Bekijk het werk"}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </RevealOnScroll>
-        </section>
-      )}
+            <Button asChild size="lg" variant="ghost">
+              <Link href={{ pathname: "/cases" }}>
+                {locale === "es" ? "Mira el trabajo" : "Bekijk het werk"}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </RevealOnScroll>
+      </section>
     </main>
   );
 }
