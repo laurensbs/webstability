@@ -83,6 +83,7 @@ const INVOICES = [
 export function StallingDemo() {
   return (
     <DemoShell
+      portalHref="/demo/stalling/portaal"
       brandName="Costa Storage"
       brandSub="Studio admin · stalling"
       accentColor="#1e3a4a"

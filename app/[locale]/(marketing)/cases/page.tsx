@@ -11,6 +11,7 @@ import { Eyebrow } from "@/components/animate/Eyebrow";
 import { Button, buttonVariants } from "@/components/ui/Button";
 import { CaseScreenshot } from "@/components/marketing/CaseScreenshot";
 import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
+import { DemoChooserModal } from "@/components/marketing/DemoChooserModal";
 import { BuildTimeline } from "@/components/marketing/diensten/BuildTimeline";
 import { NotForSection } from "@/components/marketing/diensten/NotForSection";
 import type { Metadata } from "next";
@@ -320,11 +321,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           </div>
 
           {/* Inline CTA voor productlijnen — "wil je dit ook?" */}
-          <RevealOnScroll className="rounded-modal mt-10 border border-(--color-text) bg-(--color-text) p-8 text-(--color-bg) md:p-10">
+          <RevealOnScroll className="rounded-modal mt-10 border border-t-2 border-(--color-border) border-t-(--color-accent) bg-(--color-surface) p-8 md:p-10">
             <div className="flex flex-col gap-4 md:grid md:grid-cols-[1.4fr_auto] md:items-center md:gap-6">
               <div className="space-y-3">
                 <h3 className="text-h2">{t("productLines.ctaTitle")}</h3>
-                <p className="text-[15px] leading-[1.6] text-(--color-bg)/75">
+                <p className="text-[15px] leading-[1.6] text-(--color-muted)">
                   {t("productLines.ctaBody")}
                 </p>
               </div>
@@ -349,13 +350,21 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   {t("demoCallout.body")}
                 </p>
               </div>
-              <Link
-                href="/demo/portal"
-                className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-(--color-wine) px-4 py-2 text-[13px] font-medium text-(--color-bg) transition-opacity hover:opacity-90"
-              >
-                {t("demoCallout.cta")}
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
+              <DemoChooserModal
+                triggerClassName="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-(--color-wine) px-4 py-2 text-[13px] font-medium text-(--color-bg) transition-opacity hover:opacity-90"
+                triggerSuffix=""
+                strings={{
+                  triggerLabel: t("demoCallout.cta"),
+                  title: tRaw("home.hero.demoModalTitle"),
+                  body: tRaw("home.hero.demoModalBody"),
+                  cases: tRaw.raw("home.hero.demoCases") as Array<{
+                    label: string;
+                    body: string;
+                    url: string;
+                  }>,
+                  cancel: tRaw("home.hero.demoCancel"),
+                }}
+              />
             </div>
           </RevealOnScroll>
         </div>

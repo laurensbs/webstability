@@ -1,8 +1,9 @@
 "use client";
 
 import * as React from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { Link } from "@/i18n/navigation";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 /**
@@ -37,6 +38,10 @@ export type DemoShellProps = {
   views: DemoView[];
   /** Render-prop: krijgt de actieve view-id, geeft het content-paneel terug. */
   children: (activeViewId: string) => React.ReactNode;
+  /** Optionele link naar de klant-portaal versie (bv. /demo/stalling/portaal).
+   * Toont een tweede knop in de top-banner zodat bezoekers tussen admin- en
+   * klant-kant kunnen wisselen. */
+  portalHref?: string;
 };
 
 export function DemoShell({
@@ -46,6 +51,7 @@ export function DemoShell({
   accentTextColor = "#fff",
   views,
   children,
+  portalHref,
 }: DemoShellProps) {
   const [active, setActive] = React.useState(views[0]?.id ?? "");
 
@@ -65,14 +71,26 @@ export function DemoShell({
             Klikken werkt, niets wordt opgeslagen.
           </span>
         </div>
-        <Link
-          href="/cases"
-          className="inline-flex items-center gap-1 font-medium text-(--color-text) hover:text-(--color-accent)"
-        >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          <span className="hidden sm:inline">Terug naar cases</span>
-          <span className="sm:hidden">Terug</span>
-        </Link>
+        <div className="flex items-center gap-3">
+          {portalHref ? (
+            <Link
+              href={portalHref as never}
+              className="inline-flex items-center gap-1 font-medium text-(--color-wine) hover:underline"
+            >
+              <span className="hidden sm:inline">Bekijk klantkant</span>
+              <span className="sm:hidden">Klant</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          ) : null}
+          <Link
+            href="/cases"
+            className="inline-flex items-center gap-1 font-medium text-(--color-text) hover:text-(--color-accent)"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">Cases</span>
+            <span className="sm:hidden">Terug</span>
+          </Link>
+        </div>
       </div>
 
       {/* Het admin-frame */}
@@ -157,9 +175,20 @@ export function DemoShell({
             })}
           </div>
 
-          {/* Content */}
+          {/* Content — fade + subtiele upward-y bij view-switch.
+              Zelfde easing als de rest van de site (RevealOnScroll). */}
           <main className="flex-1 overflow-y-auto bg-(--color-bg) p-6 md:p-8">
-            {children(active)}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {children(active)}
+              </motion.div>
+            </AnimatePresence>
           </main>
         </div>
       </div>
@@ -170,15 +199,32 @@ export function DemoShell({
 /**
  * Helper: kleine card met titel + waarde voor stats-row bovenin een dashboard.
  */
-export function StatCard({ label, value, hint }: { label: string; value: string; hint?: string }) {
+export function StatCard({
+  label,
+  value,
+  hint,
+  index = 0,
+}: {
+  label: string;
+  value: string;
+  hint?: string;
+  /** Index in de rij — bepaalt stagger-delay voor mount-fade. */
+  index?: number;
+}) {
   return (
-    <div className="rounded-card border border-(--color-border) bg-(--color-surface) p-4">
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.05 + index * 0.05, duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -2 }}
+      className="rounded-card border border-(--color-border) bg-(--color-surface) p-4 transition-shadow hover:shadow-sm"
+    >
       <p className="font-mono text-[10px] tracking-widest text-(--color-muted) uppercase">
         {label}
       </p>
       <p className="mt-1 text-[24px] leading-tight font-semibold text-(--color-text)">{value}</p>
       {hint ? <p className="mt-0.5 text-[11px] text-(--color-muted)">{hint}</p> : null}
-    </div>
+    </motion.div>
   );
 }
 
@@ -211,9 +257,16 @@ export function DemoTable<T>({
       </div>
       <div className="divide-y divide-(--color-border)">
         {rows.map((row, i) => (
-          <div
+          <motion.div
             key={i}
-            className="grid items-center px-4 py-3 text-[13px] text-(--color-text) hover:bg-(--color-bg)"
+            initial={{ opacity: 0, x: -4 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              delay: 0.04 + Math.min(i, 8) * 0.025,
+              duration: 0.22,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="grid cursor-pointer items-center px-4 py-3 text-[13px] text-(--color-text) transition-colors hover:bg-(--color-bg)"
             style={{ gridTemplateColumns: `repeat(${headers.length}, minmax(0, 1fr))` }}
           >
             {render(row, i).map((cell, ci) => (
@@ -221,7 +274,7 @@ export function DemoTable<T>({
                 {cell}
               </div>
             ))}
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

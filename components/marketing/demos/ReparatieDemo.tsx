@@ -70,6 +70,7 @@ const PARTS = [
 export function ReparatieDemo() {
   return (
     <DemoShell
+      portalHref="/demo/reparatie/portaal"
       brandName="Reparatie Spanje"
       brandSub="Werkplaats kantoor"
       accentColor="#3a2820"

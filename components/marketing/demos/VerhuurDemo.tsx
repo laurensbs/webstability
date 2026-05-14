@@ -72,6 +72,7 @@ const CARAVANS = [
 export function VerhuurDemo() {
   return (
     <DemoShell
+      portalHref="/demo/verhuur/portaal"
       brandName="Caravan Costa Brava"
       brandSub="Verhuur admin"
       accentColor="#1f4e3d"

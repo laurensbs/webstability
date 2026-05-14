@@ -1,7 +1,6 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { Mail, ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { LogoMark } from "@/components/shared/LogoMark";
 import { AmbientHalos } from "@/components/shared/AmbientHalos";
 import { MarkupText } from "@/components/animate/MarkupText";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
@@ -122,11 +121,8 @@ export async function Footer() {
             <div className="space-y-4">
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 text-[18px] font-extrabold tracking-[-0.045em] text-(--color-text)"
+                className="inline-flex items-center text-[18px] font-extrabold tracking-[-0.045em] text-(--color-text)"
               >
-                <span className="text-(--color-accent)">
-                  <LogoMark size={20} />
-                </span>
                 <span>
                   webstability<span className="text-(--color-accent)">.</span>
                 </span>
@@ -215,17 +211,6 @@ export async function Footer() {
                   {l.label}
                 </Link>
               ))}
-              <a
-                href="https://github.com/laurensbos"
-                target="_blank"
-                rel="noopener"
-                aria-label="GitHub"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-muted) transition-colors hover:border-(--color-accent)/40 hover:text-(--color-text) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                  <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.2.9 2.3v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3" />
-                </svg>
-              </a>
               <span className="inline-flex items-center">
                 <LangSwitcher />
               </span>

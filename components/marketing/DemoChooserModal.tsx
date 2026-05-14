@@ -8,7 +8,11 @@ import type { LucideIcon } from "lucide-react";
 type DemoCase = {
   label: string;
   body: string;
-  url: string;
+  /** Backwards-compat: oude single-link entry. Als `adminUrl`/`portalUrl`
+   * gezet zijn, krijgt de kaart twee mini-knoppen (klant + admin). */
+  url?: string;
+  adminUrl?: string;
+  portalUrl?: string;
 };
 
 type Strings = {
@@ -35,7 +39,18 @@ type Strings = {
 // Iconen per index — past bij de volgorde van demoCases in nl.json/es.json.
 const CASE_ICONS: LucideIcon[] = [Warehouse, Wrench, KeyRound];
 
-export function DemoChooserModal({ strings }: { strings: Strings }) {
+export function DemoChooserModal({
+  strings,
+  triggerClassName,
+  triggerSuffix = " →",
+}: {
+  strings: Strings;
+  /** Override de standaard underline-styling. Voor pill/button-stijl
+   * triggers (bv. cases-pagina demo-callout). */
+  triggerClassName?: string;
+  /** Tekst die achter de label komt (default ' →'). Pass '' voor knop-styling. */
+  triggerSuffix?: string;
+}) {
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -52,9 +67,13 @@ export function DemoChooserModal({ strings }: { strings: Strings }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="underline decoration-(--color-border) underline-offset-4 transition-colors hover:text-(--color-text) hover:decoration-(--color-wine)"
+        className={
+          triggerClassName ??
+          "underline decoration-(--color-border) underline-offset-4 transition-colors hover:text-(--color-text) hover:decoration-(--color-wine)"
+        }
       >
-        {strings.triggerLabel} →
+        {strings.triggerLabel}
+        {triggerSuffix}
       </button>
 
       <AnimatePresence>
@@ -94,24 +113,47 @@ export function DemoChooserModal({ strings }: { strings: Strings }) {
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {strings.cases.map((c, i) => {
                   const Icon = CASE_ICONS[i] ?? Warehouse;
+                  // Bepaal admin/portaal links — fallback op single-link
+                  // entry voor backwards-compat.
+                  const adminUrl = c.adminUrl ?? c.url;
+                  const portalUrl = c.portalUrl;
                   return (
-                    <a
-                      key={c.url}
-                      href={c.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setOpen(false)}
-                      className="group flex flex-col items-start gap-3 rounded-xl border border-(--color-border) bg-(--color-bg-warm)/40 p-5 transition-colors hover:border-(--color-wine)/40 hover:bg-(--color-wine)/5"
+                    <div
+                      key={c.label}
+                      className="flex flex-col gap-3 rounded-xl border border-(--color-border) bg-(--color-bg-warm)/40 p-5"
                     >
                       <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-(--color-wine)/10 text-(--color-wine)">
                         <Icon className="h-4 w-4" />
                       </span>
                       <p className="text-[15px] font-medium text-(--color-text)">{c.label}</p>
-                      <p className="text-[13px] leading-snug text-(--color-muted)">{c.body}</p>
-                      <span className="mt-auto inline-flex items-center gap-1 text-[13px] font-medium text-(--color-wine) transition-transform group-hover:translate-x-0.5">
-                        Open <ExternalLink className="h-3.5 w-3.5" />
-                      </span>
-                    </a>
+                      <p className="flex-1 text-[13px] leading-snug text-(--color-muted)">
+                        {c.body}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {adminUrl ? (
+                          <a
+                            href={adminUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setOpen(false)}
+                            className="inline-flex flex-1 items-center justify-center gap-1 rounded-md bg-(--color-wine) px-3 py-1.5 text-[12px] font-medium text-(--color-bg) transition-opacity hover:opacity-90"
+                          >
+                            Admin <ExternalLink className="h-3 w-3" />
+                          </a>
+                        ) : null}
+                        {portalUrl ? (
+                          <a
+                            href={portalUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setOpen(false)}
+                            className="inline-flex flex-1 items-center justify-center gap-1 rounded-md border border-(--color-wine)/40 px-3 py-1.5 text-[12px] font-medium text-(--color-wine) transition-colors hover:bg-(--color-wine)/10"
+                          >
+                            Klantkant <ExternalLink className="h-3 w-3" />
+                          </a>
+                        ) : null}
+                      </div>
+                    </div>
                   );
                 })}
               </div>

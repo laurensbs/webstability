@@ -300,17 +300,20 @@
         {
           "label": "Plataforma de almacenaje",
           "body": "Gestión de almacenaje con login de cliente, vista de plazas y contratos anuales.",
-          "url": "/demo/stalling"
+          "adminUrl": "/demo/stalling",
+          "portalUrl": "/demo/stalling/portaal"
         },
         {
           "label": "Portal de reparación",
           "body": "Flujo iPad para el taller. Los clientes notifican online, los mecánicos actualizan el estado en vivo.",
-          "url": "/demo/reparatie"
+          "adminUrl": "/demo/reparatie",
+          "portalUrl": "/demo/reparatie/portaal"
         },
         {
           "label": "Plataforma de alquiler",
           "body": "Plataforma de reservas con login de cliente y admin donde llegan reservas y pagos en vivo.",
-          "url": "/demo/verhuur"
+          "adminUrl": "/demo/verhuur",
+          "portalUrl": "/demo/verhuur/portaal"
         }
       ],
       "demoCancel": "Cerrar",

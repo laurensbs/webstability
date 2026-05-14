@@ -4,7 +4,6 @@ import { Link } from "@/i18n/navigation";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
-import { LivePulse } from "@/components/animate/LivePulse";
 
 const FOUNDER_PHOTO = "https://u.cubeupload.com/laurensbos/IMG1806.jpeg";
 
@@ -24,13 +23,6 @@ export async function Founder() {
               className="object-cover"
               priority={false}
             />
-            <div
-              className="rounded-card absolute right-6 bottom-6 left-6 flex items-center gap-2.5 px-4 py-3.5 text-[13px] text-(--color-bg) backdrop-blur-md"
-              style={{ background: "rgba(31, 27, 22, 0.85)" }}
-            >
-              <LivePulse size={2} />
-              {t("liveBadge")}
-            </div>
           </div>
         </RevealOnScroll>
 

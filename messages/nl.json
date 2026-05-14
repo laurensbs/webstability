@@ -300,17 +300,20 @@
         {
           "label": "Stallingsplatform",
           "body": "Stallingsbeheer met klantlogin, plekken-overzicht en jaarcontracten.",
-          "url": "/demo/stalling"
+          "adminUrl": "/demo/stalling",
+          "portalUrl": "/demo/stalling/portaal"
         },
         {
           "label": "Reparatie-portaal",
           "body": "iPad-flow voor de werkplaats. Klanten melden online, monteurs updaten de status live.",
-          "url": "/demo/reparatie"
+          "adminUrl": "/demo/reparatie",
+          "portalUrl": "/demo/reparatie/portaal"
         },
         {
           "label": "Verhuurplatform",
           "body": "Boekingsplatform met klantlogin en admin waar live boekingen en betalingen binnenkomen.",
-          "url": "/demo/verhuur"
+          "adminUrl": "/demo/verhuur",
+          "portalUrl": "/demo/verhuur/portaal"
         }
       ],
       "demoCancel": "Sluit",
