@@ -29,6 +29,68 @@
       "cta": "Haz tu pregunta"
     }
   },
+  "aanvragen": {
+    "eyebrow": "configura tu proyecto",
+    "title": "¿Qué buscas?",
+    "lede": "Elige un servicio — una web o tienda online con precio orientativo en cuatro semanas, o un proyecto a medida (alquiler, portal de cliente, reparación, admin) donde primero hacemos una llamada.",
+    "picker": {
+      "configFlowEyebrow": "Precio fijo · 4 semanas",
+      "customFlowEyebrow": "A medida · primero hablamos",
+      "options": {
+        "website": {
+          "label": "Crear sitio web",
+          "body": "Sitio de marketing con precio orientativo en 4 semanas. Suscripción todo incluido desde 65 €/mes."
+        },
+        "webshop": {
+          "label": "Crear tienda online",
+          "body": "Plataforma e-commerce con pagos, stock y gestión de pedidos. Precio orientativo de antemano."
+        },
+        "verhuur": {
+          "label": "Sistema de reservas alquiler",
+          "body": "Plataforma de reservas con login de cliente y admin para reservas, pagos y syncs de canales."
+        },
+        "klantportaal": {
+          "label": "Portal de cliente",
+          "body": "Portal propio para tus clientes — login, documentos, facturas, mensajes."
+        },
+        "reparatie": {
+          "label": "Portal de reparación",
+          "body": "Sistema de partes para talleres. Flujo iPad para mecánicos, estado en vivo para clientes."
+        },
+        "admin": {
+          "label": "Sistema admin a medida",
+          "body": "Panel interno para tu equipo. Dashboards, planning, clientes, facturación — totalmente a medida."
+        }
+      }
+    },
+    "custom": {
+      "kindLede": "Los proyectos a medida empiezan con una llamada — un precio orientativo desde un formulario no ayuda. Cuéntanos brevemente qué necesitas; planificamos una breve presentación y recibirás un enfoque honesto en pocos días.",
+      "form": {
+        "name": "Nombre",
+        "namePlaceholder": "Nombre y apellido",
+        "email": "Email",
+        "emailPlaceholder": "nombre@empresa.es",
+        "company": "Empresa (opcional)",
+        "companyPlaceholder": "Nombre de tu empresa",
+        "message": "Cuéntanos brevemente qué buscas",
+        "messagePlaceholder": "P.ej. un sistema de reservas para 8 casas vacacionales, o partes para 4 mecánicos…"
+      },
+      "back": "← Elegir otro servicio",
+      "submit": "Enviar intake",
+      "submitting": "Enviando…",
+      "success": {
+        "title": "Gracias — te contactamos",
+        "body": "Tu intake nos ha llegado. Reserva ya una llamada si te resulta práctico — si no, te contactamos en pocos días.",
+        "cta": "Reservar llamada"
+      },
+      "errors": {
+        "missing": "Rellena tu nombre, email y descripción breve.",
+        "email": "Eso no parece un email válido.",
+        "rate": "Acabas de enviar algo — vuelve a intentarlo en un minuto.",
+        "generic": "Algo salió mal. Vuelve a intentarlo o escríbenos directamente."
+      }
+    }
+  },
   "configurator": {
     "eyebrow": "configura tu proyecto",
     "title": "Solicita tu web o tienda online",

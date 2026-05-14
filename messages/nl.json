@@ -29,6 +29,68 @@
       "cta": "Stel je vraag"
     }
   },
+  "aanvragen": {
+    "eyebrow": "stel je project samen",
+    "title": "Wat zoek je?",
+    "lede": "Kies een dienst — een website of webshop met richtprijs in vier weken, of een maatwerk-traject (verhuur, klantportaal, reparatie, admin) waar we eerst kort kennismaken.",
+    "picker": {
+      "configFlowEyebrow": "Vaste prijs · 4 weken",
+      "customFlowEyebrow": "Maatwerk · eerst kennismaken",
+      "options": {
+        "website": {
+          "label": "Website laten maken",
+          "body": "Marketing-site met richtprijs in 4 weken. All-inclusive abonnement vanaf €65/mnd."
+        },
+        "webshop": {
+          "label": "Webshop laten maken",
+          "body": "E-commerce platform met betalingen, voorraad en bestelbeheer. Richtprijs vooraf."
+        },
+        "verhuur": {
+          "label": "Verhuur boekingssysteem",
+          "body": "Boekingsplatform met klantlogin en admin voor live boekingen, betalingen, kanaal-syncs."
+        },
+        "klantportaal": {
+          "label": "Klantportaal laten bouwen",
+          "body": "Eigen portaal voor je klanten — inloggen, documenten, facturen, berichten."
+        },
+        "reparatie": {
+          "label": "Reparatie portaal",
+          "body": "Werkbon-systeem voor garages of werkplaatsen. iPad-flow voor monteurs, status live voor klanten."
+        },
+        "admin": {
+          "label": "Admin systeem op maat",
+          "body": "Intern paneel voor je team. Dashboards, planning, klanten, facturatie — geheel op maat."
+        }
+      }
+    },
+    "custom": {
+      "kindLede": "Maatwerk-trajecten beginnen bij een gesprek — een richtprijs uit een formulier helpt niemand. Vertel kort wat je nodig hebt; we plannen een korte kennismaking en jij krijgt binnen een paar dagen een eerlijke aanpak.",
+      "form": {
+        "name": "Naam",
+        "namePlaceholder": "Voor- en achternaam",
+        "email": "E-mail",
+        "emailPlaceholder": "naam@bedrijf.nl",
+        "company": "Bedrijfsnaam (optioneel)",
+        "companyPlaceholder": "Naam van je bedrijf",
+        "message": "Vertel kort wat je zoekt",
+        "messagePlaceholder": "Bv. een boekingssysteem voor 8 vakantiehuizen, of een werkbon-systeem voor 4 monteurs…"
+      },
+      "back": "← Andere dienst kiezen",
+      "submit": "Stuur intake",
+      "submitting": "Versturen…",
+      "success": {
+        "title": "Bedankt — we nemen contact op",
+        "body": "Je intake is bij ons binnen. Plan meteen een kennismaking in als je dat handig vindt — anders nemen wij binnen een paar dagen contact op.",
+        "cta": "Plan kennismaking"
+      },
+      "errors": {
+        "missing": "Vul je naam, e-mail en korte beschrijving in.",
+        "email": "Dat lijkt geen geldig e-mailadres.",
+        "rate": "Je hebt zojuist al iets verstuurd — probeer over een minuut.",
+        "generic": "Er ging iets mis. Probeer het opnieuw of mail rechtstreeks."
+      }
+    }
+  },
   "configurator": {
     "eyebrow": "stel je project samen",
     "title": "Vraag je website of webshop aan",
