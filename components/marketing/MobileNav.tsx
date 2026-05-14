@@ -9,6 +9,7 @@ import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import type { MegaMenuStrings } from "@/components/marketing/NavMegaMenu";
 import { VERTICAL_SLUGS } from "@/lib/verticals";
 import { VERTICAL_ICONS } from "@/lib/vertical-icons";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 
 type PlainLink = { href: string; label: string };
 
@@ -32,6 +33,7 @@ export function MobileNav({
   loginLabel,
   liveBadge,
   tagline,
+  locale,
 }: {
   servicesLabel: string;
   casesLabel: string;
@@ -42,8 +44,13 @@ export function MobileNav({
   loginLabel: string;
   liveBadge: string;
   tagline: string;
+  locale?: string;
 }) {
   const [open, setOpen] = React.useState(false);
+  // Cal-popup leeft als sibling — wordt deferred geopend nadat de drawer
+  // dicht is, anders krijgen Radix' twee dialogs een focus-trap-conflict
+  // op mobiel (zie comment bij de CTA hieronder).
+  const [calOpen, setCalOpen] = React.useState(false);
   const pathname = usePathname();
   const reduce = useReducedMotion() ?? false;
   const close = React.useCallback(() => setOpen(false), []);
@@ -229,11 +236,10 @@ export function MobileNav({
             </motion.div>
           </nav>
 
-          {/* Footer — login + lang + CTA. De CTA is hier bewust een gewone
-              link naar /contact (waar de Cal-embed leeft), géén CalPopupTrigger:
-              die opent een Radix Dialog ín deze al-open Radix Dialog, en twee
-              gestapelde dialogs geven focus-trap- en scroll-lock-conflicten op
-              mobiel. Op desktop blijft de popup-CTA wél staan. */}
+          {/* Footer — login + lang + CTA. CTA opent dezelfde Cal-popup als
+              op desktop, maar via een deferred handoff: drawer eerst dicht,
+              ~250ms later popup open. Twee gestapelde Radix Dialogs geven
+              anders focus-trap- en scroll-lock-conflicten op mobiel. */}
           <div className="space-y-4 border-t border-(--color-border) px-6 py-5">
             <div className="flex items-center justify-between">
               <Link
@@ -246,9 +252,12 @@ export function MobileNav({
               </Link>
               <LangSwitcher />
             </div>
-            <Link
-              href={{ pathname: "/contact" }}
-              onClick={close}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                window.setTimeout(() => setCalOpen(true), 250);
+              }}
               className="group hover:shadow-glow inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-(--color-accent) px-4 py-3 text-[14px] font-medium text-white transition-all hover:bg-(--color-accent)/90"
             >
               {ctaLabel}
@@ -257,10 +266,14 @@ export function MobileNav({
                 strokeWidth={2}
                 aria-hidden
               />
-            </Link>
+            </button>
           </div>
         </Dialog.Content>
       </Dialog.Portal>
+
+      {/* Sibling-popup — controlled door de mobile-nav state. hideTrigger=true
+          zodat alleen de Dialog rendert, geen extra knop. */}
+      <CalPopupTrigger locale={locale} open={calOpen} onOpenChange={setCalOpen} hideTrigger />
     </Dialog.Root>
   );
 }

@@ -25,8 +25,10 @@ import {
   VERTICAL_SLUGS,
   isVerticalSlug,
   CONFIGURABLE_VERTICALS,
+  VERTICAL_DEMO_URLS,
   type VerticalSlug,
 } from "@/lib/verticals";
+import { ExternalLink } from "lucide-react";
 
 const SITE_URL = process.env.AUTH_URL ?? "https://webstability.eu";
 
@@ -203,6 +205,21 @@ export default async function VerticalPage({
               >
                 {c.ctaButton}
               </CalPopupTrigger>
+              {VERTICAL_DEMO_URLS[vertical] ? (
+                <a
+                  href={VERTICAL_DEMO_URLS[vertical]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-(--color-wine) bg-(--color-wine)/8 px-5 py-2.5 text-[14px] font-medium text-(--color-wine) transition-colors hover:bg-(--color-wine)/15"
+                >
+                  <span
+                    aria-hidden
+                    className="inline-block h-1.5 w-1.5 rounded-full bg-(--color-wine)"
+                  />
+                  {locale === "es" ? "Abrir demo en vivo" : "Open live demo"}
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              ) : null}
             </div>
           </RevealOnScroll>
 

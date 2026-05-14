@@ -24,6 +24,7 @@ import {
 } from "@/lib/pricing";
 import { submitProjectRequest } from "@/app/actions/configurator";
 import { ConfettiBurst } from "@/components/animate/ConfettiBurst";
+import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
 
 type StepKey = "kind" | "scope" | "look" | "language" | "options" | "details";
 const ALL_STEPS: StepKey[] = ["kind", "scope", "look", "language", "options", "details"];
@@ -431,19 +432,17 @@ export function ProjectConfigurator({
                 </div>
                 {/* "Te complex"-uitweg — een verhuur-/admin-/reparatie-platform
                     past niet in dit model; dan is een gesprek beter dan een
-                    richtprijs uit een formulier. */}
+                    richtprijs uit een formulier. Opent direct de Cal-popup
+                    i.p.v. een redirect naar /contact: één klik minder en de
+                    bezoeker blijft in de flow. */}
                 <p className="mt-5 text-[13px] text-(--color-muted)">
                   {strings.kindTooComplexLead}{" "}
-                  <a
-                    href={
-                      locale === "es"
-                        ? "/es/contacto?ctx=configurator"
-                        : "/contact?ctx=configurator"
-                    }
+                  <CalPopupTrigger
+                    locale={locale}
                     className="font-medium text-(--color-accent) underline decoration-(--color-accent)/40 underline-offset-2 hover:decoration-(--color-accent)"
                   >
                     {strings.kindTooComplexLink}
-                  </a>
+                  </CalPopupTrigger>
                 </p>
               </StepShell>
             ) : null}

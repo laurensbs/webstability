@@ -38,14 +38,39 @@ export function CalPopupTrigger({
   children,
   locale,
   className,
+  open: controlledOpen,
+  onOpenChange: controlledOnOpenChange,
+  hideTrigger,
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   locale?: string;
   /** Aangeleverde wrapper-classNames voor de trigger button — zo
    * kunnen we de bestaande nav-CTA-styling 1-op-1 hergebruiken. */
   className?: string;
+  /** Optioneel controlled open-state — laat een ouder-component de
+   * popup programmatisch openen (bv. mobile nav: drawer dicht →
+   * deferred Cal popup open, om gestapelde-Dialog focus-trap-conflicten
+   * te omzeilen). Combineer met `hideTrigger` om alleen het dialog
+   * zelf te renderen. */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  /** Verberg de standaard trigger button — gebruik als de Dialog van
+   * buiten geopend wordt. */
+  hideTrigger?: boolean;
 }) {
-  const [open, setOpen] = React.useState(false);
+  const [internalOpen, setInternalOpen] = React.useState(false);
+  const isControlled = controlledOpen !== undefined;
+  const open = isControlled ? controlledOpen : internalOpen;
+  const setOpen = React.useCallback(
+    (v: boolean) => {
+      if (isControlled) {
+        controlledOnOpenChange?.(v);
+      } else {
+        setInternalOpen(v);
+      }
+    },
+    [isControlled, controlledOnOpenChange],
+  );
 
   // Brand-styling (cal-brand → terracotta, achtergrond → cream) toepassen
   // zodra de Cal-bundle in de pagina staat. Eén keer per mount; faalt
@@ -67,8 +92,10 @@ export function CalPopupTrigger({
   }, [open]);
 
   // Geen Cal-link in env? Trigger wordt een mailto-fallback. Voorkomt
-  // dat klikkers een leeg dialog krijgen.
+  // dat klikkers een leeg dialog krijgen. (In controlled-mode zonder
+  // trigger renderen we niets — de ouder kan een eigen fallback tonen.)
   if (!CAL_LINK) {
+    if (hideTrigger) return null;
     return (
       <a href="mailto:hello@webstability.eu" className={className}>
         {children}
@@ -78,11 +105,13 @@ export function CalPopupTrigger({
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
-      <Dialog.Trigger asChild>
-        <button type="button" className={className}>
-          {children}
-        </button>
-      </Dialog.Trigger>
+      {hideTrigger ? null : (
+        <Dialog.Trigger asChild>
+          <button type="button" className={className}>
+            {children}
+          </button>
+        </Dialog.Trigger>
+      )}
 
       <Dialog.Portal>
         <Dialog.Overlay className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out fixed inset-0 z-50 bg-(--color-wine)/40 backdrop-blur-sm" />

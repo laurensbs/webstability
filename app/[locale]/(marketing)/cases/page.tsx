@@ -370,75 +370,100 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             <p className="text-(--color-muted)">{t("clientCases.lede")}</p>
           </RevealOnScroll>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            {clientCases.map((item, i) => (
-              <RevealOnScroll
-                key={item.anchor}
-                delay={i * 0.06}
-                className="rounded-modal overflow-hidden border border-(--color-border) bg-(--color-surface)"
-              >
-                <article id={item.anchor} className="flex h-full scroll-mt-24 flex-col">
-                  <div className="relative">
-                    <CaseScreenshot url={item.url} alt={`${item.name} screenshot`} />
-                    {item.logoUrl ? (
-                      <div className="shadow-card absolute top-3 left-3 flex h-11 items-center rounded-[10px] bg-white/95 px-2.5 py-1.5 backdrop-blur">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={item.logoUrl}
-                          alt={`${item.name} logo`}
-                          loading="lazy"
-                          className="max-h-7 w-auto object-contain"
-                        />
-                      </div>
-                    ) : null}
-                  </div>
-                  <div className="flex h-full flex-col p-8">
-                    <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
-                      {item.tagline}
-                    </p>
-                    <h3 className="text-h2 mt-3">{item.name}</h3>
-                    <p className="mt-4 text-[15px] leading-[1.65] text-(--color-muted)">
-                      {item.what}
-                    </p>
-                    {item.stats && item.stats.length > 0 ? (
-                      <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[11px] tracking-wider text-(--color-muted) uppercase">
-                        {item.stats.map((s, idx) => (
-                          <li key={idx} className="flex items-center gap-3">
-                            {idx > 0 ? (
-                              <span aria-hidden className="text-(--color-border)">
-                                ·
-                              </span>
-                            ) : null}
-                            <span>{s}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : null}
-                    <p className="mt-4 border-l-2 border-(--color-accent) pl-4 font-serif text-[17px] italic">
-                      {item.result}
-                    </p>
-                    <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-6 text-[14px] font-medium">
-                      {item.detailHref ? (
-                        <Link
-                          href={{ pathname: item.detailHref as never }}
+          {/* Bij 1 item: brede feature-card (screenshot links, content rechts).
+              Vanaf 2+ items valt-back op het 2-koloms grid zoals voorheen.
+              Voorkomt half-lege rij bij één case. */}
+          <div className={clientCases.length === 1 ? "" : "grid gap-6 md:grid-cols-2"}>
+            {clientCases.map((item, i) => {
+              const isSolo = clientCases.length === 1;
+              return (
+                <RevealOnScroll
+                  key={item.anchor}
+                  delay={i * 0.06}
+                  className={
+                    isSolo
+                      ? "rounded-modal hover:shadow-floating overflow-hidden border border-t-2 border-(--color-border) border-t-(--color-accent) bg-(--color-surface) transition-all duration-300 md:grid md:grid-cols-[1.1fr_1fr] md:gap-0"
+                      : "rounded-modal overflow-hidden border border-(--color-border) bg-(--color-surface)"
+                  }
+                >
+                  <article
+                    id={item.anchor}
+                    className={isSolo ? "contents" : "flex h-full scroll-mt-24 flex-col"}
+                  >
+                    <div className={isSolo ? "relative md:order-1" : "relative"}>
+                      <CaseScreenshot
+                        url={item.url}
+                        alt={`${item.name} screenshot`}
+                        ratio={isSolo ? "4/3" : undefined}
+                        className={isSolo ? "rounded-none border-0 md:h-full" : undefined}
+                      />
+                      {item.logoUrl ? (
+                        <div className="shadow-card absolute top-3 left-3 flex h-11 items-center rounded-[10px] bg-white/95 px-2.5 py-1.5 backdrop-blur">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={item.logoUrl}
+                            alt={`${item.name} logo`}
+                            loading="lazy"
+                            className="max-h-7 w-auto object-contain"
+                          />
+                        </div>
+                      ) : null}
+                    </div>
+                    <div
+                      id={isSolo ? item.anchor : undefined}
+                      className={
+                        isSolo
+                          ? "flex scroll-mt-24 flex-col p-8 md:order-2 md:p-10"
+                          : "flex h-full flex-col p-8"
+                      }
+                    >
+                      <p className="font-mono text-[11px] tracking-widest text-(--color-accent) uppercase">
+                        {item.tagline}
+                      </p>
+                      <h3 className="text-h2 mt-3">{item.name}</h3>
+                      <p className="mt-4 text-[15px] leading-[1.65] text-(--color-muted)">
+                        {item.what}
+                      </p>
+                      {item.stats && item.stats.length > 0 ? (
+                        <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[11px] tracking-wider text-(--color-muted) uppercase">
+                          {item.stats.map((s, idx) => (
+                            <li key={idx} className="flex items-center gap-3">
+                              {idx > 0 ? (
+                                <span aria-hidden className="text-(--color-border)">
+                                  ·
+                                </span>
+                              ) : null}
+                              <span>{s}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      <p className="mt-4 border-l-2 border-(--color-accent) pl-4 font-serif text-[17px] italic">
+                        {item.result}
+                      </p>
+                      <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-6 text-[14px] font-medium">
+                        {item.detailHref ? (
+                          <Link
+                            href={{ pathname: item.detailHref as never }}
+                            className="inline-flex items-center gap-1.5 text-(--color-accent) hover:underline"
+                          >
+                            {t("productLines.viewCaseLabel")} <ArrowRight className="h-3.5 w-3.5" />
+                          </Link>
+                        ) : null}
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 text-(--color-accent) hover:underline"
                         >
-                          {t("productLines.viewCaseLabel")} <ArrowRight className="h-3.5 w-3.5" />
-                        </Link>
-                      ) : null}
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-(--color-accent) hover:underline"
-                      >
-                        {item.cta} <ExternalLink className="h-3.5 w-3.5" />
-                      </a>
+                          {item.cta} <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </article>
-              </RevealOnScroll>
-            ))}
+                  </article>
+                </RevealOnScroll>
+              );
+            })}
           </div>
         </div>
       </section>
