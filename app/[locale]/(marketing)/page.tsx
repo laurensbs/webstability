@@ -15,7 +15,6 @@ export async function generateMetadata({
   const { locale } = await params;
   return pageMetadata(locale, "home");
 }
-import { LogoStrip } from "@/components/marketing/LogoStrip";
 import { HowItWorksWrapper } from "@/components/marketing/HowItWorksWrapper";
 import { StudioStatement } from "@/components/marketing/StudioStatement";
 import { Services } from "@/components/marketing/Services";
@@ -36,7 +35,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <JsonLd data={organizationLd(locale)} />
       <JsonLd data={localBusinessLd(locale)} />
       <Hero />
-      <LogoStrip />
       <HowItWorksWrapper />
       <StudioStatement />
       <Services />

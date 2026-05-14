@@ -6,7 +6,7 @@ import { AnimatedHeading } from "@/components/animate/AnimatedHeading";
 import { Eyebrow } from "@/components/animate/Eyebrow";
 import { LivePulse } from "@/components/animate/LivePulse";
 
-const FOUNDER_PHOTO = "https://u.cubeupload.com/laurensbos/fc7278a70fe64fb6aa6a.jpg";
+const FOUNDER_PHOTO = "https://u.cubeupload.com/laurensbos/IMG1806.jpeg";
 
 export async function Founder() {
   const t = await getTranslations("home.founder");
