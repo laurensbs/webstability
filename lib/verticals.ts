@@ -24,19 +24,18 @@ export const CONFIGURABLE_VERTICALS = new Set<string>([
   "webshop-laten-maken",
 ]);
 
-/** Mapping van vertical-slug naar de demo die het meest representatief
- * is voor die dienst. Gebruikt op de vertical-pagina om naast de "plan
- * een gesprek"-CTA een "open live demo"-knop te tonen. URL's zijn
- * placeholders zolang de Vercel-deploys nog niet live staan; vervang
- * door de echte preview-URL na deploy.
+/** Mapping van vertical-slug naar de interne demo-pagina die het meest
+ * representatief is voor die dienst. Gebruikt op de vertical-pagina om
+ * naast de "plan een gesprek"-CTA een "open live demo"-knop te tonen.
+ * Interne paden i.p.v. externe URL's — geen Vercel-deploy of DNS nodig.
  *
  * Niet elke vertical heeft een demo — website/webshop zijn pure
  * marketing-cases zonder portaal of admin om te demonstreren. */
 export const VERTICAL_DEMO_URLS: Record<string, string> = {
-  "verhuur-boekingssysteem": "https://demo-verhuur.example.vercel.app",
-  "reparatie-portaal": "https://demo-reparatie.example.vercel.app",
-  "klantportaal-laten-bouwen": "https://demo-stalling.example.vercel.app",
-  "admin-systeem-op-maat": "https://demo-stalling.example.vercel.app",
+  "verhuur-boekingssysteem": "/demo/verhuur",
+  "reparatie-portaal": "/demo/reparatie",
+  "klantportaal-laten-bouwen": "/demo/stalling",
+  "admin-systeem-op-maat": "/demo/stalling",
 };
 
 export type VerticalSlug = (typeof VERTICAL_SLUGS)[number];

@@ -300,17 +300,17 @@
         {
           "label": "Plataforma de almacenaje",
           "body": "Gestión de almacenaje con login de cliente, vista de plazas y contratos anuales.",
-          "url": "https://demo-stalling.example.vercel.app"
+          "url": "/demo/stalling"
         },
         {
           "label": "Portal de reparación",
           "body": "Flujo iPad para el taller. Los clientes notifican online, los mecánicos actualizan el estado en vivo.",
-          "url": "https://demo-reparatie.example.vercel.app"
+          "url": "/demo/reparatie"
         },
         {
           "label": "Plataforma de alquiler",
           "body": "Plataforma de reservas con login de cliente y admin donde llegan reservas y pagos en vivo.",
-          "url": "https://demo-verhuur.example.vercel.app"
+          "url": "/demo/verhuur"
         }
       ],
       "demoCancel": "Cerrar",
@@ -1959,7 +1959,7 @@
           "name": "Caravanverhuurspanje",
           "url": "https://caravanverhuurspanje.com",
           "detailHref": "/cases/caravanverhuurspanje",
-          "demoUrl": "https://demo-verhuur.example.vercel.app",
+          "demoUrl": "/demo/verhuur",
           "logoUrl": "https://u.cubeupload.com/laurensbos/goedelogozwartverhuu.png",
           "tagline": "Plataforma de alquiler · activa en España",
           "what": "Plataforma de reservas pública con login de cliente y un admin donde llegan reservas, pagos y syncs de canales en vivo. Funciona a diario en producción: los clientes reservan solos, el equipo lo ve todo en un solo panel.",
@@ -1974,7 +1974,7 @@
           "name": "Caravanreparatiespanje",
           "url": "https://caravanreparatiespanje.vercel.app",
           "detailHref": "/es/cases/caravanreparatiespanje",
-          "demoUrl": "https://demo-reparatie.example.vercel.app",
+          "demoUrl": "/demo/reparatie",
           "logoUrl": "https://u.cubeupload.com/laurensbos/Ontwerpzondertitel1.png",
           "tagline": "Plataforma de reparación · activa en España",
           "what": "Los clientes reportan su reparación online. La orden llega directa a iPads en el taller — sin papeles sueltos, los mecánicos ven qué hay que hacer en cada vehículo y actualizan el estado mientras trabajan.",
@@ -1987,7 +1987,7 @@
           "anchor": "caravanstallingspanje",
           "name": "Caravanstallingspanje",
           "url": "https://caravanstallingspanje.com",
-          "demoUrl": "https://demo-stalling.example.vercel.app",
+          "demoUrl": "/demo/stalling",
           "logoUrl": "https://u.cubeupload.com/laurensbos/IMG7081.png",
           "videoUrl": "https://vimeo.com/1190126706/dae28da598",
           "tagline": "Plataforma de almacenaje · activa en España",
@@ -2137,7 +2137,7 @@
           "primary": "Reserva una llamada",
           "secondary": "Ver la página de alquiler",
           "demoLabel": "Abrir demo en vivo",
-          "demoUrl": "https://demo-verhuur.example.vercel.app"
+          "demoUrl": "/demo/verhuur"
         },
         "back": "← Ver los demás casos"
       },
@@ -2222,7 +2222,7 @@
           "primary": "Reserva una llamada",
           "secondary": "Ver todos los servicios",
           "demoLabel": "Abrir demo en vivo",
-          "demoUrl": "https://demo-reparatie.example.vercel.app"
+          "demoUrl": "/demo/reparatie"
         },
         "back": "← Ver los demás casos"
       }
