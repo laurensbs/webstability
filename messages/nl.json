@@ -1939,12 +1939,14 @@
       "title": "Productlijnen",
       "lede": "Drie platforms die we zelf in de lucht houden voor de NL+ES markt. Andere bedrijven krijgen dezelfde basis als startpunt — eerste werkende versie in 4 weken voor €5–8k vaste prijs, daarna doorbouwen via Atelier + Build Custom.",
       "viewCaseLabel": "Bekijk volledig case",
+      "tryDemoLabel": "Open live demo",
       "items": [
         {
           "anchor": "caravanverhuurspanje",
           "name": "Caravanverhuurspanje",
           "url": "https://caravanverhuurspanje.com",
           "detailHref": "/cases/caravanverhuurspanje",
+          "demoUrl": "https://demo-verhuur.webstability.nl",
           "logoUrl": "https://u.cubeupload.com/laurensbos/goedelogozwartverhuu.png",
           "tagline": "Verhuurplatform · live in Spanje",
           "what": "Publiek boekingsplatform met klantlogin en een admin waar live boekingen, betalingen en kanaal-syncs binnenkomen. Draait dagelijks productioneel: klanten boeken zelf, het team ziet alles in één paneel.",
@@ -1959,6 +1961,7 @@
           "name": "Caravanreparatiespanje",
           "url": "https://caravanreparatiespanje.vercel.app",
           "detailHref": "/cases/caravanreparatiespanje",
+          "demoUrl": "https://demo-reparatie.webstability.nl",
           "logoUrl": "https://u.cubeupload.com/laurensbos/Ontwerpzondertitel1.png",
           "tagline": "Reparatieplatform · live in Spanje",
           "what": "Klanten melden hun reparatie online. De order belandt direct op iPads in de werkplaats — geen losse papiertjes meer, monteurs zien wat er aan welk voertuig moet gebeuren en updaten de status terwijl ze werken.",
@@ -1971,6 +1974,7 @@
           "anchor": "caravanstallingspanje",
           "name": "Caravanstallingspanje",
           "url": "https://caravanstallingspanje.com",
+          "demoUrl": "https://demo-stalling.webstability.nl",
           "logoUrl": "https://u.cubeupload.com/laurensbos/IMG7081.png",
           "videoUrl": "https://vimeo.com/1190126706/dae28da598",
           "tagline": "Stallingsplatform · live in Spanje",
@@ -2114,7 +2118,9 @@
           "title": "Iets vergelijkbaars in gedachten?",
           "body": "Eerste gesprek is gratis — dertig minuten, geen pitch-deck. Aan het einde weet je of het bij je past en wat de kortste route is.",
           "primary": "Plan een kennismaking",
-          "secondary": "Bekijk de verhuur-pagina"
+          "secondary": "Bekijk de verhuur-pagina",
+          "demoLabel": "Open live demo",
+          "demoUrl": "https://demo-verhuur.webstability.nl"
         },
         "back": "← Bekijk de andere cases"
       },
@@ -2197,7 +2203,9 @@
           "title": "Een werkplaats of dienstverlening met dezelfde chaos?",
           "body": "Eerste gesprek is gratis — dertig minuten, geen pitch-deck. Aan het einde weet je of een portaal op maat bij je past en wat de kortste route is.",
           "primary": "Plan een kennismaking",
-          "secondary": "Bekijk alle diensten"
+          "secondary": "Bekijk alle diensten",
+          "demoLabel": "Open live demo",
+          "demoUrl": "https://demo-reparatie.webstability.nl"
         },
         "back": "← Bekijk de andere cases"
       }

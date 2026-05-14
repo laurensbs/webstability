@@ -1939,12 +1939,14 @@
       "title": "Líneas de producto",
       "lede": "Tres plataformas que mantenemos en marcha para el mercado NL+ES. Otras empresas reciben la misma base como punto de partida — primera versión funcional en 4 semanas a precio fijo 5–8 k €, después ampliación vía Atelier + Build Custom.",
       "viewCaseLabel": "Ver caso completo",
+      "tryDemoLabel": "Abrir demo en vivo",
       "items": [
         {
           "anchor": "caravanverhuurspanje",
           "name": "Caravanverhuurspanje",
           "url": "https://caravanverhuurspanje.com",
           "detailHref": "/cases/caravanverhuurspanje",
+          "demoUrl": "https://demo-verhuur.webstability.nl",
           "logoUrl": "https://u.cubeupload.com/laurensbos/goedelogozwartverhuu.png",
           "tagline": "Plataforma de alquiler · activa en España",
           "what": "Plataforma de reservas pública con login de cliente y un admin donde llegan reservas, pagos y syncs de canales en vivo. Funciona a diario en producción: los clientes reservan solos, el equipo lo ve todo en un solo panel.",
@@ -1959,6 +1961,7 @@
           "name": "Caravanreparatiespanje",
           "url": "https://caravanreparatiespanje.vercel.app",
           "detailHref": "/es/cases/caravanreparatiespanje",
+          "demoUrl": "https://demo-reparatie.webstability.nl",
           "logoUrl": "https://u.cubeupload.com/laurensbos/Ontwerpzondertitel1.png",
           "tagline": "Plataforma de reparación · activa en España",
           "what": "Los clientes reportan su reparación online. La orden llega directa a iPads en el taller — sin papeles sueltos, los mecánicos ven qué hay que hacer en cada vehículo y actualizan el estado mientras trabajan.",
@@ -1971,6 +1974,7 @@
           "anchor": "caravanstallingspanje",
           "name": "Caravanstallingspanje",
           "url": "https://caravanstallingspanje.com",
+          "demoUrl": "https://demo-stalling.webstability.nl",
           "logoUrl": "https://u.cubeupload.com/laurensbos/IMG7081.png",
           "videoUrl": "https://vimeo.com/1190126706/dae28da598",
           "tagline": "Plataforma de almacenaje · activa en España",
@@ -2118,7 +2122,9 @@
           "title": "¿Algo similar en mente?",
           "body": "Primera llamada gratis — treinta minutos, sin presentación comercial. Al final sabes si encaja y cuál es la ruta más corta.",
           "primary": "Reserva una llamada",
-          "secondary": "Ver la página de alquiler"
+          "secondary": "Ver la página de alquiler",
+          "demoLabel": "Abrir demo en vivo",
+          "demoUrl": "https://demo-verhuur.webstability.nl"
         },
         "back": "← Ver los demás casos"
       },
@@ -2201,7 +2207,9 @@
           "title": "¿Un taller o un servicio con el mismo caos?",
           "body": "Primera llamada gratis — treinta minutos, sin presentación comercial. Al final sabes si un portal a medida encaja y cuál es la ruta más corta.",
           "primary": "Reserva una llamada",
-          "secondary": "Ver todos los servicios"
+          "secondary": "Ver todos los servicios",
+          "demoLabel": "Abrir demo en vivo",
+          "demoUrl": "https://demo-reparatie.webstability.nl"
         },
         "back": "← Ver los demás casos"
       }

@@ -37,6 +37,10 @@ type ProductLineItem = {
    * Als gezet wordt de hoofd-CTA een interne Link i.p.v. externe
    * "bekijk live"-link, en gaat de externe URL naar een tweede pill. */
   detailHref?: string;
+  /** Optioneel: live demo subdomein (bv. https://demo-stalling.webstability.nl).
+   * Als gezet wordt naast de bestaande CTA's een 'Open live demo' knop
+   * gerenderd. Geanonimiseerde demo van het echte product. */
+  demoUrl?: string;
   tagline: string;
   what: string;
   for: string;
@@ -168,6 +172,21 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                       <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   ) : null}
+                  {featureLine.demoUrl ? (
+                    <a
+                      href={featureLine.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-(--color-wine) bg-(--color-wine)/8 px-4 py-2 text-[13px] font-medium text-(--color-wine) transition-colors hover:bg-(--color-wine)/15"
+                    >
+                      <span
+                        aria-hidden
+                        className="inline-block h-1.5 w-1.5 rounded-full bg-(--color-wine)"
+                      />
+                      {t("productLines.tryDemoLabel")}
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  ) : null}
                   <a
                     href={featureLine.url}
                     target="_blank"
@@ -270,6 +289,20 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                         >
                           {t("productLines.viewCaseLabel")} <ArrowRight className="h-3.5 w-3.5" />
                         </Link>
+                      ) : null}
+                      {item.demoUrl ? (
+                        <a
+                          href={item.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-(--color-wine) hover:underline"
+                        >
+                          <span
+                            aria-hidden
+                            className="inline-block h-1.5 w-1.5 rounded-full bg-(--color-wine)"
+                          />
+                          {t("productLines.tryDemoLabel")} <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
                       ) : null}
                       <a
                         href={item.url}

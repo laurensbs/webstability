@@ -244,6 +244,19 @@ export default async function CaravanverhuurDetailPage({
               {t("cta.primary")}
               <ArrowRight className="h-3.5 w-3.5" />
             </CalPopupTrigger>
+            <a
+              href={t("cta.demoUrl")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-(--color-wine) bg-(--color-wine)/8 px-5 py-2.5 text-[14px] font-medium text-(--color-wine) transition-colors hover:bg-(--color-wine)/15"
+            >
+              <span
+                aria-hidden
+                className="inline-block h-1.5 w-1.5 rounded-full bg-(--color-wine)"
+              />
+              {t("cta.demoLabel")}
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
             <Button asChild variant="outline" size="lg">
               <Link href="/verhuur">
                 {t("cta.secondary")}
