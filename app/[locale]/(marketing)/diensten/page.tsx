@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink, Check } from "lucide-react";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
@@ -14,6 +14,7 @@ import { NotForSection } from "@/components/marketing/diensten/NotForSection";
 import type { Metadata } from "next";
 import { pageMetadata, serviceLd, siteUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PANEL_MONTHLY_PRICE, VERTICAL_DEMO_URLS, type VerticalSlug } from "@/lib/verticals";
 
 export async function generateMetadata({
   params,
@@ -28,6 +29,16 @@ export async function generateMetadata({
 // is de strategische wig (sterkste case), reparatie en klantportaal
 // volgen, admin sluit als breedste maatwerk-paneel.
 const SOLUTION_KEYS = ["verhuurpaneel", "reparatiepaneel", "klantportaal", "adminpaneel"] as const;
+
+// Mapping van /diensten paneel-keys naar VERTICAL_SLUGS — voor centrale
+// prijs + demo-URL lookup. Eén plek aan te passen mocht een paneel-key
+// hernoemd worden.
+const PANEL_TO_SLUG: Record<(typeof SOLUTION_KEYS)[number], VerticalSlug> = {
+  verhuurpaneel: "verhuur-boekingssysteem",
+  reparatiepaneel: "reparatie-portaal",
+  klantportaal: "klantportaal-laten-bouwen",
+  adminpaneel: "admin-systeem-op-maat",
+};
 
 type HeroMetric = { value: string; label: string };
 
@@ -132,6 +143,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
             {SOLUTION_KEYS.map((key) => {
               const item = tRaw.raw(`servicesPage.items.${key}`) as ProductItem;
+              const slug = PANEL_TO_SLUG[key];
+              const monthlyPrice = PANEL_MONTHLY_PRICE[slug];
+              const demoHref = VERTICAL_DEMO_URLS[slug];
               const isExternal = item.ctaSecondaryHref.startsWith("/");
               return (
                 <RevealOnScroll key={key}>
@@ -148,9 +162,19 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                       <p className="text-[15px] leading-[1.6] text-(--color-muted)">
                         {item.dnaLine}
                       </p>
-                      <span className="inline-flex w-fit items-center rounded-full border border-(--color-accent)/30 bg-(--color-accent-soft)/40 px-3 py-1 font-mono text-[11px] tracking-wide text-(--color-accent)">
-                        {item.pricePill}
-                      </span>
+                      {/* Prijs prominent — display-grootte naast titel-grootte
+                          zodat het abonnementsmodel direct het oog vangt. */}
+                      <div className="flex items-baseline gap-2 pt-1">
+                        <span className="font-serif text-[34px] leading-none text-(--color-text) md:text-[40px]">
+                          €{monthlyPrice}
+                        </span>
+                        <span className="text-[14px] text-(--color-muted)">
+                          / {locale === "es" ? "mes" : "mnd"}
+                        </span>
+                        <span className="ml-1 font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+                          · {locale === "es" ? "todo incluido" : "alles inbegrepen"}
+                        </span>
+                      </div>
                     </header>
 
                     <div className="mt-7 grid gap-6 md:grid-cols-2">
@@ -197,7 +221,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                       {item.afterBuild}
                     </p>
 
-                    <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+                    <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
                       <CalPopupTrigger
                         locale={locale}
                         className={buttonVariants({ variant: "accent", size: "sm" })}
@@ -205,6 +229,18 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                         {item.ctaPrimary}
                         <ArrowRight className="h-3.5 w-3.5" />
                       </CalPopupTrigger>
+                      {/* Live demo — wijn-rode pill, consistent met /cases */}
+                      <Link
+                        href={demoHref as never}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-(--color-wine)/40 bg-(--color-wine)/5 px-3 py-1.5 text-[12.5px] font-medium text-(--color-wine) transition-colors hover:bg-(--color-wine)/10"
+                      >
+                        <span
+                          aria-hidden
+                          className="inline-block h-1.5 w-1.5 rounded-full bg-(--color-wine)"
+                        />
+                        {locale === "es" ? "Abrir demo" : "Open demo"}
+                        <ExternalLink className="h-3 w-3" />
+                      </Link>
                       {isExternal ? (
                         <a
                           href={item.ctaSecondaryHref}
@@ -219,6 +255,44 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               );
             })}
           </div>
+
+          {/* REASSURANCE — wat zit er in elk paneel-abonnement.
+              Korte 4-bullets strook, antwoord op silent objections
+              (lock-in, hidden fees, ownership). */}
+          <RevealOnScroll className="mx-auto mt-12 max-w-6xl">
+            <div className="rounded-panel border border-(--color-border) bg-(--color-surface) p-6 md:p-8">
+              <p className="mb-5 font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+                {"// "}
+                {locale === "es" ? "Lo que incluye cada panel" : "Wat zit er in elk paneel"}
+              </p>
+              <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                {(
+                  [
+                    locale === "es"
+                      ? "Sin facturas sueltas de proyecto"
+                      : "Geen losse projectfacturen",
+                    locale === "es"
+                      ? "Cancelable mensualmente, sin contrato anual"
+                      : "Maandelijks opzegbaar, geen jaarcontract",
+                    locale === "es"
+                      ? "Hosting + monitorización + actualizaciones"
+                      : "Hosting + monitoring + updates",
+                    locale === "es"
+                      ? "Nuevas features sin presupuesto extra"
+                      : "Nieuwe features zonder offerte erbij",
+                  ] as const
+                ).map((r) => (
+                  <li key={r} className="flex items-start gap-2 text-[13.5px] text-(--color-text)">
+                    <Check
+                      className="mt-0.5 h-4 w-4 shrink-0 text-(--color-accent)"
+                      strokeWidth={2.5}
+                    />
+                    {r}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </RevealOnScroll>
         </section>
 
         {/* VERDIEPING PER DIENST — interne links naar de verticaal-

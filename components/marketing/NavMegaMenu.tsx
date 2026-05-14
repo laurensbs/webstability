@@ -250,8 +250,8 @@ function ServicesPanel({ strings, onSelect }: { strings: MegaMenuStrings; onSele
         </Link>
       </div>
 
-      {/* 3×2 grid van de zes verticals — volgorde + iconen uit één bron */}
-      <ul className="grid grid-cols-3 gap-1 p-2">
+      {/* 2×2 grid van de vier panelen — volgorde + iconen uit één bron */}
+      <ul className="grid grid-cols-2 gap-1 p-2">
         {VERTICAL_SLUGS.map((slug) => {
           const Icon = VERTICAL_ICONS[slug];
           const item = strings.items[slug];
