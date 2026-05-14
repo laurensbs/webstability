@@ -99,10 +99,11 @@ export async function Hero() {
                     triggerLabel: tHero("tryDemo"),
                     title: tHero("demoModalTitle"),
                     body: tHero("demoModalBody"),
-                    portalLabel: tHero("demoPortalLabel"),
-                    portalBody: tHero("demoPortalBody"),
-                    adminLabel: tHero("demoAdminLabel"),
-                    adminBody: tHero("demoAdminBody"),
+                    cases: tHero.raw("demoCases") as Array<{
+                      label: string;
+                      body: string;
+                      url: string;
+                    }>,
                     cancel: tHero("demoCancel"),
                   }}
                 />

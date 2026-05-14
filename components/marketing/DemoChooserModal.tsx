@@ -2,28 +2,39 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, ArrowRight, User, Building2 } from "lucide-react";
-import { Link } from "@/i18n/navigation";
+import { X, ExternalLink, Warehouse, Wrench, KeyRound } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
+type DemoCase = {
+  label: string;
+  body: string;
+  url: string;
+};
 
 type Strings = {
   triggerLabel: string;
   title: string;
   body: string;
-  portalLabel: string;
-  portalBody: string;
-  adminLabel: string;
-  adminBody: string;
+  cases: DemoCase[];
   cancel: string;
 };
 
 /**
- * Modal die twee demo-ingangen aanbiedt: klantenportaal of studio admin.
- * Wordt geopend door een tertiaire link in de hero. Stijl matcht
- * DiscountModal — wijn-rode top-border, AnimatePresence, ESC-dismiss.
+ * Modal die de bezoeker laat kiezen uit de drie productie-cases (stalling,
+ * reparatie, verhuur). Elke kaart linkt naar een geanonimiseerde live demo
+ * (Vercel deploy van het echte project, met dummy data).
  *
- * De daadwerkelijke login gebeurt op de demo-pages (/demo/portal,
- * /demo/admin) — deze modal is enkel een keuze-UI.
+ * Stijl matcht DiscountModal — wijn-rode top-border, AnimatePresence,
+ * ESC-dismiss, click-outside-to-close.
+ *
+ * Iconen worden positioneel toegewezen aan de cases-volgorde uit de
+ * messages bundle: 1ᵉ stalling, 2ᵉ reparatie, 3ᵉ verhuur. Als de volgorde
+ * verandert moet je de iconenlijst hieronder ook aanpassen.
  */
+
+// Iconen per index — past bij de volgorde van demoCases in nl.json/es.json.
+const CASE_ICONS: LucideIcon[] = [Warehouse, Wrench, KeyRound];
+
 export function DemoChooserModal({ strings }: { strings: Strings }) {
   const [open, setOpen] = React.useState(false);
 
@@ -66,7 +77,7 @@ export function DemoChooserModal({ strings }: { strings: Strings }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 12, scale: 0.97 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-6 md:p-8"
+              className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) p-6 md:p-8"
             >
               <button
                 type="button"
@@ -80,44 +91,29 @@ export function DemoChooserModal({ strings }: { strings: Strings }) {
               <h2 className="font-serif text-2xl">{strings.title}</h2>
               <p className="mt-2 text-[14px] leading-[1.55] text-(--color-muted)">{strings.body}</p>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                <Link
-                  href="/demo/portal"
-                  className="group flex flex-col items-start gap-3 rounded-xl border border-(--color-border) bg-(--color-bg-warm)/40 p-5 transition-colors hover:border-(--color-accent)/40 hover:bg-(--color-accent-soft)/40"
-                  onClick={() => setOpen(false)}
-                >
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-(--color-accent)/10 text-(--color-accent)">
-                    <User className="h-4 w-4" />
-                  </span>
-                  <p className="text-[15px] font-medium text-(--color-text)">
-                    {strings.portalLabel}
-                  </p>
-                  <p className="text-[13px] leading-snug text-(--color-muted)">
-                    {strings.portalBody}
-                  </p>
-                  <span className="mt-auto inline-flex items-center gap-1 text-[13px] font-medium text-(--color-accent) transition-transform group-hover:translate-x-0.5">
-                    Open <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
-                </Link>
-
-                <Link
-                  href="/demo/admin"
-                  className="group flex flex-col items-start gap-3 rounded-xl border border-(--color-border) bg-(--color-bg-warm)/40 p-5 transition-colors hover:border-(--color-wine)/40 hover:bg-(--color-wine)/5"
-                  onClick={() => setOpen(false)}
-                >
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-(--color-wine)/10 text-(--color-wine)">
-                    <Building2 className="h-4 w-4" />
-                  </span>
-                  <p className="text-[15px] font-medium text-(--color-text)">
-                    {strings.adminLabel}
-                  </p>
-                  <p className="text-[13px] leading-snug text-(--color-muted)">
-                    {strings.adminBody}
-                  </p>
-                  <span className="mt-auto inline-flex items-center gap-1 text-[13px] font-medium text-(--color-wine) transition-transform group-hover:translate-x-0.5">
-                    Open <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
-                </Link>
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                {strings.cases.map((c, i) => {
+                  const Icon = CASE_ICONS[i] ?? Warehouse;
+                  return (
+                    <a
+                      key={c.url}
+                      href={c.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setOpen(false)}
+                      className="group flex flex-col items-start gap-3 rounded-xl border border-(--color-border) bg-(--color-bg-warm)/40 p-5 transition-colors hover:border-(--color-wine)/40 hover:bg-(--color-wine)/5"
+                    >
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-(--color-wine)/10 text-(--color-wine)">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <p className="text-[15px] font-medium text-(--color-text)">{c.label}</p>
+                      <p className="text-[13px] leading-snug text-(--color-muted)">{c.body}</p>
+                      <span className="mt-auto inline-flex items-center gap-1 text-[13px] font-medium text-(--color-wine) transition-transform group-hover:translate-x-0.5">
+                        Open <ExternalLink className="h-3.5 w-3.5" />
+                      </span>
+                    </a>
+                  );
+                })}
               </div>
             </motion.div>
           </motion.div>

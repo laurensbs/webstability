@@ -294,12 +294,25 @@
       "alreadyClient": "Al klant?",
       "loginCta": "Inloggen op je portaal",
       "tryDemo": "Of probeer de demo",
-      "demoModalTitle": "Welk paneel wil je zien?",
-      "demoModalBody": "Live demo met levensechte data. Klikken mag, mutaties worden niet opgeslagen — geen account nodig.",
-      "demoPortalLabel": "Klantenportaal",
-      "demoPortalBody": "Hoe je klant het ziet: dashboard, tickets, facturen, livegang-banner.",
-      "demoAdminLabel": "Studio admin",
-      "demoAdminBody": "Wat ik elke dag gebruik: kanban, subscription-mgmt, status-strip, audit-log.",
+      "demoModalTitle": "Welke demo wil je openen?",
+      "demoModalBody": "Drie productie-systemen die we zelf in de lucht houden. Geanonimiseerde data — klik gerust overal op, je breekt niets.",
+      "demoCases": [
+        {
+          "label": "Stallingsplatform",
+          "body": "Stallingsbeheer met klantlogin, plekken-overzicht en jaarcontracten.",
+          "url": "https://demo-stalling.example.vercel.app"
+        },
+        {
+          "label": "Reparatie-portaal",
+          "body": "iPad-flow voor de werkplaats. Klanten melden online, monteurs updaten de status live.",
+          "url": "https://demo-reparatie.example.vercel.app"
+        },
+        {
+          "label": "Verhuurplatform",
+          "body": "Boekingsplatform met klantlogin en admin waar live boekingen en betalingen binnenkomen.",
+          "url": "https://demo-verhuur.example.vercel.app"
+        }
+      ],
       "demoCancel": "Sluit",
       "availability": "Beschikbaar voor 2 nieuwe projecten — mei 2026",
       "eyebrowMessages": [
@@ -1946,7 +1959,7 @@
           "name": "Caravanverhuurspanje",
           "url": "https://caravanverhuurspanje.com",
           "detailHref": "/cases/caravanverhuurspanje",
-          "demoUrl": "https://demo-verhuur.webstability.nl",
+          "demoUrl": "https://demo-verhuur.example.vercel.app",
           "logoUrl": "https://u.cubeupload.com/laurensbos/goedelogozwartverhuu.png",
           "tagline": "Verhuurplatform · live in Spanje",
           "what": "Publiek boekingsplatform met klantlogin en een admin waar live boekingen, betalingen en kanaal-syncs binnenkomen. Draait dagelijks productioneel: klanten boeken zelf, het team ziet alles in één paneel.",
@@ -1961,7 +1974,7 @@
           "name": "Caravanreparatiespanje",
           "url": "https://caravanreparatiespanje.vercel.app",
           "detailHref": "/cases/caravanreparatiespanje",
-          "demoUrl": "https://demo-reparatie.webstability.nl",
+          "demoUrl": "https://demo-reparatie.example.vercel.app",
           "logoUrl": "https://u.cubeupload.com/laurensbos/Ontwerpzondertitel1.png",
           "tagline": "Reparatieplatform · live in Spanje",
           "what": "Klanten melden hun reparatie online. De order belandt direct op iPads in de werkplaats — geen losse papiertjes meer, monteurs zien wat er aan welk voertuig moet gebeuren en updaten de status terwijl ze werken.",
@@ -1974,7 +1987,7 @@
           "anchor": "caravanstallingspanje",
           "name": "Caravanstallingspanje",
           "url": "https://caravanstallingspanje.com",
-          "demoUrl": "https://demo-stalling.webstability.nl",
+          "demoUrl": "https://demo-stalling.example.vercel.app",
           "logoUrl": "https://u.cubeupload.com/laurensbos/IMG7081.png",
           "videoUrl": "https://vimeo.com/1190126706/dae28da598",
           "tagline": "Stallingsplatform · live in Spanje",
@@ -2120,7 +2133,7 @@
           "primary": "Plan een kennismaking",
           "secondary": "Bekijk de verhuur-pagina",
           "demoLabel": "Open live demo",
-          "demoUrl": "https://demo-verhuur.webstability.nl"
+          "demoUrl": "https://demo-verhuur.example.vercel.app"
         },
         "back": "← Bekijk de andere cases"
       },
@@ -2205,7 +2218,7 @@
           "primary": "Plan een kennismaking",
           "secondary": "Bekijk alle diensten",
           "demoLabel": "Open live demo",
-          "demoUrl": "https://demo-reparatie.webstability.nl"
+          "demoUrl": "https://demo-reparatie.example.vercel.app"
         },
         "back": "← Bekijk de andere cases"
       }
