@@ -1816,27 +1816,27 @@
     }
   },
   "servicesPage": {
-    "eyebrow": "servicios",
-    "title": "Lo que *construimos* y *mantenemos* para ti.",
-    "lede": "Cuatro paquetes concretos — precio fijo, alcance fijo, y una suscripción continua para que el sistema siga creciendo contigo.",
+    "eyebrow": "paneles por suscripción",
+    "title": "Cuatro paneles, una *cuota mensual fija*.",
+    "lede": "Panel empresarial completo por suscripción — construir, hostear y mantener todo en una sola cuota mensual. Sin facturas sueltas de proyecto, sin sorpresas, sin discusiones de horas extra.",
     "heroMetrics": [
       {
-        "value": "3",
-        "label": "plataformas de alquiler en producción"
+        "value": "4",
+        "label": "paneles por cuota fija"
       },
       {
-        "value": "47",
-        "label": "talleres en una sola plataforma"
+        "value": "245 €",
+        "label": "entrada por mes"
       },
       {
-        "value": "4 sem",
-        "label": "precio fijo, primera versión"
+        "value": "0",
+        "label": "facturas extra de proyecto"
       }
     ],
     "timeline": {
-      "eyebrow": "cómo va una build de 4 semanas",
-      "title": "Cuatro semanas, un precio fijo.",
-      "lede": "Sin presupuestos, sin discusiones de horas extra. Cada miércoles una stand-up corta para que veas el progreso en vivo.",
+      "eyebrow": "cómo va el arranque de un panel",
+      "title": "Cuatro semanas hasta live, después continuo.",
+      "lede": "Sin presupuestos para ampliaciones, sin discusiones de horas extra. Una cuota mensual que cubre todo — construcción, hosting y evolución.",
       "steps": [
         {
           "week": "semana 1",
@@ -1861,12 +1861,12 @@
       ]
     },
     "items": {
-      "verhuurplatform": {
-        "anchor": "verhuurplatform",
-        "eyebrow": "línea de producto 01",
-        "title": "Plataforma de alquiler — NL y España",
-        "dnaLine": "El sistema por el que viene la mayoría. Plataforma de reservas, portal de cliente y sincronización de canales — cuatro semanas, precio fijo.",
-        "pricePill": "5–8 k € · 4 semanas",
+      "verhuurpaneel": {
+        "anchor": "verhuurpaneel",
+        "eyebrow": "panel 01",
+        "title": "Panel de alquiler — NL y España",
+        "dnaLine": "El panel por el que viene la mayoría. Reservas, portal de cliente y sincronización de canales — todo en una suscripción continua.",
+        "pricePill": "495 €/mes · todo incluido",
         "solvesTitle": "Qué resuelve",
         "solves": [
           "Sin reservas duplicadas entre Booking, Airbnb y tu propia agenda",
@@ -1881,91 +1881,93 @@
           "Mobile-first — Lighthouse 95+ en iPhone",
           "Channel-sync (Airbnb, Booking, Vrbo)",
           "Mollie/Stripe checkout + facturas automáticas",
-          "Hosting + monitorización + mantenimiento mensual"
+          "Hosting + monitorización + mantenimiento ilimitado"
         ],
-        "afterBuild": "Ampliación posterior vía suscripción continua — mira /precios para la comparativa de niveles.",
-        "ctaPrimary": "Reserva una llamada",
+        "afterBuild": "El panel crece contigo — ampliaciones, integraciones nuevas y desarrollo siguen, todo dentro de la cuota mensual.",
+        "ctaPrimary": "Solicita el panel de alquiler",
         "ctaSecondary": "Ver página de alquiler →",
         "ctaSecondaryHref": "/verhuur"
       },
-      "platform": {
-        "anchor": "platform",
-        "eyebrow": "línea de producto 02",
-        "title": "Software empresarial a medida",
-        "dnaLine": "Portales de reparación, almacenaje, portales de cliente o paneles admin propios. Primera versión funcional en cuatro semanas.",
-        "pricePill": "5–8 k € · 4 semanas",
+      "reparatiepaneel": {
+        "anchor": "reparatiepaneel",
+        "eyebrow": "panel 02",
+        "title": "Panel de reparaciones",
+        "dnaLine": "Sistema de partes para talleres. Flujo iPad para mecánicos, estado en vivo para clientes — adiós al parte de papel.",
+        "pricePill": "395 €/mes · todo incluido",
         "solvesTitle": "Qué resuelve",
         "solves": [
           "Caos de papeles en el taller — órdenes en iPads",
-          "Cinco herramientas sueltas para alquiler, facturas, comunicación",
-          "Los clientes reservan online, tú lo ves todo en un solo admin",
+          "Los clientes ven el estado en vivo sin tener que llamar",
+          "Fin del trabajo nocturno de pasar partes a limpio",
           "Integración contable a medida (Holded, e-Boekhouden, Moneybird)"
         ],
         "includesTitle": "Qué incluye",
         "includes": [
-          "Portal público con login de cliente",
-          "Admin con vista en vivo + acceso multi-usuario",
-          "Integraciones con Mollie/Stripe y tu contabilidad",
-          "Mobile-first crew flow",
-          "Hosting + monitorización + mantenimiento mensual"
+          "Formulario público de aviso para clientes",
+          "Flujo iPad para mecánicos + tracking de estado",
+          "Admin con acceso multi-usuario y planning",
+          "Subida de fotos y notas por parte",
+          "Facturas automáticas + sync contable",
+          "Hosting + monitorización + mantenimiento ilimitado"
         ],
-        "afterBuild": "Para ampliación intensiva tras lanzamiento: Atelier-tier con Build Custom — mira /precios.",
-        "ctaPrimary": "Reserva una llamada",
-        "ctaSecondary": "Ver plataforma en vivo →",
-        "ctaSecondaryHref": "/cases#caravanverhuurspanje"
+        "afterBuild": "Igual que los demás paneles: la evolución va dentro de la suscripción, sin presupuestos sueltos para ampliaciones.",
+        "ctaPrimary": "Solicita el panel de reparaciones",
+        "ctaSecondary": "Ver caso de reparación →",
+        "ctaSecondaryHref": "/cases/caravanreparatiespanje"
       },
-      "webshop": {
-        "anchor": "webshop",
-        "eyebrow": "línea de producto 03",
-        "title": "Web o tienda online",
-        "dnaLine": "Web de marketing rápida y multilingüe, o tienda con BTW/IVA y stock. Lighthouse 95+ en móvil.",
-        "pricePill": "desde 3.500 € · 4 semanas",
+      "klantportaal": {
+        "anchor": "klantportaal",
+        "eyebrow": "panel 03",
+        "title": "Portal de cliente",
+        "dnaLine": "Un portal propio donde tus clientes acceden y encuentran sus datos, documentos y facturas. Bajo tu marca, no 'powered by SaaS X'.",
+        "pricePill": "245 €/mes · todo incluido",
         "solvesTitle": "Qué resuelve",
         "solves": [
-          "Una web multilingüe que funciona tanto en NL como en ES",
-          "BTW/IVA por categoría resuelto automáticamente (en tienda)",
-          "Facturas automáticas con numeración aceptada por tu contable",
-          "Sin comisiones por transacción tipo Shopify — todo en tu dominio"
+          "Clientes acceden en lugar de mandar mails para '¿cuál es mi factura?'",
+          "Documentos en un solo sitio — contratos, facturas, fotos",
+          "Mensajes 1-a-1 en vez de hilos de email perdidos",
+          "Tu marca en lugar de branding 'powered by SaaS'"
         ],
         "includesTitle": "Qué incluye",
         "includes": [
-          "Catálogo de productos + categorías (tienda)",
-          "O una web de marketing con CMS a elegir",
-          "Checkout con Mollie o Stripe",
-          "Facturación automática (PDF + email)",
-          "Integración de stock opcional (Holded, e-Boekhouden)"
+          "Login público + reset de contraseña",
+          "Dashboard de cliente con todos los datos relevantes",
+          "Archivo de documentos y vista de facturas",
+          "Hilo de mensajes por cliente",
+          "Integración opcional con tu sistema actual",
+          "Hosting + monitorización + mantenimiento ilimitado"
         ],
-        "afterBuild": "Webs de marketing van en Care, tiendas en Studio — mira /precios para la comparativa.",
-        "ctaPrimary": "Reserva una llamada",
-        "ctaSecondary": "Ver detalle de precios →",
-        "ctaSecondaryHref": "/precios"
+        "afterBuild": "Tu portal crece — vistas extra, integraciones nuevas o un sub-portal segundo? Todo dentro de la suscripción.",
+        "ctaPrimary": "Solicita el portal de cliente",
+        "ctaSecondary": "Ver demo de portal →",
+        "ctaSecondaryHref": "/demo/stalling/portaal"
       },
-      "care": {
-        "anchor": "care",
-        "eyebrow": "línea de producto 04",
-        "title": "Mantenimiento & evolución",
-        "dnaLine": "Studio es la entrada para nuevos clientes. Hosting, seguridad, backups, monitorización — más tres horas de cambios al mes y SEO local.",
-        "pricePill": "Studio 179 €/m · continuo",
+      "adminpaneel": {
+        "anchor": "adminpaneel",
+        "eyebrow": "panel 04",
+        "title": "Panel admin a medida",
+        "dnaLine": "El panel más amplio: un sistema interno que reemplaza tus cinco herramientas sueltas. Totalmente adaptado a tu negocio desde el día uno.",
+        "pricePill": "545 €/mes · todo incluido",
         "solvesTitle": "Qué resuelve",
         "solves": [
-          "Sin perder el sueño preguntándote si tu web está actualizada",
-          "Un solo punto de contacto para cambios — nadie 'desaparece' tras lanzamiento",
-          "SEO local en NL y ES, con informe mensual",
-          "Backups que realmente funcionan cuando hacen falta"
+          "Cinco herramientas sueltas para planning, clientes, facturas, stock",
+          "Excel-bestanden editados por tres personas a la vez",
+          "Falta de visión sobre qué pasa dónde en tu negocio",
+          "Acciones con fecha que nadie ve a tiempo"
         ],
         "includesTitle": "Qué incluye",
         "includes": [
-          "Hosting premium (NL/EU edge)",
-          "SSL y backups diarios",
-          "Actualizaciones de seguridad mensuales",
-          "3 horas de cambios al mes",
-          "SEO local + informe mensual",
-          "Acceso al portal de cliente"
+          "Dashboards a medida para tus KPIs",
+          "Módulo de clientes, planning y facturas",
+          "Acceso multi-usuario con roles",
+          "Integración contable (Holded, Moneybird, e-Boekhouden)",
+          "Audit-log + activity feed",
+          "Hosting + monitorización + mantenimiento ilimitado"
         ],
-        "afterBuild": "Care (95 €/m) sigue activo para clientes existentes como ancla — ya no se ofrece a nuevos clientes.",
-        "ctaPrimary": "Ver detalle de Studio",
-        "ctaSecondary": "Comparativa de tiers →",
-        "ctaSecondaryHref": "/precios"
+        "afterBuild": "Sin presupuestos sueltos para módulos nuevos — lo que necesitas se añade dentro de la cuota mensual.",
+        "ctaPrimary": "Solicita el panel admin",
+        "ctaSecondary": "Ver demo admin →",
+        "ctaSecondaryHref": "/demo/stalling"
       }
     },
     "notFor": {
@@ -2275,6 +2277,99 @@
         "back": "← Ver los demás casos"
       }
     }
+  },
+  "pricingPage": {
+    "eyebrow": "cuatro paneles · cuota fija",
+    "title": "Una *cuota mensual* que cubre todo. Sin sorpresas.",
+    "lede": "Construcción, hosting, evolución y soporte — todo en una suscripción continua por panel. Sin facturas sueltas de proyecto, sin discusiones de horas extra, sin contratos anuales.",
+    "featuredLabel": "Más elegido",
+    "perMonth": "mes",
+    "allInclusive": "todo incluido",
+    "ctaLabel": "Solicita este panel",
+    "panels": {
+      "verhuur": {
+        "label": "Panel de alquiler",
+        "blurb": "Reservas, portal de cliente y sync de canales.",
+        "features": [
+          "Plataforma de reservas pública con login de cliente",
+          "Admin con vista en vivo + multi-ubicación",
+          "Channel-sync (Airbnb, Booking, Vrbo)",
+          "Mollie/Stripe checkout + facturas automáticas (BTW + IVA)",
+          "Hosting + monitorización + mantenimiento ilimitado",
+          "Evolución — nuevas features sin presupuesto"
+        ]
+      },
+      "reparatie": {
+        "label": "Panel de reparaciones",
+        "blurb": "Sistema de partes para talleres.",
+        "features": [
+          "Formulario público de aviso para clientes",
+          "Flujo iPad para mecánicos + tracking de estado",
+          "Admin con acceso multi-usuario y planning",
+          "Subida de fotos y notas por parte",
+          "Facturas automáticas + sync contable",
+          "Hosting + monitorización + mantenimiento ilimitado"
+        ]
+      },
+      "klantportaal": {
+        "label": "Portal de cliente",
+        "blurb": "Portal propio bajo tu marca.",
+        "features": [
+          "Login público + reset de contraseña",
+          "Dashboard de cliente con todos los datos",
+          "Archivo de documentos y vista de facturas",
+          "Hilo de mensajes por cliente",
+          "Integración opcional con tu sistema actual",
+          "Hosting + monitorización + mantenimiento ilimitado"
+        ]
+      },
+      "admin": {
+        "label": "Panel admin a medida",
+        "blurb": "Reemplaza cinco herramientas sueltas.",
+        "features": [
+          "Dashboards a medida para tus KPIs",
+          "Módulo de clientes, planning y facturas",
+          "Acceso multi-usuario con roles",
+          "Integración contable (Holded, Moneybird, e-Boekhouden)",
+          "Audit-log + activity feed",
+          "Hosting + monitorización + mantenimiento ilimitado"
+        ]
+      }
+    },
+    "reassuranceTitle": "Qué incluye cada suscripción",
+    "reassurance": [
+      "Todo incluido: construcción, hosting, monitorización, evolución — sin facturas sueltas",
+      "Sin contrato anual: cancelable mensualmente, con export de datos",
+      "Evolución: nuevas features e integraciones se añaden sin presupuesto",
+      "SLA: bug crítico en 4 horas laborables, normal en 2 días laborables",
+      "Tu marca al frente — sin branding 'powered by Webstability'",
+      "Un solo punto de contacto: directo con quien construye, no con un equipo de soporte"
+    ],
+    "howItWorks": {
+      "title": "Cómo funciona",
+      "lede": "Tres pasos de la primera llamada al panel en vivo — sin pingpong de presupuestos.",
+      "steps": [
+        {
+          "step": "paso 1 · llamada gratis",
+          "title": "30 minutos sobre tu negocio",
+          "body": "Hablamos de qué haces ahora, dónde se atasca, y qué panel encaja mejor. Sin pitch."
+        },
+        {
+          "step": "paso 2 · setup en 4 semanas",
+          "title": "Primera versión live en 4 semanas",
+          "body": "Montamos tu panel, lo cargamos con tus datos y vamos en vivo. El primer mes va incluido."
+        },
+        {
+          "step": "paso 3 · evolución",
+          "title": "El panel crece contigo",
+          "body": "¿Nuevos requisitos? Sin presupuesto aparte — entran dentro de la cuota mensual. Cancelable siempre."
+        }
+      ]
+    },
+    "footerCtaTitle": "¿Qué panel encaja en tu negocio?",
+    "footerCtaBody": "Intake corta, llamada de presentación gratis, cuota mensual transparente.",
+    "footerCtaPrimary": "Solicita un panel",
+    "footerCtaSecondary": "O reserva primero una llamada"
   },
   "pricing": {
     "eyebrow": "suscripciones · Studio 179 €/m · Atelier 3179 €/m",

@@ -78,9 +78,9 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
         "Eén ontwikkelaar, twaalf jaar ervaring, sinds drie jaar vanuit Costa Brava. Geen accountmanagers — direct contact met de developer die jouw systeem bouwt en blijft onderhouden.",
     },
     prijzen: {
-      title: "Heldere prijzen",
+      title: "Prijzen — vier panelen op abonnement",
       description:
-        "Care-abonnementen vanaf €99/m, Build-projecten vanaf €499 setup. Maandelijks opzegbaar, eerste maand gratis, 15% korting bij jaarbetaling. Geen meerwerk-facturen.",
+        "Compleet bedrijfspaneel vanaf €245/mnd. Bouw, hosting en doorontwikkeling allemaal in één maandbedrag. Maandelijks opzegbaar, geen losse projectfacturen, geen verrassingen.",
     },
     contact: {
       title: "Plan een gesprek",
@@ -157,9 +157,9 @@ const COPY: Record<Locale, Record<RouteKey, Copy>> = {
         "Un desarrollador, doce años de experiencia, desde hace tres años en Costa Brava. Sin gestores de cuenta — hablas directamente con el dev que construye y mantiene tu sistema.",
     },
     prijzen: {
-      title: "Precios claros",
+      title: "Precios — cuatro paneles por suscripción",
       description:
-        "Care desde 99 €/m, Build desde 499 € setup. Cancelable mensualmente, primer mes gratis, 15% de descuento con pago anual. Sin facturas sorpresa por horas extra.",
+        "Panel empresarial completo desde 245 €/mes. Construcción, hosting y evolución todo en una sola cuota mensual. Cancelable mensualmente, sin facturas sueltas de proyecto, sin sorpresas.",
     },
     contact: {
       title: "Reservar primera llamada",

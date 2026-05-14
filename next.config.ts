@@ -23,6 +23,26 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Pivot 2026: website + webshop diensten zijn verwijderd. Oude URLs
+  // (deelbaar in oudere e-mails / SEO-results) krijgen 301 naar het
+  // /diensten overzicht zodat we de juiste positionering laden zonder
+  // dat een bezoeker op een 404 belandt. Beide locales meenemen.
+  async redirects() {
+    return [
+      { source: "/diensten/website-laten-maken", destination: "/diensten", permanent: true },
+      { source: "/diensten/webshop-laten-maken", destination: "/diensten", permanent: true },
+      {
+        source: "/es/servicios/website-laten-maken",
+        destination: "/es/servicios",
+        permanent: true,
+      },
+      {
+        source: "/es/servicios/webshop-laten-maken",
+        destination: "/es/servicios",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 const intlWrapped = withNextIntl(nextConfig);

@@ -1816,27 +1816,27 @@
     }
   },
   "servicesPage": {
-    "eyebrow": "diensten",
-    "title": "Wat we voor je *bouwen* en *onderhouden*.",
-    "lede": "Vier concrete pakketten — vaste prijs, vaste scope, en een lopend abonnement zodat je systeem mee blijft groeien.",
+    "eyebrow": "panelen op abonnement",
+    "title": "Vier panelen, één *vaste maandprijs*.",
+    "lede": "Compleet bedrijfspaneel op abonnement — bouwen, hosten en onderhouden allemaal in één maandbedrag. Geen losse projectfacturen, geen verrassingen, geen meeruren-discussies.",
     "heroMetrics": [
       {
-        "value": "3",
-        "label": "verhuurplatforms productioneel"
+        "value": "4",
+        "label": "panelen op vaste maandprijs"
       },
       {
-        "value": "47",
-        "label": "werkplaatsen op één platform"
+        "value": "€245",
+        "label": "instap per maand"
       },
       {
-        "value": "4 wkn",
-        "label": "vaste prijs, eerste versie"
+        "value": "0",
+        "label": "extra projectfacturen"
       }
     ],
     "timeline": {
-      "eyebrow": "hoe een 4-weken build verloopt",
-      "title": "Vier weken, één vaste prijs.",
-      "lede": "Geen offertes, geen meeruren-discussies. Elke woensdag een korte stand-up zodat je live ziet wat er staat.",
+      "eyebrow": "hoe een paneel-start verloopt",
+      "title": "Vier weken tot live, daarna doorlopend.",
+      "lede": "Geen offertes voor uitbreidingen, geen meeruren-discussies. Eén maandbedrag dat alles dekt — bouw, hosting en doorontwikkeling.",
       "steps": [
         {
           "week": "week 1",
@@ -1861,12 +1861,12 @@
       ]
     },
     "items": {
-      "verhuurplatform": {
-        "anchor": "verhuurplatform",
-        "eyebrow": "productlijn 01",
-        "title": "Verhuurplatform — NL en Spanje",
-        "dnaLine": "Het systeem waar de meeste klanten voor komen. Boekingsplatform, klantportaal en kanaalkoppelingen — vier weken, vaste prijs.",
-        "pricePill": "€5–8k · 4 weken",
+      "verhuurpaneel": {
+        "anchor": "verhuurpaneel",
+        "eyebrow": "paneel 01",
+        "title": "Verhuurpaneel — NL en Spanje",
+        "dnaLine": "Het paneel waar de meeste klanten voor komen. Boekingsplatform, klantportaal en kanaalkoppelingen — alles in één doorlopend abonnement.",
+        "pricePill": "€495/mnd · alles inbegrepen",
         "solvesTitle": "Wat het oplost",
         "solves": [
           "Geen dubbele boekingen meer tussen Booking, Airbnb en je eigen agenda",
@@ -1881,91 +1881,93 @@
           "Mobiel-first — 95+ Lighthouse op iPhone",
           "Channel-sync (Airbnb, Booking, Vrbo)",
           "Mollie/Stripe checkout + automatische facturen",
-          "Hosting + monitoring + maandelijks onderhoud"
+          "Hosting + monitoring + onbeperkt onderhoud — geen meerwerk-facturen"
         ],
-        "afterBuild": "Doorbouwen via een doorlopend abonnement — bekijk /prijzen voor de tier-vergelijking.",
-        "ctaPrimary": "Plan een kennismaking",
+        "afterBuild": "Het paneel groeit met je bedrijf mee — uitbreidingen, nieuwe integraties en doorontwikkeling zit allemaal in het abonnement.",
+        "ctaPrimary": "Vraag het verhuurpaneel aan",
         "ctaSecondary": "Bekijk live verhuur-pagina →",
         "ctaSecondaryHref": "/verhuur"
       },
-      "platform": {
-        "anchor": "platform",
-        "eyebrow": "productlijn 02",
-        "title": "Bedrijfssoftware op maat",
-        "dnaLine": "Reparatie-portalen, stallingsbeheer, klantportalen of een eigen admin paneel. Eerste werkende versie binnen vier weken.",
-        "pricePill": "€5–8k · 4 weken",
+      "reparatiepaneel": {
+        "anchor": "reparatiepaneel",
+        "eyebrow": "paneel 02",
+        "title": "Reparatiepaneel",
+        "dnaLine": "Werkbon-systeem voor garages en werkplaatsen. iPad-flow voor monteurs, status live voor klanten — de papieren werkbon vervangen.",
+        "pricePill": "€395/mnd · alles inbegrepen",
         "solvesTitle": "Wat het oplost",
         "solves": [
           "Papier-chaos in de werkplaats — orders staan op iPads",
-          "Vijf losse tools voor verhuur, facturen, klantcommunicatie",
-          "Klanten boeken zelf online, jij ziet alles in één admin",
+          "Klanten zien live de status zonder dat ze hoeven te bellen",
+          "Een einde aan de avond-administratie van werkbonnen overtypen",
           "Boekhoud-koppeling op maat (Holded, e-Boekhouden, Moneybird)"
         ],
         "includesTitle": "Wat erbij zit",
         "includes": [
-          "Publiek portaal met klantlogin",
-          "Admin met live overzicht + multi-user toegang",
-          "Koppelingen met Mollie/Stripe en je boekhouding",
-          "Mobiel-first crew-flow",
-          "Hosting + monitoring + maandelijks onderhoud"
+          "Publiek aanmeldformulier voor klanten",
+          "iPad-flow voor monteurs + status-tracking",
+          "Admin met multi-user toegang en planning",
+          "Foto-upload en notities per werkbon",
+          "Automatische facturen + boekhoud-sync",
+          "Hosting + monitoring + onbeperkt onderhoud"
         ],
-        "afterBuild": "Voor zwaardere uitbouw na livegang: Atelier-tier met Build Custom-extension — bekijk /prijzen.",
-        "ctaPrimary": "Plan een kennismaking",
-        "ctaSecondary": "Bekijk live platform →",
-        "ctaSecondaryHref": "/cases#caravanverhuurspanje"
+        "afterBuild": "Net als de andere panelen: doorontwikkeling zit in het abonnement, geen nieuwe project-offertes voor uitbreidingen.",
+        "ctaPrimary": "Vraag het reparatiepaneel aan",
+        "ctaSecondary": "Bekijk live reparatie-case →",
+        "ctaSecondaryHref": "/cases/caravanreparatiespanje"
       },
-      "webshop": {
-        "anchor": "webshop",
-        "eyebrow": "productlijn 03",
-        "title": "Website of webshop",
-        "dnaLine": "Snelle, meertalige marketing-site of webshop met BTW/IVA en voorraadkoppeling. Lighthouse 95+ op mobiel.",
-        "pricePill": "vanaf €3.500 · 4 weken",
+      "klantportaal": {
+        "anchor": "klantportaal",
+        "eyebrow": "paneel 03",
+        "title": "Klantportaal",
+        "dnaLine": "Een eigen portaal waar je klanten inloggen en hun gegevens, documenten en facturen vinden. Onder jouw merk, niet 'powered by SaaS X'.",
+        "pricePill": "€245/mnd · alles inbegrepen",
         "solvesTitle": "Wat het oplost",
         "solves": [
-          "Eén meertalige site die werkt voor zowel NL als ES",
-          "BTW/IVA per productcategorie automatisch goed (bij webshop)",
-          "Automatische facturen + nummering die je accountant accepteert",
-          "Geen Shopify-fees per transactie — alles op je eigen domein"
+          "Klanten loggen in plaats van mailen voor 'wat is mijn factuur?'",
+          "Documenten op één plek — contracten, facturen, foto's",
+          "Berichten 1-op-1 i.p.v. mail-threads die kwijt raken",
+          "Eigen merk i.p.v. 'powered by SaaS' branding"
         ],
         "includesTitle": "Wat erbij zit",
         "includes": [
-          "Productcatalogus + categorieën (webshop)",
-          "Of een marketing-site met CMS naar keuze",
-          "Checkout met Mollie of Stripe",
-          "Automatische facturatie (PDF + e-mail)",
-          "Voorraad-koppeling optioneel (Holded, e-Boekhouden)"
+          "Publieke login + wachtwoord-reset",
+          "Klant-dashboard met alle relevante data",
+          "Documenten-archief en factuur-overzicht",
+          "Berichten-thread per klant",
+          "Optionele integratie met je bestaande systeem",
+          "Hosting + monitoring + onbeperkt onderhoud"
         ],
-        "afterBuild": "Marketing-sites lopen op Care, webshops op Studio — bekijk /prijzen voor de tier-vergelijking.",
-        "ctaPrimary": "Plan een kennismaking",
-        "ctaSecondary": "Bekijk pricing-detail →",
-        "ctaSecondaryHref": "/prijzen"
+        "afterBuild": "Je portaal groeit mee — extra views, nieuwe integraties of een tweede sub-portal? Allemaal in het abonnement.",
+        "ctaPrimary": "Vraag het klantportaal aan",
+        "ctaSecondary": "Bekijk live klantportaal-demo →",
+        "ctaSecondaryHref": "/demo/stalling/portaal"
       },
-      "care": {
-        "anchor": "care",
-        "eyebrow": "productlijn 04",
-        "title": "Onderhoud & doorbouwen",
-        "dnaLine": "Studio is de instap voor nieuwe klanten. Hosting, security, backups, monitoring — plus drie uur wijzigingen per maand en lokale SEO.",
-        "pricePill": "Studio €179/m · doorlopend",
+      "adminpaneel": {
+        "anchor": "adminpaneel",
+        "eyebrow": "paneel 04",
+        "title": "Adminpaneel op maat",
+        "dnaLine": "Het breedste paneel: een intern systeem dat je vijf losse tools vervangt. Volledig op jouw bedrijf afgestemd, vanaf dag 1.",
+        "pricePill": "€545/mnd · alles inbegrepen",
         "solvesTitle": "Wat het oplost",
         "solves": [
-          "Geen wakker liggen of je site nog up-to-date is",
-          "Eén aanspreekpunt voor wijzigingen — niemand kwijt na livegang",
-          "Lokale SEO in NL én ES, met maandelijkse rapportage",
-          "Backups die ook echt werken als ze nodig zijn"
+          "Vijf losse tools voor planning, klanten, facturen, voorraad",
+          "Excel-bestanden die door drie mensen tegelijk worden bewerkt",
+          "Geen overzicht over wat er waar in het bedrijf gebeurt",
+          "Datum-gevoelige acties die niemand op tijd ziet"
         ],
         "includesTitle": "Wat erbij zit",
         "includes": [
-          "Premium hosting (NL/EU edge)",
-          "SSL & dagelijkse backups",
-          "Maandelijkse security updates",
-          "3 uur wijzigingen per maand",
-          "Lokale SEO + maandrapport",
-          "Toegang tot klantportaal"
+          "Dashboards op maat voor jouw KPI's",
+          "Klanten-, planning- en factuurmodule",
+          "Multi-user toegang met rollen",
+          "Boekhoud-koppeling (Holded, Moneybird, e-Boekhouden)",
+          "Audit-log + activity feed",
+          "Hosting + monitoring + onbeperkt onderhoud"
         ],
-        "afterBuild": "Care (€95/m) blijft draaien voor bestaande klanten als anker — niet meer als aanbod voor nieuwe instroom.",
-        "ctaPrimary": "Bekijk Studio-details",
-        "ctaSecondary": "Tier-vergelijking →",
-        "ctaSecondaryHref": "/prijzen"
+        "afterBuild": "Geen losse offertes voor nieuwe modules — wat je nodig hebt komt erbij binnen het maandbedrag.",
+        "ctaPrimary": "Vraag het adminpaneel aan",
+        "ctaSecondary": "Bekijk live admin-demo →",
+        "ctaSecondaryHref": "/demo/stalling"
       }
     },
     "notFor": {
@@ -2271,6 +2273,99 @@
         "back": "← Bekijk de andere cases"
       }
     }
+  },
+  "pricingPage": {
+    "eyebrow": "vier panelen · vaste maandprijs",
+    "title": "Eén *maandbedrag* dat alles dekt. Geen verrassingen.",
+    "lede": "Bouw, hosting, doorontwikkeling en support — alles in één doorlopend abonnement per paneel. Geen losse projectfacturen, geen meerwerk-discussies, geen jaarcontracten.",
+    "featuredLabel": "Meest gekozen",
+    "perMonth": "mnd",
+    "allInclusive": "alles inbegrepen",
+    "ctaLabel": "Vraag dit paneel aan",
+    "panels": {
+      "verhuur": {
+        "label": "Verhuurpaneel",
+        "blurb": "Boekingen, klantportaal en channel-sync.",
+        "features": [
+          "Publiek boekingsplatform met klantlogin",
+          "Admin met live boekings-overzicht + multi-locatie",
+          "Channel-sync (Airbnb, Booking, Vrbo)",
+          "Mollie/Stripe checkout + automatische facturen (BTW + IVA)",
+          "Hosting + monitoring + onbeperkt onderhoud",
+          "Doorontwikkeling — nieuwe features zonder offerte"
+        ]
+      },
+      "reparatie": {
+        "label": "Reparatiepaneel",
+        "blurb": "Werkbon-systeem voor garages en werkplaatsen.",
+        "features": [
+          "Publiek aanmeldformulier voor klanten",
+          "iPad-flow voor monteurs + status-tracking",
+          "Admin met multi-user toegang en planning",
+          "Foto-upload en notities per werkbon",
+          "Automatische facturen + boekhoud-sync",
+          "Hosting + monitoring + onbeperkt onderhoud"
+        ]
+      },
+      "klantportaal": {
+        "label": "Klantportaal",
+        "blurb": "Eigen portaal onder jouw merk.",
+        "features": [
+          "Publieke login + wachtwoord-reset",
+          "Klant-dashboard met alle relevante data",
+          "Documenten-archief en factuur-overzicht",
+          "Berichten-thread per klant",
+          "Optionele integratie met je bestaande systeem",
+          "Hosting + monitoring + onbeperkt onderhoud"
+        ]
+      },
+      "admin": {
+        "label": "Adminpaneel op maat",
+        "blurb": "Vervangt vijf losse tools.",
+        "features": [
+          "Dashboards op maat voor jouw KPI's",
+          "Klanten-, planning- en factuurmodule",
+          "Multi-user toegang met rollen",
+          "Boekhoud-koppeling (Holded, Moneybird, e-Boekhouden)",
+          "Audit-log + activity feed",
+          "Hosting + monitoring + onbeperkt onderhoud"
+        ]
+      }
+    },
+    "reassuranceTitle": "Wat zit er in elk abonnement",
+    "reassurance": [
+      "Alles inbegrepen: bouw, hosting, monitoring, doorontwikkeling — geen losse facturen",
+      "Geen jaarcontract: opzegbaar per maand, met datacollect-export",
+      "Doorontwikkeling: nieuwe features en koppelingen komen erbij zonder offerte",
+      "SLA: kritieke bug binnen 4 werkuren, normaal binnen 2 werkdagen",
+      "Eigen merk vooraan — geen 'powered by Webstability' branding",
+      "Eén aanspreekpunt: rechtstreeks contact met de bouwer, niet met support-team"
+    ],
+    "howItWorks": {
+      "title": "Hoe het werkt",
+      "lede": "Drie stappen van eerste gesprek tot live paneel — zonder offertes-pingpong.",
+      "steps": [
+        {
+          "step": "stap 1 · gratis kennismaking",
+          "title": "30 minuten over je bedrijf",
+          "body": "We bespreken wat je nu doet, waar het vastloopt, en welk paneel daar het best bij past. Geen pitch."
+        },
+        {
+          "step": "stap 2 · setup in 4 weken",
+          "title": "Eerste live versie binnen 4 weken",
+          "body": "We zetten je paneel op, voeden 'm met je data en gaan live. Eerste maand zit in de prijs."
+        },
+        {
+          "step": "stap 3 · doorbouwen",
+          "title": "Paneel groeit met je mee",
+          "body": "Nieuwe wensen? Geen aparte offerte — komt erbij binnen het maandbedrag. Opzeggen kan altijd."
+        }
+      ]
+    },
+    "footerCtaTitle": "Welk paneel past bij jouw bedrijf?",
+    "footerCtaBody": "Korte intake, gratis kennismakingsgesprek, transparante maandprijs.",
+    "footerCtaPrimary": "Vraag een paneel aan",
+    "footerCtaSecondary": "Of plan eerst een gesprek"
   },
   "pricing": {
     "eyebrow": "abonnementen · Studio €179/m · Atelier €399/m",

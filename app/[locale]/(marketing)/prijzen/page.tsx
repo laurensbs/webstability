@@ -1,27 +1,16 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { Check, ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/Button";
 import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
-import { PricingExitPopup } from "@/components/marketing/MarketingPopups";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
-import { auth } from "@/lib/auth";
-import { getUserWithOrg } from "@/lib/db/queries/portal";
 import { PageHeader } from "@/components/marketing/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import {
-  startCareCheckout,
-  startCareCheckoutWithBuild,
-  startAnonCheckout,
-} from "@/app/actions/billing";
 import { MarkupText } from "@/components/animate/MarkupText";
-import {
-  PricingCardsWithToggle,
-  type PricingItem,
-} from "@/components/marketing/PricingCardsWithToggle";
-import { BuildCalculator } from "@/components/marketing/BuildCalculator";
+import { PanelPricingTable, type Panel } from "@/components/marketing/PanelPricingTable";
+import { PANEL_MONTHLY_PRICE } from "@/lib/verticals";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 
@@ -34,33 +23,48 @@ export async function generateMetadata({
   return pageMetadata(locale, "prijzen");
 }
 
-export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+export default async function PricingPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
-  const t = await getTranslations("pricing");
-  const tCare = await getTranslations("pricing.care");
-  const tBuild = await getTranslations("pricing.build");
-  const tCalc = await getTranslations("pricing.build.calculator");
-  const tBuildOpts = await getTranslations("pricing.build.options");
-  const tTierNames = await getTranslations("pricing.build.tierNames");
-  const tPaths = await getTranslations("pricing.build.paths");
+  const t = await getTranslations("pricingPage");
   const tRaw = await getTranslations();
-  const careItems = tRaw.raw("pricing.care.items") as PricingItem[];
-  const addons = tRaw.raw("pricing.addons") as string[];
-  const reassurance = tRaw.raw("pricing.reassurance") as string[];
-  const pathItems = tRaw.raw("pricing.build.paths.items") as Array<{
-    what: string;
-    package: string;
-    build: string;
-    after: string;
-  }>;
 
-  const session = await auth();
-  const user = session?.user?.id ? await getUserWithOrg(session.user.id) : null;
-  const isOwner = user?.role === "owner";
-  const currentPlan = user?.organization?.plan ?? null;
+  const panels: Panel[] = [
+    {
+      key: "verhuur",
+      label: t("panels.verhuur.label"),
+      blurb: t("panels.verhuur.blurb"),
+      monthly: PANEL_MONTHLY_PRICE["verhuur-boekingssysteem"],
+      features: tRaw.raw("pricingPage.panels.verhuur.features") as string[],
+      featured: true,
+      featuredLabel: t("featuredLabel"),
+    },
+    {
+      key: "reparatie",
+      label: t("panels.reparatie.label"),
+      blurb: t("panels.reparatie.blurb"),
+      monthly: PANEL_MONTHLY_PRICE["reparatie-portaal"],
+      features: tRaw.raw("pricingPage.panels.reparatie.features") as string[],
+    },
+    {
+      key: "klantportaal",
+      label: t("panels.klantportaal.label"),
+      blurb: t("panels.klantportaal.blurb"),
+      monthly: PANEL_MONTHLY_PRICE["klantportaal-laten-bouwen"],
+      features: tRaw.raw("pricingPage.panels.klantportaal.features") as string[],
+    },
+    {
+      key: "admin",
+      label: t("panels.admin.label"),
+      blurb: t("panels.admin.blurb"),
+      monthly: PANEL_MONTHLY_PRICE["admin-systeem-op-maat"],
+      features: tRaw.raw("pricingPage.panels.admin.features") as string[],
+    },
+  ];
+
+  const reassurance = tRaw.raw("pricingPage.reassurance") as string[];
 
   return (
     <main className="dotted-bg flex flex-1 flex-col">
@@ -70,206 +74,90 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         lede={t("lede")}
       />
 
-      <section className="px-6 pb-24">
+      {/* Hoofdsectie: vier panelen */}
+      <section className="px-6 pb-16 md:pb-20">
         <div className="mx-auto max-w-6xl">
-          <p className="mx-auto mb-10 max-w-2xl text-center text-(--color-muted)">
-            {tCare("intro")}
-          </p>
-          <PricingCardsWithToggle
-            items={careItems}
-            strings={{
-              featuredLabel: tCare("featuredLabel"),
-              monthlyLabel: tCare("billingMonthly"),
-              annualLabel: tCare("billingAnnual"),
-              annualHint: tCare("billingAnnualHint"),
-              perMonth: tCare("perMonth"),
-              perMonthBilledAnnually: tCare("perMonthBilledAnnually"),
-              ctaLabel: tCare("talk"),
-              legacyBadgeLabel: tCare("legacyBadge"),
-              legacyCtaLabel: tCare("legacyCta"),
-            }}
-            authMode={{
-              isOwner,
-              currentPlan: currentPlan as "care" | "studio" | "atelier" | null,
-              subscribeAction: startCareCheckout,
-              anonSubscribeAction: startAnonCheckout,
-              subscribeLabel: tCare("subscribe"),
-              currentPlanLabel: tCare("currentPlan"),
-            }}
+          <PanelPricingTable
+            panels={panels}
+            ctaLabel={t("ctaLabel")}
+            perMonthLabel={t("perMonth")}
+            allInclusiveLabel={t("allInclusive")}
           />
-
-          {/* Demo-callout — subtiel zinnetje onder de tier-cards */}
-          <p className="mx-auto mt-8 max-w-2xl text-center text-[14px] text-(--color-muted)">
-            {t("demoCallout.body")}{" "}
-            <Link
-              href="/demo/portal"
-              className="font-medium text-(--color-wine) underline decoration-(--color-wine)/40 underline-offset-4 hover:decoration-(--color-wine)"
-            >
-              {t("demoCallout.cta")} →
-            </Link>
-          </p>
-
-          {/* Discovery-pakket — de brug tussen gratis call en €6–10k build */}
-          <div className="rounded-panel mx-auto mt-12 max-w-3xl border border-t-2 border-(--color-border) border-t-(--color-accent) bg-(--color-surface) p-7 md:p-8">
-            <p className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
-              {`// ${t("discoveryCallout.eyebrow")}`}
-            </p>
-            <h3 className="mt-2 font-serif text-[20px] leading-tight text-(--color-text) md:text-[24px]">
-              {t("discoveryCallout.title")}
-            </h3>
-            <p className="mt-3 text-[15px] leading-[1.6] text-(--color-muted)">
-              {t("discoveryCallout.body")}
-            </p>
-            <div className="mt-5">
-              <CalPopupTrigger
-                locale={locale}
-                className={buttonVariants({ variant: "accent", size: "sm" })}
-              >
-                {t("discoveryCallout.cta")}
-              </CalPopupTrigger>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Build extensions + calculator */}
-      <section className="py-section border-t border-(--color-border) px-6">
-        <div className="mx-auto max-w-5xl">
-          <RevealOnScroll className="mb-10 max-w-3xl space-y-3">
-            <h2 className="text-h2">{tBuild("title")}</h2>
-            <p className="leading-relaxed text-(--color-muted)">{tBuild("lede")}</p>
-          </RevealOnScroll>
-          <BuildCalculator
-            strings={{
-              tierLabel: tCalc("tier"),
-              buildLabel: tCalc("build"),
-              monthsLabel: tCalc("months"),
-              duringBuildLabel: tCalc("duringBuild"),
-              afterBuildLabel: tCalc("afterBuild"),
-              totalBuildLabel: tCalc("totalBuild"),
-              ctaAuthenticated: tCalc("ctaAuthenticated"),
-              ctaAnonymous: tCalc("ctaAnonymous"),
-              perMonth: tCare("perMonth"),
-              // .raw() omdat deze strings nog onvervulde {project}/{months}-
-              // placeholders bevatten — t() ziet die als ICU-argumenten en geeft
-              // bij ontbreken de key terug. De component vult ze client-side in.
-              interpretationTemplate: tCalc.raw("interpretationTemplate") as string,
-              interpretationNone: tCalc("interpretationNone"),
-              interpretationLabels: {
-                none: tCalc("interpretationLabels.none"),
-                light: tCalc("interpretationLabels.light"),
-                standard: tCalc("interpretationLabels.standard"),
-                custom: tCalc("interpretationLabels.custom"),
-              },
-              timelineDuring: tCalc.raw("timelineDuring") as string,
-              timelineAfter: tCalc("timelineAfter"),
-              fixedPriceClaim: tCalc("fixedPriceClaim"),
-              tierOptions: [
-                { id: "care", name: tTierNames("care") },
-                { id: "studio", name: tTierNames("studio") },
-                { id: "atelier", name: tTierNames("atelier") },
-              ],
-              buildOptions: [
-                { id: "none", name: tBuildOpts("none") },
-                { id: "light", name: tBuildOpts("light") },
-                { id: "standard", name: tBuildOpts("standard") },
-                { id: "custom", name: tBuildOpts("custom") },
-              ],
-            }}
-            authMode={
-              isOwner ? { isOwner, subscribeAction: startCareCheckoutWithBuild } : undefined
-            }
-          />
-
-          {/* Veelvoorkomende paden — concrete voorbeeld-tabel onder de calculator */}
-          <RevealOnScroll className="mt-12 space-y-4">
-            <div className="space-y-2">
-              <h3 className="text-xl md:text-2xl">{tPaths("title")}</h3>
-              <p className="text-(--color-muted)">{tPaths("lede")}</p>
-            </div>
-            <div className="rounded-panel overflow-hidden border border-(--color-border) bg-(--color-surface)">
-              <div className="hidden grid-cols-[1.4fr_1.4fr_1fr_1fr] gap-4 border-b border-(--color-border) bg-(--color-bg-warm) px-5 py-3 font-mono text-[10px] tracking-widest text-(--color-muted) uppercase md:grid">
-                <span>{tPaths("headers.what")}</span>
-                <span>{tPaths("headers.package")}</span>
-                <span>{tPaths("headers.build")}</span>
-                <span>{tPaths("headers.after")}</span>
-              </div>
-              <ul className="divide-y divide-(--color-border)">
-                {pathItems.map((row, i) => (
-                  <li
-                    key={i}
-                    className="grid gap-2 px-5 py-4 md:grid-cols-[1.4fr_1.4fr_1fr_1fr] md:gap-4"
-                  >
-                    <p className="text-[15px] font-medium text-(--color-text)">{row.what}</p>
-                    <p className="text-[14px] text-(--color-muted)">{row.package}</p>
-                    <p className="text-[14px] text-(--color-text)">{row.build}</p>
-                    <p className="text-[14px] text-(--color-text)">{row.after}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </RevealOnScroll>
-        </div>
-      </section>
-
-      {/* Reassurance + add-ons — gecombineerde strip onder calculator */}
+      {/* Reassurance: wat zit er in elk abonnement */}
       <section className="py-section border-t border-(--color-border) bg-(--color-bg-warm) px-6">
-        <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-2">
-          <div>
-            <h2 className="mb-6 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
+        <div className="mx-auto max-w-3xl">
+          <RevealOnScroll className="mb-8">
+            <h2 className="font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
               {t("reassuranceTitle")}
             </h2>
-            <ul className="space-y-3">
-              {reassurance.map((r, i) => (
-                <RevealOnScroll key={i} delay={i * 0.04}>
-                  <li className="flex items-start gap-2.5 text-[14px] text-(--color-muted)">
-                    <Check
-                      className="mt-1 h-3.5 w-3.5 shrink-0 text-(--color-accent)"
-                      strokeWidth={2.5}
-                    />
-                    {r}
-                  </li>
-                </RevealOnScroll>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className="mb-6 font-mono text-[11px] tracking-widest text-(--color-muted) uppercase">
-              {t("addonsTitle")}
-            </h2>
-            <ul className="space-y-3">
-              {addons.map((a, i) => (
-                <RevealOnScroll key={i} delay={i * 0.04}>
-                  <li className="border-b border-(--color-border) pb-3 text-[14px] text-(--color-muted)">
-                    {a}
-                  </li>
-                </RevealOnScroll>
-              ))}
-            </ul>
+          </RevealOnScroll>
+          <ul className="space-y-3">
+            {reassurance.map((r, i) => (
+              <RevealOnScroll key={i} delay={i * 0.04}>
+                <li className="flex items-start gap-2.5 text-[15px] text-(--color-text)">
+                  <Check
+                    className="mt-1 h-4 w-4 shrink-0 text-(--color-accent)"
+                    strokeWidth={2.5}
+                  />
+                  {r}
+                </li>
+              </RevealOnScroll>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Hoe het werkt — kort 3-stappen verhaal */}
+      <section className="py-section border-t border-(--color-border) px-6">
+        <div className="mx-auto max-w-4xl">
+          <RevealOnScroll className="mb-10 max-w-2xl space-y-3">
+            <h2 className="text-h2">{t("howItWorks.title")}</h2>
+            <p className="text-(--color-muted)">{t("howItWorks.lede")}</p>
+          </RevealOnScroll>
+          <div className="grid gap-4 md:grid-cols-3">
+            {(
+              tRaw.raw("pricingPage.howItWorks.steps") as Array<{
+                step: string;
+                title: string;
+                body: string;
+              }>
+            ).map((s, i) => (
+              <RevealOnScroll key={i} delay={i * 0.06}>
+                <div className="rounded-card h-full border border-(--color-border) bg-(--color-surface) p-5">
+                  <p className="font-mono text-[10px] tracking-widest text-(--color-accent) uppercase">
+                    {s.step}
+                  </p>
+                  <h3 className="mt-2 text-[16px] font-medium text-(--color-text)">{s.title}</h3>
+                  <p className="mt-2 text-[13.5px] leading-[1.55] text-(--color-muted)">{s.body}</p>
+                </div>
+              </RevealOnScroll>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Footer-CTA — kruislink naar /contact + /cases */}
+      {/* Footer CTA */}
       <section className="py-section border-t border-(--color-border) px-6">
         <RevealOnScroll className="mx-auto max-w-3xl space-y-5 text-center">
           <h2 className="text-h2">{t("footerCtaTitle")}</h2>
           <p className="text-(--color-muted)">{t("footerCtaBody")}</p>
           <div className="flex flex-wrap justify-center gap-3 pt-2">
-            <CalPopupTrigger locale={locale} className={buttonVariants({ variant: "primary" })}>
-              {t("footerCtaPrimary")}
-              <ArrowRight className="h-3.5 w-3.5" />
-            </CalPopupTrigger>
-            <Button asChild variant="outline">
-              <Link href="/cases">
-                {t("footerCtaSecondary")}
+            <Button asChild variant="primary">
+              <Link href="/aanvragen">
+                {t("footerCtaPrimary")}
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </Button>
+            <CalPopupTrigger locale={locale} className={buttonVariants({ variant: "outline" })}>
+              {t("footerCtaSecondary")}
+              <ArrowRight className="h-3.5 w-3.5" />
+            </CalPopupTrigger>
           </div>
         </RevealOnScroll>
       </section>
-      <PricingExitPopup locale={locale} />
     </main>
   );
 }

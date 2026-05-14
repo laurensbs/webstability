@@ -24,9 +24,10 @@ export async function generateMetadata({
   return pageMetadata(locale, "diensten");
 }
 
-// Verhuurplatform is de strategische wig. Bedrijfssoftware en webshop
-// daarna. Care/onderhoud sluit als doorlopend abonnement.
-const SOLUTION_KEYS = ["verhuurplatform", "platform", "webshop", "care"] as const;
+// Vier panelen op abonnement, in volgorde van zichtbaarheid: verhuur
+// is de strategische wig (sterkste case), reparatie en klantportaal
+// volgen, admin sluit als breedste maatwerk-paneel.
+const SOLUTION_KEYS = ["verhuurpaneel", "reparatiepaneel", "klantportaal", "adminpaneel"] as const;
 
 type HeroMetric = { value: string; label: string };
 
@@ -71,11 +72,14 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     <main className="flex flex-1 flex-col">
       <JsonLd
         data={serviceLd({
-          name: locale === "es" ? "Desarrollo de software a medida" : "Software op maat",
+          name:
+            locale === "es"
+              ? "Paneles empresariales por suscripción"
+              : "Bedrijfspanelen op abonnement",
           description:
             locale === "es"
-              ? "Plataformas de alquiler y reparación, tiendas online y software de gestión a medida — precio fijo, entrega en 4 semanas, mantenimiento continuo. Para pymes en Países Bajos y España."
-              : "Verhuur- en reparatieplatforms, webshops en admin-systemen op maat — vaste prijs, levering in 4 weken, doorlopend onderhoud. Voor MKB in Nederland en Spanje.",
+              ? "Cuatro paneles empresariales completos por cuota mensual fija — alquiler, reparación, portal de cliente y admin a medida. Sin facturas sueltas de proyecto. Para pymes en Países Bajos y España."
+              : "Vier complete bedrijfspanelen op vaste maandprijs — verhuur, reparatie, klantportaal en admin op maat. Geen losse projectfacturen. Voor MKB in Nederland en Spanje.",
           locale,
           url: siteUrl(locale === "es" ? "/es/servicios" : "/diensten"),
         })}
@@ -293,9 +297,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   href={{ pathname: "/aanvragen" }}
                   className="inline-flex items-center gap-1.5 rounded-full border border-(--color-accent)/50 bg-(--color-accent-soft)/40 px-4 py-2 text-[13px] font-medium text-(--color-text) transition-colors hover:border-(--color-accent)"
                 >
-                  {locale === "es"
-                    ? "Solicita tu web o tienda online →"
-                    : "Vraag je website of webshop aan →"}
+                  {locale === "es" ? "Solicita un panel →" : "Vraag een paneel aan →"}
                 </Link>
               </li>
               <li>
