@@ -201,8 +201,8 @@
     "lede": "Wat klanten me vragen voordat we beginnen — over prijs, levertijd, eigendom en hoe ik werk. Staat je vraag er niet bij? Mail me, binnen een dag een eerlijk antwoord.",
     "items": [
       {
-        "q": "Wat kost een boekingssysteem of klantportaal op maat?",
-        "a": "Een werkende eerste versie kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een doorlopend abonnement vanaf €179/m voor hosting, monitoring, onderhoud en doorontwikkeling. Geen offertes per wijziging, geen meeruren-facturen. Een marketing-site is goedkoper (~€1.250 build, €95/m), een webshop met BTW/IVA zit ertussenin (~€2.000 build, €179/m). Concreet uitrekenen kan op de prijzen-pagina."
+        "q": "Wat kost een paneel?",
+        "a": "Vaste maandprijs per paneel, alles inbegrepen — bouw, hosting, monitoring én doorontwikkeling. Klantportaal €245/mnd, reparatiepaneel €395/mnd, verhuurpaneel €495/mnd, adminpaneel €545/mnd. Geen losse projectfacturen, geen meeruren-discussies, geen jaarcontract. Een werkende eerste versie staat in vier weken; vanaf dat moment betaal je alleen het maandbedrag."
       },
       {
         "q": "Hoe lang duurt het om software op maat te laten bouwen?",
@@ -296,7 +296,7 @@
     "planCallSecondary": "of plan een gesprek"
   },
   "footer": {
-    "tagline": "Eén ontwikkelaar. Software die blijft werken.",
+    "tagline": "Vier panelen op abonnement. Eén vaste maandprijs.",
     "rights": "Alle rechten voorbehouden.",
     "legal": "Aviso legal",
     "privacy": "Privacy",
@@ -306,14 +306,14 @@
     "cases": "Cases",
     "faq": "Veelgestelde vragen",
     "cols": {
-      "services": "Diensten",
+      "services": "Panelen",
       "company": "Bedrijf",
       "contact": "Contact"
     },
     "contactRegion": "Costa Brava · Spanje",
     "liveBadge": "alle systemen draaien",
-    "studioTagline": "Eén systeem onder verhuur- en *reparatiebedrijven* in Nederland en Spanje.",
-    "studioSub": "Vaste prijs €5–8k, vier weken levering, doorlopend onderhoud vanaf €179/m. Eén ontwikkelaar die het bouwt en in de lucht houdt.",
+    "studioTagline": "Bedrijfspanelen op abonnement voor *MKB* in Nederland en Spanje.",
+    "studioSub": "Vaste maandprijs vanaf €245/mnd — bouw, hosting en doorontwikkeling allemaal in één. Eén ontwikkelaar die het bouwt en in de lucht houdt.",
     "responseLabel": "Reactie binnen",
     "responseValue": "24 uur",
     "lastDeployLabel": "Laatste deploy",
@@ -389,20 +389,20 @@
       "metaPlatformsLabel": "platforms productioneel",
       "metaRegionLabel": "werkgebied",
       "metaRegionValue": "NL · ES",
-      "taglinePrefix": "Eén stack voor",
+      "taglinePrefix": "Eén paneel voor",
       "rotatingWords": [
         "verhuurbedrijven",
         "reparatiediensten",
-        "restaurants",
+        "stallingsbedrijven",
         "boekingsplatformen",
-        "webshops"
+        "MKB-ondernemers"
       ],
-      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem, mobiel-first gebouwd zoals jouw klanten 't gebruiken. Vaste prijs, vier weken levering, doorlopend abonnement vanaf €179/maand, voor ondernemers in Nederland en Spanje."
+      "taglineSuffix": "— publieke site én admin paneel als één geïntegreerd systeem, op een vaste maandprijs vanaf €245/mnd. Bouw, hosting en doorontwikkeling allemaal in één bedrag. Voor ondernemers in Nederland en Spanje."
     },
     "howItWorks": {
       "eyebrow": "hoe het werkt",
       "title": "Eén actie. *Twee* zijden. Volledig geïntegreerd.",
-      "lede": "Je klant boekt op je website. Wij zorgen dat jij in je dashboard meteen alles ziet — boeking, betaling, contract, kalender. Geen handmatig overtypen meer.",
+      "lede": "Je klant doet wat 'ie wil doen — boeken, een werkbon openen, in z'n portaal kijken. Jij ziet 't direct in je admin paneel. Geen handmatig overtypen, geen losse tools, geen synchronisatie-puzzels.",
       "toggleClient": "Klant-view",
       "toggleOwner": "Jouw view",
       "client": {
@@ -457,34 +457,34 @@
       "ctaSecondaryHref": "/over"
     },
     "services": {
-      "eyebrow": "diensten",
-      "title": "Vier richtingen. *Eén* manier van werken.",
-      "lede": "Vaste prijs, vier weken voor een werkende versie, daarna een doorlopend abonnement dat onderhoud en doorbouwen in één houdt — voor MKB in Nederland en Spanje. Eén persoon die het bouwt en blijft.",
-      "bridgeNote": "Bouwen én onderhouden zit in één doorlopend abonnement. *Tijdens* een build betaal je tijdelijk meer per maand, daarna val je terug op je vaste maandprijs. Zo betaal je over de tijd, niet vooraf — en de code staat op jouw account.",
+      "eyebrow": "vier panelen",
+      "title": "Vier panelen. *Eén* abonnementsmodel.",
+      "lede": "Compleet bedrijfspaneel op vaste maandprijs — bouw, hosting en doorontwikkeling in één maandbedrag. Voor MKB in NL en Spanje. Eén persoon die het bouwt en blijft.",
+      "bridgeNote": "Geen losse projectfacturen. Eén vaste maandprijs vanaf de eerste dag, ook tijdens de bouw. Doorontwikkeling en nieuwe features komen erbij binnen hetzelfde bedrag — geen offerte per wijziging.",
       "items": {
         "verhuurplatform": {
-          "title": "Verhuur-boekingssysteem",
-          "body": "Het systeem waar de meeste klanten voor komen: een compleet boekingsplatform, klantportaal en channel-sync (Airbnb, Booking) — één agenda over al je objecten, automatische facturen en contracten met BTW én IVA. Draait al op de Costa Brava.",
-          "pricePill": "vaste prijs €5–8k · 4 weken levering",
-          "cta": "Bekijk de verhuur-pagina →"
+          "title": "Verhuurpaneel",
+          "body": "Het paneel waar de meeste klanten voor komen: compleet boekingsplatform, klantportaal en channel-sync (Airbnb, Booking) — één agenda over al je objecten, automatische facturen en contracten met BTW én IVA. Draait al op de Costa Brava.",
+          "pricePill": "€495/mnd · alles inbegrepen",
+          "cta": "Bekijk het verhuurpaneel →"
         },
         "platform": {
-          "title": "Bedrijfssoftware op maat",
-          "body": "Een admin-systeem dat Excel vervangt, een klantportaal, een reparatie-portaal voor de werkplaats — vaak gekoppeld aan een publieke site. Eerste werkende versie in vier weken, daarna incrementeel doorbouwen binnen het abonnement.",
-          "pricePill": "vanaf €5–8k · 4 weken eerste versie",
-          "cta": "Bekijk alle diensten →"
+          "title": "Reparatiepaneel",
+          "body": "Werkbon-systeem voor garages en werkplaatsen: iPad-flow voor monteurs, status live voor klanten, automatische facturen + boekhoud-koppeling. De papieren werkbon vervangen.",
+          "pricePill": "€395/mnd · alles inbegrepen",
+          "cta": "Bekijk het reparatiepaneel →"
         },
         "webshop": {
-          "title": "Website of webshop",
-          "body": "Een snelle, meertalige site die niet op een template lijkt, of een volledige webshop met btw/IVA per categorie en voorraad-koppeling. Stel 'm zelf samen — type, pagina's, stijl, opties — en zie meteen de richtprijs.",
-          "pricePill": "vanaf €3.500 · stel zelf samen",
-          "cta": "Vraag je website aan →"
+          "title": "Klantportaal",
+          "body": "Een eigen portaal voor je klanten — inloggen, documenten, facturen, berichten. Onder jouw merk, niet 'powered by SaaS X'. Optioneel gekoppeld aan je bestaande systeem.",
+          "pricePill": "€245/mnd · alles inbegrepen",
+          "cta": "Bekijk het klantportaal →"
         },
         "care": {
-          "title": "Onderhoud & doorbouwen",
-          "body": "Het doorlopende abonnement: hosting, monitoring, security-updates, kleine wijzigingen en doorbouwen op wat je echt nodig hebt. Vanaf €179/m; Studio (€179/m) is de instap voor nieuwe klanten — met onderhoudsuren en lokale SEO erin.",
-          "pricePill": "vanaf €179/m · doorlopend",
-          "cta": "Bekijk de prijzen →"
+          "title": "Adminpaneel op maat",
+          "body": "Het breedste paneel: een intern systeem dat vijf losse tools vervangt. Dashboards, planning, klanten, facturen, boekhoud-koppeling — volledig op jouw bedrijf afgestemd.",
+          "pricePill": "€545/mnd · alles inbegrepen",
+          "cta": "Bekijk het adminpaneel →"
         }
       }
     },
@@ -572,12 +572,12 @@
       "title": "Antwoorden vooraf.",
       "items": [
         {
-          "q": "Wat kost een typisch project?",
-          "a": "Vaste prijs, vier weken levering. Een website op maat: vanaf €1.250. Een webshop met BTW/IVA en voorraad-koppeling: vanaf €3.500. Een verhuur-boekingssysteem, klantportaal, admin-systeem of reparatie-portaal op maat: €5.000–8.000 (een groter geheel — publieke site + admin + portaal — eerder €6.000–10.000). Daarna een doorlopend abonnement vanaf €179/m voor hosting, onderhoud en doorbouwen. Stel een website of webshop zelf samen op /aanvragen en zie meteen de richtprijs."
+          "q": "Wat kost een paneel?",
+          "a": "Eén vaste maandprijs per paneel, alles inbegrepen. Klantportaal €245/mnd, reparatiepaneel €395/mnd, verhuurpaneel €495/mnd, adminpaneel €545/mnd. Bouw + hosting + onderhoud + doorontwikkeling — alles in één bedrag. Geen losse projectfacturen, geen jaarcontract, geen meeruren-discussies. Bekijk de details op /prijzen."
         },
         {
-          "q": "Waarom een vaste prijs en geen offerte-per-uur?",
-          "a": "Per-uur of een offerte met een marge 'voor het onverwachte' schuift het risico naar jou: loopt het uit, dan betaal jij. Ik werk met een vaste prijs en een vaste levertermijn van vier weken voor de eerste werkende versie — loopt het uit, dan is dat mijn probleem. Je weet vooraf wat het kost en wat je krijgt. Geen meeruren-discussies."
+          "q": "Waarom een abonnement en geen losse offertes?",
+          "a": "Losse offertes per uitbreiding schuiven het risico naar jou: elke kleine wens wordt een gesprek over geld. Op een abonnement gaat het over wat je nodig hebt, niet over hoeveel uren erin gaan. Loopt iets langer dan verwacht, dan is dat mijn probleem — niet jouw factuur. Je weet vooraf wat het kost en wat erin zit."
         },
         {
           "q": "Waarom een abonnement daarna, en niet 'opgeleverd, succes ermee'?",
@@ -633,19 +633,19 @@
       "featured": "Meest gekozen",
       "viewAll": "Bekijk volledige vergelijking & Build-pricing",
       "reassurance": [
-        "Eerste maand gratis",
+        "Eerste maand inbegrepen",
         "Maandelijks opzegbaar",
-        "15% korting bij jaarbetaling",
-        "Maatwerk vanaf €5–8k · website vanaf €1.250"
+        "Geen losse projectfacturen",
+        "Vier panelen vanaf €245/mnd"
       ]
     },
     "cta": {
       "eyebrow": "laten we praten",
-      "title": "Klaar voor een systeem dat *met je meegroeit*?",
-      "body": "Een vrijblijvend gesprek van 30 minuten. Geen verkooppraat — wel een eerlijk advies of, en hoe, we elkaar kunnen helpen.",
+      "title": "Klaar voor een paneel dat *met je meegroeit*?",
+      "body": "Een vrijblijvend gesprek van 30 minuten. Geen verkooppraat — wel een eerlijk advies welk paneel bij je past en wat de aanpak is.",
       "button": "Plan in agenda",
-      "pricingHint": "Maatwerk vanaf €5–8k, website vanaf €1.250 — vaste prijs, vier weken. Daarna een doorlopend abonnement vanaf €179/m. Eerste maand gratis.",
-      "pricingHintLink": "Bekijk de tier-vergelijking"
+      "pricingHint": "Vier panelen vanaf €245/mnd — alles inbegrepen, maandelijks opzegbaar. Eerste paneelversie staat in vier weken.",
+      "pricingHintLink": "Bekijk de panelen"
     }
   },
   "contact": {
