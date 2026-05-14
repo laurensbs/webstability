@@ -126,7 +126,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               en interne detail-link. Past bij de "één hoofdcase, één
               detail-page"-strategie. */}
           {featureLine ? (
-            <RevealOnScroll className="group hover:shadow-floating rounded-modal mb-6 flex flex-col overflow-hidden border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) transition-all duration-300 md:grid md:grid-cols-[1.2fr_1fr] md:gap-0">
+            <RevealOnScroll className="group hover:shadow-floating rounded-modal mb-6 flex flex-col overflow-hidden border border-t-2 border-(--color-border) border-t-(--color-wine) bg-(--color-surface) transition-all duration-300 md:grid md:grid-cols-2 md:gap-0">
               <article
                 id={featureLine.anchor}
                 className="flex scroll-mt-24 flex-col p-8 md:order-2 md:p-10"
@@ -202,8 +202,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <div className="relative md:order-1">
                 <CaseScreenshot
                   url={featureLine.url}
-                  alt={`${featureLine.name} screenshot`}
+                  alt={`${featureLine.name} preview`}
                   videoUrl={featureLine.videoUrl}
+                  subtitle={featureLine.tagline}
                   ratio="4/3"
                   className="rounded-none border-0 md:h-full"
                 />
@@ -234,8 +235,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                   <div className="relative">
                     <CaseScreenshot
                       url={item.url}
-                      alt={`${item.name} screenshot`}
+                      alt={`${item.name} preview`}
                       videoUrl={item.videoUrl}
+                      subtitle={item.tagline}
                     />
                     {item.logoUrl ? (
                       <div className="shadow-card absolute top-3 right-3 flex h-11 w-11 items-center justify-center rounded-[10px] bg-white/95 p-1.5 backdrop-blur">
@@ -402,7 +404,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                     <div className={isSolo ? "relative md:order-1" : "relative"}>
                       <CaseScreenshot
                         url={item.url}
-                        alt={`${item.name} screenshot`}
+                        alt={`${item.name} preview`}
+                        subtitle={item.tagline}
                         ratio={isSolo ? "4/3" : undefined}
                         className={isSolo ? "rounded-none border-0 md:h-full" : undefined}
                       />
