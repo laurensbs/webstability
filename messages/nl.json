@@ -285,7 +285,7 @@
     "studioStatement": {
       "eyebrow": "de studio",
       "title": "Eén ontwikkelaar. *Software* die blijft werken nadat 'ie is opgeleverd.",
-      "lede": "Webstability bouwt en onderhoudt klant-software voor MKB-ondernemers in Nederland en Spanje. Geen accountmanagers tussen jou en de developer. Geen vendor lock-in. Wel: een doorlopend abonnement dat bouwen én onderhouden in één houdt.",
+      "lede": "Webstability bouwt en draait bedrijfspanelen voor MKB-ondernemers in Nederland en Spanje. Geen accountmanagers tussen jou en de developer. Maandelijks opzegbaar met data-export. Eén vaste maandprijs die bouwen, hosten én doorontwikkelen in één houdt.",
       "stats": {
         "yearsLabel": "jaar bouwen",
         "yearsValue": "10+",
@@ -353,7 +353,7 @@
         },
         {
           "title": "Een verouderd admin-paneel of vijf losse tools",
-          "body": "Oude PHP die niemand meer durft aan te raken, of vijf abonnementen die los van elkaar draaien. Eén systeem op maat — publieke site, admin en klantportaal als één geheel — vervangt dat, met code op jouw account en doorlopend onderhoud. Geen vendor lock-in.",
+          "body": "Oude PHP die niemand meer durft aan te raken, of vijf abonnementen die los van elkaar draaien. Eén paneel op maat — publieke site, admin en klantportaal als één geheel — vervangt dat. Vaste maandprijs, alles inbegrepen, maandelijks opzegbaar.",
           "forWho": "MKB in NL én Spanje · BTW en IVA",
           "linkLabel": "Bekijk alle diensten",
           "href": "/diensten"
@@ -425,7 +425,7 @@
         },
         {
           "q": "Waarom een abonnement daarna, en niet 'opgeleverd, succes ermee'?",
-          "a": "Een project-prijs prikkelt om snel te leveren en weg te zijn. Een abonnement verplicht me elke maand opnieuw te leveren — onderhoud, security-updates, doorbouwen op wat je echt gebruikt. Voor jou: lagere instap, altijd opzegbaar, en software die mee blijft groeien. Code op jouw GitHub, hosting op jouw account — geen vendor lock-in."
+          "a": "Een project-prijs prikkelt om snel te leveren en weg te zijn. Een abonnement verplicht me elke maand opnieuw te leveren — onderhoud, security-updates, doorbouwen op wat je echt gebruikt. Voor jou: lagere instap, altijd opzegbaar (met data-export), en software die mee blijft groeien zonder dat je elke wijziging een offerte hoeft te accepteren."
         },
         {
           "q": "Wat zit er in het maandabonnement?",
@@ -584,32 +584,32 @@
         "body": "Als ik een nieuwe leverancier moet inschakelen voor jouw project, hoor je dat eerst."
       },
       {
-        "title": "Geen vendor lock-in",
-        "body": "Code, data en infrastructuur staan op jouw accounts. Bij beëindiging blijft alles van jou."
+        "title": "Maandelijks opzegbaar, met data-export",
+        "body": "Geen jaarcontract, geen opzegtermijn van maanden. Bij beëindiging krijg je een volledige export van je data zodat je verder kunt waar je wil."
       }
     ]
   },
   "about": {
     "eyebrow": "over webstability",
     "title": "Eén persoon. *Software* die blijft werken.",
-    "intro": "Ik ben Laurens Bos. Opgeleid als software engineer, daarna bij de marine — brugcommunicatie, systemen beheren, zorgen dat dingen blijven werken onder druk. Sinds dit jaar werk ik vanuit Spanje, het land waar ik ben opgegroeid: ik bouw klant-software voor MKB-ondernemers in Nederland én Spanje, en breng dezelfde aanpak naar de Spaanse markt. Vaste prijs, jouw eigen merk, en na de oplevering ben ik er nog steeds.",
+    "intro": "Ik ben Laurens Bos. Opgeleid als software engineer, daarna bij de marine — brugcommunicatie, systemen beheren, zorgen dat dingen blijven werken onder druk. Sinds dit jaar werk ik vanuit Spanje, het land waar ik ben opgegroeid: ik bouw en draai bedrijfspanelen voor MKB-ondernemers in Nederland én Spanje. Vaste maandprijs, jouw eigen merk, en geen losse projectfacturen — ik bouw, host en onderhoud voor één bedrag per maand.",
     "langBadges": ["NL", "ES"],
     "principlesTitle": "Vier principes",
     "principles": [
       {
         "kicker": "01",
-        "title": "Eigenaarschap, niet huur",
-        "body": "Code in jouw GitHub, hosting op jouw account, database in jouw naam. Ik bouw, jij bezit."
+        "title": "Geen IT-zorgen, ik draag alles",
+        "body": "Bouw, hosting, security, monitoring, onderhoud — alles zit in het abonnement. Jij hoeft geen GitHub, geen server-account, geen database-tooling te beheren. Eén factuur, één aanspreekpunt, en alles draait."
       },
       {
         "kicker": "02",
-        "title": "Vaste prijs, vaste scope",
-        "body": "Vóór het werk start weet je wat het kost en wat je krijgt. Geen meeruren-discussies."
+        "title": "Vaste maandprijs, geen verrassingen",
+        "body": "Eén bedrag per maand dat alles dekt — ook nieuwe features. Geen meeruren-discussies, geen losse projectfacturen, en je weet vooraf precies wat het kost."
       },
       {
         "kicker": "03",
-        "title": "Lange relaties, niet projecten",
-        "body": "Software is een verbintenis, geen oplevering. Na livegang blijf ik onderhouden en doorbouwen."
+        "title": "Lange relaties, geen oplevering",
+        "body": "Software is een verbintenis. Het paneel groeit met je bedrijf mee — nieuwe features komen erbij binnen het abonnement, niet als nieuw project."
       },
       {
         "kicker": "04",
@@ -634,9 +634,9 @@
           "body": "Caravanreparatiespanje — digitale werkbonnen, monteurs werken op de iPad, status-tracking, en een klantgedeelte waar de klant zelf ziet hoe het ervoor staat."
         },
         {
-          "metric": "4 wkn",
-          "label": "vaste prijs, eerste werkende versie",
-          "body": "Een standaardstack die ik in vier weken op een nieuwe klant zet voor €5–8k. Daarna incrementeel doorbouwen binnen het maandabonnement — geen meeruren-facturen."
+          "metric": "€245",
+          "label": "instap per maand, alles inbegrepen",
+          "body": "Vier panelen op vaste maandprijs. Een standaardstack die ik in vier weken bij een nieuwe klant live zet, en daarna doorlopend mee laat groeien — geen losse projectfacturen, geen meeruren-discussies."
         }
       ]
     },
@@ -695,8 +695,8 @@
           "label": "dubbele boekingen sinds livegang bij klanten"
         },
         {
-          "value": "€5–8k",
-          "label": "vaste prijs, geen meeruren-discussies"
+          "value": "€495",
+          "label": "per maand, alles inbegrepen"
         }
       ],
       "problemEyebrow": "waar het misgaat",
@@ -752,19 +752,19 @@
       ],
       "priceEyebrow": "wat kost het",
       "priceTitle": "Vaste prijs, vier weken levering",
-      "priceBody": "Een werkende eerste versie van je verhuur-boekingssysteem kost €5.000–8.000, geleverd in vier weken. Daarna een Care- of groei-abonnement voor hosting, monitoring, onderhoud en doorbouwen — vanaf €179/m. Geen offertes per wijziging, geen meeruren-facturen.",
+      "priceBody": "Het verhuurpaneel draait op een vaste maandprijs van €495/mnd — bouw, hosting, monitoring, onderhoud en doorontwikkeling allemaal in één bedrag. Eerste werkende versie binnen vier weken na intake. Geen losse projectfacturen.",
       "pricePoints": [
-        "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
-        "Vier weken van eerste gesprek tot werkende versie",
-        "Code in jouw GitHub, hosting op jouw account — geen vendor lock-in",
-        "Eerste maand onderhoud gratis"
+        "€495/mnd vast — alles inbegrepen, geen verrassingen achteraf",
+        "Vier weken van intake tot live paneel",
+        "Maandelijks opzegbaar, met data-export",
+        "Doorontwikkeling zit in het abonnement — geen offerte per wijziging"
       ],
       "faqEyebrow": "veelgestelde vragen",
       "faqTitle": "Verhuur-boekingssysteem — de vragen die ik het meest krijg",
       "faq": [
         {
           "q": "Wat kost een boekingssysteem voor verhuur op maat?",
-          "a": "Een werkende eerste versie kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een doorlopend abonnement vanaf €179/m voor hosting, onderhoud en doorontwikkeling. Geen meeruren-facturen."
+          "a": "Het verhuurpaneel draait op een vaste maandprijs van €495/mnd, alles inbegrepen — bouw, hosting, monitoring, onderhoud en doorontwikkeling. Eerste werkende versie binnen vier weken na intake. Geen losse projectfacturen, maandelijks opzegbaar."
         },
         {
           "q": "Hoe lang duurt het om een verhuursysteem te laten bouwen?",
@@ -821,8 +821,8 @@
           "label": "losse tools vervangen bij een gemiddelde klant"
         },
         {
-          "value": "€5–8k",
-          "label": "vaste prijs, geïntegreerd met je systeem"
+          "value": "€245",
+          "label": "per maand, alles inbegrepen"
         }
       ],
       "problemEyebrow": "waar het misgaat",
@@ -878,19 +878,19 @@
       ],
       "priceEyebrow": "wat kost het",
       "priceTitle": "Vaste prijs, vier weken levering",
-      "priceBody": "Een werkend klantportaal op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken — geïntegreerd met je bestaande systeem of als onderdeel van een groter geheel (publieke site + admin + portaal). Daarna een Care- of groei-abonnement vanaf €179/m voor hosting, onderhoud en doorbouwen.",
+      "priceBody": "Het klantportaal draait op een vaste maandprijs van €245/mnd, alles inbegrepen — bouw, hosting, onderhoud en doorontwikkeling. Eerste werkende versie binnen vier weken na intake. Optioneel gekoppeld aan je bestaande systeem of als onderdeel van een groter geheel (paneel + portaal).",
       "pricePoints": [
-        "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
-        "Vier weken van eerste gesprek tot werkend portaal",
+        "€245/mnd vast — alles inbegrepen, geen verrassingen achteraf",
+        "Vier weken van intake tot werkend portaal",
         "Gekoppeld aan je echte data — geen losse kopie om bij te houden",
-        "Code in jouw GitHub, hosting op jouw account — geen vendor lock-in"
+        "Maandelijks opzegbaar, met data-export"
       ],
       "faqEyebrow": "veelgestelde vragen",
       "faqTitle": "Klantportaal laten bouwen — de vragen die ik het meest krijg",
       "faq": [
         {
           "q": "Wat kost het om een klantportaal te laten bouwen?",
-          "a": "Een werkend portaal op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een doorlopend abonnement vanaf €179/m voor hosting, onderhoud en doorontwikkeling."
+          "a": "Het klantportaal draait op €245/mnd vast, alles inbegrepen. Eerste werkende versie binnen vier weken na intake. Maandelijks opzegbaar met data-export."
         },
         {
           "q": "Kan het aansluiten op mijn bestaande systeem?",
@@ -943,8 +943,8 @@
           "label": "van eerste gesprek tot werkende kern"
         },
         {
-          "value": "€5–8k",
-          "label": "vaste prijs voor de kern, geen meeruren"
+          "value": "€545",
+          "label": "per maand, alles inbegrepen"
         },
         {
           "value": "1 scherm",
@@ -1004,19 +1004,19 @@
       ],
       "priceEyebrow": "wat kost het",
       "priceTitle": "Vaste prijs voor de kern, vier weken",
-      "priceBody": "Een werkend admin-systeem op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken — niet 'het hele bedrijf gedigitaliseerd', maar de kern: de paar dingen die nu het meeste pijn doen, goed gebouwd. Daarna een doorlopend abonnement vanaf €179/m voor hosting, onderhoud en doorbouwen. Je hoeft niet in één keer van Excel af.",
+      "priceBody": "Het adminpaneel draait op €545/mnd vast, alles inbegrepen — bouw, hosting, onderhoud én doorontwikkeling. Eerste werkende versie binnen vier weken na intake — niet 'het hele bedrijf in één keer gedigitaliseerd', maar de kern. Daarna groeit het paneel mee binnen het abonnement, zonder offertes per uitbreiding.",
       "pricePoints": [
-        "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
-        "Vier weken van eerste gesprek tot werkende kern",
-        "Incrementeel doorbouwen op wat in de praktijk blijkt te ontbreken",
-        "Code op jouw account, hosting op jouw naam — geen vendor lock-in"
+        "€545/mnd vast — alles inbegrepen, geen verrassingen achteraf",
+        "Vier weken van intake tot werkende kern",
+        "Doorontwikkeling zit in het abonnement — geen offerte per wijziging",
+        "Maandelijks opzegbaar, met data-export"
       ],
       "faqEyebrow": "veelgestelde vragen",
       "faqTitle": "Admin-systeem op maat — de vragen die ik het meest krijg",
       "faq": [
         {
           "q": "Wat kost een admin-systeem op maat?",
-          "a": "Een werkende eerste versie (de kern) kost €5.000–8.000, vaste prijs, geleverd in vier weken. Daarna een abonnement vanaf €179/m voor hosting, onderhoud en doorbouwen. Geen meeruren-facturen."
+          "a": "Het adminpaneel kost €545/mnd vast, alles inbegrepen. Eerste werkende kern binnen vier weken na intake. Doorontwikkeling zit in het abonnement — geen meeruren-facturen."
         },
         {
           "q": "Moet ik in één keer van Excel af?",
@@ -1069,8 +1069,8 @@
           "label": "van eerste gesprek tot werkende versie"
         },
         {
-          "value": "€5–8k",
-          "label": "vaste prijs, geen meeruren"
+          "value": "€395",
+          "label": "per maand, alles inbegrepen"
         },
         {
           "value": "0",
@@ -1130,19 +1130,19 @@
       ],
       "priceEyebrow": "wat kost het",
       "priceTitle": "Vaste prijs, vier weken levering",
-      "priceBody": "Een werkend reparatie-portaal op maat kost €5.000–8.000, vaste prijs, geleverd in vier weken — als onderdeel van een groter geheel (publieke site + werkplaats-admin + klantgedeelte) eerder €6.000–10.000. Daarna een doorlopend abonnement vanaf €179/m voor hosting, onderhoud en doorbouwen.",
+      "priceBody": "Het reparatiepaneel draait op €395/mnd vast, alles inbegrepen — bouw, hosting, onderhoud en doorontwikkeling. Eerste werkende versie (publiek aanmeldformulier + iPad-werkplaats + klantgedeelte) binnen vier weken na intake.",
       "pricePoints": [
-        "Vaste prijs vooraf — je weet wat het kost en wat je krijgt",
-        "Vier weken van eerste gesprek tot werkende versie",
+        "€395/mnd vast — alles inbegrepen, geen verrassingen achteraf",
+        "Vier weken van intake tot live werkbon-systeem",
         "iPad-vriendelijke werkplaats-weergave + klantgedeelte",
-        "Code op jouw account, hosting op jouw naam — geen vendor lock-in"
+        "Maandelijks opzegbaar, met data-export"
       ],
       "faqEyebrow": "veelgestelde vragen",
       "faqTitle": "Reparatie-portaal — de vragen die ik het meest krijg",
       "faq": [
         {
           "q": "Wat kost een reparatie-portaal op maat?",
-          "a": "Een werkende eerste versie kost €5.000–8.000, vaste prijs, geleverd in vier weken. Als onderdeel van een groter geheel eerder €6.000–10.000. Daarna een abonnement vanaf €179/m voor hosting, onderhoud en doorbouwen."
+          "a": "Het reparatiepaneel kost €395/mnd vast, alles inbegrepen. Eerste werkende versie binnen vier weken na intake. Doorontwikkeling zit in het abonnement."
         },
         {
           "q": "Werkt het op een iPad in de werkplaats?",

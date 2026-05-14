@@ -285,7 +285,7 @@
     "studioStatement": {
       "eyebrow": "el estudio",
       "title": "Un solo desarrollador. *Software* que sigue funcionando después de la entrega.",
-      "lede": "Webstability construye y mantiene software a medida para pymes en Países Bajos y España. Sin gestores de cuenta entre tú y el desarrollador. Sin vendor lock-in. Sí: una suscripción continua que mantiene construir y mantener en uno.",
+      "lede": "Webstability construye y opera paneles empresariales para pymes en Países Bajos y España. Sin gestores de cuenta entre tú y el desarrollador. Cancelable mensualmente con export de datos. Una sola cuota mensual fija que cubre construir, hostear y desarrollar.",
       "stats": {
         "yearsLabel": "años construyendo",
         "yearsValue": "10+",
@@ -353,7 +353,7 @@
         },
         {
           "title": "Un panel admin anticuado o cinco herramientas sueltas",
-          "body": "PHP viejo que nadie se atreve a tocar, o cinco suscripciones que funcionan por separado. Un sistema a medida — web pública, admin y portal de cliente como un conjunto — lo reemplaza, con el código en tu cuenta y mantenimiento continuo. Sin vendor lock-in.",
+          "body": "PHP viejo que nadie se atreve a tocar, o cinco suscripciones que funcionan por separado. Un panel a medida — web pública, admin y portal de cliente como un conjunto — lo reemplaza. Cuota mensual fija, todo incluido, cancelable mensualmente.",
           "forWho": "pymes en NL y España · BTW e IVA",
           "linkLabel": "Ver todos los servicios",
           "href": "/es/servicios"
@@ -425,7 +425,7 @@
         },
         {
           "q": "¿Por qué una suscripción después, y no 'entregado, suerte'?",
-          "a": "Un precio de proyecto incentiva entregar rápido e irse. Una suscripción me obliga a entregar cada mes — mantenimiento, updates de seguridad, desarrollo de lo que de verdad usas. Para ti: entrada más baja, siempre cancelable, software que sigue creciendo. Código en tu GitHub, hosting en tu cuenta — sin vendor lock-in."
+          "a": "Un precio de proyecto incentiva entregar rápido e irse. Una suscripción me obliga a entregar cada mes — mantenimiento, updates de seguridad, desarrollo de lo que de verdad usas. Para ti: entrada más baja, siempre cancelable (con export de datos), y software que sigue creciendo sin que tengas que aprobar un presupuesto por cada cambio."
         },
         {
           "q": "¿Qué incluye la suscripción mensual?",
@@ -584,32 +584,32 @@
         "body": "Si necesito incorporar un nuevo proveedor para tu proyecto, te lo digo antes."
       },
       {
-        "title": "Sin lock-in",
-        "body": "Código, datos e infraestructura están en tus cuentas. Al terminar, todo sigue siendo tuyo."
+        "title": "Cancelable mensualmente, con export de datos",
+        "body": "Sin contrato anual, sin meses de preaviso. Al terminar recibes un export completo de tus datos para que puedas continuar donde quieras."
       }
     ]
   },
   "about": {
     "eyebrow": "sobre webstability",
     "title": "Una persona. *Software* que sigue funcionando.",
-    "intro": "Soy Laurens Bos. Formado como ingeniero de software, luego en la marina — comunicaciones de puente, administración de sistemas, asegurarme de que las cosas sigan funcionando bajo presión. Desde este año trabajo desde España, el país donde crecí: construyo software a medida para pymes en Países Bajos y en España, y traigo el mismo enfoque al mercado español. Precio fijo, tu propia marca, y después de la entrega sigo estando ahí.",
+    "intro": "Soy Laurens Bos. Formado como ingeniero de software, luego en la marina — comunicaciones de puente, administración de sistemas, asegurarme de que las cosas sigan funcionando bajo presión. Desde este año trabajo desde España, el país donde crecí: construyo y opero paneles empresariales para pymes en Países Bajos y en España. Cuota mensual fija, tu propia marca, sin facturas sueltas de proyecto — yo construyo, hosteo y mantengo por una sola cuota al mes.",
     "langBadges": ["NL", "ES"],
     "principlesTitle": "Cuatro principios",
     "principles": [
       {
         "kicker": "01",
-        "title": "Propiedad, no alquiler",
-        "body": "Código en tu GitHub, hosting en tu cuenta, base de datos a tu nombre. Yo construyo, tú eres dueño."
+        "title": "Sin preocupaciones de IT — yo cargo con todo",
+        "body": "Construcción, hosting, seguridad, monitorización, mantenimiento — todo va dentro de la suscripción. No tienes que gestionar GitHub, cuenta de servidor ni herramientas de base de datos. Una factura, un punto de contacto, y todo funciona."
       },
       {
         "kicker": "02",
-        "title": "Precio fijo, alcance fijo",
-        "body": "Antes de empezar sabes lo que cuesta y lo que recibes. Sin discusiones de horas extra."
+        "title": "Cuota fija mensual, sin sorpresas",
+        "body": "Una cantidad al mes que cubre todo — también nuevas features. Sin discusiones de horas extra, sin facturas sueltas de proyecto, y sabes de antemano lo que cuesta."
       },
       {
         "kicker": "03",
-        "title": "Relaciones largas, no proyectos",
-        "body": "El software es un compromiso, no una entrega. Después del lanzamiento sigo manteniendo y desarrollando."
+        "title": "Relaciones largas, no entregas",
+        "body": "El software es un compromiso. El panel crece con tu negocio — nuevas features se añaden dentro de la suscripción, no como proyecto aparte."
       },
       {
         "kicker": "04",
@@ -634,9 +634,9 @@
           "body": "Caravanreparatiespanje — órdenes de trabajo digitales, los mecánicos trabajan en el iPad, seguimiento de estado, y una parte del cliente donde ve por sí mismo cómo va."
         },
         {
-          "metric": "4 sem",
-          "label": "precio fijo, primera versión funcional",
-          "body": "Una stack estándar que pongo sobre un cliente nuevo en cuatro semanas por 5–8 k €. Después desarrollo incremental dentro de la suscripción mensual — sin facturas por horas extra."
+          "metric": "245 €",
+          "label": "entrada por mes, todo incluido",
+          "body": "Cuatro paneles por cuota mensual fija. Una stack estándar que pongo en producción en cuatro semanas, y después dejo crecer continuamente — sin facturas sueltas de proyecto, sin discusiones de horas extra."
         }
       ]
     },
@@ -695,8 +695,8 @@
           "label": "reservas duplicadas desde el lanzamiento en clientes"
         },
         {
-          "value": "5–8 k €",
-          "label": "precio fijo, sin discusiones de horas extra"
+          "value": "495 €",
+          "label": "por mes, todo incluido"
         }
       ],
       "problemEyebrow": "dónde falla",
@@ -752,19 +752,19 @@
       ],
       "priceEyebrow": "qué cuesta",
       "priceTitle": "Precio fijo, entrega en cuatro semanas",
-      "priceBody": "Una primera versión funcional de tu sistema de reservas cuesta 5.000–8.000 €, entregada en cuatro semanas. Después, una suscripción Care o de crecimiento para hosting, monitorización, mantenimiento y desarrollo continuo — desde 179 €/m. Sin presupuestos por cambio, sin facturas de horas extra.",
+      "priceBody": "El panel de alquiler funciona por una cuota mensual fija de 495 €/mes — construcción, hosting, monitorización, mantenimiento y desarrollo todo en una. Primera versión funcionando en cuatro semanas tras la intake. Sin facturas sueltas de proyecto.",
       "pricePoints": [
-        "Precio fijo por adelantado — sabes qué cuesta y qué obtienes",
-        "Cuatro semanas de la primera llamada a una versión funcional",
-        "Código en tu GitHub, hosting en tu cuenta — sin vendor lock-in",
-        "Primer mes de mantenimiento gratis"
+        "495 €/mes fijo — todo incluido, sin sorpresas después",
+        "Cuatro semanas de la intake al panel en vivo",
+        "Cancelable mensualmente, con export de datos",
+        "Desarrollo dentro de la suscripción — sin presupuesto por cambio"
       ],
       "faqEyebrow": "preguntas frecuentes",
       "faqTitle": "Sistema de reservas de alquiler — las preguntas que más recibo",
       "faq": [
         {
           "q": "¿Cuánto cuesta un sistema de reservas de alquiler a medida?",
-          "a": "Una primera versión funcional cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Después, una suscripción continua desde 179 €/m para hosting, mantenimiento y desarrollo. Sin facturas de horas extra."
+          "a": "El panel de alquiler funciona por una cuota mensual fija de 495 €/mes, todo incluido — construcción, hosting, monitorización, mantenimiento y desarrollo. Primera versión funcionando en cuatro semanas tras la intake. Sin facturas sueltas de proyecto, cancelable mensualmente."
         },
         {
           "q": "¿Cuánto tarda en construirse un sistema de alquiler?",
@@ -821,8 +821,8 @@
           "label": "herramientas sueltas reemplazadas en un cliente medio"
         },
         {
-          "value": "5–8 k €",
-          "label": "precio fijo, integrado con tu sistema"
+          "value": "245 €",
+          "label": "por mes, todo incluido"
         }
       ],
       "problemEyebrow": "dónde falla",
@@ -878,19 +878,19 @@
       ],
       "priceEyebrow": "qué cuesta",
       "priceTitle": "Precio fijo, entrega en cuatro semanas",
-      "priceBody": "Un portal de cliente a medida funcional cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas — integrado con tu sistema existente o como parte de un conjunto mayor (web pública + admin + portal). Después, una suscripción Care o de crecimiento desde 179 €/m para hosting, mantenimiento y desarrollo.",
+      "priceBody": "El portal de cliente funciona por una cuota mensual fija de 245 €/mes, todo incluido — construcción, hosting, mantenimiento y desarrollo. Primera versión funcionando en cuatro semanas tras la intake. Opcionalmente integrado con tu sistema existente o como parte de un conjunto mayor (panel + portal).",
       "pricePoints": [
-        "Precio fijo por adelantado — sabes qué cuesta y qué obtienes",
-        "Cuatro semanas de la primera llamada a un portal funcional",
+        "245 €/mes fijo — todo incluido, sin sorpresas después",
+        "Cuatro semanas de la intake al portal funcionando",
         "Conectado a tus datos reales — sin una copia aparte que llevar",
-        "Código en tu GitHub, hosting en tu cuenta — sin vendor lock-in"
+        "Cancelable mensualmente, con export de datos"
       ],
       "faqEyebrow": "preguntas frecuentes",
       "faqTitle": "Portal de cliente a medida — las preguntas que más recibo",
       "faq": [
         {
           "q": "¿Cuánto cuesta construir un portal de cliente?",
-          "a": "Un portal a medida funcional cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas. Después, una suscripción continua desde 179 €/m para hosting, mantenimiento y desarrollo."
+          "a": "El portal de cliente funciona por 245 €/mes fijo, todo incluido. Primera versión funcionando en cuatro semanas tras la intake. Cancelable mensualmente con export de datos."
         },
         {
           "q": "¿Puede conectarse a mi sistema existente?",
@@ -943,8 +943,8 @@
           "label": "de la primera charla al núcleo funcionando"
         },
         {
-          "value": "5–8k €",
-          "label": "precio fijo del núcleo, sin extras"
+          "value": "545 €",
+          "label": "por mes, todo incluido"
         },
         {
           "value": "1 pantalla",
@@ -1004,19 +1004,19 @@
       ],
       "priceEyebrow": "qué cuesta",
       "priceTitle": "Precio fijo del núcleo, cuatro semanas",
-      "priceBody": "Un sistema interno a medida que funciona cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas — no 'toda la empresa digitalizada', sino el núcleo: las pocas cosas que ahora más duelen, bien construidas. Después, un abono continuo desde 179 €/m para hosting, mantenimiento y desarrollo continuo. No tienes que dejar Excel de golpe.",
+      "priceBody": "El panel admin funciona por 545 €/mes fijo, todo incluido — construcción, hosting, mantenimiento y desarrollo. Primera versión funcionando en cuatro semanas tras la intake — no 'toda la empresa digitalizada de golpe', sino el núcleo. Después, el panel crece dentro de la suscripción, sin presupuestos por ampliación.",
       "pricePoints": [
-        "Precio fijo de antemano — sabes qué cuesta y qué obtienes",
-        "Cuatro semanas de la primera charla al núcleo funcionando",
-        "Desarrollo incremental según lo que en la práctica resulte que falta",
-        "Código en tu cuenta, hosting a tu nombre — sin vendor lock-in"
+        "545 €/mes fijo — todo incluido, sin sorpresas después",
+        "Cuatro semanas de la intake al núcleo funcionando",
+        "Desarrollo dentro de la suscripción — sin presupuesto por cambio",
+        "Cancelable mensualmente, con export de datos"
       ],
       "faqEyebrow": "preguntas frecuentes",
       "faqTitle": "Sistema interno a medida — las preguntas que más recibo",
       "faq": [
         {
           "q": "¿Cuánto cuesta un sistema interno a medida?",
-          "a": "Una primera versión funcionando (el núcleo) cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Después, un abono desde 179 €/m para hosting, mantenimiento y desarrollo. Sin facturas por trabajo extra."
+          "a": "El panel admin cuesta 545 €/mes fijo, todo incluido. Primera versión del núcleo funcionando en cuatro semanas tras la intake. Desarrollo dentro de la suscripción — sin facturas por trabajo extra."
         },
         {
           "q": "¿Tengo que dejar Excel de golpe?",
@@ -1069,8 +1069,8 @@
           "label": "de la primera charla a la versión funcionando"
         },
         {
-          "value": "5–8k €",
-          "label": "precio fijo, sin extras"
+          "value": "395 €",
+          "label": "por mes, todo incluido"
         },
         {
           "value": "0",
@@ -1130,19 +1130,19 @@
       ],
       "priceEyebrow": "qué cuesta",
       "priceTitle": "Precio fijo, cuatro semanas",
-      "priceBody": "Un portal de reparaciones a medida que funciona cuesta 5.000–8.000 €, precio fijo, entregado en cuatro semanas — como parte de un conjunto mayor (sitio público + admin de taller + parte del cliente) más bien 6.000–10.000 €. Después, un abono continuo desde 179 €/m para hosting, mantenimiento y desarrollo continuo.",
+      "priceBody": "El panel de reparaciones funciona por 395 €/mes fijo, todo incluido — construcción, hosting, mantenimiento y desarrollo. Primera versión funcionando (formulario público + iPad-taller + parte del cliente) en cuatro semanas tras la intake.",
       "pricePoints": [
-        "Precio fijo de antemano — sabes qué cuesta y qué obtienes",
-        "Cuatro semanas de la primera charla a la versión funcionando",
+        "395 €/mes fijo — todo incluido, sin sorpresas después",
+        "Cuatro semanas de la intake al sistema de partes en vivo",
         "Vista de taller adaptada al iPad + parte del cliente",
-        "Código en tu cuenta, hosting a tu nombre — sin vendor lock-in"
+        "Cancelable mensualmente, con export de datos"
       ],
       "faqEyebrow": "preguntas frecuentes",
       "faqTitle": "Portal de reparaciones — las preguntas que más recibo",
       "faq": [
         {
           "q": "¿Cuánto cuesta un portal de reparaciones a medida?",
-          "a": "Una primera versión funcionando cuesta 5.000–8.000 €, precio fijo, entregada en cuatro semanas. Como parte de un conjunto mayor más bien 6.000–10.000 €. Después, un abono desde 179 €/m para hosting, mantenimiento y desarrollo."
+          "a": "El panel de reparaciones cuesta 395 €/mes fijo, todo incluido. Primera versión funcionando en cuatro semanas tras la intake. Desarrollo dentro de la suscripción."
         },
         {
           "q": "¿Funciona en un iPad en el taller?",
