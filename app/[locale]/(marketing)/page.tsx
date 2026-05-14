@@ -20,7 +20,6 @@ import { StudioStatement } from "@/components/marketing/StudioStatement";
 import { Services } from "@/components/marketing/Services";
 import { HomeProblems } from "@/components/marketing/HomeProblems";
 import { Founder } from "@/components/marketing/Founder";
-import { Testimonials } from "@/components/marketing/Testimonials";
 import { Approach } from "@/components/marketing/Approach";
 import { FAQ } from "@/components/marketing/FAQ";
 import { CTABlock } from "@/components/marketing/CTABlock";
@@ -40,8 +39,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <Services />
       <HomeProblems />
       <Founder />
-      {/* Testimonials renders nothing until messages.home.testimonials.items has entries. */}
-      <Testimonials />
       <Approach />
       <FAQ />
       <CTABlock />

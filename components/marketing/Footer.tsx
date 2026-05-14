@@ -6,6 +6,7 @@ import { AmbientHalos } from "@/components/shared/AmbientHalos";
 import { MarkupText } from "@/components/animate/MarkupText";
 import { LangSwitcher } from "@/components/shared/LangSwitcher";
 import { CalPopupTrigger } from "@/components/marketing/CalPopupTrigger";
+import { TrustpilotMini } from "@/components/marketing/TrustpilotMini";
 
 /**
  * Premium "studio"-footer. Drie zones:
@@ -149,6 +150,11 @@ export async function Footer() {
                 </a>
               </li>
             </FooterColumn>
+          </div>
+
+          {/* ---- Zone 2.5: Trustpilot Mini-badge ---- */}
+          <div className="flex justify-center border-t border-(--color-border) pt-5 pb-1">
+            <TrustpilotMini locale={locale === "es" ? "es-ES" : "nl-NL"} className="max-w-md" />
           </div>
 
           {/* ---- Zone 3: Meta-strip ---- */}

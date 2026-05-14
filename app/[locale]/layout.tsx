@@ -84,6 +84,13 @@ export default async function LocaleLayout({
             strategy="afterInteractive"
           />
         ) : null}
+        {/* Trustpilot bootstrap — laadt het widget-script async, hydrateert
+            elementen met className "trustpilot-widget" (zie TrustpilotMini).
+            lazyOnload: niet-kritiek voor first paint. */}
+        <Script
+          src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+          strategy="lazyOnload"
+        />
       </head>
       <body className="dotted-bg flex min-h-full flex-col">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
