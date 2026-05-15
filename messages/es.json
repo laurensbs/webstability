@@ -397,9 +397,9 @@
         },
         "four": {
           "kicker": "04",
-          "title": "Live & mantenimiento",
-          "body": "Tras el lanzamiento, tu sistema corre bajo un care-plan. Tú sigues construyendo tu empresa.",
-          "meta": "continuo · desde €179/m"
+          "title": "Live & evolución",
+          "body": "Tras el lanzamiento el panel sigue creciendo dentro de la suscripción — nuevas features sin presupuesto extra. Tú sigues construyendo tu empresa.",
+          "meta": "todo incluido · desde 245 €/mes"
         }
       }
     },
@@ -416,20 +416,20 @@
       "title": "Respuestas por adelantado.",
       "items": [
         {
-          "q": "¿Cuánto cuesta un proyecto típico?",
-          "a": "Precio fijo, entrega en cuatro semanas. Una web a medida: desde 1.250 €. Una tienda online con IVA/BTW y conexión de inventario: desde 3.500 €. Un sistema de reservas de alquiler, portal de cliente, sistema interno o portal de reparaciones a medida: 5.000–8.000 € (un conjunto mayor — web pública + admin + portal — más bien 6.000–10.000 €). Después, una suscripción continua desde 179 €/m para hosting, mantenimiento y desarrollo. Configura una web o tienda tú mismo en /es/solicitar y ve el precio orientativo al instante."
+          "q": "¿Cuánto cuesta un panel?",
+          "a": "Una sola cuota mensual fija por panel, todo incluido. Portal de cliente 245 €/mes, panel de reparaciones 395 €/mes, panel de alquiler 495 €/mes, panel admin 545 €/mes. Construcción + hosting + mantenimiento + desarrollo todo en una. Sin facturas sueltas de proyecto, sin contrato anual, sin discusiones de horas extra. Ver detalles en /es/precios."
         },
         {
-          "q": "¿Por qué precio fijo y no presupuesto por horas?",
-          "a": "Por horas, o un presupuesto con margen 'para lo inesperado', traslada el riesgo a ti: si se alarga, pagas tú. Yo trabajo con precio fijo y un plazo fijo de cuatro semanas para la primera versión funcionando — si se alarga, es mi problema. Sabes de antemano qué cuesta y qué recibes. Sin discusiones de horas extra."
+          "q": "¿Por qué suscripción y no presupuestos sueltos?",
+          "a": "Presupuestos sueltos por cada ampliación trasladan el riesgo a ti: cada pequeño deseo se convierte en una conversación sobre dinero. En suscripción se trata de qué necesitas, no de cuántas horas lleva. Si algo lleva más tiempo de lo previsto, es mi problema — no tu factura. Sabes de antemano qué cuesta y qué incluye."
         },
         {
-          "q": "¿Por qué una suscripción después, y no 'entregado, suerte'?",
+          "q": "¿Por qué una suscripción y no 'entregado, suerte'?",
           "a": "Un precio de proyecto incentiva entregar rápido e irse. Una suscripción me obliga a entregar cada mes — mantenimiento, updates de seguridad, desarrollo de lo que de verdad usas. Para ti: entrada más baja, siempre cancelable (con export de datos), y software que sigue creciendo sin que tengas que aprobar un presupuesto por cada cambio."
         },
         {
-          "q": "¿Qué incluye la suscripción mensual?",
-          "a": "Desde 179 €/m: hosting premium (NL/EU edge), monitorización, backups diarios, updates de seguridad y margen para pequeños cambios — suficiente para mantener tu sistema estable desde el día uno. Studio (179 €/m) es la entrada para nuevos clientes: más horas de mantenimiento, SEO local e informe mensual. Atelier (3179 €/m) si quieres seguir construyendo mes a mes. Care (95 €/m) sigue como ancla para clientes existentes."
+          "q": "¿Qué incluye la cuota mensual?",
+          "a": "Todo: construcción, hosting premium (NL/EU edge), monitorización, backups diarios, updates de seguridad, mantenimiento y desarrollo continuo. Una sola cuota dependiendo del panel (desde 245 €/mes), sin facturas extra. Las nuevas features se añaden dentro del abono — sin presupuestos por cambio."
         },
         {
           "q": "¿Y si quiero subir o bajar de tier entre medias?",
@@ -477,19 +477,19 @@
       "featured": "Más elegido",
       "viewAll": "Ver comparativa completa y precios de Build",
       "reassurance": [
-        "Primer mes gratis",
+        "Primer mes incluido",
         "Cancelable mensualmente",
-        "15% de descuento con pago anual",
-        "A medida desde 5–8 k € · web desde 1.250 €"
+        "Sin facturas sueltas de proyecto",
+        "Cuatro paneles desde 245 €/mes"
       ]
     },
     "cta": {
       "eyebrow": "hablemos",
-      "title": "¿Listo para un sistema que *crece contigo*?",
-      "body": "Una llamada de 30 minutos sin compromiso. Sin presentación comercial — un consejo honesto sobre si, y cómo, podemos ayudarnos.",
+      "title": "¿Listo para un panel que *crece contigo*?",
+      "body": "Una llamada de 30 minutos sin compromiso. Sin presentación comercial — un consejo honesto sobre qué panel encaja y cuál es el enfoque.",
       "button": "Planificar en agenda",
-      "pricingHint": "A medida desde 5–8 k €, web desde 1.250 € — precio fijo, cuatro semanas. Después una suscripción continua desde 179 €/m. Primer mes gratis.",
-      "pricingHintLink": "Ver comparativa de tiers"
+      "pricingHint": "Cuatro paneles desde 245 €/mes — todo incluido, cancelable mensualmente. Primera versión del panel en cuatro semanas.",
+      "pricingHintLink": "Ver los paneles"
     }
   },
   "contact": {
@@ -1347,7 +1347,7 @@
           "breaks": "Se pierde tu marca. El cliente ve Icnea, no a ti. Sin checkout en tu propio dominio."
         }
       ],
-      "competitorsClaim": "A medida donde el SaaS se queda corto — precio fijo 5–8 k €, entrega en 4 semanas.",
+      "competitorsClaim": "A medida donde el SaaS se queda corto — cuota mensual fija desde 245 €/mes, todo incluido.",
       "quoteText": "Antes de trabajar con Webstability teníamos tres reservas duplicadas al mes. Desde el lanzamiento en 2024 — literalmente cero. Y ahorro al menos medio día a la semana en admin.",
       "quoteName": "Marco Jansen",
       "quoteRole": "Propietario · Costa Caravans Verhuur (12 caravanas · 4 mobile-homes)",
@@ -1357,46 +1357,47 @@
       "pricingLede": "Precio fijo por adelantado, entrega en cuatro semanas, mantenimiento continuo después. Sin presupuestos, sin discusiones de horas extra.",
       "plans": [
         {
-          "id": "klein",
-          "name": "Pequeño",
-          "desc": "1–5 objetos · una ubicación · canales estándar",
-          "price": "5.000 €",
-          "period": "precio fijo · entrega en 4 semanas · sin IVA",
+          "id": "basis",
+          "name": "Panel de alquiler · básico",
+          "desc": "1–8 objetos · una ubicación · canales estándar",
+          "price": "495 €",
+          "period": "/mes · todo incluido · sin IVA",
           "items": [
             "Agenda central + reservas",
-            "Sync Booking & Airbnb",
-            "Mollie/Stripe checkout + facturación",
-            "Después Studio (179 €/m) de mantenimiento"
+            "Channel-sync Booking & Airbnb",
+            "Mollie/Stripe checkout + facturación automática",
+            "Portal de cliente con login + documentos",
+            "Hosting + monitorización + mantenimiento ilimitado"
           ],
-          "cta": "Conversemos"
+          "cta": "Solicita este panel"
         },
         {
-          "id": "mid",
-          "name": "Medio",
-          "desc": "5–15 objetos · clientes NL+ES · contratos y fianza",
-          "price": "6.500 €",
-          "period": "precio fijo · entrega en 4 semanas · sin IVA",
+          "id": "plus",
+          "name": "Panel de alquiler · plus",
+          "desc": "8–20 objetos · clientes NL+ES · contratos y fianza",
+          "price": "695 €",
+          "period": "/mes · todo incluido · sin IVA",
           "items": [
-            "Todo de Pequeño",
+            "Todo de básico",
             "Generación de contrato y firma electrónica",
             "Flujo de fianza vía Mollie/Stripe",
             "Portal multilingüe NL+ES",
-            "Después Studio (179 €/m) de mantenimiento"
+            "Desarrollo dentro de la suscripción"
           ],
-          "cta": "Pedir presupuesto"
+          "cta": "Solicita este panel"
         },
         {
           "id": "groot",
-          "name": "Grande",
-          "desc": "15–30 objetos · multi-ubicación · integración contable a medida",
-          "price": "8.000 €",
-          "period": "precio fijo · entrega en 4 semanas · sin IVA",
+          "name": "Panel de alquiler · grande",
+          "desc": "20+ objetos · multi-ubicación · integración contable a medida",
+          "price": "895 €",
+          "period": "/mes · todo incluido · sin IVA",
           "items": [
-            "Todo de Medio",
+            "Todo de plus",
             "Multi-ubicación + multi-divisa",
             "Integración contable a medida (Holded/e-Boekhouden)",
             "Acceso multi-usuario para tu equipo",
-            "Después Atelier (3179 €/m) mantenimiento + ampliación"
+            "SLA con tiempos de respuesta más rápidos"
           ],
           "cta": "Reunión estratégica"
         }
@@ -1592,7 +1593,7 @@
     "productLines": {
       "eyebrow": "plataformas que operamos",
       "title": "Líneas de producto",
-      "lede": "Tres plataformas que mantenemos en marcha para el mercado NL+ES. Otras empresas reciben la misma base como punto de partida — primera versión funcional en 4 semanas a precio fijo 5–8 k €, después ampliación vía Atelier + Build Custom.",
+      "lede": "Tres plataformas que mantenemos en marcha para el mercado NL+ES. Otras empresas reciben la misma base como punto de partida — primera versión funcional en 4 semanas, después la suscripción cubre construcción, hosting y desarrollo continuo dentro de una cuota mensual fija.",
       "viewCaseLabel": "Ver caso completo",
       "tryDemoLabel": "Abrir demo en vivo",
       "items": [

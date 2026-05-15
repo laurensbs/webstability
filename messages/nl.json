@@ -397,9 +397,9 @@
         },
         "four": {
           "kicker": "04",
-          "title": "Live & onderhoud",
-          "body": "Na livegang draait je systeem onder een care-plan. Jij blijft bouwen aan je bedrijf.",
-          "meta": "doorlopend · vanaf €179/m"
+          "title": "Live & doorbouwen",
+          "body": "Na livegang groeit het paneel mee binnen het abonnement — nieuwe features zonder extra offerte. Jij blijft bouwen aan je bedrijf.",
+          "meta": "alles inbegrepen · vanaf €245/mnd"
         }
       }
     },
@@ -429,7 +429,7 @@
         },
         {
           "q": "Wat zit er in het maandabonnement?",
-          "a": "Vanaf €179/m: premium hosting (NL/EU edge), monitoring, dagelijkse backups, security-updates en ruimte voor kleine wijzigingen — genoeg om je systeem stabiel te houden vanaf dag één. Studio (€179/m) is de instap voor nieuwe klanten: meer onderhoudsuren, lokale SEO en maandelijkse rapportage. Atelier (€399/m) als je maand na maand wil doorbouwen. Care (€95/m) blijft als anker draaien voor bestaande klanten."
+          "a": "Alles: bouw, premium hosting (NL/EU edge), monitoring, dagelijkse backups, security-updates, onderhoud en doorontwikkeling. Eén vaste maandprijs afhankelijk van het paneel (vanaf €245/mnd), zonder extra facturen. Nieuwe features komen erbij binnen het abonnement — geen offertes per wijziging."
         },
         {
           "q": "Wat als ik tussentijds wil upgraden of downgraden?",
@@ -1347,7 +1347,7 @@
           "breaks": "Eigen merk gaat verloren. Klant ziet Icnea, niet jou. Geen eigen domein-checkout."
         }
       ],
-      "competitorsClaim": "Maatwerk waar SaaS ophoudt — vaste prijs €5–8k, 4 weken levering.",
+      "competitorsClaim": "Maatwerk waar SaaS ophoudt — vaste maandprijs vanaf €245/mnd, alles inbegrepen.",
       "quoteText": "Voor we met Webstability werkten, hadden we drie dubbele boekingen per maand. Sinds de livegang in 2024 — letterlijk nul. En ik bespaar minstens een halve dag per week aan administratie.",
       "quoteName": "Marco Jansen",
       "quoteRole": "Eigenaar · Costa Caravans Verhuur (12 caravans · 4 stacaravans)",
@@ -1357,46 +1357,47 @@
       "pricingLede": "Vaste prijs vooraf, vier weken levering, doorlopend onderhoud daarna. Geen offertes, geen meeruren-discussies.",
       "plans": [
         {
-          "id": "klein",
-          "name": "Klein",
-          "desc": "1–5 objecten · één locatie · standaard kanalen",
-          "price": "€5.000",
-          "period": "vaste prijs · 4 weken levering · excl. btw",
+          "id": "basis",
+          "name": "Verhuurpaneel · basis",
+          "desc": "1–8 objecten · één locatie · standaard kanalen",
+          "price": "€495",
+          "period": "/mnd · alles inbegrepen · excl. btw",
           "items": [
             "Centrale agenda + boekingen",
-            "Booking & Airbnb sync",
-            "Mollie/Stripe checkout + facturatie",
-            "Daarna Studio (€179/m) onderhoud"
+            "Booking & Airbnb channel-sync",
+            "Mollie/Stripe checkout + automatische facturatie",
+            "Klantportaal met inloggen + documenten",
+            "Hosting + monitoring + onbeperkt onderhoud"
           ],
-          "cta": "Bespreek mogelijkheden"
+          "cta": "Vraag dit paneel aan"
         },
         {
-          "id": "mid",
-          "name": "Mid",
-          "desc": "5–15 objecten · NL+ES klantbasis · contracten & borg",
-          "price": "€6.500",
-          "period": "vaste prijs · 4 weken levering · excl. btw",
+          "id": "plus",
+          "name": "Verhuurpaneel · plus",
+          "desc": "8–20 objecten · NL+ES klantbasis · contracten & borg",
+          "price": "€695",
+          "period": "/mnd · alles inbegrepen · excl. btw",
           "items": [
-            "Alles van Klein",
+            "Alles van basis",
             "Contractgeneratie & e-handtekening",
             "Borg-flow via Mollie/Stripe",
             "Meertalige klantportal NL+ES",
-            "Daarna Studio (€179/m) onderhoud"
+            "Doorontwikkeling binnen abonnement"
           ],
-          "cta": "Vraag offerte aan"
+          "cta": "Vraag dit paneel aan"
         },
         {
           "id": "groot",
-          "name": "Groot",
-          "desc": "15–30 objecten · multi-locatie · boekhoudkoppeling op maat",
-          "price": "€8.000",
-          "period": "vaste prijs · 4 weken levering · excl. btw",
+          "name": "Verhuurpaneel · groot",
+          "desc": "20+ objecten · multi-locatie · boekhoudkoppeling op maat",
+          "price": "€895",
+          "period": "/mnd · alles inbegrepen · excl. btw",
           "items": [
-            "Alles van Mid",
+            "Alles van plus",
             "Multi-locatie + multi-currency",
             "Boekhoudkoppeling op maat (Holded/e-Boekhouden)",
             "Multi-user team-toegang",
-            "Daarna Atelier (€399/m) onderhoud + uitbouw"
+            "SLA met snellere reactietijden"
           ],
           "cta": "Plan strategiegesprek"
         }
@@ -1592,7 +1593,7 @@
     "productLines": {
       "eyebrow": "platforms die we zelf draaien",
       "title": "Productlijnen",
-      "lede": "Drie platforms die we zelf in de lucht houden voor de NL+ES markt. Andere bedrijven krijgen dezelfde basis als startpunt — eerste werkende versie in 4 weken voor €5–8k vaste prijs, daarna doorbouwen via Atelier + Build Custom.",
+      "lede": "Drie platforms die we zelf in de lucht houden voor de NL+ES markt. Andere bedrijven krijgen dezelfde basis als startpunt — eerste werkende versie in 4 weken, daarna dekt het abonnement bouw, hosting en doorontwikkeling binnen één vaste maandprijs.",
       "viewCaseLabel": "Bekijk volledig case",
       "tryDemoLabel": "Open live demo",
       "items": [
